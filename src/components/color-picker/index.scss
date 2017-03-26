@@ -1,0 +1,125 @@
+/**
+ * Created by liz
+ * Email: lizhengnacl@163.com
+ * Tel: 18686768624
+ * Date: 16/12/7
+ */
+
+@mixin clear-space(){
+    font-size: 0;
+    letter-spacing: -4px;
+}
+@mixin clear-space-reset(){
+    font-size: 12px;
+    letter-spacing: 0;
+}
+
+@mixin ellipsis(
+    $display: block
+) {
+
+    display: $display;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+}
+
+@mixin no-select{
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+    -khtml-user-select: none; /* Konqueror */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently not supported by any browser */
+}
+
+.xm-color-picker-container{
+    display: inline-block;
+    line-height: 24px;
+}
+.xm-color-picker-icon{
+    font-style: normal;
+    cursor: pointer;
+    @include no-select;
+}
+
+.xm-color-picker{
+    & *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    width: 193px;
+    position: absolute;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    background-color: white;
+    &.isHide{
+        display: none;
+    }
+}
+
+/* Swatch */
+.xm-color-picker .xm-color-picker-swatch{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin: 1px;
+    &:hover{
+        cursor: pointer;
+        position: relative;
+        z-index: 2;
+        outline: white solid 2px;
+        box-shadow: rgba(0, 0, 0, 0.247059) 0 0 5px 2px;
+    }
+}
+
+/* 最近使用 */
+.xm-color-picker .xm-color-picker-block{
+    width: 100%;
+    margin-bottom: 5px;
+    &:last-child{
+        margin-bottom: 0;
+    }
+    /* 去掉空格 */
+    @include clear-space;
+
+    .xm-color-picker-block-title{
+        @include clear-space-reset;
+        @include ellipsis;
+        margin-bottom: 5px;
+    }
+    &.noWrap{
+        white-space: nowrap;
+        overflow: hidden;
+    }
+}
+
+/* 默认颜色 */
+.xm-color-picker .xm-color-picker-default{
+    height: 40px;
+    line-height: 40px;
+    .xm-color-picker-default-show, .xm-color-picker-default-button{
+        display: inline-block;
+        font-size: 12px;
+        border-radius: 2px;
+        height: 25px;
+        line-height: 25px;
+        vertical-align: middle;
+    }
+    .xm-color-picker-default-button{
+        border: 1px solid #ddd;
+        width: 60px;
+        text-align: center;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+    .xm-color-picker-default-show{
+        width: 115px;
+        margin-right: 6px;
+    }
+}

@@ -1,0 +1,58 @@
+.weditor-wrapper{
+  overflow: hidden;
+  position: absolute;
+  top:0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  div{
+    box-sizing: border-box;
+  }
+}
+@import "./header.scss";
+.weditor-body{
+  padding: 10px 0;
+  position: absolute;
+  left: 0;
+  top: 95px;
+  right: 0px;
+  bottom: 0px;
+  overflow: hidden;
+  background-color: rgb(246,246,246);
+  .content-container{
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 0 0.1px #d1d1d1, 0 0 1px 0.1px #ccc;
+    width: 800px;
+    margin: 0 auto;
+    border: 0;
+    height: 100%;
+    .ql-container{
+      font-size: 12pt;
+    }
+  }
+  .editormd-toolbar{
+    width: 100%;
+    min-height: 37px;
+    background: #f0f0f0;
+    display: none;
+    position: fixed;
+    top: 55px;
+    left: 0;
+    z-index: 10;
+    //box-shadow: 0 2px 4px hsla(0,0%,8%,.15);
+    &.scroll{
+      box-shadow: 0 2px 4px hsla(0,0%,8%,.15);
+    }
+    border: none;
+    .editormd-menu{
+      width: 910px;
+      margin: 0 auto;
+    }
+    .editormd-menu>li>a{
+      border: none;
+      i{
+        font-weight:200;
+      }
+    }
+  }
+}

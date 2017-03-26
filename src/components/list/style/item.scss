@@ -1,0 +1,158 @@
+.yp-file-list-item{
+  position: relative;
+  width: 100%;
+  height: 60px;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #F1F1F1;
+  min-width: 870px;
+  cursor: pointer;
+  &:before{
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 100%;
+    vertical-align: middle;
+    font-size: 0;
+  }
+  //选择框
+  .list-item-checkbox-container{
+    display: inline-block;
+    vertical-align: top;
+    height: 100%;
+    width: 10px;
+  }
+  //.list-item-checkbox{
+  //    display: inline-block;
+  //    vertical-align: middle;
+  //    width: 15px;
+  //    height: 15px;
+  //    margin-left: 10px;
+  //    cursor: pointer;
+  //    background: url('/public/images/group-file/square-checked-not.png') no-repeat;
+  //    background-size: cover;
+  //}
+  //文件图标 or 图片缩略图
+  .list-item-icon{
+    display: inline-block;
+    vertical-align: middle;
+    width: 35px;
+    height: 35px;
+    margin-left: 0;
+    &.list-item-icon-border{
+      border: 1px solid rgba(221,221,221,0.5);  //只给图片设置border，文件类型的icon不设置border
+    }
+    img{
+      width: 100%;
+      height: 100%;
+    }
+  }
+  //文件名等信息
+  .list-item-title{
+    display: inline-block;
+    vertical-align: middle;
+    height: auto;
+    margin-left: 14px;
+    .list-item-title-name{
+      position: relative;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      height: 20px;
+      max-width: 410px;
+      font-size: 14px;
+      line-height: 20px;
+      overflow: hidden;
+      word-break: break-all;
+      color: #333333;
+      cursor: pointer;
+      &:hover{
+        color: $primary;
+      }
+    }
+    .list-item-title-note{
+      display: block;
+      //width: 100%;
+      font-size: 12px;
+      line-height: 17px;
+      color: #BBBBBB;
+    }
+  }
+
+  .list-item-right{
+    display: inline-block;
+    height: 100%;
+    float: right;
+    width: 350px;
+    &:before{
+      content: '';
+      display: inline-block;
+      vertical-align: middle;
+      font-size: 0;
+      width: 0;
+      height: 100%;
+    }
+  }
+
+  //文件大小
+  .list-item-size{
+    display: inline-block;
+    vertical-align: middle;
+    width: 120px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #999999;
+  }
+  //更新时间
+  .list-item-uts{
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 14px;
+    line-height: 20px;
+    color: #999999;
+  }
+  //hover-actions
+  .list-item-hover-action{
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: none;
+    height: 100%;
+    z-index: 2;
+    width: 350px;
+    &:before{
+      content: '';
+      display: inline-block;
+      vertical-align: middle;
+      width: 0;
+      height: 100%;
+      font-size: 0;
+    }
+    .yp-file-list-hover-actions{
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+
+
+
+  //选中的文件  统一设置样式
+  &.yp-file-list-item-selected{
+    background: #DAEEFF;
+    .list-item-checkbox{
+      background: url('/public/images/group-file/square-checked.png') no-repeat;
+      background-size: cover;
+    }
+  }
+
+  //hover后文件  统一设置样式
+  &.yp-file-list-item-hover{
+    background: #F3FAFF;
+    .list-item-size, .list-item-uts{
+      display: none;
+    }
+    .list-item-hover-action{
+      display: block;
+    }
+  }
+
+}
