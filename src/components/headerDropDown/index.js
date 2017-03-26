@@ -4,7 +4,7 @@
 'use strict';
 import './index.scss';
 import React, {Component} from "react";
-import quillEditor from '../../lib/quillEditor'
+import {getEditor} from '../../lib/quillEditor'
 
 export default class HeaderDropDown extends Component {
 
@@ -41,8 +41,8 @@ export default class HeaderDropDown extends Component {
     }
 
     changeSize = (e) => {
-        if (quillEditor) {
-            quillEditor.format('header', $(e.target).data('size'), 'user');
+        if (getEditor()) {
+            getEditor().format('header', $(e.target).data('size'), 'user');
             this.setState({
                 value:!!$(e.target).data('size')?`标题${$(e.target).data('size')}`:'正文'
             })

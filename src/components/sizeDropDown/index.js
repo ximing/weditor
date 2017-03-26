@@ -5,7 +5,7 @@
 import './index.scss';
 import React, {Component} from 'react';
 import $ from 'jquery';
-import quillEditor from '../../lib/quillEditor'
+import {getEditor} from '../../lib/quillEditor'
 
 let fontSizeMap = {
     "": '小四',
@@ -27,9 +27,9 @@ let fontSizeMap = {
     "5pt": '八号'
 }
 function changeSize(e) {
-    console.log('--->', $(e.target).data('size'));
-    if (quillEditor) {
-        quillEditor.format('size', $(e.target).data('size'), 'user')
+    console.log('--->', $(e.target).data('size'),getEditor());
+    if (getEditor()) {
+        getEditor().format('size', $(e.target).data('size'), 'user')
     }
 }
 export default class SizeDropDown extends Component {

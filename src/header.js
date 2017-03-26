@@ -9,7 +9,7 @@ import FileHeader from './fileHeader';
 import StartHeader from './startHeader';
 import InsertHeader from './insertHeader';
 import ViewHeader from './viewHeader';
-import quillEditor from './lib/quillEditor'
+import {getEditor} from './lib/quillEditor'
 
 export default class EditorHeader extends Component {
     constructor() {
@@ -31,7 +31,7 @@ export default class EditorHeader extends Component {
 
 
     export = async() => {
-        if (quillEditor) {
+        if (getEditor()) {
             // let res = await api.getExportUrl(window.quillEditor.getContents());
             document.getElementById('gf_down_file').src = res.url;
         }

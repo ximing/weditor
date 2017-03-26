@@ -4,13 +4,13 @@
 'use strict';
 import React, {Component} from "react";
 import Icon from './components/icon/index';
-import quillEditor from './lib/quillEditor'
+import {getEditor} from './lib/quillEditor'
 
 export default class CommonEditor extends Component {
 
     toggleCatalogue = () => {
-        if (quillEditor) {
-            let ops = quillEditor.getContents().ops;
+        if (getEditor()) {
+            let ops = getEditor().getContents().ops;
             let _ops = [];
             ops = ops.forEach((item, i) => {
                 if (ops[i + 1] && ops[i + 1].attributes && ops[i + 1].attributes.header) {

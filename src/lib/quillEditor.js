@@ -42,4 +42,6 @@ export const initQuillEditor = function (dom,options) {
     });
     return quillEditor;
 }
-export default quillEditor;
+export const getEditor = function(){
+    return quillEditor
+};

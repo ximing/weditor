@@ -6,7 +6,7 @@ import React, {Component} from "react";
 import SizeDropDown from "./components/sizeDropDown/index";
 import HeaderDropDown from "./components/headerDropDown/index";
 import ColorPicker from "./components/color-picker";
-import quillEditor from './lib/quillEditor'
+import {getEditor} from './lib/quillEditor'
 
 export default class CommonEditor extends Component {
     //行高
@@ -16,13 +16,13 @@ export default class CommonEditor extends Component {
 
     setColor = (color) => {
         console.log('color',color);
-        if (quillEditor) {
-            quillEditor.format('color', color, 'user');
+        if (getEditor()) {
+            getEditor().format('color', color, 'user');
         }
     }
     setBackgroundColor = (color) => {
-        if (quillEditor) {
-            quillEditor.format('background', color, 'user');
+        if (getEditor()) {
+            getEditor().format('background', color, 'user');
         }
     }
 
@@ -43,15 +43,6 @@ export default class CommonEditor extends Component {
         return (
             <span className="ql-formats start-header" style={style}>
                 <span className="ql-formats">
-                            {/*<select className="ql-header" defaultValue={header}>*/}
-                    {/*<option value="normal">正文</option>*/}
-                    {/*<option value="h1">标题1</option>*/}
-                    {/*<option value="h2">标题2</option>*/}
-                    {/*<option value="h3">标题3</option>*/}
-                    {/*<option value="h4">标题4</option>*/}
-                    {/*<option value="h5">标题5</option>*/}
-                    {/*<option value="h6">标题6</option>*/}
-                    {/*</select>*/}
                     <HeaderDropDown val={header}/>
                 </span>
                 <span className="ql-formats">
