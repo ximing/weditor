@@ -6,6 +6,9 @@ import React, {Component} from "react";
 import Icon from './components/icon/index';
 import {getEditor} from './lib/quillEditor'
 
+import {observer,inject} from 'mobx-react';
+
+@inject('catalogue') @observer
 export default class CommonEditor extends Component {
 
     toggleCatalogue = () => {
@@ -20,18 +23,15 @@ export default class CommonEditor extends Component {
                     })
                 }
             });
-            // this.props.dispatch({
-            //     type: 'catalogue.setCatalogue',
-            //     payload: _ops
-            // })
-            this.props.call('catalogue.setCatalogue', _ops);
+            this.props.catalogue.open = true;
+            this.props.catalogue.list = _ops;
         }
     }
 
     render() {
-        const {style} = this.props;
+        const {style, catalogue} = this.props;
         return (
-            <span className="ql-formats view-header" style={style}>
+            <span className="ql-formats view-header" >
                 <span className="ql-catalogue opver-area" onClick={this.toggleCatalogue}>
                     <span className="opver-icon catalogue-icon"></span>
                     <span>显示目录</span>
