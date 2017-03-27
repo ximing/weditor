@@ -10,6 +10,7 @@ import Header from './header';
 import Catalogue from './catalogue';
 import './lib/initQuill'
 import {initQuillEditor} from './lib/quillEditor'
+import LinkBubble from './components/linkBubble';
 
 
 export default class WEditor extends Component {
@@ -64,6 +65,7 @@ export default class WEditor extends Component {
                             <p><br/></p><p>fd</p><p>s</p></div>
                     </div>
                 </div>
+                <LinkBubble />
             </div>
         );
     }

@@ -11,13 +11,18 @@ import 'quill/dist/quill.snow.css'
 import WEditor from './weditor'
 
 import Catalogue from './model/catalogue';
+import Insert from './model/insert';
 
 let catalogue = new Catalogue();
+let insert = new Insert();
 
 export default class  extends Component {
     render(){
         return(
-            <Provider catalogue={catalogue} >
+            <Provider
+                catalogue={catalogue}
+                insert={insert}
+            >
                 <WEditor />
             </Provider>
         )

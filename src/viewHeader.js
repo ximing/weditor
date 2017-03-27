@@ -29,9 +29,9 @@ export default class CommonEditor extends Component {
     }
 
     render() {
-        const {style, catalogue} = this.props;
+        const {style} = this.props;
         return (
-            <span className="ql-formats view-header" >
+            <span className="ql-formats view-header" style={style}>
                 <span className="ql-catalogue opver-area" onClick={this.toggleCatalogue}>
                     <span className="opver-icon catalogue-icon"></span>
                     <span>显示目录</span>
