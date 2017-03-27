@@ -3,7 +3,9 @@
  */
 'use strict';
 import {observable, autorun} from 'mobx';
-export default class Catalogue {
+class Catalogue {
     @observable open = false;
     @observable list = [];
 }
+const catalogue = new Catalogue();
+export default catalogue;

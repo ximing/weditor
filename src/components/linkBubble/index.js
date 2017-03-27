@@ -4,13 +4,22 @@
 'use strict';
 import './index.scss'
 import React,{Component} from 'react';
+import {inject,observer} from 'mobx-react'
+
 import Input from '../input/index';
 import Button from '../button/index'
 
-export default class LinkDialog extends Component {
+@inject('insert') @observer
+export default class LinkBubble extends Component {
     render(){
+        const {linkPosition,openLinkDialog} = this.props.insert;
+        debugger
         return(
-            <section className="weditor-bubble">
+            <section className="weditor-bubble" style={{
+                top:linkPosition.top,
+                left:linkPosition.left,
+                display:openLinkDialog?'block':'none'
+            }}>
                 <div className="weditor-bubble-item">
                     <span>文本：</span>  <Input className="weditor-insert-input"/>
                 </div>

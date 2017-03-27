@@ -4,9 +4,12 @@
 'use strict';
 import  Quill from 'quill';
 
-let quillEditor = null;
+import insert from '../model/insert';
 
-export const initQuillEditor = function (dom,options) {
+let quillEditor = null;
+let quillDom = null;
+export const initQuillEditor = function (dom, options) {
+    quillDom = dom;
     quillEditor = new Quill(dom, {
         modules: {
             toolbar: {
@@ -14,19 +17,39 @@ export const initQuillEditor = function (dom,options) {
                 handlers: {
                     'link': function (value, ...args) {
                         if (value) {
-                            var value = prompt('What is the image URL');
-                            quill.format('link', value);
+                            let {openLinkDialog, linkTitle, linkUrl, linkPosition} = insert;
+                            if (openLinkDialog) {
+                                openLinkDialog = false;
+                                linkTitle = null;
+                                linkUrl = null;
+                            } else {
+                                if (getEditor()) {
+                                    if (getEditor().getSelection()) {
+                                        const {index, length} = getEditor().getSelection()
+                                        const {left, top, height} = getEditor().getBounds(index);
+                                        openLinkDialog = true;
+                                        linkTitle = getEditor().getText(index, length);
+                                        linkUrl = null;
+                                        linkPosition = {
+                                            left: getEditorBoundingClientRect().left + left,
+                                            top: getEditorBoundingClientRect().top + top
+                                        }
+                                    }
+                                }
+                            }
+                            // var value = prompt('What is the image URL');
+                            // quill.format('link', value);
                         } else {
-                            quill.format('link', false);
+                            getEditor().format('link', false);
                         }
                         console.log(value, args);
-                        console.log(quill.getSelection(), quill.getBounds(7))
+                        console.log(getEditor().getSelection(), getEditor().getBounds(7))
                     },
                     'image': function (args) {
                         console.log('ssss', args);
                         var range = this.quill.getSelection();
                         var value = prompt('What is the image URL');
-                        quill.insertEmbed(range.index, 'image', value, Quill.sources.USER);
+                        getEditor().insertEmbed(range.index, 'image', value, Quill.sources.USER);
                     }
                 }
             },
@@ -41,7 +64,16 @@ export const initQuillEditor = function (dom,options) {
         theme: 'snow'
     });
     return quillEditor;
-}
-export const getEditor = function(){
-    return quillEditor
 };
+
+export const getEditor = function () {
+    return quillEditor;
+};
+
+export const getDom = function () {
+    return quillDom;
+}
+
+export const getEditorBoundingClientRect = function () {
+    return quillDom.getBoundingClientRect();
+}

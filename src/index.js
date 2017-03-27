@@ -10,11 +10,9 @@ import './index.scss'
 import 'quill/dist/quill.snow.css'
 import WEditor from './weditor'
 
-import Catalogue from './model/catalogue';
-import Insert from './model/insert';
+import catalogue from './model/catalogue';
+import insert from './model/insert';
 
-let catalogue = new Catalogue();
-let insert = new Insert();
 
 export default class  extends Component {
     render(){

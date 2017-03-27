@@ -25,6 +25,7 @@ export default class WEditor extends Component {
 
     componentDidMount() {
         let quillEditor = this.quill = initQuillEditor(ReactDOM.findDOMNode(this.refs.editor));
+        window.quillEditor = quillEditor;
         quillEditor.on('selection-change', (range, oldRange, source) => {
             if (range) {
                 let rangeFormat = quillEditor.getFormat(range);

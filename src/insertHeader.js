@@ -4,38 +4,34 @@
 'use strict';
 import React, {Component} from "react";
 import Icon from './components/icon/index';
-import {inject,observer} from 'mobx-react';
+import {inject, observer} from 'mobx-react';
+import {getEditor, getEditorBoundingClientRect} from './lib/quillEditor';
 
-@inject('insert') @observer
+// @inject('insert') @observer
 export default class CommonEditor extends Component {
 
-    openLinkDialog = ()=>{
-        let {openLinkDialog} = this.props.insert;
-        if(openLinkDialog){
-            openLinkDialog = false;
-        }else{
-            openLinkDialog = true;
-        }
+    openLinkDialog = () => {
+
     };
 
-    openImageDialog = ()=>{
+    openImageDialog = () => {
         let {openImageDialog} = this.props.insert;
-        if(openImageDialog){
+        if (openImageDialog) {
             openImageDialog = false;
-        }else{
+        } else {
             openImageDialog = true;
         }
     };
 
 
     render() {
-        const {rangeFormat,style} = this.props;
+        const {rangeFormat, style} = this.props;
         return (
             <span className="ql-formats insert-header" style={style}>
                 {/*<button className="ql-fengexian">*/}
-                    {/*<Icon type="fengexian"/>*/}
+                {/*<Icon type="fengexian"/>*/}
                 {/*</button>*/}
-                <button className="ql-link" onClick={this.openLinkDialog}>
+                <button className="ql-link">
                 </button>
                 <button className="ql-image" onClick={this.openImageDialog}>
                 </button>
