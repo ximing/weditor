@@ -7,7 +7,7 @@ class Insert {
     @observable
     openLinkDialog = false;
     @observable
-    openImageDialog = false;
+    openImageDialog = true;
     @observable
     linkTitle = '';
     @observable

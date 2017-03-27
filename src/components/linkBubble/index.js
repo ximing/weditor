@@ -8,18 +8,11 @@ import {observer, inject} from "mobx-react";
 
 import Input from '../input/index';
 import Button from '../button/index'
-/**
- * 检测某个节点是否包含在另一节点中
- * @param a 父节点
- * @param b 子节点
- * @returns {boolean|*}
- */
-function contains(a, b) {
-    return (a == b) || (a && a.contains ?
-            a != b && a.contains(b) :
-            !!(a.compareDocumentPosition(b) & 16));
-}
+import {contains} from '../../lib/util'
+
 import {getEditor} from '../../lib/quillEditor'
+
+
 @inject('insert') @observer
 export default class LinkBubble extends Component {
     componentDidMount(){

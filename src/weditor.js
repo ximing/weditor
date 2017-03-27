@@ -11,6 +11,8 @@ import Catalogue from './catalogue';
 import './lib/initQuill'
 import {initQuillEditor} from './lib/quillEditor'
 import LinkBubble from './components/linkBubble';
+import InsertImage from './components/insertImage';
+
 import {inject,observer} from 'mobx-react';
 import DevTools from 'mobx-react-devtools';
 
@@ -70,6 +72,9 @@ export default class WEditor extends Component {
                 </div>
                 {
                     this.props.insert.openLinkDialog && <LinkBubble />
+                }
+                {
+                    this.props.insert.openImageDialog && <InsertImage />
                 }
                 <DevTools />
             </div>
