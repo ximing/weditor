@@ -3,29 +3,95 @@
  */
 'use strict';
 import './index.scss'
-import React,{Component} from 'react';
-import {inject,observer} from 'mobx-react'
+import React, {Component} from 'react';
+import {observer, inject} from "mobx-react";
 
 import Input from '../input/index';
 import Button from '../button/index'
-
+/**
+ * 检测某个节点是否包含在另一节点中
+ * @param a 父节点
+ * @param b 子节点
+ * @returns {boolean|*}
+ */
+function contains(a, b) {
+    return (a == b) || (a && a.contains ?
+            a != b && a.contains(b) :
+            !!(a.compareDocumentPosition(b) & 16));
+}
+import {getEditor} from '../../lib/quillEditor'
 @inject('insert') @observer
 export default class LinkBubble extends Component {
-    render(){
-        const {linkPosition,openLinkDialog} = this.props.insert;
-        debugger
-        return(
+    componentDidMount(){
+      window.document.addEventListener('click',this.otherDOMClick,false)
+    }
+
+    componentWillUnmount(){
+       window.document.removeEventListener('click',this.otherDOMClick,false)
+    }
+
+    closeBubble = (e) => {
+        console.log('close bubble')
+        this.props.insert.openLinkDialog = false;
+    };
+
+    otherDOMClick(e) {
+        let node = e.target;
+        if (!this.props.insert.openLinkDialog) {
+            return false;
+        }
+        let target = this.target;
+        if (!(contains(target, node)) && this.state.shown) {
+            this.closeBubble();
+        }
+    }
+
+    changeTitle = (e)=>{
+        this.props.insert.linkTitle = e.target.value || '';
+    };
+
+    changeUrl = (e)=>{
+        this.props.insert.linkUrl = e.target.value || '';
+    };
+
+    apply = ()=>{
+        if(getEditor() && !!this.props.insert.linkUrl){
+            let editor = getEditor();
+            let selection = this.props.insert.linkSelection;
+            console.log('insert bubble ',selection);
+            if(selection){
+                if(editor.getText(selection.index,selection.length) === this.props.insert.linkTitle){
+                    getEditor().format('link', this.props.insert.linkUrl,'user');
+                }else{
+                    const {index,length} = selection;
+                    editor.delete(index,length,'user');
+                    let linkTitle = this.props.insert.linkTitle||this.props.insert.linkUrl;
+                    editor.insertText(index,linkTitle,'user');
+                    editor.setSelection(index,linkTitle.length,'user');
+                    getEditor().format('link', this.props.insert.linkUrl,'user');
+                }
+            }
+            this.props.insert.openLinkDialog = false;
+        }
+    }
+    render() {
+        // const {linkPosition,openLinkDialog} = this.props.insert;
+        return (
             <section className="weditor-bubble" style={{
-                top:linkPosition.top,
-                left:linkPosition.left,
-                display:openLinkDialog?'block':'none'
+                top: this.props.insert.linkPosition.top,
+                left: this.props.insert.linkPosition.left,
+                display: this.props.insert.openLinkDialog ? 'block' : 'none'
             }}>
                 <div className="weditor-bubble-item">
-                    <span>文本：</span>  <Input className="weditor-insert-input"/>
+                    <span>文本：</span> <Input className="weditor-insert-input"
+                                            value={this.props.insert.linkTitle}
+                                            onChange={this.changeTitle}/>
                 </div>
                 <div className="weditor-bubble-item">
-                    <span>链接：</span> <Input className="weditor-insert-input"/>
-                    <Button>应用</Button>
+                    <span>链接：</span> <Input className="weditor-insert-input"
+                                            value={this.props.insert.linkUrl}
+                                            onChange={this.changeUrl}/>
+                    <Button onClick={this.apply}>应用</Button>
                 </div>
             </section>
         )

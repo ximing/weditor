@@ -11,8 +11,10 @@ import Catalogue from './catalogue';
 import './lib/initQuill'
 import {initQuillEditor} from './lib/quillEditor'
 import LinkBubble from './components/linkBubble';
+import {inject,observer} from 'mobx-react';
+import DevTools from 'mobx-react-devtools';
 
-
+@inject('insert') @observer
 export default class WEditor extends Component {
     state = {
         rangeFormat: {}
@@ -66,7 +68,10 @@ export default class WEditor extends Component {
                             <p><br/></p><p>fd</p><p>s</p></div>
                     </div>
                 </div>
-                <LinkBubble />
+                {
+                    this.props.insert.openLinkDialog && <LinkBubble />
+                }
+                <DevTools />
             </div>
         );
     }

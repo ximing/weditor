@@ -5,9 +5,17 @@
 import  Quill from 'quill';
 
 import insert from '../model/insert';
+import catalogue from '../model/catalogue';
+// setInterval(()=>{
+//     catalogue.open = !catalogue.open;
+// },2000)
 
 let quillEditor = null;
 let quillDom = null;
+const linkBubble = {
+    height:95,
+    width:380
+};
 export const initQuillEditor = function (dom, options) {
     quillDom = dom;
     quillEditor = new Quill(dom, {
@@ -17,33 +25,36 @@ export const initQuillEditor = function (dom, options) {
                 handlers: {
                     'link': function (value, ...args) {
                         if (value) {
-                            let {openLinkDialog, linkTitle, linkUrl, linkPosition} = insert;
-                            if (openLinkDialog) {
-                                openLinkDialog = false;
-                                linkTitle = null;
-                                linkUrl = null;
+                            if (insert.openLinkDialog) {
+                                insert.openLinkDialog = false;
+                                insert.linkTitle = null;
+                                insert.linkUrl = null;
                             } else {
-                                if (getEditor()) {
-                                    if (getEditor().getSelection()) {
-                                        const {index, length} = getEditor().getSelection()
-                                        const {left, top, height} = getEditor().getBounds(index);
-                                        openLinkDialog = true;
-                                        linkTitle = getEditor().getText(index, length);
-                                        linkUrl = null;
-                                        linkPosition = {
-                                            left: getEditorBoundingClientRect().left + left,
-                                            top: getEditorBoundingClientRect().top + top
-                                        }
+                                if (getEditor() && getEditor().getSelection()) {
+                                    const {index, length} = getEditor().getSelection()
+                                    const {left, top, height} = getEditor().getBounds(index);
+                                    insert.openLinkDialog = true;
+                                    insert.linkTitle = getEditor().getText(index, length);
+                                    insert.linkUrl = null;
+                                    let linkLeft = getEditorBoundingClientRect().left + left;
+                                    let linkTop = getEditorBoundingClientRect().top + top+height;
+                                    if(linkLeft + linkBubble.width>= window.innerWidth){
+                                        linkLeft = linkLeft - linkBubble.width;
+                                    }
+                                    if(linkTop + linkBubble.height >= window.innerHeight){
+                                        linkTop = linkTop - linkBubble.height - height - 10;
+                                    }
+                                    insert.linkPosition = {
+                                        left: linkLeft,
+                                        top: linkTop
                                     }
                                 }
                             }
-                            // var value = prompt('What is the image URL');
-                            // quill.format('link', value);
                         } else {
                             getEditor().format('link', false);
                         }
-                        console.log(value, args);
-                        console.log(getEditor().getSelection(), getEditor().getBounds(7))
+                        // openLinkDialog = true;
+                        insert.linkSelection = getEditor().getSelection();
                     },
                     'image': function (args) {
                         console.log('ssss', args);
@@ -62,6 +73,10 @@ export const initQuillEditor = function (dom, options) {
         },
         placeholder: '输入文档...',
         theme: 'snow'
+    });
+    quillEditor.on('blur',()=>{
+        let selection = quillEditor.getSelection();
+        console.log('blur',selection);
     });
     return quillEditor;
 };

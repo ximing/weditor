@@ -17,6 +17,10 @@ class Insert {
         left:0,
         top:0
     }
+    linkSelection = {
+        length:0,
+        index:0
+    }
 }
-const insert = new Insert();
+let insert = new Insert();
 export default insert;

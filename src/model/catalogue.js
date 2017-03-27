@@ -7,5 +7,5 @@ class Catalogue {
     @observable open = false;
     @observable list = [];
 }
-const catalogue = new Catalogue();
+let catalogue = new Catalogue();
 export default catalogue;

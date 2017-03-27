@@ -41,6 +41,7 @@
     "gulp-util": "^3.0.8",
     "html-webpack-plugin": "^2.26.0",
     "jest": "^18.1.0",
+    "mobx-react-devtools": "^4.2.11",
     "node-sass": "^3.8.0",
     "opn": "^4.0.2",
     "postcss-loader": "^1.2.2",
