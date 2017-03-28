@@ -4,15 +4,15 @@
 'use strict';
 import React, {Component} from "react";
 import Icon from './components/icon/index';
-import quillEditor from './lib/quillEditor'
+import {getEditor} from './lib/quillEditor'
 
 export default class CommonEditor extends Component {
 
     clearFormat = ()=>{
-        if(quillEditor){
-            const {index,length} = window.quillEditor.getSelection();
-            if(!!index){
-                window.quillEditor.removeFormat(index,length,window.Quill.sources.users);
+        if(getEditor()){
+            const {index,length} = getEditor().getSelection();
+            if(index === 0 || !!index){
+                getEditor().removeFormat(index,length,window.Quill.sources.users);
             }
         }
     };
