@@ -1,9 +1,9 @@
 {
     "name": "weditorjs",
-    "version": "1.0.0",
+    "version": "1.0.3",
     "description": "weditor",
     "author": "ximing",
-    "main":"dist/weditor.js",
+    "main":"index.js",
     "scripts": {
         "dev": "NODE_ENV=development ./node_modules/.bin/gulp dev",
         "build": "webpack --config webpack.build.config.js",

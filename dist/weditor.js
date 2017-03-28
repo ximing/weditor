@@ -30186,7 +30186,7 @@ exports.default = EditorHeader;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.default = undefined;
+exports.default = exports.quillEditor = undefined;
 
 var _getPrototypeOf = __webpack_require__("./node_modules/babel-runtime/core-js/object/get-prototype-of.js");
 
@@ -30224,6 +30224,10 @@ var _weditor = __webpack_require__("./src/weditor.js");
 
 var _weditor2 = _interopRequireDefault(_weditor);
 
+var _quillEditor2 = __webpack_require__("./src/lib/quillEditor.js");
+
+var _quillEditor3 = _interopRequireDefault(_quillEditor2);
+
 var _catalogue = __webpack_require__("./src/model/catalogue.js");
 
 var _catalogue2 = _interopRequireDefault(_catalogue);
@@ -30233,6 +30237,8 @@ var _insert = __webpack_require__("./src/model/insert.js");
 var _insert2 = _interopRequireDefault(_insert);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.quillEditor = _quillEditor3.default;
 
 var _default = (_temp = _class = function (_Component) {
     (0, _inherits3.default)(_default, _Component);

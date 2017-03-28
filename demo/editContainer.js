@@ -5,10 +5,13 @@
 import React, {Component} from "react";
 import WEditor from '../src/index';
 export default class EditContainer extends Component {
+    componentDidMount(){
+        console.log(this.wEditor)
+    }
     render() {
         return(
             <div>
-                <WEditor />
+                <WEditor ref={a=>this.wEditor = a}/>
             </div>
         );
     }

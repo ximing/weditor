@@ -8,18 +8,19 @@ import {observer,Provider} from 'mobx-react';
 
 import './index.scss'
 import 'quill/dist/quill.snow.css'
+import {getEditor} from './lib/quillEditor'
 import WEditor from './weditor'
-
 import catalogue from './model/catalogue';
 import insert from './model/insert';
-
-
-export default class  extends Component {
+class  Editor extends Component {
     static defaultProps = {
         options:{
             uploadUrl:''
         }
-    }
+    };
+
+    getEditor = getEditor;
+
     render(){
         return(
             <Provider
@@ -31,3 +32,4 @@ export default class  extends Component {
         )
     }
 }
+export default Editor;
