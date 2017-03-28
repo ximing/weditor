@@ -4,6 +4,11 @@
 'use strict';
 import Quill from 'quill';
 import Delta from 'quill-delta';
+import { ImageResize } from './quill-image-resize-module';
+// import { ImageDrop } from './quill-image-drop-module';
+// Quill.register('modules/imageDrop', ImageDrop);
+Quill.register('modules/imageResize', ImageResize);
+
 var SizeStyle = Quill.import('attributors/style/size');
 var ColorStyle = Quill.import('attributors/style/color');
 var BackgroundStyle = Quill.import('attributors/style/background')

@@ -8,7 +8,6 @@ import hotkeys from 'hotkeys-js';
 import ReactDOM from 'react-dom';
 import Header from './header';
 import Catalogue from './catalogue';
-import './lib/initQuill'
 import {initQuillEditor} from './lib/quillEditor'
 import LinkBubble from './components/linkBubble';
 import InsertImage from './components/insertImage';
@@ -71,10 +70,12 @@ export default class WEditor extends Component {
                     </div>
                 </div>
                 {
-                    this.props.insert.openLinkDialog && <LinkBubble />
+                    this.props.insert.openLinkDialog &&
+                    <LinkBubble />
                 }
                 {
-                    this.props.insert.openImageDialog && <InsertImage />
+                    this.props.insert.openImageDialog &&
+                    <InsertImage uploadUrl={this.props.options.uploadUrl}/>
                 }
                 <DevTools />
             </div>

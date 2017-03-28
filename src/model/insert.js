@@ -21,6 +21,10 @@ class Insert {
         length:0,
         index:0
     }
+    imageSelection = {
+        length:0,
+        index:0
+    }
 }
 let insert = new Insert();
 export default insert;

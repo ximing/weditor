@@ -15,13 +15,18 @@ import insert from './model/insert';
 
 
 export default class  extends Component {
+    static defaultProps = {
+        options:{
+            uploadUrl:''
+        }
+    }
     render(){
         return(
             <Provider
                 catalogue={catalogue}
                 insert={insert}
             >
-                <WEditor />
+                <WEditor options={this.props.options}/>
             </Provider>
         )
     }

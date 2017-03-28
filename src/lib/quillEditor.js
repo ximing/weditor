@@ -3,6 +3,7 @@
  */
 'use strict';
 import  Quill from 'quill';
+import './initQuill'
 
 import insert from '../model/insert';
 import catalogue from '../model/catalogue';
@@ -57,10 +58,11 @@ export const initQuillEditor = function (dom, options) {
                         insert.linkSelection = getEditor().getSelection();
                     },
                     'image': function (args) {
-                        console.log('ssss', args);
-                        var range = this.quill.getSelection();
-                        var value = prompt('What is the image URL');
-                        getEditor().insertEmbed(range.index, 'image', value, Quill.sources.USER);
+                        // console.log('ssss', args);
+                        // var range = this.quill.getSelection();
+                        // var value = prompt('What is the image URL');
+                        insert.imageSelection = getEditor().getSelection();
+                        insert.openImageDialog = true;
                     }
                 }
             },
@@ -70,9 +72,12 @@ export const initQuillEditor = function (dom, options) {
                 userOnly: true
             },
             //'syntax': true        // Enable with default configuration
+            //imageDrop: true,
+            imageResize: true
         },
         placeholder: '输入文档...',
         theme: 'snow'
+
     });
     quillEditor.on('blur',()=>{
         let selection = quillEditor.getSelection();

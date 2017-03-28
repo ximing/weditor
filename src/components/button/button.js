@@ -5,7 +5,7 @@
 
 import React, {Component} from 'react';
 import classNames from 'classnames';
-
+import omit from 'omit.js'
 export default class extends Component {
 
     constructor() {
@@ -49,6 +49,8 @@ export default class extends Component {
     }
     render() {
         var {prefixCls,color,type} = this.props;
+        let otherProps = omit(this.props,['prefixCls','color','type','children']);
+        console.log(otherProps)
         let classes = classNames({
             [prefixCls]: true,
             [`${prefixCls}-${color}`]: color
@@ -64,6 +66,7 @@ export default class extends Component {
                       value={this.props.children}
                       onClick={this.onClick}
                       className={classes}
+                      {...otherProps}
         />;
     }
 }

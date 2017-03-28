@@ -4,23 +4,25 @@
 'use strict';
 import './index.scss'
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 import {observer, inject} from "mobx-react";
 
 import Input from '../input/index';
 import Button from '../button/index'
 import {contains} from '../../lib/util'
-
 import {getEditor} from '../../lib/quillEditor'
+import insert from '../../model/insert'
 
 
 @inject('insert') @observer
 export default class LinkBubble extends Component {
-    componentDidMount(){
-      window.document.addEventListener('click',this.otherDOMClick,false)
+    componentDidMount() {
+        window.document.addEventListener('click', this.otherDOMClick, false);
+        this.target = ReactDOM.findDOMNode(this);
     }
 
-    componentWillUnmount(){
-       window.document.removeEventListener('click',this.otherDOMClick,false)
+    componentWillUnmount() {
+        window.document.removeEventListener('click', this.otherDOMClick, false);
     }
 
     closeBubble = (e) => {
@@ -28,45 +30,46 @@ export default class LinkBubble extends Component {
         this.props.insert.openLinkDialog = false;
     };
 
-    otherDOMClick(e) {
+    otherDOMClick = (e) => {
         let node = e.target;
-        if (!this.props.insert.openLinkDialog) {
+        if (!insert.openLinkDialog) {
             return false;
         }
         let target = this.target;
-        if (!(contains(target, node)) && this.state.shown) {
+        if (!(contains(target, node))) {
             this.closeBubble();
         }
     }
 
-    changeTitle = (e)=>{
+    changeTitle = (e) => {
         this.props.insert.linkTitle = e.target.value || '';
     };
 
-    changeUrl = (e)=>{
+    changeUrl = (e) => {
         this.props.insert.linkUrl = e.target.value || '';
     };
 
-    apply = ()=>{
-        if(getEditor() && !!this.props.insert.linkUrl){
+    apply = () => {
+        if (getEditor() && !!this.props.insert.linkUrl) {
             let editor = getEditor();
             let selection = this.props.insert.linkSelection;
-            console.log('insert bubble ',selection);
-            if(selection){
-                if(editor.getText(selection.index,selection.length) === this.props.insert.linkTitle){
-                    getEditor().format('link', this.props.insert.linkUrl,'user');
-                }else{
-                    const {index,length} = selection;
-                    editor.delete(index,length,'user');
-                    let linkTitle = this.props.insert.linkTitle||this.props.insert.linkUrl;
-                    editor.insertText(index,linkTitle,'user');
-                    editor.setSelection(index,linkTitle.length,'user');
-                    getEditor().format('link', this.props.insert.linkUrl,'user');
+            console.log('insert bubble ', selection);
+            if (selection) {
+                if (editor.getText(selection.index, selection.length) === this.props.insert.linkTitle) {
+                    getEditor().format('link', this.props.insert.linkUrl, 'user');
+                } else {
+                    const {index, length} = selection;
+                    editor.delete(index, length, 'user');
+                    let linkTitle = this.props.insert.linkTitle || this.props.insert.linkUrl;
+                    editor.insertText(index, linkTitle, 'user');
+                    editor.setSelection(index, linkTitle.length, 'user');
+                    getEditor().format('link', this.props.insert.linkUrl, 'user');
                 }
             }
             this.props.insert.openLinkDialog = false;
         }
     }
+
     render() {
         // const {linkPosition,openLinkDialog} = this.props.insert;
         return (

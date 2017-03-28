@@ -11,17 +11,17 @@ import Icon from '../icon';
 export default class Dialog extends Component{
     static defaultProps = {
         prefixCls: 'nx-dialog',
-        hasHeader: true,//是否有header
+        hasHeader: true,    //是否有header
         content:null,
         buttons:[]
     };
     render () {
-        const {prefixCls,title,content,buttons,btnCls,onClose,hasHeader} = this.props;
+        const {prefixCls,title,content,buttons,btnCls,onClose,hasHeader,className} = this.props;
         let cls = prefixCls;//样式待定
         return (
             <div className="nx-modal-mask">
                 <div className={`${cls}-wrapper`}>
-                    <div className={cls+' '+cls+'-normal'}>
+                    <div className={cls+' '+cls+'-normal ' + className}>
                         {
                             hasHeader ? <div className={`${cls}-title`}>
                                 {title}
@@ -29,13 +29,15 @@ export default class Dialog extends Component{
                             </div> : null}
                         <div className={`${cls}-content`}>{content}</div>
                         <div className={`${cls}-buttons`}>
-                            {buttons.map(({ text, type, action}, i) => (
-                                <Button
-                                    key={i}
-                                    cls={'nx_button'}
-                                    onClick={(action || onClose)}
-                                >{text}</Button>
-                            ))}
+                            {
+                                buttons.map(({ text, type, action}, i) => (
+                                    <Button
+                                        key={i}
+                                        cls={'nx_button'}
+                                        onClick={(action || onClose)}
+                                    >{text}</Button>
+                                ))
+                            }
                         </div>
                     </div>
                 </div>
