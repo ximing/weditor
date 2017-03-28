@@ -92,6 +92,7 @@ export const initQuillEditor = function (dom, options) {
                     const {index,length} = range;
                     quillEditor.removeFormat(index,length,'user');
                     quillEditor.formatText(index,length,format.currentFormat,'user')
+                    format.currentFormat = null;
                     // Object.keys(format.currentFormat).forEach(item=>{
                     //
                     // })
