@@ -7,16 +7,23 @@ import ReactDOM from 'react-dom';
 import Quill from 'quill';
 import {inject, observer} from 'mobx-react';
 import $ from 'jquery';
-
+import 'rc-tabs/assets/index.css';
+import Tabs, { TabPane} from 'rc-tabs';
+import ScrollableInkTabBar from 'rc-tabs/lib/ScrollableInkTabBar.js'
+import TabContent from 'rc-tabs/lib/TabContent.js'
 import Dialog from '../dialog';
 import {contains} from '../../lib/util';
 import {Uploader} from '../uploader/index';
 import Button from '../button';
 import {getEditor} from '../../lib/quillEditor';
 import insert from '../../model/insert'
-
+import Input from '../input'
 @inject('insert') @observer
 export default class InsertImage extends Component {
+    state = {
+        activeKey:"1",
+        linkUrl:''
+    }
     componentDidMount() {
         setTimeout(()=>{
             window.document.addEventListener('click', this.otherDOMClick);
@@ -24,6 +31,18 @@ export default class InsertImage extends Component {
         this.initUploader();
     }
 
+    onLinkUrlChange = (e)=>{
+        this.setState({
+            linkUrl:e.target.value
+        })
+    }
+
+    insertLink = ()=>{
+        if(this.state.linkUrl){
+            getEditor().insertEmbed(index, 'image', this.state.linkUrl, Quill.sources.USER);
+        }
+        insert.openImageDialog = false;
+    }
     initUploader() {
         this.rootNode = ReactDOM.findDOMNode(this);
         this.target = this.rootNode.getElementsByClassName('weditor-insert-image-dialog')[0];
@@ -76,6 +95,12 @@ export default class InsertImage extends Component {
         }
     }
 
+    onChange = (activeKey) => {
+        this.setState({
+            activeKey
+        });
+    }
+
     render() {
         return (
             <Dialog
@@ -84,8 +109,27 @@ export default class InsertImage extends Component {
                 content={
                     <div className="weditor-insert-image">
                         <div className="weditor-uploader-wrapper">
-                            <p className="weditor-image-tips">最大上传20M的图片</p>
-                            <Button id="uploaderPick">点击上传</Button>
+                            <Tabs
+                                renderTabBar={() => <ScrollableInkTabBar onTabClick={this.onTabClick}/>}
+                                renderTabContent={() => <TabContent animatedWithMargin />}
+                                activeKey={this.state.activeKey}
+                                onChange={this.onChange}
+                            >
+                                <TabPane tab={`本地上传`} key="1">
+                                    <div className="weditor-uploader-file-inner">
+                                        <p className="weditor-image-tips">最大上传20M的图片</p>
+                                        <Button id="uploaderPick">点击上传</Button>
+                                    </div>
+                                </TabPane>
+                                <TabPane tab={`插入外链`} key="2">
+                                    <div className="weditor-uploader-file-inner">
+                                        <div>
+                                            <Input onChange={this.onLinkUrlChange}/>
+                                            <Button onClick={this.insertLink}>插入</Button>
+                                        </div>
+                                    </div>
+                                </TabPane>
+                            </Tabs>
                         </div>
                     </div>
                 }
