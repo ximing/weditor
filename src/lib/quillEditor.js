@@ -58,7 +58,7 @@ export const initQuillEditor = function (dom, options) {
                         insert.linkSelection = getEditor().getSelection();
                     },
                     'image': function (args) {
-                        // console.log('ssss', args);
+                        console.log('ssss', args);
                         // var range = this.quill.getSelection();
                         // var value = prompt('What is the image URL');
                         insert.imageSelection = getEditor().getSelection();

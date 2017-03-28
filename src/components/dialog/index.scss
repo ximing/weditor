@@ -45,9 +45,9 @@
   &-normal {
     >.nx-dialog-title {
       padding: $padding-0 $padding-20;
-      font-weight: 700;
-      line-height: 1;
-      background-color: #fafafa;
+      line-height: 40px;
+      height: 40px;
+      font-size: 14px;
       border-bottom: 1px solid $border-color-base;
       border-radius: 2px 2px 0 0;
     }
@@ -61,9 +61,11 @@
   }
   &-icon{
     float: right;
-    font-weight: 800;
     color: $text-color;
     cursor: pointer;
+    i{
+      font-size: 12px;
+    }
   }
   &-buttons{
     input{

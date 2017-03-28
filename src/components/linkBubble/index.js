@@ -17,7 +17,9 @@ import insert from '../../model/insert'
 @inject('insert') @observer
 export default class LinkBubble extends Component {
     componentDidMount() {
-        window.document.addEventListener('click', this.otherDOMClick, false);
+        setTimeout(()=>{
+            window.document.addEventListener('click', this.otherDOMClick);
+        },100);
         this.target = ReactDOM.findDOMNode(this);
     }
 
@@ -36,7 +38,7 @@ export default class LinkBubble extends Component {
             return false;
         }
         let target = this.target;
-        if (!(contains(target, node))) {
+        if (insert.openLinkDialog && !(contains(target, node))) {
             this.closeBubble();
         }
     }
@@ -59,7 +61,7 @@ export default class LinkBubble extends Component {
                     getEditor().format('link', this.props.insert.linkUrl, 'user');
                 } else {
                     const {index, length} = selection;
-                    editor.delete(index, length, 'user');
+                    editor.deleteText(index, length, 'user');
                     let linkTitle = this.props.insert.linkTitle || this.props.insert.linkUrl;
                     editor.insertText(index, linkTitle, 'user');
                     editor.setSelection(index, linkTitle.length, 'user');

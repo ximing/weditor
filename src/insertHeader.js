@@ -33,7 +33,7 @@ export default class CommonEditor extends Component {
                 {/*</button>*/}
                 <button className="ql-link">
                 </button>
-                <button className="ql-image" onClick={this.openImageDialog}>
+                <button className="ql-image">
                 </button>
             </span>
         )

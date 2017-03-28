@@ -18,14 +18,15 @@ import insert from '../../model/insert'
 @inject('insert') @observer
 export default class InsertImage extends Component {
     componentDidMount() {
-        window.document.addEventListener('click', this.otherDOMClick, false);
+        setTimeout(()=>{
+            window.document.addEventListener('click', this.otherDOMClick);
+        },100);
         this.initUploader();
     }
 
     initUploader() {
         this.rootNode = ReactDOM.findDOMNode(this);
         this.target = this.rootNode.getElementsByClassName('weditor-insert-image-dialog')[0];
-        console.log('fdsafdsafs',this.target)
         let uploader = this.uploader = new Uploader({
             'dnd': '.weditor-uploader-wrapper',
             'pick': '#uploaderPick',
@@ -54,12 +55,13 @@ export default class InsertImage extends Component {
     }
 
     componentWillUnmount() {
-        window.document.removeEventListener('click', this.otherDOMClick, false);
+        window.document.removeEventListener('click', this.otherDOMClick);
         this.uploader.removeEvent('uploadAccept');
         this.uploader.destory();
     }
 
     closeBubble = () => {
+        console.log('close bubble')
         this.props.insert.openImageDialog = false;
     };
 
@@ -69,7 +71,7 @@ export default class InsertImage extends Component {
             return false;
         }
         let target = this.target;
-        if (!(contains(target, node))) {
+        if (insert.openImageDialog && !contains(target, node)) {
             this.closeBubble();
         }
     }
@@ -77,6 +79,7 @@ export default class InsertImage extends Component {
     render() {
         return (
             <Dialog
+                title="插入图片"
                 className="weditor-insert-image-dialog"
                 content={
                     <div className="weditor-insert-image">
