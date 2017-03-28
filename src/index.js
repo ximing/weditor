@@ -19,7 +19,10 @@ class  Editor extends Component {
         }
     };
 
-    getEditor = getEditor;
+    constructor(){
+        super();
+        this.getEditor = getEditor;
+    };
 
     render(){
         return(
