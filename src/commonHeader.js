@@ -5,6 +5,7 @@
 import React, {Component} from "react";
 import Icon from './components/icon/index';
 import {getEditor} from './lib/quillEditor'
+import format from './model/format';
 
 export default class CommonEditor extends Component {
 
@@ -12,7 +13,7 @@ export default class CommonEditor extends Component {
         if(getEditor()){
             const {index,length} = getEditor().getSelection();
             if(index === 0 || !!index){
-                getEditor().removeFormat(index,length,window.Quill.sources.users);
+                getEditor().removeFormat(index,length,'user');
             }
         }
     };
@@ -29,6 +30,13 @@ export default class CommonEditor extends Component {
         }
     };
 
+    format = ()=>{
+        let {index,length} = getEditor().getSelection();
+        if(!!index){
+            format.currentFormat = getEditor().getFormat(index,length);
+        }
+    }
+
     render() {
         return (
             <span className="ql-formats common-header">
@@ -38,7 +46,7 @@ export default class CommonEditor extends Component {
                 <button className="ql-redo" onClick={this.redo}>
                     <Icon type="redo"/>
                 </button>
-                <button className="ql-format">
+                <button className="ql-format" onClick={this.format}>
                     <Icon type="geshishua"/>
                 </button>
                 <button className="ql-clear-format" onClick={this.clearFormat}>

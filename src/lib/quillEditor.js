@@ -6,6 +6,7 @@ import  Quill from 'quill';
 import './initQuill'
 
 import insert from '../model/insert';
+import format from '../model/format';
 import catalogue from '../model/catalogue';
 // setInterval(()=>{
 //     catalogue.open = !catalogue.open;
@@ -82,6 +83,21 @@ export const initQuillEditor = function (dom, options) {
     quillEditor.on('blur',()=>{
         let selection = quillEditor.getSelection();
         console.log('blur',selection);
+    });
+    quillEditor.on('selection-change',(range)=>{
+        if (range) {
+            if (range.length !== 0) {
+                //处理格式刷
+                if(format.currentFormat){
+                    const {index,length} = range;
+                    quillEditor.removeFormat(index,length,'user');
+                    quillEditor.formatText(index,length,format.currentFormat,'user')
+                    // Object.keys(format.currentFormat).forEach(item=>{
+                    //
+                    // })
+                }
+            }
+        }
     });
     return quillEditor;
 };
