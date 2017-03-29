@@ -60,7 +60,8 @@ export default class WEditor extends Component {
         console.log('weditor render',this.props.insert)
         return (
             <div className="weditor-wrapper">
-                <Header rangeFormat={this.state.rangeFormat}/>
+                <Header rangeFormat={this.state.rangeFormat}
+                        doc={this.props.doc} rightContent = {this.props.rightContent}/>
                 <div className="weditor-body">
                     <Catalogue style={{}}/>
                     <div className="content-container">

@@ -16,7 +16,12 @@ class  Editor extends Component {
     static defaultProps = {
         options:{
             uploadUrl:''
-        }
+        },
+        doc:{
+            name:'',
+            status:''
+        },
+        rightContent:null
     };
 
     constructor(){
@@ -30,7 +35,7 @@ class  Editor extends Component {
                 catalogue={catalogue}
                 insert={insert}
             >
-                <WEditor options={this.props.options}/>
+                <WEditor options={this.props.options} doc={this.props.doc} rightContent = {this.props.rightContent}/>
             </Provider>
         )
     }

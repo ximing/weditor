@@ -35038,7 +35038,7 @@ var EditorHeader = function (_Component) {
                                 _react2.default.createElement(
                                     "span",
                                     { className: "title-input-pre span-input-pre" },
-                                    '测试远安的doc.docx'
+                                    this.props.doc.name || '未命名'
                                 )
                             )
                         ),
@@ -35046,12 +35046,15 @@ var EditorHeader = function (_Component) {
                             "span",
                             { className: "s-header-time",
                                 id: "save-status" },
-                            (0, _timeRelated.formatDate)('yyyy/MM/dd HH:mm', new Date().getTime()),
-                            "\u66F4\u65B0"
+                            this.props.doc.status
                         )
                     )
                 ),
-                _react2.default.createElement("div", { className: "header-right-box" }),
+                _react2.default.createElement(
+                    "div",
+                    { className: "header-right-box" },
+                    this.props.rightContent
+                ),
                 _react2.default.createElement(
                     "div",
                     { className: "editor-toolbar", id: "toolbar" },
@@ -35151,7 +35154,7 @@ var Editor = (_temp = _class = function (_Component) {
                     catalogue: _catalogue2.default,
                     insert: _insert2.default
                 },
-                _react2.default.createElement(_weditor2.default, { options: this.props.options })
+                _react2.default.createElement(_weditor2.default, { options: this.props.options, doc: this.props.doc, rightContent: this.props.rightContent })
             );
         }
     }]);
@@ -35159,7 +35162,12 @@ var Editor = (_temp = _class = function (_Component) {
 }(_react.Component), _class.defaultProps = {
     options: {
         uploadUrl: ''
-    }
+    },
+    doc: {
+        name: '',
+        status: ''
+    },
+    rightContent: null
 }, _temp);
 exports.default = Editor;
 
@@ -37265,7 +37273,8 @@ var WEditor = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _mobxR
             return _react2.default.createElement(
                 'div',
                 { className: 'weditor-wrapper' },
-                _react2.default.createElement(_header2.default, { rangeFormat: this.state.rangeFormat }),
+                _react2.default.createElement(_header2.default, { rangeFormat: this.state.rangeFormat,
+                    doc: this.props.doc, rightContent: this.props.rightContent }),
                 _react2.default.createElement(
                     'div',
                     { className: 'weditor-body' },

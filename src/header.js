@@ -97,15 +97,15 @@ export default class EditorHeader extends Component {
                                        style={{
                                            display: 'none'
                                        }}/>
-                                <span className="title-input-pre span-input-pre">{'测试远安的doc.docx'}</span>
+                                <span className="title-input-pre span-input-pre">{this.props.doc.name || '未命名'}</span>
                             </div>
                         </span>
                         <span className="s-header-time"
-                              id="save-status">{formatDate('yyyy/MM/dd HH:mm', new Date().getTime())}更新</span>
+                              id="save-status">{this.props.doc.status}</span>
                     </div>
                 </div>
                 <div className="header-right-box">
-
+                    {this.props.rightContent}
                 </div>
                 <div className="editor-toolbar" id="toolbar">
                     {this.renderToolbar()}
