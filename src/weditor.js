@@ -43,7 +43,7 @@ export default class WEditor extends Component {
             }
             if(range && range.length){}
         });
-        quillEditor.setContents({"ops":[{"attributes":{"width":"198"},"insert":{"image":"https://msstest-corp.sankuai.com/v1/mss_5e386b6fb47f4f298f8cba0149245287/mind-image/nt/1490680392374_8fa879de8db1cb13620e83bdd454564e92584b3e.jpg"}},{"insert":"fdsa想线下选择性\nsssss说说¥eq¥¥eq¥¥2321fdjiofds\nfdsa\nfd\nffd撒反倒是sadsadsadsa"},{"attributes":{"link":"http://www.baidu.com"},"insert":"我需要安静下来"},{"insert":"想想未来 怎么安排\n"}]})
+
         // quillEditor.updateContents(op2);
         // quillEditor.setContents({"ops":op})
         this.w.on('resize', this.onResize)

@@ -23,6 +23,7 @@ export default class CommonEditor extends Component {
                     })
                 }
             });
+            console.log(_ops)
             this.props.catalogue.open = true;
             this.props.catalogue.list = _ops;
         }
