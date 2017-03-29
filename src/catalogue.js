@@ -11,8 +11,9 @@ import {observer,inject} from "mobx-react";
 export default class CommonEditor extends Component {
 
     renderCalogue(){
+        console.log('render calogue')
         let {list} = this.props.catalogue;
-        return [].map((_,i)=>{
+        return list.map((_,i)=>{
             return <p key={i} className={`catalogue-h${_.h}`}>{_.content}</p>
         })
     }
@@ -31,7 +32,11 @@ export default class CommonEditor extends Component {
                     <Icon type="close" onClick={this.closeCatalogue}/>
                 </div>
                 <div className="catalogue-body">
-                    {this.renderCalogue()}
+                    {
+                        this.props.catalogue.list.map((_,i)=>{
+                            return <p key={i} className={`catalogue-h${_.h}`}>{_.content}</p>
+                        })
+                    }
                 </div>
             </div>
         )
