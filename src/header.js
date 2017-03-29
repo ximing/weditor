@@ -10,7 +10,7 @@ import StartHeader from './startHeader';
 import InsertHeader from './insertHeader';
 import ViewHeader from './viewHeader';
 import {getEditor} from './lib/quillEditor'
-
+import {info} from './components/toast'
 export default class EditorHeader extends Component {
     constructor() {
         super();
@@ -53,6 +53,10 @@ export default class EditorHeader extends Component {
 
     changePanel(panel) {
         return () => {
+            if(panel===4 || panel === 5){
+                info('稍后开放，敬请期待')
+                return;
+            }
             this.setState({panel});
         }
     }
@@ -66,8 +70,8 @@ export default class EditorHeader extends Component {
                 <span className={`insert-tab ${panel===2?'active':''}`} onClick={this.changePanel(2)}>插入</span>
                 {/*<span className="table-tab">视图</span>*/}
                 <span className={`view-tab ${panel===3?'active':''}`} onClick={this.changePanel(3)}>视图</span>
-                <span className="history-tab">修订历史</span>
-                <span className="help-tab">帮助</span>
+                <span className="history-tab" onClick={this.changePanel(4)}>修订历史</span>
+                <span className="help-tab" onClick={this.changePanel(5)}>帮助</span>
             </div>
         )
     }

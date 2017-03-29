@@ -44,7 +44,7 @@ export default function ($) {
     var opt;
     $.fn.printThis = function(options) {
         opt = $.extend({}, $.fn.printThis.defaults, options);
-        var $element = this instanceof jQuery ? this : $(this);
+        var $element = this instanceof $ ? this : $(this);
 
         var strFrameName = "printThis-" + (new Date()).getTime();
 
@@ -142,7 +142,7 @@ export default function ($) {
             // import additional stylesheet(s)
             if (opt.loadCSS) {
                 if( $.isArray(opt.loadCSS)) {
-                    jQuery.each(opt.loadCSS, function(index, value) {
+                    $.each(opt.loadCSS, function(index, value) {
                         $head.append("<link type='text/css' rel='stylesheet' href='" + this + "'>");
                     });
                 } else {
@@ -292,7 +292,7 @@ export default function ($) {
     };
 
     // $.selector container
-    jQuery.fn.outer = function() {
+    $.fn.outer = function() {
         return $($("<div></div>").html(this.clone())).html();
     }
 }

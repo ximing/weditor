@@ -30186,7 +30186,6 @@ exports.default = EditorHeader;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.default = exports.quillEditor = undefined;
 
 var _getPrototypeOf = __webpack_require__("./node_modules/babel-runtime/core-js/object/get-prototype-of.js");
 
@@ -30220,13 +30219,11 @@ __webpack_require__("./src/index.scss");
 
 __webpack_require__("./node_modules/quill/dist/quill.snow.css");
 
+var _quillEditor = __webpack_require__("./src/lib/quillEditor.js");
+
 var _weditor = __webpack_require__("./src/weditor.js");
 
 var _weditor2 = _interopRequireDefault(_weditor);
-
-var _quillEditor2 = __webpack_require__("./src/lib/quillEditor.js");
-
-var _quillEditor3 = _interopRequireDefault(_quillEditor2);
 
 var _catalogue = __webpack_require__("./src/model/catalogue.js");
 
@@ -30238,17 +30235,19 @@ var _insert2 = _interopRequireDefault(_insert);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.quillEditor = _quillEditor3.default;
+var Editor = (_temp = _class = function (_Component) {
+    (0, _inherits3.default)(Editor, _Component);
 
-var _default = (_temp = _class = function (_Component) {
-    (0, _inherits3.default)(_default, _Component);
+    function Editor() {
+        (0, _classCallCheck3.default)(this, Editor);
 
-    function _default() {
-        (0, _classCallCheck3.default)(this, _default);
-        return (0, _possibleConstructorReturn3.default)(this, (_default.__proto__ || (0, _getPrototypeOf2.default)(_default)).apply(this, arguments));
+        var _this = (0, _possibleConstructorReturn3.default)(this, (Editor.__proto__ || (0, _getPrototypeOf2.default)(Editor)).call(this));
+
+        _this.getEditor = _quillEditor.getEditor;
+        return _this;
     }
 
-    (0, _createClass3.default)(_default, [{
+    (0, _createClass3.default)(Editor, [{
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
@@ -30261,14 +30260,13 @@ var _default = (_temp = _class = function (_Component) {
             );
         }
     }]);
-    return _default;
+    return Editor;
 }(_react.Component), _class.defaultProps = {
     options: {
         uploadUrl: ''
     }
 }, _temp);
-
-exports.default = _default;
+exports.default = Editor;
 
 /***/ }),
 
@@ -30536,7 +30534,7 @@ exports.default = function ($) {
     var opt;
     $.fn.printThis = function (options) {
         opt = $.extend({}, $.fn.printThis.defaults, options);
-        var $element = this instanceof jQuery ? this : $(this);
+        var $element = this instanceof $ ? this : $(this);
 
         var strFrameName = "printThis-" + new Date().getTime();
 
@@ -30632,7 +30630,7 @@ exports.default = function ($) {
             // import additional stylesheet(s)
             if (opt.loadCSS) {
                 if ($.isArray(opt.loadCSS)) {
-                    jQuery.each(opt.loadCSS, function (index, value) {
+                    $.each(opt.loadCSS, function (index, value) {
                         $head.append("<link type='text/css' rel='stylesheet' href='" + this + "'>");
                     });
                 } else {
@@ -30778,7 +30776,7 @@ exports.default = function ($) {
     };
 
     // $.selector container
-    jQuery.fn.outer = function () {
+    $.fn.outer = function () {
         return $($("<div></div>").html(this.clone())).html();
     };
 };
