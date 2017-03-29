@@ -17,7 +17,8 @@ import {Uploader} from '../uploader/index';
 import Button from '../button';
 import {getEditor} from '../../lib/quillEditor';
 import insert from '../../model/insert'
-import Input from '../input'
+import Input from '../input';
+import {error} from '../toast'
 @inject('insert') @observer
 export default class InsertImage extends Component {
     state = {
@@ -58,7 +59,7 @@ export default class InsertImage extends Component {
             'multiple': false,
             'method': 'post',
             'withCredentials':true,
-            'server': 'http://mind.xm.test.sankuai.com/api/upload'
+            'server': this.props.uploadUrl||''
         });
         uploader.on('uploadAccept', (obj, res) => {
             res = JSON.parse(res);
@@ -71,6 +72,9 @@ export default class InsertImage extends Component {
             } else {
             }
         });
+        uploader.on('uploadError',()=>{
+            error('上传服务错误');
+        })
     }
 
     componentWillUnmount() {
