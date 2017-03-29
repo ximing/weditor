@@ -13,7 +13,6 @@ import LinkBubble from './components/linkBubble';
 import InsertImage from './components/insertImage';
 
 import {inject, observer} from 'mobx-react';
-import DevTools from 'mobx-react-devtools';
 
 @inject('insert') @observer
 export default class WEditor extends Component {
@@ -71,7 +70,6 @@ export default class WEditor extends Component {
                     this.props.insert.openImageDialog &&
                     <InsertImage uploadUrl={this.props.options.uploadUrl}/>
                 }
-                <DevTools />
             </div>
         );
     }

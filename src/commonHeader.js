@@ -19,14 +19,14 @@ export default class CommonEditor extends Component {
     };
 
     undo = ()=>{
-        if(quillEditor){
-            quillEditor.history.undo();
+        if(getEditor()){
+            getEditor().history.undo();
         }
     };
 
     redo = ()=>{
-        if(quillEditor){
-            quillEditor.history.redo();
+        if(getEditor()){
+            getEditor().history.redo();
         }
     };
 
