@@ -6139,7 +6139,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".catalogue-container {\n  position: absolute;\n  left: 0;\n  width: 300px;\n  bottom: 0px;\n  top: 0px;\n  background: #f6f6f6;\n  outline: none;\n  display: block;\n  visibility: visible; }\n  .catalogue-container .catalogue-header {\n    overflow: hidden;\n    border-bottom: solid 1px #cccccc;\n    margin-bottom: 8px;\n    padding-left: 20px;\n    font-size: 14px;\n    height: 50px;\n    line-height: 50px;\n    width: 300px;\n    color: #666; }\n    .catalogue-container .catalogue-header i {\n      float: right;\n      cursor: pointer;\n      font-size: 14px; }\n      .catalogue-container .catalogue-header i:hover {\n        color: #999999; }\n  .catalogue-container .catalogue-body {\n    overflow: hidden;\n    padding: 10px 10px;\n    position: absolute;\n    top: 50px;\n    bottom: 0;\n    width: 100%; }\n", ""]);
+exports.push([module.i, ".catalogue-container {\n  position: absolute;\n  left: 0;\n  width: 300px;\n  bottom: 0px;\n  top: 0px;\n  background: #f6f6f6;\n  outline: none;\n  display: block;\n  visibility: visible;\n  border-right: solid 1px #cccccc; }\n  .catalogue-container .catalogue-header {\n    overflow: hidden;\n    border-bottom: solid 1px #cccccc;\n    margin-bottom: 8px;\n    font-size: 14px;\n    height: 50px;\n    line-height: 50px;\n    width: 300px;\n    color: #666;\n    padding: 0 10px; }\n    .catalogue-container .catalogue-header i {\n      float: right;\n      cursor: pointer;\n      font-size: 14px; }\n      .catalogue-container .catalogue-header i:hover {\n        color: #999999; }\n  .catalogue-container .catalogue-body {\n    overflow: hidden;\n    padding: 10px 10px;\n    position: absolute;\n    top: 50px;\n    bottom: 0;\n    width: 100%;\n    overflow-y: auto; }\n    .catalogue-container .catalogue-body p {\n      margin: 0;\n      padding: 5px;\n      cursor: pointer; }\n    .catalogue-container .catalogue-body .catalogue-h1 {\n      font-size: 28px; }\n    .catalogue-container .catalogue-body .catalogue-h2 {\n      font-size: 24px; }\n    .catalogue-container .catalogue-body .catalogue-h3 {\n      font-size: 20px; }\n    .catalogue-container .catalogue-body .catalogue-h4 {\n      font-size: 16px; }\n    .catalogue-container .catalogue-body .catalogue-h5 {\n      font-size: 14px; }\n    .catalogue-container .catalogue-body .catalogue-h6 {\n      font-size: 14px; }\n", ""]);
 
 // exports
 
@@ -6319,7 +6319,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n.weditor-wrapper {\n  overflow: hidden;\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0; }\n  .weditor-wrapper div {\n    box-sizing: border-box; }\n\n.weditor-header {\n  width: 100%;\n  margin: 0;\n  padding: 0;\n  border-bottom: 1px solid #ddd;\n  position: relative;\n  z-index: 110;\n  background: #fff;\n  user-select: none;\n  background: -webkit-linear-gradient(top, #fdfdfd, #fff);\n  background: -ms-linear-gradient(top, #fdfdfd, #fff);\n  height: 95px;\n  box-sizing: border-box; }\n  .weditor-header button {\n    outline: none; }\n  .weditor-header .header-left-box {\n    line-height: 34px; }\n    .weditor-header .header-left-box .header-back-up {\n      float: left;\n      width: 40px;\n      height: 60px;\n      cursor: pointer;\n      background-color: #4285f4; }\n      .weditor-header .header-left-box .header-back-up .header-back-icon {\n        display: block;\n        background: url(//mss.sankuai.com/v1/mss_814dc1610cda4b2e8febd6ea2c809db5/image/1489546222140.svg) center no-repeat;\n        height: 60px;\n        position: absolute;\n        width: 40px;\n        -webkit-transition: all 125ms linear;\n        -moz-transition: all 125ms linear;\n        -o-transition: all 125ms linear;\n        transition: all 125ms linear; }\n    .weditor-header .header-left-box .team-sprite {\n      background-image: url(https://assets-cdn.shimo.im/assets/images/teams-31aea6334f.png);\n      background-size: 499px 310px;\n      background-repeat: no-repeat; }\n    .weditor-header .header-left-box .s-header-text {\n      display: inline-block;\n      float: left;\n      height: 34px;\n      line-height: 34px;\n      margin-left: 4px;\n      vertical-align: top; }\n      .weditor-header .header-left-box .s-header-text .title-input-pre {\n        font-size: 14px;\n        font-family: -apple-system, system-ui, \"PingFang SC\", Helvetica, Tahoma, Arial, \"Hiragino Sans GB\", \"Microsoft YaHei\", \"\\\\5FAE\\8F6F\\96C5\\9ED1\", SimSun, \"\\\\5B8B\\4F53\", Heiti, \"\\\\9ED1\\4F53\", sans-serif;\n        font-weight: bold;\n        font-style: normal;\n        letter-spacing: normal; }\n    .weditor-header .header-left-box .s-header-time {\n      margin-left: 13px;\n      margin-top: 1px;\n      font-size: 12px;\n      color: #999; }\n  .weditor-header .header-right-box {\n    position: absolute;\n    height: 100%;\n    top: 5px;\n    right: 20px;\n    line-height: 51px; }\n    .weditor-header .header-right-box .header-item-wrap {\n      display: inline-block;\n      height: 40px;\n      width: 40px; }\n      .weditor-header .header-right-box .header-item-wrap .header-item-inner {\n        border: 1px solid #eee;\n        height: 35px;\n        width: 35px;\n        border-radius: 50%;\n        text-align: center;\n        display: inline-block;\n        position: relative;\n        line-height: 0px; }\n        .weditor-header .header-right-box .header-item-wrap .header-item-inner:before {\n          content: '';\n          display: inline-block;\n          vertical-align: middle;\n          width: 0;\n          height: 100%;\n          font-size: 0; }\n        .weditor-header .header-right-box .header-item-wrap .header-item-inner img {\n          height: 25px;\n          width: 25px;\n          border-radius: 50%;\n          vertical-align: middle; }\n  .weditor-header .editor-toolbar .toolbar-tab {\n    height: 25px;\n    line-height: 25px; }\n    .weditor-header .editor-toolbar .toolbar-tab span {\n      padding: 4px 20px;\n      user-select: none;\n      font-size: 13px;\n      font-weight: bold;\n      cursor: pointer;\n      color: #666666; }\n    .weditor-header .editor-toolbar .toolbar-tab span.active {\n      color: #2374d1;\n      background: #f6f6f6; }\n  .weditor-header .editor-toolbar .ql-toolbar.ql-snow {\n    border: none;\n    background-color: #f6f6f6;\n    height: 40px;\n    line-height: 40px;\n    padding: 0; }\n  .weditor-header .editor-toolbar .xm-color-picker-container {\n    background: none;\n    border: none;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    height: 24px;\n    padding: 3px 5px;\n    width: 28px; }\n  .weditor-header .common-header {\n    color: #444444; }\n  .weditor-header .toolbar-opver {\n    padding-left: 30px !important; }\n  .weditor-header .file-header .ql-pdf {\n    background: none;\n    border: 1px solid transparent;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    height: 25px;\n    line-height: 25px;\n    padding: 0px 5px; }\n    .weditor-header .file-header .ql-pdf .pdf-icon {\n      background-position: -160px -180px; }\n  .weditor-header .file-header .ql-word {\n    background: none;\n    border: 1px solid transparent;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    height: 25px;\n    line-height: 25px;\n    padding: 0px 5px; }\n    .weditor-header .file-header .ql-word .word-icon {\n      background-position: -240px -40px; }\n  .weditor-header .opver-icon {\n    background-image: url(https://s3.meituan.net/v1/mss_814dc1610cda4b2e8febd6ea2c809db5/image/1489914204976.png);\n    background-repeat: no-repeat;\n    height: 20px;\n    width: 20px;\n    display: inline-block; }\n  .weditor-header .opver-area span {\n    vertical-align: middle;\n    font-size: 12px; }\n  .weditor-header .opver-area:hover {\n    border: 1px solid #b6b6b6; }\n  .weditor-header .view-header {\n    line-height: 24px;\n    height: 24px;\n    padding: 0; }\n    .weditor-header .view-header .ql-catalogue {\n      background: none;\n      border: 1px solid transparent;\n      cursor: pointer;\n      display: inline-block;\n      float: left;\n      height: 24px;\n      line-height: 24px;\n      padding: 0px 5px; }\n    .weditor-header .view-header .catalogue-icon {\n      background-position: -80px -180px; }\n\n.weditor-body {\n  padding: 10px 0;\n  position: absolute;\n  left: 0;\n  top: 95px;\n  right: 0px;\n  bottom: 0px;\n  overflow: hidden;\n  background-color: #f6f6f6; }\n  .weditor-body .content-container {\n    background-color: white;\n    box-shadow: 0 0 0 0.1px #d1d1d1, 0 0 1px 0.1px #ccc;\n    width: 800px;\n    margin: 0 auto;\n    border: 0;\n    height: 100%; }\n    .weditor-body .content-container .ql-container {\n      font-size: 12pt; }\n  .weditor-body .editormd-toolbar {\n    width: 100%;\n    min-height: 37px;\n    background: #f0f0f0;\n    display: none;\n    position: fixed;\n    top: 55px;\n    left: 0;\n    z-index: 10;\n    border: none; }\n    .weditor-body .editormd-toolbar.scroll {\n      box-shadow: 0 2px 4px rgba(20, 20, 20, 0.15); }\n    .weditor-body .editormd-toolbar .editormd-menu {\n      width: 910px;\n      margin: 0 auto; }\n    .weditor-body .editormd-toolbar .editormd-menu > li > a {\n      border: none; }\n      .weditor-body .editormd-toolbar .editormd-menu > li > a i {\n        font-weight: 200; }\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n.weditor-wrapper {\n  overflow: hidden;\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0; }\n  .weditor-wrapper div {\n    box-sizing: border-box; }\n\n.weditor-header {\n  width: 100%;\n  margin: 0;\n  padding: 0;\n  border-bottom: 1px solid #ddd;\n  position: relative;\n  z-index: 110;\n  background: #fff;\n  user-select: none;\n  background: -webkit-linear-gradient(top, #fdfdfd, #fff);\n  background: -ms-linear-gradient(top, #fdfdfd, #fff);\n  height: 95px;\n  box-sizing: border-box; }\n  .weditor-header button {\n    outline: none; }\n  .weditor-header .header-left-box {\n    line-height: 34px; }\n    .weditor-header .header-left-box .header-back-up {\n      float: left;\n      width: 40px;\n      height: 60px;\n      cursor: pointer;\n      background-color: #4285f4; }\n      .weditor-header .header-left-box .header-back-up .header-back-icon {\n        display: block;\n        background: url(//mss.sankuai.com/v1/mss_814dc1610cda4b2e8febd6ea2c809db5/image/1489546222140.svg) center no-repeat;\n        height: 60px;\n        position: absolute;\n        width: 40px;\n        -webkit-transition: all 125ms linear;\n        -moz-transition: all 125ms linear;\n        -o-transition: all 125ms linear;\n        transition: all 125ms linear; }\n    .weditor-header .header-left-box .team-sprite {\n      background-image: url(https://assets-cdn.shimo.im/assets/images/teams-31aea6334f.png);\n      background-size: 499px 310px;\n      background-repeat: no-repeat; }\n    .weditor-header .header-left-box .s-header-text {\n      display: inline-block;\n      float: left;\n      height: 34px;\n      line-height: 34px;\n      margin-left: 4px;\n      vertical-align: top; }\n      .weditor-header .header-left-box .s-header-text .title-input-pre {\n        font-size: 14px;\n        font-family: -apple-system, system-ui, \"PingFang SC\", Helvetica, Tahoma, Arial, \"Hiragino Sans GB\", \"Microsoft YaHei\", \"\\\\5FAE\\8F6F\\96C5\\9ED1\", SimSun, \"\\\\5B8B\\4F53\", Heiti, \"\\\\9ED1\\4F53\", sans-serif;\n        font-weight: bold;\n        font-style: normal;\n        letter-spacing: normal; }\n    .weditor-header .header-left-box .s-header-time {\n      margin-left: 13px;\n      margin-top: 1px;\n      font-size: 12px;\n      color: #999; }\n  .weditor-header .header-right-box {\n    position: absolute;\n    height: 100%;\n    top: 5px;\n    right: 20px;\n    line-height: 51px; }\n    .weditor-header .header-right-box .header-item-wrap {\n      display: inline-block;\n      height: 40px;\n      width: 40px; }\n      .weditor-header .header-right-box .header-item-wrap .header-item-inner {\n        border: 1px solid #eee;\n        height: 35px;\n        width: 35px;\n        border-radius: 50%;\n        text-align: center;\n        display: inline-block;\n        position: relative;\n        line-height: 0px; }\n        .weditor-header .header-right-box .header-item-wrap .header-item-inner:before {\n          content: '';\n          display: inline-block;\n          vertical-align: middle;\n          width: 0;\n          height: 100%;\n          font-size: 0; }\n        .weditor-header .header-right-box .header-item-wrap .header-item-inner img {\n          height: 25px;\n          width: 25px;\n          border-radius: 50%;\n          vertical-align: middle; }\n  .weditor-header .editor-toolbar .toolbar-tab {\n    height: 25px;\n    line-height: 25px; }\n    .weditor-header .editor-toolbar .toolbar-tab span {\n      padding: 4px 20px;\n      user-select: none;\n      font-size: 13px;\n      font-weight: bold;\n      cursor: pointer;\n      color: #666666; }\n    .weditor-header .editor-toolbar .toolbar-tab span.active {\n      color: #2374d1;\n      background: #f6f6f6; }\n  .weditor-header .editor-toolbar .ql-toolbar.ql-snow {\n    border: none;\n    background-color: #f6f6f6;\n    height: 40px;\n    line-height: 40px;\n    padding: 0;\n    border-bottom: solid 1px #e2e2e2; }\n  .weditor-header .editor-toolbar .xm-color-picker-container {\n    background: none;\n    border: none;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    height: 24px;\n    padding: 3px 5px;\n    width: 28px; }\n  .weditor-header .common-header {\n    color: #444444; }\n  .weditor-header .toolbar-opver {\n    padding-left: 30px !important; }\n  .weditor-header .file-header .ql-pdf {\n    background: none;\n    border: 1px solid transparent;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    height: 25px;\n    line-height: 25px;\n    padding: 0px 5px; }\n    .weditor-header .file-header .ql-pdf .pdf-icon {\n      background-position: -160px -180px; }\n  .weditor-header .file-header .ql-word {\n    background: none;\n    border: 1px solid transparent;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    height: 25px;\n    line-height: 25px;\n    padding: 0px 5px; }\n    .weditor-header .file-header .ql-word .word-icon {\n      background-position: -240px -40px; }\n  .weditor-header .opver-icon {\n    background-image: url(https://s3.meituan.net/v1/mss_814dc1610cda4b2e8febd6ea2c809db5/image/1489914204976.png);\n    background-repeat: no-repeat;\n    height: 20px;\n    width: 20px;\n    display: inline-block; }\n  .weditor-header .opver-area span {\n    vertical-align: middle;\n    font-size: 12px; }\n  .weditor-header .opver-area:hover {\n    border: 1px solid #b6b6b6; }\n  .weditor-header .view-header {\n    line-height: 24px;\n    height: 24px;\n    padding: 0; }\n    .weditor-header .view-header .ql-catalogue {\n      background: none;\n      border: 1px solid transparent;\n      cursor: pointer;\n      display: inline-block;\n      float: left;\n      height: 24px;\n      line-height: 24px;\n      padding: 0px 5px; }\n    .weditor-header .view-header .catalogue-icon {\n      background-position: -80px -180px; }\n\n.weditor-body {\n  padding: 10px 0;\n  position: absolute;\n  left: 0;\n  top: 95px;\n  right: 0px;\n  bottom: 0px;\n  overflow: hidden;\n  background-color: #f6f6f6; }\n  .weditor-body .content-container {\n    background-color: white;\n    box-shadow: 0 0 0 0.1px #d1d1d1, 0 0 1px 0.1px #ccc;\n    width: 800px;\n    margin: 0 auto;\n    border: 0;\n    height: 100%; }\n    .weditor-body .content-container .ql-container {\n      font-size: 12pt; }\n  .weditor-body .editormd-toolbar {\n    width: 100%;\n    min-height: 37px;\n    background: #f0f0f0;\n    display: none;\n    position: fixed;\n    top: 55px;\n    left: 0;\n    z-index: 10;\n    border: none; }\n    .weditor-body .editormd-toolbar.scroll {\n      box-shadow: 0 2px 4px rgba(20, 20, 20, 0.15); }\n    .weditor-body .editormd-toolbar .editormd-menu {\n      width: 910px;\n      margin: 0 auto; }\n    .weditor-body .editormd-toolbar .editormd-menu > li > a {\n      border: none; }\n      .weditor-body .editormd-toolbar .editormd-menu > li > a i {\n        font-weight: 200; }\n", ""]);
 
 // exports
 
@@ -29614,16 +29614,28 @@ var CommonEditor = (_dec = (0, _mobxReact.inject)("catalogue"), _dec(_class = (0
     (0, _inherits3.default)(CommonEditor, _Component);
 
     function CommonEditor() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
         (0, _classCallCheck3.default)(this, CommonEditor);
-        return (0, _possibleConstructorReturn3.default)(this, (CommonEditor.__proto__ || (0, _getPrototypeOf2.default)(CommonEditor)).apply(this, arguments));
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = CommonEditor.__proto__ || (0, _getPrototypeOf2.default)(CommonEditor)).call.apply(_ref, [this].concat(args))), _this), _this.closeCatalogue = function () {
+            _this.props.catalogue.open = false;
+        }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
     }
 
     (0, _createClass3.default)(CommonEditor, [{
         key: 'renderCalogue',
         value: function renderCalogue() {
+            console.log('render calogue');
             var list = this.props.catalogue.list;
 
-            return [].map(function (_, i) {
+            return list.map(function (_, i) {
                 return _react2.default.createElement(
                     'p',
                     { key: i, className: 'catalogue-h' + _.h },
@@ -29650,12 +29662,18 @@ var CommonEditor = (_dec = (0, _mobxReact.inject)("catalogue"), _dec(_class = (0
                         null,
                         '\u76EE\u5F55'
                     ),
-                    _react2.default.createElement(_index2.default, { type: 'close' })
+                    _react2.default.createElement(_index2.default, { type: 'close', onClick: this.closeCatalogue })
                 ),
                 _react2.default.createElement(
                     'div',
                     { className: 'catalogue-body' },
-                    this.renderCalogue()
+                    this.props.catalogue.list.map(function (_, i) {
+                        return _react2.default.createElement(
+                            'p',
+                            { key: i, className: 'catalogue-h' + _.h },
+                            _.content
+                        );
+                    })
                 )
             );
         }
@@ -31490,6 +31508,8 @@ var _input = __webpack_require__("./src/components/input/index.js");
 
 var _input2 = _interopRequireDefault(_input);
 
+var _toast = __webpack_require__("./src/components/toast/index.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var InsertImage = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _mobxReact.observer)(_class = function (_Component) {
@@ -31566,7 +31586,7 @@ var InsertImage = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _m
                 'multiple': false,
                 'method': 'post',
                 'withCredentials': true,
-                'server': 'http://mind.xm.test.sankuai.com/api/upload'
+                'server': this.props.uploadUrl || ''
             });
             uploader.on('uploadAccept', function (obj, res) {
                 res = JSON.parse(res);
@@ -31580,6 +31600,9 @@ var InsertImage = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _m
                         _this3.props.insert.openImageDialog = false;
                     }
                 } else {}
+            });
+            uploader.on('uploadError', function () {
+                (0, _toast.error)('上传服务错误');
             });
         }
     }, {
@@ -34920,10 +34943,14 @@ var EditorHeader = function (_Component) {
                 "div",
                 { className: "toolbar-opver", id: "toolbarOpver" },
                 _react2.default.createElement(_commonHeader2.default, null),
-                _react2.default.createElement(_fileHeader2.default, { rangeFormat: this.props.rangeFormat, style: { display: panel === 0 ? 'inline-block' : 'none' } }),
-                _react2.default.createElement(_startHeader2.default, { rangeFormat: this.props.rangeFormat, style: { display: panel === 1 ? 'inline-block' : 'none' } }),
-                _react2.default.createElement(_insertHeader2.default, { rangeFormat: this.props.rangeFormat, style: { display: panel === 2 ? 'inline-block' : 'none' } }),
-                _react2.default.createElement(_viewHeader2.default, { rangeFormat: this.props.rangeFormat, style: { display: panel === 3 ? 'inline-block' : 'none' } })
+                _react2.default.createElement(_fileHeader2.default, { rangeFormat: this.props.rangeFormat,
+                    style: { display: panel === 0 ? 'inline-block' : 'none' } }),
+                _react2.default.createElement(_startHeader2.default, { rangeFormat: this.props.rangeFormat,
+                    style: { display: panel === 1 ? 'inline-block' : 'none' } }),
+                _react2.default.createElement(_insertHeader2.default, { rangeFormat: this.props.rangeFormat,
+                    style: { display: panel === 2 ? 'inline-block' : 'none' } }),
+                _react2.default.createElement(_viewHeader2.default, { rangeFormat: this.props.rangeFormat,
+                    style: { display: panel === 3 ? 'inline-block' : 'none' } })
             );
         }
     }, {
@@ -35222,25 +35249,8 @@ var CommonEditor = function (_Component) {
     (0, _inherits3.default)(CommonEditor, _Component);
 
     function CommonEditor() {
-        var _ref;
-
-        var _temp, _this, _ret;
-
         (0, _classCallCheck3.default)(this, CommonEditor);
-
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-        }
-
-        return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = CommonEditor.__proto__ || (0, _getPrototypeOf2.default)(CommonEditor)).call.apply(_ref, [this].concat(args))), _this), _this.openLinkDialog = function () {}, _this.openImageDialog = function () {
-            var openImageDialog = _this.props.insert.openImageDialog;
-
-            if (openImageDialog) {
-                openImageDialog = false;
-            } else {
-                openImageDialog = true;
-            }
-        }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+        return (0, _possibleConstructorReturn3.default)(this, (CommonEditor.__proto__ || (0, _getPrototypeOf2.default)(CommonEditor)).apply(this, arguments));
     }
 
     (0, _createClass3.default)(CommonEditor, [{
@@ -36009,7 +36019,11 @@ var ImageResize = exports.ImageResize = function () {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.getEditorBoundingClientRect = exports.getDom = exports.getEditor = exports.initQuillEditor = undefined;
+exports.setLinkBubble = exports.getEditorBoundingClientRect = exports.getDom = exports.getEditor = exports.initQuillEditor = undefined;
+
+var _slicedToArray2 = __webpack_require__("./node_modules/babel-runtime/helpers/slicedToArray.js");
+
+var _slicedToArray3 = _interopRequireDefault(_slicedToArray2);
 
 var _quill = __webpack_require__("./node_modules/quill/dist/quill.js");
 
@@ -36049,6 +36063,11 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
                 container: '#toolbarOpver',
                 handlers: {
                     'link': function link(value) {
+                        for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+                            args[_key - 1] = arguments[_key];
+                        }
+
+                        console.log('link', value, args);
                         if (value) {
                             if (_insert2.default.openLinkDialog) {
                                 _insert2.default.openLinkDialog = false;
@@ -36060,33 +36079,28 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
                                         index = _getEditor$getSelecti.index,
                                         length = _getEditor$getSelecti.length;
 
-                                    var _getEditor$getBounds = getEditor().getBounds(index),
-                                        left = _getEditor$getBounds.left,
-                                        top = _getEditor$getBounds.top,
-                                        height = _getEditor$getBounds.height;
-
                                     _insert2.default.openLinkDialog = true;
                                     _insert2.default.linkTitle = getEditor().getText(index, length);
                                     _insert2.default.linkUrl = null;
-                                    var linkLeft = getEditorBoundingClientRect().left + left;
-                                    var linkTop = getEditorBoundingClientRect().top + top + height;
-                                    if (linkLeft + linkBubble.width >= window.innerWidth) {
-                                        linkLeft = linkLeft - linkBubble.width;
-                                    }
-                                    if (linkTop + linkBubble.height >= window.innerHeight) {
-                                        linkTop = linkTop - linkBubble.height - height - 10;
-                                    }
-                                    _insert2.default.linkPosition = {
-                                        left: linkLeft,
-                                        top: linkTop
-                                    };
+                                    setLinkBubble(index);
                                 }
                             }
+                            _insert2.default.linkSelection = getEditor().getSelection();
                         } else {
-                            getEditor().format('link', false);
+                            var _getEditor$getSelecti2 = getEditor().getSelection(),
+                                _index = _getEditor$getSelecti2.index,
+                                _length = _getEditor$getSelecti2.length;
+
+                            var _quillEditor$getLeaf = quillEditor.getLeaf(_index),
+                                _quillEditor$getLeaf2 = (0, _slicedToArray3.default)(_quillEditor$getLeaf, 2),
+                                leaf = _quillEditor$getLeaf2[0],
+                                offset = _quillEditor$getLeaf2[1];
+
+                            var LinkIndex = quillEditor.getIndex(leaf);
+                            //getEditor().format('link', false);
+                            getEditor().removeFormat(LinkIndex, leaf.text.length);
                         }
                         // openLinkDialog = true;
-                        _insert2.default.linkSelection = getEditor().getSelection();
                     },
                     'image': function image(args) {
                         console.log('ssss', args);
@@ -36145,6 +36159,26 @@ var getDom = exports.getDom = function getDom() {
 
 var getEditorBoundingClientRect = exports.getEditorBoundingClientRect = function getEditorBoundingClientRect() {
     return quillDom.getBoundingClientRect();
+};
+
+var setLinkBubble = exports.setLinkBubble = function setLinkBubble(index) {
+    var _getEditor$getBounds = getEditor().getBounds(index),
+        left = _getEditor$getBounds.left,
+        top = _getEditor$getBounds.top,
+        height = _getEditor$getBounds.height;
+
+    var linkLeft = getEditorBoundingClientRect().left + left;
+    var linkTop = getEditorBoundingClientRect().top + top + height;
+    if (linkLeft + linkBubble.width >= window.innerWidth) {
+        linkLeft = linkLeft - linkBubble.width;
+    }
+    if (linkTop + linkBubble.height >= window.innerHeight) {
+        linkTop = linkTop - linkBubble.height - height - 10;
+    }
+    _insert2.default.linkPosition = {
+        left: linkLeft,
+        top: linkTop
+    };
 };
 
 /***/ }),
@@ -36348,9 +36382,14 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.contains = contains;
+exports.is = is;
 function contains(a, b) {
   console.log('contains', a == b, a.contains(b));
   return a == b || (a && a.contains ? a != b && a.contains(b) : !!(a.compareDocumentPosition(b) & 16));
+}
+function is(type, obj) {
+  var clas = Object.prototype.toString.call(obj).slice(8, -1);
+  return obj !== undefined && obj !== null && clas === type;
 }
 
 /***/ }),
@@ -37021,6 +37060,8 @@ var _quillEditor = __webpack_require__("./src/lib/quillEditor.js");
 
 var _mobxReact = __webpack_require__("./node_modules/mobx-react/index.js");
 
+var _util = __webpack_require__("./src/lib/util.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var CommonEditor = (_dec = (0, _mobxReact.inject)('catalogue'), _dec(_class = (0, _mobxReact.observer)(_class = function (_Component) {
@@ -37042,13 +37083,14 @@ var CommonEditor = (_dec = (0, _mobxReact.inject)('catalogue'), _dec(_class = (0
                 var ops = (0, _quillEditor.getEditor)().getContents().ops;
                 var _ops = [];
                 ops = ops.forEach(function (item, i) {
-                    if (ops[i + 1] && ops[i + 1].attributes && ops[i + 1].attributes.header) {
+                    if (ops[i + 1] && ops[i + 1].attributes && ops[i + 1].attributes.header && (0, _util.is)('String', item.insert)) {
                         _ops.push({
                             h: ops[i + 1].attributes.header,
                             content: item.insert
                         });
                     }
                 });
+                console.log(_ops);
                 _this.props.catalogue.open = true;
                 _this.props.catalogue.list = _ops;
             }
@@ -37095,6 +37137,10 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = undefined;
+
+var _slicedToArray2 = __webpack_require__("./node_modules/babel-runtime/helpers/slicedToArray.js");
+
+var _slicedToArray3 = _interopRequireDefault(_slicedToArray2);
 
 var _getPrototypeOf = __webpack_require__("./node_modules/babel-runtime/core-js/object/get-prototype-of.js");
 
@@ -37182,16 +37228,27 @@ var WEditor = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _mobxR
             var _this2 = this;
 
             var quillEditor = this.quill = (0, _quillEditor.initQuillEditor)(_reactDom2.default.findDOMNode(this.refs.editor));
-            window.quillEditor = quillEditor;
             quillEditor.on('selection-change', function (range, oldRange, source) {
                 if (range) {
                     var rangeFormat = quillEditor.getFormat(range);
+                    if (rangeFormat.link) {
+                        _this2.props.insert.openLinkDialog = true;
+                        _this2.props.insert.linkUrl = rangeFormat.link;
+
+                        var _quillEditor$getLeaf = quillEditor.getLeaf(range.index),
+                            _quillEditor$getLeaf2 = (0, _slicedToArray3.default)(_quillEditor$getLeaf, 2),
+                            leaf = _quillEditor$getLeaf2[0],
+                            offset = _quillEditor$getLeaf2[1];
+
+                        _this2.props.insert.linkTitle = leaf.text;
+                        // let index= quillEditor.getIndex(leaf);
+                        (0, _quillEditor.setLinkBubble)(range.index);
+                    }
                     _this2.setState({ rangeFormat: rangeFormat });
-                } else {
-                    console.log('Cursor not in the editor');
                 }
+                if (range && range.length) {}
             });
-            quillEditor.setContents({ "ops": [{ "attributes": { "width": "198" }, "insert": { "image": "https://msstest-corp.sankuai.com/v1/mss_5e386b6fb47f4f298f8cba0149245287/mind-image/nt/1490680392374_8fa879de8db1cb13620e83bdd454564e92584b3e.jpg" } }, { "insert": "fdsa想线下选择性\nsssss说说¥eq¥¥eq¥¥2321fdjiofds\nfdsa\nfd\nffd撒反倒是\nsadsadsadsa我需要安静下来想想未来 怎么安排\njgfjtyhgftyjfthygtjffhtygjfthgfhyjftygjhgjhgjhgjhgjghjhgjhgjf34t4354eytfhfghr6\nfdsafdsafdsaffffffgfgfgfgfgfgfgfgfgffgfgggggggg\n\nfdsafdsafdsfdsafdsfdsa\nnihaomeiyou\nfdsa想线下选择性\nsssss说说¥eq¥¥eq¥¥2321fdjiofds\nfdsa\nfd\nffd撒反倒是\nsadsadsadsa\n学习型dsadsadasdsadsa\n\ngfdgfdgfdgfdgfdgfdgfdjjafdssoajfda\nfds\nfd\nsa\n\nfd\nsfdsafdsa\nffff12jfidosaj4jfid3osa5jfd43soajfidosajijfidsjaojfdjisajfiodjiosajfiodjsaoijfdiosjaofjdsioajfoidsjaoifjdsioajfiodsjafiodjsaoi\njgfjtyhgftyjfthygtjffhtygjfthgfhyjftygjhgjhgjhgjhgjghjhgjhgjf34t4354eytfhfghr6\nfdsafdsafdsaffffffgfgfgfgfgfgfgfgfgffgfgggggggg\n\nfdsafdsafdsfdsafdsfdsa\n\nfd\ns\n\n" }] });
+
             // quillEditor.updateContents(op2);
             // quillEditor.setContents({"ops":op})
             this.w.on('resize', this.onResize);
