@@ -6,7 +6,7 @@ import React, {Component} from "react";
 import Icon from './components/icon/index';
 import {getEditor} from './lib/quillEditor'
 import format from './model/format';
-
+import ToolTip from './components/tooltip'
 export default class CommonEditor extends Component {
 
     clearFormat = ()=>{
@@ -40,18 +40,46 @@ export default class CommonEditor extends Component {
     render() {
         return (
             <span className="ql-formats common-header">
-                <button className="ql-undo" onClick={this.undo}>
-                    <Icon type="undo"/>
-                </button>
-                <button className="ql-redo" onClick={this.redo}>
-                    <Icon type="redo"/>
-                </button>
-                <button className="ql-format" onClick={this.format}>
-                    <Icon type="geshishua"/>
-                </button>
-                <button className="ql-clear-format" onClick={this.clearFormat}>
-                    <Icon type="qingchu"/>
-                </button>
+                <ToolTip
+                    placement="bottom"
+                    mouseEnterDelay={0}
+                    mouseLeaveDelay={0}
+                    overlay={<div>撤销(ctrl+Z)</div>}
+                >
+                    <button className="ql-undo" onClick={this.undo}>
+                        <Icon type="undo"/>
+                    </button>
+                </ToolTip>
+                <ToolTip
+                    placement="bottom"
+                    mouseEnterDelay={0}
+                    mouseLeaveDelay={0}
+                    overlay={<div>重做(ctrl+Y)</div>}
+                >
+                    <button className="ql-redo" onClick={this.redo}>
+                        <Icon type="redo"/>
+                    </button>
+                </ToolTip>
+                 <ToolTip
+                     placement="bottom"
+                     mouseEnterDelay={0}
+                     mouseLeaveDelay={0}
+                     overlay={<div>格式刷</div>}
+                 >
+                    <button className="ql-format" onClick={this.format}>
+                        <Icon type="geshishua"/>
+                    </button>
+                </ToolTip>
+                <ToolTip
+                    placement="bottom"
+                    mouseEnterDelay={0}
+                    mouseLeaveDelay={0}
+                    overlay={<div>清除格式</div>}
+                >
+                   <button className="ql-clear-format" onClick={this.clearFormat}>
+                        <Icon type="qingchu"/>
+                    </button>
+                </ToolTip>
             </span>
         )
     }
