@@ -26,6 +26,7 @@ export const initQuillEditor = function (dom, options) {
                 container: '#toolbarOpver',
                 handlers: {
                     'link': function (value, ...args) {
+                        console.log('link',value,args)
                         if (value) {
                             if (insert.openLinkDialog) {
                                 insert.openLinkDialog = false;
@@ -34,29 +35,21 @@ export const initQuillEditor = function (dom, options) {
                             } else {
                                 if (getEditor() && getEditor().getSelection()) {
                                     const {index, length} = getEditor().getSelection()
-                                    const {left, top, height} = getEditor().getBounds(index);
                                     insert.openLinkDialog = true;
                                     insert.linkTitle = getEditor().getText(index, length);
                                     insert.linkUrl = null;
-                                    let linkLeft = getEditorBoundingClientRect().left + left;
-                                    let linkTop = getEditorBoundingClientRect().top + top+height;
-                                    if(linkLeft + linkBubble.width>= window.innerWidth){
-                                        linkLeft = linkLeft - linkBubble.width;
-                                    }
-                                    if(linkTop + linkBubble.height >= window.innerHeight){
-                                        linkTop = linkTop - linkBubble.height - height - 10;
-                                    }
-                                    insert.linkPosition = {
-                                        left: linkLeft,
-                                        top: linkTop
-                                    }
+                                    setLinkBubble(index)
                                 }
                             }
+                            insert.linkSelection = getEditor().getSelection();
                         } else {
-                            getEditor().format('link', false);
+                            const {index, length} = getEditor().getSelection()
+                            let [leaf, offset]  = quillEditor.getLeaf(index);
+                            let LinkIndex= quillEditor.getIndex(leaf);
+                            //getEditor().format('link', false);
+                            getEditor().removeFormat(LinkIndex, leaf.text.length);
                         }
                         // openLinkDialog = true;
-                        insert.linkSelection = getEditor().getSelection();
                     },
                     'image': function (args) {
                         console.log('ssss', args);
@@ -113,4 +106,20 @@ export const getDom = function () {
 
 export const getEditorBoundingClientRect = function () {
     return quillDom.getBoundingClientRect();
+}
+
+export const setLinkBubble = function (index) {
+    const {left, top, height} = getEditor().getBounds(index);
+    let linkLeft = getEditorBoundingClientRect().left + left;
+    let linkTop = getEditorBoundingClientRect().top + top+height;
+    if(linkLeft + linkBubble.width>= window.innerWidth){
+        linkLeft = linkLeft - linkBubble.width;
+    }
+    if(linkTop + linkBubble.height >= window.innerHeight){
+        linkTop = linkTop - linkBubble.height - height - 10;
+    }
+    insert.linkPosition = {
+        left: linkLeft,
+        top: linkTop
+    }
 }

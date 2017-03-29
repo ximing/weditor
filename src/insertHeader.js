@@ -11,20 +11,6 @@ import ToolTip from './components/tooltip'
 // @inject('insert') @observer
 export default class CommonEditor extends Component {
 
-    openLinkDialog = () => {
-
-    };
-
-    openImageDialog = () => {
-        let {openImageDialog} = this.props.insert;
-        if (openImageDialog) {
-            openImageDialog = false;
-        } else {
-            openImageDialog = true;
-        }
-    };
-
-
     render() {
         const {rangeFormat, style} = this.props;
         return (

@@ -4,7 +4,7 @@
 'use strict';
 import Quill from 'quill';
 import Delta from 'quill-delta';
-import { ImageResize } from './quill-image-resize-module';
+import {ImageResize} from './quill-image-resize-module';
 // import { ImageDrop } from './quill-image-drop-module';
 // Quill.register('modules/imageDrop', ImageDrop);
 Quill.register('modules/imageResize', ImageResize);
