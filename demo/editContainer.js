@@ -13,7 +13,11 @@ export default class EditContainer extends Component {
     render() {
         return(
             <div>
-                <WEditor ref={a=>this.wEditor = a} options={{uploadUrl:'http://mind.xm.test.sankuai.com/api/upload'}}/>
+                <WEditor 
+                doc = {{name:'test.doc',status:'fjdisoaifasdof'
+                }}
+                ref={a=>this.wEditor = a} 
+                options={{uploadUrl:'http://mind.xm.test.sankuai.com/api/upload'}}/>
             </div>
         );
     }

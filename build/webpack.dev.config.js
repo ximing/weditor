@@ -58,7 +58,7 @@ module.exports = Object.assign({},devConfig,{
     entry: {
         app:[
             "webpack/hot/dev-server",
-            `webpack-dev-server/client?http://localhost:${config.dev.port}/`,
+            `webpack-dev-server/client?http://${process.env.PORT?'weditor-yeanzhi.c9users.io':`localhost:${config.dev.port}/`}`,
             path.resolve(__dirname, '../demo/index.js')
         ]
     },
