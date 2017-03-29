@@ -16,6 +16,11 @@ export default class CommonEditor extends Component {
             return <p key={i} className={`catalogue-h${_.h}`}>{_.content}</p>
         })
     }
+
+    closeCatalogue = ()=>{
+        this.props.catalogue.open = false;
+    };
+
     render() {
         const {style, catalogue} = this.props;
         const {open} = catalogue;
@@ -23,7 +28,7 @@ export default class CommonEditor extends Component {
             <div className="catalogue-container" style={{display:open?'block':'none'}}>
                 <div className="catalogue-header">
                     <span>目录</span>
-                    <Icon type="close" />
+                    <Icon type="close" onClick={this.closeCatalogue}/>
                 </div>
                 <div className="catalogue-body">
                     {this.renderCalogue()}
