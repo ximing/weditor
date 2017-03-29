@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("react-dom"), require("react"), require("jQuery"));
+		module.exports = factory(require("jQuery"), require("react-dom"), require("react"));
 	else if(typeof define === 'function' && define.amd)
-		define(["react-dom", "react", "jQuery"], factory);
+		define(["jQuery", "react-dom", "react"], factory);
 	else if(typeof exports === 'object')
-		exports["weditor"] = factory(require("react-dom"), require("react"), require("jQuery"));
+		exports["weditor"] = factory(require("jQuery"), require("react-dom"), require("react"));
 	else
-		root["weditor"] = factory(root["ReactDOM"], root["React"], root["jQuery"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__) {
+		root["weditor"] = factory(root["jQuery"], root["ReactDOM"], root["React"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_0__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -2463,6 +2463,217 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 	}
 }());
 
+
+/***/ }),
+
+/***/ "./node_modules/component-classes/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Module dependencies.
+ */
+
+try {
+  var index = __webpack_require__("./node_modules/component-indexof/index.js");
+} catch (err) {
+  var index = __webpack_require__("./node_modules/component-indexof/index.js");
+}
+
+/**
+ * Whitespace regexp.
+ */
+
+var re = /\s+/;
+
+/**
+ * toString reference.
+ */
+
+var toString = Object.prototype.toString;
+
+/**
+ * Wrap `el` in a `ClassList`.
+ *
+ * @param {Element} el
+ * @return {ClassList}
+ * @api public
+ */
+
+module.exports = function(el){
+  return new ClassList(el);
+};
+
+/**
+ * Initialize a new ClassList for `el`.
+ *
+ * @param {Element} el
+ * @api private
+ */
+
+function ClassList(el) {
+  if (!el || !el.nodeType) {
+    throw new Error('A DOM element reference is required');
+  }
+  this.el = el;
+  this.list = el.classList;
+}
+
+/**
+ * Add class `name` if not already present.
+ *
+ * @param {String} name
+ * @return {ClassList}
+ * @api public
+ */
+
+ClassList.prototype.add = function(name){
+  // classList
+  if (this.list) {
+    this.list.add(name);
+    return this;
+  }
+
+  // fallback
+  var arr = this.array();
+  var i = index(arr, name);
+  if (!~i) arr.push(name);
+  this.el.className = arr.join(' ');
+  return this;
+};
+
+/**
+ * Remove class `name` when present, or
+ * pass a regular expression to remove
+ * any which match.
+ *
+ * @param {String|RegExp} name
+ * @return {ClassList}
+ * @api public
+ */
+
+ClassList.prototype.remove = function(name){
+  if ('[object RegExp]' == toString.call(name)) {
+    return this.removeMatching(name);
+  }
+
+  // classList
+  if (this.list) {
+    this.list.remove(name);
+    return this;
+  }
+
+  // fallback
+  var arr = this.array();
+  var i = index(arr, name);
+  if (~i) arr.splice(i, 1);
+  this.el.className = arr.join(' ');
+  return this;
+};
+
+/**
+ * Remove all classes matching `re`.
+ *
+ * @param {RegExp} re
+ * @return {ClassList}
+ * @api private
+ */
+
+ClassList.prototype.removeMatching = function(re){
+  var arr = this.array();
+  for (var i = 0; i < arr.length; i++) {
+    if (re.test(arr[i])) {
+      this.remove(arr[i]);
+    }
+  }
+  return this;
+};
+
+/**
+ * Toggle class `name`, can force state via `force`.
+ *
+ * For browsers that support classList, but do not support `force` yet,
+ * the mistake will be detected and corrected.
+ *
+ * @param {String} name
+ * @param {Boolean} force
+ * @return {ClassList}
+ * @api public
+ */
+
+ClassList.prototype.toggle = function(name, force){
+  // classList
+  if (this.list) {
+    if ("undefined" !== typeof force) {
+      if (force !== this.list.toggle(name, force)) {
+        this.list.toggle(name); // toggle again to correct
+      }
+    } else {
+      this.list.toggle(name);
+    }
+    return this;
+  }
+
+  // fallback
+  if ("undefined" !== typeof force) {
+    if (!force) {
+      this.remove(name);
+    } else {
+      this.add(name);
+    }
+  } else {
+    if (this.has(name)) {
+      this.remove(name);
+    } else {
+      this.add(name);
+    }
+  }
+
+  return this;
+};
+
+/**
+ * Return an array of classes.
+ *
+ * @return {Array}
+ * @api public
+ */
+
+ClassList.prototype.array = function(){
+  var className = this.el.getAttribute('class') || '';
+  var str = className.replace(/^\s+|\s+$/g, '');
+  var arr = str.split(re);
+  if ('' === arr[0]) arr.shift();
+  return arr;
+};
+
+/**
+ * Check if class `name` is present.
+ *
+ * @param {String} name
+ * @return {ClassList}
+ * @api public
+ */
+
+ClassList.prototype.has =
+ClassList.prototype.contains = function(name){
+  return this.list
+    ? this.list.contains(name)
+    : !! ~index(this.array(), name);
+};
+
+
+/***/ }),
+
+/***/ "./node_modules/component-indexof/index.js":
+/***/ (function(module, exports) {
+
+module.exports = function(arr, obj){
+  if (arr.indexOf) return arr.indexOf(obj);
+  for (var i = 0; i < arr.length; ++i) {
+    if (arr[i] === obj) return i;
+  }
+  return -1;
+};
 
 /***/ }),
 
@@ -5182,6 +5393,298 @@ for(var collections = ['NodeList', 'DOMTokenList', 'MediaList', 'StyleSheetList'
 
 /***/ }),
 
+/***/ "./node_modules/css-animation/lib/Event.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var EVENT_NAME_MAP = {
+  transitionend: {
+    transition: 'transitionend',
+    WebkitTransition: 'webkitTransitionEnd',
+    MozTransition: 'mozTransitionEnd',
+    OTransition: 'oTransitionEnd',
+    msTransition: 'MSTransitionEnd'
+  },
+
+  animationend: {
+    animation: 'animationend',
+    WebkitAnimation: 'webkitAnimationEnd',
+    MozAnimation: 'mozAnimationEnd',
+    OAnimation: 'oAnimationEnd',
+    msAnimation: 'MSAnimationEnd'
+  }
+};
+
+var endEvents = [];
+
+function detectEvents() {
+  var testEl = document.createElement('div');
+  var style = testEl.style;
+
+  if (!('AnimationEvent' in window)) {
+    delete EVENT_NAME_MAP.animationend.animation;
+  }
+
+  if (!('TransitionEvent' in window)) {
+    delete EVENT_NAME_MAP.transitionend.transition;
+  }
+
+  for (var baseEventName in EVENT_NAME_MAP) {
+    if (EVENT_NAME_MAP.hasOwnProperty(baseEventName)) {
+      var baseEvents = EVENT_NAME_MAP[baseEventName];
+      for (var styleName in baseEvents) {
+        if (styleName in style) {
+          endEvents.push(baseEvents[styleName]);
+          break;
+        }
+      }
+    }
+  }
+}
+
+if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+  detectEvents();
+}
+
+function addEventListener(node, eventName, eventListener) {
+  node.addEventListener(eventName, eventListener, false);
+}
+
+function removeEventListener(node, eventName, eventListener) {
+  node.removeEventListener(eventName, eventListener, false);
+}
+
+var TransitionEvents = {
+  addEndEventListener: function addEndEventListener(node, eventListener) {
+    if (endEvents.length === 0) {
+      window.setTimeout(eventListener, 0);
+      return;
+    }
+    endEvents.forEach(function (endEvent) {
+      addEventListener(node, endEvent, eventListener);
+    });
+  },
+
+
+  endEvents: endEvents,
+
+  removeEndEventListener: function removeEndEventListener(node, eventListener) {
+    if (endEvents.length === 0) {
+      return;
+    }
+    endEvents.forEach(function (endEvent) {
+      removeEventListener(node, endEvent, eventListener);
+    });
+  }
+};
+
+exports["default"] = TransitionEvents;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./node_modules/css-animation/lib/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _Event = __webpack_require__("./node_modules/css-animation/lib/Event.js");
+
+var _Event2 = _interopRequireDefault(_Event);
+
+var _componentClasses = __webpack_require__("./node_modules/component-classes/index.js");
+
+var _componentClasses2 = _interopRequireDefault(_componentClasses);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var isCssAnimationSupported = _Event2["default"].endEvents.length !== 0;
+
+
+var capitalPrefixes = ['Webkit', 'Moz', 'O',
+// ms is special .... !
+'ms'];
+var prefixes = ['-webkit-', '-moz-', '-o-', 'ms-', ''];
+
+function getStyleProperty(node, name) {
+  // old ff need null, https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle
+  var style = window.getComputedStyle(node, null);
+  var ret = '';
+  for (var i = 0; i < prefixes.length; i++) {
+    ret = style.getPropertyValue(prefixes[i] + name);
+    if (ret) {
+      break;
+    }
+  }
+  return ret;
+}
+
+function fixBrowserByTimeout(node) {
+  if (isCssAnimationSupported) {
+    var transitionDelay = parseFloat(getStyleProperty(node, 'transition-delay')) || 0;
+    var transitionDuration = parseFloat(getStyleProperty(node, 'transition-duration')) || 0;
+    var animationDelay = parseFloat(getStyleProperty(node, 'animation-delay')) || 0;
+    var animationDuration = parseFloat(getStyleProperty(node, 'animation-duration')) || 0;
+    var time = Math.max(transitionDuration + transitionDelay, animationDuration + animationDelay);
+    // sometimes, browser bug
+    node.rcEndAnimTimeout = setTimeout(function () {
+      node.rcEndAnimTimeout = null;
+      if (node.rcEndListener) {
+        node.rcEndListener();
+      }
+    }, time * 1000 + 200);
+  }
+}
+
+function clearBrowserBugTimeout(node) {
+  if (node.rcEndAnimTimeout) {
+    clearTimeout(node.rcEndAnimTimeout);
+    node.rcEndAnimTimeout = null;
+  }
+}
+
+var cssAnimation = function cssAnimation(node, transitionName, endCallback) {
+  var nameIsObj = (typeof transitionName === 'undefined' ? 'undefined' : _typeof(transitionName)) === 'object';
+  var className = nameIsObj ? transitionName.name : transitionName;
+  var activeClassName = nameIsObj ? transitionName.active : transitionName + '-active';
+  var end = endCallback;
+  var start = void 0;
+  var active = void 0;
+  var nodeClasses = (0, _componentClasses2["default"])(node);
+
+  if (endCallback && Object.prototype.toString.call(endCallback) === '[object Object]') {
+    end = endCallback.end;
+    start = endCallback.start;
+    active = endCallback.active;
+  }
+
+  if (node.rcEndListener) {
+    node.rcEndListener();
+  }
+
+  node.rcEndListener = function (e) {
+    if (e && e.target !== node) {
+      return;
+    }
+
+    if (node.rcAnimTimeout) {
+      clearTimeout(node.rcAnimTimeout);
+      node.rcAnimTimeout = null;
+    }
+
+    clearBrowserBugTimeout(node);
+
+    nodeClasses.remove(className);
+    nodeClasses.remove(activeClassName);
+
+    _Event2["default"].removeEndEventListener(node, node.rcEndListener);
+    node.rcEndListener = null;
+
+    // Usually this optional end is used for informing an owner of
+    // a leave animation and telling it to remove the child.
+    if (end) {
+      end();
+    }
+  };
+
+  _Event2["default"].addEndEventListener(node, node.rcEndListener);
+
+  if (start) {
+    start();
+  }
+  nodeClasses.add(className);
+
+  node.rcAnimTimeout = setTimeout(function () {
+    node.rcAnimTimeout = null;
+    nodeClasses.add(activeClassName);
+    if (active) {
+      setTimeout(active, 0);
+    }
+    fixBrowserByTimeout(node);
+    // 30ms for firefox
+  }, 30);
+
+  return {
+    stop: function stop() {
+      if (node.rcEndListener) {
+        node.rcEndListener();
+      }
+    }
+  };
+};
+
+cssAnimation.style = function (node, style, callback) {
+  if (node.rcEndListener) {
+    node.rcEndListener();
+  }
+
+  node.rcEndListener = function (e) {
+    if (e && e.target !== node) {
+      return;
+    }
+
+    if (node.rcAnimTimeout) {
+      clearTimeout(node.rcAnimTimeout);
+      node.rcAnimTimeout = null;
+    }
+
+    clearBrowserBugTimeout(node);
+
+    _Event2["default"].removeEndEventListener(node, node.rcEndListener);
+    node.rcEndListener = null;
+
+    // Usually this optional callback is used for informing an owner of
+    // a leave animation and telling it to remove the child.
+    if (callback) {
+      callback();
+    }
+  };
+
+  _Event2["default"].addEndEventListener(node, node.rcEndListener);
+
+  node.rcAnimTimeout = setTimeout(function () {
+    for (var s in style) {
+      if (style.hasOwnProperty(s)) {
+        node.style[s] = style[s];
+      }
+    }
+    node.rcAnimTimeout = null;
+    fixBrowserByTimeout(node);
+  }, 0);
+};
+
+cssAnimation.setTransition = function (node, p, value) {
+  var property = p;
+  var v = value;
+  if (value === undefined) {
+    v = property;
+    property = '';
+  }
+  property = property || '';
+  capitalPrefixes.forEach(function (prefix) {
+    node.style[prefix + 'Transition' + property] = v;
+  });
+};
+
+cssAnimation.isCssAnimationSupported = isCssAnimationSupported;
+
+exports["default"] = cssAnimation;
+module.exports = exports['default'];
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?{\"plugins\":[null,null]}!./node_modules/quill/dist/quill.snow.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5356,6 +5859,21 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 // module
 exports.push([module.i, ".xm-size {\n  display: inline-block;\n  position: relative;\n  vertical-align: middle;\n  float: left;\n  line-height: 20px; }\n  .xm-size .xm-size-input {\n    display: inline-block;\n    width: 48px;\n    background: transparent;\n    border: 1px solid transparent !important;\n    color: #333;\n    font-family: Arial, sans-serif !important;\n    font-size: 11px !important;\n    font-weight: bold !important;\n    height: 20px !important;\n    overflow: hidden !important;\n    padding: 1px 8px;\n    border-radius: 1px;\n    outline: none; }\n  .xm-size input:focus {\n    background: #fff; }\n  .xm-size .xm-size-button-dropdown {\n    display: inline-block;\n    background: url(//ssl.gstatic.com/ui/v1/disclosure/small-grey-disclosure-arrow-down.png) center no-repeat;\n    float: right;\n    margin: 7px 0 0 0px;\n    padding: 0 0 0 1px;\n    min-width: 7px;\n    opacity: .8;\n    vertical-align: middle;\n    width: 5px;\n    height: 7px; }\n  .xm-size .xm-size-p {\n    display: block;\n    position: absolute;\n    padding: 10px 0px;\n    background: #ffffff;\n    font-size: 14px;\n    width: 80px;\n    height: 350px;\n    overflow-y: auto;\n    border-radius: 2px;\n    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); }\n    .xm-size .xm-size-p p {\n      padding-left: 15px;\n      line-height: 25px; }\n      .xm-size .xm-size-p p:hover {\n        background: #f5f5f5;\n        cursor: pointer; }\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/toast/index.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, "@charset \"UTF-8\";\n/* font */\n.rc-notification {\n  position: fixed;\n  z-index: 1000; }\n\n.rc-notification-notice {\n  padding: 4px 10px 4px 10px;\n  border-radius: 3px 3px;\n  border: 1px solid #999;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);\n  border: 0px solid transparent;\n  background: #fff;\n  display: block;\n  width: auto;\n  line-height: 1.5;\n  vertical-align: middle;\n  position: relative;\n  margin: 10px 0; }\n  .rc-notification-notice .weditor-toast .icon-info {\n    color: #2db7f5; }\n  .rc-notification-notice .weditor-toast .icon-warning {\n    color: #fa0; }\n  .rc-notification-notice .weditor-toast .icon-success {\n    color: #87d068; }\n  .rc-notification-notice .weditor-toast .icon-error {\n    color: #f50; }\n  .rc-notification-notice p {\n    margin: 0;\n    font-size: 14px; }\n    .rc-notification-notice p i {\n      font-size: 18px;\n      margin-right: 2px; }\n\n.rc-notification-notice-closable {\n  padding-right: 20px; }\n\n.rc-notification-notice-close {\n  position: absolute;\n  right: 5px;\n  top: 3px;\n  color: #000;\n  cursor: pointer;\n  outline: none;\n  font-size: 16px;\n  font-weight: 700;\n  line-height: 1;\n  text-shadow: 0 1px 0 #fff;\n  filter: alpha(opacity=20);\n  opacity: .2;\n  text-decoration: none; }\n\n.rc-notification-notice-close-x:after {\n  content: '\\D7'; }\n\n.rc-notification-notice-close:hover {\n  opacity: 1;\n  filter: alpha(opacity=100);\n  text-decoration: none; }\n\n.rc-notification-fade-enter {\n  opacity: 0;\n  -webkit-animation-duration: 0.3s;\n  animation-duration: 0.3s;\n  -webkit-animation-fill-mode: both;\n  animation-fill-mode: both;\n  -webkit-animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);\n  animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);\n  -webkit-animation-play-state: paused;\n  animation-play-state: paused; }\n\n.rc-notification-fade-leave {\n  -webkit-animation-duration: 0.3s;\n  animation-duration: 0.3s;\n  -webkit-animation-fill-mode: both;\n  animation-fill-mode: both;\n  -webkit-animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);\n  animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);\n  -webkit-animation-play-state: paused;\n  animation-play-state: paused; }\n\n.rc-notification-fade-enter.rc-notification-fade-enter-active {\n  -webkit-animation-name: rcNotificationFadeIn;\n  animation-name: rcNotificationFadeIn;\n  -webkit-animation-play-state: running;\n  animation-play-state: running; }\n\n.rc-notification-fade-leave.rc-notification-fade-leave-active {\n  -webkit-animation-name: rcDialogFadeOut;\n  animation-name: rcDialogFadeOut;\n  -webkit-animation-play-state: running;\n  animation-play-state: running; }\n\n@-webkit-keyframes rcNotificationFadeIn {\n  0% {\n    opacity: 0; }\n  100% {\n    opacity: 1; } }\n\n@keyframes rcNotificationFadeIn {\n  0% {\n    opacity: 0; }\n  100% {\n    opacity: 1; } }\n\n@-webkit-keyframes rcDialogFadeOut {\n  0% {\n    opacity: 1; }\n  100% {\n    opacity: 0; } }\n\n@keyframes rcDialogFadeOut {\n  0% {\n    opacity: 1; }\n  100% {\n    opacity: 0; } }\n", ""]);
 
 // exports
 
@@ -7147,7 +7665,7 @@ value:function(e){this.props.willAppear(e)}},{key:"componentWillLeave",value:fun
 
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(true)
-		module.exports = factory(__webpack_require__("./node_modules/mobx/lib/mobx.js"), __webpack_require__(0), __webpack_require__(2));
+		module.exports = factory(__webpack_require__("./node_modules/mobx/lib/mobx.js"), __webpack_require__(0), __webpack_require__(1));
 	else if(typeof define === 'function' && define.amd)
 		define(["mobx", "react", "react-dom"], factory);
 	else if(typeof exports === 'object')
@@ -22727,6 +23245,907 @@ if(false) {
 
 /***/ }),
 
+/***/ "./node_modules/rc-animate/lib/Animate.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _ChildrenUtils = __webpack_require__("./node_modules/rc-animate/lib/ChildrenUtils.js");
+
+var _AnimateChild = __webpack_require__("./node_modules/rc-animate/lib/AnimateChild.js");
+
+var _AnimateChild2 = _interopRequireDefault(_AnimateChild);
+
+var _util = __webpack_require__("./node_modules/rc-animate/lib/util.js");
+
+var _util2 = _interopRequireDefault(_util);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var defaultKey = 'rc_animate_' + Date.now();
+
+
+function getChildrenFromProps(props) {
+  var children = props.children;
+  if (_react2["default"].isValidElement(children)) {
+    if (!children.key) {
+      return _react2["default"].cloneElement(children, {
+        key: defaultKey
+      });
+    }
+  }
+  return children;
+}
+
+function noop() {}
+
+var Animate = _react2["default"].createClass({
+  displayName: 'Animate',
+
+  propTypes: {
+    component: _react2["default"].PropTypes.any,
+    componentProps: _react2["default"].PropTypes.object,
+    animation: _react2["default"].PropTypes.object,
+    transitionName: _react2["default"].PropTypes.oneOfType([_react2["default"].PropTypes.string, _react2["default"].PropTypes.object]),
+    transitionEnter: _react2["default"].PropTypes.bool,
+    transitionAppear: _react2["default"].PropTypes.bool,
+    exclusive: _react2["default"].PropTypes.bool,
+    transitionLeave: _react2["default"].PropTypes.bool,
+    onEnd: _react2["default"].PropTypes.func,
+    onEnter: _react2["default"].PropTypes.func,
+    onLeave: _react2["default"].PropTypes.func,
+    onAppear: _react2["default"].PropTypes.func,
+    showProp: _react2["default"].PropTypes.string
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      animation: {},
+      component: 'span',
+      componentProps: {},
+      transitionEnter: true,
+      transitionLeave: true,
+      transitionAppear: false,
+      onEnd: noop,
+      onEnter: noop,
+      onLeave: noop,
+      onAppear: noop
+    };
+  },
+  getInitialState: function getInitialState() {
+    this.currentlyAnimatingKeys = {};
+    this.keysToEnter = [];
+    this.keysToLeave = [];
+    return {
+      children: (0, _ChildrenUtils.toArrayChildren)(getChildrenFromProps(this.props))
+    };
+  },
+  componentDidMount: function componentDidMount() {
+    var _this = this;
+
+    var showProp = this.props.showProp;
+    var children = this.state.children;
+    if (showProp) {
+      children = children.filter(function (child) {
+        return !!child.props[showProp];
+      });
+    }
+    children.forEach(function (child) {
+      if (child) {
+        _this.performAppear(child.key);
+      }
+    });
+  },
+  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+    var _this2 = this;
+
+    this.nextProps = nextProps;
+    var nextChildren = (0, _ChildrenUtils.toArrayChildren)(getChildrenFromProps(nextProps));
+    var props = this.props;
+    // exclusive needs immediate response
+    if (props.exclusive) {
+      Object.keys(this.currentlyAnimatingKeys).forEach(function (key) {
+        _this2.stop(key);
+      });
+    }
+    var showProp = props.showProp;
+    var currentlyAnimatingKeys = this.currentlyAnimatingKeys;
+    // last props children if exclusive
+    var currentChildren = props.exclusive ? (0, _ChildrenUtils.toArrayChildren)(getChildrenFromProps(props)) : this.state.children;
+    // in case destroy in showProp mode
+    var newChildren = [];
+    if (showProp) {
+      currentChildren.forEach(function (currentChild) {
+        var nextChild = currentChild && (0, _ChildrenUtils.findChildInChildrenByKey)(nextChildren, currentChild.key);
+        var newChild = void 0;
+        if ((!nextChild || !nextChild.props[showProp]) && currentChild.props[showProp]) {
+          newChild = _react2["default"].cloneElement(nextChild || currentChild, _defineProperty({}, showProp, true));
+        } else {
+          newChild = nextChild;
+        }
+        if (newChild) {
+          newChildren.push(newChild);
+        }
+      });
+      nextChildren.forEach(function (nextChild) {
+        if (!nextChild || !(0, _ChildrenUtils.findChildInChildrenByKey)(currentChildren, nextChild.key)) {
+          newChildren.push(nextChild);
+        }
+      });
+    } else {
+      newChildren = (0, _ChildrenUtils.mergeChildren)(currentChildren, nextChildren);
+    }
+
+    // need render to avoid update
+    this.setState({
+      children: newChildren
+    });
+
+    nextChildren.forEach(function (child) {
+      var key = child && child.key;
+      if (child && currentlyAnimatingKeys[key]) {
+        return;
+      }
+      var hasPrev = child && (0, _ChildrenUtils.findChildInChildrenByKey)(currentChildren, key);
+      if (showProp) {
+        var showInNext = child.props[showProp];
+        if (hasPrev) {
+          var showInNow = (0, _ChildrenUtils.findShownChildInChildrenByKey)(currentChildren, key, showProp);
+          if (!showInNow && showInNext) {
+            _this2.keysToEnter.push(key);
+          }
+        } else if (showInNext) {
+          _this2.keysToEnter.push(key);
+        }
+      } else if (!hasPrev) {
+        _this2.keysToEnter.push(key);
+      }
+    });
+
+    currentChildren.forEach(function (child) {
+      var key = child && child.key;
+      if (child && currentlyAnimatingKeys[key]) {
+        return;
+      }
+      var hasNext = child && (0, _ChildrenUtils.findChildInChildrenByKey)(nextChildren, key);
+      if (showProp) {
+        var showInNow = child.props[showProp];
+        if (hasNext) {
+          var showInNext = (0, _ChildrenUtils.findShownChildInChildrenByKey)(nextChildren, key, showProp);
+          if (!showInNext && showInNow) {
+            _this2.keysToLeave.push(key);
+          }
+        } else if (showInNow) {
+          _this2.keysToLeave.push(key);
+        }
+      } else if (!hasNext) {
+        _this2.keysToLeave.push(key);
+      }
+    });
+  },
+  componentDidUpdate: function componentDidUpdate() {
+    var keysToEnter = this.keysToEnter;
+    this.keysToEnter = [];
+    keysToEnter.forEach(this.performEnter);
+    var keysToLeave = this.keysToLeave;
+    this.keysToLeave = [];
+    keysToLeave.forEach(this.performLeave);
+  },
+  performEnter: function performEnter(key) {
+    // may already remove by exclusive
+    if (this.refs[key]) {
+      this.currentlyAnimatingKeys[key] = true;
+      this.refs[key].componentWillEnter(this.handleDoneAdding.bind(this, key, 'enter'));
+    }
+  },
+  performAppear: function performAppear(key) {
+    if (this.refs[key]) {
+      this.currentlyAnimatingKeys[key] = true;
+      this.refs[key].componentWillAppear(this.handleDoneAdding.bind(this, key, 'appear'));
+    }
+  },
+  handleDoneAdding: function handleDoneAdding(key, type) {
+    var props = this.props;
+    delete this.currentlyAnimatingKeys[key];
+    // if update on exclusive mode, skip check
+    if (props.exclusive && props !== this.nextProps) {
+      return;
+    }
+    var currentChildren = (0, _ChildrenUtils.toArrayChildren)(getChildrenFromProps(props));
+    if (!this.isValidChildByKey(currentChildren, key)) {
+      // exclusive will not need this
+      this.performLeave(key);
+    } else {
+      if (type === 'appear') {
+        if (_util2["default"].allowAppearCallback(props)) {
+          props.onAppear(key);
+          props.onEnd(key, true);
+        }
+      } else {
+        if (_util2["default"].allowEnterCallback(props)) {
+          props.onEnter(key);
+          props.onEnd(key, true);
+        }
+      }
+    }
+  },
+  performLeave: function performLeave(key) {
+    // may already remove by exclusive
+    if (this.refs[key]) {
+      this.currentlyAnimatingKeys[key] = true;
+      this.refs[key].componentWillLeave(this.handleDoneLeaving.bind(this, key));
+    }
+  },
+  handleDoneLeaving: function handleDoneLeaving(key) {
+    var props = this.props;
+    delete this.currentlyAnimatingKeys[key];
+    // if update on exclusive mode, skip check
+    if (props.exclusive && props !== this.nextProps) {
+      return;
+    }
+    var currentChildren = (0, _ChildrenUtils.toArrayChildren)(getChildrenFromProps(props));
+    // in case state change is too fast
+    if (this.isValidChildByKey(currentChildren, key)) {
+      this.performEnter(key);
+    } else {
+      var end = function end() {
+        if (_util2["default"].allowLeaveCallback(props)) {
+          props.onLeave(key);
+          props.onEnd(key, false);
+        }
+      };
+      /* eslint react/no-is-mounted:0 */
+      if (this.isMounted() && !(0, _ChildrenUtils.isSameChildren)(this.state.children, currentChildren, props.showProp)) {
+        this.setState({
+          children: currentChildren
+        }, end);
+      } else {
+        end();
+      }
+    }
+  },
+  isValidChildByKey: function isValidChildByKey(currentChildren, key) {
+    var showProp = this.props.showProp;
+    if (showProp) {
+      return (0, _ChildrenUtils.findShownChildInChildrenByKey)(currentChildren, key, showProp);
+    }
+    return (0, _ChildrenUtils.findChildInChildrenByKey)(currentChildren, key);
+  },
+  stop: function stop(key) {
+    delete this.currentlyAnimatingKeys[key];
+    var component = this.refs[key];
+    if (component) {
+      component.stop();
+    }
+  },
+  render: function render() {
+    var props = this.props;
+    this.nextProps = props;
+    var stateChildren = this.state.children;
+    var children = null;
+    if (stateChildren) {
+      children = stateChildren.map(function (child) {
+        if (child === null || child === undefined) {
+          return child;
+        }
+        if (!child.key) {
+          throw new Error('must set key for <rc-animate> children');
+        }
+        return _react2["default"].createElement(
+          _AnimateChild2["default"],
+          {
+            key: child.key,
+            ref: child.key,
+            animation: props.animation,
+            transitionName: props.transitionName,
+            transitionEnter: props.transitionEnter,
+            transitionAppear: props.transitionAppear,
+            transitionLeave: props.transitionLeave
+          },
+          child
+        );
+      });
+    }
+    var Component = props.component;
+    if (Component) {
+      var passedProps = props;
+      if (typeof Component === 'string') {
+        passedProps = _extends({
+          className: props.className,
+          style: props.style
+        }, props.componentProps);
+      }
+      return _react2["default"].createElement(
+        Component,
+        passedProps,
+        children
+      );
+    }
+    return children[0] || null;
+  }
+});
+
+exports["default"] = Animate;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./node_modules/rc-animate/lib/AnimateChild.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(1);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _cssAnimation = __webpack_require__("./node_modules/css-animation/lib/index.js");
+
+var _cssAnimation2 = _interopRequireDefault(_cssAnimation);
+
+var _util = __webpack_require__("./node_modules/rc-animate/lib/util.js");
+
+var _util2 = _interopRequireDefault(_util);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var transitionMap = {
+  enter: 'transitionEnter',
+  appear: 'transitionAppear',
+  leave: 'transitionLeave'
+};
+
+var AnimateChild = _react2["default"].createClass({
+  displayName: 'AnimateChild',
+
+  propTypes: {
+    children: _react2["default"].PropTypes.any
+  },
+
+  componentWillUnmount: function componentWillUnmount() {
+    this.stop();
+  },
+  componentWillEnter: function componentWillEnter(done) {
+    if (_util2["default"].isEnterSupported(this.props)) {
+      this.transition('enter', done);
+    } else {
+      done();
+    }
+  },
+  componentWillAppear: function componentWillAppear(done) {
+    if (_util2["default"].isAppearSupported(this.props)) {
+      this.transition('appear', done);
+    } else {
+      done();
+    }
+  },
+  componentWillLeave: function componentWillLeave(done) {
+    if (_util2["default"].isLeaveSupported(this.props)) {
+      this.transition('leave', done);
+    } else {
+      // always sync, do not interupt with react component life cycle
+      // update hidden -> animate hidden ->
+      // didUpdate -> animate leave -> unmount (if animate is none)
+      done();
+    }
+  },
+  transition: function transition(animationType, finishCallback) {
+    var _this = this;
+
+    var node = _reactDom2["default"].findDOMNode(this);
+    var props = this.props;
+    var transitionName = props.transitionName;
+    var nameIsObj = (typeof transitionName === 'undefined' ? 'undefined' : _typeof(transitionName)) === 'object';
+    this.stop();
+    var end = function end() {
+      _this.stopper = null;
+      finishCallback();
+    };
+    if ((_cssAnimation.isCssAnimationSupported || !props.animation[animationType]) && transitionName && props[transitionMap[animationType]]) {
+      var name = nameIsObj ? transitionName[animationType] : transitionName + '-' + animationType;
+      var activeName = name + '-active';
+      if (nameIsObj && transitionName[animationType + 'Active']) {
+        activeName = transitionName[animationType + 'Active'];
+      }
+      this.stopper = (0, _cssAnimation2["default"])(node, {
+        name: name,
+        active: activeName
+      }, end);
+    } else {
+      this.stopper = props.animation[animationType](node, end);
+    }
+  },
+  stop: function stop() {
+    var stopper = this.stopper;
+    if (stopper) {
+      this.stopper = null;
+      stopper.stop();
+    }
+  },
+  render: function render() {
+    return this.props.children;
+  }
+});
+
+exports["default"] = AnimateChild;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./node_modules/rc-animate/lib/ChildrenUtils.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.toArrayChildren = toArrayChildren;
+exports.findChildInChildrenByKey = findChildInChildrenByKey;
+exports.findShownChildInChildrenByKey = findShownChildInChildrenByKey;
+exports.findHiddenChildInChildrenByKey = findHiddenChildInChildrenByKey;
+exports.isSameChildren = isSameChildren;
+exports.mergeChildren = mergeChildren;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function toArrayChildren(children) {
+  var ret = [];
+  _react2["default"].Children.forEach(children, function (child) {
+    ret.push(child);
+  });
+  return ret;
+}
+
+function findChildInChildrenByKey(children, key) {
+  var ret = null;
+  if (children) {
+    children.forEach(function (child) {
+      if (ret) {
+        return;
+      }
+      if (child && child.key === key) {
+        ret = child;
+      }
+    });
+  }
+  return ret;
+}
+
+function findShownChildInChildrenByKey(children, key, showProp) {
+  var ret = null;
+  if (children) {
+    children.forEach(function (child) {
+      if (child && child.key === key && child.props[showProp]) {
+        if (ret) {
+          throw new Error('two child with same key for <rc-animate> children');
+        }
+        ret = child;
+      }
+    });
+  }
+  return ret;
+}
+
+function findHiddenChildInChildrenByKey(children, key, showProp) {
+  var found = 0;
+  if (children) {
+    children.forEach(function (child) {
+      if (found) {
+        return;
+      }
+      found = child && child.key === key && !child.props[showProp];
+    });
+  }
+  return found;
+}
+
+function isSameChildren(c1, c2, showProp) {
+  var same = c1.length === c2.length;
+  if (same) {
+    c1.forEach(function (child, index) {
+      var child2 = c2[index];
+      if (child && child2) {
+        if (child && !child2 || !child && child2) {
+          same = false;
+        } else if (child.key !== child2.key) {
+          same = false;
+        } else if (showProp && child.props[showProp] !== child2.props[showProp]) {
+          same = false;
+        }
+      }
+    });
+  }
+  return same;
+}
+
+function mergeChildren(prev, next) {
+  var ret = [];
+
+  // For each key of `next`, the list of keys to insert before that key in
+  // the combined list
+  var nextChildrenPending = {};
+  var pendingChildren = [];
+  prev.forEach(function (child) {
+    if (child && findChildInChildrenByKey(next, child.key)) {
+      if (pendingChildren.length) {
+        nextChildrenPending[child.key] = pendingChildren;
+        pendingChildren = [];
+      }
+    } else {
+      pendingChildren.push(child);
+    }
+  });
+
+  next.forEach(function (child) {
+    if (child && nextChildrenPending.hasOwnProperty(child.key)) {
+      ret = ret.concat(nextChildrenPending[child.key]);
+    }
+    ret.push(child);
+  });
+
+  ret = ret.concat(pendingChildren);
+
+  return ret;
+}
+
+/***/ }),
+
+/***/ "./node_modules/rc-animate/lib/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+// export this package's api
+module.exports = __webpack_require__("./node_modules/rc-animate/lib/Animate.js");
+
+/***/ }),
+
+/***/ "./node_modules/rc-animate/lib/util.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var util = {
+  isAppearSupported: function isAppearSupported(props) {
+    return props.transitionName && props.transitionAppear || props.animation.appear;
+  },
+  isEnterSupported: function isEnterSupported(props) {
+    return props.transitionName && props.transitionEnter || props.animation.enter;
+  },
+  isLeaveSupported: function isLeaveSupported(props) {
+    return props.transitionName && props.transitionLeave || props.animation.leave;
+  },
+  allowAppearCallback: function allowAppearCallback(props) {
+    return props.transitionAppear || props.animation.appear;
+  },
+  allowEnterCallback: function allowEnterCallback(props) {
+    return props.transitionEnter || props.animation.enter;
+  },
+  allowLeaveCallback: function allowLeaveCallback(props) {
+    return props.transitionLeave || props.animation.leave;
+  }
+};
+exports["default"] = util;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./node_modules/rc-notification/lib/Notice.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = __webpack_require__("./node_modules/classnames/index.js");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var Notice = _react2["default"].createClass({
+  displayName: 'Notice',
+
+  propTypes: {
+    duration: _react.PropTypes.number,
+    onClose: _react.PropTypes.func,
+    children: _react.PropTypes.any
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      onEnd: function onEnd() {},
+      onClose: function onClose() {},
+
+      duration: 1.5,
+      style: {
+        right: '50%'
+      }
+    };
+  },
+  componentDidMount: function componentDidMount() {
+    var _this = this;
+
+    if (this.props.duration) {
+      this.closeTimer = setTimeout(function () {
+        _this.close();
+      }, this.props.duration * 1000);
+    }
+  },
+  componentWillUnmount: function componentWillUnmount() {
+    this.clearCloseTimer();
+  },
+  clearCloseTimer: function clearCloseTimer() {
+    if (this.closeTimer) {
+      clearTimeout(this.closeTimer);
+      this.closeTimer = null;
+    }
+  },
+  close: function close() {
+    this.clearCloseTimer();
+    this.props.onClose();
+  },
+  render: function render() {
+    var _className;
+
+    var props = this.props;
+    var componentClass = props.prefixCls + '-notice';
+    var className = (_className = {}, _defineProperty(_className, '' + componentClass, 1), _defineProperty(_className, componentClass + '-closable', props.closable), _defineProperty(_className, props.className, !!props.className), _className);
+    return _react2["default"].createElement(
+      'div',
+      { className: (0, _classnames2["default"])(className), style: props.style },
+      _react2["default"].createElement(
+        'div',
+        { className: componentClass + '-content' },
+        props.children
+      ),
+      props.closable ? _react2["default"].createElement(
+        'a',
+        { tabIndex: '0', onClick: this.close, className: componentClass + '-close' },
+        _react2["default"].createElement('span', { className: componentClass + '-close-x' })
+      ) : null
+    );
+  }
+});
+
+exports["default"] = Notice;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./node_modules/rc-notification/lib/Notification.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(1);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _rcAnimate = __webpack_require__("./node_modules/rc-animate/lib/index.js");
+
+var _rcAnimate2 = _interopRequireDefault(_rcAnimate);
+
+var _createChainedFunction = __webpack_require__("./node_modules/rc-util/lib/createChainedFunction.js");
+
+var _createChainedFunction2 = _interopRequireDefault(_createChainedFunction);
+
+var _classnames = __webpack_require__("./node_modules/classnames/index.js");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _Notice = __webpack_require__("./node_modules/rc-notification/lib/Notice.js");
+
+var _Notice2 = _interopRequireDefault(_Notice);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var seed = 0;
+var now = Date.now();
+
+function getUuid() {
+  return 'rcNotification_' + now + '_' + seed++;
+}
+
+var Notification = _react2["default"].createClass({
+  displayName: 'Notification',
+
+  propTypes: {
+    prefixCls: _react.PropTypes.string,
+    transitionName: _react.PropTypes.string,
+    animation: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.object]),
+    style: _react.PropTypes.object
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      prefixCls: 'rc-notification',
+      animation: 'fade',
+      style: {
+        top: 65,
+        left: '50%'
+      }
+    };
+  },
+  getInitialState: function getInitialState() {
+    return {
+      notices: []
+    };
+  },
+  getTransitionName: function getTransitionName() {
+    var props = this.props;
+    var transitionName = props.transitionName;
+    if (!transitionName && props.animation) {
+      transitionName = props.prefixCls + '-' + props.animation;
+    }
+    return transitionName;
+  },
+  add: function add(notice) {
+    var key = notice.key = notice.key || getUuid();
+    this.setState(function (previousState) {
+      var notices = previousState.notices;
+      if (!notices.filter(function (v) {
+        return v.key === key;
+      }).length) {
+        return {
+          notices: notices.concat(notice)
+        };
+      }
+    });
+  },
+  remove: function remove(key) {
+    this.setState(function (previousState) {
+      return {
+        notices: previousState.notices.filter(function (notice) {
+          return notice.key !== key;
+        })
+      };
+    });
+  },
+  render: function render() {
+    var _this = this,
+        _className;
+
+    var props = this.props;
+    var noticeNodes = this.state.notices.map(function (notice) {
+      var onClose = (0, _createChainedFunction2["default"])(_this.remove.bind(_this, notice.key), notice.onClose);
+      return _react2["default"].createElement(
+        _Notice2["default"],
+        _extends({
+          prefixCls: props.prefixCls
+        }, notice, {
+          onClose: onClose
+        }),
+        notice.content
+      );
+    });
+    var className = (_className = {}, _defineProperty(_className, props.prefixCls, 1), _defineProperty(_className, props.className, !!props.className), _className);
+    return _react2["default"].createElement(
+      'div',
+      { className: (0, _classnames2["default"])(className), style: props.style },
+      _react2["default"].createElement(
+        _rcAnimate2["default"],
+        { transitionName: this.getTransitionName() },
+        noticeNodes
+      )
+    );
+  }
+});
+
+Notification.newInstance = function newNotificationInstance(properties) {
+  var _ref = properties || {},
+      getContainer = _ref.getContainer,
+      props = _objectWithoutProperties(_ref, ['getContainer']);
+
+  var div = void 0;
+  if (getContainer) {
+    div = getContainer();
+  } else {
+    div = document.createElement('div');
+    document.body.appendChild(div);
+  }
+  var notification = _reactDom2["default"].render(_react2["default"].createElement(Notification, props), div);
+  return {
+    notice: function notice(noticeProps) {
+      notification.add(noticeProps);
+    },
+    removeNotice: function removeNotice(key) {
+      notification.remove(key);
+    },
+
+    component: notification,
+    destroy: function destroy() {
+      _reactDom2["default"].unmountComponentAtNode(div);
+      document.body.removeChild(div);
+    }
+  };
+};
+
+exports["default"] = Notification;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./node_modules/rc-notification/lib/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Notification = __webpack_require__("./node_modules/rc-notification/lib/Notification.js");
+
+var _Notification2 = _interopRequireDefault(_Notification);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+exports["default"] = _Notification2["default"];
+module.exports = exports['default'];
+
+/***/ }),
+
 /***/ "./node_modules/rc-tabs/assets/index.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -23875,6 +25294,42 @@ function getStyle(el, property) {
 function setPxStyle(el, property, value) {
   el.style[property] = value + 'px';
 }
+
+/***/ }),
+
+/***/ "./node_modules/rc-util/lib/createChainedFunction.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = createChainedFunction;
+/**
+ * Safe chained function
+ *
+ * Will only create a new function if needed,
+ * otherwise will pass back existing functions or null.
+ *
+ * @returns {function|null}
+ */
+function createChainedFunction() {
+  var args = [].slice.call(arguments, 0);
+  if (args.length === 1) {
+    return args[0];
+  }
+
+  return function chainedFunction() {
+    for (var i = 0; i < args.length; i++) {
+      if (args[i] && args[i].apply) {
+        args[i].apply(this, arguments);
+      }
+    }
+  };
+}
+module.exports = exports['default'];
 
 /***/ }),
 
@@ -26753,7 +28208,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(2);
+var _reactDom = __webpack_require__(1);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -26763,7 +28218,7 @@ var _quill2 = _interopRequireDefault(_quill);
 
 var _mobxReact = __webpack_require__("./node_modules/mobx-react/index.js");
 
-var _jquery = __webpack_require__(1);
+var _jquery = __webpack_require__(2);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -27019,7 +28474,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(2);
+var _reactDom = __webpack_require__(1);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -27234,7 +28689,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _jquery = __webpack_require__(1);
+var _jquery = __webpack_require__(2);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -27579,6 +29034,129 @@ exports.default = SizeDropDown;
 
 // load the styles
 var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/sizeDropDown/index.scss");
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/style-loader/addStyles.js")(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/index.js!./index.scss", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/index.js!./index.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./src/components/toast/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Created by yeanzhi on 17/3/29.
+ */
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.error = exports.success = exports.info = exports.warning = undefined;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _rcNotification = __webpack_require__("./node_modules/rc-notification/lib/index.js");
+
+var _rcNotification2 = _interopRequireDefault(_rcNotification);
+
+__webpack_require__("./src/components/toast/index.scss");
+
+var _icon = __webpack_require__("./src/components/icon/index.js");
+
+var _icon2 = _interopRequireDefault(_icon);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var notification = _rcNotification2.default.newInstance({});
+
+var warning = exports.warning = function warning(content, onClose) {
+    notification.notice({
+        content: _react2.default.createElement(
+            'p',
+            { className: 'weditor-toast' },
+            _react2.default.createElement(_icon2.default, { type: 'warning' }),
+            _react2.default.createElement(
+                'span',
+                null,
+                content
+            ),
+            ' '
+        ),
+        onClose: onClose
+    });
+};
+var info = exports.info = function info(content, onClose) {
+    notification.notice({
+        content: _react2.default.createElement(
+            'p',
+            { className: 'weditor-toast' },
+            _react2.default.createElement(_icon2.default, { type: 'info' }),
+            _react2.default.createElement(
+                'span',
+                null,
+                content
+            )
+        ),
+        onClose: onClose
+    });
+};
+var success = exports.success = function success(content, onClose) {
+    notification.notice({
+        content: _react2.default.createElement(
+            'p',
+            { className: 'weditor-toast' },
+            _react2.default.createElement(_icon2.default, { type: 'success' }),
+            _react2.default.createElement(
+                'span',
+                null,
+                content
+            )
+        ),
+        onClose: onClose
+    });
+};
+var error = exports.error = function error(content, onClose) {
+    notification.notice({
+        content: _react2.default.createElement(
+            'p',
+            { className: 'weditor-toast' },
+            _react2.default.createElement(_icon2.default, { type: 'error' }),
+            _react2.default.createElement(
+                'span',
+                null,
+                content
+            )
+        ),
+        onClose: onClose
+    });
+};
+
+/***/ }),
+
+/***/ "./src/components/toast/index.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/toast/index.scss");
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__("./node_modules/style-loader/addStyles.js")(content, {});
@@ -29858,7 +31436,7 @@ var _printThis = __webpack_require__("./src/lib/printThis.js");
 
 var _printThis2 = _interopRequireDefault(_printThis);
 
-var _jquery = __webpack_require__(1);
+var _jquery = __webpack_require__(2);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -30002,6 +31580,8 @@ var _viewHeader2 = _interopRequireDefault(_viewHeader);
 
 var _quillEditor = __webpack_require__("./src/lib/quillEditor.js");
 
+var _toast = __webpack_require__("./src/components/toast/index.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var EditorHeader = function (_Component) {
@@ -30068,6 +31648,10 @@ var EditorHeader = function (_Component) {
             var _this3 = this;
 
             return function () {
+                if (panel === 4 || panel === 5) {
+                    (0, _toast.info)('稍后开放，敬请期待');
+                    return;
+                }
                 _this3.setState({ panel: panel });
             };
         }
@@ -30101,12 +31685,12 @@ var EditorHeader = function (_Component) {
                 ),
                 _react2.default.createElement(
                     "span",
-                    { className: "history-tab" },
+                    { className: "history-tab", onClick: this.changePanel(4) },
                     "\u4FEE\u8BA2\u5386\u53F2"
                 ),
                 _react2.default.createElement(
                     "span",
-                    { className: "help-tab" },
+                    { className: "help-tab", onClick: this.changePanel(5) },
                     "\u5E2E\u52A9"
                 )
             );
@@ -32088,7 +33672,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _jquery = __webpack_require__(1);
+var _jquery = __webpack_require__(2);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -32096,7 +33680,7 @@ var _hotkeysJs = __webpack_require__("./node_modules/hotkeys-js/dist/hotkeys.min
 
 var _hotkeysJs2 = _interopRequireDefault(_hotkeysJs);
 
-var _reactDom = __webpack_require__(2);
+var _reactDom = __webpack_require__(1);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -32162,6 +33746,8 @@ var WEditor = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _mobxR
                 }
             });
             quillEditor.setContents({ "ops": [{ "attributes": { "width": "198" }, "insert": { "image": "https://msstest-corp.sankuai.com/v1/mss_5e386b6fb47f4f298f8cba0149245287/mind-image/nt/1490680392374_8fa879de8db1cb13620e83bdd454564e92584b3e.jpg" } }, { "insert": "fdsa想线下选择性\nsssss说说¥eq¥¥eq¥¥2321fdjiofds\nfdsa\nfd\nffd撒反倒是\nsadsadsadsa我需要安静下来想想未来 怎么安排\njgfjtyhgftyjfthygtjffhtygjfthgfhyjftygjhgjhgjhgjhgjghjhgjhgjf34t4354eytfhfghr6\nfdsafdsafdsaffffffgfgfgfgfgfgfgfgfgffgfgggggggg\n\nfdsafdsafdsfdsafdsfdsa\nnihaomeiyou\nfdsa想线下选择性\nsssss说说¥eq¥¥eq¥¥2321fdjiofds\nfdsa\nfd\nffd撒反倒是\nsadsadsadsa\n学习型dsadsadasdsadsa\n\ngfdgfdgfdgfdgfdgfdgfdjjafdssoajfda\nfds\nfd\nsa\n\nfd\nsfdsafdsa\nffff12jfidosaj4jfid3osa5jfd43soajfidosajijfidsjaojfdjisajfiodjiosajfiodjsaoijfdiosjaofjdsioajfoidsjaoifjdsioajfiodsjafiodjsaoi\njgfjtyhgftyjfthygtjffhtygjfthgfhyjftygjhgjhgjhgjhgjghjhgjhgjf34t4354eytfhfghr6\nfdsafdsafdsaffffffgfgfgfgfgfgfgfgfgffgfgggggggg\n\nfdsafdsafdsfdsafdsfdsa\n\nfd\ns\n\n" }] });
+            // quillEditor.updateContents(op2);
+            // quillEditor.setContents({"ops":op})
             this.w.on('resize', this.onResize);
         }
     }, {
