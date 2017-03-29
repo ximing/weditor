@@ -11,7 +11,7 @@ module.exports =  {
         env: require('./dev.env.js'),
         assetsRoot: path.resolve(__dirname, '../public/dist'),
         assetsPublicPath: '/',
-        port: 10000
+        port: parseInt(process.env.PORT,10)||10000
     },
     build:{
         env: require('./prod.env.js'),

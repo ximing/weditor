@@ -7,7 +7,7 @@
 let gulp = require('gulp');
 let del = require('del');
 let gutil = require('gulp-util');
-let opn = require('opn');
+//let opn = require('opn');
 let rev = require('gulp-rev');
 let webpack = require('webpack');
 let express = require('express');
@@ -41,7 +41,7 @@ gulp.task('dev', ['assets'], () => {
     let compiler = webpack(webpackDevConfig);
     let server = new WebpackDevServer(compiler, webpackDevConfig.devServer);
 
-    server.listen(config.dev.port, 'localhost', function(err) {
+    server.listen(config.dev.port, '0.0.0.0', function(err) {
         if(err) {
             throw new gutil.PluginError('[webpack-dev-server err]', err)
         }
@@ -58,10 +58,10 @@ gulp.task('dev', ['assets'], () => {
         //     chunkModules: false
         // }) + '\n\n');
 
-        if(!browserIsOpen && env === 'development'){
-            browserIsOpen = true;
-            opn(url);
-        }
+        // if(!browserIsOpen && env === 'development'){
+        //     browserIsOpen = true;
+        //     opn(url);
+        // }
     });
 
     //编译失败
