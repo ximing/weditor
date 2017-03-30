@@ -6274,7 +6274,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".weditor-selection {\n  background: rgba(161, 209, 255, 0.6);\n  border: none;\n  margin: 0;\n  padding: 0;\n  position: absolute;\n  top: 0;\n  left: 0; }\n", ""]);
+exports.push([module.i, ".weditor-selection {\n  background: rgba(130, 182, 255, 0.4);\n  border: none;\n  margin: 0;\n  padding: 0;\n  position: absolute;\n  top: 0;\n  left: 0; }\n", ""]);
 
 // exports
 
@@ -6334,7 +6334,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n.weditor-wrapper {\n  overflow: hidden;\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0; }\n  .weditor-wrapper div {\n    box-sizing: border-box; }\n\n.weditor-header {\n  width: 100%;\n  margin: 0;\n  padding: 0;\n  border-bottom: 1px solid #ddd;\n  position: relative;\n  z-index: 110;\n  background: #fff;\n  user-select: none;\n  background: -webkit-linear-gradient(top, #fdfdfd, #fff);\n  background: -ms-linear-gradient(top, #fdfdfd, #fff);\n  height: 95px;\n  box-sizing: border-box; }\n  .weditor-header button {\n    outline: none; }\n  .weditor-header .header-left-box {\n    line-height: 34px; }\n    .weditor-header .header-left-box .header-back-up {\n      float: left;\n      width: 40px;\n      height: 60px;\n      cursor: pointer;\n      background-color: #4285f4; }\n      .weditor-header .header-left-box .header-back-up .header-back-icon {\n        display: block;\n        background: url(//mss.sankuai.com/v1/mss_814dc1610cda4b2e8febd6ea2c809db5/image/1489546222140.svg) center no-repeat;\n        height: 60px;\n        position: absolute;\n        width: 40px;\n        -webkit-transition: all 125ms linear;\n        -moz-transition: all 125ms linear;\n        -o-transition: all 125ms linear;\n        transition: all 125ms linear; }\n    .weditor-header .header-left-box .team-sprite {\n      background-image: url(https://assets-cdn.shimo.im/assets/images/teams-31aea6334f.png);\n      background-size: 499px 310px;\n      background-repeat: no-repeat; }\n    .weditor-header .header-left-box .s-header-text {\n      display: inline-block;\n      float: left;\n      height: 34px;\n      line-height: 34px;\n      margin-left: 16px;\n      vertical-align: top; }\n      .weditor-header .header-left-box .s-header-text .title-input-pre {\n        font-size: 14px;\n        font-family: -apple-system, system-ui, \"PingFang SC\", Helvetica, Tahoma, Arial, \"Hiragino Sans GB\", \"Microsoft YaHei\", \"\\\\5FAE\\8F6F\\96C5\\9ED1\", SimSun, \"\\\\5B8B\\4F53\", Heiti, \"\\\\9ED1\\4F53\", sans-serif;\n        font-weight: bold;\n        font-style: normal;\n        letter-spacing: normal; }\n    .weditor-header .header-left-box .s-header-time {\n      margin-left: 13px;\n      margin-top: 1px;\n      font-size: 12px;\n      color: #999; }\n  .weditor-header .header-right-box {\n    position: absolute;\n    height: 100%;\n    top: 5px;\n    right: 20px;\n    line-height: 51px; }\n    .weditor-header .header-right-box .header-item-wrap {\n      display: inline-block;\n      height: 40px;\n      width: 40px; }\n      .weditor-header .header-right-box .header-item-wrap .header-item-inner {\n        border: 1px solid #eee;\n        height: 35px;\n        width: 35px;\n        border-radius: 50%;\n        text-align: center;\n        display: inline-block;\n        position: relative;\n        line-height: 0px; }\n        .weditor-header .header-right-box .header-item-wrap .header-item-inner:before {\n          content: '';\n          display: inline-block;\n          vertical-align: middle;\n          width: 0;\n          height: 100%;\n          font-size: 0; }\n        .weditor-header .header-right-box .header-item-wrap .header-item-inner img {\n          height: 25px;\n          width: 25px;\n          border-radius: 50%;\n          vertical-align: middle; }\n  .weditor-header .editor-toolbar .toolbar-tab {\n    height: 25px;\n    line-height: 25px; }\n    .weditor-header .editor-toolbar .toolbar-tab span {\n      padding: 4px 20px;\n      user-select: none;\n      font-size: 13px;\n      font-weight: bold;\n      cursor: pointer;\n      color: #666666; }\n    .weditor-header .editor-toolbar .toolbar-tab span.active {\n      color: #2374d1;\n      background: #f6f6f6; }\n  .weditor-header .editor-toolbar .ql-toolbar.ql-snow {\n    border: none;\n    background-color: #f6f6f6;\n    height: 40px;\n    line-height: 40px;\n    padding: 0;\n    border-bottom: solid 1px #e2e2e2; }\n  .weditor-header .editor-toolbar .xm-color-picker-container {\n    background: none;\n    border: none;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    height: 24px;\n    padding: 3px 5px;\n    width: 28px; }\n  .weditor-header .common-header {\n    color: #444444; }\n  .weditor-header .toolbar-opver {\n    padding-left: 30px !important; }\n  .weditor-header .file-header .ql-pdf {\n    background: none;\n    border: 1px solid transparent;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    height: 25px;\n    line-height: 25px;\n    padding: 0px 5px; }\n    .weditor-header .file-header .ql-pdf .pdf-icon {\n      background-position: -160px -180px; }\n  .weditor-header .file-header .ql-word {\n    background: none;\n    border: 1px solid transparent;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    height: 25px;\n    line-height: 25px;\n    padding: 0px 5px; }\n    .weditor-header .file-header .ql-word .word-icon {\n      background-position: -240px -40px; }\n  .weditor-header .opver-icon {\n    background-image: url(https://s3.meituan.net/v1/mss_814dc1610cda4b2e8febd6ea2c809db5/image/1489914204976.png);\n    background-repeat: no-repeat;\n    height: 20px;\n    width: 20px;\n    display: inline-block; }\n  .weditor-header .opver-area span {\n    vertical-align: middle;\n    font-size: 12px; }\n  .weditor-header .opver-area:hover {\n    border: 1px solid #b6b6b6; }\n  .weditor-header .view-header {\n    line-height: 24px;\n    height: 24px;\n    padding: 0; }\n    .weditor-header .view-header .ql-catalogue {\n      background: none;\n      border: 1px solid transparent;\n      cursor: pointer;\n      display: inline-block;\n      float: left;\n      height: 24px;\n      line-height: 24px;\n      padding: 0px 5px; }\n    .weditor-header .view-header .catalogue-icon {\n      background-position: -80px -180px; }\n\n.weditor-body {\n  padding: 10px 0;\n  position: absolute;\n  left: 0;\n  top: 95px;\n  right: 0px;\n  bottom: 0px;\n  overflow: hidden;\n  background-color: #f6f6f6; }\n  .weditor-body .content-container {\n    background-color: white;\n    box-shadow: 0 0 0 0.1px #d1d1d1, 0 0 1px 0.1px #ccc;\n    position: absolute;\n    top: 20px;\n    bottom: 10px;\n    left: 0;\n    width: 800px;\n    border: 0; }\n    .weditor-body .content-container .ql-container {\n      font-size: 12pt; }\n  .weditor-body .editormd-toolbar {\n    width: 100%;\n    min-height: 37px;\n    background: #f0f0f0;\n    display: none;\n    position: fixed;\n    top: 55px;\n    left: 0;\n    z-index: 10;\n    border: none; }\n    .weditor-body .editormd-toolbar.scroll {\n      box-shadow: 0 2px 4px rgba(20, 20, 20, 0.15); }\n    .weditor-body .editormd-toolbar .editormd-menu {\n      width: 910px;\n      margin: 0 auto; }\n    .weditor-body .editormd-toolbar .editormd-menu > li > a {\n      border: none; }\n      .weditor-body .editormd-toolbar .editormd-menu > li > a i {\n        font-weight: 200; }\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n.weditor-wrapper {\n  overflow: hidden;\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0; }\n  .weditor-wrapper div {\n    box-sizing: border-box; }\n\n/* font */\n.weditor-header {\n  width: 100%;\n  margin: 0;\n  padding: 0;\n  border-bottom: 1px solid #ddd;\n  position: relative;\n  z-index: 110;\n  background: #fff;\n  user-select: none;\n  background: -webkit-linear-gradient(top, #fdfdfd, #fff);\n  background: -ms-linear-gradient(top, #fdfdfd, #fff);\n  height: 95px;\n  box-sizing: border-box; }\n  .weditor-header button {\n    outline: none; }\n  .weditor-header .header-left-box {\n    line-height: 34px; }\n    .weditor-header .header-left-box .header-back-up {\n      float: left;\n      width: 40px;\n      height: 60px;\n      cursor: pointer;\n      background-color: #4285f4; }\n      .weditor-header .header-left-box .header-back-up .header-back-icon {\n        display: block;\n        background: url(//mss.sankuai.com/v1/mss_814dc1610cda4b2e8febd6ea2c809db5/image/1489546222140.svg) center no-repeat;\n        height: 60px;\n        position: absolute;\n        width: 40px;\n        -webkit-transition: all 125ms linear;\n        -moz-transition: all 125ms linear;\n        -o-transition: all 125ms linear;\n        transition: all 125ms linear; }\n    .weditor-header .header-left-box .team-sprite {\n      background-image: url(https://assets-cdn.shimo.im/assets/images/teams-31aea6334f.png);\n      background-size: 499px 310px;\n      background-repeat: no-repeat; }\n    .weditor-header .header-left-box .s-header-text {\n      display: inline-block;\n      float: left;\n      height: 34px;\n      line-height: 34px;\n      margin-left: 16px;\n      vertical-align: top; }\n      .weditor-header .header-left-box .s-header-text .title-input-pre {\n        font-size: 14px;\n        font-family: -apple-system, system-ui, \"PingFang SC\", Helvetica, Tahoma, Arial, \"Hiragino Sans GB\", \"Microsoft YaHei\", \"\\\\5FAE\\8F6F\\96C5\\9ED1\", SimSun, \"\\\\5B8B\\4F53\", Heiti, \"\\\\9ED1\\4F53\", sans-serif;\n        font-weight: bold;\n        font-style: normal;\n        letter-spacing: normal; }\n    .weditor-header .header-left-box .s-header-time {\n      margin-left: 13px;\n      margin-top: 1px;\n      font-size: 12px;\n      color: #999; }\n  .weditor-header .header-right-box {\n    position: absolute;\n    height: 100%;\n    top: 5px;\n    right: 20px;\n    line-height: 51px; }\n    .weditor-header .header-right-box .header-item-wrap {\n      display: inline-block;\n      height: 40px;\n      width: 40px; }\n      .weditor-header .header-right-box .header-item-wrap .header-item-inner {\n        border: 1px solid #eee;\n        height: 35px;\n        width: 35px;\n        border-radius: 50%;\n        text-align: center;\n        display: inline-block;\n        position: relative;\n        line-height: 0px; }\n        .weditor-header .header-right-box .header-item-wrap .header-item-inner:before {\n          content: '';\n          display: inline-block;\n          vertical-align: middle;\n          width: 0;\n          height: 100%;\n          font-size: 0; }\n        .weditor-header .header-right-box .header-item-wrap .header-item-inner img {\n          height: 25px;\n          width: 25px;\n          border-radius: 50%;\n          vertical-align: middle; }\n  .weditor-header .editor-toolbar .toolbar-tab {\n    height: 25px;\n    line-height: 25px; }\n    .weditor-header .editor-toolbar .toolbar-tab span {\n      padding: 4px 20px;\n      user-select: none;\n      font-size: 13px;\n      font-weight: bold;\n      cursor: pointer;\n      color: #666666; }\n    .weditor-header .editor-toolbar .toolbar-tab span.active {\n      color: #2374d1;\n      background: #f6f6f6; }\n  .weditor-header .editor-toolbar .ql-toolbar.ql-snow {\n    border: none;\n    background-color: #f6f6f6;\n    height: 40px;\n    line-height: 40px;\n    padding: 0;\n    border-bottom: solid 1px #e2e2e2; }\n  .weditor-header .editor-toolbar .xm-color-picker-container {\n    background: none;\n    border: none;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    height: 24px;\n    padding: 3px 5px;\n    width: 28px; }\n  .weditor-header .editor-toolbar .ql-formats .iconfont {\n    background: none;\n    border: none;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    width: 28px; }\n    .weditor-header .editor-toolbar .ql-formats .iconfont.active {\n      color: #2db7f5; }\n  .weditor-header .common-header {\n    color: #444444; }\n  .weditor-header .toolbar-opver {\n    padding-left: 30px !important; }\n  .weditor-header .file-header .ql-pdf {\n    background: none;\n    border: 1px solid transparent;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    height: 25px;\n    line-height: 25px;\n    padding: 0px 5px; }\n    .weditor-header .file-header .ql-pdf .pdf-icon {\n      background-position: -160px -180px; }\n  .weditor-header .file-header .ql-word {\n    background: none;\n    border: 1px solid transparent;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    height: 25px;\n    line-height: 25px;\n    padding: 0px 5px; }\n    .weditor-header .file-header .ql-word .word-icon {\n      background-position: -240px -40px; }\n  .weditor-header .opver-icon {\n    background-image: url(https://s3.meituan.net/v1/mss_814dc1610cda4b2e8febd6ea2c809db5/image/1489914204976.png);\n    background-repeat: no-repeat;\n    height: 20px;\n    width: 20px;\n    display: inline-block; }\n  .weditor-header .opver-area span {\n    vertical-align: middle;\n    font-size: 12px; }\n  .weditor-header .opver-area:hover {\n    border: 1px solid #b6b6b6; }\n  .weditor-header .view-header {\n    line-height: 24px;\n    height: 24px;\n    padding: 0; }\n    .weditor-header .view-header .ql-catalogue {\n      background: none;\n      border: 1px solid transparent;\n      cursor: pointer;\n      display: inline-block;\n      float: left;\n      height: 24px;\n      line-height: 24px;\n      padding: 0px 5px; }\n    .weditor-header .view-header .catalogue-icon {\n      background-position: -80px -180px; }\n\n.weditor-body {\n  padding: 10px 0;\n  position: absolute;\n  left: 0;\n  top: 95px;\n  right: 0px;\n  bottom: 0px;\n  overflow: hidden;\n  background-color: #f6f6f6; }\n  .weditor-body .content-container {\n    background-color: white;\n    box-shadow: 0 0 0 0.1px #d1d1d1, 0 0 1px 0.1px #ccc;\n    position: absolute;\n    top: 20px;\n    bottom: 10px;\n    left: 0;\n    width: 800px;\n    border: 0; }\n    .weditor-body .content-container::selection {\n      background: rgba(130, 182, 255, 0.4); }\n    .weditor-body .content-container .ql-container {\n      font-size: 12pt; }\n      .weditor-body .content-container .ql-container .ql-editor {\n        text-align: justify; }\n  .weditor-body .editormd-toolbar {\n    width: 100%;\n    min-height: 37px;\n    background: #f0f0f0;\n    display: none;\n    position: fixed;\n    top: 55px;\n    left: 0;\n    z-index: 10;\n    border: none; }\n    .weditor-body .editormd-toolbar.scroll {\n      box-shadow: 0 2px 4px rgba(20, 20, 20, 0.15); }\n    .weditor-body .editormd-toolbar .editormd-menu {\n      width: 910px;\n      margin: 0 auto; }\n    .weditor-body .editormd-toolbar .editormd-menu > li > a {\n      border: none; }\n      .weditor-body .editormd-toolbar .editormd-menu > li > a i {\n        font-weight: 200; }\n", ""]);
 
 // exports
 
@@ -29707,20 +29707,6 @@ var CommonEditor = (_dec = (0, _mobxReact.inject)("catalogue"), _dec(_class = (0
     }
 
     (0, _createClass3.default)(CommonEditor, [{
-        key: 'renderCalogue',
-        value: function renderCalogue() {
-            console.log('render calogue');
-            var list = this.props.catalogue.list;
-
-            return list.map(function (_, i) {
-                return _react2.default.createElement(
-                    'p',
-                    { key: i, className: 'catalogue-h' + _.h },
-                    _.content
-                );
-            });
-        }
-    }, {
         key: 'render',
         value: function render() {
             var _props = this.props,
@@ -30087,7 +30073,6 @@ var _default = (_temp = _class = function (_Component) {
                 type = _props2.type;
 
             var otherProps = (0, _omit2.default)(this.props, ['prefixCls', 'color', 'type', 'children']);
-            console.log(otherProps);
             var classes = (0, _classnames2.default)((_classNames = {}, (0, _defineProperty3.default)(_classNames, prefixCls, true), (0, _defineProperty3.default)(_classNames, prefixCls + '-' + color, color), _classNames));
             return _react2.default.createElement('input', (0, _extends3.default)({ type: 'button',
                 value: this.props.children,
@@ -31006,6 +30991,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _quillEditor = __webpack_require__("./src/lib/quillEditor.js");
 
+var _editor = __webpack_require__("./src/model/editor.js");
+
+var _editor2 = _interopRequireDefault(_editor);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var HeaderDropDown = function (_Component) {
@@ -31018,6 +31007,11 @@ var HeaderDropDown = function (_Component) {
 
         _this.changeSize = function (e) {
             if ((0, _quillEditor.getEditor)()) {
+                var _editor$range = _editor2.default.range,
+                    index = _editor$range.index,
+                    length = _editor$range.length;
+
+                (0, _quillEditor.getEditor)().setSelection(index, length, 'user');
                 (0, _quillEditor.getEditor)().format('header', $(e.target).data('size'), 'user');
                 _this.setState({
                     value: !!$(e.target).data('size') ? '\u6807\u9898' + $(e.target).data('size') : '正文'
@@ -31060,7 +31054,6 @@ var HeaderDropDown = function (_Component) {
         value: function componentWillReceiveProps(nextProps) {
             if (this.span) {
                 var header = nextProps.val;
-                console.log('header', header, this.span.innerHTML);
                 if (!header) {
                     this.setState({
                         value: '正文'
@@ -31616,7 +31609,6 @@ var InsertImage = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _m
             }
             _insert2.default.openImageDialog = false;
         }, _this.closeBubble = function () {
-            console.log('close bubble');
             _this.props.insert.openImageDialog = false;
         }, _this.otherDOMClick = function (e) {
             var node = e.target;
@@ -31845,7 +31837,6 @@ var LinkBubble = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _mo
         }
 
         return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = LinkBubble.__proto__ || (0, _getPrototypeOf2.default)(LinkBubble)).call.apply(_ref, [this].concat(args))), _this), _this.closeBubble = function (e) {
-            console.log('close bubble');
             _this.props.insert.openLinkDialog = false;
         }, _this.otherDOMClick = function (e) {
             var node = e.target;
@@ -31864,7 +31855,6 @@ var LinkBubble = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _mo
             if ((0, _quillEditor.getEditor)() && !!_this.props.insert.linkUrl) {
                 var editor = (0, _quillEditor.getEditor)();
                 var selection = _this.props.insert.linkSelection;
-                console.log('insert bubble ', selection);
                 if (selection) {
                     if (editor.getText(selection.index, selection.length) === _this.props.insert.linkTitle) {
                         (0, _quillEditor.getEditor)().format('link', _this.props.insert.linkUrl, 'user');
@@ -32095,8 +32085,8 @@ var Selection = (_dec = (0, _mobxReact.inject)('editor'), _dec(_class = (0, _mob
                 length = _props$editor$range.length;
 
             var sLeft = 0,
-                sHeight = 30,
-                sWidth = 30,
+                sHeight = 0,
+                sWidth = 0,
                 sTop = 0;
             if (editor) {
                 if (index) {
@@ -32118,7 +32108,7 @@ var Selection = (_dec = (0, _mobxReact.inject)('editor'), _dec(_class = (0, _mob
             }
             return _react2.default.createElement('div', { className: 'weditor-selection',
                 style: {
-                    display: !this.props.editor.focus ? 'block' : 'none',
+                    display: this.props.editor.focus ? 'none' : 'block',
                     height: sHeight,
                     width: sWidth,
                     left: sLeft,
@@ -32182,6 +32172,10 @@ var _jquery2 = _interopRequireDefault(_jquery);
 
 var _quillEditor = __webpack_require__("./src/lib/quillEditor.js");
 
+var _editor = __webpack_require__("./src/model/editor.js");
+
+var _editor2 = _interopRequireDefault(_editor);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var fontSizeMap = {
@@ -32204,8 +32198,12 @@ var fontSizeMap = {
     "5pt": '八号'
 };
 function changeSize(e) {
-    console.log('--->', (0, _jquery2.default)(e.target).data('size'), (0, _quillEditor.getEditor)());
     if ((0, _quillEditor.getEditor)()) {
+        var _editor$range = _editor2.default.range,
+            index = _editor$range.index,
+            length = _editor$range.length;
+
+        (0, _quillEditor.getEditor)().setSelection(index, length, 'user');
         (0, _quillEditor.getEditor)().format('size', (0, _jquery2.default)(e.target).data('size'), 'user');
     }
 }
@@ -32220,7 +32218,6 @@ var SizeDropDown = function (_Component) {
 
         _this.formatSize = function (size) {
             size = (0, _parseFloat2.default)(size, 10);
-            console.log('size', size);
             if (isNaN(size)) {
                 return '12pt';
             } else {
@@ -32253,7 +32250,6 @@ var SizeDropDown = function (_Component) {
 
         _this.handleKeyPress = function (e) {
             if (e.key === 'Enter') {
-                console.log(_this.input.value);
                 _this.closePanel();
                 if (quillEditor) {
                     quillEditor.format('size', _this.formatSize(_this.input.value), 'user');
@@ -35243,8 +35239,6 @@ var EditorHeader = function (_Component) {
     }, {
         key: "render",
         value: function render() {
-            console.log(this.props.rangeFormat);
-
             return _react2.default.createElement(
                 "div",
                 { className: "weditor-header" },
@@ -35594,9 +35588,12 @@ _quill2.default.register('modules/imageResize', _quillImageResizeModule.ImageRes
 var SizeStyle = _quill2.default.import('attributors/style/size');
 var ColorStyle = _quill2.default.import('attributors/style/color');
 var BackgroundStyle = _quill2.default.import('attributors/style/background');
+var AlignStyle = _quill2.default.import('attributors/style/align');
+
 SizeStyle.whitelist = [];
 ColorStyle.whitelist = null;
 BackgroundStyle.whitelist = null;
+AlignStyle.whitelist = ['right', 'center', 'justify', 'left'];
 for (var i = 5; i <= 72; i++) {
     SizeStyle.whitelist.push(i + 'pt');
     SizeStyle.whitelist.push(i + '.5pt');
@@ -35604,6 +35601,7 @@ for (var i = 5; i <= 72; i++) {
 _quill2.default.register(SizeStyle, true);
 _quill2.default.register(ColorStyle, true);
 _quill2.default.register(BackgroundStyle, true);
+_quill2.default.register(AlignStyle, true);
 
 var Clipboard = _quill2.default.import('modules/clipboard');
 
@@ -36188,7 +36186,6 @@ var ImageResize = exports.ImageResize = function () {
     }, {
         key: 'showSizeDisplay',
         value: function showSizeDisplay() {
-            console.log('showSizeDislplay', this.options.displaySize);
             if (!this.options.displaySize) {
                 return;
             }
@@ -36212,7 +36209,6 @@ var ImageResize = exports.ImageResize = function () {
     }, {
         key: 'hideSizeDisplay',
         value: function hideSizeDisplay() {
-            console.log('hideSizeDisplay', this.display);
             if (this.display) {
                 document.body.removeChild(this.display);
             }
@@ -36312,11 +36308,6 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
                 container: '#toolbarOpver',
                 handlers: {
                     'link': function link(value) {
-                        for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-                            args[_key - 1] = arguments[_key];
-                        }
-
-                        console.log('link', value, args);
                         if (value) {
                             if (_insert2.default.openLinkDialog) {
                                 _insert2.default.openLinkDialog = false;
@@ -36352,7 +36343,6 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
                         // openLinkDialog = true;
                     },
                     'image': function image(args) {
-                        console.log('ssss', args);
                         // var range = this.quill.getSelection();
                         // var value = prompt('What is the image URL');
                         _insert2.default.imageSelection = getEditor().getSelection();
@@ -36377,7 +36367,8 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
         var selection = quillEditor.getSelection();
         console.log('blur', selection);
     });
-    quillEditor.on('selection-change', function (range) {
+    quillEditor.on('selection-change', function (range, oldRange, source) {
+        console.log('selection-change', range, source);
         if (range) {
             _editor2.default.range = range;
             _editor2.default.focus = true;
@@ -36407,13 +36398,9 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
                     // Object.keys(format.currentFormat).forEach(item=>{
                     //
                     // })
-                } else {
-                    console.log('Cursor not in the editor');
                 }
-                console.log('fdsafdsafdsf', range);
             }
         } else {
-            _editor2.default.focus = false;
             console.log('blur');
         }
     });
@@ -36655,7 +36642,6 @@ Object.defineProperty(exports, "__esModule", {
 exports.contains = contains;
 exports.is = is;
 function contains(a, b) {
-  console.log('contains', a == b, a.contains(b));
   return a == b || (a && a.contains ? a != b && a.contains(b) : !!(a.compareDocumentPosition(b) & 16));
 }
 function is(type, obj) {
@@ -37072,6 +37058,14 @@ var _tooltip2 = _interopRequireDefault(_tooltip);
 
 var _mobxReact = __webpack_require__("./node_modules/mobx-react/index.js");
 
+var _icon = __webpack_require__("./src/components/icon/index.js");
+
+var _icon2 = _interopRequireDefault(_icon);
+
+var _editor = __webpack_require__("./src/model/editor.js");
+
+var _editor2 = _interopRequireDefault(_editor);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var StartHeader = (_dec = (0, _mobxReact.inject)(function (state) {
@@ -37093,7 +37087,6 @@ var StartHeader = (_dec = (0, _mobxReact.inject)(function (state) {
         }
 
         return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = StartHeader.__proto__ || (0, _getPrototypeOf2.default)(StartHeader)).call.apply(_ref, [this].concat(args))), _this), _this.setColor = function (color) {
-            console.log('color', color);
             if ((0, _quillEditor.getEditor)()) {
                 (0, _quillEditor.getEditor)().format('color', color, 'user');
             }
@@ -37101,6 +37094,19 @@ var StartHeader = (_dec = (0, _mobxReact.inject)(function (state) {
             if ((0, _quillEditor.getEditor)()) {
                 (0, _quillEditor.getEditor)().format('background', color, 'user');
             }
+        }, _this.align = function (align) {
+            return function () {
+                var quillEditor = (0, _quillEditor.getEditor)();
+                console.log('align', align, quillEditor);
+
+                if (quillEditor) {
+                    // const {index,length} = editor.range;
+                    // if(index===0 || !!index){
+                    //     quillEditor.formatLine(index,length,'align',align);
+                    // }
+                    quillEditor.format('align', align);
+                }
+            };
         }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
     }
     //行高
@@ -37114,6 +37120,8 @@ var StartHeader = (_dec = (0, _mobxReact.inject)(function (state) {
             var _props = this.props,
                 rangeFormat = _props.rangeFormat,
                 style = _props.style;
+
+            console.log(rangeFormat, 'rangeFormat');
             var color = rangeFormat.color,
                 background = rangeFormat.background,
                 size = rangeFormat.size,
@@ -37342,10 +37350,62 @@ var StartHeader = (_dec = (0, _mobxReact.inject)(function (state) {
                 _react2.default.createElement(
                     "span",
                     { className: "ql-formats" },
-                    _react2.default.createElement("button", { className: "ql-align" }),
-                    _react2.default.createElement("button", { className: "ql-align", value: "center" }),
-                    _react2.default.createElement("button", { className: "ql-align", value: "right" }),
-                    _react2.default.createElement("button", { className: "ql-align", value: "justify" })
+                    _react2.default.createElement(
+                        _tooltip2.default,
+                        {
+                            placement: "bottom",
+                            mouseEnterDelay: 0,
+                            mouseLeaveDelay: 0,
+                            overlay: _react2.default.createElement(
+                                "div",
+                                null,
+                                "\u5DE6\u5BF9\u9F50"
+                            )
+                        },
+                        _react2.default.createElement(_icon2.default, { type: "zuoduiqi", onClick: this.align('left') })
+                    ),
+                    _react2.default.createElement(
+                        _tooltip2.default,
+                        {
+                            placement: "bottom",
+                            mouseEnterDelay: 0,
+                            mouseLeaveDelay: 0,
+                            overlay: _react2.default.createElement(
+                                "div",
+                                null,
+                                "\u5C45\u4E2D\u5BF9\u9F50"
+                            )
+                        },
+                        _react2.default.createElement(_icon2.default, { type: "juzhongduiqi", onClick: this.align('center') })
+                    ),
+                    _react2.default.createElement(
+                        _tooltip2.default,
+                        {
+                            placement: "bottom",
+                            mouseEnterDelay: 0,
+                            mouseLeaveDelay: 0,
+                            overlay: _react2.default.createElement(
+                                "div",
+                                null,
+                                "\u53F3\u5BF9\u9F50"
+                            )
+                        },
+                        _react2.default.createElement(_icon2.default, { type: "youduiqi", onClick: this.align('right') })
+                    ),
+                    _react2.default.createElement(
+                        _tooltip2.default,
+                        {
+                            placement: "bottom",
+                            mouseEnterDelay: 0,
+                            mouseLeaveDelay: 0,
+                            overlay: _react2.default.createElement(
+                                "div",
+                                null,
+                                "\u4E24\u7AEF\u5BF9\u9F50"
+                            )
+                        },
+                        _react2.default.createElement(_icon2.default, { type: "liangduanduiqi", onClick: this.align('justify') })
+                    )
                 ),
                 _react2.default.createElement(
                     "span",
@@ -37572,6 +37632,14 @@ var _selection = __webpack_require__("./src/components/selection/index.js");
 
 var _selection2 = _interopRequireDefault(_selection);
 
+var _jquery = __webpack_require__(2);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _editor = __webpack_require__("./src/model/editor.js");
+
+var _editor2 = _interopRequireDefault(_editor);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
@@ -37597,6 +37665,9 @@ var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
         key: 'componentDidMount',
         value: function componentDidMount() {
             var quillEditor = this.quill = (0, _quillEditor.initQuillEditor)(_reactDom2.default.findDOMNode(this.refs.editor));
+            (0, _jquery2.default)(_reactDom2.default.findDOMNode(this.refs.editor)).find('.ql-editor').on('blur', function () {
+                _editor2.default.focus = false;
+            });
         }
     }, {
         key: 'componentWillUnmount',
