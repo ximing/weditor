@@ -15,7 +15,7 @@ export default class Selection extends Component {
     render() {
         const editor = getEditor();
         const {index, length} = this.props.editor.range;
-        let sLeft = 0, sHeight = 30, sWidth = 30, sTop = 0;
+        let sLeft = 0, sHeight = 0, sWidth = 0, sTop = 0;
         if (editor) {
             if (index) {
                 const {left, height, top,width} = editor.getBounds(index,length||0);
