@@ -50,7 +50,6 @@ export const initQuillEditor = function (dom, options) {
                             //getEditor().format('link', false);
                             getEditor().removeFormat(LinkIndex, leaf.text.length);
                         }
-                        // openLinkDialog = true;
                     },
                     'image': function (args) {
                         // var range = this.quill.getSelection();
@@ -82,15 +81,15 @@ export const initQuillEditor = function (dom, options) {
         if (range) {
             editor.range = range;
             editor.focus = true;
-            let rangeFormat = quillEditor.getFormat(range);
-            if (rangeFormat.link) {
-                insert.openLinkDialog = true;
-                insert.linkUrl = rangeFormat.link;
-                let [leaf, offset] = quillEditor.getLeaf(range.index);
-                insert.linkTitle = leaf.text;
-                // let index= quillEditor.getIndex(leaf);
-                setLinkBubble(range.index)
-            }
+            //let rangeFormat = quillEditor.getFormat(range);
+            // if (rangeFormat.link) {
+            //     insert.openLinkDialog = true;
+            //     insert.linkUrl = rangeFormat.link;
+            //     let [leaf, offset] = quillEditor.getLeaf(range.index);
+            //     insert.linkTitle = leaf.text;
+            //     // let index= quillEditor.getIndex(leaf);
+            //     setLinkBubble(range.index)
+            // }
             if (range.length !== 0) {
                 //处理格式刷
                 if(format.currentFormat){
