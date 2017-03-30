@@ -36340,7 +36340,6 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
                             //getEditor().format('link', false);
                             getEditor().removeFormat(LinkIndex, leaf.text.length);
                         }
-                        // openLinkDialog = true;
                     },
                     'image': function image(args) {
                         // var range = this.quill.getSelection();
@@ -36372,20 +36371,15 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
         if (range) {
             _editor2.default.range = range;
             _editor2.default.focus = true;
-            var rangeFormat = quillEditor.getFormat(range);
-            if (rangeFormat.link) {
-                _insert2.default.openLinkDialog = true;
-                _insert2.default.linkUrl = rangeFormat.link;
-
-                var _quillEditor$getLeaf3 = quillEditor.getLeaf(range.index),
-                    _quillEditor$getLeaf4 = (0, _slicedToArray3.default)(_quillEditor$getLeaf3, 2),
-                    leaf = _quillEditor$getLeaf4[0],
-                    offset = _quillEditor$getLeaf4[1];
-
-                _insert2.default.linkTitle = leaf.text;
-                // let index= quillEditor.getIndex(leaf);
-                setLinkBubble(range.index);
-            }
+            //let rangeFormat = quillEditor.getFormat(range);
+            // if (rangeFormat.link) {
+            //     insert.openLinkDialog = true;
+            //     insert.linkUrl = rangeFormat.link;
+            //     let [leaf, offset] = quillEditor.getLeaf(range.index);
+            //     insert.linkTitle = leaf.text;
+            //     // let index= quillEditor.getIndex(leaf);
+            //     setLinkBubble(range.index)
+            // }
             if (range.length !== 0) {
                 //处理格式刷
                 if (_format2.default.currentFormat) {
