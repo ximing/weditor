@@ -11,10 +11,13 @@ Quill.register('modules/imageResize', ImageResize);
 
 var SizeStyle = Quill.import('attributors/style/size');
 var ColorStyle = Quill.import('attributors/style/color');
-var BackgroundStyle = Quill.import('attributors/style/background')
+var BackgroundStyle = Quill.import('attributors/style/background');
+var AlignStyle = Quill.import('attributors/style/align');
+
 SizeStyle.whitelist = [];
 ColorStyle.whitelist = null;
 BackgroundStyle.whitelist = null;
+AlignStyle.whitelist = ['right', 'center', 'justify','left'];
 for (let i = 5; i <= 72; i++) {
     SizeStyle.whitelist.push(`${i}pt`);
     SizeStyle.whitelist.push(`${i}.5pt`);
@@ -22,6 +25,7 @@ for (let i = 5; i <= 72; i++) {
 Quill.register(SizeStyle, true);
 Quill.register(ColorStyle, true);
 Quill.register(BackgroundStyle, true);
+Quill.register(AlignStyle, true);
 
 var Clipboard = Quill.import('modules/clipboard');
 class PlainClipboard extends Clipboard {

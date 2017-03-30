@@ -1,3 +1,4 @@
+@import "./components/core/variables";
 .weditor-header {
   width: 100%;
   margin: 0;
@@ -142,6 +143,19 @@
       height: 24px;
       padding: 3px 5px;
       width: 28px;
+    }
+    .ql-formats{
+      .iconfont{
+        background: none;
+        border: none;
+        cursor: pointer;
+        display: inline-block;
+        float: left;
+        width: 28px;
+        &.active{
+          color:$primary-color;
+        }
+      }
     }
   }
   .common-header {

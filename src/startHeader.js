@@ -6,9 +6,11 @@ import React, {Component} from "react";
 import SizeDropDown from "./components/sizeDropDown/index";
 import HeaderDropDown from "./components/headerDropDown/index";
 import ColorPicker from "./components/color-picker";
-import {getEditor} from './lib/quillEditor'
-import ToolTip from './components/tooltip'
-import {inject,observer} from 'mobx-react'
+import {getEditor} from './lib/quillEditor';
+import ToolTip from './components/tooltip';
+import {inject,observer} from 'mobx-react';
+import Icon from './components/icon';
+import editor from './model/editor';
 
 @inject(state=>({
     rangeFormat:state.editor.range
@@ -29,9 +31,23 @@ export default class StartHeader extends Component {
             getEditor().format('background', color, 'user');
         }
     }
+    align = (align)=>{
+        return ()=>{
+            const quillEditor = getEditor();
+            console.log('align',align,quillEditor);
 
+            if(quillEditor){
+                // const {index,length} = editor.range;
+                // if(index===0 || !!index){
+                //     quillEditor.formatLine(index,length,'align',align);
+                // }
+                quillEditor.format('align',align)
+            }
+        }
+    }
     render() {
         let {rangeFormat, style} = this.props;
+        console.log(rangeFormat,'rangeFormat')
         let {color, background, size, header} = rangeFormat;
         if (Array.isArray(color)) {
             color = '#FFFFFF';
@@ -191,10 +207,43 @@ export default class StartHeader extends Component {
                     </ToolTip>
                 </span>
                 <span className="ql-formats">
-                    <button className="ql-align"></button>
-                    <button className="ql-align" value="center"></button>
-                    <button className="ql-align" value="right"></button>
-                    <button className="ql-align" value="justify"></button>
+                    <ToolTip
+                        placement="bottom"
+                        mouseEnterDelay={0}
+                        mouseLeaveDelay={0}
+                        overlay={<div>左对齐</div>}
+                    >
+                        <Icon type="zuoduiqi" onClick={this.align('left')}/>
+                    </ToolTip>
+                    <ToolTip
+                        placement="bottom"
+                        mouseEnterDelay={0}
+                        mouseLeaveDelay={0}
+                        overlay={<div>居中对齐</div>}
+                    >
+                        <Icon type="juzhongduiqi" onClick={this.align('center')}/>
+                    </ToolTip>
+                    <ToolTip
+                        placement="bottom"
+                        mouseEnterDelay={0}
+                        mouseLeaveDelay={0}
+                        overlay={<div>右对齐</div>}
+                    >
+                        <Icon type="youduiqi" onClick={this.align('right')}/>
+                    </ToolTip>
+                    <ToolTip
+                        placement="bottom"
+                        mouseEnterDelay={0}
+                        mouseLeaveDelay={0}
+                        overlay={<div>两端对齐</div>}
+                    >
+                        <Icon type="liangduanduiqi" onClick={this.align('justify')} />
+                    </ToolTip>
+
+                    {/*<button className="ql-align"></button>*/}
+                    {/*<button className="ql-align" value="center"></button>*/}
+                    {/*<button className="ql-align" value="right"></button>*/}
+                    {/*<button className="ql-align" value="justify"></button>*/}
                 </span>
                 <span className="ql-formats">
                     <ToolTip
