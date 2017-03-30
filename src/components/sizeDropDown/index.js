@@ -6,7 +6,7 @@ import './index.scss';
 import React, {Component} from 'react';
 import $ from 'jquery';
 import {getEditor} from '../../lib/quillEditor'
-
+import editor from '../../model/editor';
 let fontSizeMap = {
     "": '小四',
     "42pt": '初号',
@@ -28,6 +28,8 @@ let fontSizeMap = {
 }
 function changeSize(e) {
     if (getEditor()) {
+        const {index,length} = editor.range;
+        getEditor().setSelection(index,length,'user');
         getEditor().format('size', $(e.target).data('size'), 'user')
     }
 }

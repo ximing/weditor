@@ -5,6 +5,7 @@
 import './index.scss';
 import React, {Component} from "react";
 import {getEditor} from '../../lib/quillEditor'
+import editor from '../../model/editor';
 
 export default class HeaderDropDown extends Component {
 
@@ -41,6 +42,8 @@ export default class HeaderDropDown extends Component {
 
     changeSize = (e) => {
         if (getEditor()) {
+            const {index,length} = editor.range;
+            getEditor().setSelection(index,length,'user');
             getEditor().format('header', $(e.target).data('size'), 'user');
             this.setState({
                 value:!!$(e.target).data('size')?`标题${$(e.target).data('size')}`:'正文'
