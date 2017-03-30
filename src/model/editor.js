@@ -9,6 +9,9 @@ import {observable,autorun} from 'mobx'
 * */
 class Editor{
 
+    /*
+    * 会保留最后一次selection的值
+    * */
     @observable
     range={};
 

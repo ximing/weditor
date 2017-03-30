@@ -11,6 +11,7 @@ import {initQuillEditor} from './lib/quillEditor'
 import LinkBubble from './components/linkBubble';
 import InsertImage from './components/insertImage';
 import {inject, observer} from 'mobx-react';
+import Selection from './components/selection';
 
 @inject(state => ({
     insert: state.insert,
@@ -49,6 +50,7 @@ export default class WEditor extends Component {
                         <div ref="editor">
                         </div>
                     </div>
+                    <Selection />
                 </div>
                 {
                     this.props.insert.openLinkDialog &&

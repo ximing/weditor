@@ -80,8 +80,8 @@ export const initQuillEditor = function (dom, options) {
         console.log('blur',selection);
     });
     quillEditor.on('selection-change',(range)=>{
-        editor.range = range || {};
         if (range) {
+            editor.range = range;
             editor.focus = true;
             let rangeFormat = quillEditor.getFormat(range);
             if (rangeFormat.link) {
