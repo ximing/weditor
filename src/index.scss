@@ -21,6 +21,9 @@
   background-color: rgb(246,246,246);
   .content-container{
     background-color: rgb(255, 255, 255);
+    &::selection{
+      background: rgba(130, 182, 255,.4);
+    }
     box-shadow: 0 0 0 0.1px #d1d1d1, 0 0 1px 0.1px #ccc;
     position: absolute;
     top:20px;

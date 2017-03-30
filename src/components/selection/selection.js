@@ -29,7 +29,7 @@ export default class Selection extends Component {
         return (
             <div className="weditor-selection"
                  style={{
-                     display: !this.props.editor.focus ? 'block' : 'none',
+                     display: this.props.editor.focus ? 'none' : 'block',
                      height: sHeight,
                      width: sWidth,
                      left: sLeft,
