@@ -78,8 +78,6 @@ export default class EditorHeader extends Component {
 
 
     render() {
-        console.log(this.props.rangeFormat)
-
         return (
             <div className="weditor-header">
                 <div className="header-left-box list-header">

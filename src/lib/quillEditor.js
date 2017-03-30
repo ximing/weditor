@@ -28,7 +28,6 @@ export const initQuillEditor = function (dom, options) {
                 container: '#toolbarOpver',
                 handlers: {
                     'link': function (value, ...args) {
-                        console.log('link',value,args)
                         if (value) {
                             if (insert.openLinkDialog) {
                                 insert.openLinkDialog = false;
@@ -54,7 +53,6 @@ export const initQuillEditor = function (dom, options) {
                         // openLinkDialog = true;
                     },
                     'image': function (args) {
-                        console.log('ssss', args);
                         // var range = this.quill.getSelection();
                         // var value = prompt('What is the image URL');
                         insert.imageSelection = getEditor().getSelection();
@@ -79,7 +77,8 @@ export const initQuillEditor = function (dom, options) {
         let selection = quillEditor.getSelection();
         console.log('blur',selection);
     });
-    quillEditor.on('selection-change',(range)=>{
+    quillEditor.on('selection-change',(range,oldRange, source)=>{
+        console.log('selection-change',range,source)
         if (range) {
             editor.range = range;
             editor.focus = true;
@@ -105,7 +104,6 @@ export const initQuillEditor = function (dom, options) {
                 } else {
                     console.log('Cursor not in the editor');
                 }
-                console.log('fdsafdsafdsf',range)
             }
         }else{
             editor.focus = false;

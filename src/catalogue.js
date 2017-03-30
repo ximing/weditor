@@ -10,14 +10,6 @@ import {observer,inject} from "mobx-react";
 @inject("catalogue") @observer
 export default class CommonEditor extends Component {
 
-    renderCalogue(){
-        console.log('render calogue')
-        let {list} = this.props.catalogue;
-        return list.map((_,i)=>{
-            return <p key={i} className={`catalogue-h${_.h}`}>{_.content}</p>
-        })
-    }
-
     closeCatalogue = ()=>{
         this.props.catalogue.open = false;
     };

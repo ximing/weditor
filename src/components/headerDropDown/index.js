@@ -27,7 +27,6 @@ export default class HeaderDropDown extends Component {
     componentWillReceiveProps(nextProps) {
         if (this.span) {
             let header = nextProps.val;
-            console.log('header',header,this.span.innerHTML);
             if(!header){
                 this.setState({
                     value:'正文'

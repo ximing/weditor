@@ -211,7 +211,6 @@ export class ImageResize {
     }
 
     showSizeDisplay() {
-        console.log('showSizeDislplay',this.options.displaySize)
         if (!this.options.displaySize) {
             return;
         }
@@ -234,7 +233,6 @@ export class ImageResize {
     }
 
     hideSizeDisplay() {
-        console.log('hideSizeDisplay',this.display)
         if(this.display){
             document.body.removeChild(this.display);
         }

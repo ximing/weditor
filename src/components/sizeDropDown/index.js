@@ -27,7 +27,6 @@ let fontSizeMap = {
     "5pt": '八号'
 }
 function changeSize(e) {
-    console.log('--->', $(e.target).data('size'),getEditor());
     if (getEditor()) {
         getEditor().format('size', $(e.target).data('size'), 'user')
     }
@@ -56,7 +55,6 @@ export default class SizeDropDown extends Component {
 
     formatSize = (size) => {
         size = Number.parseFloat(size, 10);
-        console.log('size', size);
         if (isNaN(size)) {
             return '12pt'
         } else {
@@ -94,7 +92,6 @@ export default class SizeDropDown extends Component {
     }
     handleKeyPress = (e) => {
         if (e.key === 'Enter') {
-            console.log(this.input.value)
             this.closePanel();
             if (quillEditor) {
                 quillEditor.format('size', this.formatSize(this.input.value), 'user')

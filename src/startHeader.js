@@ -20,7 +20,6 @@ export default class StartHeader extends Component {
     // });
 
     setColor = (color) => {
-        console.log('color', color);
         if (getEditor()) {
             getEditor().format('color', color, 'user');
         }

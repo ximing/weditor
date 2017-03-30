@@ -84,7 +84,6 @@ export default class InsertImage extends Component {
     }
 
     closeBubble = () => {
-        console.log('close bubble')
         this.props.insert.openImageDialog = false;
     };
 

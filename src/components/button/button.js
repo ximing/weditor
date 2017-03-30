@@ -50,7 +50,6 @@ export default class extends Component {
     render() {
         var {prefixCls,color,type} = this.props;
         let otherProps = omit(this.props,['prefixCls','color','type','children']);
-        console.log(otherProps)
         let classes = classNames({
             [prefixCls]: true,
             [`${prefixCls}-${color}`]: color

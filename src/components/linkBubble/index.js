@@ -28,7 +28,6 @@ export default class LinkBubble extends Component {
     }
 
     closeBubble = (e) => {
-        console.log('close bubble')
         this.props.insert.openLinkDialog = false;
     };
 
@@ -55,7 +54,6 @@ export default class LinkBubble extends Component {
         if (getEditor() && !!this.props.insert.linkUrl) {
             let editor = getEditor();
             let selection = this.props.insert.linkSelection;
-            console.log('insert bubble ', selection);
             if (selection) {
                 if (editor.getText(selection.index, selection.length) === this.props.insert.linkTitle) {
                     getEditor().format('link', this.props.insert.linkUrl, 'user');
