@@ -12,7 +12,8 @@ import LinkBubble from './components/linkBubble';
 import InsertImage from './components/insertImage';
 import {inject, observer} from 'mobx-react';
 import Selection from './components/selection';
-
+import $ from 'jquery';
+import editor from './model/editor'
 @inject(state => ({
     insert: state.insert,
     open: state.catalogue.open
@@ -28,6 +29,9 @@ export default class WEditor extends Component {
 
     componentDidMount() {
         let quillEditor = this.quill = initQuillEditor(ReactDOM.findDOMNode(this.refs.editor));
+        $(ReactDOM.findDOMNode(this.refs.editor)).find('.ql-editor').on('blur',()=>{
+            editor.focus = false;
+        })
     }
 
     componentWillUnmount() {
