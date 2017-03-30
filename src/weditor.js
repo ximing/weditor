@@ -10,7 +10,6 @@ import Catalogue from './catalogue';
 import {initQuillEditor} from './lib/quillEditor'
 import LinkBubble from './components/linkBubble';
 import InsertImage from './components/insertImage';
-import {setLinkBubble} from './lib/quillEditor'
 import {inject, observer} from 'mobx-react';
 
 @inject(state => ({
@@ -19,7 +18,6 @@ import {inject, observer} from 'mobx-react';
 })) @observer
 export default class WEditor extends Component {
     state = {
-        rangeFormat: {},
         left: window.innerWidth / 2 - 400
     }
 
@@ -29,25 +27,6 @@ export default class WEditor extends Component {
 
     componentDidMount() {
         let quillEditor = this.quill = initQuillEditor(ReactDOM.findDOMNode(this.refs.editor));
-        quillEditor.on('selection-change', (range, oldRange, source) => {
-            if (range) {
-                let rangeFormat = quillEditor.getFormat(range);
-                if (rangeFormat.link) {
-                    this.props.insert.openLinkDialog = true;
-                    this.props.insert.linkUrl = rangeFormat.link;
-                    let [leaf, offset] = quillEditor.getLeaf(range.index);
-                    this.props.insert.linkTitle = leaf.text;
-                    // let index= quillEditor.getIndex(leaf);
-                    setLinkBubble(range.index)
-                }
-                this.setState({rangeFormat});
-            }
-            if (range && range.length) {
-            }
-        });
-
-        // quillEditor.updateContents(op2);
-        // quillEditor.setContents({"ops":op})
     }
 
     componentWillUnmount() {
@@ -62,8 +41,7 @@ export default class WEditor extends Component {
     render() {
         return (
             <div className="weditor-wrapper">
-                <Header rangeFormat={this.state.rangeFormat}
-                        doc={this.props.doc} rightContent={this.props.rightContent}/>
+                <Header doc={this.props.doc} rightContent={this.props.rightContent}/>
                 <div className="weditor-body">
                     <Catalogue/>
                     <div className="content-container"

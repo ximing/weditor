@@ -7,6 +7,8 @@ import './initQuill'
 
 import insert from '../model/insert';
 import format from '../model/format';
+import editor from '../model/editor';
+
 import catalogue from '../model/catalogue';
 // setInterval(()=>{
 //     catalogue.open = !catalogue.open;
@@ -78,7 +80,18 @@ export const initQuillEditor = function (dom, options) {
         console.log('blur',selection);
     });
     quillEditor.on('selection-change',(range)=>{
+        editor.range = range || {};
         if (range) {
+            editor.focus = true;
+            let rangeFormat = quillEditor.getFormat(range);
+            if (rangeFormat.link) {
+                insert.openLinkDialog = true;
+                insert.linkUrl = rangeFormat.link;
+                let [leaf, offset] = quillEditor.getLeaf(range.index);
+                insert.linkTitle = leaf.text;
+                // let index= quillEditor.getIndex(leaf);
+                setLinkBubble(range.index)
+            }
             if (range.length !== 0) {
                 //处理格式刷
                 if(format.currentFormat){
@@ -92,7 +105,11 @@ export const initQuillEditor = function (dom, options) {
                 } else {
                     console.log('Cursor not in the editor');
                 }
+                console.log('fdsafdsafdsf',range)
             }
+        }else{
+            editor.focus = false;
+            console.log('blur')
         }
     });
     return quillEditor;

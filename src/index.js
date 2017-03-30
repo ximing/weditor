@@ -12,6 +12,7 @@ import {getEditor} from './lib/quillEditor'
 import WEditor from './weditor'
 import catalogue from './model/catalogue';
 import insert from './model/insert';
+import editor from './model/editor';
 class  Editor extends Component {
     static defaultProps = {
         options:{
@@ -34,6 +35,7 @@ class  Editor extends Component {
             <Provider
                 catalogue={catalogue}
                 insert={insert}
+                editor={editor}
             >
                 <WEditor options={this.props.options} doc={this.props.doc} rightContent = {this.props.rightContent}/>
             </Provider>

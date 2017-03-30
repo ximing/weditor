@@ -8,8 +8,12 @@ import HeaderDropDown from "./components/headerDropDown/index";
 import ColorPicker from "./components/color-picker";
 import {getEditor} from './lib/quillEditor'
 import ToolTip from './components/tooltip'
+import {inject,observer} from 'mobx-react'
 
-export default class CommonEditor extends Component {
+@inject(state=>({
+    rangeFormat:state.editor.range
+})) @observer
+export default class StartHeader extends Component {
     //行高
     // quill.addStyles({
     //     'div': { 'line-height': '24px' }

@@ -42,14 +42,10 @@ export default class EditorHeader extends Component {
         return (
             <div className="toolbar-opver" id="toolbarOpver">
                 <CommonHeader />
-                <FileHeader rangeFormat={this.props.rangeFormat}
-                            style={{display:panel===0?'inline-block':'none'}}/>
-                <StartHeader rangeFormat={this.props.rangeFormat}
-                             style={{display:panel===1?'inline-block':'none'}}/>
-                <InsertHeader rangeFormat={this.props.rangeFormat}
-                              style={{display:panel===2?'inline-block':'none'}}/>
-                <ViewHeader rangeFormat={this.props.rangeFormat}
-                            style={{display:panel===3?'inline-block':'none'}}/>
+                <FileHeader style={{display:panel===0?'inline-block':'none'}}/>
+                <StartHeader style={{display:panel===1?'inline-block':'none'}}/>
+                <InsertHeader style={{display:panel===2?'inline-block':'none'}}/>
+                <ViewHeader style={{display:panel===3?'inline-block':'none'}}/>
             </div>
         )
 

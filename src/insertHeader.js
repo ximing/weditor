@@ -12,7 +12,7 @@ import ToolTip from './components/tooltip'
 export default class CommonEditor extends Component {
 
     render() {
-        const {rangeFormat, style} = this.props;
+        const {style} = this.props;
         return (
             <span className="ql-formats insert-header" style={style}>
                 {/*<button className="ql-fengexian">*/}
