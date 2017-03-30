@@ -3,7 +3,6 @@
  */
 'use strict';
 import React, {Component} from "react";
-import $ from 'jquery';
 import hotkeys from 'hotkeys-js';
 import ReactDOM from 'react-dom';
 import Header from './header';
@@ -14,15 +13,18 @@ import InsertImage from './components/insertImage';
 import {setLinkBubble} from './lib/quillEditor'
 import {inject, observer} from 'mobx-react';
 
-@inject('insert') @observer
+@inject(state => ({
+    insert: state.insert,
+    open: state.catalogue.open
+})) @observer
 export default class WEditor extends Component {
     state = {
-        rangeFormat: {}
+        rangeFormat: {},
+        left: window.innerWidth / 2 - 400
     }
 
     constructor() {
         super();
-        this.w = $(window);
     }
 
     componentDidMount() {
@@ -30,41 +32,42 @@ export default class WEditor extends Component {
         quillEditor.on('selection-change', (range, oldRange, source) => {
             if (range) {
                 let rangeFormat = quillEditor.getFormat(range);
-                if(rangeFormat.link){
+                if (rangeFormat.link) {
                     this.props.insert.openLinkDialog = true;
                     this.props.insert.linkUrl = rangeFormat.link;
-                    let [leaf, offset]  = quillEditor.getLeaf(range.index);
+                    let [leaf, offset] = quillEditor.getLeaf(range.index);
                     this.props.insert.linkTitle = leaf.text;
                     // let index= quillEditor.getIndex(leaf);
                     setLinkBubble(range.index)
                 }
                 this.setState({rangeFormat});
             }
-            if(range && range.length){}
+            if (range && range.length) {
+            }
         });
 
         // quillEditor.updateContents(op2);
         // quillEditor.setContents({"ops":op})
-        this.w.on('resize', this.onResize)
     }
 
     componentWillUnmount() {
-        this.w.off('resize', this.onResize)
     }
 
-    onResize = () => {
-        console.log(window.innerWidth)
-    };
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            left: nextProps.open ? window.innerWidth / 2 - 300 : window.innerWidth / 2 - 400
+        });
+    }
 
     render() {
-        console.log('weditor render',this.props.insert)
         return (
             <div className="weditor-wrapper">
                 <Header rangeFormat={this.state.rangeFormat}
-                        doc={this.props.doc} rightContent = {this.props.rightContent}/>
+                        doc={this.props.doc} rightContent={this.props.rightContent}/>
                 <div className="weditor-body">
-                    <Catalogue style={{}}/>
-                    <div className="content-container">
+                    <Catalogue/>
+                    <div className="content-container"
+                         style={{left: this.state.left}}>
                         <div ref="editor">
                         </div>
                     </div>
