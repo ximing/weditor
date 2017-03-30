@@ -89,6 +89,8 @@ export const initQuillEditor = function (dom, options) {
                     // Object.keys(format.currentFormat).forEach(item=>{
                     //
                     // })
+                } else {
+                    console.log('Cursor not in the editor');
                 }
             }
         }
