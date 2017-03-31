@@ -4,9 +4,9 @@
 'use strict';
 import './index.scss';
 import React, {Component} from 'react';
-import $ from 'jquery';
 import {getEditor} from '../../lib/quillEditor'
 import editor from '../../model/editor';
+const $ = window.jQuery;
 let fontSizeMap = {
     "": '小四',
     "42pt": '初号',

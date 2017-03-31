@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("react"), require("react-dom"), require("jQuery"));
+		module.exports = factory(require("react"), require("react-dom"));
 	else if(typeof define === 'function' && define.amd)
-		define(["react", "react-dom", "jQuery"], factory);
+		define(["react", "react-dom"], factory);
 	else if(typeof exports === 'object')
-		exports["weditor"] = factory(require("react"), require("react-dom"), require("jQuery"));
+		exports["weditor"] = factory(require("react"), require("react-dom"));
 	else
-		root["weditor"] = factory(root["React"], root["ReactDOM"], root["jQuery"]);
-})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__, __WEBPACK_EXTERNAL_MODULE_2__) {
+		root["weditor"] = factory(root["React"], root["ReactDOM"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_1__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -73,7 +73,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/dist";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -31538,10 +31538,6 @@ var _quill2 = _interopRequireDefault(_quill);
 
 var _mobxReact = __webpack_require__("./node_modules/mobx-react/index.js");
 
-var _jquery = __webpack_require__(2);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
 __webpack_require__("./node_modules/rc-tabs/assets/index.css");
 
 var _rcTabs = __webpack_require__("./node_modules/rc-tabs/lib/index.js");
@@ -31582,6 +31578,7 @@ var _toast = __webpack_require__("./src/components/toast/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var $ = window.jQuery;
 var InsertImage = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _mobxReact.observer)(_class = function (_Component) {
     (0, _inherits3.default)(InsertImage, _Component);
 
@@ -31650,7 +31647,7 @@ var InsertImage = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _m
                 'chunked': false,
                 'chunkSize': 20971520,
                 'linterContiner': document,
-                '$': _jquery2.default,
+                '$': $,
                 'body': this.target,
                 'multiple': false,
                 'method': 'post',
@@ -32180,10 +32177,6 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _jquery = __webpack_require__(2);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
 var _quillEditor = __webpack_require__("./src/lib/quillEditor.js");
 
 var _editor = __webpack_require__("./src/model/editor.js");
@@ -32192,6 +32185,7 @@ var _editor2 = _interopRequireDefault(_editor);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var $ = window.jQuery;
 var fontSizeMap = {
     "": '小四',
     "42pt": '初号',
@@ -32218,7 +32212,7 @@ function changeSize(e) {
             length = _editor$range.length;
 
         (0, _quillEditor.getEditor)().setSelection(index, length, 'user');
-        (0, _quillEditor.getEditor)().format('size', (0, _jquery2.default)(e.target).data('size'), 'user');
+        (0, _quillEditor.getEditor)().format('size', $(e.target).data('size'), 'user');
     }
 }
 
@@ -32251,14 +32245,14 @@ var SizeDropDown = function (_Component) {
 
         _this.closePanel = function () {
             _this.setState({ open: false });
-            (0, _jquery2.default)(document).off('click', _this.closePanel);
+            $(document).off('click', _this.closePanel);
         };
 
         _this.inputClick = function (e) {
             e.stopPropagation();
             e.nativeEvent.stopImmediatePropagation();
             // window     .quillEditor     .focus();
-            (0, _jquery2.default)(document).on('click', _this.closePanel);
+            $(document).on('click', _this.closePanel);
             _this.setState({ open: true });
         };
 
@@ -32281,7 +32275,7 @@ var SizeDropDown = function (_Component) {
     (0, _createClass3.default)(SizeDropDown, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            (0, _jquery2.default)('#xm-size-p').on('click', 'p', changeSize);
+            $('#xm-size-p').on('click', 'p', changeSize);
             this.setState({
                 value: this.props.size,
                 open: false
@@ -32290,7 +32284,7 @@ var SizeDropDown = function (_Component) {
     }, {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
-            (0, _jquery2.default)('#xm-size-p').off('click', 'p', changeSize);
+            $('#xm-size-p').off('click', 'p', changeSize);
         }
     }, {
         key: 'componentWillReceiveProps',
@@ -34987,15 +34981,12 @@ var _printThis = __webpack_require__("./src/lib/printThis.js");
 
 var _printThis2 = _interopRequireDefault(_printThis);
 
-var _jquery = __webpack_require__(2);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
 var _mobxReact = __webpack_require__("./node_modules/mobx-react/index.js");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _printThis2.default)(_jquery2.default);
+var $ = window.jQuery;
+(0, _printThis2.default)($);
 var CommonEditor = (_dec = (0, _mobxReact.inject)(function (state) {
     return {
         rangeFormat: state.editor.range
@@ -35015,7 +35006,7 @@ var CommonEditor = (_dec = (0, _mobxReact.inject)(function (state) {
         }
 
         return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = CommonEditor.__proto__ || (0, _getPrototypeOf2.default)(CommonEditor)).call.apply(_ref, [this].concat(args))), _this), _this.print = function () {
-            (0, _jquery2.default)('.ql-editor').printThis({
+            $('.ql-editor').printThis({
                 pageTitle: '',
                 header: null,
                 footer: null
@@ -37606,16 +37597,13 @@ var _selection = __webpack_require__("./src/components/selection/index.js");
 
 var _selection2 = _interopRequireDefault(_selection);
 
-var _jquery = __webpack_require__(2);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
 var _editor = __webpack_require__("./src/model/editor.js");
 
 var _editor2 = _interopRequireDefault(_editor);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var $ = window.jQuery;
 var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
     return {
         insert: state.insert,
@@ -37641,7 +37629,7 @@ var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
         key: 'componentDidMount',
         value: function componentDidMount() {
             var quillEditor = this.quill = (0, _quillEditor.initQuillEditor)(_reactDom2.default.findDOMNode(this.refs.editor));
-            var editorDom = this.editorDom = (0, _jquery2.default)(_reactDom2.default.findDOMNode(this.refs.editor)).find('.ql-editor');
+            var editorDom = this.editorDom = $(_reactDom2.default.findDOMNode(this.refs.editor)).find('.ql-editor');
             editorDom.on('blur', function () {
                 _editor2.default.focus = false;
             });
@@ -37701,13 +37689,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 /***/ }),
 
 /***/ 2:
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
-
-/***/ }),
-
-/***/ 3:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__("./src/index.js");

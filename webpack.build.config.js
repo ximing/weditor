@@ -79,8 +79,6 @@ module.exports = {
     },
     externals: [
         {
-            jquery: 'jQuery',
-            lodash: '_',
             react: {
                 root: 'React',
                 commonjs2: 'react',

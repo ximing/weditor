@@ -12,7 +12,7 @@ import LinkBubble from './components/linkBubble';
 import InsertImage from './components/insertImage';
 import {inject, observer} from 'mobx-react';
 import Selection from './components/selection';
-import $ from 'jquery';
+const $ = window.jQuery;
 import editor from './model/editor'
 @inject(state => ({
     insert: state.insert,

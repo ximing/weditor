@@ -6,7 +6,6 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import Quill from 'quill';
 import {inject, observer} from 'mobx-react';
-import $ from 'jquery';
 import 'rc-tabs/assets/index.css';
 import Tabs, { TabPane} from 'rc-tabs';
 import ScrollableInkTabBar from 'rc-tabs/lib/ScrollableInkTabBar.js'
@@ -19,6 +18,7 @@ import {getEditor} from '../../lib/quillEditor';
 import insert from '../../model/insert'
 import Input from '../input';
 import {error} from '../toast'
+const $ = window.jQuery;
 @inject('insert') @observer
 export default class InsertImage extends Component {
     state = {

@@ -5,7 +5,7 @@
 import React, {Component} from "react";
 import Icon from './components/icon/index';
 import printThis from './lib/printThis';
-import $ from 'jquery';
+const $ = window.jQuery;
 printThis($);
 import {inject,observer} from 'mobx-react'
 
