@@ -32059,6 +32059,10 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactDom = __webpack_require__(1);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
 var _mobxReact = __webpack_require__("./node_modules/mobx-react/index.js");
 
 var _quillEditor = __webpack_require__("./src/lib/quillEditor.js");
@@ -32075,14 +32079,29 @@ var Selection = (_dec = (0, _mobxReact.inject)('editor'), _dec(_class = (0, _mob
 
     (0, _createClass3.default)(Selection, [{
         key: 'componentDidMount',
-        value: function componentDidMount() {}
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            var editorDom = $('.ql-editor');
+            var $selection = $(_reactDom2.default.findDOMNode(this.refs.selection));
+            editorDom.on('scroll', function (e) {
+                var _props$editor$range = _this2.props.editor.range,
+                    index = _props$editor$range.index,
+                    length = _props$editor$range.length;
+
+                var _getEditor$getBounds = (0, _quillEditor.getEditor)().getBounds(index, length || 0),
+                    top = _getEditor$getBounds.top;
+
+                $selection.css('top', top);
+            });
+        }
     }, {
         key: 'render',
         value: function render() {
             var editor = (0, _quillEditor.getEditor)();
-            var _props$editor$range = this.props.editor.range,
-                index = _props$editor$range.index,
-                length = _props$editor$range.length;
+            var _props$editor$range2 = this.props.editor.range,
+                index = _props$editor$range2.index,
+                length = _props$editor$range2.length;
 
             var sLeft = 0,
                 sHeight = 0,
@@ -32096,19 +32115,14 @@ var Selection = (_dec = (0, _mobxReact.inject)('editor'), _dec(_class = (0, _mob
                         top = _editor$getBounds.top,
                         width = _editor$getBounds.width;
 
-                    var _getEditorBoundingCli = (0, _quillEditor.getEditorBoundingClientRect)(),
-                        eLeft = _getEditorBoundingCli.left,
-                        eTop = _getEditorBoundingCli.top;
-
-                    sLeft = left + eLeft;
+                    sLeft = left;
                     sHeight = height;
-                    sTop = top + 20;
+                    sTop = top;
                     sWidth = width;
                 }
             }
-            return _react2.default.createElement('div', { className: 'weditor-selection',
+            return _react2.default.createElement('div', { className: 'weditor-selection', ref: 'selection',
                 style: {
-                    display: this.props.editor.focus ? 'none' : 'block',
                     height: sHeight,
                     width: sWidth,
                     left: sLeft,
@@ -35549,26 +35563,6 @@ exports.default = CommonEditor;
  */
 
 
-var _getPrototypeOf = __webpack_require__("./node_modules/babel-runtime/core-js/object/get-prototype-of.js");
-
-var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-var _classCallCheck2 = __webpack_require__("./node_modules/babel-runtime/helpers/classCallCheck.js");
-
-var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-var _createClass2 = __webpack_require__("./node_modules/babel-runtime/helpers/createClass.js");
-
-var _createClass3 = _interopRequireDefault(_createClass2);
-
-var _possibleConstructorReturn2 = __webpack_require__("./node_modules/babel-runtime/helpers/possibleConstructorReturn.js");
-
-var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-var _inherits2 = __webpack_require__("./node_modules/babel-runtime/helpers/inherits.js");
-
-var _inherits3 = _interopRequireDefault(_inherits2);
-
 var _quill = __webpack_require__("./node_modules/quill/dist/quill.js");
 
 var _quill2 = _interopRequireDefault(_quill);
@@ -35595,39 +35589,25 @@ ColorStyle.whitelist = null;
 BackgroundStyle.whitelist = null;
 AlignStyle.whitelist = ['right', 'center', 'justify', 'left'];
 for (var i = 5; i <= 72; i++) {
-    SizeStyle.whitelist.push(i + 'pt');
-    SizeStyle.whitelist.push(i + '.5pt');
+  SizeStyle.whitelist.push(i + 'pt');
+  SizeStyle.whitelist.push(i + '.5pt');
 }
 _quill2.default.register(SizeStyle, true);
 _quill2.default.register(ColorStyle, true);
 _quill2.default.register(BackgroundStyle, true);
 _quill2.default.register(AlignStyle, true);
 
-var Clipboard = _quill2.default.import('modules/clipboard');
-
-var PlainClipboard = function (_Clipboard) {
-    (0, _inherits3.default)(PlainClipboard, _Clipboard);
-
-    function PlainClipboard() {
-        (0, _classCallCheck3.default)(this, PlainClipboard);
-        return (0, _possibleConstructorReturn3.default)(this, (PlainClipboard.__proto__ || (0, _getPrototypeOf2.default)(PlainClipboard)).apply(this, arguments));
-    }
-
-    (0, _createClass3.default)(PlainClipboard, [{
-        key: 'convert',
-        value: function convert() {
-            var html = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
-
-            if (typeof html === 'string') {
-                this.container.innerHTML = html;
-            }
-            return new _quillDelta2.default().insert(this.container.innerText);
-        }
-    }]);
-    return PlainClipboard;
-}(Clipboard);
-
-_quill2.default.register('modules/clipboard', PlainClipboard, true);
+// var Clipboard = Quill.import('modules/clipboard');
+// class PlainClipboard extends Clipboard {
+//     convert(html = null) {
+//         if (typeof html === 'string') {
+//             this.container.innerHTML = html;
+//         }
+//         return new Delta().insert(this.container.innerText);
+//     }
+// }
+//
+// Quill.register('modules/clipboard', PlainClipboard, true);
 
 /***/ }),
 
@@ -37639,7 +37619,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
     return {
         insert: state.insert,
-        open: state.catalogue.open
+        open: state.catalogue.open,
+        focus: state.editor.focus
     };
 }), _dec(_class = (0, _mobxReact.observer)(_class = function (_Component) {
     (0, _inherits3.default)(WEditor, _Component);
@@ -37650,7 +37631,8 @@ var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
         var _this = (0, _possibleConstructorReturn3.default)(this, (WEditor.__proto__ || (0, _getPrototypeOf2.default)(WEditor)).call(this));
 
         _this.state = {
-            left: window.innerWidth / 2 - 400
+            left: window.innerWidth / 2 - 400,
+            scrollTop: 0
         };
         return _this;
     }
@@ -37659,7 +37641,8 @@ var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
         key: 'componentDidMount',
         value: function componentDidMount() {
             var quillEditor = this.quill = (0, _quillEditor.initQuillEditor)(_reactDom2.default.findDOMNode(this.refs.editor));
-            (0, _jquery2.default)(_reactDom2.default.findDOMNode(this.refs.editor)).find('.ql-editor').on('blur', function () {
+            var editorDom = this.editorDom = (0, _jquery2.default)(_reactDom2.default.findDOMNode(this.refs.editor)).find('.ql-editor');
+            editorDom.on('blur', function () {
                 _editor2.default.focus = false;
             });
         }
@@ -37688,9 +37671,9 @@ var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
                         'div',
                         { className: 'content-container',
                             style: { left: this.state.left } },
-                        _react2.default.createElement('div', { ref: 'editor' })
-                    ),
-                    _react2.default.createElement(_selection2.default, null)
+                        _react2.default.createElement('div', { ref: 'editor' }),
+                        !this.props.focus && _react2.default.createElement(_selection2.default, { scrollTop: this.state.scrollTop })
+                    )
                 ),
                 this.props.insert.openLinkDialog && _react2.default.createElement(_linkBubble2.default, null),
                 this.props.insert.openImageDialog && _react2.default.createElement(_insertImage2.default, { uploadUrl: this.props.options.uploadUrl })
