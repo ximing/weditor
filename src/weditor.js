@@ -16,12 +16,14 @@ import $ from 'jquery';
 import editor from './model/editor'
 @inject(state => ({
     insert: state.insert,
-    open: state.catalogue.open
+    open: state.catalogue.open,
+    focus: state.editor.focus
 })) @observer
 export default class WEditor extends Component {
     state = {
-        left: window.innerWidth / 2 - 400
-    }
+        left: window.innerWidth / 2 - 400,
+        scrollTop: 0
+    };
 
     constructor() {
         super();
@@ -29,9 +31,11 @@ export default class WEditor extends Component {
 
     componentDidMount() {
         let quillEditor = this.quill = initQuillEditor(ReactDOM.findDOMNode(this.refs.editor));
-        $(ReactDOM.findDOMNode(this.refs.editor)).find('.ql-editor').on('blur',()=>{
+        let editorDom = this.editorDom = $(ReactDOM.findDOMNode(this.refs.editor)).find('.ql-editor');
+        editorDom.on('blur', () => {
             editor.focus = false;
         })
+
     }
 
     componentWillUnmount() {
@@ -53,8 +57,10 @@ export default class WEditor extends Component {
                          style={{left: this.state.left}}>
                         <div ref="editor">
                         </div>
+                        {
+                            !this.props.focus && <Selection scrollTop={this.state.scrollTop}/>
+                        }
                     </div>
-                    <Selection />
                 </div>
                 {
                     this.props.insert.openLinkDialog &&
