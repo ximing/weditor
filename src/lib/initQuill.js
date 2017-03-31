@@ -27,14 +27,14 @@ Quill.register(ColorStyle, true);
 Quill.register(BackgroundStyle, true);
 Quill.register(AlignStyle, true);
 
-var Clipboard = Quill.import('modules/clipboard');
-class PlainClipboard extends Clipboard {
-    convert(html = null) {
-        if (typeof html === 'string') {
-            this.container.innerHTML = html;
-        }
-        return new Delta().insert(this.container.innerText);
-    }
-}
-
-Quill.register('modules/clipboard', PlainClipboard, true);
+// var Clipboard = Quill.import('modules/clipboard');
+// class PlainClipboard extends Clipboard {
+//     convert(html = null) {
+//         if (typeof html === 'string') {
+//             this.container.innerHTML = html;
+//         }
+//         return new Delta().insert(this.container.innerText);
+//     }
+// }
+//
+// Quill.register('modules/clipboard', PlainClipboard, true);
