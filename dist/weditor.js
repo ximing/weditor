@@ -35545,6 +35545,104 @@ exports.default = CommonEditor;
 
 /***/ }),
 
+/***/ "./src/lib/initHotKey.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Created by yeanzhi on 17/4/2.
+ */
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+exports.default = function (quill) {
+    quill.keyboard.addBinding({
+        key: 'b',
+        shortKey: true
+    }, function (range, context) {
+        this.quill.formatText(range, 'bold', !context.format.bold, 'user');
+    });
+    quill.keyboard.addBinding({
+        key: 'i',
+        shortKey: true
+    }, function (range, context) {
+        this.quill.formatText(range, 'italic', !context.format.italic, 'user');
+    });
+    quill.keyboard.addBinding({
+        key: 'u',
+        shortKey: true
+    }, function (range, context) {
+        this.quill.formatText(range, 'underline', !context.format.underline, 'user');
+    });
+    quill.keyboard.addBinding({
+        key: 's',
+        shortKey: true,
+        shiftKey: true
+    }, function (range, context) {
+        this.quill.formatText(range, 'strike', !context.format.strike, 'user');
+    });
+    quill.keyboard.addBinding({
+        key: 'u',
+        shortKey: true,
+        shiftKey: true
+    }, function (range, context) {
+        if (!context.format.list) {
+            this.quill.formatLine(range, 'list', 'bullet', 'user');
+        } else {
+            this.quill.formatLine(range, 'list', false, 'user');
+        }
+    });
+    quill.keyboard.addBinding({
+        key: 'l',
+        shortKey: true,
+        shiftKey: true
+    }, function (range, context) {
+        if (!context.format.list) {
+            this.quill.formatLine(range, 'list', 'ordered', 'user');
+        } else {
+            this.quill.formatLine(range, 'list', false, 'user');
+        }
+    });
+    quill.keyboard.addBinding({
+        key: '1',
+        shortKey: true,
+        shiftKey: true
+    }, function (range, context) {
+        if (!context.format.header) {
+            this.quill.formatLine(range, 'header', 1, 'user');
+        } else {
+            this.quill.formatLine(range, 'header', false, 'user');
+        }
+    });
+    quill.keyboard.addBinding({
+        key: '2',
+        shortKey: true,
+        shiftKey: true
+    }, function (range, context) {
+        if (!context.format.header) {
+            this.quill.formatLine(range, 'header', 2, 'user');
+        } else {
+            this.quill.formatLine(range, 'header', false, 'user');
+        }
+    });
+    quill.keyboard.addBinding({
+        key: '3',
+        shortKey: true,
+        shiftKey: true
+    }, function (range, context) {
+        if (!context.format.header) {
+            this.quill.formatLine(range, 'header', 3, 'user');
+        } else {
+            this.quill.formatLine(range, 'header', false, 'user');
+        }
+    });
+};
+
+/***/ }),
+
 /***/ "./src/lib/initQuill.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -36243,6 +36341,10 @@ var _quill2 = _interopRequireDefault(_quill);
 
 __webpack_require__("./src/lib/initQuill.js");
 
+var _initHotKey = __webpack_require__("./src/lib/initHotKey.js");
+
+var _initHotKey2 = _interopRequireDefault(_initHotKey);
+
 var _insert = __webpack_require__("./src/model/insert.js");
 
 var _insert2 = _interopRequireDefault(_insert);
@@ -36369,6 +36471,7 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
             console.log('blur');
         }
     });
+    (0, _initHotKey2.default)(quillEditor);
     return quillEditor;
 };
 
@@ -37128,7 +37231,7 @@ var StartHeader = (_dec = (0, _mobxReact.inject)(function (state) {
                             overlay: _react2.default.createElement(
                                 "div",
                                 null,
-                                "\u52A0\u7C97"
+                                "\u52A0\u7C97 ctrl+b"
                             )
                         },
                         _react2.default.createElement("button", { className: "ql-bold" })
@@ -37142,7 +37245,7 @@ var StartHeader = (_dec = (0, _mobxReact.inject)(function (state) {
                             overlay: _react2.default.createElement(
                                 "div",
                                 null,
-                                "\u659C\u4F53"
+                                "\u659C\u4F53 ctrl+i"
                             )
                         },
                         _react2.default.createElement("button", { className: "ql-italic" })
@@ -37156,7 +37259,7 @@ var StartHeader = (_dec = (0, _mobxReact.inject)(function (state) {
                             overlay: _react2.default.createElement(
                                 "div",
                                 null,
-                                "\u5220\u9664\u7EBF"
+                                "\u5220\u9664\u7EBF ctrl+shift+s"
                             )
                         },
                         _react2.default.createElement("button", { className: "ql-strike" })
@@ -37170,7 +37273,7 @@ var StartHeader = (_dec = (0, _mobxReact.inject)(function (state) {
                             overlay: _react2.default.createElement(
                                 "div",
                                 null,
-                                "\u4E0B\u5212\u7EBF"
+                                "\u4E0B\u5212\u7EBF ctrl+u"
                             )
                         },
                         _react2.default.createElement("button", { className: "ql-underline" })
@@ -37292,7 +37395,7 @@ var StartHeader = (_dec = (0, _mobxReact.inject)(function (state) {
                             overlay: _react2.default.createElement(
                                 "div",
                                 null,
-                                "\u6709\u5E8F\u5217\u8868"
+                                "\u6709\u5E8F\u5217\u8868 ctrl+shift+l"
                             )
                         },
                         _react2.default.createElement("button", { className: "ql-list", value: "ordered" })
@@ -37306,7 +37409,7 @@ var StartHeader = (_dec = (0, _mobxReact.inject)(function (state) {
                             overlay: _react2.default.createElement(
                                 "div",
                                 null,
-                                "\u65E0\u5E8F\u5217\u8868"
+                                "\u65E0\u5E8F\u5217\u8868 ctrl+shift+u"
                             )
                         },
                         _react2.default.createElement("button", { className: "ql-list", value: "bullet" })
