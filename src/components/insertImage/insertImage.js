@@ -73,7 +73,11 @@ export default class InsertImage extends Component {
                 error('上传服务错误');
             }
         });
+        uploader.on('uploadComplete',()=>{
+            uploader.reset();
+        });
         uploader.on('uploadError',()=>{
+            uploader.reset();
             error('上传服务错误');
         })
     }
@@ -81,6 +85,8 @@ export default class InsertImage extends Component {
     componentWillUnmount() {
         window.document.removeEventListener('click', this.otherDOMClick);
         this.uploader.removeEvent('uploadAccept');
+        this.uploader.removeEvent('uploadComplete');
+        this.uploader.removeEvent('uploadError');
         this.uploader.destory();
     }
 
