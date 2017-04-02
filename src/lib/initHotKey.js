@@ -55,9 +55,9 @@ export default function (quill) {
         shiftKey: true
     }, function(range, context) {
         if(!context.format.header){
-            this.quill.formatLine(range, 'header', 1);
+            this.quill.formatLine(range, 'header', 1,'user');
         }else{
-            this.quill.formatLine(range, 'header', false);
+            this.quill.formatLine(range, 'header', false,'user');
         }
     });
     quill.keyboard.addBinding({
@@ -66,9 +66,9 @@ export default function (quill) {
         shiftKey: true
     }, function(range, context) {
         if(!context.format.header){
-            this.quill.formatLine(range, 'header', 2);
+            this.quill.formatLine(range, 'header', 2,'user');
         }else{
-            this.quill.formatLine(range, 'header', false);
+            this.quill.formatLine(range, 'header', false,'user');
         }
     });
     quill.keyboard.addBinding({
@@ -77,9 +77,9 @@ export default function (quill) {
         shiftKey: true
     }, function(range, context) {
         if(!context.format.header){
-            this.quill.formatLine(range, 'header', 3);
+            this.quill.formatLine(range, 'header', 3,'user');
         }else{
-            this.quill.formatLine(range, 'header', false);
+            this.quill.formatLine(range, 'header', false,'user');
         }
     });
 }
