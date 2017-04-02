@@ -4,6 +4,7 @@
 'use strict';
 import  Quill from 'quill';
 import './initQuill'
+import initHotKey from './initHotKey'
 
 import insert from '../model/insert';
 import format from '../model/format';
@@ -106,6 +107,7 @@ export const initQuillEditor = function (dom, options) {
             console.log('blur')
         }
     });
+    initHotKey(quillEditor);
     return quillEditor;
 };
 

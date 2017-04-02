@@ -73,7 +73,7 @@ export default class StartHeader extends Component {
                         placement="bottom"
                         mouseEnterDelay={0}
                         mouseLeaveDelay={0}
-                        overlay={<div>加粗</div>}
+                        overlay={<div>加粗 ctrl+b</div>}
                     >
                         <button className="ql-bold"></button>
                 </ToolTip>
@@ -81,7 +81,7 @@ export default class StartHeader extends Component {
                         placement="bottom"
                         mouseEnterDelay={0}
                         mouseLeaveDelay={0}
-                        overlay={<div>斜体</div>}
+                        overlay={<div>斜体 ctrl+i</div>}
                     >
                     <button className="ql-italic"></button>
                 </ToolTip>
@@ -89,7 +89,7 @@ export default class StartHeader extends Component {
                         placement="bottom"
                         mouseEnterDelay={0}
                         mouseLeaveDelay={0}
-                        overlay={<div>删除线</div>}
+                        overlay={<div>删除线 ctrl+shift+s</div>}
                     >
                     <button className="ql-strike"></button>
                 </ToolTip>
@@ -97,7 +97,7 @@ export default class StartHeader extends Component {
                         placement="bottom"
                         mouseEnterDelay={0}
                         mouseLeaveDelay={0}
-                        overlay={<div>下划线</div>}
+                        overlay={<div>下划线 ctrl+u</div>}
                     >
                     <button className="ql-underline"></button>
                 </ToolTip>
@@ -193,7 +193,7 @@ export default class StartHeader extends Component {
                         placement="bottom"
                         mouseEnterDelay={0}
                         mouseLeaveDelay={0}
-                        overlay={<div>有序列表</div>}
+                        overlay={<div>有序列表 ctrl+shift+l</div>}
                     >
                         <button className="ql-list" value="ordered"></button>
                     </ToolTip>
@@ -201,7 +201,7 @@ export default class StartHeader extends Component {
                         placement="bottom"
                         mouseEnterDelay={0}
                         mouseLeaveDelay={0}
-                        overlay={<div>无序列表</div>}
+                        overlay={<div>无序列表 ctrl+shift+u</div>}
                     >
                         <button className="ql-list" value="bullet"></button>
                     </ToolTip>
