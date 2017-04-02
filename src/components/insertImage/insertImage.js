@@ -70,6 +70,7 @@ export default class InsertImage extends Component {
                     this.props.insert.openImageDialog = false;
                 }
             } else {
+                error('上传服务错误');
             }
         });
         uploader.on('uploadError',()=>{
