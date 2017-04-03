@@ -35,8 +35,6 @@ export default class StartHeader extends Component {
     align = (align)=>{
         return ()=>{
             const quillEditor = getEditor();
-            console.log('align',align,quillEditor);
-
             if(quillEditor){
                 // const {index,length} = editor.range;
                 // if(index===0 || !!index){
@@ -48,7 +46,6 @@ export default class StartHeader extends Component {
     }
     render() {
         let {rangeFormat, style} = this.props;
-        console.log(rangeFormat,'rangeFormat')
         let {color, background, size, header} = rangeFormat;
         if (Array.isArray(color)) {
             color = '#FFFFFF';
