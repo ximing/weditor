@@ -6139,7 +6139,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".catalogue-container {\n  position: absolute;\n  left: 0;\n  width: 300px;\n  bottom: 0px;\n  top: 0px;\n  background: #f6f6f6;\n  outline: none;\n  display: block;\n  visibility: visible;\n  border-right: solid 1px #cccccc; }\n  .catalogue-container .catalogue-header {\n    overflow: hidden;\n    border-bottom: solid 1px #cccccc;\n    margin-bottom: 8px;\n    font-size: 14px;\n    height: 50px;\n    line-height: 50px;\n    width: 300px;\n    color: #666;\n    padding: 0 10px; }\n    .catalogue-container .catalogue-header i {\n      float: right;\n      cursor: pointer;\n      font-size: 14px; }\n      .catalogue-container .catalogue-header i:hover {\n        color: #999999; }\n  .catalogue-container .catalogue-body {\n    overflow: hidden;\n    padding: 10px 10px;\n    position: absolute;\n    top: 50px;\n    bottom: 0;\n    width: 100%;\n    overflow-y: auto; }\n    .catalogue-container .catalogue-body p {\n      margin: 0;\n      padding: 5px;\n      cursor: pointer; }\n    .catalogue-container .catalogue-body .catalogue-h1 {\n      font-size: 28px; }\n    .catalogue-container .catalogue-body .catalogue-h2 {\n      font-size: 24px; }\n    .catalogue-container .catalogue-body .catalogue-h3 {\n      font-size: 20px; }\n    .catalogue-container .catalogue-body .catalogue-h4 {\n      font-size: 16px; }\n    .catalogue-container .catalogue-body .catalogue-h5 {\n      font-size: 14px; }\n    .catalogue-container .catalogue-body .catalogue-h6 {\n      font-size: 14px; }\n", ""]);
+exports.push([module.i, ".catalogue-container {\n  position: fixed;\n  left: 0;\n  width: 300px;\n  top: 98px;\n  height: 100%;\n  background: #f6f6f6;\n  outline: none;\n  display: block;\n  visibility: visible;\n  border-right: solid 1px #cccccc; }\n  .catalogue-container .catalogue-header {\n    overflow: hidden;\n    border-bottom: solid 1px #cccccc;\n    margin-bottom: 8px;\n    font-size: 14px;\n    height: 50px;\n    line-height: 50px;\n    width: 300px;\n    color: #666;\n    padding: 0 10px; }\n    .catalogue-container .catalogue-header i {\n      float: right;\n      cursor: pointer;\n      font-size: 14px; }\n      .catalogue-container .catalogue-header i:hover {\n        color: #999999; }\n  .catalogue-container .catalogue-body {\n    overflow: hidden;\n    padding: 10px 10px;\n    position: absolute;\n    top: 50px;\n    bottom: 0;\n    width: 100%;\n    overflow-y: auto; }\n    .catalogue-container .catalogue-body p {\n      margin: 0;\n      padding: 5px;\n      cursor: pointer; }\n    .catalogue-container .catalogue-body .catalogue-h1 {\n      font-size: 28px; }\n    .catalogue-container .catalogue-body .catalogue-h2 {\n      font-size: 24px; }\n    .catalogue-container .catalogue-body .catalogue-h3 {\n      font-size: 20px; }\n    .catalogue-container .catalogue-body .catalogue-h4 {\n      font-size: 16px; }\n    .catalogue-container .catalogue-body .catalogue-h5 {\n      font-size: 14px; }\n    .catalogue-container .catalogue-body .catalogue-h6 {\n      font-size: 14px; }\n", ""]);
 
 // exports
 
@@ -6334,7 +6334,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\n.weditor-wrapper {\n  overflow: hidden;\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0; }\n  .weditor-wrapper div {\n    box-sizing: border-box; }\n\n/* font */\n.weditor-header {\n  width: 100%;\n  margin: 0;\n  padding: 0;\n  border-bottom: 1px solid #ddd;\n  position: relative;\n  z-index: 110;\n  background: #fff;\n  user-select: none;\n  background: -webkit-linear-gradient(top, #fdfdfd, #fff);\n  background: -ms-linear-gradient(top, #fdfdfd, #fff);\n  height: 95px;\n  box-sizing: border-box; }\n  .weditor-header button {\n    outline: none; }\n  .weditor-header .header-left-box {\n    line-height: 34px; }\n    .weditor-header .header-left-box .header-back-up {\n      float: left;\n      width: 40px;\n      height: 60px;\n      cursor: pointer;\n      background-color: #4285f4; }\n      .weditor-header .header-left-box .header-back-up .header-back-icon {\n        display: block;\n        background: url(//mss.sankuai.com/v1/mss_814dc1610cda4b2e8febd6ea2c809db5/image/1489546222140.svg) center no-repeat;\n        height: 60px;\n        position: absolute;\n        width: 40px;\n        -webkit-transition: all 125ms linear;\n        -moz-transition: all 125ms linear;\n        -o-transition: all 125ms linear;\n        transition: all 125ms linear; }\n    .weditor-header .header-left-box .team-sprite {\n      background-image: url(https://assets-cdn.shimo.im/assets/images/teams-31aea6334f.png);\n      background-size: 499px 310px;\n      background-repeat: no-repeat; }\n    .weditor-header .header-left-box .s-header-text {\n      display: inline-block;\n      float: left;\n      height: 34px;\n      line-height: 34px;\n      margin-left: 16px;\n      vertical-align: top; }\n      .weditor-header .header-left-box .s-header-text .title-input-pre {\n        font-size: 14px;\n        font-family: -apple-system, system-ui, \"PingFang SC\", Helvetica, Tahoma, Arial, \"Hiragino Sans GB\", \"Microsoft YaHei\", \"\\\\5FAE\\8F6F\\96C5\\9ED1\", SimSun, \"\\\\5B8B\\4F53\", Heiti, \"\\\\9ED1\\4F53\", sans-serif;\n        font-weight: bold;\n        font-style: normal;\n        letter-spacing: normal; }\n    .weditor-header .header-left-box .s-header-time {\n      margin-left: 13px;\n      margin-top: 1px;\n      font-size: 12px;\n      color: #999; }\n  .weditor-header .header-right-box {\n    position: absolute;\n    height: 100%;\n    top: 5px;\n    right: 20px;\n    line-height: 51px; }\n    .weditor-header .header-right-box .header-item-wrap {\n      display: inline-block;\n      height: 40px;\n      width: 40px; }\n      .weditor-header .header-right-box .header-item-wrap .header-item-inner {\n        border: 1px solid #eee;\n        height: 35px;\n        width: 35px;\n        border-radius: 50%;\n        text-align: center;\n        display: inline-block;\n        position: relative;\n        line-height: 0px; }\n        .weditor-header .header-right-box .header-item-wrap .header-item-inner:before {\n          content: '';\n          display: inline-block;\n          vertical-align: middle;\n          width: 0;\n          height: 100%;\n          font-size: 0; }\n        .weditor-header .header-right-box .header-item-wrap .header-item-inner img {\n          height: 25px;\n          width: 25px;\n          border-radius: 50%;\n          vertical-align: middle; }\n  .weditor-header .editor-toolbar .toolbar-tab {\n    height: 25px;\n    line-height: 25px; }\n    .weditor-header .editor-toolbar .toolbar-tab span {\n      padding: 4px 20px;\n      user-select: none;\n      font-size: 13px;\n      font-weight: bold;\n      cursor: pointer;\n      color: #666666; }\n    .weditor-header .editor-toolbar .toolbar-tab span.active {\n      color: #2374d1;\n      background: #f6f6f6; }\n  .weditor-header .editor-toolbar .ql-toolbar.ql-snow {\n    border: none;\n    background-color: #f6f6f6;\n    height: 40px;\n    line-height: 40px;\n    padding: 0;\n    border-bottom: solid 1px #e2e2e2; }\n  .weditor-header .editor-toolbar .xm-color-picker-container {\n    background: none;\n    border: none;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    height: 24px;\n    padding: 3px 5px;\n    width: 28px; }\n  .weditor-header .editor-toolbar .ql-formats .iconfont {\n    background: none;\n    border: none;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    width: 28px; }\n    .weditor-header .editor-toolbar .ql-formats .iconfont.active {\n      color: #2db7f5; }\n  .weditor-header .common-header {\n    color: #444444; }\n  .weditor-header .toolbar-opver {\n    padding-left: 30px !important; }\n  .weditor-header .file-header .ql-pdf {\n    background: none;\n    border: 1px solid transparent;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    height: 25px;\n    line-height: 25px;\n    padding: 0px 5px; }\n    .weditor-header .file-header .ql-pdf .pdf-icon {\n      background-position: -160px -180px; }\n  .weditor-header .file-header .ql-word {\n    background: none;\n    border: 1px solid transparent;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    height: 25px;\n    line-height: 25px;\n    padding: 0px 5px; }\n    .weditor-header .file-header .ql-word .word-icon {\n      background-position: -240px -40px; }\n  .weditor-header .opver-icon {\n    background-image: url(https://s3.meituan.net/v1/mss_814dc1610cda4b2e8febd6ea2c809db5/image/1489914204976.png);\n    background-repeat: no-repeat;\n    height: 20px;\n    width: 20px;\n    display: inline-block; }\n  .weditor-header .opver-area span {\n    vertical-align: middle;\n    font-size: 12px; }\n  .weditor-header .opver-area:hover {\n    border: 1px solid #b6b6b6; }\n  .weditor-header .view-header {\n    line-height: 24px;\n    height: 24px;\n    padding: 0; }\n    .weditor-header .view-header .ql-catalogue {\n      background: none;\n      border: 1px solid transparent;\n      cursor: pointer;\n      display: inline-block;\n      float: left;\n      height: 24px;\n      line-height: 24px;\n      padding: 0px 5px; }\n    .weditor-header .view-header .catalogue-icon {\n      background-position: -80px -180px; }\n\n.weditor-body {\n  padding: 10px 0;\n  position: absolute;\n  left: 0;\n  top: 95px;\n  right: 0px;\n  bottom: 0px;\n  overflow: hidden;\n  background-color: #f6f6f6; }\n  .weditor-body .content-container {\n    background-color: white;\n    box-shadow: 0 0 0 0.1px #d1d1d1, 0 0 1px 0.1px #ccc;\n    position: absolute;\n    top: 20px;\n    bottom: 10px;\n    left: 0;\n    width: 800px;\n    border: 0; }\n    .weditor-body .content-container::selection {\n      background: rgba(130, 182, 255, 0.4); }\n    .weditor-body .content-container .ql-container {\n      font-size: 12pt; }\n      .weditor-body .content-container .ql-container .ql-editor {\n        text-align: justify; }\n  .weditor-body .editormd-toolbar {\n    width: 100%;\n    min-height: 37px;\n    background: #f0f0f0;\n    display: none;\n    position: fixed;\n    top: 55px;\n    left: 0;\n    z-index: 10;\n    border: none; }\n    .weditor-body .editormd-toolbar.scroll {\n      box-shadow: 0 2px 4px rgba(20, 20, 20, 0.15); }\n    .weditor-body .editormd-toolbar .editormd-menu {\n      width: 910px;\n      margin: 0 auto; }\n    .weditor-body .editormd-toolbar .editormd-menu > li > a {\n      border: none; }\n      .weditor-body .editormd-toolbar .editormd-menu > li > a i {\n        font-weight: 200; }\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\nbody {\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  margin: 0;\n  overflow: hidden;\n  background-color: #f2f2f2; }\n\n.weditor-wrapper {\n  overflow: hidden;\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0; }\n  .weditor-wrapper div {\n    box-sizing: border-box; }\n\n/* font */\n.weditor-header {\n  width: 100%;\n  margin: 0;\n  padding: 0;\n  border-bottom: 1px solid #ddd;\n  position: relative;\n  z-index: 110;\n  background: #fff;\n  user-select: none;\n  background: -webkit-linear-gradient(top, #fdfdfd, #fff);\n  background: -ms-linear-gradient(top, #fdfdfd, #fff);\n  box-sizing: border-box; }\n  .weditor-header button {\n    outline: none; }\n  .weditor-header .header-left-box {\n    line-height: 34px; }\n    .weditor-header .header-left-box .header-back-up {\n      float: left;\n      width: 40px;\n      height: 60px;\n      cursor: pointer;\n      background-color: #4285f4; }\n      .weditor-header .header-left-box .header-back-up .header-back-icon {\n        display: block;\n        background: url(//mss.sankuai.com/v1/mss_814dc1610cda4b2e8febd6ea2c809db5/image/1489546222140.svg) center no-repeat;\n        height: 60px;\n        position: absolute;\n        width: 40px;\n        -webkit-transition: all 125ms linear;\n        -moz-transition: all 125ms linear;\n        -o-transition: all 125ms linear;\n        transition: all 125ms linear; }\n    .weditor-header .header-left-box .team-sprite {\n      background-image: url(https://assets-cdn.shimo.im/assets/images/teams-31aea6334f.png);\n      background-size: 499px 310px;\n      background-repeat: no-repeat; }\n    .weditor-header .header-left-box .s-header-text {\n      display: inline-block;\n      float: left;\n      height: 34px;\n      line-height: 34px;\n      margin-left: 16px;\n      vertical-align: top; }\n      .weditor-header .header-left-box .s-header-text .title-input-pre {\n        font-size: 14px;\n        font-family: -apple-system, system-ui, \"PingFang SC\", Helvetica, Tahoma, Arial, \"Hiragino Sans GB\", \"Microsoft YaHei\", \"\\\\5FAE\\8F6F\\96C5\\9ED1\", SimSun, \"\\\\5B8B\\4F53\", Heiti, \"\\\\9ED1\\4F53\", sans-serif;\n        font-weight: bold;\n        font-style: normal;\n        letter-spacing: normal; }\n    .weditor-header .header-left-box .s-header-time {\n      margin-left: 13px;\n      margin-top: 1px;\n      font-size: 12px;\n      color: #999; }\n  .weditor-header .header-right-box {\n    position: absolute;\n    height: 100%;\n    top: 5px;\n    right: 20px;\n    line-height: 51px; }\n    .weditor-header .header-right-box .header-item-wrap {\n      display: inline-block;\n      height: 40px;\n      width: 40px; }\n      .weditor-header .header-right-box .header-item-wrap .header-item-inner {\n        border: 1px solid #eee;\n        height: 35px;\n        width: 35px;\n        border-radius: 50%;\n        text-align: center;\n        display: inline-block;\n        position: relative;\n        line-height: 0px; }\n        .weditor-header .header-right-box .header-item-wrap .header-item-inner:before {\n          content: '';\n          display: inline-block;\n          vertical-align: middle;\n          width: 0;\n          height: 100%;\n          font-size: 0; }\n        .weditor-header .header-right-box .header-item-wrap .header-item-inner img {\n          height: 25px;\n          width: 25px;\n          border-radius: 50%;\n          vertical-align: middle; }\n  .weditor-header .editor-toolbar .toolbar-tab {\n    height: 25px;\n    line-height: 25px; }\n    .weditor-header .editor-toolbar .toolbar-tab span {\n      padding: 4px 20px;\n      user-select: none;\n      font-size: 13px;\n      font-weight: bold;\n      cursor: pointer;\n      color: #666666; }\n    .weditor-header .editor-toolbar .toolbar-tab span.active {\n      color: #2374d1;\n      background: #f6f6f6; }\n  .weditor-header .editor-toolbar .ql-toolbar.ql-snow {\n    border: none;\n    background-color: #f6f6f6;\n    height: 40px;\n    line-height: 35px;\n    padding: 0;\n    border-bottom: solid 1px #e2e2e2; }\n  .weditor-header .editor-toolbar .xm-color-picker-container {\n    background: none;\n    border: none;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    height: 24px;\n    padding: 3px 5px;\n    width: 28px; }\n  .weditor-header .editor-toolbar .ql-formats .iconfont {\n    background: none;\n    border: none;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    width: 28px; }\n    .weditor-header .editor-toolbar .ql-formats .iconfont.active {\n      color: #2db7f5; }\n  .weditor-header .common-header {\n    color: #444444; }\n  .weditor-header .toolbar-opver {\n    padding-left: 30px !important; }\n  .weditor-header .file-header .ql-pdf {\n    background: none;\n    border: 1px solid transparent;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    height: 25px;\n    line-height: 25px;\n    padding: 0px 5px; }\n    .weditor-header .file-header .ql-pdf .pdf-icon {\n      background-position: -160px -180px; }\n  .weditor-header .file-header .ql-word {\n    background: none;\n    border: 1px solid transparent;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    height: 25px;\n    line-height: 25px;\n    padding: 0px 5px; }\n    .weditor-header .file-header .ql-word .word-icon {\n      background-position: -240px -40px; }\n  .weditor-header .opver-icon {\n    background-image: url(https://s3.meituan.net/v1/mss_814dc1610cda4b2e8febd6ea2c809db5/image/1489914204976.png);\n    background-repeat: no-repeat;\n    height: 20px;\n    width: 20px;\n    display: inline-block; }\n  .weditor-header .opver-area span {\n    vertical-align: middle;\n    font-size: 12px; }\n  .weditor-header .opver-area:hover {\n    border: 1px solid #b6b6b6; }\n  .weditor-header .view-header {\n    line-height: 24px;\n    height: 24px;\n    padding: 0; }\n    .weditor-header .view-header .ql-catalogue {\n      background: none;\n      border: 1px solid transparent;\n      cursor: pointer;\n      display: inline-block;\n      float: left;\n      height: 24px;\n      line-height: 24px;\n      padding: 0px 5px; }\n    .weditor-header .view-header .catalogue-icon {\n      background-position: -80px -180px; }\n\n.weditor-body {\n  padding: 0;\n  position: absolute;\n  left: 0;\n  top: 102px;\n  right: 0px;\n  bottom: 0px;\n  overflow: hidden;\n  overflow-y: auto;\n  background-color: #f6f6f6; }\n  .weditor-body .content-container {\n    background-color: white;\n    box-shadow: 0 0 0 0.1px #d1d1d1, 0 0 1px 0.1px #ccc;\n    position: relative;\n    top: 20px;\n    width: 830px;\n    border: 0;\n    padding: 0;\n    margin-bottom: 60px; }\n    .weditor-body .content-container::selection {\n      background: rgba(130, 182, 255, 0.4); }\n    .weditor-body .content-container .ql-container {\n      font-size: 12pt; }\n      .weditor-body .content-container .ql-container.ql-snow {\n        border: none; }\n      .weditor-body .content-container .ql-container .ql-editor {\n        text-align: justify;\n        padding: 40px 57px;\n        margin: 0;\n        overflow: hidden;\n        height: 100%;\n        border: none; }\n  .weditor-body .editormd-toolbar {\n    width: 100%;\n    min-height: 37px;\n    background: #f0f0f0;\n    display: none;\n    position: fixed;\n    top: 55px;\n    left: 0;\n    z-index: 10;\n    border: none; }\n    .weditor-body .editormd-toolbar.scroll {\n      box-shadow: 0 2px 4px rgba(20, 20, 20, 0.15); }\n    .weditor-body .editormd-toolbar .editormd-menu {\n      width: 910px;\n      margin: 0 auto; }\n    .weditor-body .editormd-toolbar .editormd-menu > li > a {\n      border: none; }\n      .weditor-body .editormd-toolbar .editormd-menu > li > a i {\n        font-weight: 200; }\n", ""]);
 
 // exports
 
@@ -29818,10 +29818,6 @@ var _index2 = _interopRequireDefault(_index);
 
 var _quillEditor = __webpack_require__("./src/lib/quillEditor.js");
 
-var _format = __webpack_require__("./src/model/format.js");
-
-var _format2 = _interopRequireDefault(_format);
-
 var _tooltip = __webpack_require__("./src/components/tooltip/index.js");
 
 var _tooltip2 = _interopRequireDefault(_tooltip);
@@ -29866,7 +29862,7 @@ var CommonEditor = function (_Component) {
                 length = _getEditor$getSelecti2.length;
 
             if (!!index) {
-                _format2.default.currentFormat = (0, _quillEditor.getEditor)().getFormat(index, length);
+                format.currentFormat = (0, _quillEditor.getEditor)().getFormat(index, length);
             }
         }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
     }
@@ -31665,9 +31661,15 @@ var InsertImage = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _m
                         (0, _quillEditor.getEditor)().insertEmbed(_index, 'image', res.data.url, _quill2.default.sources.USER);
                         _this3.props.insert.openImageDialog = false;
                     }
-                } else {}
+                } else {
+                    (0, _toast.error)('上传服务错误');
+                }
+            });
+            uploader.on('uploadComplete', function () {
+                uploader.reset();
             });
             uploader.on('uploadError', function () {
+                uploader.reset();
                 (0, _toast.error)('上传服务错误');
             });
         }
@@ -31676,6 +31678,8 @@ var InsertImage = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _m
         value: function componentWillUnmount() {
             window.document.removeEventListener('click', this.otherDOMClick);
             this.uploader.removeEvent('uploadAccept');
+            this.uploader.removeEvent('uploadComplete');
+            this.uploader.removeEvent('uploadError');
             this.uploader.destory();
         }
     }, {
@@ -32075,30 +32079,12 @@ var Selection = (_dec = (0, _mobxReact.inject)('editor'), _dec(_class = (0, _mob
     }
 
     (0, _createClass3.default)(Selection, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            var _this2 = this;
-
-            var editorDom = $('.ql-editor');
-            var $selection = $(_reactDom2.default.findDOMNode(this.refs.selection));
-            editorDom.on('scroll', function (e) {
-                var _props$editor$range = _this2.props.editor.range,
-                    index = _props$editor$range.index,
-                    length = _props$editor$range.length;
-
-                var _getEditor$getBounds = (0, _quillEditor.getEditor)().getBounds(index, length || 0),
-                    top = _getEditor$getBounds.top;
-
-                $selection.css('top', top);
-            });
-        }
-    }, {
         key: 'render',
         value: function render() {
             var editor = (0, _quillEditor.getEditor)();
-            var _props$editor$range2 = this.props.editor.range,
-                index = _props$editor$range2.index,
-                length = _props$editor$range2.length;
+            var _props$editor$range = this.props.editor.range,
+                index = _props$editor$range.index,
+                length = _props$editor$range.length;
 
             var sLeft = 0,
                 sHeight = 0,
@@ -32112,6 +32098,7 @@ var Selection = (_dec = (0, _mobxReact.inject)('editor'), _dec(_class = (0, _mob
                         top = _editor$getBounds.top,
                         width = _editor$getBounds.width;
 
+                    console.log(left, height, top, width);
                     sLeft = left;
                     sHeight = height;
                     sTop = top;
@@ -34967,8 +34954,6 @@ var _inherits2 = __webpack_require__("./node_modules/babel-runtime/helpers/inher
 
 var _inherits3 = _interopRequireDefault(_inherits2);
 
-var _dec, _class;
-
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
@@ -34981,17 +34966,13 @@ var _printThis = __webpack_require__("./src/lib/printThis.js");
 
 var _printThis2 = _interopRequireDefault(_printThis);
 
-var _mobxReact = __webpack_require__("./node_modules/mobx-react/index.js");
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var $ = window.jQuery;
 (0, _printThis2.default)($);
-var CommonEditor = (_dec = (0, _mobxReact.inject)(function (state) {
-    return {
-        rangeFormat: state.editor.range
-    };
-}), _dec(_class = (0, _mobxReact.observer)(_class = function (_Component) {
+// import {inject,observer} from 'mobx-react'
+
+var CommonEditor = function (_Component) {
     (0, _inherits3.default)(CommonEditor, _Component);
 
     function CommonEditor() {
@@ -35051,7 +35032,8 @@ var CommonEditor = (_dec = (0, _mobxReact.inject)(function (state) {
         }
     }]);
     return CommonEditor;
-}(_react.Component)) || _class) || _class);
+}(_react.Component);
+
 exports.default = CommonEditor;
 
 /***/ }),
@@ -36369,12 +36351,18 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var quillEditor = null;
 var quillDom = null;
+var $quillDom = null;
+var $quillEditorDom = null;
+var $quillContainer = null;
+var $weditorBody = null;
 var linkBubble = {
     height: 95,
     width: 380
 };
 var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, options) {
     quillDom = dom;
+    $quillDom = $(quillDom);
+    $quillContainer = $('.content-container');
     quillEditor = new _quill2.default(dom, {
         modules: {
             toolbar: {
@@ -36432,18 +36420,20 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
             imageResize: true
         },
         placeholder: '输入文档...',
-        theme: 'snow'
-
+        theme: 'snow',
+        scrollingContainer: document.querySelector('.weditor-body')
     });
-    quillEditor.on('blur', function () {
-        var selection = quillEditor.getSelection();
-        console.log('blur', selection);
+    $quillEditorDom = $(quillDom).find('.ql-editor');
+    $weditorBody = $('.weditor-body');
+    quillEditor.on('text-change', function (range, oldRange, source) {
+        resize();
     });
     quillEditor.on('selection-change', function (range, oldRange, source) {
         console.log('selection-change', range, source);
         if (range) {
             _editor2.default.range = range;
             _editor2.default.focus = true;
+            _editor2.default.format = quillEditor.getFormat(range) || {};
             //let rangeFormat = quillEditor.getFormat(range);
             // if (rangeFormat.link) {
             //     insert.openLinkDialog = true;
@@ -36472,9 +36462,21 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
         }
     });
     (0, _initHotKey2.default)(quillEditor);
+
+    $(window).on('resize', resize);
+    //fix有图片的时候高度问题
+    $(window).on("load", resize);
     return quillEditor;
 };
-
+function resize() {
+    var scrollHeight = $quillEditorDom[0].scrollHeight;
+    console.log(scrollHeight);
+    if ($weditorBody.height() < scrollHeight) {
+        // $quillContainer.height(scrollHeight);
+    } else {
+            //$quillContainer.height($weditorBody.height() - 50);
+        }
+}
 var getEditor = exports.getEditor = function getEditor() {
     return quillEditor;
 };
@@ -36833,7 +36835,7 @@ var _classCallCheck2 = __webpack_require__("./node_modules/babel-runtime/helpers
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-var _desc, _value, _class, _descriptor, _descriptor2;
+var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3;
 
 var _mobx = __webpack_require__("./node_modules/mobx/lib/mobx.js");
 
@@ -36891,6 +36893,8 @@ var Editor = (_class = function Editor() {
     _initDefineProp(this, 'range', _descriptor, this);
 
     _initDefineProp(this, 'focus', _descriptor2, this);
+
+    _initDefineProp(this, 'format', _descriptor3, this);
 }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'range', [_mobx.observable], {
     enumerable: true,
     initializer: function initializer() {
@@ -36900,6 +36904,11 @@ var Editor = (_class = function Editor() {
     enumerable: true,
     initializer: function initializer() {
         return false;
+    }
+}), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'format', [_mobx.observable], {
+    enumerable: true,
+    initializer: function initializer() {
+        return {};
     }
 })), _class);
 
@@ -36918,6 +36927,7 @@ exports.default = editor;
  * Created by yeanzhi on 17/3/28.
  */
 
+//格式刷使用
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -37138,7 +37148,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var StartHeader = (_dec = (0, _mobxReact.inject)(function (state) {
     return {
-        rangeFormat: state.editor.range
+        rangeFormat: state.editor.format
     };
 }), _dec(_class = (0, _mobxReact.observer)(_class = function (_Component) {
     (0, _inherits3.default)(StartHeader, _Component);
@@ -37156,6 +37166,7 @@ var StartHeader = (_dec = (0, _mobxReact.inject)(function (state) {
 
         return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = StartHeader.__proto__ || (0, _getPrototypeOf2.default)(StartHeader)).call.apply(_ref, [this].concat(args))), _this), _this.setColor = function (color) {
             if ((0, _quillEditor.getEditor)()) {
+                (0, _quillEditor.getEditor)().focus();
                 (0, _quillEditor.getEditor)().format('color', color, 'user');
             }
         }, _this.setBackgroundColor = function (color) {
@@ -37165,8 +37176,6 @@ var StartHeader = (_dec = (0, _mobxReact.inject)(function (state) {
         }, _this.align = function (align) {
             return function () {
                 var quillEditor = (0, _quillEditor.getEditor)();
-                console.log('align', align, quillEditor);
-
                 if (quillEditor) {
                     // const {index,length} = editor.range;
                     // if(index===0 || !!index){
@@ -37188,8 +37197,6 @@ var StartHeader = (_dec = (0, _mobxReact.inject)(function (state) {
             var _props = this.props,
                 rangeFormat = _props.rangeFormat,
                 style = _props.style;
-
-            console.log(rangeFormat, 'rangeFormat');
             var color = rangeFormat.color,
                 background = rangeFormat.background,
                 size = rangeFormat.size,
@@ -37762,8 +37769,8 @@ var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
                         'div',
                         { className: 'content-container',
                             style: { left: this.state.left } },
-                        _react2.default.createElement('div', { ref: 'editor' }),
-                        !this.props.focus && _react2.default.createElement(_selection2.default, { scrollTop: this.state.scrollTop })
+                        !this.props.focus && _react2.default.createElement(_selection2.default, { scrollTop: this.state.scrollTop }),
+                        _react2.default.createElement('div', { ref: 'editor' })
                     )
                 ),
                 this.props.insert.openLinkDialog && _react2.default.createElement(_linkBubble2.default, null),
