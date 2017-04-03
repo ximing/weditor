@@ -1,3 +1,13 @@
+body{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  overflow: hidden;
+  background-color: #f2f2f2;
+}
 .weditor-wrapper{
   overflow: hidden;
   position: absolute;
@@ -11,13 +21,14 @@
 }
 @import "./header.scss";
 .weditor-body{
-  padding: 10px 0;
+  padding: 0;
   position: absolute;
   left: 0;
   top: 95px;
   right: 0px;
   bottom: 0px;
   overflow: hidden;
+  overflow-y: auto;
   background-color: rgb(246,246,246);
   .content-container{
     background-color: rgb(255, 255, 255);
@@ -25,18 +36,28 @@
       background: rgba(130, 182, 255,.4);
     }
     box-shadow: 0 0 0 0.1px #d1d1d1, 0 0 1px 0.1px #ccc;
-    position: absolute;
+    position: relative;
     top:20px;
-    bottom: 10px;
-    left: 0;
-    width: 800px;
+    //bottom: 10px;
+    //left: 0;
+    width: 830px;
     //margin: 0 auto;
     border: 0;
+    padding: 40px 57px;
+    margin-bottom: 60px;
     //height: 100%;
     .ql-container{
       font-size: 12pt;
+      &.ql-snow{
+        border: none;
+      }
       .ql-editor{
         text-align: justify;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        height:100%;
+        border: none;
       }
     }
   }
