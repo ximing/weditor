@@ -1,9 +1,10 @@
 .catalogue-container {
-    position: absolute;
+    position: fixed;
     left: 0;
     width: 300px;
-    bottom: 0px;
-    top: 0px;
+    //bottom: 0px;
+    top: 98px;
+    height: 100%;
     background: rgb(246, 246, 246);
     outline: none;
     display: block;
