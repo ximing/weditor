@@ -5,7 +5,6 @@
 import React, {Component} from "react";
 import Icon from './components/icon/index';
 import {getEditor} from './lib/quillEditor'
-import format from './model/format';
 import ToolTip from './components/tooltip'
 export default class CommonEditor extends Component {
 

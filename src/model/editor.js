@@ -18,6 +18,9 @@ class Editor{
     @observable
     focus=false;
 
+    @observable
+    format={}
+
 }
 
 const editor = new Editor();

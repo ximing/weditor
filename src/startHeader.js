@@ -13,7 +13,7 @@ import Icon from './components/icon';
 import editor from './model/editor';
 
 @inject(state=>({
-    rangeFormat:state.editor.range
+    rangeFormat:state.editor.format
 })) @observer
 export default class StartHeader extends Component {
     //行高

@@ -7,11 +7,8 @@ import Icon from './components/icon/index';
 import printThis from './lib/printThis';
 const $ = window.jQuery;
 printThis($);
-import {inject,observer} from 'mobx-react'
+// import {inject,observer} from 'mobx-react'
 
-@inject(state=>({
-    rangeFormat:state.editor.range
-})) @observer
 export default class CommonEditor extends Component {
 
     print = () =>{

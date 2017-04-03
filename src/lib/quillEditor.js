@@ -89,6 +89,7 @@ export const initQuillEditor = function (dom, options) {
         if (range) {
             editor.range = range;
             editor.focus = true;
+            editor.format = quillEditor.getFormat(range)||{};
             //let rangeFormat = quillEditor.getFormat(range);
             // if (rangeFormat.link) {
             //     insert.openLinkDialog = true;
