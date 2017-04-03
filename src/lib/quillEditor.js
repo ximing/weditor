@@ -76,8 +76,8 @@ export const initQuillEditor = function (dom, options) {
             imageResize: true
         },
         placeholder: '输入文档...',
-        theme: 'snow'
-
+        theme: 'snow',
+        scrollingContainer:document.querySelector('.weditor-body')
     });
     $quillEditorDom = $(quillDom).find('.ql-editor');
     $weditorBody = $('.weditor-body');
@@ -126,9 +126,9 @@ function resize() {
     let scrollHeight = $quillEditorDom[0].scrollHeight;
     console.log(scrollHeight);
     if ($weditorBody.height() < scrollHeight) {
-        $quillContainer.height(scrollHeight);
+       // $quillContainer.height(scrollHeight);
     } else {
-        $quillContainer.height($weditorBody.height() - 50);
+        //$quillContainer.height($weditorBody.height() - 50);
     }
 }
 export const getEditor = function () {

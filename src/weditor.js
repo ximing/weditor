@@ -55,11 +55,11 @@ export default class WEditor extends Component {
                     <Catalogue/>
                     <div className="content-container"
                          style={{left: this.state.left}}>
-                        <div ref="editor">
-                        </div>
                         {
                             !this.props.focus && <Selection scrollTop={this.state.scrollTop}/>
                         }
+                        <div ref="editor">
+                        </div>
                     </div>
                 </div>
                 {

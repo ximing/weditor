@@ -23,6 +23,7 @@ export default class StartHeader extends Component {
 
     setColor = (color) => {
         if (getEditor()) {
+            getEditor().focus();
             getEditor().format('color', color, 'user');
         }
     }
