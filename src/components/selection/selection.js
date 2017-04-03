@@ -10,15 +10,7 @@ import {getEditor, getEditorBoundingClientRect} from '../../lib/quillEditor';
 
 @inject('editor') @observer
 export default class Selection extends Component {
-    componentDidMount(){
-        let editorDom = $('.ql-editor');
-        let $selection = $(ReactDOM.findDOMNode(this.refs.selection));
-        editorDom.on('scroll', (e) => {
-            const {index, length} = this.props.editor.range;
-            const {top} = getEditor().getBounds(index, length || 0);
-            $selection.css('top',top)
-        })
-    }
+
     render() {
         const editor = getEditor();
         const {index, length} = this.props.editor.range;
@@ -26,6 +18,7 @@ export default class Selection extends Component {
         if (editor) {
             if (index) {
                 const {left, height, top, width} = editor.getBounds(index, length || 0);
+                console.log(left,height,top,width)
                 sLeft = left;
                 sHeight = height;
                 sTop = top;

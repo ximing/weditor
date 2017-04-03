@@ -43,7 +43,8 @@ body{
     width: 830px;
     //margin: 0 auto;
     border: 0;
-    padding: 40px 57px;
+    //padding: 40px 57px;
+    padding: 0;
     margin-bottom: 60px;
     //height: 100%;
     .ql-container{
@@ -53,7 +54,8 @@ body{
       }
       .ql-editor{
         text-align: justify;
-        padding: 0;
+        //padding: 0;
+        padding: 40px 57px;
         margin: 0;
         overflow: hidden;
         height:100%;
