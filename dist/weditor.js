@@ -39726,24 +39726,24 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 exports.default = function (quill) {
-    // quill.keyboard.addBinding({
-    //     key: 'b',
-    //     shortKey: true
-    // }, function(range, context) {
-    //     this.quill.formatText(range, 'bold', !context.format.bold,'user');
-    // });
-    // quill.keyboard.addBinding({
-    //     key: 'i',
-    //     shortKey: true
-    // }, function(range, context) {
-    //     this.quill.formatText(range, 'italic', !context.format.italic,'user');
-    // });
-    // quill.keyboard.addBinding({
-    //     key: 'u',
-    //     shortKey: true
-    // }, function(range, context) {
-    //     this.quill.formatText(range, 'underline', !context.format.underline,'user');
-    // });
+    quill.keyboard.addBinding({
+        key: 'b',
+        shortKey: true
+    }, function (range, context) {
+        this.quill.formatText(range, 'bold', !context.format.bold, 'user');
+    });
+    quill.keyboard.addBinding({
+        key: 'i',
+        shortKey: true
+    }, function (range, context) {
+        this.quill.formatText(range, 'italic', !context.format.italic, 'user');
+    });
+    quill.keyboard.addBinding({
+        key: 'u',
+        shortKey: true
+    }, function (range, context) {
+        this.quill.formatText(range, 'underline', !context.format.underline, 'user');
+    });
     quill.keyboard.addBinding({
         key: 'x',
         shortKey: true,
@@ -39874,7 +39874,7 @@ exports.default = function (quill) {
         shortKey: true,
         shiftKey: true
     }, function (range, context) {
-        this.quill.format('align', 'justify');
+        this.quill.format('align', 'justify', 'user');
     });
 
     quill.keyboard.addBinding({
@@ -39882,7 +39882,7 @@ exports.default = function (quill) {
         shortKey: true,
         shiftKey: true
     }, function (range, context) {
-        this.quill.format('align', 'justify');
+        this.quill.format('align', 'justify', 'user');
     });
 
     quill.keyboard.addBinding({
@@ -39890,28 +39890,28 @@ exports.default = function (quill) {
         shortKey: true,
         shiftKey: true
     }, function (range, context) {
-        this.quill.format('align', 'justify');
+        this.quill.format('align', 'justify', 'user');
     });
     quill.keyboard.addBinding({
         key: 'l',
         shortKey: true,
         shiftKey: true
     }, function (range, context) {
-        this.quill.format('align', 'left');
+        this.quill.format('align', 'left', 'user');
     });
     quill.keyboard.addBinding({
         key: 'e',
         shortKey: true,
         shiftKey: true
     }, function (range, context) {
-        this.quill.format('align', 'center');
+        this.quill.format('align', 'center', 'user');
     });
     quill.keyboard.addBinding({
         key: 'r',
         shortKey: true,
         shiftKey: true
     }, function (range, context) {
-        this.quill.format('align', 'right');
+        this.quill.format('align', 'right', 'user');
     });
 };
 
@@ -41560,7 +41560,7 @@ var StartHeader = (_dec = (0, _mobxReact.inject)(function (state) {
                     // if(index===0 || !!index){
                     //     quillEditor.formatLine(index,length,'align',align);
                     // }
-                    quillEditor.format('align', align);
+                    quillEditor.format('align', align, 'user');
                 }
             };
         }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
