@@ -15,21 +15,7 @@ import Dropdown from 'rc-dropdown';
 import Menu, { Item as MenuItem, Divider } from 'rc-menu';
 import 'rc-dropdown/assets/index.css';
 import help from './model/help';
-function openHelpDialog({key}) {
-    if(key==='2'){
-        help.hotKeysDialog = true;
-    }
-}
 
-const menu = (
-    <Menu selectable={false} onClick={openHelpDialog}>
-        <MenuItem key="1">报告问题</MenuItem>
-        <Divider />
-        <MenuItem key="2">键盘快捷键</MenuItem>
-        <Divider />
-        <MenuItem key="3">上报日志</MenuItem>
-    </Menu>
-);
 export default class EditorHeader extends Component {
     constructor() {
         super();
@@ -48,6 +34,17 @@ export default class EditorHeader extends Component {
     }
 
 
+    HelpMenuClick = ({key}) =>{
+        if(key==='0'){
+            help.hotKeysDialog = true;
+        }else{
+            this.props.helpOptions.forEach(item=>{
+                if(item.key === key){
+                    item.onClick(key);
+                }
+            })
+        }
+    }
 
     export = async() => {
         if (getEditor()) {
@@ -83,6 +80,19 @@ export default class EditorHeader extends Component {
 
 
     renderToolbar(){
+        let menu = (
+            <Menu selectable={false} onClick={this.HelpMenuClick}>
+                <MenuItem key="0">键盘快捷键</MenuItem>
+                <Divider />
+                {
+                    this.props.helpOptions.map(item=>{
+                        return(
+                            <MenuItem key={item.key}>{item.content}</MenuItem>
+                        )
+                    })
+                }
+            </Menu>
+        );
         const {panel} = this.state;
         return(
             <div className="toolbar-tab">

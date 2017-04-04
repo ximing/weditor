@@ -18,7 +18,8 @@ import help from './model/help';
 class  Editor extends Component {
     static defaultProps = {
         options:{
-            uploadUrl:''
+            uploadUrl:'',
+            helpOptions:[]
         },
         doc:{
             name:'',

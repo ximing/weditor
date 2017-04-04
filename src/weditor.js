@@ -53,7 +53,9 @@ export default class WEditor extends Component {
     render() {
         return (
             <div className="weditor-wrapper">
-                <Header doc={this.props.doc} rightContent={this.props.rightContent}/>
+                <Header doc={this.props.doc}
+                        rightContent={this.props.rightContent}
+                        helpOptions={this.props.options.helpOptions}/>
                 <div className="weditor-body">
                     <Catalogue/>
                     <div className="content-container"
