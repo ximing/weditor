@@ -40,7 +40,7 @@ export default class StartHeader extends Component {
                 // if(index===0 || !!index){
                 //     quillEditor.formatLine(index,length,'align',align);
                 // }
-                quillEditor.format('align',align)
+                quillEditor.format('align',align,'user')
             }
         }
     }
