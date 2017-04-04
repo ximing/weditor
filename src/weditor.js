@@ -56,16 +56,17 @@ export default class WEditor extends Component {
                     <Catalogue/>
                     <div className="content-container"
                          style={{left: this.state.left}}>
-                        {
-                            this.props.coCursors.map(item=>{
-                                return <OtherSelection key={item.id} name={item.name} range={item.range} />
-                            })
-                        }
+
                         {
                             !this.props.focus && <Selection scrollTop={this.state.scrollTop}/>
                         }
                         <div ref="editor">
                         </div>
+                        {
+                            this.props.coCursors.map(item=>{
+                                return <OtherSelection key={item.id} name={item.name} range={item.range} />
+                            })
+                        }
                     </div>
                 </div>
                 {

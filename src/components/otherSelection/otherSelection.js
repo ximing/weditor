@@ -24,14 +24,12 @@ export default class OtherSelection extends Component{
                      style={{
                          diplay:'block',
                          height: sHeight,
-                         width: 0,
                          left: sLeft,
-                         top: sTop,
-                         borderLeft:'1px solid black'
+                         top: sTop
                      }}>
-                    <div style={{width:sWidth}}>
-                        <span className="weditor-other-selection-name">{name}</span>
+                    <div className="w-o-b" style={{height:sHeight}}>
                     </div>
+                    <p className="weditor-other-selection-name">{name}</p>
                 </div>
             )
         }else{
