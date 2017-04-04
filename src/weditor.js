@@ -57,7 +57,7 @@ export default class WEditor extends Component {
                     <div className="content-container"
                          style={{left: this.state.left}}>
                         {
-                            this.props.coCurcors.map(item=>{
+                            this.props.coCursors.map(item=>{
                                 return <OtherSelection key={item.id} name={item.name} range={item.range} />
                             })
                         }

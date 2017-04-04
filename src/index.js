@@ -22,7 +22,7 @@ class  Editor extends Component {
             name:'',
             status:''
         },
-        coCurcors:[],
+        coCursors:[],
         rightContent:null
     };
 
@@ -39,7 +39,7 @@ class  Editor extends Component {
                 editor={editor}
             >
                 <WEditor options={this.props.options}
-                         coCurcors = {this.props.coCurcors}
+                         coCursors = {this.props.coCursors}
                          doc={this.props.doc}
                          rightContent = {this.props.rightContent}/>
             </Provider>

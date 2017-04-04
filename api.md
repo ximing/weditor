@@ -1,4 +1,4 @@
-coCurcors:
+coCursors:
 ```$json
 [{name,range,id}]
 ```
