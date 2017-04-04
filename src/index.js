@@ -13,6 +13,7 @@ import WEditor from './weditor'
 import catalogue from './model/catalogue';
 import insert from './model/insert';
 import editor from './model/editor';
+import help from './model/help';
 
 class  Editor extends Component {
     static defaultProps = {
@@ -44,6 +45,7 @@ class  Editor extends Component {
                 catalogue={catalogue}
                 insert={insert}
                 editor={editor}
+                help={help}
             >
                 <WEditor options={this.props.options}
                          coCursors = {this.props.coCursors}

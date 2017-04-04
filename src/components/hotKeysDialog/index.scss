@@ -1,0 +1,61 @@
+.weditor-hotkeys-dialog{
+    width: 800px;
+    height: 537px;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: 10px 20px;
+    .nx-dialog-content{
+        margin: 5px;
+        margin-top: 40px;
+        ::-webkit-scrollbar-thumb {
+            background-color: rgba(0,0,0,.2);
+            background-clip: padding-box;
+            border: solid transparent;
+            border-width: 1px 1px 1px 6px;
+            min-height: 28px;
+            padding: 100px 0 0;
+            box-shadow: inset 1px 1px 0 rgba(0,0,0,.1), inset 0 -1px 0 rgba(0,0,0,.07);
+        }
+        ::-webkit-scrollbar-corner {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-button {
+            height: 0;
+            width: 0;
+        }
+        ::-webkit-scrollbar {
+            height: 16px;
+            overflow: visible;
+            width: 16px;
+        }
+    }
+    .weditor-hotkeys-inner{
+        overflow: auto;
+        height: 408px;
+        width: 100%;
+        .apps-shortcutshelppopup-content{
+            border-collapse: collapse;
+            width: 100%;
+            outline-offset: -1px;
+            outline: none;
+            .apps-shortcutshelppopup-shortcut-desc{
+                color: #757575;
+            }
+            .apps-shortcutshelppopup-content-element{
+                text-align: left;
+                vertical-align: middle;
+                padding-top: 0.15em;
+                border-bottom: 1px solid #ececec;
+                height: 32px;
+                white-space: nowrap;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+            .apps-shortcutshelppopup-shortcut-key{
+                font-weight: bold;
+                color: #212121;
+            }
+        }
+
+    }
+}

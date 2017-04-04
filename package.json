@@ -17,6 +17,8 @@
     "omit.js": "^0.1.0",
     "quill": "^1.2.3",
     "quill-delta": "^3.5.0",
+    "rc-dropdown": "^1.4.10",
+    "rc-menu": "^5.0.9",
     "rc-notification": "^1.4.1",
     "rc-progress": "^2.1.0",
     "rc-tabs": "^7.3.1",

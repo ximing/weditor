@@ -10,6 +10,7 @@ import Catalogue from './catalogue';
 import {initQuillEditor} from './lib/quillEditor'
 import LinkBubble from './components/linkBubble';
 import InsertImage from './components/insertImage';
+import HotKeysDialog from './components/hotKeysDialog';
 import {inject, observer} from 'mobx-react';
 import Selection from './components/selection';
 import OtherSelection from './components/otherSelection';
@@ -18,7 +19,8 @@ import editor from './model/editor'
 @inject(state => ({
     insert: state.insert,
     open: state.catalogue.open,
-    focus: state.editor.focus
+    focus: state.editor.focus,
+    help:state.help
 })) @observer
 export default class WEditor extends Component {
     state = {
@@ -76,6 +78,10 @@ export default class WEditor extends Component {
                 {
                     this.props.insert.openImageDialog &&
                     <InsertImage uploadUrl={this.props.options.uploadUrl}/>
+                }
+                {
+                    this.props.help.hotKeysDialog &&
+                    <HotKeysDialog />
                 }
             </div>
         );

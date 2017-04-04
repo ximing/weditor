@@ -42,23 +42,24 @@
     position: absolute;
     padding: 10px 0px;
     background: #ffffff;
-    font-size: 14px;
-    width: 100px;
-    height: 350px;
+    font-size: 16px;
+    width: 150px;
+    height: 300px;
     overflow-y: auto;
     border-radius: 2px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     p{
       padding-left: 15px;
-      line-height: 25px;
+      //line-height: 25px;
       &:hover{
         background: #f5f5f5;
         cursor: pointer;
       }
     }
     .o-p-h{
-      padding: 6px 0px 6px 15px ;
+      padding: 10px 0px 10px 15px ;
       min-height: 25px;
+      margin: 0;
       &:hover{
         background: #f5f5f5;
         cursor: pointer;

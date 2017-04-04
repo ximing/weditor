@@ -191,7 +191,7 @@ export default class StartHeader extends Component {
                         placement="bottom"
                         mouseEnterDelay={0}
                         mouseLeaveDelay={0}
-                        overlay={<div>有序列表 ctrl+shift+l</div>}
+                        overlay={<div>有序列表 ctrl+Option+L</div>}
                     >
                         <button className="ql-list" value="ordered"></button>
                     </ToolTip>
@@ -199,7 +199,7 @@ export default class StartHeader extends Component {
                         placement="bottom"
                         mouseEnterDelay={0}
                         mouseLeaveDelay={0}
-                        overlay={<div>无序列表 ctrl+shift+u</div>}
+                        overlay={<div>无序列表 ctrl+Option+U</div>}
                     >
                         <button className="ql-list" value="bullet"></button>
                     </ToolTip>
@@ -209,7 +209,7 @@ export default class StartHeader extends Component {
                         placement="bottom"
                         mouseEnterDelay={0}
                         mouseLeaveDelay={0}
-                        overlay={<div>左对齐</div>}
+                        overlay={<div>左对齐 Ctrl+Shift+L</div>}
                     >
                         <Icon type="zuoduiqi" onClick={this.align('left')}/>
                     </ToolTip>
@@ -217,7 +217,7 @@ export default class StartHeader extends Component {
                         placement="bottom"
                         mouseEnterDelay={0}
                         mouseLeaveDelay={0}
-                        overlay={<div>居中对齐</div>}
+                        overlay={<div>居中对齐 Ctrl+Shift+E</div>}
                     >
                         <Icon type="juzhongduiqi" onClick={this.align('center')}/>
                     </ToolTip>
@@ -225,7 +225,7 @@ export default class StartHeader extends Component {
                         placement="bottom"
                         mouseEnterDelay={0}
                         mouseLeaveDelay={0}
-                        overlay={<div>右对齐</div>}
+                        overlay={<div>右对齐 Ctrl+Shift+R</div>}
                     >
                         <Icon type="youduiqi" onClick={this.align('right')}/>
                     </ToolTip>
@@ -233,7 +233,7 @@ export default class StartHeader extends Component {
                         placement="bottom"
                         mouseEnterDelay={0}
                         mouseLeaveDelay={0}
-                        overlay={<div>两端对齐</div>}
+                        overlay={<div>两端对齐 Ctrl+Shift+J</div>}
                     >
                         <Icon type="liangduanduiqi" onClick={this.align('justify')} />
                     </ToolTip>

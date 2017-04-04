@@ -11,6 +11,25 @@ import InsertHeader from './insertHeader';
 import ViewHeader from './viewHeader';
 import {getEditor} from './lib/quillEditor'
 import {info} from './components/toast'
+import Dropdown from 'rc-dropdown';
+import Menu, { Item as MenuItem, Divider } from 'rc-menu';
+import 'rc-dropdown/assets/index.css';
+import help from './model/help';
+function openHelpDialog({key}) {
+    if(key==='2'){
+        help.hotKeysDialog = true;
+    }
+}
+
+const menu = (
+    <Menu selectable={false} onClick={openHelpDialog}>
+        <MenuItem key="1">报告问题</MenuItem>
+        <Divider />
+        <MenuItem key="2">键盘快捷键</MenuItem>
+        <Divider />
+        <MenuItem key="3">上报日志</MenuItem>
+    </Menu>
+);
 export default class EditorHeader extends Component {
     constructor() {
         super();
@@ -61,6 +80,8 @@ export default class EditorHeader extends Component {
         }
     }
 
+
+
     renderToolbar(){
         const {panel} = this.state;
         return(
@@ -71,7 +92,13 @@ export default class EditorHeader extends Component {
                 {/*<span className="table-tab">视图</span>*/}
                 <span className={`view-tab ${panel===3?'active':''}`} onClick={this.changePanel(3)}>视图</span>
                 <span className="history-tab" onClick={this.changePanel(4)}>修订历史</span>
-                <span className="help-tab" onClick={this.changePanel(5)}>帮助</span>
+                <Dropdown
+                    trigger={['click']}
+                    overlay={menu}
+                    animation="slide-up"
+                >
+                    <span className="help-tab" >帮助</span>
+                </Dropdown>
             </div>
         )
     }
