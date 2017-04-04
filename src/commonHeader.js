@@ -73,7 +73,7 @@ export default class CommonEditor extends Component {
                     placement="bottom"
                     mouseEnterDelay={0}
                     mouseLeaveDelay={0}
-                    overlay={<div>清除格式 ctrl+\</div>}
+                    overlay={<div>清除格式 ctrl+shift+C</div>}
                 >
                    <button className="ql-clear-format" onClick={this.clearFormat}>
                         <Icon type="qingchu"/>

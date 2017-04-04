@@ -3,26 +3,26 @@
  */
 'use strict';
 export default function (quill) {
+    // quill.keyboard.addBinding({
+    //     key: 'b',
+    //     shortKey: true
+    // }, function(range, context) {
+    //     this.quill.formatText(range, 'bold', !context.format.bold,'user');
+    // });
+    // quill.keyboard.addBinding({
+    //     key: 'i',
+    //     shortKey: true
+    // }, function(range, context) {
+    //     this.quill.formatText(range, 'italic', !context.format.italic,'user');
+    // });
+    // quill.keyboard.addBinding({
+    //     key: 'u',
+    //     shortKey: true
+    // }, function(range, context) {
+    //     this.quill.formatText(range, 'underline', !context.format.underline,'user');
+    // });
     quill.keyboard.addBinding({
-        key: 'b',
-        shortKey: true
-    }, function(range, context) {
-        this.quill.formatText(range, 'bold', !context.format.bold,'user');
-    });
-    quill.keyboard.addBinding({
-        key: 'i',
-        shortKey: true
-    }, function(range, context) {
-        this.quill.formatText(range, 'italic', !context.format.italic,'user');
-    });
-    quill.keyboard.addBinding({
-        key: 'u',
-        shortKey: true
-    }, function(range, context) {
-        this.quill.formatText(range, 'underline', !context.format.underline,'user');
-    });
-    quill.keyboard.addBinding({
-        key: 's',
+        key: 'x',
         shortKey: true,
         shiftKey: true
     }, function(range, context) {
@@ -56,10 +56,11 @@ export default function (quill) {
 
 
     quill.keyboard.addBinding({
-        key: `\\`,
-        shortKey: true
+        key:'c',
+        shortKey: true,
+        shiftKey: true
     }, function(range, context) {
-        getEditor().removeFormat(range.index,range.length,'user');
+        this.quill.removeFormat(range.index,range.length,'user');
     });
 
 
