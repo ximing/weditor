@@ -35588,7 +35588,7 @@ var Editor = (_temp = _class = function (_Component) {
                     editor: _editor2.default
                 },
                 _react2.default.createElement(_weditor2.default, { options: this.props.options,
-                    coCurcors: this.props.coCurcors,
+                    coCursors: this.props.coCursors,
                     doc: this.props.doc,
                     rightContent: this.props.rightContent })
             );
@@ -35603,7 +35603,7 @@ var Editor = (_temp = _class = function (_Component) {
         name: '',
         status: ''
     },
-    coCurcors: [],
+    coCursors: [],
     rightContent: null
 }, _temp);
 exports.default = Editor;
@@ -37990,7 +37990,7 @@ var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
                         'div',
                         { className: 'content-container',
                             style: { left: this.state.left } },
-                        this.props.coCurcors.map(function (item) {
+                        this.props.coCursors.map(function (item) {
                             return _react2.default.createElement(_otherSelection2.default, { key: item.id, name: item.name, range: item.range });
                         }),
                         !this.props.focus && _react2.default.createElement(_selection2.default, { scrollTop: this.state.scrollTop }),
