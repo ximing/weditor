@@ -6266,6 +6266,21 @@ exports.push([module.i, ".weditor-bubble {\n  position: absolute;\n  top: 0;\n  
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/otherSelection/index.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, ".weditor-other-selection {\n  background: #2b579a;\n  opacity: 0.79;\n  border: none;\n  margin: 0;\n  padding: 0;\n  position: absolute;\n  top: -999990;\n  left: 0; }\n  .weditor-other-selection .weditor-other-selection-name {\n    margin: 0;\n    position: relative;\n    top: -20px;\n    left: -50%;\n    padding: 2px 8px;\n    font-size: 10px;\n    white-space: nowrap;\n    max-width: 40px;\n    background: #2b579a;\n    opacity: 0.79;\n    color: #ffffff; }\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/selection/index.scss":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6334,7 +6349,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\nbody {\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  margin: 0;\n  overflow: hidden;\n  background-color: #f2f2f2; }\n\n.weditor-wrapper {\n  overflow: hidden;\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0; }\n  .weditor-wrapper div {\n    box-sizing: border-box; }\n\n/* font */\n.weditor-header {\n  width: 100%;\n  margin: 0;\n  padding: 0;\n  border-bottom: 1px solid #ddd;\n  position: relative;\n  z-index: 110;\n  background: #fff;\n  user-select: none;\n  background: -webkit-linear-gradient(top, #fdfdfd, #fff);\n  background: -ms-linear-gradient(top, #fdfdfd, #fff);\n  box-sizing: border-box; }\n  .weditor-header button {\n    outline: none; }\n  .weditor-header .header-left-box {\n    line-height: 34px; }\n    .weditor-header .header-left-box .header-back-up {\n      float: left;\n      width: 40px;\n      height: 60px;\n      cursor: pointer;\n      background-color: #4285f4; }\n      .weditor-header .header-left-box .header-back-up .header-back-icon {\n        display: block;\n        background: url(//mss.sankuai.com/v1/mss_814dc1610cda4b2e8febd6ea2c809db5/image/1489546222140.svg) center no-repeat;\n        height: 60px;\n        position: absolute;\n        width: 40px;\n        -webkit-transition: all 125ms linear;\n        -moz-transition: all 125ms linear;\n        -o-transition: all 125ms linear;\n        transition: all 125ms linear; }\n    .weditor-header .header-left-box .team-sprite {\n      background-image: url(https://assets-cdn.shimo.im/assets/images/teams-31aea6334f.png);\n      background-size: 499px 310px;\n      background-repeat: no-repeat; }\n    .weditor-header .header-left-box .s-header-text {\n      display: inline-block;\n      float: left;\n      height: 34px;\n      line-height: 34px;\n      margin-left: 16px;\n      vertical-align: top; }\n      .weditor-header .header-left-box .s-header-text .title-input-pre {\n        font-size: 14px;\n        font-family: -apple-system, system-ui, \"PingFang SC\", Helvetica, Tahoma, Arial, \"Hiragino Sans GB\", \"Microsoft YaHei\", \"\\\\5FAE\\8F6F\\96C5\\9ED1\", SimSun, \"\\\\5B8B\\4F53\", Heiti, \"\\\\9ED1\\4F53\", sans-serif;\n        font-weight: bold;\n        font-style: normal;\n        letter-spacing: normal; }\n    .weditor-header .header-left-box .s-header-time {\n      margin-left: 13px;\n      margin-top: 1px;\n      font-size: 12px;\n      color: #999; }\n  .weditor-header .header-right-box {\n    position: absolute;\n    height: 100%;\n    top: 5px;\n    right: 20px;\n    line-height: 51px; }\n    .weditor-header .header-right-box .header-item-wrap {\n      display: inline-block;\n      height: 40px;\n      width: 40px; }\n      .weditor-header .header-right-box .header-item-wrap .header-item-inner {\n        border: 1px solid #eee;\n        height: 35px;\n        width: 35px;\n        border-radius: 50%;\n        text-align: center;\n        display: inline-block;\n        position: relative;\n        line-height: 0px; }\n        .weditor-header .header-right-box .header-item-wrap .header-item-inner:before {\n          content: '';\n          display: inline-block;\n          vertical-align: middle;\n          width: 0;\n          height: 100%;\n          font-size: 0; }\n        .weditor-header .header-right-box .header-item-wrap .header-item-inner img {\n          height: 25px;\n          width: 25px;\n          border-radius: 50%;\n          vertical-align: middle; }\n  .weditor-header .editor-toolbar .toolbar-tab {\n    height: 25px;\n    line-height: 25px; }\n    .weditor-header .editor-toolbar .toolbar-tab span {\n      padding: 4px 20px;\n      user-select: none;\n      font-size: 13px;\n      font-weight: bold;\n      cursor: pointer;\n      color: #666666; }\n    .weditor-header .editor-toolbar .toolbar-tab span.active {\n      color: #2374d1;\n      background: #f6f6f6; }\n  .weditor-header .editor-toolbar .ql-toolbar.ql-snow {\n    border: none;\n    background-color: #f6f6f6;\n    height: 40px;\n    line-height: 35px;\n    padding: 0;\n    border-bottom: solid 1px #e2e2e2; }\n  .weditor-header .editor-toolbar .xm-color-picker-container {\n    background: none;\n    border: none;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    height: 24px;\n    padding: 3px 5px;\n    width: 28px; }\n  .weditor-header .editor-toolbar .ql-formats .iconfont {\n    background: none;\n    border: none;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    width: 28px; }\n    .weditor-header .editor-toolbar .ql-formats .iconfont.active {\n      color: #2db7f5; }\n  .weditor-header .common-header {\n    color: #444444; }\n  .weditor-header .toolbar-opver {\n    padding-left: 30px !important; }\n  .weditor-header .file-header .ql-pdf {\n    background: none;\n    border: 1px solid transparent;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    height: 25px;\n    line-height: 25px;\n    padding: 0px 5px; }\n    .weditor-header .file-header .ql-pdf .pdf-icon {\n      background-position: -160px -180px; }\n  .weditor-header .file-header .ql-word {\n    background: none;\n    border: 1px solid transparent;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    height: 25px;\n    line-height: 25px;\n    padding: 0px 5px; }\n    .weditor-header .file-header .ql-word .word-icon {\n      background-position: -240px -40px; }\n  .weditor-header .opver-icon {\n    background-image: url(https://s3.meituan.net/v1/mss_814dc1610cda4b2e8febd6ea2c809db5/image/1489914204976.png);\n    background-repeat: no-repeat;\n    height: 20px;\n    width: 20px;\n    display: inline-block; }\n  .weditor-header .opver-area span {\n    vertical-align: middle;\n    font-size: 12px; }\n  .weditor-header .opver-area:hover {\n    border: 1px solid #b6b6b6; }\n  .weditor-header .view-header {\n    line-height: 24px;\n    height: 24px;\n    padding: 0; }\n    .weditor-header .view-header .ql-catalogue {\n      background: none;\n      border: 1px solid transparent;\n      cursor: pointer;\n      display: inline-block;\n      float: left;\n      height: 24px;\n      line-height: 24px;\n      padding: 0px 5px; }\n    .weditor-header .view-header .catalogue-icon {\n      background-position: -80px -180px; }\n\n.weditor-body {\n  padding: 0;\n  position: absolute;\n  left: 0;\n  top: 102px;\n  right: 0px;\n  bottom: 0px;\n  overflow: hidden;\n  overflow-y: auto;\n  background-color: #f6f6f6; }\n  .weditor-body .content-container {\n    background-color: white;\n    box-shadow: 0 0 0 0.1px #d1d1d1, 0 0 1px 0.1px #ccc;\n    position: relative;\n    top: 20px;\n    width: 830px;\n    border: 0;\n    padding: 0;\n    margin-bottom: 60px; }\n    .weditor-body .content-container::selection {\n      background: rgba(130, 182, 255, 0.4); }\n    .weditor-body .content-container .ql-container {\n      font-size: 12pt; }\n      .weditor-body .content-container .ql-container.ql-snow {\n        border: none; }\n      .weditor-body .content-container .ql-container .ql-editor {\n        text-align: justify;\n        padding: 40px 57px;\n        margin: 0;\n        overflow: hidden;\n        height: 100%;\n        border: none; }\n  .weditor-body .editormd-toolbar {\n    width: 100%;\n    min-height: 37px;\n    background: #f0f0f0;\n    display: none;\n    position: fixed;\n    top: 55px;\n    left: 0;\n    z-index: 10;\n    border: none; }\n    .weditor-body .editormd-toolbar.scroll {\n      box-shadow: 0 2px 4px rgba(20, 20, 20, 0.15); }\n    .weditor-body .editormd-toolbar .editormd-menu {\n      width: 910px;\n      margin: 0 auto; }\n    .weditor-body .editormd-toolbar .editormd-menu > li > a {\n      border: none; }\n      .weditor-body .editormd-toolbar .editormd-menu > li > a i {\n        font-weight: 200; }\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\nbody {\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  margin: 0;\n  overflow: hidden;\n  background-color: #f2f2f2; }\n\n.weditor-wrapper {\n  overflow: hidden;\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0; }\n  .weditor-wrapper div {\n    box-sizing: border-box; }\n\n/* font */\n.weditor-header {\n  width: 100%;\n  margin: 0;\n  padding: 0;\n  border-bottom: 1px solid #ddd;\n  position: relative;\n  z-index: 110;\n  background: #fff;\n  user-select: none;\n  background: -webkit-linear-gradient(top, #fdfdfd, #fff);\n  background: -ms-linear-gradient(top, #fdfdfd, #fff);\n  box-sizing: border-box; }\n  .weditor-header button {\n    outline: none; }\n  .weditor-header .header-left-box {\n    line-height: 34px; }\n    .weditor-header .header-left-box .header-back-up {\n      float: left;\n      width: 40px;\n      height: 60px;\n      cursor: pointer;\n      background-color: #4285f4; }\n      .weditor-header .header-left-box .header-back-up .header-back-icon {\n        display: block;\n        background: url(//mss.sankuai.com/v1/mss_814dc1610cda4b2e8febd6ea2c809db5/image/1489546222140.svg) center no-repeat;\n        height: 60px;\n        position: absolute;\n        width: 40px;\n        -webkit-transition: all 125ms linear;\n        -moz-transition: all 125ms linear;\n        -o-transition: all 125ms linear;\n        transition: all 125ms linear; }\n    .weditor-header .header-left-box .team-sprite {\n      background-image: url(https://assets-cdn.shimo.im/assets/images/teams-31aea6334f.png);\n      background-size: 499px 310px;\n      background-repeat: no-repeat; }\n    .weditor-header .header-left-box .s-header-text {\n      display: inline-block;\n      float: left;\n      height: 34px;\n      line-height: 34px;\n      margin-left: 16px;\n      vertical-align: top; }\n      .weditor-header .header-left-box .s-header-text .title-input-pre {\n        font-size: 14px;\n        font-family: -apple-system, system-ui, \"PingFang SC\", Helvetica, Tahoma, Arial, \"Hiragino Sans GB\", \"Microsoft YaHei\", \"\\\\5FAE\\8F6F\\96C5\\9ED1\", SimSun, \"\\\\5B8B\\4F53\", Heiti, \"\\\\9ED1\\4F53\", sans-serif;\n        font-weight: bold;\n        font-style: normal;\n        letter-spacing: normal; }\n    .weditor-header .header-left-box .s-header-time {\n      margin-left: 13px;\n      margin-top: 1px;\n      font-size: 12px;\n      color: #999; }\n  .weditor-header .header-right-box {\n    position: absolute;\n    height: 100%;\n    top: 5px;\n    right: 20px;\n    line-height: 51px; }\n    .weditor-header .header-right-box .header-item-wrap {\n      display: inline-block;\n      height: 40px;\n      width: 40px; }\n      .weditor-header .header-right-box .header-item-wrap .header-item-inner {\n        border: 1px solid #eee;\n        height: 35px;\n        width: 35px;\n        border-radius: 50%;\n        text-align: center;\n        display: inline-block;\n        position: relative;\n        line-height: 0px; }\n        .weditor-header .header-right-box .header-item-wrap .header-item-inner:before {\n          content: '';\n          display: inline-block;\n          vertical-align: middle;\n          width: 0;\n          height: 100%;\n          font-size: 0; }\n        .weditor-header .header-right-box .header-item-wrap .header-item-inner img {\n          height: 25px;\n          width: 25px;\n          border-radius: 50%;\n          vertical-align: middle; }\n  .weditor-header .editor-toolbar .toolbar-tab {\n    height: 25px;\n    line-height: 25px; }\n    .weditor-header .editor-toolbar .toolbar-tab span {\n      padding: 4px 20px;\n      user-select: none;\n      font-size: 13px;\n      font-weight: bold;\n      cursor: pointer;\n      color: #666666; }\n    .weditor-header .editor-toolbar .toolbar-tab span.active {\n      color: #2374d1;\n      background: #f6f6f6; }\n  .weditor-header .editor-toolbar .ql-toolbar.ql-snow {\n    border: none;\n    background-color: #f6f6f6;\n    height: 40px;\n    line-height: 35px;\n    padding: 0;\n    border-bottom: solid 1px #e2e2e2; }\n  .weditor-header .editor-toolbar .xm-color-picker-container {\n    background: none;\n    border: none;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    height: 24px;\n    padding: 3px 5px;\n    width: 28px; }\n  .weditor-header .editor-toolbar .ql-formats .iconfont {\n    background: none;\n    border: none;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    width: 28px; }\n    .weditor-header .editor-toolbar .ql-formats .iconfont.active {\n      color: #2db7f5; }\n  .weditor-header .common-header {\n    color: #444444; }\n  .weditor-header .toolbar-opver {\n    padding-left: 30px !important; }\n  .weditor-header .file-header .ql-pdf {\n    background: none;\n    border: 1px solid transparent;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    height: 25px;\n    line-height: 25px;\n    padding: 0px 5px; }\n    .weditor-header .file-header .ql-pdf .pdf-icon {\n      background-position: -160px -180px; }\n  .weditor-header .file-header .ql-word {\n    background: none;\n    border: 1px solid transparent;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    height: 25px;\n    line-height: 25px;\n    padding: 0px 5px; }\n    .weditor-header .file-header .ql-word .word-icon {\n      background-position: -240px -40px; }\n  .weditor-header .opver-icon {\n    background-image: url(https://s3.meituan.net/v1/mss_814dc1610cda4b2e8febd6ea2c809db5/image/1489914204976.png);\n    background-repeat: no-repeat;\n    height: 20px;\n    width: 20px;\n    display: inline-block; }\n  .weditor-header .opver-area span {\n    vertical-align: middle;\n    font-size: 12px; }\n  .weditor-header .opver-area:hover {\n    border: 1px solid #b6b6b6; }\n  .weditor-header .view-header {\n    line-height: 24px;\n    height: 24px;\n    padding: 0; }\n    .weditor-header .view-header .ql-catalogue {\n      background: none;\n      border: 1px solid transparent;\n      cursor: pointer;\n      display: inline-block;\n      float: left;\n      height: 24px;\n      line-height: 24px;\n      padding: 0px 5px; }\n    .weditor-header .view-header .catalogue-icon {\n      background-position: -80px -180px; }\n\n.weditor-body {\n  padding: 0;\n  position: absolute;\n  left: 0;\n  top: 102px;\n  right: 0px;\n  bottom: 0px;\n  overflow: hidden;\n  overflow-y: auto;\n  background-color: #f6f6f6; }\n  .weditor-body .content-container {\n    background-color: white;\n    box-shadow: 0 0 0 0.1px #d1d1d1, 0 0 1px 0.1px #ccc;\n    position: relative;\n    top: 20px;\n    width: 830px;\n    border: 0;\n    padding: 0;\n    margin-bottom: 60px;\n    height: 100%; }\n    .weditor-body .content-container::selection {\n      background: rgba(130, 182, 255, 0.4); }\n    .weditor-body .content-container .ql-container {\n      font-size: 12pt; }\n      .weditor-body .content-container .ql-container.ql-snow {\n        border: none; }\n      .weditor-body .content-container .ql-container .ql-editor {\n        text-align: justify;\n        padding: 40px 57px;\n        margin: 0;\n        overflow: hidden;\n        height: 100%;\n        border: none; }\n  .weditor-body .editormd-toolbar {\n    width: 100%;\n    min-height: 37px;\n    background: #f0f0f0;\n    display: none;\n    position: fixed;\n    top: 55px;\n    left: 0;\n    z-index: 10;\n    border: none; }\n    .weditor-body .editormd-toolbar.scroll {\n      box-shadow: 0 2px 4px rgba(20, 20, 20, 0.15); }\n    .weditor-body .editormd-toolbar .editormd-menu {\n      width: 910px;\n      margin: 0 auto; }\n    .weditor-body .editormd-toolbar .editormd-menu > li > a {\n      border: none; }\n      .weditor-body .editormd-toolbar .editormd-menu > li > a i {\n        font-weight: 200; }\n", ""]);
 
 // exports
 
@@ -31968,6 +31983,169 @@ if(false) {
 
 /***/ }),
 
+/***/ "./src/components/otherSelection/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Created by yeanzhi on 17/4/4.
+ */
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+__webpack_require__("./src/components/otherSelection/index.scss");
+
+var _otherSelection = __webpack_require__("./src/components/otherSelection/otherSelection.js");
+
+var _otherSelection2 = _interopRequireDefault(_otherSelection);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _otherSelection2.default;
+
+/***/ }),
+
+/***/ "./src/components/otherSelection/index.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/otherSelection/index.scss");
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/style-loader/addStyles.js")(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/index.js!./index.scss", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/index.js!./index.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./src/components/otherSelection/otherSelection.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Created by yeanzhi on 17/4/4.
+ */
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = undefined;
+
+var _getPrototypeOf = __webpack_require__("./node_modules/babel-runtime/core-js/object/get-prototype-of.js");
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__("./node_modules/babel-runtime/helpers/classCallCheck.js");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__("./node_modules/babel-runtime/helpers/createClass.js");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__("./node_modules/babel-runtime/helpers/possibleConstructorReturn.js");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__("./node_modules/babel-runtime/helpers/inherits.js");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _quillEditor = __webpack_require__("./src/lib/quillEditor.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var OtherSelection = function (_Component) {
+    (0, _inherits3.default)(OtherSelection, _Component);
+
+    function OtherSelection() {
+        (0, _classCallCheck3.default)(this, OtherSelection);
+        return (0, _possibleConstructorReturn3.default)(this, (OtherSelection.__proto__ || (0, _getPrototypeOf2.default)(OtherSelection)).apply(this, arguments));
+    }
+
+    (0, _createClass3.default)(OtherSelection, [{
+        key: 'render',
+        value: function render() {
+            var _props = this.props,
+                name = _props.name,
+                range = _props.range;
+
+            var editor = (0, _quillEditor.getEditor)();
+            var index = range.index,
+                length = range.length;
+
+            var sLeft = 0,
+                sHeight = 0,
+                sWidth = 0,
+                sTop = 0;
+            if (editor) {
+                if (index) {
+                    var _editor$getBounds = editor.getBounds(index, length || 0),
+                        left = _editor$getBounds.left,
+                        height = _editor$getBounds.height,
+                        top = _editor$getBounds.top,
+                        width = _editor$getBounds.width;
+
+                    sLeft = left;
+                    sHeight = height;
+                    sTop = top;
+                    sWidth = width;
+                }
+                return _react2.default.createElement(
+                    'div',
+                    { className: 'weditor-other-selection',
+                        style: {
+                            diplay: 'block',
+                            height: sHeight,
+                            width: 0,
+                            left: sLeft,
+                            top: sTop,
+                            borderLeft: '1px solid black'
+                        } },
+                    _react2.default.createElement(
+                        'div',
+                        { style: { width: sWidth } },
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'weditor-other-selection-name' },
+                            name
+                        )
+                    )
+                );
+            } else {
+                return _react2.default.createElement('span', null);
+            }
+        }
+    }]);
+    return OtherSelection;
+}(_react.Component);
+
+exports.default = OtherSelection;
+
+/***/ }),
+
 /***/ "./src/components/selection/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32074,14 +32252,36 @@ var Selection = (_dec = (0, _mobxReact.inject)('editor'), _dec(_class = (0, _mob
     (0, _inherits3.default)(Selection, _Component);
 
     function Selection() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
         (0, _classCallCheck3.default)(this, Selection);
-        return (0, _possibleConstructorReturn3.default)(this, (Selection.__proto__ || (0, _getPrototypeOf2.default)(Selection)).apply(this, arguments));
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = Selection.__proto__ || (0, _getPrototypeOf2.default)(Selection)).call.apply(_ref, [this].concat(args))), _this), _this.interval = null, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
     }
 
     (0, _createClass3.default)(Selection, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.selection = _reactDom2.default.findDOMNode(this.refs.selection);
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            clearInterval(this.interval);
+        }
+    }, {
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
             var editor = (0, _quillEditor.getEditor)();
+            clearInterval(this.interval);
             var _props$editor$range = this.props.editor.range,
                 index = _props$editor$range.index,
                 length = _props$editor$range.length;
@@ -32103,14 +32303,27 @@ var Selection = (_dec = (0, _mobxReact.inject)('editor'), _dec(_class = (0, _mob
                     sHeight = height;
                     sTop = top;
                     sWidth = width;
+                    if (width === 0) {
+                        this.interval = setInterval(function () {
+                            if (_this2.selection) {
+                                if (_this2.selection.style.display === 'block') {
+                                    _this2.selection.style.display = 'none';
+                                } else {
+                                    _this2.selection.style.display = 'block';
+                                }
+                            }
+                        }, 1200);
+                    }
                 }
             }
             return _react2.default.createElement('div', { className: 'weditor-selection', ref: 'selection',
                 style: {
+                    diplay: 'block',
                     height: sHeight,
                     width: sWidth,
                     left: sLeft,
-                    top: sTop
+                    top: sTop,
+                    borderLeft: sWidth === 0 ? '0.5px solid black' : 'none'
                 } });
         }
     }]);
@@ -35374,7 +35587,10 @@ var Editor = (_temp = _class = function (_Component) {
                     insert: _insert2.default,
                     editor: _editor2.default
                 },
-                _react2.default.createElement(_weditor2.default, { options: this.props.options, doc: this.props.doc, rightContent: this.props.rightContent })
+                _react2.default.createElement(_weditor2.default, { options: this.props.options,
+                    coCurcors: this.props.coCurcors,
+                    doc: this.props.doc,
+                    rightContent: this.props.rightContent })
             );
         }
     }]);
@@ -35387,6 +35603,7 @@ var Editor = (_temp = _class = function (_Component) {
         name: '',
         status: ''
     },
+    coCurcors: [],
     rightContent: null
 }, _temp);
 exports.default = Editor;
@@ -36463,19 +36680,19 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
     });
     (0, _initHotKey2.default)(quillEditor);
 
-    $(window).on('resize', resize);
-    //fix有图片的时候高度问题
-    $(window).on("load", resize);
+    // $(window).on('resize', resize);
+    // //fix有图片的时候高度问题
+    // $( window ).on("load", resize);
     return quillEditor;
 };
 function resize() {
-    var scrollHeight = $quillEditorDom[0].scrollHeight;
-    console.log(scrollHeight);
-    if ($weditorBody.height() < scrollHeight) {
-        // $quillContainer.height(scrollHeight);
-    } else {
-            //$quillContainer.height($weditorBody.height() - 50);
-        }
+    // let scrollHeight = $quillEditorDom[0].scrollHeight;
+    // console.log(scrollHeight);
+    // if ($weditorBody.height() < scrollHeight) {
+    //     $quillContainer.height(scrollHeight);
+    // } else {
+    //     $quillContainer.height($weditorBody.height() - 50);
+    // }
 }
 var getEditor = exports.getEditor = function getEditor() {
     return quillEditor;
@@ -37707,6 +37924,10 @@ var _selection = __webpack_require__("./src/components/selection/index.js");
 
 var _selection2 = _interopRequireDefault(_selection);
 
+var _otherSelection = __webpack_require__("./src/components/otherSelection/index.js");
+
+var _otherSelection2 = _interopRequireDefault(_otherSelection);
+
 var _editor = __webpack_require__("./src/model/editor.js");
 
 var _editor2 = _interopRequireDefault(_editor);
@@ -37769,6 +37990,9 @@ var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
                         'div',
                         { className: 'content-container',
                             style: { left: this.state.left } },
+                        this.props.coCurcors.map(function (item) {
+                            return _react2.default.createElement(_otherSelection2.default, { key: item.id, name: item.name, range: item.range });
+                        }),
                         !this.props.focus && _react2.default.createElement(_selection2.default, { scrollTop: this.state.scrollTop }),
                         _react2.default.createElement('div', { ref: 'editor' })
                     )
