@@ -6116,6 +6116,21 @@ exports.push([module.i, "/*!\n * Quill Editor v1.2.3\n * https://quilljs.com/\n 
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?{\"plugins\":[null,null]}!./node_modules/rc-dropdown/assets/index.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, "@font-face {\n  font-family: 'anticon';\n  src: url('//at.alicdn.com/t/font_1434092639_4910953.eot');\n  /* IE9*/\n  src: url('//at.alicdn.com/t/font_1434092639_4910953.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('//at.alicdn.com/t/font_1434092639_4910953.woff') format('woff'), /* chrome、firefox */ url('//at.alicdn.com/t/font_1434092639_4910953.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/ url('//at.alicdn.com/t/font_1434092639_4910953.svg#iconfont') format('svg');\n  /* iOS 4.1- */\n}\n.rc-dropdown {\n  position: absolute;\n  left: -9999px;\n  top: -9999px;\n  z-index: 1070;\n  display: block;\n  font-family: \"Helvetica Neue\", Helvetica, Arial, sans-serif;\n  font-size: 12px;\n  font-weight: normal;\n  line-height: 1.5;\n}\n.rc-dropdown-hidden {\n  display: none;\n}\n.rc-dropdown-menu {\n  outline: none;\n  position: relative;\n  list-style-type: none;\n  padding: 0;\n  margin: 2px 0 0 0;\n  text-align: left;\n  background-color: #fff;\n  border-radius: 3px;\n  box-shadow: 0 1px 5px #ccc;\n  background-clip: padding-box;\n  border: 1px solid #ccc;\n}\n.rc-dropdown-menu > li {\n  margin: 0;\n  padding: 0;\n}\n.rc-dropdown-menu:before {\n  content: \"\";\n  position: absolute;\n  top: -4px;\n  left: 0;\n  width: 100%;\n  height: 4px;\n  background: #ffffff;\n  background: rgba(255, 255, 255, 0.01);\n}\n.rc-dropdown-menu > .rc-dropdown-menu-item {\n  position: relative;\n  display: block;\n  padding: 7px 10px;\n  clear: both;\n  font-size: 12px;\n  font-weight: normal;\n  color: #666666;\n  white-space: nowrap;\n}\n.rc-dropdown-menu > .rc-dropdown-menu-item:hover, .rc-dropdown-menu > .rc-dropdown-menu-item-active, .rc-dropdown-menu > .rc-dropdown-menu-item-selected {\n  background-color: #ebfaff;\n}\n.rc-dropdown-menu > .rc-dropdown-menu-item-selected {\n  position: relative;\n}\n.rc-dropdown-menu > .rc-dropdown-menu-item-selected:after {\n  content: '\\E613';\n  font-family: 'anticon';\n  font-weight: bold;\n  position: absolute;\n  top: 6px;\n  right: 16px;\n  color: #3CB8F0;\n}\n.rc-dropdown-menu > .rc-dropdown-menu-item-disabled {\n  color: #ccc;\n  cursor: not-allowed;\n  pointer-events: none;\n}\n.rc-dropdown-menu > .rc-dropdown-menu-item-disabled:hover {\n  color: #ccc;\n  background-color: #fff;\n  cursor: not-allowed;\n}\n.rc-dropdown-menu > .rc-dropdown-menu-item:last-child {\n  border-bottom-left-radius: 3px;\n  border-bottom-right-radius: 3px;\n}\n.rc-dropdown-menu > .rc-dropdown-menu-item:first-child {\n  border-top-left-radius: 3px;\n  border-top-right-radius: 3px;\n}\n.rc-dropdown-menu > .rc-dropdown-menu-item-divider {\n  height: 1px;\n  margin: 1px 0;\n  overflow: hidden;\n  background-color: #e5e5e5;\n  line-height: 0;\n}\n.rc-dropdown-slide-up-enter, .rc-dropdown-slide-up-appear {\n  -webkit-animation-duration: 0.3s;\n          animation-duration: 0.3s;\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  -webkit-transform-origin: 0 0;\n          -ms-transform-origin: 0 0;\n      transform-origin: 0 0;\n  display: block !important;\n  opacity: 0;\n  -webkit-animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);\n          animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);\n  -webkit-animation-play-state: paused;\n          animation-play-state: paused;\n}\n.rc-dropdown-slide-up-leave {\n  -webkit-animation-duration: 0.3s;\n          animation-duration: 0.3s;\n  -webkit-animation-fill-mode: both;\n          animation-fill-mode: both;\n  -webkit-transform-origin: 0 0;\n          -ms-transform-origin: 0 0;\n      transform-origin: 0 0;\n  display: block !important;\n  opacity: 1;\n  -webkit-animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.34);\n          animation-timing-function: cubic-bezier(0.6, 0.04, 0.98, 0.34);\n  -webkit-animation-play-state: paused;\n          animation-play-state: paused;\n}\n.rc-dropdown-slide-up-enter.rc-dropdown-slide-up-enter-active.rc-dropdown-placement-bottomLeft, .rc-dropdown-slide-up-appear.rc-dropdown-slide-up-appear-active.rc-dropdown-placement-bottomLeft, .rc-dropdown-slide-up-enter.rc-dropdown-slide-up-enter-active.rc-dropdown-placement-bottomCenter, .rc-dropdown-slide-up-appear.rc-dropdown-slide-up-appear-active.rc-dropdown-placement-bottomCenter, .rc-dropdown-slide-up-enter.rc-dropdown-slide-up-enter-active.rc-dropdown-placement-bottomRight, .rc-dropdown-slide-up-appear.rc-dropdown-slide-up-appear-active.rc-dropdown-placement-bottomRight {\n  -webkit-animation-name: rcDropdownSlideUpIn;\n          animation-name: rcDropdownSlideUpIn;\n  -webkit-animation-play-state: running;\n          animation-play-state: running;\n}\n.rc-dropdown-slide-up-enter.rc-dropdown-slide-up-enter-active.rc-dropdown-placement-topLeft, .rc-dropdown-slide-up-appear.rc-dropdown-slide-up-appear-active.rc-dropdown-placement-topLeft, .rc-dropdown-slide-up-enter.rc-dropdown-slide-up-enter-active.rc-dropdown-placement-topCenter, .rc-dropdown-slide-up-appear.rc-dropdown-slide-up-appear-active.rc-dropdown-placement-topCenter, .rc-dropdown-slide-up-enter.rc-dropdown-slide-up-enter-active.rc-dropdown-placement-topRight, .rc-dropdown-slide-up-appear.rc-dropdown-slide-up-appear-active.rc-dropdown-placement-topRight {\n  -webkit-animation-name: rcDropdownSlideDownIn;\n          animation-name: rcDropdownSlideDownIn;\n  -webkit-animation-play-state: running;\n          animation-play-state: running;\n}\n.rc-dropdown-slide-up-leave.rc-dropdown-slide-up-leave-active.rc-dropdown-placement-bottomLeft, .rc-dropdown-slide-up-leave.rc-dropdown-slide-up-leave-active.rc-dropdown-placement-bottomCenter, .rc-dropdown-slide-up-leave.rc-dropdown-slide-up-leave-active.rc-dropdown-placement-bottomRight {\n  -webkit-animation-name: rcDropdownSlideUpOut;\n          animation-name: rcDropdownSlideUpOut;\n  -webkit-animation-play-state: running;\n          animation-play-state: running;\n}\n.rc-dropdown-slide-up-leave.rc-dropdown-slide-up-leave-active.rc-dropdown-placement-topLeft, .rc-dropdown-slide-up-leave.rc-dropdown-slide-up-leave-active.rc-dropdown-placement-topCenter, .rc-dropdown-slide-up-leave.rc-dropdown-slide-up-leave-active.rc-dropdown-placement-topRight {\n  -webkit-animation-name: rcDropdownSlideDownOut;\n          animation-name: rcDropdownSlideDownOut;\n  -webkit-animation-play-state: running;\n          animation-play-state: running;\n}\n@-webkit-keyframes rcDropdownSlideUpIn {\n  0% {\n    opacity: 0;\n    -webkit-transform-origin: 0% 0%;\n            transform-origin: 0% 0%;\n    -webkit-transform: scaleY(0);\n            transform: scaleY(0);\n  }\n  100% {\n    opacity: 1;\n    -webkit-transform-origin: 0% 0%;\n            transform-origin: 0% 0%;\n    -webkit-transform: scaleY(1);\n            transform: scaleY(1);\n  }\n}\n@keyframes rcDropdownSlideUpIn {\n  0% {\n    opacity: 0;\n    -webkit-transform-origin: 0% 0%;\n            transform-origin: 0% 0%;\n    -webkit-transform: scaleY(0);\n            transform: scaleY(0);\n  }\n  100% {\n    opacity: 1;\n    -webkit-transform-origin: 0% 0%;\n            transform-origin: 0% 0%;\n    -webkit-transform: scaleY(1);\n            transform: scaleY(1);\n  }\n}\n@-webkit-keyframes rcDropdownSlideUpOut {\n  0% {\n    opacity: 1;\n    -webkit-transform-origin: 0% 0%;\n            transform-origin: 0% 0%;\n    -webkit-transform: scaleY(1);\n            transform: scaleY(1);\n  }\n  100% {\n    opacity: 0;\n    -webkit-transform-origin: 0% 0%;\n            transform-origin: 0% 0%;\n    -webkit-transform: scaleY(0);\n            transform: scaleY(0);\n  }\n}\n@keyframes rcDropdownSlideUpOut {\n  0% {\n    opacity: 1;\n    -webkit-transform-origin: 0% 0%;\n            transform-origin: 0% 0%;\n    -webkit-transform: scaleY(1);\n            transform: scaleY(1);\n  }\n  100% {\n    opacity: 0;\n    -webkit-transform-origin: 0% 0%;\n            transform-origin: 0% 0%;\n    -webkit-transform: scaleY(0);\n            transform: scaleY(0);\n  }\n}\n@-webkit-keyframes rcDropdownSlideDownIn {\n  0% {\n    opacity: 0;\n    -webkit-transform-origin: 0% 100%;\n            transform-origin: 0% 100%;\n    -webkit-transform: scaleY(0);\n            transform: scaleY(0);\n  }\n  100% {\n    opacity: 1;\n    -webkit-transform-origin: 0% 100%;\n            transform-origin: 0% 100%;\n    -webkit-transform: scaleY(1);\n            transform: scaleY(1);\n  }\n}\n@keyframes rcDropdownSlideDownIn {\n  0% {\n    opacity: 0;\n    -webkit-transform-origin: 0% 100%;\n            transform-origin: 0% 100%;\n    -webkit-transform: scaleY(0);\n            transform: scaleY(0);\n  }\n  100% {\n    opacity: 1;\n    -webkit-transform-origin: 0% 100%;\n            transform-origin: 0% 100%;\n    -webkit-transform: scaleY(1);\n            transform: scaleY(1);\n  }\n}\n@-webkit-keyframes rcDropdownSlideDownOut {\n  0% {\n    opacity: 1;\n    -webkit-transform-origin: 0% 100%;\n            transform-origin: 0% 100%;\n    -webkit-transform: scaleY(1);\n            transform: scaleY(1);\n  }\n  100% {\n    opacity: 0;\n    -webkit-transform-origin: 0% 100%;\n            transform-origin: 0% 100%;\n    -webkit-transform: scaleY(0);\n            transform: scaleY(0);\n  }\n}\n@keyframes rcDropdownSlideDownOut {\n  0% {\n    opacity: 1;\n    -webkit-transform-origin: 0% 100%;\n            transform-origin: 0% 100%;\n    -webkit-transform: scaleY(1);\n            transform: scaleY(1);\n  }\n  100% {\n    opacity: 0;\n    -webkit-transform-origin: 0% 100%;\n            transform-origin: 0% 100%;\n    -webkit-transform: scaleY(0);\n            transform: scaleY(0);\n  }\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?{\"plugins\":[null,null]}!./node_modules/rc-tabs/assets/index.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6199,7 +6214,22 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, ".xm-header {\n  display: inline-block;\n  position: relative;\n  vertical-align: middle;\n  float: left;\n  line-height: 20px; }\n  .xm-header .xm-header-span {\n    display: inline-block;\n    width: 48px;\n    background: transparent;\n    border: 1px solid transparent;\n    color: #333;\n    font-family: Arial,sans-serif;\n    font-size: 11px;\n    font-weight: bold;\n    height: 20px;\n    line-height: 20px;\n    overflow: hidden;\n    padding: 1px 6px;\n    border-radius: 1px;\n    outline: none;\n    cursor: pointer;\n    text-align: center; }\n  .xm-header input:focus {\n    background: #fff; }\n  .xm-header .xm-size-button-dropdown {\n    display: inline-block;\n    background: url(//ssl.gstatic.com/ui/v1/disclosure/small-grey-disclosure-arrow-down.png) center no-repeat;\n    float: right;\n    margin: 7px 0 0 0px;\n    padding: 0 0 0 1px;\n    min-width: 7px;\n    opacity: .8;\n    vertical-align: middle;\n    width: 5px;\n    height: 7px; }\n  .xm-header .xm-size-h {\n    display: block;\n    position: absolute;\n    padding: 10px 0px;\n    background: #ffffff;\n    font-size: 14px;\n    width: 100px;\n    height: 350px;\n    overflow-y: auto;\n    border-radius: 2px;\n    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); }\n    .xm-header .xm-size-h p {\n      padding-left: 15px;\n      line-height: 25px; }\n      .xm-header .xm-size-h p:hover {\n        background: #f5f5f5;\n        cursor: pointer; }\n    .xm-header .xm-size-h .o-p-h {\n      padding: 6px 0px 6px 15px;\n      min-height: 25px; }\n      .xm-header .xm-size-h .o-p-h:hover {\n        background: #f5f5f5;\n        cursor: pointer; }\n    .xm-header .xm-size-h h1 {\n      font-size: 25px; }\n    .xm-header .xm-size-h h2 {\n      font-size: 22px; }\n    .xm-header .xm-size-h h3 {\n      font-size: 20px; }\n    .xm-header .xm-size-h h4 {\n      font-size: 16px; }\n", ""]);
+exports.push([module.i, ".xm-header {\n  display: inline-block;\n  position: relative;\n  vertical-align: middle;\n  float: left;\n  line-height: 20px; }\n  .xm-header .xm-header-span {\n    display: inline-block;\n    width: 48px;\n    background: transparent;\n    border: 1px solid transparent;\n    color: #333;\n    font-family: Arial,sans-serif;\n    font-size: 11px;\n    font-weight: bold;\n    height: 20px;\n    line-height: 20px;\n    overflow: hidden;\n    padding: 1px 6px;\n    border-radius: 1px;\n    outline: none;\n    cursor: pointer;\n    text-align: center; }\n  .xm-header input:focus {\n    background: #fff; }\n  .xm-header .xm-size-button-dropdown {\n    display: inline-block;\n    background: url(//ssl.gstatic.com/ui/v1/disclosure/small-grey-disclosure-arrow-down.png) center no-repeat;\n    float: right;\n    margin: 7px 0 0 0px;\n    padding: 0 0 0 1px;\n    min-width: 7px;\n    opacity: .8;\n    vertical-align: middle;\n    width: 5px;\n    height: 7px; }\n  .xm-header .xm-size-h {\n    display: block;\n    position: absolute;\n    padding: 10px 0px;\n    background: #ffffff;\n    font-size: 16px;\n    width: 150px;\n    height: 300px;\n    overflow-y: auto;\n    border-radius: 2px;\n    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); }\n    .xm-header .xm-size-h p {\n      padding-left: 15px; }\n      .xm-header .xm-size-h p:hover {\n        background: #f5f5f5;\n        cursor: pointer; }\n    .xm-header .xm-size-h .o-p-h {\n      padding: 10px 0px 10px 15px;\n      min-height: 25px;\n      margin: 0; }\n      .xm-header .xm-size-h .o-p-h:hover {\n        background: #f5f5f5;\n        cursor: pointer; }\n    .xm-header .xm-size-h h1 {\n      font-size: 25px; }\n    .xm-header .xm-size-h h2 {\n      font-size: 22px; }\n    .xm-header .xm-size-h h3 {\n      font-size: 20px; }\n    .xm-header .xm-size-h h4 {\n      font-size: 16px; }\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/hotKeysDialog/index.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")();
+// imports
+
+
+// module
+exports.push([module.i, ".weditor-hotkeys-dialog {\n  width: 800px;\n  height: 537px;\n  box-sizing: border-box;\n  overflow: hidden;\n  padding: 10px 20px; }\n  .weditor-hotkeys-dialog .nx-dialog-content {\n    margin: 5px;\n    margin-top: 40px; }\n    .weditor-hotkeys-dialog .nx-dialog-content ::-webkit-scrollbar-thumb {\n      background-color: rgba(0, 0, 0, 0.2);\n      background-clip: padding-box;\n      border: solid transparent;\n      border-width: 1px 1px 1px 6px;\n      min-height: 28px;\n      padding: 100px 0 0;\n      box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07); }\n    .weditor-hotkeys-dialog .nx-dialog-content ::-webkit-scrollbar-corner {\n      background: transparent; }\n    .weditor-hotkeys-dialog .nx-dialog-content ::-webkit-scrollbar-button {\n      height: 0;\n      width: 0; }\n    .weditor-hotkeys-dialog .nx-dialog-content ::-webkit-scrollbar {\n      height: 16px;\n      overflow: visible;\n      width: 16px; }\n  .weditor-hotkeys-dialog .weditor-hotkeys-inner {\n    overflow: auto;\n    height: 408px;\n    width: 100%; }\n    .weditor-hotkeys-dialog .weditor-hotkeys-inner .apps-shortcutshelppopup-content {\n      border-collapse: collapse;\n      width: 100%;\n      outline-offset: -1px;\n      outline: none; }\n      .weditor-hotkeys-dialog .weditor-hotkeys-inner .apps-shortcutshelppopup-content .apps-shortcutshelppopup-shortcut-desc {\n        color: #757575; }\n      .weditor-hotkeys-dialog .weditor-hotkeys-inner .apps-shortcutshelppopup-content .apps-shortcutshelppopup-content-element {\n        text-align: left;\n        vertical-align: middle;\n        padding-top: 0.15em;\n        border-bottom: 1px solid #ececec;\n        height: 32px;\n        white-space: nowrap;\n        -moz-box-sizing: border-box;\n        box-sizing: border-box; }\n      .weditor-hotkeys-dialog .weditor-hotkeys-inner .apps-shortcutshelppopup-content .apps-shortcutshelppopup-shortcut-key {\n        font-weight: bold;\n        color: #212121; }\n", ""]);
 
 // exports
 
@@ -6349,7 +6379,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "@charset \"UTF-8\";\nbody {\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  margin: 0;\n  overflow: hidden;\n  background-color: #f2f2f2; }\n\n.weditor-wrapper {\n  overflow: hidden;\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0; }\n  .weditor-wrapper div {\n    box-sizing: border-box; }\n\n/* font */\n.weditor-header {\n  width: 100%;\n  margin: 0;\n  padding: 0;\n  border-bottom: 1px solid #ddd;\n  position: relative;\n  z-index: 110;\n  background: #fff;\n  user-select: none;\n  background: -webkit-linear-gradient(top, #fdfdfd, #fff);\n  background: -ms-linear-gradient(top, #fdfdfd, #fff);\n  box-sizing: border-box; }\n  .weditor-header button {\n    outline: none; }\n  .weditor-header .header-left-box {\n    line-height: 34px; }\n    .weditor-header .header-left-box .header-back-up {\n      float: left;\n      width: 40px;\n      height: 60px;\n      cursor: pointer;\n      background-color: #4285f4; }\n      .weditor-header .header-left-box .header-back-up .header-back-icon {\n        display: block;\n        background: url(//mss.sankuai.com/v1/mss_814dc1610cda4b2e8febd6ea2c809db5/image/1489546222140.svg) center no-repeat;\n        height: 60px;\n        position: absolute;\n        width: 40px;\n        -webkit-transition: all 125ms linear;\n        -moz-transition: all 125ms linear;\n        -o-transition: all 125ms linear;\n        transition: all 125ms linear; }\n    .weditor-header .header-left-box .team-sprite {\n      background-image: url(https://assets-cdn.shimo.im/assets/images/teams-31aea6334f.png);\n      background-size: 499px 310px;\n      background-repeat: no-repeat; }\n    .weditor-header .header-left-box .s-header-text {\n      display: inline-block;\n      float: left;\n      height: 34px;\n      line-height: 34px;\n      margin-left: 16px;\n      vertical-align: top; }\n      .weditor-header .header-left-box .s-header-text .title-input-pre {\n        font-size: 14px;\n        font-family: -apple-system, system-ui, \"PingFang SC\", Helvetica, Tahoma, Arial, \"Hiragino Sans GB\", \"Microsoft YaHei\", \"\\\\5FAE\\8F6F\\96C5\\9ED1\", SimSun, \"\\\\5B8B\\4F53\", Heiti, \"\\\\9ED1\\4F53\", sans-serif;\n        font-weight: bold;\n        font-style: normal;\n        letter-spacing: normal; }\n    .weditor-header .header-left-box .s-header-time {\n      margin-left: 13px;\n      margin-top: 1px;\n      font-size: 12px;\n      color: #999; }\n  .weditor-header .header-right-box {\n    position: absolute;\n    height: 100%;\n    top: 5px;\n    right: 20px;\n    line-height: 51px; }\n    .weditor-header .header-right-box .header-item-wrap {\n      display: inline-block;\n      height: 40px;\n      width: 40px; }\n      .weditor-header .header-right-box .header-item-wrap .header-item-inner {\n        border: 1px solid #eee;\n        height: 35px;\n        width: 35px;\n        border-radius: 50%;\n        text-align: center;\n        display: inline-block;\n        position: relative;\n        line-height: 0px; }\n        .weditor-header .header-right-box .header-item-wrap .header-item-inner:before {\n          content: '';\n          display: inline-block;\n          vertical-align: middle;\n          width: 0;\n          height: 100%;\n          font-size: 0; }\n        .weditor-header .header-right-box .header-item-wrap .header-item-inner img {\n          height: 25px;\n          width: 25px;\n          border-radius: 50%;\n          vertical-align: middle; }\n  .weditor-header .editor-toolbar .toolbar-tab {\n    height: 25px;\n    line-height: 25px; }\n    .weditor-header .editor-toolbar .toolbar-tab span {\n      padding: 4px 20px;\n      user-select: none;\n      font-size: 13px;\n      font-weight: bold;\n      cursor: pointer;\n      color: #666666; }\n    .weditor-header .editor-toolbar .toolbar-tab span.active {\n      color: #2374d1;\n      background: #f6f6f6; }\n  .weditor-header .editor-toolbar .ql-toolbar.ql-snow {\n    border: none;\n    background-color: #f6f6f6;\n    height: 40px;\n    line-height: 35px;\n    padding: 0;\n    border-bottom: solid 1px #e2e2e2; }\n  .weditor-header .editor-toolbar .xm-color-picker-container {\n    background: none;\n    border: none;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    height: 24px;\n    padding: 3px 5px;\n    width: 28px; }\n  .weditor-header .editor-toolbar .ql-formats .iconfont {\n    background: none;\n    border: none;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    width: 28px; }\n    .weditor-header .editor-toolbar .ql-formats .iconfont.active {\n      color: #2db7f5; }\n  .weditor-header .common-header {\n    color: #444444; }\n  .weditor-header .toolbar-opver {\n    padding-left: 30px !important; }\n  .weditor-header .file-header .ql-pdf {\n    background: none;\n    border: 1px solid transparent;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    height: 25px;\n    line-height: 25px;\n    padding: 0px 5px; }\n    .weditor-header .file-header .ql-pdf .pdf-icon {\n      background-position: -160px -180px; }\n  .weditor-header .file-header .ql-word {\n    background: none;\n    border: 1px solid transparent;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    height: 25px;\n    line-height: 25px;\n    padding: 0px 5px; }\n    .weditor-header .file-header .ql-word .word-icon {\n      background-position: -240px -40px; }\n  .weditor-header .opver-icon {\n    background-image: url(https://s3.meituan.net/v1/mss_814dc1610cda4b2e8febd6ea2c809db5/image/1489914204976.png);\n    background-repeat: no-repeat;\n    height: 20px;\n    width: 20px;\n    display: inline-block; }\n  .weditor-header .opver-area span {\n    vertical-align: middle;\n    font-size: 12px; }\n  .weditor-header .opver-area:hover {\n    border: 1px solid #b6b6b6; }\n  .weditor-header .view-header {\n    line-height: 24px;\n    height: 24px;\n    padding: 0; }\n    .weditor-header .view-header .ql-catalogue {\n      background: none;\n      border: 1px solid transparent;\n      cursor: pointer;\n      display: inline-block;\n      float: left;\n      height: 24px;\n      line-height: 24px;\n      padding: 0px 5px; }\n    .weditor-header .view-header .catalogue-icon {\n      background-position: -80px -180px; }\n\n.weditor-body {\n  padding: 0;\n  position: absolute;\n  left: 0;\n  top: 102px;\n  right: 0px;\n  bottom: 0px;\n  overflow: hidden;\n  overflow-y: auto;\n  background-color: #f6f6f6; }\n  .weditor-body .content-container {\n    background-color: white;\n    box-shadow: 0 0 0 0.1px #d1d1d1, 0 0 1px 0.1px #ccc;\n    position: relative;\n    top: 20px;\n    width: 830px;\n    border: 0;\n    padding: 0;\n    margin-bottom: 60px;\n    min-height: 100%;\n    height: auto; }\n    .weditor-body .content-container::selection {\n      background: rgba(130, 182, 255, 0.4); }\n    .weditor-body .content-container .ql-container {\n      font-size: 12pt;\n      height: 100%; }\n      .weditor-body .content-container .ql-container.ql-snow {\n        border: none; }\n      .weditor-body .content-container .ql-container .ql-editor {\n        z-index: 30;\n        text-align: justify;\n        padding: 40px 57px;\n        margin: 0;\n        overflow: hidden;\n        border: none;\n        height: auto; }\n  .weditor-body .editormd-toolbar {\n    width: 100%;\n    min-height: 37px;\n    background: #f0f0f0;\n    display: none;\n    position: fixed;\n    top: 55px;\n    left: 0;\n    z-index: 10;\n    border: none; }\n    .weditor-body .editormd-toolbar.scroll {\n      box-shadow: 0 2px 4px rgba(20, 20, 20, 0.15); }\n    .weditor-body .editormd-toolbar .editormd-menu {\n      width: 910px;\n      margin: 0 auto; }\n    .weditor-body .editormd-toolbar .editormd-menu > li > a {\n      border: none; }\n      .weditor-body .editormd-toolbar .editormd-menu > li > a i {\n        font-weight: 200; }\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\nbody {\n  position: absolute;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  margin: 0;\n  overflow: hidden;\n  background-color: #f2f2f2; }\n\n.weditor-wrapper {\n  overflow: hidden;\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0; }\n  .weditor-wrapper div {\n    box-sizing: border-box; }\n\n/* font */\n.weditor-header {\n  width: 100%;\n  margin: 0;\n  padding: 0;\n  border-bottom: 1px solid #ddd;\n  position: relative;\n  z-index: 110;\n  background: #fff;\n  user-select: none;\n  background: -webkit-linear-gradient(top, #fdfdfd, #fff);\n  background: -ms-linear-gradient(top, #fdfdfd, #fff);\n  box-sizing: border-box; }\n  .weditor-header button {\n    outline: none; }\n  .weditor-header .header-left-box {\n    line-height: 34px; }\n    .weditor-header .header-left-box .header-back-up {\n      float: left;\n      width: 40px;\n      height: 60px;\n      cursor: pointer;\n      background-color: #4285f4; }\n      .weditor-header .header-left-box .header-back-up .header-back-icon {\n        display: block;\n        background: url(//mss.sankuai.com/v1/mss_814dc1610cda4b2e8febd6ea2c809db5/image/1489546222140.svg) center no-repeat;\n        height: 60px;\n        position: absolute;\n        width: 40px;\n        -webkit-transition: all 125ms linear;\n        -moz-transition: all 125ms linear;\n        -o-transition: all 125ms linear;\n        transition: all 125ms linear; }\n    .weditor-header .header-left-box .team-sprite {\n      background-image: url(https://assets-cdn.shimo.im/assets/images/teams-31aea6334f.png);\n      background-size: 499px 310px;\n      background-repeat: no-repeat; }\n    .weditor-header .header-left-box .s-header-text {\n      display: inline-block;\n      float: left;\n      height: 34px;\n      line-height: 34px;\n      margin-left: 16px;\n      vertical-align: top; }\n      .weditor-header .header-left-box .s-header-text .title-input-pre {\n        font-size: 14px;\n        font-family: -apple-system, system-ui, \"PingFang SC\", Helvetica, Tahoma, Arial, \"Hiragino Sans GB\", \"Microsoft YaHei\", \"\\\\5FAE\\8F6F\\96C5\\9ED1\", SimSun, \"\\\\5B8B\\4F53\", Heiti, \"\\\\9ED1\\4F53\", sans-serif;\n        font-weight: bold;\n        font-style: normal;\n        letter-spacing: normal; }\n    .weditor-header .header-left-box .s-header-time {\n      margin-left: 13px;\n      margin-top: 1px;\n      font-size: 12px;\n      color: #999; }\n  .weditor-header .header-right-box {\n    position: absolute;\n    height: 100%;\n    top: 5px;\n    right: 20px;\n    line-height: 51px; }\n    .weditor-header .header-right-box .header-item-wrap {\n      display: inline-block;\n      height: 40px;\n      width: 40px; }\n      .weditor-header .header-right-box .header-item-wrap .header-item-inner {\n        border: 1px solid #eee;\n        height: 35px;\n        width: 35px;\n        border-radius: 50%;\n        text-align: center;\n        display: inline-block;\n        position: relative;\n        line-height: 0px; }\n        .weditor-header .header-right-box .header-item-wrap .header-item-inner:before {\n          content: '';\n          display: inline-block;\n          vertical-align: middle;\n          width: 0;\n          height: 100%;\n          font-size: 0; }\n        .weditor-header .header-right-box .header-item-wrap .header-item-inner img {\n          height: 25px;\n          width: 25px;\n          border-radius: 50%;\n          vertical-align: middle; }\n  .weditor-header .editor-toolbar .toolbar-tab {\n    height: 25px;\n    line-height: 25px; }\n    .weditor-header .editor-toolbar .toolbar-tab span {\n      padding: 4px 20px;\n      user-select: none;\n      font-size: 13px;\n      font-weight: bold;\n      cursor: pointer;\n      color: #666666; }\n    .weditor-header .editor-toolbar .toolbar-tab span.active {\n      color: #2374d1;\n      background: #f6f6f6; }\n  .weditor-header .editor-toolbar .ql-toolbar.ql-snow {\n    border: none;\n    background-color: #f6f6f6;\n    height: 40px;\n    line-height: 35px;\n    padding: 0;\n    border-bottom: solid 1px #e2e2e2; }\n  .weditor-header .editor-toolbar .xm-color-picker-container {\n    background: none;\n    border: none;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    height: 24px;\n    padding: 3px 5px;\n    width: 28px; }\n  .weditor-header .editor-toolbar .ql-formats .iconfont {\n    background: none;\n    border: none;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    width: 28px; }\n    .weditor-header .editor-toolbar .ql-formats .iconfont.active {\n      color: #2db7f5; }\n  .weditor-header .common-header {\n    color: #444444; }\n  .weditor-header .toolbar-opver {\n    padding-left: 30px !important; }\n  .weditor-header .file-header .ql-pdf {\n    background: none;\n    border: 1px solid transparent;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    height: 25px;\n    line-height: 25px;\n    padding: 0px 5px; }\n    .weditor-header .file-header .ql-pdf .pdf-icon {\n      background-position: -160px -180px; }\n  .weditor-header .file-header .ql-word {\n    background: none;\n    border: 1px solid transparent;\n    cursor: pointer;\n    display: inline-block;\n    float: left;\n    height: 25px;\n    line-height: 25px;\n    padding: 0px 5px; }\n    .weditor-header .file-header .ql-word .word-icon {\n      background-position: -240px -40px; }\n  .weditor-header .opver-icon {\n    background-image: url(https://s3.meituan.net/v1/mss_814dc1610cda4b2e8febd6ea2c809db5/image/1489914204976.png);\n    background-repeat: no-repeat;\n    height: 20px;\n    width: 20px;\n    display: inline-block; }\n  .weditor-header .opver-area span {\n    vertical-align: middle;\n    font-size: 12px; }\n  .weditor-header .opver-area:hover {\n    border: 1px solid #b6b6b6; }\n  .weditor-header .view-header {\n    line-height: 24px;\n    height: 24px;\n    padding: 0; }\n    .weditor-header .view-header .ql-catalogue {\n      background: none;\n      border: 1px solid transparent;\n      cursor: pointer;\n      display: inline-block;\n      float: left;\n      height: 24px;\n      line-height: 24px;\n      padding: 0px 5px; }\n    .weditor-header .view-header .catalogue-icon {\n      background-position: -80px -180px; }\n\n.weditor-body {\n  padding: 0;\n  position: absolute;\n  left: 0;\n  top: 102px;\n  right: 0px;\n  bottom: 0px;\n  overflow: hidden;\n  overflow-y: auto;\n  background-color: #f6f6f6; }\n  .weditor-body .content-container {\n    background-color: white;\n    box-shadow: 0 0 0 0.1px #d1d1d1, 0 0 1px 0.1px #ccc;\n    position: relative;\n    top: 20px;\n    width: 830px;\n    border: 0;\n    padding: 0;\n    margin-bottom: 60px;\n    min-height: 100%;\n    height: auto; }\n    .weditor-body .content-container::selection {\n      background: rgba(130, 182, 255, 0.4); }\n    .weditor-body .content-container .ql-container {\n      font-size: 12pt;\n      height: 100%; }\n      .weditor-body .content-container .ql-container.ql-snow {\n        border: none; }\n      .weditor-body .content-container .ql-container .ql-editor {\n        z-index: 30;\n        text-align: justify;\n        padding: 40px 57px;\n        margin: 0;\n        overflow: hidden;\n        border: none;\n        height: auto; }\n  .weditor-body .editormd-toolbar {\n    width: 100%;\n    min-height: 37px;\n    background: #f0f0f0;\n    display: none;\n    position: fixed;\n    top: 55px;\n    left: 0;\n    z-index: 10;\n    border: none; }\n    .weditor-body .editormd-toolbar.scroll {\n      box-shadow: 0 2px 4px rgba(20, 20, 20, 0.15); }\n    .weditor-body .editormd-toolbar .editormd-menu {\n      width: 910px;\n      margin: 0 auto; }\n    .weditor-body .editormd-toolbar .editormd-menu > li > a {\n      border: none; }\n      .weditor-body .editormd-toolbar .editormd-menu > li > a i {\n        font-weight: 200; }\n\n.rc-dropdown-menu-item {\n  width: 150px;\n  padding-left: 20px !important;\n  cursor: pointer; }\n\n::-webkit-scrollbar-thumb {\n  background-color: rgba(0, 0, 0, 0.2);\n  background-clip: padding-box;\n  border: solid transparent;\n  border-width: 1px 1px 1px 6px;\n  min-height: 28px;\n  padding: 100px 0 0;\n  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.07); }\n\n::-webkit-scrollbar-corner {\n  background: transparent; }\n\n::-webkit-scrollbar-button {\n  height: 0;\n  width: 0; }\n\n::-webkit-scrollbar {\n  height: 16px;\n  overflow: visible;\n  width: 16px; }\n", ""]);
 
 // exports
 
@@ -7799,6 +7829,598 @@ mix(utils, domUtils);
 
 exports["default"] = utils;
 module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./node_modules/dom-scroll-into-view/lib/dom-scroll-into-view.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var util = __webpack_require__("./node_modules/dom-scroll-into-view/lib/util.js");
+
+function scrollIntoView(elem, container, config) {
+  config = config || {};
+  // document 归一化到 window
+  if (container.nodeType === 9) {
+    container = util.getWindow(container);
+  }
+
+  var allowHorizontalScroll = config.allowHorizontalScroll;
+  var onlyScrollIfNeeded = config.onlyScrollIfNeeded;
+  var alignWithTop = config.alignWithTop;
+  var alignWithLeft = config.alignWithLeft;
+  var offsetTop = config.offsetTop || 0;
+  var offsetLeft = config.offsetLeft || 0;
+  var offsetBottom = config.offsetBottom || 0;
+  var offsetRight = config.offsetRight || 0;
+
+  allowHorizontalScroll = allowHorizontalScroll === undefined ? true : allowHorizontalScroll;
+
+  var isWin = util.isWindow(container);
+  var elemOffset = util.offset(elem);
+  var eh = util.outerHeight(elem);
+  var ew = util.outerWidth(elem);
+  var containerOffset = undefined;
+  var ch = undefined;
+  var cw = undefined;
+  var containerScroll = undefined;
+  var diffTop = undefined;
+  var diffBottom = undefined;
+  var win = undefined;
+  var winScroll = undefined;
+  var ww = undefined;
+  var wh = undefined;
+
+  if (isWin) {
+    win = container;
+    wh = util.height(win);
+    ww = util.width(win);
+    winScroll = {
+      left: util.scrollLeft(win),
+      top: util.scrollTop(win)
+    };
+    // elem 相对 container 可视视窗的距离
+    diffTop = {
+      left: elemOffset.left - winScroll.left - offsetLeft,
+      top: elemOffset.top - winScroll.top - offsetTop
+    };
+    diffBottom = {
+      left: elemOffset.left + ew - (winScroll.left + ww) + offsetRight,
+      top: elemOffset.top + eh - (winScroll.top + wh) + offsetBottom
+    };
+    containerScroll = winScroll;
+  } else {
+    containerOffset = util.offset(container);
+    ch = container.clientHeight;
+    cw = container.clientWidth;
+    containerScroll = {
+      left: container.scrollLeft,
+      top: container.scrollTop
+    };
+    // elem 相对 container 可视视窗的距离
+    // 注意边框, offset 是边框到根节点
+    diffTop = {
+      left: elemOffset.left - (containerOffset.left + (parseFloat(util.css(container, 'borderLeftWidth')) || 0)) - offsetLeft,
+      top: elemOffset.top - (containerOffset.top + (parseFloat(util.css(container, 'borderTopWidth')) || 0)) - offsetTop
+    };
+    diffBottom = {
+      left: elemOffset.left + ew - (containerOffset.left + cw + (parseFloat(util.css(container, 'borderRightWidth')) || 0)) + offsetRight,
+      top: elemOffset.top + eh - (containerOffset.top + ch + (parseFloat(util.css(container, 'borderBottomWidth')) || 0)) + offsetBottom
+    };
+  }
+
+  if (diffTop.top < 0 || diffBottom.top > 0) {
+    // 强制向上
+    if (alignWithTop === true) {
+      util.scrollTop(container, containerScroll.top + diffTop.top);
+    } else if (alignWithTop === false) {
+      util.scrollTop(container, containerScroll.top + diffBottom.top);
+    } else {
+      // 自动调整
+      if (diffTop.top < 0) {
+        util.scrollTop(container, containerScroll.top + diffTop.top);
+      } else {
+        util.scrollTop(container, containerScroll.top + diffBottom.top);
+      }
+    }
+  } else {
+    if (!onlyScrollIfNeeded) {
+      alignWithTop = alignWithTop === undefined ? true : !!alignWithTop;
+      if (alignWithTop) {
+        util.scrollTop(container, containerScroll.top + diffTop.top);
+      } else {
+        util.scrollTop(container, containerScroll.top + diffBottom.top);
+      }
+    }
+  }
+
+  if (allowHorizontalScroll) {
+    if (diffTop.left < 0 || diffBottom.left > 0) {
+      // 强制向上
+      if (alignWithLeft === true) {
+        util.scrollLeft(container, containerScroll.left + diffTop.left);
+      } else if (alignWithLeft === false) {
+        util.scrollLeft(container, containerScroll.left + diffBottom.left);
+      } else {
+        // 自动调整
+        if (diffTop.left < 0) {
+          util.scrollLeft(container, containerScroll.left + diffTop.left);
+        } else {
+          util.scrollLeft(container, containerScroll.left + diffBottom.left);
+        }
+      }
+    } else {
+      if (!onlyScrollIfNeeded) {
+        alignWithLeft = alignWithLeft === undefined ? true : !!alignWithLeft;
+        if (alignWithLeft) {
+          util.scrollLeft(container, containerScroll.left + diffTop.left);
+        } else {
+          util.scrollLeft(container, containerScroll.left + diffBottom.left);
+        }
+      }
+    }
+  }
+}
+
+module.exports = scrollIntoView;
+
+/***/ }),
+
+/***/ "./node_modules/dom-scroll-into-view/lib/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = __webpack_require__("./node_modules/dom-scroll-into-view/lib/dom-scroll-into-view.js");
+
+/***/ }),
+
+/***/ "./node_modules/dom-scroll-into-view/lib/util.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+var RE_NUM = /[\-+]?(?:\d*\.|)\d+(?:[eE][\-+]?\d+|)/.source;
+
+function getClientPosition(elem) {
+  var box = undefined;
+  var x = undefined;
+  var y = undefined;
+  var doc = elem.ownerDocument;
+  var body = doc.body;
+  var docElem = doc && doc.documentElement;
+  // 根据 GBS 最新数据，A-Grade Browsers 都已支持 getBoundingClientRect 方法，不用再考虑传统的实现方式
+  box = elem.getBoundingClientRect();
+
+  // 注：jQuery 还考虑减去 docElem.clientLeft/clientTop
+  // 但测试发现，这样反而会导致当 html 和 body 有边距/边框样式时，获取的值不正确
+  // 此外，ie6 会忽略 html 的 margin 值，幸运地是没有谁会去设置 html 的 margin
+
+  x = box.left;
+  y = box.top;
+
+  // In IE, most of the time, 2 extra pixels are added to the top and left
+  // due to the implicit 2-pixel inset border.  In IE6/7 quirks mode and
+  // IE6 standards mode, this border can be overridden by setting the
+  // document element's border to zero -- thus, we cannot rely on the
+  // offset always being 2 pixels.
+
+  // In quirks mode, the offset can be determined by querying the body's
+  // clientLeft/clientTop, but in standards mode, it is found by querying
+  // the document element's clientLeft/clientTop.  Since we already called
+  // getClientBoundingRect we have already forced a reflow, so it is not
+  // too expensive just to query them all.
+
+  // ie 下应该减去窗口的边框吧，毕竟默认 absolute 都是相对窗口定位的
+  // 窗口边框标准是设 documentElement ,quirks 时设置 body
+  // 最好禁止在 body 和 html 上边框 ，但 ie < 9 html 默认有 2px ，减去
+  // 但是非 ie 不可能设置窗口边框，body html 也不是窗口 ,ie 可以通过 html,body 设置
+  // 标准 ie 下 docElem.clientTop 就是 border-top
+  // ie7 html 即窗口边框改变不了。永远为 2
+  // 但标准 firefox/chrome/ie9 下 docElem.clientTop 是窗口边框，即使设了 border-top 也为 0
+
+  x -= docElem.clientLeft || body.clientLeft || 0;
+  y -= docElem.clientTop || body.clientTop || 0;
+
+  return {
+    left: x,
+    top: y
+  };
+}
+
+function getScroll(w, top) {
+  var ret = w['page' + (top ? 'Y' : 'X') + 'Offset'];
+  var method = 'scroll' + (top ? 'Top' : 'Left');
+  if (typeof ret !== 'number') {
+    var d = w.document;
+    // ie6,7,8 standard mode
+    ret = d.documentElement[method];
+    if (typeof ret !== 'number') {
+      // quirks mode
+      ret = d.body[method];
+    }
+  }
+  return ret;
+}
+
+function getScrollLeft(w) {
+  return getScroll(w);
+}
+
+function getScrollTop(w) {
+  return getScroll(w, true);
+}
+
+function getOffset(el) {
+  var pos = getClientPosition(el);
+  var doc = el.ownerDocument;
+  var w = doc.defaultView || doc.parentWindow;
+  pos.left += getScrollLeft(w);
+  pos.top += getScrollTop(w);
+  return pos;
+}
+function _getComputedStyle(elem, name, computedStyle_) {
+  var val = '';
+  var d = elem.ownerDocument;
+  var computedStyle = computedStyle_ || d.defaultView.getComputedStyle(elem, null);
+
+  // https://github.com/kissyteam/kissy/issues/61
+  if (computedStyle) {
+    val = computedStyle.getPropertyValue(name) || computedStyle[name];
+  }
+
+  return val;
+}
+
+var _RE_NUM_NO_PX = new RegExp('^(' + RE_NUM + ')(?!px)[a-z%]+$', 'i');
+var RE_POS = /^(top|right|bottom|left)$/;
+var CURRENT_STYLE = 'currentStyle';
+var RUNTIME_STYLE = 'runtimeStyle';
+var LEFT = 'left';
+var PX = 'px';
+
+function _getComputedStyleIE(elem, name) {
+  // currentStyle maybe null
+  // http://msdn.microsoft.com/en-us/library/ms535231.aspx
+  var ret = elem[CURRENT_STYLE] && elem[CURRENT_STYLE][name];
+
+  // 当 width/height 设置为百分比时，通过 pixelLeft 方式转换的 width/height 值
+  // 一开始就处理了! CUSTOM_STYLE.height,CUSTOM_STYLE.width ,cssHook 解决@2011-08-19
+  // 在 ie 下不对，需要直接用 offset 方式
+  // borderWidth 等值也有问题，但考虑到 borderWidth 设为百分比的概率很小，这里就不考虑了
+
+  // From the awesome hack by Dean Edwards
+  // http://erik.eae.net/archives/2007/07/27/18.54.15/#comment-102291
+  // If we're not dealing with a regular pixel number
+  // but a number that has a weird ending, we need to convert it to pixels
+  // exclude left right for relativity
+  if (_RE_NUM_NO_PX.test(ret) && !RE_POS.test(name)) {
+    // Remember the original values
+    var style = elem.style;
+    var left = style[LEFT];
+    var rsLeft = elem[RUNTIME_STYLE][LEFT];
+
+    // prevent flashing of content
+    elem[RUNTIME_STYLE][LEFT] = elem[CURRENT_STYLE][LEFT];
+
+    // Put in the new values to get a computed value out
+    style[LEFT] = name === 'fontSize' ? '1em' : ret || 0;
+    ret = style.pixelLeft + PX;
+
+    // Revert the changed values
+    style[LEFT] = left;
+
+    elem[RUNTIME_STYLE][LEFT] = rsLeft;
+  }
+  return ret === '' ? 'auto' : ret;
+}
+
+var getComputedStyleX = undefined;
+if (typeof window !== 'undefined') {
+  getComputedStyleX = window.getComputedStyle ? _getComputedStyle : _getComputedStyleIE;
+}
+
+function each(arr, fn) {
+  for (var i = 0; i < arr.length; i++) {
+    fn(arr[i]);
+  }
+}
+
+function isBorderBoxFn(elem) {
+  return getComputedStyleX(elem, 'boxSizing') === 'border-box';
+}
+
+var BOX_MODELS = ['margin', 'border', 'padding'];
+var CONTENT_INDEX = -1;
+var PADDING_INDEX = 2;
+var BORDER_INDEX = 1;
+var MARGIN_INDEX = 0;
+
+function swap(elem, options, callback) {
+  var old = {};
+  var style = elem.style;
+  var name = undefined;
+
+  // Remember the old values, and insert the new ones
+  for (name in options) {
+    if (options.hasOwnProperty(name)) {
+      old[name] = style[name];
+      style[name] = options[name];
+    }
+  }
+
+  callback.call(elem);
+
+  // Revert the old values
+  for (name in options) {
+    if (options.hasOwnProperty(name)) {
+      style[name] = old[name];
+    }
+  }
+}
+
+function getPBMWidth(elem, props, which) {
+  var value = 0;
+  var prop = undefined;
+  var j = undefined;
+  var i = undefined;
+  for (j = 0; j < props.length; j++) {
+    prop = props[j];
+    if (prop) {
+      for (i = 0; i < which.length; i++) {
+        var cssProp = undefined;
+        if (prop === 'border') {
+          cssProp = prop + which[i] + 'Width';
+        } else {
+          cssProp = prop + which[i];
+        }
+        value += parseFloat(getComputedStyleX(elem, cssProp)) || 0;
+      }
+    }
+  }
+  return value;
+}
+
+/**
+ * A crude way of determining if an object is a window
+ * @member util
+ */
+function isWindow(obj) {
+  // must use == for ie8
+  /* eslint eqeqeq:0 */
+  return obj != null && obj == obj.window;
+}
+
+var domUtils = {};
+
+each(['Width', 'Height'], function (name) {
+  domUtils['doc' + name] = function (refWin) {
+    var d = refWin.document;
+    return Math.max(
+    // firefox chrome documentElement.scrollHeight< body.scrollHeight
+    // ie standard mode : documentElement.scrollHeight> body.scrollHeight
+    d.documentElement['scroll' + name],
+    // quirks : documentElement.scrollHeight 最大等于可视窗口多一点？
+    d.body['scroll' + name], domUtils['viewport' + name](d));
+  };
+
+  domUtils['viewport' + name] = function (win) {
+    // pc browser includes scrollbar in window.innerWidth
+    var prop = 'client' + name;
+    var doc = win.document;
+    var body = doc.body;
+    var documentElement = doc.documentElement;
+    var documentElementProp = documentElement[prop];
+    // 标准模式取 documentElement
+    // backcompat 取 body
+    return doc.compatMode === 'CSS1Compat' && documentElementProp || body && body[prop] || documentElementProp;
+  };
+});
+
+/*
+ 得到元素的大小信息
+ @param elem
+ @param name
+ @param {String} [extra]  'padding' : (css width) + padding
+ 'border' : (css width) + padding + border
+ 'margin' : (css width) + padding + border + margin
+ */
+function getWH(elem, name, extra) {
+  if (isWindow(elem)) {
+    return name === 'width' ? domUtils.viewportWidth(elem) : domUtils.viewportHeight(elem);
+  } else if (elem.nodeType === 9) {
+    return name === 'width' ? domUtils.docWidth(elem) : domUtils.docHeight(elem);
+  }
+  var which = name === 'width' ? ['Left', 'Right'] : ['Top', 'Bottom'];
+  var borderBoxValue = name === 'width' ? elem.offsetWidth : elem.offsetHeight;
+  var computedStyle = getComputedStyleX(elem);
+  var isBorderBox = isBorderBoxFn(elem, computedStyle);
+  var cssBoxValue = 0;
+  if (borderBoxValue == null || borderBoxValue <= 0) {
+    borderBoxValue = undefined;
+    // Fall back to computed then un computed css if necessary
+    cssBoxValue = getComputedStyleX(elem, name);
+    if (cssBoxValue == null || Number(cssBoxValue) < 0) {
+      cssBoxValue = elem.style[name] || 0;
+    }
+    // Normalize '', auto, and prepare for extra
+    cssBoxValue = parseFloat(cssBoxValue) || 0;
+  }
+  if (extra === undefined) {
+    extra = isBorderBox ? BORDER_INDEX : CONTENT_INDEX;
+  }
+  var borderBoxValueOrIsBorderBox = borderBoxValue !== undefined || isBorderBox;
+  var val = borderBoxValue || cssBoxValue;
+  if (extra === CONTENT_INDEX) {
+    if (borderBoxValueOrIsBorderBox) {
+      return val - getPBMWidth(elem, ['border', 'padding'], which, computedStyle);
+    }
+    return cssBoxValue;
+  }
+  if (borderBoxValueOrIsBorderBox) {
+    var padding = extra === PADDING_INDEX ? -getPBMWidth(elem, ['border'], which, computedStyle) : getPBMWidth(elem, ['margin'], which, computedStyle);
+    return val + (extra === BORDER_INDEX ? 0 : padding);
+  }
+  return cssBoxValue + getPBMWidth(elem, BOX_MODELS.slice(extra), which, computedStyle);
+}
+
+var cssShow = {
+  position: 'absolute',
+  visibility: 'hidden',
+  display: 'block'
+};
+
+// fix #119 : https://github.com/kissyteam/kissy/issues/119
+function getWHIgnoreDisplay(elem) {
+  var val = undefined;
+  var args = arguments;
+  // in case elem is window
+  // elem.offsetWidth === undefined
+  if (elem.offsetWidth !== 0) {
+    val = getWH.apply(undefined, args);
+  } else {
+    swap(elem, cssShow, function () {
+      val = getWH.apply(undefined, args);
+    });
+  }
+  return val;
+}
+
+function css(el, name, v) {
+  var value = v;
+  if ((typeof name === 'undefined' ? 'undefined' : _typeof(name)) === 'object') {
+    for (var i in name) {
+      if (name.hasOwnProperty(i)) {
+        css(el, i, name[i]);
+      }
+    }
+    return undefined;
+  }
+  if (typeof value !== 'undefined') {
+    if (typeof value === 'number') {
+      value += 'px';
+    }
+    el.style[name] = value;
+    return undefined;
+  }
+  return getComputedStyleX(el, name);
+}
+
+each(['width', 'height'], function (name) {
+  var first = name.charAt(0).toUpperCase() + name.slice(1);
+  domUtils['outer' + first] = function (el, includeMargin) {
+    return el && getWHIgnoreDisplay(el, name, includeMargin ? MARGIN_INDEX : BORDER_INDEX);
+  };
+  var which = name === 'width' ? ['Left', 'Right'] : ['Top', 'Bottom'];
+
+  domUtils[name] = function (elem, val) {
+    if (val !== undefined) {
+      if (elem) {
+        var computedStyle = getComputedStyleX(elem);
+        var isBorderBox = isBorderBoxFn(elem);
+        if (isBorderBox) {
+          val += getPBMWidth(elem, ['padding', 'border'], which, computedStyle);
+        }
+        return css(elem, name, val);
+      }
+      return undefined;
+    }
+    return elem && getWHIgnoreDisplay(elem, name, CONTENT_INDEX);
+  };
+});
+
+// 设置 elem 相对 elem.ownerDocument 的坐标
+function setOffset(elem, offset) {
+  // set position first, in-case top/left are set even on static elem
+  if (css(elem, 'position') === 'static') {
+    elem.style.position = 'relative';
+  }
+
+  var old = getOffset(elem);
+  var ret = {};
+  var current = undefined;
+  var key = undefined;
+
+  for (key in offset) {
+    if (offset.hasOwnProperty(key)) {
+      current = parseFloat(css(elem, key)) || 0;
+      ret[key] = current + offset[key] - old[key];
+    }
+  }
+  css(elem, ret);
+}
+
+module.exports = _extends({
+  getWindow: function getWindow(node) {
+    var doc = node.ownerDocument || node;
+    return doc.defaultView || doc.parentWindow;
+  },
+  offset: function offset(el, value) {
+    if (typeof value !== 'undefined') {
+      setOffset(el, value);
+    } else {
+      return getOffset(el);
+    }
+  },
+
+  isWindow: isWindow,
+  each: each,
+  css: css,
+  clone: function clone(obj) {
+    var ret = {};
+    for (var i in obj) {
+      if (obj.hasOwnProperty(i)) {
+        ret[i] = obj[i];
+      }
+    }
+    var overflow = obj.overflow;
+    if (overflow) {
+      for (var i in obj) {
+        if (obj.hasOwnProperty(i)) {
+          ret.overflow[i] = obj.overflow[i];
+        }
+      }
+    }
+    return ret;
+  },
+  scrollLeft: function scrollLeft(w, v) {
+    if (isWindow(w)) {
+      if (v === undefined) {
+        return getScrollLeft(w);
+      }
+      window.scrollTo(v, getScrollTop(w));
+    } else {
+      if (v === undefined) {
+        return w.scrollLeft;
+      }
+      w.scrollLeft = v;
+    }
+  },
+  scrollTop: function scrollTop(w, v) {
+    if (isWindow(w)) {
+      if (v === undefined) {
+        return getScrollTop(w);
+      }
+      window.scrollTo(getScrollLeft(w), v);
+    } else {
+      if (v === undefined) {
+        return w.scrollTop;
+      }
+      w.scrollTop = v;
+    }
+  },
+
+  viewportWidth: 0,
+  viewportHeight: 0
+}, domUtils);
 
 /***/ }),
 
@@ -25827,6 +26449,2699 @@ module.exports = exports['default'];
 
 /***/ }),
 
+/***/ "./node_modules/rc-dropdown/assets/index.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/postcss-loader/index.js?{\"plugins\":[null,null]}!./node_modules/rc-dropdown/assets/index.css");
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/style-loader/addStyles.js")(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../css-loader/index.js!../../postcss-loader/index.js??ref--1-2!./index.css", function() {
+			var newContent = require("!!../../css-loader/index.js!../../postcss-loader/index.js??ref--1-2!./index.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./node_modules/rc-dropdown/lib/Dropdown.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(1);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _rcTrigger = __webpack_require__("./node_modules/rc-trigger/lib/index.js");
+
+var _rcTrigger2 = _interopRequireDefault(_rcTrigger);
+
+var _placements = __webpack_require__("./node_modules/rc-dropdown/lib/placements.js");
+
+var _placements2 = _interopRequireDefault(_placements);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+/*
+ var MenuItem = Menu.Item;
+
+ var menu = <Menu><MenuItem>1</MenuItem></Menu>;
+
+ <DropDown trigger="click" animationName="" overlay={<>} onSelect={}>
+ <button>open</button>
+ </DropDown>
+*/
+
+var Dropdown = _react2["default"].createClass({
+  displayName: 'Dropdown',
+
+  propTypes: {
+    minOverlayWidthMatchTrigger: _react.PropTypes.bool,
+    onVisibleChange: _react.PropTypes.func,
+    prefixCls: _react.PropTypes.string,
+    children: _react.PropTypes.any,
+    transitionName: _react.PropTypes.string,
+    overlayClassName: _react.PropTypes.string,
+    animation: _react.PropTypes.any,
+    align: _react.PropTypes.object,
+    overlayStyle: _react.PropTypes.object,
+    placement: _react.PropTypes.string,
+    trigger: _react.PropTypes.array,
+    showAction: _react.PropTypes.array,
+    hideAction: _react.PropTypes.array,
+    getPopupContainer: _react.PropTypes.func
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      minOverlayWidthMatchTrigger: true,
+      prefixCls: 'rc-dropdown',
+      trigger: ['hover'],
+      showAction: [],
+      hideAction: [],
+      overlayClassName: '',
+      overlayStyle: {},
+      defaultVisible: false,
+      onVisibleChange: function onVisibleChange() {},
+
+      placement: 'bottomLeft'
+    };
+  },
+  getInitialState: function getInitialState() {
+    var props = this.props;
+    if ('visible' in props) {
+      return {
+        visible: props.visible
+      };
+    }
+    return {
+      visible: props.defaultVisible
+    };
+  },
+  componentWillReceiveProps: function componentWillReceiveProps(_ref) {
+    var visible = _ref.visible;
+
+    if (visible !== undefined) {
+      this.setState({
+        visible: visible
+      });
+    }
+  },
+  onClick: function onClick(e) {
+    var props = this.props;
+    var overlayProps = props.overlay.props;
+    // do no call onVisibleChange, if you need click to hide, use onClick and control visible
+    if (!('visible' in props)) {
+      this.setState({
+        visible: false
+      });
+    }
+    if (overlayProps.onClick) {
+      overlayProps.onClick(e);
+    }
+  },
+  onVisibleChange: function onVisibleChange(visible) {
+    var props = this.props;
+    if (!('visible' in props)) {
+      this.setState({
+        visible: visible
+      });
+    }
+    props.onVisibleChange(visible);
+  },
+  getMenuElement: function getMenuElement() {
+    var props = this.props;
+    return _react2["default"].cloneElement(props.overlay, {
+      prefixCls: props.prefixCls + '-menu',
+      onClick: this.onClick
+    });
+  },
+  getPopupDomNode: function getPopupDomNode() {
+    return this.refs.trigger.getPopupDomNode();
+  },
+  afterVisibleChange: function afterVisibleChange(visible) {
+    if (visible && this.props.minOverlayWidthMatchTrigger) {
+      var overlayNode = this.getPopupDomNode();
+      var rootNode = _reactDom2["default"].findDOMNode(this);
+      if (rootNode.offsetWidth > overlayNode.offsetWidth) {
+        overlayNode.style.width = rootNode.offsetWidth + 'px';
+      }
+    }
+  },
+  render: function render() {
+    var _props = this.props;
+    var prefixCls = _props.prefixCls;
+    var children = _props.children;
+    var transitionName = _props.transitionName;
+    var animation = _props.animation;
+    var align = _props.align;
+    var placement = _props.placement;
+    var getPopupContainer = _props.getPopupContainer;
+    var showAction = _props.showAction;
+    var hideAction = _props.hideAction;
+    var overlayClassName = _props.overlayClassName;
+    var overlayStyle = _props.overlayStyle;
+    var trigger = _props.trigger;
+
+    var otherProps = _objectWithoutProperties(_props, ['prefixCls', 'children', 'transitionName', 'animation', 'align', 'placement', 'getPopupContainer', 'showAction', 'hideAction', 'overlayClassName', 'overlayStyle', 'trigger']);
+
+    return _react2["default"].createElement(
+      _rcTrigger2["default"],
+      _extends({}, otherProps, {
+        prefixCls: prefixCls,
+        ref: 'trigger',
+        popupClassName: overlayClassName,
+        popupStyle: overlayStyle,
+        builtinPlacements: _placements2["default"],
+        action: trigger,
+        showAction: showAction,
+        hideAction: hideAction,
+        popupPlacement: placement,
+        popupAlign: align,
+        popupTransitionName: transitionName,
+        popupAnimation: animation,
+        popupVisible: this.state.visible,
+        afterPopupVisibleChange: this.afterVisibleChange,
+        popup: this.getMenuElement(),
+        onPopupVisibleChange: this.onVisibleChange,
+        getPopupContainer: getPopupContainer
+      }),
+      children
+    );
+  }
+});
+
+exports["default"] = Dropdown;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./node_modules/rc-dropdown/lib/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Dropdown = __webpack_require__("./node_modules/rc-dropdown/lib/Dropdown.js");
+
+var _Dropdown2 = _interopRequireDefault(_Dropdown);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+exports["default"] = _Dropdown2["default"];
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./node_modules/rc-dropdown/lib/placements.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var autoAdjustOverflow = {
+  adjustX: 1,
+  adjustY: 1
+};
+
+var targetOffset = [0, 0];
+
+var placements = exports.placements = {
+  topLeft: {
+    points: ['bl', 'tl'],
+    overflow: autoAdjustOverflow,
+    offset: [0, -4],
+    targetOffset: targetOffset
+  },
+  topCenter: {
+    points: ['bc', 'tc'],
+    overflow: autoAdjustOverflow,
+    offset: [0, -4],
+    targetOffset: targetOffset
+  },
+  topRight: {
+    points: ['br', 'tr'],
+    overflow: autoAdjustOverflow,
+    offset: [0, -4],
+    targetOffset: targetOffset
+  },
+  bottomLeft: {
+    points: ['tl', 'bl'],
+    overflow: autoAdjustOverflow,
+    offset: [0, 4],
+    targetOffset: targetOffset
+  },
+  bottomCenter: {
+    points: ['tc', 'bc'],
+    overflow: autoAdjustOverflow,
+    offset: [0, 4],
+    targetOffset: targetOffset
+  },
+  bottomRight: {
+    points: ['tr', 'br'],
+    overflow: autoAdjustOverflow,
+    offset: [0, 4],
+    targetOffset: targetOffset
+  }
+};
+
+exports["default"] = placements;
+
+/***/ }),
+
+/***/ "./node_modules/rc-menu/lib/DOMWrap.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__("./node_modules/babel-runtime/helpers/extends.js");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var DOMWrap = _react2["default"].createClass({
+  displayName: 'DOMWrap',
+
+  propTypes: {
+    tag: _react.PropTypes.string,
+    hiddenClassName: _react.PropTypes.string,
+    visible: _react.PropTypes.bool
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      tag: 'div'
+    };
+  },
+  render: function render() {
+    var props = (0, _extends3["default"])({}, this.props);
+    if (!props.visible) {
+      props.className = props.className || '';
+      props.className += ' ' + props.hiddenClassName;
+    }
+    var Tag = props.tag;
+    delete props.tag;
+    delete props.hiddenClassName;
+    delete props.visible;
+    return _react2["default"].createElement(Tag, props);
+  }
+});
+
+exports["default"] = DOMWrap;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./node_modules/rc-menu/lib/Divider.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var Divider = _react2["default"].createClass({
+  displayName: 'Divider',
+
+  propTypes: {
+    disabled: _react.PropTypes.bool,
+    className: _react.PropTypes.string,
+    rootPrefixCls: _react.PropTypes.string
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      disabled: true
+    };
+  },
+  render: function render() {
+    var _props = this.props,
+        _props$className = _props.className,
+        className = _props$className === undefined ? '' : _props$className,
+        rootPrefixCls = _props.rootPrefixCls;
+
+    return _react2["default"].createElement('li', { className: className + ' ' + rootPrefixCls + '-item-divider' });
+  }
+});
+
+exports["default"] = Divider;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./node_modules/rc-menu/lib/Menu.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__("./node_modules/babel-runtime/helpers/extends.js");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _MenuMixin = __webpack_require__("./node_modules/rc-menu/lib/MenuMixin.js");
+
+var _MenuMixin2 = _interopRequireDefault(_MenuMixin);
+
+var _util = __webpack_require__("./node_modules/rc-menu/lib/util.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var Menu = _react2["default"].createClass({
+  displayName: 'Menu',
+
+  propTypes: {
+    openSubMenuOnMouseEnter: _react.PropTypes.bool,
+    closeSubMenuOnMouseLeave: _react.PropTypes.bool,
+    selectedKeys: _react.PropTypes.arrayOf(_react.PropTypes.string),
+    defaultSelectedKeys: _react.PropTypes.arrayOf(_react.PropTypes.string),
+    defaultOpenKeys: _react.PropTypes.arrayOf(_react.PropTypes.string),
+    openKeys: _react.PropTypes.arrayOf(_react.PropTypes.string),
+    mode: _react.PropTypes.string,
+    onClick: _react.PropTypes.func,
+    onSelect: _react.PropTypes.func,
+    onDeselect: _react.PropTypes.func,
+    onDestroy: _react.PropTypes.func,
+    openTransitionName: _react.PropTypes.string,
+    openAnimation: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.object]),
+    level: _react.PropTypes.number,
+    eventKey: _react.PropTypes.string,
+    selectable: _react.PropTypes.bool,
+    children: _react.PropTypes.any
+  },
+
+  mixins: [_MenuMixin2["default"]],
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      openSubMenuOnMouseEnter: true,
+      closeSubMenuOnMouseLeave: true,
+      selectable: true,
+      onClick: _util.noop,
+      onSelect: _util.noop,
+      onOpenChange: _util.noop,
+      onDeselect: _util.noop,
+      defaultSelectedKeys: [],
+      defaultOpenKeys: []
+    };
+  },
+  getInitialState: function getInitialState() {
+    var props = this.props;
+    var selectedKeys = props.defaultSelectedKeys;
+    var openKeys = props.defaultOpenKeys;
+    if ('selectedKeys' in props) {
+      selectedKeys = props.selectedKeys || [];
+    }
+    if ('openKeys' in props) {
+      openKeys = props.openKeys || [];
+    }
+    return {
+      selectedKeys: selectedKeys,
+      openKeys: openKeys
+    };
+  },
+  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+    var props = {};
+    if ('selectedKeys' in nextProps) {
+      props.selectedKeys = nextProps.selectedKeys || [];
+    }
+    if ('openKeys' in nextProps) {
+      props.openKeys = nextProps.openKeys || [];
+    }
+    this.setState(props);
+  },
+  onDestroy: function onDestroy(key) {
+    var state = this.state;
+    var props = this.props;
+    var selectedKeys = state.selectedKeys;
+    var openKeys = state.openKeys;
+    var index = selectedKeys.indexOf(key);
+    if (!('selectedKeys' in props) && index !== -1) {
+      selectedKeys.splice(index, 1);
+    }
+    index = openKeys.indexOf(key);
+    if (!('openKeys' in props) && index !== -1) {
+      openKeys.splice(index, 1);
+    }
+  },
+  onItemHover: function onItemHover(e) {
+    var _this = this;
+
+    var item = e.item;
+    var _props = this.props,
+        mode = _props.mode,
+        closeSubMenuOnMouseLeave = _props.closeSubMenuOnMouseLeave;
+    var _e$openChanges = e.openChanges,
+        openChanges = _e$openChanges === undefined ? [] : _e$openChanges;
+    // special for top sub menu
+
+    if (mode !== 'inline' && !closeSubMenuOnMouseLeave && item.isSubMenu) {
+      (function () {
+        var activeKey = _this.state.activeKey;
+        var activeItem = _this.getFlatInstanceArray().filter(function (c) {
+          return c && c.props.eventKey === activeKey;
+        })[0];
+        if (activeItem && activeItem.props.open) {
+          openChanges = openChanges.concat({
+            key: item.props.eventKey,
+            item: item,
+            originalEvent: e,
+            open: true
+          });
+        }
+      })();
+    }
+    openChanges = openChanges.concat(this.getOpenChangesOnItemHover(e));
+    if (openChanges.length) {
+      this.onOpenChange(openChanges);
+    }
+  },
+  onSelect: function onSelect(selectInfo) {
+    var props = this.props;
+    if (props.selectable) {
+      // root menu
+      var selectedKeys = this.state.selectedKeys;
+      var selectedKey = selectInfo.key;
+      if (props.multiple) {
+        selectedKeys = selectedKeys.concat([selectedKey]);
+      } else {
+        selectedKeys = [selectedKey];
+      }
+      if (!('selectedKeys' in props)) {
+        this.setState({
+          selectedKeys: selectedKeys
+        });
+      }
+      props.onSelect((0, _extends3["default"])({}, selectInfo, {
+        selectedKeys: selectedKeys
+      }));
+    }
+  },
+  onClick: function onClick(e) {
+    this.props.onClick(e);
+  },
+  onOpenChange: function onOpenChange(e_) {
+    var props = this.props;
+    var openKeys = this.state.openKeys.concat();
+    var changed = false;
+    var processSingle = function processSingle(e) {
+      var oneChanged = false;
+      if (e.open) {
+        oneChanged = openKeys.indexOf(e.key) === -1;
+        if (oneChanged) {
+          openKeys.push(e.key);
+        }
+      } else {
+        var index = openKeys.indexOf(e.key);
+        oneChanged = index !== -1;
+        if (oneChanged) {
+          openKeys.splice(index, 1);
+        }
+      }
+      changed = changed || oneChanged;
+    };
+    if (Array.isArray(e_)) {
+      // batch change call
+      e_.forEach(processSingle);
+    } else {
+      processSingle(e_);
+    }
+    if (changed) {
+      if (!('openKeys' in this.props)) {
+        this.setState({ openKeys: openKeys });
+      }
+      props.onOpenChange(openKeys);
+    }
+  },
+  onDeselect: function onDeselect(selectInfo) {
+    var props = this.props;
+    if (props.selectable) {
+      var selectedKeys = this.state.selectedKeys.concat();
+      var selectedKey = selectInfo.key;
+      var index = selectedKeys.indexOf(selectedKey);
+      if (index !== -1) {
+        selectedKeys.splice(index, 1);
+      }
+      if (!('selectedKeys' in props)) {
+        this.setState({
+          selectedKeys: selectedKeys
+        });
+      }
+      props.onDeselect((0, _extends3["default"])({}, selectInfo, {
+        selectedKeys: selectedKeys
+      }));
+    }
+  },
+  getOpenTransitionName: function getOpenTransitionName() {
+    var props = this.props;
+    var transitionName = props.openTransitionName;
+    var animationName = props.openAnimation;
+    if (!transitionName && typeof animationName === 'string') {
+      transitionName = props.prefixCls + '-open-' + animationName;
+    }
+    return transitionName;
+  },
+  isInlineMode: function isInlineMode() {
+    return this.props.mode === 'inline';
+  },
+  lastOpenSubMenu: function lastOpenSubMenu() {
+    var lastOpen = [];
+    var openKeys = this.state.openKeys;
+
+    if (openKeys.length) {
+      lastOpen = this.getFlatInstanceArray().filter(function (c) {
+        return c && openKeys.indexOf(c.props.eventKey) !== -1;
+      });
+    }
+    return lastOpen[0];
+  },
+  renderMenuItem: function renderMenuItem(c, i, subIndex) {
+    if (!c) {
+      return null;
+    }
+    var state = this.state;
+    var extraProps = {
+      openKeys: state.openKeys,
+      selectedKeys: state.selectedKeys,
+      openSubMenuOnMouseEnter: this.props.openSubMenuOnMouseEnter
+    };
+    return this.renderCommonMenuItem(c, i, subIndex, extraProps);
+  },
+  render: function render() {
+    var props = (0, _extends3["default"])({}, this.props);
+    props.className += ' ' + props.prefixCls + '-root';
+    return this.renderRoot(props);
+  }
+});
+
+exports["default"] = Menu;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./node_modules/rc-menu/lib/MenuItem.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends2 = __webpack_require__("./node_modules/babel-runtime/helpers/extends.js");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _KeyCode = __webpack_require__("./node_modules/rc-menu/node_modules/rc-util/lib/KeyCode.js");
+
+var _KeyCode2 = _interopRequireDefault(_KeyCode);
+
+var _classnames = __webpack_require__("./node_modules/classnames/index.js");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _util = __webpack_require__("./node_modules/rc-menu/lib/util.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+/* eslint react/no-is-mounted:0 */
+
+var MenuItem = _react2["default"].createClass({
+  displayName: 'MenuItem',
+
+  propTypes: {
+    rootPrefixCls: _react.PropTypes.string,
+    eventKey: _react.PropTypes.string,
+    active: _react.PropTypes.bool,
+    children: _react.PropTypes.any,
+    selectedKeys: _react.PropTypes.array,
+    disabled: _react.PropTypes.bool,
+    title: _react.PropTypes.string,
+    onSelect: _react.PropTypes.func,
+    onClick: _react.PropTypes.func,
+    onDeselect: _react.PropTypes.func,
+    parentMenu: _react.PropTypes.object,
+    onItemHover: _react.PropTypes.func,
+    onDestroy: _react.PropTypes.func,
+    onMouseEnter: _react.PropTypes.func,
+    onMouseLeave: _react.PropTypes.func
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      onSelect: _util.noop,
+      onMouseEnter: _util.noop,
+      onMouseLeave: _util.noop
+    };
+  },
+  componentWillUnmount: function componentWillUnmount() {
+    var props = this.props;
+    if (props.onDestroy) {
+      props.onDestroy(props.eventKey);
+    }
+    if (props.parentMenu.menuItemInstance === this) {
+      this.clearMenuItemMouseLeaveTimer();
+    }
+  },
+  onKeyDown: function onKeyDown(e) {
+    var keyCode = e.keyCode;
+    if (keyCode === _KeyCode2["default"].ENTER) {
+      this.onClick(e);
+      return true;
+    }
+  },
+  onMouseLeave: function onMouseLeave(e) {
+    var _this = this;
+
+    var props = this.props;
+    var eventKey = props.eventKey,
+        parentMenu = props.parentMenu;
+
+    parentMenu.menuItemInstance = this;
+    parentMenu.menuItemMouseLeaveFn = function () {
+      if (_this.isMounted() && props.active) {
+        props.onItemHover({
+          key: eventKey,
+          item: _this,
+          hover: false,
+          domEvent: e,
+          trigger: 'mouseleave'
+        });
+      }
+    };
+    parentMenu.menuItemMouseLeaveTimer = setTimeout(parentMenu.menuItemMouseLeaveFn, 30);
+    props.onMouseLeave({
+      key: eventKey,
+      domEvent: e
+    });
+  },
+  onMouseEnter: function onMouseEnter(e) {
+    var props = this.props;
+    var eventKey = props.eventKey,
+        parentMenu = props.parentMenu;
+
+    this.clearMenuItemMouseLeaveTimer(parentMenu.menuItemInstance !== this);
+    if (parentMenu.subMenuInstance) {
+      parentMenu.subMenuInstance.clearSubMenuTimers();
+    }
+    props.onItemHover({
+      key: eventKey,
+      item: this,
+      hover: true,
+      domEvent: e,
+      trigger: 'mouseenter'
+    });
+    props.onMouseEnter({
+      key: eventKey,
+      domEvent: e
+    });
+  },
+  onClick: function onClick(e) {
+    var props = this.props;
+    var selected = this.isSelected();
+    var eventKey = props.eventKey;
+    var info = {
+      key: eventKey,
+      keyPath: [eventKey],
+      item: this,
+      domEvent: e
+    };
+    props.onClick(info);
+    if (props.multiple) {
+      if (selected) {
+        props.onDeselect(info);
+      } else {
+        props.onSelect(info);
+      }
+    } else if (!selected) {
+      props.onSelect(info);
+    }
+  },
+  getPrefixCls: function getPrefixCls() {
+    return this.props.rootPrefixCls + '-item';
+  },
+  getActiveClassName: function getActiveClassName() {
+    return this.getPrefixCls() + '-active';
+  },
+  getSelectedClassName: function getSelectedClassName() {
+    return this.getPrefixCls() + '-selected';
+  },
+  getDisabledClassName: function getDisabledClassName() {
+    return this.getPrefixCls() + '-disabled';
+  },
+  clearMenuItemMouseLeaveTimer: function clearMenuItemMouseLeaveTimer() {
+    var props = this.props;
+    var callFn = void 0;
+    var parentMenu = props.parentMenu;
+    if (parentMenu.menuItemMouseLeaveTimer) {
+      clearTimeout(parentMenu.menuItemMouseLeaveTimer);
+      parentMenu.menuItemMouseLeaveTimer = null;
+      if (callFn && parentMenu.menuItemMouseLeaveFn) {
+        parentMenu.menuItemMouseLeaveFn();
+      }
+      parentMenu.menuItemMouseLeaveFn = null;
+    }
+  },
+  isSelected: function isSelected() {
+    return this.props.selectedKeys.indexOf(this.props.eventKey) !== -1;
+  },
+  render: function render() {
+    var props = this.props;
+    var selected = this.isSelected();
+    var classes = {};
+    classes[this.getActiveClassName()] = !props.disabled && props.active;
+    classes[this.getSelectedClassName()] = selected;
+    classes[this.getDisabledClassName()] = props.disabled;
+    classes[this.getPrefixCls()] = true;
+    classes[props.className] = !!props.className;
+    var attrs = (0, _extends3["default"])({}, props.attribute, {
+      title: props.title,
+      className: (0, _classnames2["default"])(classes),
+      role: 'menuitem',
+      'aria-selected': selected,
+      'aria-disabled': props.disabled
+    });
+    var mouseEvent = {};
+    if (!props.disabled) {
+      mouseEvent = {
+        onClick: this.onClick,
+        onMouseLeave: this.onMouseLeave,
+        onMouseEnter: this.onMouseEnter
+      };
+    }
+    var style = (0, _extends3["default"])({}, props.style);
+    if (props.mode === 'inline') {
+      style.paddingLeft = props.inlineIndent * props.level;
+    }
+    return _react2["default"].createElement(
+      'li',
+      (0, _extends3["default"])({
+        style: style
+      }, attrs, mouseEvent),
+      props.children
+    );
+  }
+});
+
+MenuItem.isMenuItem = 1;
+
+exports["default"] = MenuItem;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./node_modules/rc-menu/lib/MenuItemGroup.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var MenuItemGroup = _react2["default"].createClass({
+  displayName: 'MenuItemGroup',
+
+  propTypes: {
+    renderMenuItem: _react.PropTypes.func,
+    index: _react.PropTypes.number,
+    className: _react.PropTypes.string,
+    rootPrefixCls: _react.PropTypes.string
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      disabled: true
+    };
+  },
+  renderInnerMenuItem: function renderInnerMenuItem(item, subIndex) {
+    var _props = this.props,
+        renderMenuItem = _props.renderMenuItem,
+        index = _props.index;
+
+    return renderMenuItem(item, index, subIndex);
+  },
+  render: function render() {
+    var props = this.props;
+    var _props$className = props.className,
+        className = _props$className === undefined ? '' : _props$className,
+        rootPrefixCls = props.rootPrefixCls;
+
+    var titleClassName = rootPrefixCls + '-item-group-title';
+    var listClassName = rootPrefixCls + '-item-group-list';
+    return _react2["default"].createElement(
+      'li',
+      { className: className + ' ' + rootPrefixCls + '-item-group' },
+      _react2["default"].createElement(
+        'div',
+        { className: titleClassName },
+        props.title
+      ),
+      _react2["default"].createElement(
+        'ul',
+        { className: listClassName },
+        _react2["default"].Children.map(props.children, this.renderInnerMenuItem)
+      )
+    );
+  }
+});
+
+MenuItemGroup.isMenuItemGroup = true;
+
+exports["default"] = MenuItemGroup;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./node_modules/rc-menu/lib/MenuMixin.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _defineProperty2 = __webpack_require__("./node_modules/babel-runtime/helpers/defineProperty.js");
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _extends2 = __webpack_require__("./node_modules/babel-runtime/helpers/extends.js");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(1);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _KeyCode = __webpack_require__("./node_modules/rc-menu/node_modules/rc-util/lib/KeyCode.js");
+
+var _KeyCode2 = _interopRequireDefault(_KeyCode);
+
+var _createChainedFunction = __webpack_require__("./node_modules/rc-menu/node_modules/rc-util/lib/createChainedFunction.js");
+
+var _createChainedFunction2 = _interopRequireDefault(_createChainedFunction);
+
+var _classnames = __webpack_require__("./node_modules/classnames/index.js");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _domScrollIntoView = __webpack_require__("./node_modules/dom-scroll-into-view/lib/index.js");
+
+var _domScrollIntoView2 = _interopRequireDefault(_domScrollIntoView);
+
+var _util = __webpack_require__("./node_modules/rc-menu/lib/util.js");
+
+var _DOMWrap = __webpack_require__("./node_modules/rc-menu/lib/DOMWrap.js");
+
+var _DOMWrap2 = _interopRequireDefault(_DOMWrap);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function allDisabled(arr) {
+  if (!arr.length) {
+    return true;
+  }
+  return arr.every(function (c) {
+    return !!c.props.disabled;
+  });
+}
+
+function getActiveKey(props, originalActiveKey) {
+  var activeKey = originalActiveKey;
+  var children = props.children,
+      eventKey = props.eventKey;
+
+  if (activeKey) {
+    var found = void 0;
+    (0, _util.loopMenuItem)(children, function (c, i) {
+      if (c && !c.props.disabled && activeKey === (0, _util.getKeyFromChildrenIndex)(c, eventKey, i)) {
+        found = true;
+      }
+    });
+    if (found) {
+      return activeKey;
+    }
+  }
+  activeKey = null;
+  if (props.defaultActiveFirst) {
+    (0, _util.loopMenuItem)(children, function (c, i) {
+      if (!activeKey && c && !c.props.disabled) {
+        activeKey = (0, _util.getKeyFromChildrenIndex)(c, eventKey, i);
+      }
+    });
+    return activeKey;
+  }
+  return activeKey;
+}
+
+function saveRef(index, subIndex, c) {
+  if (c) {
+    if (subIndex !== undefined) {
+      this.instanceArray[index] = this.instanceArray[index] || [];
+      this.instanceArray[index][subIndex] = c;
+    } else {
+      this.instanceArray[index] = c;
+    }
+  }
+}
+
+var MenuMixin = {
+  propTypes: {
+    focusable: _react.PropTypes.bool,
+    multiple: _react.PropTypes.bool,
+    style: _react.PropTypes.object,
+    defaultActiveFirst: _react.PropTypes.bool,
+    visible: _react.PropTypes.bool,
+    activeKey: _react.PropTypes.string,
+    selectedKeys: _react.PropTypes.arrayOf(_react.PropTypes.string),
+    defaultSelectedKeys: _react.PropTypes.arrayOf(_react.PropTypes.string),
+    defaultOpenKeys: _react.PropTypes.arrayOf(_react.PropTypes.string),
+    openKeys: _react.PropTypes.arrayOf(_react.PropTypes.string),
+    children: _react.PropTypes.any
+  },
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      prefixCls: 'rc-menu',
+      className: '',
+      mode: 'vertical',
+      level: 1,
+      inlineIndent: 24,
+      visible: true,
+      focusable: true,
+      style: {}
+    };
+  },
+  getInitialState: function getInitialState() {
+    var props = this.props;
+    return {
+      activeKey: getActiveKey(props, props.activeKey)
+    };
+  },
+  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+    var props = void 0;
+    if ('activeKey' in nextProps) {
+      props = {
+        activeKey: getActiveKey(nextProps, nextProps.activeKey)
+      };
+    } else {
+      var originalActiveKey = this.state.activeKey;
+      var activeKey = getActiveKey(nextProps, originalActiveKey);
+      // fix: this.setState(), parent.render(),
+      if (activeKey !== originalActiveKey) {
+        props = {
+          activeKey: activeKey
+        };
+      }
+    }
+    if (props) {
+      this.setState(props);
+    }
+  },
+  shouldComponentUpdate: function shouldComponentUpdate(nextProps) {
+    return this.props.visible || nextProps.visible;
+  },
+  componentWillMount: function componentWillMount() {
+    this.instanceArray = [];
+  },
+
+
+  // all keyboard events callbacks run from here at first
+  onKeyDown: function onKeyDown(e) {
+    var _this = this;
+
+    var keyCode = e.keyCode;
+    var handled = void 0;
+    this.getFlatInstanceArray().forEach(function (obj) {
+      if (obj && obj.props.active) {
+        handled = obj.onKeyDown(e);
+      }
+    });
+    if (handled) {
+      return 1;
+    }
+    var activeItem = null;
+    if (keyCode === _KeyCode2["default"].UP || keyCode === _KeyCode2["default"].DOWN) {
+      activeItem = this.step(keyCode === _KeyCode2["default"].UP ? -1 : 1);
+    }
+    if (activeItem) {
+      e.preventDefault();
+      this.setState({
+        activeKey: activeItem.props.eventKey
+      }, function () {
+        (0, _domScrollIntoView2["default"])(_reactDom2["default"].findDOMNode(activeItem), _reactDom2["default"].findDOMNode(_this), {
+          onlyScrollIfNeeded: true
+        });
+      });
+      return 1;
+    } else if (activeItem === undefined) {
+      e.preventDefault();
+      this.setState({
+        activeKey: null
+      });
+      return 1;
+    }
+  },
+  getOpenChangesOnItemHover: function getOpenChangesOnItemHover(e) {
+    var mode = this.props.mode;
+    var key = e.key,
+        hover = e.hover,
+        trigger = e.trigger;
+
+    var activeKey = this.state.activeKey;
+    if (!trigger || hover || this.props.closeSubMenuOnMouseLeave || !e.item.isSubMenu || mode === 'inline') {
+      this.setState({
+        activeKey: hover ? key : null
+      });
+    } else {}
+    // keep active for sub menu for click active
+    // empty
+
+    // clear last open status
+    if (hover && mode !== 'inline') {
+      var activeItem = this.getFlatInstanceArray().filter(function (c) {
+        return c && c.props.eventKey === activeKey;
+      })[0];
+      if (activeItem && activeItem.isSubMenu && activeItem.props.eventKey !== key) {
+        return {
+          item: activeItem,
+          originalEvent: e,
+          key: activeItem.props.eventKey,
+          open: false
+        };
+      }
+    }
+    return [];
+  },
+  getFlatInstanceArray: function getFlatInstanceArray() {
+    var instanceArray = this.instanceArray;
+    var hasInnerArray = instanceArray.some(function (a) {
+      return Array.isArray(a);
+    });
+    if (hasInnerArray) {
+      instanceArray = [];
+      this.instanceArray.forEach(function (a) {
+        if (Array.isArray(a)) {
+          instanceArray.push.apply(instanceArray, a);
+        } else {
+          instanceArray.push(a);
+        }
+      });
+      this.instanceArray = instanceArray;
+    }
+    return instanceArray;
+  },
+  renderCommonMenuItem: function renderCommonMenuItem(child, i, subIndex, extraProps) {
+    var state = this.state;
+    var props = this.props;
+    var key = (0, _util.getKeyFromChildrenIndex)(child, props.eventKey, i);
+    var childProps = child.props;
+    var isActive = key === state.activeKey;
+    var newChildProps = (0, _extends3["default"])({
+      mode: props.mode,
+      level: props.level,
+      inlineIndent: props.inlineIndent,
+      renderMenuItem: this.renderMenuItem,
+      rootPrefixCls: props.prefixCls,
+      index: i,
+      parentMenu: this,
+      ref: childProps.disabled ? undefined : (0, _createChainedFunction2["default"])(child.ref, saveRef.bind(this, i, subIndex)),
+      eventKey: key,
+      closeSubMenuOnMouseLeave: props.closeSubMenuOnMouseLeave,
+      onItemHover: this.onItemHover,
+      active: !childProps.disabled && isActive,
+      multiple: props.multiple,
+      onClick: this.onClick,
+      openTransitionName: this.getOpenTransitionName(),
+      openAnimation: props.openAnimation,
+      onOpenChange: this.onOpenChange,
+      onDeselect: this.onDeselect,
+      onDestroy: this.onDestroy,
+      onSelect: this.onSelect
+    }, extraProps);
+    if (props.mode === 'inline') {
+      newChildProps.closeSubMenuOnMouseLeave = newChildProps.openSubMenuOnMouseEnter = false;
+    }
+    return _react2["default"].cloneElement(child, newChildProps);
+  },
+  renderRoot: function renderRoot(props) {
+    var _classes;
+
+    this.instanceArray = [];
+    var classes = (_classes = {}, (0, _defineProperty3["default"])(_classes, props.prefixCls, 1), (0, _defineProperty3["default"])(_classes, props.prefixCls + '-' + props.mode, 1), (0, _defineProperty3["default"])(_classes, props.className, !!props.className), _classes);
+    var domProps = {
+      className: (0, _classnames2["default"])(classes),
+      role: 'menu',
+      'aria-activedescendant': ''
+    };
+    if (props.id) {
+      domProps.id = props.id;
+    }
+    if (props.focusable) {
+      domProps.tabIndex = '0';
+      domProps.onKeyDown = this.onKeyDown;
+    }
+    return (
+      // ESLint is not smart enough to know that the type of `children` was checked.
+      /* eslint-disable */
+      _react2["default"].createElement(
+        _DOMWrap2["default"],
+        (0, _extends3["default"])({
+          style: props.style,
+          tag: 'ul',
+          hiddenClassName: props.prefixCls + '-hidden',
+          visible: props.visible
+        }, domProps),
+        _react2["default"].Children.map(props.children, this.renderMenuItem)
+      )
+      /*eslint-enable */
+
+    );
+  },
+  step: function step(direction) {
+    var children = this.getFlatInstanceArray();
+    var activeKey = this.state.activeKey;
+    var len = children.length;
+    if (!len) {
+      return null;
+    }
+    if (direction < 0) {
+      children = children.concat().reverse();
+    }
+    // find current activeIndex
+    var activeIndex = -1;
+    children.every(function (c, ci) {
+      if (c && c.props.eventKey === activeKey) {
+        activeIndex = ci;
+        return false;
+      }
+      return true;
+    });
+    if (!this.props.defaultActiveFirst && activeIndex !== -1) {
+      if (allDisabled(children.slice(activeIndex, len - 1))) {
+        return undefined;
+      }
+    }
+    var start = (activeIndex + 1) % len;
+    var i = start;
+    for (;;) {
+      var child = children[i];
+      if (!child || child.props.disabled) {
+        i = (i + 1 + len) % len;
+        // complete a loop
+        if (i === start) {
+          return null;
+        }
+      } else {
+        return child;
+      }
+    }
+  }
+};
+
+exports["default"] = MenuMixin;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./node_modules/rc-menu/lib/SubMenu.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _defineProperty2 = __webpack_require__("./node_modules/babel-runtime/helpers/defineProperty.js");
+
+var _defineProperty3 = _interopRequireDefault(_defineProperty2);
+
+var _extends2 = __webpack_require__("./node_modules/babel-runtime/helpers/extends.js");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _SubPopupMenu = __webpack_require__("./node_modules/rc-menu/lib/SubPopupMenu.js");
+
+var _SubPopupMenu2 = _interopRequireDefault(_SubPopupMenu);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _KeyCode = __webpack_require__("./node_modules/rc-menu/node_modules/rc-util/lib/KeyCode.js");
+
+var _KeyCode2 = _interopRequireDefault(_KeyCode);
+
+var _classnames = __webpack_require__("./node_modules/classnames/index.js");
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _util = __webpack_require__("./node_modules/rc-menu/lib/util.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var guid = 0;
+
+/* eslint react/no-is-mounted:0 */
+
+var SubMenu = _react2["default"].createClass({
+  displayName: 'SubMenu',
+
+  propTypes: {
+    parentMenu: _react.PropTypes.object,
+    title: _react.PropTypes.node,
+    children: _react.PropTypes.any,
+    selectedKeys: _react.PropTypes.array,
+    openKeys: _react.PropTypes.array,
+    onClick: _react.PropTypes.func,
+    onOpenChange: _react.PropTypes.func,
+    rootPrefixCls: _react.PropTypes.string,
+    eventKey: _react.PropTypes.string,
+    multiple: _react.PropTypes.bool,
+    active: _react.PropTypes.bool,
+    onSelect: _react.PropTypes.func,
+    closeSubMenuOnMouseLeave: _react.PropTypes.bool,
+    openSubMenuOnMouseEnter: _react.PropTypes.bool,
+    onDeselect: _react.PropTypes.func,
+    onDestroy: _react.PropTypes.func,
+    onItemHover: _react.PropTypes.func,
+    onMouseEnter: _react.PropTypes.func,
+    onMouseLeave: _react.PropTypes.func,
+    onTitleMouseEnter: _react.PropTypes.func,
+    onTitleMouseLeave: _react.PropTypes.func,
+    onTitleClick: _react.PropTypes.func
+  },
+
+  mixins: [__webpack_require__("./node_modules/rc-menu/lib/SubMenuStateMixin.js")],
+
+  getDefaultProps: function getDefaultProps() {
+    return {
+      onMouseEnter: _util.noop,
+      onMouseLeave: _util.noop,
+      onTitleMouseEnter: _util.noop,
+      onTitleMouseLeave: _util.noop,
+      onTitleClick: _util.noop,
+      title: ''
+    };
+  },
+  getInitialState: function getInitialState() {
+    this.isSubMenu = 1;
+    return {
+      defaultActiveFirst: false
+    };
+  },
+  componentWillUnmount: function componentWillUnmount() {
+    var _props = this.props,
+        onDestroy = _props.onDestroy,
+        eventKey = _props.eventKey,
+        parentMenu = _props.parentMenu;
+
+    if (onDestroy) {
+      onDestroy(eventKey);
+    }
+    if (parentMenu.subMenuInstance === this) {
+      this.clearSubMenuTimers();
+    }
+  },
+  onDestroy: function onDestroy(key) {
+    this.props.onDestroy(key);
+  },
+  onKeyDown: function onKeyDown(e) {
+    var keyCode = e.keyCode;
+    var menu = this.menuInstance;
+    var isOpen = this.isOpen();
+
+    if (keyCode === _KeyCode2["default"].ENTER) {
+      this.onTitleClick(e);
+      this.setState({
+        defaultActiveFirst: true
+      });
+      return true;
+    }
+
+    if (keyCode === _KeyCode2["default"].RIGHT) {
+      if (isOpen) {
+        menu.onKeyDown(e);
+      } else {
+        this.triggerOpenChange(true);
+        this.setState({
+          defaultActiveFirst: true
+        });
+      }
+      return true;
+    }
+    if (keyCode === _KeyCode2["default"].LEFT) {
+      var handled = void 0;
+      if (isOpen) {
+        handled = menu.onKeyDown(e);
+      } else {
+        return undefined;
+      }
+      if (!handled) {
+        this.triggerOpenChange(false);
+        handled = true;
+      }
+      return handled;
+    }
+
+    if (isOpen && (keyCode === _KeyCode2["default"].UP || keyCode === _KeyCode2["default"].DOWN)) {
+      return menu.onKeyDown(e);
+    }
+  },
+  onOpenChange: function onOpenChange(e) {
+    this.props.onOpenChange(e);
+  },
+  onMouseEnter: function onMouseEnter(e) {
+    var props = this.props;
+    this.clearSubMenuLeaveTimer(props.parentMenu.subMenuInstance !== this);
+    props.onMouseEnter({
+      key: props.eventKey,
+      domEvent: e
+    });
+  },
+  onTitleMouseEnter: function onTitleMouseEnter(domEvent) {
+    var props = this.props;
+    var parentMenu = props.parentMenu,
+        key = props.eventKey;
+
+    var item = this;
+    this.clearSubMenuTitleLeaveTimer(parentMenu.subMenuInstance !== item);
+    if (parentMenu.menuItemInstance) {
+      parentMenu.menuItemInstance.clearMenuItemMouseLeaveTimer(true);
+    }
+    var openChanges = [];
+    if (props.openSubMenuOnMouseEnter) {
+      openChanges.push({
+        key: key,
+        item: item,
+        trigger: 'mouseenter',
+        open: true
+      });
+    }
+    props.onItemHover({
+      key: key,
+      item: item,
+      hover: true,
+      trigger: 'mouseenter',
+      openChanges: openChanges
+    });
+    this.setState({
+      defaultActiveFirst: false
+    });
+    props.onTitleMouseEnter({
+      key: key,
+      domEvent: domEvent
+    });
+  },
+  onTitleMouseLeave: function onTitleMouseLeave(e) {
+    var _this = this;
+
+    var props = this.props;
+    var parentMenu = props.parentMenu,
+        eventKey = props.eventKey;
+
+    parentMenu.subMenuInstance = this;
+    parentMenu.subMenuTitleLeaveFn = function () {
+      if (_this.isMounted()) {
+        // leave whole sub tree
+        // still active
+        if (props.mode === 'inline' && props.active) {
+          props.onItemHover({
+            key: eventKey,
+            item: _this,
+            hover: false,
+            trigger: 'mouseleave'
+          });
+        }
+        props.onTitleMouseLeave({
+          key: props.eventKey,
+          domEvent: e
+        });
+      }
+    };
+    parentMenu.subMenuTitleLeaveTimer = setTimeout(parentMenu.subMenuTitleLeaveFn, 100);
+  },
+  onMouseLeave: function onMouseLeave(e) {
+    var _this2 = this;
+
+    var props = this.props;
+    var parentMenu = props.parentMenu,
+        eventKey = props.eventKey;
+
+    parentMenu.subMenuInstance = this;
+    parentMenu.subMenuLeaveFn = function () {
+      if (_this2.isMounted()) {
+        // leave whole sub tree
+        // still active
+        if (props.mode !== 'inline') {
+          var isOpen = _this2.isOpen();
+          if (isOpen && props.closeSubMenuOnMouseLeave && props.active) {
+            props.onItemHover({
+              key: eventKey,
+              item: _this2,
+              hover: false,
+              trigger: 'mouseleave',
+              openChanges: [{
+                key: eventKey,
+                item: _this2,
+                trigger: 'mouseleave',
+                open: false
+              }]
+            });
+          } else {
+            if (props.active) {
+              props.onItemHover({
+                key: eventKey,
+                item: _this2,
+                hover: false,
+                trigger: 'mouseleave'
+              });
+            }
+            if (isOpen && props.closeSubMenuOnMouseLeave) {
+              _this2.triggerOpenChange(false);
+            }
+          }
+        }
+        // trigger mouseleave
+        props.onMouseLeave({
+          key: eventKey,
+          domEvent: e
+        });
+      }
+    };
+    // prevent popup menu and submenu gap
+    parentMenu.subMenuLeaveTimer = setTimeout(parentMenu.subMenuLeaveFn, 100);
+  },
+  onTitleClick: function onTitleClick(e) {
+    var props = this.props;
+
+    props.onTitleClick({
+      key: props.eventKey,
+      domEvent: e
+    });
+    if (props.openSubMenuOnMouseEnter) {
+      return;
+    }
+    this.triggerOpenChange(!this.isOpen(), 'click');
+    this.setState({
+      defaultActiveFirst: false
+    });
+  },
+  onSubMenuClick: function onSubMenuClick(info) {
+    this.props.onClick(this.addKeyPath(info));
+  },
+  onSelect: function onSelect(info) {
+    this.props.onSelect(info);
+  },
+  onDeselect: function onDeselect(info) {
+    this.props.onDeselect(info);
+  },
+  getPrefixCls: function getPrefixCls() {
+    return this.props.rootPrefixCls + '-submenu';
+  },
+  getActiveClassName: function getActiveClassName() {
+    return this.getPrefixCls() + '-active';
+  },
+  getDisabledClassName: function getDisabledClassName() {
+    return this.getPrefixCls() + '-disabled';
+  },
+  getSelectedClassName: function getSelectedClassName() {
+    return this.getPrefixCls() + '-selected';
+  },
+  getOpenClassName: function getOpenClassName() {
+    return this.props.rootPrefixCls + '-submenu-open';
+  },
+  saveMenuInstance: function saveMenuInstance(c) {
+    this.menuInstance = c;
+  },
+  addKeyPath: function addKeyPath(info) {
+    return (0, _extends3["default"])({}, info, {
+      keyPath: (info.keyPath || []).concat(this.props.eventKey)
+    });
+  },
+  triggerOpenChange: function triggerOpenChange(open, type) {
+    var key = this.props.eventKey;
+    this.onOpenChange({
+      key: key,
+      item: this,
+      trigger: type,
+      open: open
+    });
+  },
+  clearSubMenuTimers: function clearSubMenuTimers() {
+    var callFn = void 0;
+    this.clearSubMenuLeaveTimer(callFn);
+    this.clearSubMenuTitleLeaveTimer(callFn);
+  },
+  clearSubMenuTitleLeaveTimer: function clearSubMenuTitleLeaveTimer() {
+    var callFn = void 0;
+    var parentMenu = this.props.parentMenu;
+    if (parentMenu.subMenuTitleLeaveTimer) {
+      clearTimeout(parentMenu.subMenuTitleLeaveTimer);
+      parentMenu.subMenuTitleLeaveTimer = null;
+      if (callFn && parentMenu.subMenuTitleLeaveFn) {
+        parentMenu.subMenuTitleLeaveFn();
+      }
+      parentMenu.subMenuTitleLeaveFn = null;
+    }
+  },
+  clearSubMenuLeaveTimer: function clearSubMenuLeaveTimer() {
+    var callFn = void 0;
+    var parentMenu = this.props.parentMenu;
+    if (parentMenu.subMenuLeaveTimer) {
+      clearTimeout(parentMenu.subMenuLeaveTimer);
+      parentMenu.subMenuLeaveTimer = null;
+      if (callFn && parentMenu.subMenuLeaveFn) {
+        parentMenu.subMenuLeaveFn();
+      }
+      parentMenu.subMenuLeaveFn = null;
+    }
+  },
+  isChildrenSelected: function isChildrenSelected() {
+    var ret = { find: false };
+    (0, _util.loopMenuItemRecusively)(this.props.children, this.props.selectedKeys, ret);
+    return ret.find;
+  },
+  isOpen: function isOpen() {
+    return this.props.openKeys.indexOf(this.props.eventKey) !== -1;
+  },
+  renderChildren: function renderChildren(children) {
+    var props = this.props;
+    var baseProps = {
+      mode: props.mode === 'horizontal' ? 'vertical' : props.mode,
+      visible: this.isOpen(),
+      level: props.level + 1,
+      inlineIndent: props.inlineIndent,
+      focusable: false,
+      onClick: this.onSubMenuClick,
+      onSelect: this.onSelect,
+      onDeselect: this.onDeselect,
+      onDestroy: this.onDestroy,
+      selectedKeys: props.selectedKeys,
+      eventKey: props.eventKey + '-menu-',
+      openKeys: props.openKeys,
+      openTransitionName: props.openTransitionName,
+      openAnimation: props.openAnimation,
+      onOpenChange: this.onOpenChange,
+      closeSubMenuOnMouseLeave: props.closeSubMenuOnMouseLeave,
+      defaultActiveFirst: this.state.defaultActiveFirst,
+      multiple: props.multiple,
+      prefixCls: props.rootPrefixCls,
+      id: this._menuId,
+      ref: this.saveMenuInstance
+    };
+    return _react2["default"].createElement(
+      _SubPopupMenu2["default"],
+      baseProps,
+      children
+    );
+  },
+  render: function render() {
+    var _classes;
+
+    var isOpen = this.isOpen();
+    this.haveOpen = this.haveOpen || isOpen;
+    var props = this.props;
+    var prefixCls = this.getPrefixCls();
+    var classes = (_classes = {}, (0, _defineProperty3["default"])(_classes, props.className, !!props.className), (0, _defineProperty3["default"])(_classes, prefixCls + '-' + props.mode, 1), _classes);
+
+    classes[this.getOpenClassName()] = isOpen;
+    classes[this.getActiveClassName()] = props.active;
+    classes[this.getDisabledClassName()] = props.disabled;
+    classes[this.getSelectedClassName()] = this.isChildrenSelected();
+
+    if (!this._menuId) {
+      if (props.eventKey) {
+        this._menuId = props.eventKey + '$Menu';
+      } else {
+        this._menuId = '$__$' + ++guid + '$Menu';
+      }
+    }
+
+    classes[prefixCls] = true;
+    classes[prefixCls + '-' + props.mode] = 1;
+    var titleClickEvents = {};
+    var mouseEvents = {};
+    var titleMouseEvents = {};
+    if (!props.disabled) {
+      titleClickEvents = {
+        onClick: this.onTitleClick
+      };
+      mouseEvents = {
+        onMouseLeave: this.onMouseLeave,
+        onMouseEnter: this.onMouseEnter
+      };
+      // only works in title, not outer li
+      titleMouseEvents = {
+        onMouseEnter: this.onTitleMouseEnter,
+        onMouseLeave: this.onTitleMouseLeave
+      };
+    }
+    var style = {};
+    if (props.mode === 'inline') {
+      style.paddingLeft = props.inlineIndent * props.level;
+    }
+    return _react2["default"].createElement(
+      'li',
+      (0, _extends3["default"])({ className: (0, _classnames2["default"])(classes) }, mouseEvents),
+      _react2["default"].createElement(
+        'div',
+        (0, _extends3["default"])({
+          style: style,
+          className: prefixCls + '-title'
+        }, titleMouseEvents, titleClickEvents, {
+          'aria-expanded': isOpen,
+          'aria-owns': this._menuId,
+          'aria-haspopup': 'true'
+        }),
+        props.title
+      ),
+      this.renderChildren(props.children)
+    );
+  }
+});
+
+SubMenu.isSubMenu = 1;
+
+exports["default"] = SubMenu;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./node_modules/rc-menu/lib/SubMenuStateMixin.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _KeyCode = __webpack_require__("./node_modules/rc-menu/node_modules/rc-util/lib/KeyCode.js");
+
+var _KeyCode2 = _interopRequireDefault(_KeyCode);
+
+var _addEventListener = __webpack_require__("./node_modules/rc-menu/node_modules/rc-util/lib/Dom/addEventListener.js");
+
+var _addEventListener2 = _interopRequireDefault(_addEventListener);
+
+var _contains = __webpack_require__("./node_modules/rc-menu/node_modules/rc-util/lib/Dom/contains.js");
+
+var _contains2 = _interopRequireDefault(_contains);
+
+var _reactDom = __webpack_require__(1);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+exports["default"] = {
+  componentDidMount: function componentDidMount() {
+    this.componentDidUpdate();
+  },
+  componentDidUpdate: function componentDidUpdate() {
+    if (this.props.mode !== 'inline') {
+      if (this.props.open) {
+        this.bindRootCloseHandlers();
+      } else {
+        this.unbindRootCloseHandlers();
+      }
+    }
+  },
+  handleDocumentKeyUp: function handleDocumentKeyUp(e) {
+    if (e.keyCode === _KeyCode2["default"].ESC) {
+      this.props.onItemHover({
+        key: this.props.eventKey,
+        item: this,
+        hover: false
+      });
+    }
+  },
+  handleDocumentClick: function handleDocumentClick(e) {
+    // If the click originated from within this component
+    // don't do anything.
+    if ((0, _contains2["default"])(_reactDom2["default"].findDOMNode(this), e.target)) {
+      return;
+    }
+    var props = this.props;
+    props.onItemHover({
+      hover: false,
+      item: this,
+      key: this.props.eventKey
+    });
+    this.triggerOpenChange(false);
+  },
+  bindRootCloseHandlers: function bindRootCloseHandlers() {
+    if (!this._onDocumentClickListener) {
+      this._onDocumentClickListener = (0, _addEventListener2["default"])(document, 'click', this.handleDocumentClick);
+      this._onDocumentKeyupListener = (0, _addEventListener2["default"])(document, 'keyup', this.handleDocumentKeyUp);
+    }
+  },
+  unbindRootCloseHandlers: function unbindRootCloseHandlers() {
+    if (this._onDocumentClickListener) {
+      this._onDocumentClickListener.remove();
+      this._onDocumentClickListener = null;
+    }
+
+    if (this._onDocumentKeyupListener) {
+      this._onDocumentKeyupListener.remove();
+      this._onDocumentKeyupListener = null;
+    }
+  },
+  componentWillUnmount: function componentWillUnmount() {
+    this.unbindRootCloseHandlers();
+  }
+};
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./node_modules/rc-menu/lib/SubPopupMenu.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof2 = __webpack_require__("./node_modules/babel-runtime/helpers/typeof.js");
+
+var _typeof3 = _interopRequireDefault(_typeof2);
+
+var _extends2 = __webpack_require__("./node_modules/babel-runtime/helpers/extends.js");
+
+var _extends3 = _interopRequireDefault(_extends2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _MenuMixin = __webpack_require__("./node_modules/rc-menu/lib/MenuMixin.js");
+
+var _MenuMixin2 = _interopRequireDefault(_MenuMixin);
+
+var _rcAnimate = __webpack_require__("./node_modules/rc-animate/lib/index.js");
+
+var _rcAnimate2 = _interopRequireDefault(_rcAnimate);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var SubPopupMenu = _react2["default"].createClass({
+  displayName: 'SubPopupMenu',
+
+  propTypes: {
+    onSelect: _react.PropTypes.func,
+    onClick: _react.PropTypes.func,
+    onDeselect: _react.PropTypes.func,
+    onOpenChange: _react.PropTypes.func,
+    onDestroy: _react.PropTypes.func,
+    openTransitionName: _react.PropTypes.string,
+    openAnimation: _react.PropTypes.oneOfType([_react.PropTypes.string, _react.PropTypes.object]),
+    openKeys: _react.PropTypes.arrayOf(_react.PropTypes.string),
+    closeSubMenuOnMouseLeave: _react.PropTypes.bool,
+    visible: _react.PropTypes.bool,
+    children: _react.PropTypes.any
+  },
+
+  mixins: [_MenuMixin2["default"]],
+
+  onDeselect: function onDeselect(selectInfo) {
+    this.props.onDeselect(selectInfo);
+  },
+  onSelect: function onSelect(selectInfo) {
+    this.props.onSelect(selectInfo);
+  },
+  onClick: function onClick(e) {
+    this.props.onClick(e);
+  },
+  onOpenChange: function onOpenChange(e) {
+    this.props.onOpenChange(e);
+  },
+  onDestroy: function onDestroy(key) {
+    this.props.onDestroy(key);
+  },
+  onItemHover: function onItemHover(e) {
+    var _e$openChanges = e.openChanges,
+        openChanges = _e$openChanges === undefined ? [] : _e$openChanges;
+
+    openChanges = openChanges.concat(this.getOpenChangesOnItemHover(e));
+    if (openChanges.length) {
+      this.onOpenChange(openChanges);
+    }
+  },
+  getOpenTransitionName: function getOpenTransitionName() {
+    return this.props.openTransitionName;
+  },
+  renderMenuItem: function renderMenuItem(c, i, subIndex) {
+    if (!c) {
+      return null;
+    }
+    var props = this.props;
+    var extraProps = {
+      openKeys: props.openKeys,
+      selectedKeys: props.selectedKeys,
+      openSubMenuOnMouseEnter: true
+    };
+    return this.renderCommonMenuItem(c, i, subIndex, extraProps);
+  },
+  render: function render() {
+    var renderFirst = this.renderFirst;
+    this.renderFirst = 1;
+    this.haveOpened = this.haveOpened || this.props.visible;
+    if (!this.haveOpened) {
+      return null;
+    }
+    var transitionAppear = true;
+    if (!renderFirst && this.props.visible) {
+      transitionAppear = false;
+    }
+    var props = (0, _extends3["default"])({}, this.props);
+    props.className += ' ' + props.prefixCls + '-sub';
+    var animProps = {};
+    if (props.openTransitionName) {
+      animProps.transitionName = props.openTransitionName;
+    } else if ((0, _typeof3["default"])(props.openAnimation) === 'object') {
+      animProps.animation = (0, _extends3["default"])({}, props.openAnimation);
+      if (!transitionAppear) {
+        delete animProps.animation.appear;
+      }
+    }
+    return _react2["default"].createElement(
+      _rcAnimate2["default"],
+      (0, _extends3["default"])({}, animProps, {
+        showProp: 'visible',
+        component: '',
+        transitionAppear: transitionAppear
+      }),
+      this.renderRoot(props)
+    );
+  }
+});
+
+exports["default"] = SubPopupMenu;
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./node_modules/rc-menu/lib/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Divider = exports.ItemGroup = exports.MenuItemGroup = exports.MenuItem = exports.Item = exports.SubMenu = undefined;
+
+var _Menu = __webpack_require__("./node_modules/rc-menu/lib/Menu.js");
+
+var _Menu2 = _interopRequireDefault(_Menu);
+
+var _SubMenu = __webpack_require__("./node_modules/rc-menu/lib/SubMenu.js");
+
+var _SubMenu2 = _interopRequireDefault(_SubMenu);
+
+var _MenuItem = __webpack_require__("./node_modules/rc-menu/lib/MenuItem.js");
+
+var _MenuItem2 = _interopRequireDefault(_MenuItem);
+
+var _MenuItemGroup = __webpack_require__("./node_modules/rc-menu/lib/MenuItemGroup.js");
+
+var _MenuItemGroup2 = _interopRequireDefault(_MenuItemGroup);
+
+var _Divider = __webpack_require__("./node_modules/rc-menu/lib/Divider.js");
+
+var _Divider2 = _interopRequireDefault(_Divider);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+exports.SubMenu = _SubMenu2["default"];
+exports.Item = _MenuItem2["default"];
+exports.MenuItem = _MenuItem2["default"];
+exports.MenuItemGroup = _MenuItemGroup2["default"];
+exports.ItemGroup = _MenuItemGroup2["default"];
+exports.Divider = _Divider2["default"];
+exports["default"] = _Menu2["default"];
+
+/***/ }),
+
+/***/ "./node_modules/rc-menu/lib/util.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.noop = noop;
+exports.getKeyFromChildrenIndex = getKeyFromChildrenIndex;
+exports.loopMenuItem = loopMenuItem;
+exports.loopMenuItemRecusively = loopMenuItemRecusively;
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function noop() {}
+
+function getKeyFromChildrenIndex(child, menuEventKey, index) {
+  var prefix = menuEventKey || '';
+  return child.key || prefix + 'item_' + index;
+}
+
+function loopMenuItem(children, cb) {
+  var index = -1;
+  _react2["default"].Children.forEach(children, function (c) {
+    index++;
+    if (c && c.type && c.type.isMenuItemGroup) {
+      _react2["default"].Children.forEach(c.props.children, function (c2) {
+        index++;
+        cb(c2, index);
+      });
+    } else {
+      cb(c, index);
+    }
+  });
+}
+
+function loopMenuItemRecusively(children, keys, ret) {
+  if (!children || ret.find) {
+    return;
+  }
+  _react2["default"].Children.forEach(children, function (c) {
+    if (ret.find) {
+      return;
+    }
+    if (c) {
+      var construt = c.type;
+      if (!construt || !(construt.isSubMenu || construt.isMenuItem || construt.isMenuItemGroup)) {
+        return;
+      }
+      if (keys.indexOf(c.key) !== -1) {
+        ret.find = true;
+      } else if (c.props.children) {
+        loopMenuItemRecusively(c.props.children, keys, ret);
+      }
+    }
+  });
+}
+
+/***/ }),
+
+/***/ "./node_modules/rc-menu/node_modules/rc-util/lib/Dom/addEventListener.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = addEventListenerWrap;
+
+var _addDomEventListener = __webpack_require__("./node_modules/add-dom-event-listener/lib/index.js");
+
+var _addDomEventListener2 = _interopRequireDefault(_addDomEventListener);
+
+var _reactDom = __webpack_require__(1);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function addEventListenerWrap(target, eventType, cb) {
+  /* eslint camelcase: 2 */
+  var callback = _reactDom2["default"].unstable_batchedUpdates ? function run(e) {
+    _reactDom2["default"].unstable_batchedUpdates(cb, e);
+  } : cb;
+  return (0, _addDomEventListener2["default"])(target, eventType, callback);
+}
+module.exports = exports['default'];
+
+/***/ }),
+
+/***/ "./node_modules/rc-menu/node_modules/rc-util/lib/Dom/contains.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function contains(root, n) {
+  var node = n;
+  while (node) {
+    if (node === root) {
+      return true;
+    }
+    node = node.parentNode;
+  }
+
+  return false;
+};
+
+/***/ }),
+
+/***/ "./node_modules/rc-menu/node_modules/rc-util/lib/KeyCode.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * @ignore
+ * some key-codes definition and utils from closure-library
+ * @author yiminghe@gmail.com
+ */
+
+var KeyCode = {
+  /**
+   * MAC_ENTER
+   */
+  MAC_ENTER: 3,
+  /**
+   * BACKSPACE
+   */
+  BACKSPACE: 8,
+  /**
+   * TAB
+   */
+  TAB: 9,
+  /**
+   * NUMLOCK on FF/Safari Mac
+   */
+  NUM_CENTER: 12, // NUMLOCK on FF/Safari Mac
+  /**
+   * ENTER
+   */
+  ENTER: 13,
+  /**
+   * SHIFT
+   */
+  SHIFT: 16,
+  /**
+   * CTRL
+   */
+  CTRL: 17,
+  /**
+   * ALT
+   */
+  ALT: 18,
+  /**
+   * PAUSE
+   */
+  PAUSE: 19,
+  /**
+   * CAPS_LOCK
+   */
+  CAPS_LOCK: 20,
+  /**
+   * ESC
+   */
+  ESC: 27,
+  /**
+   * SPACE
+   */
+  SPACE: 32,
+  /**
+   * PAGE_UP
+   */
+  PAGE_UP: 33, // also NUM_NORTH_EAST
+  /**
+   * PAGE_DOWN
+   */
+  PAGE_DOWN: 34, // also NUM_SOUTH_EAST
+  /**
+   * END
+   */
+  END: 35, // also NUM_SOUTH_WEST
+  /**
+   * HOME
+   */
+  HOME: 36, // also NUM_NORTH_WEST
+  /**
+   * LEFT
+   */
+  LEFT: 37, // also NUM_WEST
+  /**
+   * UP
+   */
+  UP: 38, // also NUM_NORTH
+  /**
+   * RIGHT
+   */
+  RIGHT: 39, // also NUM_EAST
+  /**
+   * DOWN
+   */
+  DOWN: 40, // also NUM_SOUTH
+  /**
+   * PRINT_SCREEN
+   */
+  PRINT_SCREEN: 44,
+  /**
+   * INSERT
+   */
+  INSERT: 45, // also NUM_INSERT
+  /**
+   * DELETE
+   */
+  DELETE: 46, // also NUM_DELETE
+  /**
+   * ZERO
+   */
+  ZERO: 48,
+  /**
+   * ONE
+   */
+  ONE: 49,
+  /**
+   * TWO
+   */
+  TWO: 50,
+  /**
+   * THREE
+   */
+  THREE: 51,
+  /**
+   * FOUR
+   */
+  FOUR: 52,
+  /**
+   * FIVE
+   */
+  FIVE: 53,
+  /**
+   * SIX
+   */
+  SIX: 54,
+  /**
+   * SEVEN
+   */
+  SEVEN: 55,
+  /**
+   * EIGHT
+   */
+  EIGHT: 56,
+  /**
+   * NINE
+   */
+  NINE: 57,
+  /**
+   * QUESTION_MARK
+   */
+  QUESTION_MARK: 63, // needs localization
+  /**
+   * A
+   */
+  A: 65,
+  /**
+   * B
+   */
+  B: 66,
+  /**
+   * C
+   */
+  C: 67,
+  /**
+   * D
+   */
+  D: 68,
+  /**
+   * E
+   */
+  E: 69,
+  /**
+   * F
+   */
+  F: 70,
+  /**
+   * G
+   */
+  G: 71,
+  /**
+   * H
+   */
+  H: 72,
+  /**
+   * I
+   */
+  I: 73,
+  /**
+   * J
+   */
+  J: 74,
+  /**
+   * K
+   */
+  K: 75,
+  /**
+   * L
+   */
+  L: 76,
+  /**
+   * M
+   */
+  M: 77,
+  /**
+   * N
+   */
+  N: 78,
+  /**
+   * O
+   */
+  O: 79,
+  /**
+   * P
+   */
+  P: 80,
+  /**
+   * Q
+   */
+  Q: 81,
+  /**
+   * R
+   */
+  R: 82,
+  /**
+   * S
+   */
+  S: 83,
+  /**
+   * T
+   */
+  T: 84,
+  /**
+   * U
+   */
+  U: 85,
+  /**
+   * V
+   */
+  V: 86,
+  /**
+   * W
+   */
+  W: 87,
+  /**
+   * X
+   */
+  X: 88,
+  /**
+   * Y
+   */
+  Y: 89,
+  /**
+   * Z
+   */
+  Z: 90,
+  /**
+   * META
+   */
+  META: 91, // WIN_KEY_LEFT
+  /**
+   * WIN_KEY_RIGHT
+   */
+  WIN_KEY_RIGHT: 92,
+  /**
+   * CONTEXT_MENU
+   */
+  CONTEXT_MENU: 93,
+  /**
+   * NUM_ZERO
+   */
+  NUM_ZERO: 96,
+  /**
+   * NUM_ONE
+   */
+  NUM_ONE: 97,
+  /**
+   * NUM_TWO
+   */
+  NUM_TWO: 98,
+  /**
+   * NUM_THREE
+   */
+  NUM_THREE: 99,
+  /**
+   * NUM_FOUR
+   */
+  NUM_FOUR: 100,
+  /**
+   * NUM_FIVE
+   */
+  NUM_FIVE: 101,
+  /**
+   * NUM_SIX
+   */
+  NUM_SIX: 102,
+  /**
+   * NUM_SEVEN
+   */
+  NUM_SEVEN: 103,
+  /**
+   * NUM_EIGHT
+   */
+  NUM_EIGHT: 104,
+  /**
+   * NUM_NINE
+   */
+  NUM_NINE: 105,
+  /**
+   * NUM_MULTIPLY
+   */
+  NUM_MULTIPLY: 106,
+  /**
+   * NUM_PLUS
+   */
+  NUM_PLUS: 107,
+  /**
+   * NUM_MINUS
+   */
+  NUM_MINUS: 109,
+  /**
+   * NUM_PERIOD
+   */
+  NUM_PERIOD: 110,
+  /**
+   * NUM_DIVISION
+   */
+  NUM_DIVISION: 111,
+  /**
+   * F1
+   */
+  F1: 112,
+  /**
+   * F2
+   */
+  F2: 113,
+  /**
+   * F3
+   */
+  F3: 114,
+  /**
+   * F4
+   */
+  F4: 115,
+  /**
+   * F5
+   */
+  F5: 116,
+  /**
+   * F6
+   */
+  F6: 117,
+  /**
+   * F7
+   */
+  F7: 118,
+  /**
+   * F8
+   */
+  F8: 119,
+  /**
+   * F9
+   */
+  F9: 120,
+  /**
+   * F10
+   */
+  F10: 121,
+  /**
+   * F11
+   */
+  F11: 122,
+  /**
+   * F12
+   */
+  F12: 123,
+  /**
+   * NUMLOCK
+   */
+  NUMLOCK: 144,
+  /**
+   * SEMICOLON
+   */
+  SEMICOLON: 186, // needs localization
+  /**
+   * DASH
+   */
+  DASH: 189, // needs localization
+  /**
+   * EQUALS
+   */
+  EQUALS: 187, // needs localization
+  /**
+   * COMMA
+   */
+  COMMA: 188, // needs localization
+  /**
+   * PERIOD
+   */
+  PERIOD: 190, // needs localization
+  /**
+   * SLASH
+   */
+  SLASH: 191, // needs localization
+  /**
+   * APOSTROPHE
+   */
+  APOSTROPHE: 192, // needs localization
+  /**
+   * SINGLE_QUOTE
+   */
+  SINGLE_QUOTE: 222, // needs localization
+  /**
+   * OPEN_SQUARE_BRACKET
+   */
+  OPEN_SQUARE_BRACKET: 219, // needs localization
+  /**
+   * BACKSLASH
+   */
+  BACKSLASH: 220, // needs localization
+  /**
+   * CLOSE_SQUARE_BRACKET
+   */
+  CLOSE_SQUARE_BRACKET: 221, // needs localization
+  /**
+   * WIN_KEY
+   */
+  WIN_KEY: 224,
+  /**
+   * MAC_FF_META
+   */
+  MAC_FF_META: 224, // Firefox (Gecko) fires this for the meta key instead of 91
+  /**
+   * WIN_IME
+   */
+  WIN_IME: 229
+};
+
+/*
+ whether text and modified key is entered at the same time.
+ */
+KeyCode.isTextModifyingKeyEvent = function isTextModifyingKeyEvent(e) {
+  var keyCode = e.keyCode;
+  if (e.altKey && !e.ctrlKey || e.metaKey ||
+  // Function keys don't generate text
+  keyCode >= KeyCode.F1 && keyCode <= KeyCode.F12) {
+    return false;
+  }
+
+  // The following keys are quite harmless, even in combination with
+  // CTRL, ALT or SHIFT.
+  switch (keyCode) {
+    case KeyCode.ALT:
+    case KeyCode.CAPS_LOCK:
+    case KeyCode.CONTEXT_MENU:
+    case KeyCode.CTRL:
+    case KeyCode.DOWN:
+    case KeyCode.END:
+    case KeyCode.ESC:
+    case KeyCode.HOME:
+    case KeyCode.INSERT:
+    case KeyCode.LEFT:
+    case KeyCode.MAC_FF_META:
+    case KeyCode.META:
+    case KeyCode.NUMLOCK:
+    case KeyCode.NUM_CENTER:
+    case KeyCode.PAGE_DOWN:
+    case KeyCode.PAGE_UP:
+    case KeyCode.PAUSE:
+    case KeyCode.PRINT_SCREEN:
+    case KeyCode.RIGHT:
+    case KeyCode.SHIFT:
+    case KeyCode.UP:
+    case KeyCode.WIN_KEY:
+    case KeyCode.WIN_KEY_RIGHT:
+      return false;
+    default:
+      return true;
+  }
+};
+
+/*
+ whether character is entered.
+ */
+KeyCode.isCharacterKey = function isCharacterKey(keyCode) {
+  if (keyCode >= KeyCode.ZERO && keyCode <= KeyCode.NINE) {
+    return true;
+  }
+
+  if (keyCode >= KeyCode.NUM_ZERO && keyCode <= KeyCode.NUM_MULTIPLY) {
+    return true;
+  }
+
+  if (keyCode >= KeyCode.A && keyCode <= KeyCode.Z) {
+    return true;
+  }
+
+  // Safari sends zero key code for non-latin characters.
+  if (window.navigation.userAgent.indexOf('WebKit') !== -1 && keyCode === 0) {
+    return true;
+  }
+
+  switch (keyCode) {
+    case KeyCode.SPACE:
+    case KeyCode.QUESTION_MARK:
+    case KeyCode.NUM_PLUS:
+    case KeyCode.NUM_MINUS:
+    case KeyCode.NUM_PERIOD:
+    case KeyCode.NUM_DIVISION:
+    case KeyCode.SEMICOLON:
+    case KeyCode.DASH:
+    case KeyCode.EQUALS:
+    case KeyCode.COMMA:
+    case KeyCode.PERIOD:
+    case KeyCode.SLASH:
+    case KeyCode.APOSTROPHE:
+    case KeyCode.SINGLE_QUOTE:
+    case KeyCode.OPEN_SQUARE_BRACKET:
+    case KeyCode.BACKSLASH:
+    case KeyCode.CLOSE_SQUARE_BRACKET:
+      return true;
+    default:
+      return false;
+  }
+};
+
+module.exports = KeyCode;
+
+/***/ }),
+
+/***/ "./node_modules/rc-menu/node_modules/rc-util/lib/createChainedFunction.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/**
+ * Safe chained function
+ *
+ * Will only create a new function if needed,
+ * otherwise will pass back existing functions or null.
+ *
+ * @returns {function|null}
+ */
+function createChainedFunction() {
+  var args = arguments;
+  return function chainedFunction() {
+    for (var i = 0; i < args.length; i++) {
+      if (args[i] && args[i].apply) {
+        args[i].apply(this, arguments);
+      }
+    }
+  };
+}
+
+module.exports = createChainedFunction;
+
+/***/ }),
+
 /***/ "./node_modules/rc-notification/lib/Notice.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29951,7 +33266,7 @@ var CommonEditor = function (_Component) {
                         overlay: _react2.default.createElement(
                             'div',
                             null,
-                            '\u6E05\u9664\u683C\u5F0F'
+                            '\u6E05\u9664\u683C\u5F0F ctrl+shift+C'
                         )
                     },
                     _react2.default.createElement(
@@ -31156,6 +34471,598 @@ exports.default = HeaderDropDown;
 
 // load the styles
 var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/headerDropDown/index.scss");
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/style-loader/addStyles.js")(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/index.js!./index.scss", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/sass-loader/index.js!./index.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./src/components/hotKeysDialog/hotKeysDialog.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Created by yeanzhi on 17/4/4.
+ */
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = undefined;
+
+var _getPrototypeOf = __webpack_require__("./node_modules/babel-runtime/core-js/object/get-prototype-of.js");
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__("./node_modules/babel-runtime/helpers/classCallCheck.js");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__("./node_modules/babel-runtime/helpers/createClass.js");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__("./node_modules/babel-runtime/helpers/possibleConstructorReturn.js");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__("./node_modules/babel-runtime/helpers/inherits.js");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _dialog = __webpack_require__("./src/components/dialog/index.js");
+
+var _dialog2 = _interopRequireDefault(_dialog);
+
+var _help = __webpack_require__("./src/model/help.js");
+
+var _help2 = _interopRequireDefault(_help);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var HotKeysDialog = function (_Component) {
+    (0, _inherits3.default)(HotKeysDialog, _Component);
+
+    function HotKeysDialog() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
+        (0, _classCallCheck3.default)(this, HotKeysDialog);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_ref = HotKeysDialog.__proto__ || (0, _getPrototypeOf2.default)(HotKeysDialog)).call.apply(_ref, [this].concat(args))), _this), _this.closeDialog = function () {
+            _help2.default.hotKeysDialog = false;
+        }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+    }
+
+    (0, _createClass3.default)(HotKeysDialog, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(_dialog2.default, {
+                title: '\u952E\u76D8\u5FEB\u6377\u952E',
+                className: 'weditor-hotkeys-dialog',
+                content: _react2.default.createElement(
+                    'div',
+                    { className: 'weditor-hotkeys-inner' },
+                    _react2.default.createElement(
+                        'table',
+                        {
+                            cellPadding: '0',
+                            tabIndex: '0',
+                            className: 'apps-shortcutshelppopup-content'
+                        },
+                        _react2.default.createElement(
+                            'tbody',
+                            null,
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'th',
+                                    { colSpan: '2' },
+                                    _react2.default.createElement(
+                                        'h3',
+                                        {
+                                            className: 'apps-shortcutshelppopup-content-header apps-shortcutshelppopup-content-header-first' },
+                                        '\u6587\u672C\u683C\u5F0F'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u7C97\u4F53'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        '\u2318B'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u659C\u4F53'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        '\u2318I'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u52A0\u4E0B\u5212\u7EBF'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        '\u2318U'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u5220\u9664\u7EBF'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        '\u2318+Shift+X'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u6E05\u9664\u683C\u5F0F'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        '\u2318+Shift+C'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'th',
+                                    { colSpan: '2' },
+                                    _react2.default.createElement(
+                                        'h3',
+                                        { className: 'apps-shortcutshelppopup-content-header' },
+                                        '\u6BB5\u843D\u683C\u5F0F'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u5E94\u7528\u201C\u666E\u901A\u6587\u672C\u201D'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        '\u2318+Shift+0'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u5E94\u7528\u201C\u6807\u98981\u201D'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        '\u2318+Shift+1'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u5E94\u7528\u201C\u6807\u98982\u201D'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        '\u2318+Shift+2'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u5E94\u7528\u201C\u6807\u98983\u201D'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        '\u2318+Shift+3'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u5E94\u7528\u201C\u6807\u98984\u201D'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        '\u2318+Shift+4'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u5E94\u7528\u201C\u6807\u98985\u201D'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        '\u2318+Shift+5'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u5E94\u7528\u201C\u6807\u98986\u201D'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        '\u2318+Shift+6'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u5DE6\u5BF9\u9F50\u6587\u672C'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        '\u2318+Shift+L'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u5C45\u4E2D\u5BF9\u9F50\u6587\u672C'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        '\u2318+Shift+E'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u53F3\u5BF9\u9F50\u6587\u672C'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        '\u2318+Shift+R'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u5BF9\u9F50\u6587\u672C'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        '\u2318+Shift+J'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u6709\u5E8F\u5217\u8868'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        '\u2318+Option+l'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u65E0\u5E8F\u5217\u8868'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        '\u2318+Option+u'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'th',
+                                    { colSpan: '2' },
+                                    _react2.default.createElement(
+                                        'h3',
+                                        { className: 'apps-shortcutshelppopup-content-header' },
+                                        '\u7F16\u8F91'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u64A4\u9500'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        '\u2318+z'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u91CD\u505A'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        '\u2318+y'
+                                    )
+                                )
+                            )
+                        )
+                    )
+                ),
+                onClose: this.closeDialog
+            });
+        }
+    }]);
+    return HotKeysDialog;
+}(_react.Component);
+
+exports.default = HotKeysDialog;
+
+/***/ }),
+
+/***/ "./src/components/hotKeysDialog/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Created by yeanzhi on 17/4/4.
+ */
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+__webpack_require__("./src/components/hotKeysDialog/index.scss");
+
+var _hotKeysDialog = __webpack_require__("./src/components/hotKeysDialog/hotKeysDialog.js");
+
+var _hotKeysDialog2 = _interopRequireDefault(_hotKeysDialog);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _hotKeysDialog2.default;
+
+/***/ }),
+
+/***/ "./src/components/hotKeysDialog/index.scss":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/sass-loader/index.js!./src/components/hotKeysDialog/index.scss");
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__("./node_modules/style-loader/addStyles.js")(content, {});
@@ -35318,7 +39225,51 @@ var _quillEditor = __webpack_require__("./src/lib/quillEditor.js");
 
 var _toast = __webpack_require__("./src/components/toast/index.js");
 
+var _rcDropdown = __webpack_require__("./node_modules/rc-dropdown/lib/index.js");
+
+var _rcDropdown2 = _interopRequireDefault(_rcDropdown);
+
+var _rcMenu = __webpack_require__("./node_modules/rc-menu/lib/index.js");
+
+var _rcMenu2 = _interopRequireDefault(_rcMenu);
+
+__webpack_require__("./node_modules/rc-dropdown/assets/index.css");
+
+var _help = __webpack_require__("./src/model/help.js");
+
+var _help2 = _interopRequireDefault(_help);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function openHelpDialog(_ref) {
+    var key = _ref.key;
+
+    if (key === '2') {
+        _help2.default.hotKeysDialog = true;
+    }
+}
+
+var menu = _react2.default.createElement(
+    _rcMenu2.default,
+    { selectable: false, onClick: openHelpDialog },
+    _react2.default.createElement(
+        _rcMenu.Item,
+        { key: "1" },
+        "\u62A5\u544A\u95EE\u9898"
+    ),
+    _react2.default.createElement(_rcMenu.Divider, null),
+    _react2.default.createElement(
+        _rcMenu.Item,
+        { key: "2" },
+        "\u952E\u76D8\u5FEB\u6377\u952E"
+    ),
+    _react2.default.createElement(_rcMenu.Divider, null),
+    _react2.default.createElement(
+        _rcMenu.Item,
+        { key: "3" },
+        "\u4E0A\u62A5\u65E5\u5FD7"
+    )
+);
 
 var EditorHeader = function (_Component) {
     (0, _inherits3.default)(EditorHeader, _Component);
@@ -35425,9 +39376,17 @@ var EditorHeader = function (_Component) {
                     "\u4FEE\u8BA2\u5386\u53F2"
                 ),
                 _react2.default.createElement(
-                    "span",
-                    { className: "help-tab", onClick: this.changePanel(5) },
-                    "\u5E2E\u52A9"
+                    _rcDropdown2.default,
+                    {
+                        trigger: ['click'],
+                        overlay: menu,
+                        animation: "slide-up"
+                    },
+                    _react2.default.createElement(
+                        "span",
+                        { className: "help-tab" },
+                        "\u5E2E\u52A9"
+                    )
                 )
             );
         }
@@ -35558,6 +39517,10 @@ var _editor = __webpack_require__("./src/model/editor.js");
 
 var _editor2 = _interopRequireDefault(_editor);
 
+var _help = __webpack_require__("./src/model/help.js");
+
+var _help2 = _interopRequireDefault(_help);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Editor = (_temp = _class = function (_Component) {
@@ -35587,7 +39550,8 @@ var Editor = (_temp = _class = function (_Component) {
                 {
                     catalogue: _catalogue2.default,
                     insert: _insert2.default,
-                    editor: _editor2.default
+                    editor: _editor2.default,
+                    help: _help2.default
                 },
                 _react2.default.createElement(_weditor2.default, { options: this.props.options,
                     coCursors: this.props.coCursors,
@@ -35760,31 +39724,32 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 exports.default = function (quill) {
+    // quill.keyboard.addBinding({
+    //     key: 'b',
+    //     shortKey: true
+    // }, function(range, context) {
+    //     this.quill.formatText(range, 'bold', !context.format.bold,'user');
+    // });
+    // quill.keyboard.addBinding({
+    //     key: 'i',
+    //     shortKey: true
+    // }, function(range, context) {
+    //     this.quill.formatText(range, 'italic', !context.format.italic,'user');
+    // });
+    // quill.keyboard.addBinding({
+    //     key: 'u',
+    //     shortKey: true
+    // }, function(range, context) {
+    //     this.quill.formatText(range, 'underline', !context.format.underline,'user');
+    // });
     quill.keyboard.addBinding({
-        key: 'b',
-        shortKey: true
-    }, function (range, context) {
-        this.quill.formatText(range, 'bold', !context.format.bold, 'user');
-    });
-    quill.keyboard.addBinding({
-        key: 'i',
-        shortKey: true
-    }, function (range, context) {
-        this.quill.formatText(range, 'italic', !context.format.italic, 'user');
-    });
-    quill.keyboard.addBinding({
-        key: 'u',
-        shortKey: true
-    }, function (range, context) {
-        this.quill.formatText(range, 'underline', !context.format.underline, 'user');
-    });
-    quill.keyboard.addBinding({
-        key: 's',
+        key: 'x',
         shortKey: true,
         shiftKey: true
     }, function (range, context) {
         this.quill.formatText(range, 'strike', !context.format.strike, 'user');
     });
+
     quill.keyboard.addBinding({
         key: 'u',
         shortKey: true,
@@ -35806,6 +39771,22 @@ exports.default = function (quill) {
         } else {
             this.quill.formatLine(range, 'list', false, 'user');
         }
+    });
+
+    quill.keyboard.addBinding({
+        key: 'c',
+        shortKey: true,
+        shiftKey: true
+    }, function (range, context) {
+        this.quill.removeFormat(range.index, range.length, 'user');
+    });
+
+    quill.keyboard.addBinding({
+        key: '0',
+        shortKey: true,
+        shiftKey: true
+    }, function (range, context) {
+        this.quill.formatLine(range, 'header', false, 'user');
     });
     quill.keyboard.addBinding({
         key: '1',
@@ -35839,6 +39820,96 @@ exports.default = function (quill) {
         } else {
             this.quill.formatLine(range, 'header', false, 'user');
         }
+    });
+    quill.keyboard.addBinding({
+        key: '4',
+        shortKey: true,
+        shiftKey: true
+    }, function (range, context) {
+        if (!context.format.header) {
+            this.quill.formatLine(range, 'header', 4, 'user');
+        } else {
+            this.quill.formatLine(range, 'header', false, 'user');
+        }
+    });
+    quill.keyboard.addBinding({
+        key: '5',
+        shortKey: true,
+        shiftKey: true
+    }, function (range, context) {
+        if (!context.format.header) {
+            this.quill.formatLine(range, 'header', 5, 'user');
+        } else {
+            this.quill.formatLine(range, 'header', false, 'user');
+        }
+    });
+    quill.keyboard.addBinding({
+        key: '6',
+        shortKey: true,
+        shiftKey: true
+    }, function (range, context) {
+        if (!context.format.header) {
+            this.quill.formatLine(range, 'header', 6, 'user');
+        } else {
+            this.quill.formatLine(range, 'header', false, 'user');
+        }
+    });
+
+    quill.keyboard.addBinding({
+        key: '6',
+        shortKey: true,
+        shiftKey: true
+    }, function (range, context) {
+        if (!context.format.header) {
+            this.quill.formatLine(range, 'header', 6, 'user');
+        } else {
+            this.quill.formatLine(range, 'header', false, 'user');
+        }
+    });
+
+    quill.keyboard.addBinding({
+        key: 'j',
+        shortKey: true,
+        shiftKey: true
+    }, function (range, context) {
+        this.quill.format('align', 'justify');
+    });
+
+    quill.keyboard.addBinding({
+        key: 'j',
+        shortKey: true,
+        shiftKey: true
+    }, function (range, context) {
+        this.quill.format('align', 'justify');
+    });
+
+    quill.keyboard.addBinding({
+        key: 'j',
+        shortKey: true,
+        shiftKey: true
+    }, function (range, context) {
+        this.quill.format('align', 'justify');
+    });
+    quill.keyboard.addBinding({
+        key: 'l',
+        shortKey: true,
+        shiftKey: true
+    }, function (range, context) {
+        this.quill.format('align', 'left');
+    });
+    quill.keyboard.addBinding({
+        key: 'e',
+        shortKey: true,
+        shiftKey: true
+    }, function (range, context) {
+        this.quill.format('align', 'center');
+    });
+    quill.keyboard.addBinding({
+        key: 'r',
+        shortKey: true,
+        shiftKey: true
+    }, function (range, context) {
+        this.quill.format('align', 'right');
     });
 };
 
@@ -37170,6 +41241,92 @@ exports.default = format;
 
 /***/ }),
 
+/***/ "./src/model/help.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Created by yeanzhi on 17/4/4.
+ */
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _defineProperty = __webpack_require__("./node_modules/babel-runtime/core-js/object/define-property.js");
+
+var _defineProperty2 = _interopRequireDefault(_defineProperty);
+
+var _classCallCheck2 = __webpack_require__("./node_modules/babel-runtime/helpers/classCallCheck.js");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _desc, _value, _class, _descriptor;
+
+var _mobx = __webpack_require__("./node_modules/mobx/lib/mobx.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _initDefineProp(target, property, descriptor, context) {
+  if (!descriptor) return;
+  (0, _defineProperty2.default)(target, property, {
+    enumerable: descriptor.enumerable,
+    configurable: descriptor.configurable,
+    writable: descriptor.writable,
+    value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
+  });
+}
+
+function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+  var desc = {};
+  Object['ke' + 'ys'](descriptor).forEach(function (key) {
+    desc[key] = descriptor[key];
+  });
+  desc.enumerable = !!desc.enumerable;
+  desc.configurable = !!desc.configurable;
+
+  if ('value' in desc || desc.initializer) {
+    desc.writable = true;
+  }
+
+  desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+    return decorator(target, property, desc) || desc;
+  }, desc);
+
+  if (context && desc.initializer !== void 0) {
+    desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+    desc.initializer = undefined;
+  }
+
+  if (desc.initializer === void 0) {
+    Object['define' + 'Property'](target, property, desc);
+    desc = null;
+  }
+
+  return desc;
+}
+
+function _initializerWarningHelper(descriptor, context) {
+  throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
+}
+
+var Help = (_class = function Help() {
+  (0, _classCallCheck3.default)(this, Help);
+
+  _initDefineProp(this, 'hotKeysDialog', _descriptor, this);
+}, (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'hotKeysDialog', [_mobx.observable], {
+  enumerable: true,
+  initializer: function initializer() {
+    return false;
+  }
+})), _class);
+
+var help = new Help();
+exports.default = help;
+
+/***/ }),
+
 /***/ "./src/model/insert.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -37622,7 +41779,7 @@ var StartHeader = (_dec = (0, _mobxReact.inject)(function (state) {
                             overlay: _react2.default.createElement(
                                 "div",
                                 null,
-                                "\u6709\u5E8F\u5217\u8868 ctrl+shift+l"
+                                "\u6709\u5E8F\u5217\u8868 ctrl+Option+L"
                             )
                         },
                         _react2.default.createElement("button", { className: "ql-list", value: "ordered" })
@@ -37636,7 +41793,7 @@ var StartHeader = (_dec = (0, _mobxReact.inject)(function (state) {
                             overlay: _react2.default.createElement(
                                 "div",
                                 null,
-                                "\u65E0\u5E8F\u5217\u8868 ctrl+shift+u"
+                                "\u65E0\u5E8F\u5217\u8868 ctrl+Option+U"
                             )
                         },
                         _react2.default.createElement("button", { className: "ql-list", value: "bullet" })
@@ -37654,7 +41811,7 @@ var StartHeader = (_dec = (0, _mobxReact.inject)(function (state) {
                             overlay: _react2.default.createElement(
                                 "div",
                                 null,
-                                "\u5DE6\u5BF9\u9F50"
+                                "\u5DE6\u5BF9\u9F50 Ctrl+Shift+L"
                             )
                         },
                         _react2.default.createElement(_icon2.default, { type: "zuoduiqi", onClick: this.align('left') })
@@ -37668,7 +41825,7 @@ var StartHeader = (_dec = (0, _mobxReact.inject)(function (state) {
                             overlay: _react2.default.createElement(
                                 "div",
                                 null,
-                                "\u5C45\u4E2D\u5BF9\u9F50"
+                                "\u5C45\u4E2D\u5BF9\u9F50 Ctrl+Shift+E"
                             )
                         },
                         _react2.default.createElement(_icon2.default, { type: "juzhongduiqi", onClick: this.align('center') })
@@ -37682,7 +41839,7 @@ var StartHeader = (_dec = (0, _mobxReact.inject)(function (state) {
                             overlay: _react2.default.createElement(
                                 "div",
                                 null,
-                                "\u53F3\u5BF9\u9F50"
+                                "\u53F3\u5BF9\u9F50 Ctrl+Shift+R"
                             )
                         },
                         _react2.default.createElement(_icon2.default, { type: "youduiqi", onClick: this.align('right') })
@@ -37696,7 +41853,7 @@ var StartHeader = (_dec = (0, _mobxReact.inject)(function (state) {
                             overlay: _react2.default.createElement(
                                 "div",
                                 null,
-                                "\u4E24\u7AEF\u5BF9\u9F50"
+                                "\u4E24\u7AEF\u5BF9\u9F50 Ctrl+Shift+J"
                             )
                         },
                         _react2.default.createElement(_icon2.default, { type: "liangduanduiqi", onClick: this.align('justify') })
@@ -37921,6 +42078,10 @@ var _insertImage = __webpack_require__("./src/components/insertImage/index.js");
 
 var _insertImage2 = _interopRequireDefault(_insertImage);
 
+var _hotKeysDialog = __webpack_require__("./src/components/hotKeysDialog/index.js");
+
+var _hotKeysDialog2 = _interopRequireDefault(_hotKeysDialog);
+
 var _mobxReact = __webpack_require__("./node_modules/mobx-react/index.js");
 
 var _selection = __webpack_require__("./src/components/selection/index.js");
@@ -37942,7 +42103,8 @@ var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
     return {
         insert: state.insert,
         open: state.catalogue.open,
-        focus: state.editor.focus
+        focus: state.editor.focus,
+        help: state.help
     };
 }), _dec(_class = (0, _mobxReact.observer)(_class = function (_Component) {
     (0, _inherits3.default)(WEditor, _Component);
@@ -38001,7 +42163,8 @@ var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
                     )
                 ),
                 this.props.insert.openLinkDialog && _react2.default.createElement(_linkBubble2.default, null),
-                this.props.insert.openImageDialog && _react2.default.createElement(_insertImage2.default, { uploadUrl: this.props.options.uploadUrl })
+                this.props.insert.openImageDialog && _react2.default.createElement(_insertImage2.default, { uploadUrl: this.props.options.uploadUrl }),
+                this.props.help.hotKeysDialog && _react2.default.createElement(_hotKeysDialog2.default, null)
             );
         }
     }]);
