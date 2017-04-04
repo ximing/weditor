@@ -36680,19 +36680,19 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
     });
     (0, _initHotKey2.default)(quillEditor);
 
-    // $(window).on('resize', resize);
-    // //fix有图片的时候高度问题
-    // $( window ).on("load", resize);
+    $(window).on('resize', resize);
+    //fix有图片的时候高度问题
+    $(window).on("load", resize);
     return quillEditor;
 };
 function resize() {
-    // let scrollHeight = $quillEditorDom[0].scrollHeight;
-    // console.log(scrollHeight);
-    // if ($weditorBody.height() < scrollHeight) {
-    //     $quillContainer.height(scrollHeight);
-    // } else {
-    //     $quillContainer.height($weditorBody.height() - 50);
-    // }
+    var scrollHeight = $quillEditorDom[0].scrollHeight;
+    console.log(scrollHeight);
+    if ($weditorBody.height() < scrollHeight) {
+        $quillContainer.height(scrollHeight);
+    } else {
+        $quillContainer.height($weditorBody.height() - 50);
+    }
 }
 var getEditor = exports.getEditor = function getEditor() {
     return quillEditor;
