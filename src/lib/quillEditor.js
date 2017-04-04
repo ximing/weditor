@@ -117,19 +117,19 @@ export const initQuillEditor = function (dom, options) {
     });
     initHotKey(quillEditor);
 
-    $(window).on('resize', resize);
-    //fix有图片的时候高度问题
-    $( window ).on("load", resize);
+    // $(window).on('resize', resize);
+    // //fix有图片的时候高度问题
+    // $( window ).on("load", resize);
     return quillEditor;
 };
 function resize() {
-    let scrollHeight = $quillEditorDom[0].scrollHeight;
-    console.log(scrollHeight);
-    if ($weditorBody.height() < scrollHeight) {
-       // $quillContainer.height(scrollHeight);
-    } else {
-        //$quillContainer.height($weditorBody.height() - 50);
-    }
+    // let scrollHeight = $quillEditorDom[0].scrollHeight;
+    // console.log(scrollHeight);
+    // if ($weditorBody.height() < scrollHeight) {
+    //     $quillContainer.height(scrollHeight);
+    // } else {
+    //     $quillContainer.height($weditorBody.height() - 50);
+    // }
 }
 export const getEditor = function () {
     return quillEditor;

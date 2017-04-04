@@ -10,7 +10,8 @@ export default class EditContainer extends Component {
         this.wEditor.getEditor().on('text-change',()=>{
             console.log('ssss')
         })
-        this.wEditor.getEditor().setContents({"ops":[{"insert":"标题1"},{"attributes":{"header":1},"insert":"\n"},{"insert":"标题2"},{"attributes":{"header":2},"insert":"\n"},{"insert":"标题3"},{"attributes":{"header":3},"insert":"\n\n"},{"attributes":{"width":"641"},"insert":{"image":"http://static.ximing.ren/978de5229d9655bfef9fb54c48d36f1e.jpg"}},{"attributes":{"header":3},"insert":"\n"},{"insert":"fdsa想线下选择性"},{"attributes":{"header":3},"insert":"\n"},{"insert":"sssss说说¥eq¥¥eq¥¥2321fdjiofds\nfdsa\nfd\nffd撒反倒是sadsadsa"},{"attributes":{"background":"#b8cce4"},"insert":"d"},{"insert":"sa"},{"attributes":{"link":"http://www.baidu.com"},"insert":"我需要安静下来"},{"insert":"想想未来 怎么安排\n\n"}]})
+        // this.wEditor.getEditor().setContents({"ops":[{"insert":"标题1"},{"attributes":{"header":1},"insert":"\n"},{"insert":"标题2"},{"attributes":{"header":2},"insert":"\n"},{"insert":"标题3"},{"attributes":{"header":3},"insert":"\n\n"},{"attributes":{"width":"641"},"insert":{"image":"http://static.ximing.ren/978de5229d9655bfef9fb54c48d36f1e.jpg"}},{"attributes":{"header":3},"insert":"\n"},{"insert":"fdsa想线下选择性"},{"attributes":{"header":3},"insert":"\n"},{"insert":"sssss说说¥eq¥¥eq¥¥2321fdjiofds\nfdsa\nfd\nffd撒反倒是sadsadsa"},{"attributes":{"background":"#b8cce4"},"insert":"d"},{"insert":"sa"},{"attributes":{"link":"http://www.baidu.com"},"insert":"我需要安静下来"},{"insert":"想想未来 怎么安排\n\n"}]});
+        this.wEditor.getEditor().setContents({"ops":[{"insert":"你好 没有什么不好的么\nwobuxiang tingtaiduo   na xujia de chengnuuo  o  o o o o o o  meiyou shenme buhao de me \nkkk\n\nj\n"}]})
     }
     render() {
         return(
@@ -18,8 +19,11 @@ export default class EditContainer extends Component {
                 <WEditor 
                 doc = {{name:'test.doc',status:'fjdisoaifasdof'
                 }}
-                ref={a=>this.wEditor = a} 
-                options={{uploadUrl:'http://mind.xm.test.sankuai.com/api/upload'}}/>
+                ref={a=>this.wEditor = a}
+                coCurcors = {[{name:'yeanzhi',range:{length:10,index:15},id:'123'}]}
+                options={{
+                    uploadUrl:'http://mind.xm.test.sankuai.com/api/upload'
+                }}/>
             </div>
         );
     }
