@@ -33266,7 +33266,7 @@ var CommonEditor = function (_Component) {
                         overlay: _react2.default.createElement(
                             'div',
                             null,
-                            '\u6E05\u9664\u683C\u5F0F ctrl+shift+C'
+                            '\u6E05\u9664\u683C\u5F0F Ctrl+Shift+C'
                         )
                     },
                     _react2.default.createElement(
@@ -39241,36 +39241,6 @@ var _help2 = _interopRequireDefault(_help);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function openHelpDialog(_ref) {
-    var key = _ref.key;
-
-    if (key === '2') {
-        _help2.default.hotKeysDialog = true;
-    }
-}
-
-var menu = _react2.default.createElement(
-    _rcMenu2.default,
-    { selectable: false, onClick: openHelpDialog },
-    _react2.default.createElement(
-        _rcMenu.Item,
-        { key: "1" },
-        "\u62A5\u544A\u95EE\u9898"
-    ),
-    _react2.default.createElement(_rcMenu.Divider, null),
-    _react2.default.createElement(
-        _rcMenu.Item,
-        { key: "2" },
-        "\u952E\u76D8\u5FEB\u6377\u952E"
-    ),
-    _react2.default.createElement(_rcMenu.Divider, null),
-    _react2.default.createElement(
-        _rcMenu.Item,
-        { key: "3" },
-        "\u4E0A\u62A5\u65E5\u5FD7"
-    )
-);
-
 var EditorHeader = function (_Component) {
     (0, _inherits3.default)(EditorHeader, _Component);
 
@@ -39280,6 +39250,20 @@ var EditorHeader = function (_Component) {
         (0, _classCallCheck3.default)(this, EditorHeader);
 
         var _this = (0, _possibleConstructorReturn3.default)(this, (EditorHeader.__proto__ || (0, _getPrototypeOf2.default)(EditorHeader)).call(this));
+
+        _this.HelpMenuClick = function (_ref) {
+            var key = _ref.key;
+
+            if (key === '0') {
+                _help2.default.hotKeysDialog = true;
+            } else {
+                _this.props.helpOptions.forEach(function (item) {
+                    if (item.key === key) {
+                        item.onClick(key);
+                    }
+                });
+            }
+        };
 
         _this.export = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee() {
             return _regenerator2.default.wrap(function _callee$(_context) {
@@ -39345,6 +39329,23 @@ var EditorHeader = function (_Component) {
     }, {
         key: "renderToolbar",
         value: function renderToolbar() {
+            var menu = _react2.default.createElement(
+                _rcMenu2.default,
+                { selectable: false, onClick: this.HelpMenuClick },
+                _react2.default.createElement(
+                    _rcMenu.Item,
+                    { key: "0" },
+                    "\u952E\u76D8\u5FEB\u6377\u952E"
+                ),
+                _react2.default.createElement(_rcMenu.Divider, null),
+                this.props.helpOptions.map(function (item) {
+                    return _react2.default.createElement(
+                        _rcMenu.Item,
+                        { key: item.key },
+                        item.content
+                    );
+                })
+            );
             var panel = this.state.panel;
 
             return _react2.default.createElement(
@@ -39563,7 +39564,8 @@ var Editor = (_temp = _class = function (_Component) {
     return Editor;
 }(_react.Component), _class.defaultProps = {
     options: {
-        uploadUrl: ''
+        uploadUrl: '',
+        helpOptions: []
     },
     doc: {
         name: '',
@@ -42146,7 +42148,9 @@ var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
             return _react2.default.createElement(
                 'div',
                 { className: 'weditor-wrapper' },
-                _react2.default.createElement(_header2.default, { doc: this.props.doc, rightContent: this.props.rightContent }),
+                _react2.default.createElement(_header2.default, { doc: this.props.doc,
+                    rightContent: this.props.rightContent,
+                    helpOptions: this.props.options.helpOptions }),
                 _react2.default.createElement(
                     'div',
                     { className: 'weditor-body' },
