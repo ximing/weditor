@@ -8,11 +8,12 @@ import {observer,Provider} from 'mobx-react';
 
 import './index.scss'
 import 'quill/dist/quill.snow.css'
-import {getEditor} from './lib/quillEditor'
+import {getEditor,resize} from './lib/quillEditor'
 import WEditor from './weditor'
 import catalogue from './model/catalogue';
 import insert from './model/insert';
 import editor from './model/editor';
+
 class  Editor extends Component {
     static defaultProps = {
         options:{
@@ -29,6 +30,12 @@ class  Editor extends Component {
     constructor(){
         super();
         this.getEditor = getEditor;
+    };
+
+    setContents(content){
+        if(getEditor()){
+            getEditor().setContents(content);
+        }
     };
 
     render(){

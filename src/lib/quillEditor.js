@@ -81,9 +81,9 @@ export const initQuillEditor = function (dom, options) {
     });
     $quillEditorDom = $(quillDom).find('.ql-editor');
     $weditorBody = $('.weditor-body');
-    quillEditor.on('text-change', (range, oldRange, source) => {
-        resize();
-    });
+    // quillEditor.on('text-change', (range, oldRange, source) => {
+    //     resize();
+    // });
     quillEditor.on('selection-change', (range, oldRange, source) => {
         console.log('selection-change', range, source)
         if (range) {
@@ -117,19 +117,20 @@ export const initQuillEditor = function (dom, options) {
     });
     initHotKey(quillEditor);
 
-    $(window).on('resize', resize);
+    //$(window).on('resize', resize);
     //fix有图片的时候高度问题
-    $( window ).on("load", resize);
+    // $( window ).on("load", resize);
     return quillEditor;
 };
-function resize() {
-    let scrollHeight = $quillEditorDom[0].scrollHeight;
-    console.log(scrollHeight);
-    if ($weditorBody.height() < scrollHeight) {
-        $quillContainer.height(scrollHeight);
-    } else {
-        $quillContainer.height($weditorBody.height() - 50);
-    }
+export const resize = function() {
+    // console.log('resize')
+    // let scrollHeight = $quillEditorDom[0].scrollHeight;
+    // console.log('scrollHeight',scrollHeight);
+    // if ($weditorBody.height() < scrollHeight) {
+    //     $quillContainer.height(scrollHeight);
+    // } else {
+    //     $quillContainer.height($weditorBody.height() - 50);
+    // }
 }
 export const getEditor = function () {
     return quillEditor;
