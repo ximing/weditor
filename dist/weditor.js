@@ -34820,7 +34820,7 @@ var HotKeysDialog = function (_Component) {
                                     _react2.default.createElement(
                                         'span',
                                         null,
-                                        '\u2318+Shift+0'
+                                        '\u2318+Alt+0'
                                     )
                                 )
                             ),
@@ -34860,7 +34860,7 @@ var HotKeysDialog = function (_Component) {
                                     _react2.default.createElement(
                                         'span',
                                         null,
-                                        '\u2318+Shift+2'
+                                        '\u2318+Alt+2'
                                     )
                                 )
                             ),
@@ -34880,7 +34880,7 @@ var HotKeysDialog = function (_Component) {
                                     _react2.default.createElement(
                                         'span',
                                         null,
-                                        '\u2318+Shift+3'
+                                        '\u2318+Alt+3'
                                     )
                                 )
                             ),
@@ -34900,7 +34900,7 @@ var HotKeysDialog = function (_Component) {
                                     _react2.default.createElement(
                                         'span',
                                         null,
-                                        '\u2318+Shift+4'
+                                        '\u2318+Alt+4'
                                     )
                                 )
                             ),
@@ -34920,7 +34920,7 @@ var HotKeysDialog = function (_Component) {
                                     _react2.default.createElement(
                                         'span',
                                         null,
-                                        '\u2318+Shift+5'
+                                        '\u2318+Alt+5'
                                     )
                                 )
                             ),
@@ -34940,7 +34940,7 @@ var HotKeysDialog = function (_Component) {
                                     _react2.default.createElement(
                                         'span',
                                         null,
-                                        '\u2318+Shift+6'
+                                        '\u2318+Alt+6'
                                     )
                                 )
                             ),
@@ -39827,6 +39827,13 @@ Object.defineProperty(exports, "__esModule", {
 
 exports.default = function (quill) {
     quill.keyboard.addBinding({
+        key: 's',
+        shortKey: true
+    }, function (range, context) {
+        console.log('save');
+    });
+
+    quill.keyboard.addBinding({
         key: 'b',
         shortKey: true
     }, function (range, context) {
@@ -39886,14 +39893,14 @@ exports.default = function (quill) {
     quill.keyboard.addBinding({
         key: '0',
         shortKey: true,
-        shiftKey: true
+        altKey: true
     }, function (range, context) {
         this.quill.formatLine(range, 'header', false, 'user');
     });
     quill.keyboard.addBinding({
         key: '1',
         shortKey: true,
-        shiftKey: true
+        altKey: true
     }, function (range, context) {
         if (!context.format.header) {
             this.quill.formatLine(range, 'header', 1, 'user');
@@ -39904,7 +39911,7 @@ exports.default = function (quill) {
     quill.keyboard.addBinding({
         key: '2',
         shortKey: true,
-        shiftKey: true
+        altKey: true
     }, function (range, context) {
         if (!context.format.header) {
             this.quill.formatLine(range, 'header', 2, 'user');
@@ -39915,7 +39922,7 @@ exports.default = function (quill) {
     quill.keyboard.addBinding({
         key: '3',
         shortKey: true,
-        shiftKey: true
+        altKey: true
     }, function (range, context) {
         if (!context.format.header) {
             this.quill.formatLine(range, 'header', 3, 'user');
@@ -39926,7 +39933,7 @@ exports.default = function (quill) {
     quill.keyboard.addBinding({
         key: '4',
         shortKey: true,
-        shiftKey: true
+        altKey: true
     }, function (range, context) {
         if (!context.format.header) {
             this.quill.formatLine(range, 'header', 4, 'user');
@@ -39937,7 +39944,7 @@ exports.default = function (quill) {
     quill.keyboard.addBinding({
         key: '5',
         shortKey: true,
-        shiftKey: true
+        altKey: true
     }, function (range, context) {
         if (!context.format.header) {
             this.quill.formatLine(range, 'header', 5, 'user');
@@ -39948,7 +39955,7 @@ exports.default = function (quill) {
     quill.keyboard.addBinding({
         key: '6',
         shortKey: true,
-        shiftKey: true
+        altKey: true
     }, function (range, context) {
         if (!context.format.header) {
             this.quill.formatLine(range, 'header', 6, 'user');
