@@ -34275,6 +34275,106 @@ if(false) {
 
 /***/ }),
 
+/***/ "./src/components/editor/editor.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Created by yeanzhi on 17/4/6.
+ */
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = undefined;
+
+var _getPrototypeOf = __webpack_require__("./node_modules/babel-runtime/core-js/object/get-prototype-of.js");
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__("./node_modules/babel-runtime/helpers/classCallCheck.js");
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__("./node_modules/babel-runtime/helpers/createClass.js");
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__("./node_modules/babel-runtime/helpers/possibleConstructorReturn.js");
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__("./node_modules/babel-runtime/helpers/inherits.js");
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(1);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _quillEditor = __webpack_require__("./src/lib/quillEditor.js");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Editor = function (_Component) {
+    (0, _inherits3.default)(Editor, _Component);
+
+    function Editor() {
+        (0, _classCallCheck3.default)(this, Editor);
+        return (0, _possibleConstructorReturn3.default)(this, (Editor.__proto__ || (0, _getPrototypeOf2.default)(Editor)).apply(this, arguments));
+    }
+
+    (0, _createClass3.default)(Editor, [{
+        key: 'shouldComponentUpdate',
+        value: function shouldComponentUpdate() {
+            return false;
+        }
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var quillEditor = this.quill = (0, _quillEditor.initQuillEditor)(_reactDom2.default.findDOMNode(this.refs.editor));
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement('div', { ref: 'editor' });
+        }
+    }]);
+    return Editor;
+}(_react.Component);
+
+exports.default = Editor;
+
+/***/ }),
+
+/***/ "./src/components/editor/index.js":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Created by yeanzhi on 17/4/6.
+ */
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _editor = __webpack_require__("./src/components/editor/editor.js");
+
+var _editor2 = _interopRequireDefault(_editor);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _editor2.default;
+
+/***/ }),
+
 /***/ "./src/components/headerDropDown/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -42070,8 +42170,6 @@ var _catalogue = __webpack_require__("./src/catalogue.js");
 
 var _catalogue2 = _interopRequireDefault(_catalogue);
 
-var _quillEditor = __webpack_require__("./src/lib/quillEditor.js");
-
 var _linkBubble = __webpack_require__("./src/components/linkBubble/index.js");
 
 var _linkBubble2 = _interopRequireDefault(_linkBubble);
@@ -42094,9 +42192,13 @@ var _otherSelection = __webpack_require__("./src/components/otherSelection/index
 
 var _otherSelection2 = _interopRequireDefault(_otherSelection);
 
-var _editor = __webpack_require__("./src/model/editor.js");
+var _editor = __webpack_require__("./src/components/editor/index.js");
 
 var _editor2 = _interopRequireDefault(_editor);
+
+var _editor3 = __webpack_require__("./src/model/editor.js");
+
+var _editor4 = _interopRequireDefault(_editor3);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -42126,10 +42228,9 @@ var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
     (0, _createClass3.default)(WEditor, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            var quillEditor = this.quill = (0, _quillEditor.initQuillEditor)(_reactDom2.default.findDOMNode(this.refs.editor));
             var editorDom = this.editorDom = $(_reactDom2.default.findDOMNode(this.refs.editor)).find('.ql-editor');
             editorDom.on('blur', function () {
-                _editor2.default.focus = false;
+                _editor4.default.focus = false;
             });
         }
     }, {
@@ -42160,7 +42261,7 @@ var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
                         { className: 'content-container',
                             style: { left: this.state.left } },
                         !this.props.focus && _react2.default.createElement(_selection2.default, { scrollTop: this.state.scrollTop }),
-                        _react2.default.createElement('div', { ref: 'editor' }),
+                        _react2.default.createElement(_editor2.default, null),
                         this.props.coCursors.map(function (item) {
                             return _react2.default.createElement(_otherSelection2.default, { key: item.id, name: item.name, range: item.range });
                         })
