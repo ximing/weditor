@@ -95,7 +95,7 @@ export default class HotKeysDialog extends Component {
                                 </td>
                                 <td
                                     className="apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element">
-                                    <span >⌘+Shift+0</span>
+                                    <span >⌘+Alt+0</span>
                                 </td>
                             </tr>
                             <tr>
@@ -115,7 +115,7 @@ export default class HotKeysDialog extends Component {
                                 </td>
                                 <td
                                     className="apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element">
-                                    <span >⌘+Shift+2</span>
+                                    <span >⌘+Alt+2</span>
                                 </td>
                             </tr>
                             <tr>
@@ -125,7 +125,7 @@ export default class HotKeysDialog extends Component {
                                 </td>
                                 <td
                                     className="apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element">
-                                    <span >⌘+Shift+3</span>
+                                    <span >⌘+Alt+3</span>
                                 </td>
                             </tr>
                             <tr>
@@ -135,7 +135,7 @@ export default class HotKeysDialog extends Component {
                                 </td>
                                 <td
                                     className="apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element">
-                                    <span >⌘+Shift+4</span>
+                                    <span >⌘+Alt+4</span>
                                 </td>
                             </tr>
                             <tr>
@@ -145,7 +145,7 @@ export default class HotKeysDialog extends Component {
                                 </td>
                                 <td
                                     className="apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element">
-                                    <span >⌘+Shift+5</span>
+                                    <span >⌘+Alt+5</span>
                                 </td>
                             </tr>
                             <tr>
@@ -155,7 +155,7 @@ export default class HotKeysDialog extends Component {
                                 </td>
                                 <td
                                     className="apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element">
-                                    <span >⌘+Shift+6</span>
+                                    <span >⌘+Alt+6</span>
                                 </td>
                             </tr>
 
