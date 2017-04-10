@@ -7,16 +7,8 @@ import React, {Component} from "react";
 import rab, {connect, createAction} from 'rabjs/index.js';
 import {Router, Route} from 'rabjs/router';
 import EditContainer from './editContainer';
+import WrapEditContainer from './WrapEditContainer'
 
-class WrapEditContainer extends Component {
-    render() {
-        return(
-            <div>
-                {this.props.children}
-            </div>
-        );
-    }
-}
 
 //1. init app
 const app = rab({
@@ -35,3 +27,9 @@ app.router(({history}) => {
 
 // 5. Start
 app.start('#app');
+
+// if (module.hot) {
+//     module.hot.accept('./components/App', () => {
+//         render(App)
+//     });
+// }

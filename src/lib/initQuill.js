@@ -16,7 +16,8 @@ var AlignStyle = Quill.import('attributors/style/align');
 
 SizeStyle.whitelist = [];
 ColorStyle.whitelist = null;
-BackgroundStyle.whitelist = null;
+BackgroundStyle.whitelist = ['yellow','green','cyan','magenta','darkYellow','darkGray','lightGray','black',
+    'blue','red','darkBlue','darkCyan','darkGreen','darkMagenta','darkRed'];
 AlignStyle.whitelist = ['right', 'center', 'justify','left'];
 for (let i = 5; i <= 72; i++) {
     SizeStyle.whitelist.push(`${i}pt`);
