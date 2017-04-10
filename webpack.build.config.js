@@ -54,21 +54,14 @@ module.exports = {
             },
             {
                 test:/\.css$/,
-                use: ['style-loader','css-loader',{
-                    loader: 'postcss-loader',
-                    options:{
-                        plugins: [
-                            require('precss'),
-                            require('autoprefixer')({ browsers: ['last 5 versions','Android >= 4.0', 'iOS >= 7'] })
-                        ]
-                    }
-                }]
+                use: ['style-loader','css-loader','postcss-loader']
             },
             {
                 test: /\.scss$/,
                 use: [
                     'style-loader',
                     'css-loader',
+                    'postcss-loader',
                     'sass-loader'
                 ]
             }, {
