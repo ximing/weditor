@@ -37107,7 +37107,7 @@ var AlignStyle = __WEBPACK_IMPORTED_MODULE_0_quill___default.a.import('attributo
 
 SizeStyle.whitelist = [];
 ColorStyle.whitelist = null;
-BackgroundStyle.whitelist = ['yellow', 'green', 'cyan', 'magenta', 'darkYellow', 'darkGray', 'lightGray', 'black', 'blue', 'red', 'darkBlue', 'darkCyan', 'darkGreen', 'darkMagenta', 'darkRed'];
+BackgroundStyle.whitelist = ['yellow', 'green', 'cyan', 'magenta', 'darkYellow', 'darkyellow', 'darkGray', 'darkgray', 'lightGray', 'lightgray', 'black', 'blue', 'red', 'darkBlue', 'darkblue', 'darkCyan', 'darkcyan', 'darkGreen', 'darkgreen', 'darkMagenta', 'darkmagenta', 'darkRed', 'darkred'];
 AlignStyle.whitelist = ['right', 'center', 'justify', 'left'];
 for (var i = 5; i <= 72; i++) {
     SizeStyle.whitelist.push(i + 'pt');
