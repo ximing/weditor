@@ -31884,7 +31884,6 @@ var _default = function (_Component) {
         }, _this.otherDOMClick = function (e) {
             var node = e.target;
             var target = _this.target;
-            console.log();
             if (!_this.state.open) {
                 return false;
             }
@@ -31895,24 +31894,22 @@ var _default = function (_Component) {
             _this.setState({
                 open: true
             });
+            setTimeout(function () {
+                window.document.addEventListener('click', _this.otherDOMClick);
+            }, 100);
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
     _createClass(_default, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            var _this2 = this;
-
             this.target = __WEBPACK_IMPORTED_MODULE_2_react_dom___default.a.findDOMNode(this);
-            setTimeout(function () {
-                $(document).on('click', _this2.otherDOMClick);
-            }, 100);
             console.log('fdsaf', this.target);
         }
     }, {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
-            $(document).off('click', this.otherDOMClick);
+            window.document.removeEventListener('click', this.otherDOMClick);
         }
     }, {
         key: 'onClose',
@@ -31920,21 +31917,22 @@ var _default = function (_Component) {
             this.setState({
                 open: false
             });
+            window.document.removeEventListener('click', this.otherDOMClick);
         }
     }, {
         key: 'selectBackground',
         value: function selectBackground(color) {
-            var _this3 = this;
+            var _this2 = this;
 
             return function () {
                 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__lib_quillEditor__["a" /* getEditor */])().format('background', color, 'user');
-                _this3.onClose();
+                _this2.onClose();
             };
         }
     }, {
         key: 'render',
         value: function render() {
-            var _this4 = this;
+            var _this3 = this;
 
             return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement(
                 'span',
@@ -31999,7 +31997,7 @@ var _default = function (_Component) {
                     'div',
                     { className: 'hightlight-color-panel', style: { display: this.state.open ? 'block' : 'none' } },
                     ['yellow', 'green', 'cyan', 'magenta', 'darkYellow', 'darkGray', 'lightGray', 'black', 'blue', 'red', 'darkBlue', 'darkCyan', 'darkGreen', 'darkMagenta', 'darkRed'].map(function (item) {
-                        return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('span', { style: { background: item }, key: item, onClick: _this4.selectBackground(item) });
+                        return __WEBPACK_IMPORTED_MODULE_1_react___default.a.createElement('span', { style: { background: item }, key: item, onClick: _this3.selectBackground(item) });
                     })
                 )
             );
@@ -32994,7 +32992,7 @@ var InsertImage = (_dec = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3_mobx
             this.target = this.rootNode.getElementsByClassName('weditor-insert-image-dialog')[0];
             var uploader = this.uploader = new __WEBPACK_IMPORTED_MODULE_10__uploader_index__["a" /* Uploader */]({
                 'dnd': '.weditor-uploader-wrapper',
-                'pick': '#uploaderPick',
+                'pick': '#weditorUploaderPick',
                 'auto': true,
                 'chunked': false,
                 'chunkSize': 20971520,
@@ -33077,7 +33075,7 @@ var InsertImage = (_dec = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3_mobx
                                     ),
                                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                                         __WEBPACK_IMPORTED_MODULE_11__button__["a" /* default */],
-                                        { id: 'uploaderPick' },
+                                        { id: 'weditorUploaderPick' },
                                         '\u70B9\u51FB\u4E0A\u4F20'
                                     )
                                 )
@@ -38491,7 +38489,7 @@ var Insert = (_class = function Insert() {
 }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, 'openImageDialog', [__WEBPACK_IMPORTED_MODULE_0_mobx__["observable"]], {
     enumerable: true,
     initializer: function initializer() {
-        return false;
+        return true;
     }
 }), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'linkTitle', [__WEBPACK_IMPORTED_MODULE_0_mobx__["observable"]], {
     enumerable: true,
