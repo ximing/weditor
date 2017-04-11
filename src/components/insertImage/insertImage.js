@@ -49,7 +49,7 @@ export default class InsertImage extends Component {
         this.target = this.rootNode.getElementsByClassName('weditor-insert-image-dialog')[0];
         let uploader = this.uploader = new Uploader({
             'dnd': '.weditor-uploader-wrapper',
-            'pick': '#uploaderPick',
+            'pick': '#weditorUploaderPick',
             'auto': true,
             'chunked': false,
             'chunkSize': 20971520,
@@ -128,7 +128,7 @@ export default class InsertImage extends Component {
                                 <TabPane tab={`本地上传`} key="1">
                                     <div className="weditor-uploader-file-inner">
                                         <p className="weditor-image-tips">最大上传20M的图片</p>
-                                        <Button id="uploaderPick">点击上传</Button>
+                                        <Button id="weditorUploaderPick">点击上传</Button>
                                     </div>
                                 </TabPane>
                                 <TabPane tab={`插入外链`} key="2">

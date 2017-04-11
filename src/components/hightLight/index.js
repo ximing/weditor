@@ -17,20 +17,16 @@ export default class extends Component {
 
     componentDidMount(){
         this.target = ReactDOM.findDOMNode(this);
-        setTimeout(()=>{
-            $(document).on('click',this.otherDOMClick)
-        },100);
         console.log('fdsaf',this.target)
     }
 
     componentWillUnmount(){
-        $(document).off('click', this.otherDOMClick);
+        window.document.removeEventListener('click',this.otherDOMClick);
     }
 
     otherDOMClick = (e) => {
         let node = e.target;
         let target = this.target;
-        console.log()
         if (!this.state.open) {
             return false;
         }
@@ -42,13 +38,18 @@ export default class extends Component {
     onClick = ()=>{
         this.setState({
             open:true
-        })
+        });
+        setTimeout(()=>{
+            window.document.addEventListener('click',this.otherDOMClick);
+        },100);
     }
 
     onClose(){
         this.setState({
             open:false
-        })
+        });
+        window.document.removeEventListener('click',this.otherDOMClick);
+
     }
 
     selectBackground(color){
