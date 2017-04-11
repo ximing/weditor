@@ -38489,7 +38489,7 @@ var Insert = (_class = function Insert() {
 }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, 'openImageDialog', [__WEBPACK_IMPORTED_MODULE_0_mobx__["observable"]], {
     enumerable: true,
     initializer: function initializer() {
-        return true;
+        return false;
     }
 }), _descriptor3 = _applyDecoratedDescriptor(_class.prototype, 'linkTitle', [__WEBPACK_IMPORTED_MODULE_0_mobx__["observable"]], {
     enumerable: true,
