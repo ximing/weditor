@@ -11,7 +11,7 @@ import ToolTip from './components/tooltip';
 import {inject,observer} from 'mobx-react';
 import Icon from './components/icon';
 import HightLight from './components/hightLight';
-
+import InsertHeader from './insertHeader'
 @inject(state=>({
     rangeFormat:state.editor.format
 })) @observer
@@ -207,6 +207,7 @@ export default class StartHeader extends Component {
                         <button className="ql-indent" value="+1"></button>
                     </ToolTip>
                 </span>
+                <InsertHeader/>
             </span>
         )
     }

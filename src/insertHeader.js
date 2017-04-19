@@ -3,12 +3,8 @@
  */
 'use strict';
 import React, {Component} from "react";
-import Icon from './components/icon/index';
-import {inject, observer} from 'mobx-react';
-import {getEditor, getEditorBoundingClientRect} from './lib/quillEditor';
 import ToolTip from './components/tooltip'
 
-// @inject('insert') @observer
 export default class CommonEditor extends Component {
 
     render() {
