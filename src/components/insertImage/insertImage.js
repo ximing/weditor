@@ -40,6 +40,7 @@ export default class InsertImage extends Component {
 
     insertLink = ()=>{
         if(this.state.linkUrl){
+            const {index, length} = this.props.insert.imageSelection;
             getEditor().insertEmbed(index, 'image', this.state.linkUrl, Quill.sources.USER);
         }
         insert.openImageDialog = false;
