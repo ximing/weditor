@@ -48,9 +48,13 @@ body{
     margin-bottom: 60px;
     min-height: 100%;
     height:  auto;
+    display: flex;
+    flex-direction: column;
     .ql-container{
       font-size: 12pt;
       height:100%;
+      flex: 1;
+      display: flex;
       &.ql-snow{
         border: none;
       }
@@ -64,6 +68,7 @@ body{
         //height:100%;
         border: none;
         height:  auto;
+        flex: 1;
         //display: inline-block;
         //min-width: 30px;
         //min-height: 30px;
