@@ -24,7 +24,7 @@ export default class EditContainer extends Component {
                 doc = {{name:'test.doc',status:'fjdisoaifasdof'
                 }}
                 ref={(e)=>{this.wEditor = e}}
-                coCursors = {[{name:'yeanzhi',range:{length:10,index:50},id:'123'}]}
+                coCursors = {[{name:'yeanzhi',range:{length:1,index:50},id:'123'}]}
                 options={{
                     uploadUrl:'http://mind.xm.test.sankuai.com/api/upload',
                     helpOptions:[
