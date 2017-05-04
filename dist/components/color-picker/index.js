@@ -7,23 +7,44 @@
 
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = undefined;
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _class, _temp2;
+
+require('./index.scss');
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _block = require('./block');
+
+var _block2 = _interopRequireDefault(_block);
+
+var _default2 = require('./default');
+
+var _default3 = _interopRequireDefault(_default2);
+
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _tools = require('./tools');
+
+var _static = require('./static');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-import './index.scss';
-import React, { Component, PropTypes } from 'react';
-import Block from './block';
-import Default from './default';
-import classnames from 'classnames';
-import { inArea, getFromLocalStorage, setIntoLocalStorage, updateDefaultColors } from './tools';
-import { COLORS } from './static';
 
 var _default = (_temp2 = _class = function (_Component) {
     _inherits(_default, _Component);
@@ -45,14 +66,14 @@ var _default = (_temp2 = _class = function (_Component) {
             recentlyUsedColors: ['#000000'],
             id: 'colorPicker' + Math.floor(Math.random() * 10000).toString(16)
         }, _this._handleClick = function (color, e) {
-            var recentlyUsedColors = updateDefaultColors(color, _this.state.recentlyUsedColors);
+            var recentlyUsedColors = (0, _tools.updateDefaultColors)(color, _this.state.recentlyUsedColors);
             _this.setState({
                 color: color,
                 isHide: true,
                 recentlyUsedColors: recentlyUsedColors
             });
             _this.props.onChangeComplete(color, e);
-            setIntoLocalStorage('_xmColorPickerDefaultColors', recentlyUsedColors);
+            (0, _tools.setIntoLocalStorage)('_xmColorPickerDefaultColors', recentlyUsedColors);
         }, _this._handleHover = function (color, e) {
             _this.setState({
                 color: color
@@ -67,7 +88,7 @@ var _default = (_temp2 = _class = function (_Component) {
         }, _this._handleAreaClick = function (e) {
             var x = e.clientX;
             var y = e.clientY;
-            if (!inArea(x, y, '#' + _this.state.id + ' .xm-color-picker') && !inArea(x, y, '#' + _this.state.id + ' .xm-color-picker-icon')) {
+            if (!(0, _tools.inArea)(x, y, '#' + _this.state.id + ' .xm-color-picker') && !(0, _tools.inArea)(x, y, '#' + _this.state.id + ' .xm-color-picker-icon')) {
                 _this.setState({
                     isHide: true
                 });
@@ -80,9 +101,9 @@ var _default = (_temp2 = _class = function (_Component) {
         key: 'componentDidMount',
         value: function componentDidMount() {
             document.addEventListener('click', this._handleAreaClick, false);
-            if (getFromLocalStorage('_xmColorPickerDefaultColors').length > 0) {
+            if ((0, _tools.getFromLocalStorage)('_xmColorPickerDefaultColors').length > 0) {
                 this.setState({
-                    recentlyUsedColors: getFromLocalStorage('_xmColorPickerDefaultColors')
+                    recentlyUsedColors: (0, _tools.getFromLocalStorage)('_xmColorPickerDefaultColors')
                 });
             }
         }
@@ -90,7 +111,7 @@ var _default = (_temp2 = _class = function (_Component) {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
             document.removeEventListener('click', this._handleAreaClick, false);
-            setIntoLocalStorage('_xmColorPickerDefaultColors', this.state.recentlyUsedColors);
+            (0, _tools.setIntoLocalStorage)('_xmColorPickerDefaultColors', this.state.recentlyUsedColors);
         }
     }, {
         key: 'render',
@@ -104,44 +125,44 @@ var _default = (_temp2 = _class = function (_Component) {
                 defaultColor = _props.defaultColor,
                 width = _props.width;
 
-            var xmColorPicker = classnames({
+            var xmColorPicker = (0, _classnames2.default)({
                 'xm-color-picker': true,
                 isHide: isHide
             });
-            return React.createElement(
+            return _react2.default.createElement(
                 'div',
                 { className: 'xm-color-picker-container', id: this.state.id },
-                React.createElement(
+                _react2.default.createElement(
                     'span',
                     { className: 'xm-color-picker-icon',
                         onClick: this._handleIconClick
                     },
                     icon
                 ),
-                React.createElement(
+                _react2.default.createElement(
                     'div',
                     { className: xmColorPicker, style: { width: width } },
-                    React.createElement(Default, { onClick: this._handleClick, recentlyUsedColors: defaultColor, color: color }),
-                    React.createElement(Block, { onClick: this._handleClick, onHover: this._handleHover, title: '\u6700\u8FD1\u4F7F\u7528', colors: recentlyUsedColors }),
-                    React.createElement(Block, { onClick: this._handleClick, onHover: this._handleHover, title: '\u4E3B\u9898\u989C\u8272', colors: COLORS.THEME, noWrap: false }),
-                    React.createElement(Block, { onClick: this._handleClick, onHover: this._handleHover, title: '\u6807\u51C6\u989C\u8272', colors: COLORS.STANDARD })
+                    _react2.default.createElement(_default3.default, { onClick: this._handleClick, recentlyUsedColors: defaultColor, color: color }),
+                    _react2.default.createElement(_block2.default, { onClick: this._handleClick, onHover: this._handleHover, title: '\u6700\u8FD1\u4F7F\u7528', colors: recentlyUsedColors }),
+                    _react2.default.createElement(_block2.default, { onClick: this._handleClick, onHover: this._handleHover, title: '\u4E3B\u9898\u989C\u8272', colors: _static.COLORS.THEME, noWrap: false }),
+                    _react2.default.createElement(_block2.default, { onClick: this._handleClick, onHover: this._handleHover, title: '\u6807\u51C6\u989C\u8272', colors: _static.COLORS.STANDARD })
                 )
             );
         }
     }]);
 
     return _default;
-}(Component), _class.defaultProps = {
+}(_react.Component), _class.defaultProps = {
     onChangeComplete: function onChangeComplete(color, e) {},
     onChange: function onChange(color, e) {},
     defaultColor: '#00b050',
     icon: 'picker icon',
     width: '193px'
 }, _class.propTypes = {
-    onChangeComplete: PropTypes.func,
-    onChange: PropTypes.func,
-    defaultColor: PropTypes.string,
-    width: PropTypes.string
+    onChangeComplete: _react.PropTypes.func,
+    onChange: _react.PropTypes.func,
+    defaultColor: _react.PropTypes.string,
+    width: _react.PropTypes.string
 }, _temp2);
 
-export { _default as default };
+exports.default = _default;

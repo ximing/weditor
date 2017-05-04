@@ -5,15 +5,26 @@
 
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.FileStatus = exports.UploaderStatus = exports.Uploader = undefined;
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _eventBus = require('./eventBus.js');
+
+var _eventBus2 = _interopRequireDefault(_eventBus);
+
+var _transport = require('./transport.js');
+
+var _file = require('./file.js');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-import EventEmitter from './eventBus.js';
-import { Transport } from './transport.js';
-import { WUFile } from './file.js';
 
 var _config = {
     timeout: 0,
@@ -42,7 +53,8 @@ var _config = {
         return '' + new Date().getTime() + id;
     }
 };
-export var Uploader = function () {
+
+var Uploader = exports.Uploader = function () {
     function Uploader() {
         var config = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
@@ -57,7 +69,7 @@ export var Uploader = function () {
         }
         this.$ = this.config.$;
         this.inputId = 'fileUploadBtn-' + new Date().getTime();
-        this.eventEmitter = new EventEmitter();
+        this.eventEmitter = new _eventBus2.default();
         if (this.$.isPlainObject(this.config.accept)) {
             this.config.accept = [this.config.accept];
         }
@@ -647,7 +659,7 @@ export var Uploader = function () {
                                     break;
                                 }
 
-                                wuFile = new WUFile(file, { eventEmitter: this.eventEmitter, setName: this.config.setName });
+                                wuFile = new _file.WUFile(file, { eventEmitter: this.eventEmitter, setName: this.config.setName });
                                 _context12.next = 6;
                                 return this.eventEmitter.emit('beforeFileQueued', wuFile);
 
@@ -659,7 +671,7 @@ export var Uploader = function () {
                                     break;
                                 }
 
-                                wuFile.statusText = WUFile.Status.QUEUED;
+                                wuFile.statusText = _file.WUFile.Status.QUEUED;
                                 this.filesQueue.push(wuFile);
                                 _context12.next = 12;
                                 return this.eventEmitter.emit('fileQueued', wuFile);
@@ -694,8 +706,8 @@ export var Uploader = function () {
                     while (1) {
                         switch (_context13.prev = _context13.next) {
                             case 0:
-                                if (!(wuFile instanceof WUFile)) {
-                                    wuFile = new WUFile(wuFile, { eventEmitter: this.eventEmitter, setName: this.config.setName });
+                                if (!(wuFile instanceof _file.WUFile)) {
+                                    wuFile = new _file.WUFile(wuFile, { eventEmitter: this.eventEmitter, setName: this.config.setName });
                                 }
                                 wuFile.selectFileTransactionId = ++this._selectFileTransactionId;
                                 wuFile = this.fileFilter(wuFile);
@@ -705,7 +717,7 @@ export var Uploader = function () {
                                     break;
                                 }
 
-                                wuFile.statusText = WUFile.Status.QUEUED;
+                                wuFile.statusText = _file.WUFile.Status.QUEUED;
                                 this.filesQueue.push(wuFile);
                                 _context13.next = 8;
                                 return this.eventEmitter.emit('fileQueued', wuFile);
@@ -755,7 +767,7 @@ export var Uploader = function () {
 
                             case 1:
                                 if (!(this.filesQueue.filter(function (item) {
-                                    return item.statusText === WUFile.Status.QUEUED;
+                                    return item.statusText === _file.WUFile.Status.QUEUED;
                                 }).length > 0)) {
                                     _context14.next = 13;
                                     break;
@@ -763,7 +775,7 @@ export var Uploader = function () {
 
                                 this.status = Uploader.Status.UPLOADING;
                                 file = this.filesQueue.filter(function (item) {
-                                    return item.statusText === WUFile.Status.QUEUED;
+                                    return item.statusText === _file.WUFile.Status.QUEUED;
                                 })[0];
 
                                 if (!file.isFile) {
@@ -788,7 +800,7 @@ export var Uploader = function () {
 
                             case 13:
                                 if (!(this.filesQueue.filter(function (item) {
-                                    return item.statusText === WUFile.Status.QUEUED;
+                                    return item.statusText === _file.WUFile.Status.QUEUED;
                                 }).length === 0)) {
                                     _context14.next = 17;
                                     break;
@@ -849,7 +861,7 @@ export var Uploader = function () {
                                 currentShared = 1;
                                 currentProgress = 0;
 
-                                file.statusText = WUFile.Status.PROGRESS;
+                                file.statusText = _file.WUFile.Status.PROGRESS;
                                 this.eventEmitter.on('uploadBeforeSend', function (obj) {
                                     currentShared = obj.currentShard;
                                 });
@@ -877,7 +889,7 @@ export var Uploader = function () {
                                 _context16.prev = 13;
                                 _context16.t0 = _context16['catch'](5);
 
-                                this.file.statusText = WUFile.Status.ERROR;
+                                this.file.statusText = _file.WUFile.Status.ERROR;
                                 this.status = Uploader.Status.FILEERROR;
                                 _context16.next = 19;
                                 return this.eventEmitter.emit('uploadError', file, _context16.t0);
@@ -938,7 +950,7 @@ export var Uploader = function () {
                                     break;
                                 }
 
-                                if (!(file.statusText === WUFile.Status.PROGRESS)) {
+                                if (!(file.statusText === _file.WUFile.Status.PROGRESS)) {
                                     _context17.next = 36;
                                     break;
                                 }
@@ -974,7 +986,7 @@ export var Uploader = function () {
                                     break;
                                 }
 
-                                this.file.statusText = WUFile.Status.COMPLETE;
+                                this.file.statusText = _file.WUFile.Status.COMPLETE;
                                 _context17.next = 23;
                                 return this.eventEmitter.emit('uploadSuccess', file);
 
@@ -1042,7 +1054,7 @@ export var Uploader = function () {
                                 return this.eventEmitter.emit('uploadAccept', { file: file }, _res);
 
                             case 50:
-                                file.statusText = WUFile.Status.COMPLETE;
+                                file.statusText = _file.WUFile.Status.COMPLETE;
                                 _context17.next = 53;
                                 return this.eventEmitter.emit('uploadSuccess', file);
 
@@ -1089,12 +1101,12 @@ export var Uploader = function () {
                     while (1) {
                         switch (_context18.prev = _context18.next) {
                             case 0:
-                                if (this.file.statusText === WUFile.Status.INTERRUPT || this.file.statusText === WUFile.Status.CANCELLED) {
+                                if (this.file.statusText === _file.WUFile.Status.INTERRUPT || this.file.statusText === _file.WUFile.Status.CANCELLED) {
                                     _context18.next = 5;
                                     break;
                                 }
 
-                                this.file.statusText = WUFile.Status.ERROR;
+                                this.file.statusText = _file.WUFile.Status.ERROR;
                                 this.status = Uploader.Status.FILEERROR;
                                 _context18.next = 5;
                                 return this.eventEmitter.emit('uploadError', file, err);
@@ -1144,7 +1156,7 @@ export var Uploader = function () {
         value: function removeFile(id) {
             this._removeFileFromQueue(id);
             if (this.file && this.file.id === id) {
-                this.file.statusText = WUFile.Status.CANCELLED;
+                this.file.statusText = _file.WUFile.Status.CANCELLED;
                 if (this.transport) {
                     this.transport.abort();
                 }
@@ -1154,7 +1166,7 @@ export var Uploader = function () {
         key: 'interruptFile',
         value: function interruptFile(id) {
             if (this.file && this.file.id === id) {
-                this.file.statusText = WUFile.Status.INTERRUPT;
+                this.file.statusText = _file.WUFile.Status.INTERRUPT;
                 if (this.transport) {
                     this.transport.abort();
                 }
@@ -1172,7 +1184,7 @@ export var Uploader = function () {
                 if (_this4.file && _this4.file.id === file.id && ids[file.id]) {
                     _this4.interruptFile(file.id);
                 } else if (ids[file.id]) {
-                    file.statusText = WUFile.Status.CANCELLED;
+                    file.statusText = _file.WUFile.Status.CANCELLED;
                 }
             });
         }
@@ -1187,7 +1199,7 @@ export var Uploader = function () {
                                 if (this.file && this.file.id !== id) {
                                     this.filesQueue.forEach(function (file) {
                                         if (file.id === id) {
-                                            file.statusText = WUFile.Status.QUEUED;
+                                            file.statusText = _file.WUFile.Status.QUEUED;
                                         }
                                     });
                                 }
@@ -1242,14 +1254,14 @@ export var Uploader = function () {
                                     break;
                                 }
 
-                                if (!(this.file.statusText === WUFile.Status.PROGRESS)) {
+                                if (!(this.file.statusText === _file.WUFile.Status.PROGRESS)) {
                                     _context20.next = 18;
                                     break;
                                 }
 
                                 _context20.prev = 5;
 
-                                this.transport = new Transport(blob, this.eventEmitter, config);
+                                this.transport = new _transport.Transport(blob, this.eventEmitter, config);
                                 _context20.next = 9;
                                 return this.transport.send();
 
@@ -1297,10 +1309,10 @@ export var Uploader = function () {
     return Uploader;
 }();
 
-export var UploaderStatus = Uploader.Status = {
+var UploaderStatus = exports.UploaderStatus = Uploader.Status = {
     INITED: 'inited',
     FILEERROR: 'fileError',
     UPLOADING: 'UPLOADING'
 };
 
-export var FileStatus = WUFile.Status;
+var FileStatus = exports.FileStatus = _file.WUFile.Status;

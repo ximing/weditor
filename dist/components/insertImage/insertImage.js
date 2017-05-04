@@ -3,9 +3,68 @@
  */
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = undefined;
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _dec, _class;
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = require('react-dom');
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _quill = require('quill');
+
+var _quill2 = _interopRequireDefault(_quill);
+
+var _mobxReact = require('mobx-react');
+
+require('rc-tabs/assets/index.css');
+
+var _rcTabs = require('rc-tabs');
+
+var _rcTabs2 = _interopRequireDefault(_rcTabs);
+
+var _ScrollableInkTabBar = require('rc-tabs/lib/ScrollableInkTabBar.js');
+
+var _ScrollableInkTabBar2 = _interopRequireDefault(_ScrollableInkTabBar);
+
+var _TabContent = require('rc-tabs/lib/TabContent.js');
+
+var _TabContent2 = _interopRequireDefault(_TabContent);
+
+var _dialog = require('../dialog');
+
+var _dialog2 = _interopRequireDefault(_dialog);
+
+var _util = require('../../lib/util');
+
+var _index = require('../uploader/index');
+
+var _button = require('../button');
+
+var _button2 = _interopRequireDefault(_button);
+
+var _quillEditor = require('../../lib/quillEditor');
+
+var _insert = require('../../model/insert');
+
+var _insert2 = _interopRequireDefault(_insert);
+
+var _input = require('../input');
+
+var _input2 = _interopRequireDefault(_input);
+
+var _toast = require('../toast');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -13,24 +72,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import Quill from 'quill';
-import { inject, observer } from 'mobx-react';
-import 'rc-tabs/assets/index.css';
-import Tabs, { TabPane } from 'rc-tabs';
-import ScrollableInkTabBar from 'rc-tabs/lib/ScrollableInkTabBar.js';
-import TabContent from 'rc-tabs/lib/TabContent.js';
-import Dialog from '../dialog';
-import { contains } from '../../lib/util';
-import { Uploader } from '../uploader/index';
-import Button from '../button';
-import { getEditor } from '../../lib/quillEditor';
-import insert from '../../model/insert';
-import Input from '../input';
-import { error } from '../toast';
 var $ = window.jQuery;
-var InsertImage = (_dec = inject('insert'), _dec(_class = observer(_class = function (_Component) {
+var InsertImage = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _mobxReact.observer)(_class = function (_Component) {
     _inherits(InsertImage, _Component);
 
     function InsertImage() {
@@ -57,18 +100,18 @@ var InsertImage = (_dec = inject('insert'), _dec(_class = observer(_class = func
                     index = _this$props$insert$im.index,
                     length = _this$props$insert$im.length;
 
-                getEditor().insertEmbed(index, 'image', _this.state.linkUrl, Quill.sources.USER);
+                (0, _quillEditor.getEditor)().insertEmbed(index, 'image', _this.state.linkUrl, _quill2.default.sources.USER);
             }
-            insert.openImageDialog = false;
+            _insert2.default.openImageDialog = false;
         }, _this.closeBubble = function () {
             _this.props.insert.openImageDialog = false;
         }, _this.otherDOMClick = function (e) {
             var node = e.target;
-            if (!insert.openImageDialog) {
+            if (!_insert2.default.openImageDialog) {
                 return false;
             }
             var target = _this.target;
-            if (insert.openImageDialog && !contains(target, node)) {
+            if (_insert2.default.openImageDialog && !(0, _util.contains)(target, node)) {
                 _this.closeBubble();
             }
         }, _this.onChange = function (activeKey) {
@@ -93,9 +136,9 @@ var InsertImage = (_dec = inject('insert'), _dec(_class = observer(_class = func
         value: function initUploader() {
             var _this3 = this;
 
-            this.rootNode = ReactDOM.findDOMNode(this);
+            this.rootNode = _reactDom2.default.findDOMNode(this);
             this.target = this.rootNode.getElementsByClassName('weditor-insert-image-dialog')[0];
-            var uploader = this.uploader = new Uploader({
+            var uploader = this.uploader = new _index.Uploader({
                 'dnd': '.weditor-uploader-wrapper',
                 'pick': '#weditorUploaderPick',
                 'auto': true,
@@ -117,11 +160,11 @@ var InsertImage = (_dec = inject('insert'), _dec(_class = observer(_class = func
                             index = _props$insert$imageSe.index,
                             length = _props$insert$imageSe.length;
 
-                        getEditor().insertEmbed(index, 'image', res.data.url, Quill.sources.USER);
+                        (0, _quillEditor.getEditor)().insertEmbed(index, 'image', res.data.url, _quill2.default.sources.USER);
                         _this3.props.insert.openImageDialog = false;
                     }
                 } else {
-                    error('上传服务错误');
+                    (0, _toast.error)('上传服务错误');
                 }
             });
             uploader.on('uploadComplete', function () {
@@ -129,7 +172,7 @@ var InsertImage = (_dec = inject('insert'), _dec(_class = observer(_class = func
             });
             uploader.on('uploadError', function () {
                 uploader.reset();
-                error('上传服务错误');
+                (0, _toast.error)('上传服务错误');
             });
         }
     }, {
@@ -146,57 +189,57 @@ var InsertImage = (_dec = inject('insert'), _dec(_class = observer(_class = func
         value: function render() {
             var _this4 = this;
 
-            return React.createElement(Dialog, {
+            return _react2.default.createElement(_dialog2.default, {
                 title: '\u63D2\u5165\u56FE\u7247',
                 className: 'weditor-insert-image-dialog',
-                content: React.createElement(
+                content: _react2.default.createElement(
                     'div',
                     { className: 'weditor-insert-image' },
-                    React.createElement(
+                    _react2.default.createElement(
                         'div',
                         { className: 'weditor-uploader-wrapper' },
-                        React.createElement(
-                            Tabs,
+                        _react2.default.createElement(
+                            _rcTabs2.default,
                             {
                                 renderTabBar: function renderTabBar() {
-                                    return React.createElement(ScrollableInkTabBar, { onTabClick: _this4.onTabClick });
+                                    return _react2.default.createElement(_ScrollableInkTabBar2.default, { onTabClick: _this4.onTabClick });
                                 },
                                 renderTabContent: function renderTabContent() {
-                                    return React.createElement(TabContent, { animatedWithMargin: true });
+                                    return _react2.default.createElement(_TabContent2.default, { animatedWithMargin: true });
                                 },
                                 activeKey: this.state.activeKey,
                                 onChange: this.onChange
                             },
-                            React.createElement(
-                                TabPane,
+                            _react2.default.createElement(
+                                _rcTabs.TabPane,
                                 { tab: '\u672C\u5730\u4E0A\u4F20', key: '1' },
-                                React.createElement(
+                                _react2.default.createElement(
                                     'div',
                                     { className: 'weditor-uploader-file-inner' },
-                                    React.createElement(
+                                    _react2.default.createElement(
                                         'p',
                                         { className: 'weditor-image-tips' },
                                         '\u6700\u5927\u4E0A\u4F2020M\u7684\u56FE\u7247'
                                     ),
-                                    React.createElement(
-                                        Button,
+                                    _react2.default.createElement(
+                                        _button2.default,
                                         { id: 'weditorUploaderPick' },
                                         '\u70B9\u51FB\u4E0A\u4F20'
                                     )
                                 )
                             ),
-                            React.createElement(
-                                TabPane,
+                            _react2.default.createElement(
+                                _rcTabs.TabPane,
                                 { tab: '\u63D2\u5165\u5916\u94FE', key: '2' },
-                                React.createElement(
+                                _react2.default.createElement(
                                     'div',
                                     { className: 'weditor-uploader-file-inner' },
-                                    React.createElement(
+                                    _react2.default.createElement(
                                         'div',
                                         null,
-                                        React.createElement(Input, { onChange: this.onLinkUrlChange }),
-                                        React.createElement(
-                                            Button,
+                                        _react2.default.createElement(_input2.default, { onChange: this.onLinkUrlChange }),
+                                        _react2.default.createElement(
+                                            _button2.default,
                                             { onClick: this.insertLink },
                                             '\u63D2\u5165'
                                         )
@@ -212,5 +255,5 @@ var InsertImage = (_dec = inject('insert'), _dec(_class = observer(_class = func
     }]);
 
     return InsertImage;
-}(Component)) || _class) || _class);
-export { InsertImage as default };
+}(_react.Component)) || _class) || _class);
+exports.default = InsertImage;

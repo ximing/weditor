@@ -3,9 +3,66 @@
  */
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = undefined;
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _dec, _class;
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _hotkeysJs = require('hotkeys-js');
+
+var _hotkeysJs2 = _interopRequireDefault(_hotkeysJs);
+
+var _reactDom = require('react-dom');
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _header = require('./header');
+
+var _header2 = _interopRequireDefault(_header);
+
+var _catalogue = require('./catalogue');
+
+var _catalogue2 = _interopRequireDefault(_catalogue);
+
+var _linkBubble = require('./components/linkBubble');
+
+var _linkBubble2 = _interopRequireDefault(_linkBubble);
+
+var _insertImage = require('./components/insertImage');
+
+var _insertImage2 = _interopRequireDefault(_insertImage);
+
+var _hotKeysDialog = require('./components/hotKeysDialog');
+
+var _hotKeysDialog2 = _interopRequireDefault(_hotKeysDialog);
+
+var _mobxReact = require('mobx-react');
+
+var _selection = require('./components/selection');
+
+var _selection2 = _interopRequireDefault(_selection);
+
+var _otherSelection = require('./components/otherSelection');
+
+var _otherSelection2 = _interopRequireDefault(_otherSelection);
+
+var _editor = require('./components/editor');
+
+var _editor2 = _interopRequireDefault(_editor);
+
+var _editor3 = require('./model/editor');
+
+var _editor4 = _interopRequireDefault(_editor3);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -13,28 +70,15 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import React, { Component } from "react";
-import hotkeys from 'hotkeys-js';
-import ReactDOM from 'react-dom';
-import Header from './header';
-import Catalogue from './catalogue';
-import LinkBubble from './components/linkBubble';
-import InsertImage from './components/insertImage';
-import HotKeysDialog from './components/hotKeysDialog';
-import { inject, observer } from 'mobx-react';
-import Selection from './components/selection';
-import OtherSelection from './components/otherSelection';
-import Editor from './components/editor';
 var $ = window.jQuery;
-import editor from './model/editor';
-var WEditor = (_dec = inject(function (state) {
+var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
     return {
         insert: state.insert,
         open: state.catalogue.open,
         focus: state.editor.focus,
         help: state.help
     };
-}), _dec(_class = observer(_class = function (_Component) {
+}), _dec(_class = (0, _mobxReact.observer)(_class = function (_Component) {
     _inherits(WEditor, _Component);
 
     function WEditor() {
@@ -52,9 +96,9 @@ var WEditor = (_dec = inject(function (state) {
     _createClass(WEditor, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            var editorDom = this.editorDom = $(ReactDOM.findDOMNode(this.refs.editor)).find('.ql-editor');
+            var editorDom = this.editorDom = $(_reactDom2.default.findDOMNode(this.refs.editor)).find('.ql-editor');
             editorDom.on('blur', function () {
-                editor.focus = false;
+                _editor4.default.focus = false;
             });
         }
     }, {
@@ -70,34 +114,34 @@ var WEditor = (_dec = inject(function (state) {
     }, {
         key: 'render',
         value: function render() {
-            return React.createElement(
+            return _react2.default.createElement(
                 'div',
                 { className: 'weditor-wrapper' },
-                React.createElement(Header, { doc: this.props.doc,
+                _react2.default.createElement(_header2.default, { doc: this.props.doc,
                     rightContent: this.props.rightContent,
                     helpOptions: this.props.options.helpOptions }),
-                React.createElement(
+                _react2.default.createElement(
                     'div',
                     { className: 'weditor-body' },
-                    React.createElement(Catalogue, null),
-                    React.createElement(
+                    _react2.default.createElement(_catalogue2.default, null),
+                    _react2.default.createElement(
                         'div',
                         { className: 'content-container',
                             style: { left: this.state.left } },
-                        !this.props.focus && React.createElement(Selection, { scrollTop: this.state.scrollTop }),
-                        React.createElement(Editor, null),
+                        !this.props.focus && _react2.default.createElement(_selection2.default, { scrollTop: this.state.scrollTop }),
+                        _react2.default.createElement(_editor2.default, null),
                         this.props.coCursors.map(function (item) {
-                            return React.createElement(OtherSelection, { key: item.id, name: item.name, range: item.range });
+                            return _react2.default.createElement(_otherSelection2.default, { key: item.id, name: item.name, range: item.range });
                         })
                     )
                 ),
-                this.props.insert.openLinkDialog && React.createElement(LinkBubble, null),
-                this.props.insert.openImageDialog && React.createElement(InsertImage, { uploadUrl: this.props.options.uploadUrl }),
-                this.props.help.hotKeysDialog && React.createElement(HotKeysDialog, null)
+                this.props.insert.openLinkDialog && _react2.default.createElement(_linkBubble2.default, null),
+                this.props.insert.openImageDialog && _react2.default.createElement(_insertImage2.default, { uploadUrl: this.props.options.uploadUrl }),
+                this.props.help.hotKeysDialog && _react2.default.createElement(_hotKeysDialog2.default, null)
             );
         }
     }]);
 
     return WEditor;
-}(Component)) || _class) || _class);
-export { WEditor as default };
+}(_react.Component)) || _class) || _class);
+exports.default = WEditor;

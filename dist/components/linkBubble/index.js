@@ -3,9 +3,44 @@
  */
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = undefined;
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _dec, _class;
+
+require('./index.scss');
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = require('react-dom');
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _mobxReact = require('mobx-react');
+
+var _index = require('../input/index');
+
+var _index2 = _interopRequireDefault(_index);
+
+var _index3 = require('../button/index');
+
+var _index4 = _interopRequireDefault(_index3);
+
+var _util = require('../../lib/util');
+
+var _quillEditor = require('../../lib/quillEditor');
+
+var _insert = require('../../model/insert');
+
+var _insert2 = _interopRequireDefault(_insert);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -13,18 +48,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import './index.scss';
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import { observer, inject } from "mobx-react";
-
-import Input from '../input/index';
-import Button from '../button/index';
-import { contains } from '../../lib/util';
-import { getEditor } from '../../lib/quillEditor';
-import insert from '../../model/insert';
-
-var LinkBubble = (_dec = inject('insert'), _dec(_class = observer(_class = function (_Component) {
+var LinkBubble = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _mobxReact.observer)(_class = function (_Component) {
     _inherits(LinkBubble, _Component);
 
     function LinkBubble() {
@@ -42,11 +66,11 @@ var LinkBubble = (_dec = inject('insert'), _dec(_class = observer(_class = funct
             _this.props.insert.openLinkDialog = false;
         }, _this.otherDOMClick = function (e) {
             var node = e.target;
-            if (!insert.openLinkDialog) {
+            if (!_insert2.default.openLinkDialog) {
                 return false;
             }
             var target = _this.target;
-            if (insert.openLinkDialog && !contains(target, node)) {
+            if (_insert2.default.openLinkDialog && !(0, _util.contains)(target, node)) {
                 _this.closeBubble();
             }
         }, _this.changeTitle = function (e) {
@@ -54,12 +78,12 @@ var LinkBubble = (_dec = inject('insert'), _dec(_class = observer(_class = funct
         }, _this.changeUrl = function (e) {
             _this.props.insert.linkUrl = e.target.value || '';
         }, _this.apply = function () {
-            if (getEditor() && !!_this.props.insert.linkUrl) {
-                var editor = getEditor();
+            if ((0, _quillEditor.getEditor)() && !!_this.props.insert.linkUrl) {
+                var editor = (0, _quillEditor.getEditor)();
                 var selection = _this.props.insert.linkSelection;
                 if (selection) {
                     if (editor.getText(selection.index, selection.length) === _this.props.insert.linkTitle) {
-                        getEditor().format('link', _this.props.insert.linkUrl, 'user');
+                        (0, _quillEditor.getEditor)().format('link', _this.props.insert.linkUrl, 'user');
                     } else {
                         var index = selection.index,
                             length = selection.length;
@@ -68,7 +92,7 @@ var LinkBubble = (_dec = inject('insert'), _dec(_class = observer(_class = funct
                         var linkTitle = _this.props.insert.linkTitle || _this.props.insert.linkUrl;
                         editor.insertText(index, linkTitle, 'user');
                         editor.setSelection(index, linkTitle.length, 'user');
-                        getEditor().format('link', _this.props.insert.linkUrl, 'user');
+                        (0, _quillEditor.getEditor)().format('link', _this.props.insert.linkUrl, 'user');
                     }
                 }
                 _this.props.insert.openLinkDialog = false;
@@ -84,7 +108,7 @@ var LinkBubble = (_dec = inject('insert'), _dec(_class = observer(_class = funct
             setTimeout(function () {
                 window.document.addEventListener('click', _this2.otherDOMClick);
             }, 100);
-            this.target = ReactDOM.findDOMNode(this);
+            this.target = _reactDom2.default.findDOMNode(this);
         }
     }, {
         key: 'componentWillUnmount',
@@ -95,40 +119,40 @@ var LinkBubble = (_dec = inject('insert'), _dec(_class = observer(_class = funct
         key: 'render',
         value: function render() {
             // const {linkPosition,openLinkDialog} = this.props.insert;
-            return React.createElement(
+            return _react2.default.createElement(
                 'section',
                 { className: 'weditor-bubble', style: {
                         top: this.props.insert.linkPosition.top,
                         left: this.props.insert.linkPosition.left,
                         display: this.props.insert.openLinkDialog ? 'block' : 'none'
                     } },
-                React.createElement(
+                _react2.default.createElement(
                     'div',
                     { className: 'weditor-bubble-item' },
-                    React.createElement(
+                    _react2.default.createElement(
                         'span',
                         null,
                         '\u6587\u672C\uFF1A'
                     ),
                     ' ',
-                    React.createElement(Input, { className: 'weditor-insert-input',
+                    _react2.default.createElement(_index2.default, { className: 'weditor-insert-input',
                         value: this.props.insert.linkTitle,
                         onChange: this.changeTitle })
                 ),
-                React.createElement(
+                _react2.default.createElement(
                     'div',
                     { className: 'weditor-bubble-item' },
-                    React.createElement(
+                    _react2.default.createElement(
                         'span',
                         null,
                         '\u94FE\u63A5\uFF1A'
                     ),
                     ' ',
-                    React.createElement(Input, { className: 'weditor-insert-input',
+                    _react2.default.createElement(_index2.default, { className: 'weditor-insert-input',
                         value: this.props.insert.linkUrl,
                         onChange: this.changeUrl }),
-                    React.createElement(
-                        Button,
+                    _react2.default.createElement(
+                        _index4.default,
                         { onClick: this.apply },
                         '\u5E94\u7528'
                     )
@@ -138,5 +162,5 @@ var LinkBubble = (_dec = inject('insert'), _dec(_class = observer(_class = funct
     }]);
 
     return LinkBubble;
-}(Component)) || _class) || _class);
-export { LinkBubble as default };
+}(_react.Component)) || _class) || _class);
+exports.default = LinkBubble;

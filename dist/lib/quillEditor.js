@@ -3,17 +3,41 @@
  */
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.setLinkBubble = exports.getEditorBoundingClientRect = exports.getDom = exports.getEditor = exports.resize = exports.initQuillEditor = undefined;
+
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
-import Quill from 'quill';
-import './initQuill';
-import initHotKey from './initHotKey';
+var _quill = require('quill');
 
-import insert from '../model/insert';
-import format from '../model/format';
-import editor from '../model/editor';
+var _quill2 = _interopRequireDefault(_quill);
 
-import catalogue from '../model/catalogue';
+require('./initQuill');
+
+var _initHotKey = require('./initHotKey');
+
+var _initHotKey2 = _interopRequireDefault(_initHotKey);
+
+var _insert = require('../model/insert');
+
+var _insert2 = _interopRequireDefault(_insert);
+
+var _format = require('../model/format');
+
+var _format2 = _interopRequireDefault(_format);
+
+var _editor = require('../model/editor');
+
+var _editor2 = _interopRequireDefault(_editor);
+
+var _catalogue = require('../model/catalogue');
+
+var _catalogue2 = _interopRequireDefault(_catalogue);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 // setInterval(()=>{
 //     catalogue.open = !catalogue.open;
 // },2000)
@@ -28,34 +52,34 @@ var linkBubble = {
     height: 95,
     width: 380
 };
-export var initQuillEditor = function initQuillEditor(dom, options) {
+var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, options) {
     quillDom = dom;
     $quillDom = $(quillDom);
     $quillContainer = $('.content-container');
-    quillEditor = new Quill(dom, {
+    quillEditor = new _quill2.default(dom, {
         modules: {
             toolbar: {
                 container: '#toolbarOpver',
                 handlers: {
                     'link': function link(value) {
                         if (value) {
-                            if (insert.openLinkDialog) {
-                                insert.openLinkDialog = false;
-                                insert.linkTitle = null;
-                                insert.linkUrl = null;
+                            if (_insert2.default.openLinkDialog) {
+                                _insert2.default.openLinkDialog = false;
+                                _insert2.default.linkTitle = null;
+                                _insert2.default.linkUrl = null;
                             } else {
                                 if (getEditor() && getEditor().getSelection()) {
                                     var _getEditor$getSelecti = getEditor().getSelection(),
                                         index = _getEditor$getSelecti.index,
                                         length = _getEditor$getSelecti.length;
 
-                                    insert.openLinkDialog = true;
-                                    insert.linkTitle = getEditor().getText(index, length);
-                                    insert.linkUrl = null;
+                                    _insert2.default.openLinkDialog = true;
+                                    _insert2.default.linkTitle = getEditor().getText(index, length);
+                                    _insert2.default.linkUrl = null;
                                     setLinkBubble(index);
                                 }
                             }
-                            insert.linkSelection = getEditor().getSelection();
+                            _insert2.default.linkSelection = getEditor().getSelection();
                         } else {
                             var _getEditor$getSelecti2 = getEditor().getSelection(),
                                 _index = _getEditor$getSelecti2.index,
@@ -74,8 +98,8 @@ export var initQuillEditor = function initQuillEditor(dom, options) {
                     'image': function image(args) {
                         // var range = this.quill.getSelection();
                         // var value = prompt('What is the image URL');
-                        insert.imageSelection = getEditor().getSelection();
-                        insert.openImageDialog = true;
+                        _insert2.default.imageSelection = getEditor().getSelection();
+                        _insert2.default.openImageDialog = true;
                     }
                 }
             },
@@ -100,9 +124,9 @@ export var initQuillEditor = function initQuillEditor(dom, options) {
     quillEditor.on('selection-change', function (range, oldRange, source) {
         console.log('selection-change', range, source);
         if (range) {
-            editor.range = range;
-            editor.focus = true;
-            editor.format = quillEditor.getFormat(range) || {};
+            _editor2.default.range = range;
+            _editor2.default.focus = true;
+            _editor2.default.format = quillEditor.getFormat(range) || {};
             //let rangeFormat = quillEditor.getFormat(range);
             // if (rangeFormat.link) {
             //     insert.openLinkDialog = true;
@@ -114,13 +138,13 @@ export var initQuillEditor = function initQuillEditor(dom, options) {
             // }
             if (range.length !== 0) {
                 //处理格式刷
-                if (format.currentFormat) {
+                if (_format2.default.currentFormat) {
                     var index = range.index,
                         length = range.length;
 
                     quillEditor.removeFormat(index, length, 'user');
-                    quillEditor.formatText(index, length, format.currentFormat, 'user');
-                    format.currentFormat = null;
+                    quillEditor.formatText(index, length, _format2.default.currentFormat, 'user');
+                    _format2.default.currentFormat = null;
                     // Object.keys(format.currentFormat).forEach(item=>{
                     //
                     // })
@@ -130,14 +154,14 @@ export var initQuillEditor = function initQuillEditor(dom, options) {
             console.log('blur');
         }
     });
-    initHotKey(quillEditor);
+    (0, _initHotKey2.default)(quillEditor);
 
     //$(window).on('resize', resize);
     //fix有图片的时候高度问题
     // $( window ).on("load", resize);
     return quillEditor;
 };
-export var resize = function resize() {
+var resize = exports.resize = function resize() {
     // console.log('resize')
     // let scrollHeight = $quillEditorDom[0].scrollHeight;
     // console.log('scrollHeight',scrollHeight);
@@ -147,19 +171,19 @@ export var resize = function resize() {
     //     $quillContainer.height($weditorBody.height() - 50);
     // }
 };
-export var getEditor = function getEditor() {
+var getEditor = exports.getEditor = function getEditor() {
     return quillEditor;
 };
 
-export var getDom = function getDom() {
+var getDom = exports.getDom = function getDom() {
     return quillDom;
 };
 
-export var getEditorBoundingClientRect = function getEditorBoundingClientRect() {
+var getEditorBoundingClientRect = exports.getEditorBoundingClientRect = function getEditorBoundingClientRect() {
     return quillDom.getBoundingClientRect();
 };
 
-export var setLinkBubble = function setLinkBubble(index) {
+var setLinkBubble = exports.setLinkBubble = function setLinkBubble(index) {
     var _getEditor$getBounds = getEditor().getBounds(index),
         left = _getEditor$getBounds.left,
         top = _getEditor$getBounds.top,
@@ -173,7 +197,7 @@ export var setLinkBubble = function setLinkBubble(index) {
     if (linkTop + linkBubble.height >= window.innerHeight) {
         linkTop = linkTop - linkBubble.height - height - 10;
     }
-    insert.linkPosition = {
+    _insert2.default.linkPosition = {
         left: linkLeft,
         top: linkTop
     };

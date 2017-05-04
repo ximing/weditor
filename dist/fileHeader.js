@@ -3,7 +3,26 @@
  */
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = undefined;
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _index = require('./components/icon/index');
+
+var _index2 = _interopRequireDefault(_index);
+
+var _printThis = require('./lib/printThis');
+
+var _printThis2 = _interopRequireDefault(_printThis);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -11,11 +30,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import React, { Component } from "react";
-import Icon from './components/icon/index';
-import printThis from './lib/printThis';
 var $ = window.jQuery;
-printThis($);
+(0, _printThis2.default)($);
 // import {inject,observer} from 'mobx-react'
 
 var CommonEditor = function (_Component) {
@@ -46,29 +62,29 @@ var CommonEditor = function (_Component) {
         value: function render() {
             var style = this.props.style;
 
-            return React.createElement(
+            return _react2.default.createElement(
                 'span',
                 { className: 'ql-formats file-header', style: style },
-                React.createElement(
+                _react2.default.createElement(
                     'button',
                     { className: 'ql-ordinaryprint ', onClick: this.print },
-                    React.createElement(Icon, { type: 'ordinaryprint' })
+                    _react2.default.createElement(_index2.default, { type: 'ordinaryprint' })
                 ),
-                React.createElement(
+                _react2.default.createElement(
                     'span',
                     { className: 'ql-pdf opver-area' },
-                    React.createElement('span', { className: 'opver-icon  pdf-icon' }),
-                    React.createElement(
+                    _react2.default.createElement('span', { className: 'opver-icon  pdf-icon' }),
+                    _react2.default.createElement(
                         'span',
                         null,
                         '\u5BFC\u51FApdf'
                     )
                 ),
-                React.createElement(
+                _react2.default.createElement(
                     'span',
                     { className: 'ql-word opver-area' },
-                    React.createElement('span', { className: 'opver-icon word-icon' }),
-                    React.createElement(
+                    _react2.default.createElement('span', { className: 'opver-icon word-icon' }),
+                    _react2.default.createElement(
                         'span',
                         null,
                         '\u5BFC\u51FAword'
@@ -79,6 +95,6 @@ var CommonEditor = function (_Component) {
     }]);
 
     return CommonEditor;
-}(Component);
+}(_react.Component);
 
-export { CommonEditor as default };
+exports.default = CommonEditor;

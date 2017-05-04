@@ -1,14 +1,29 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.Transport = undefined;
+
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      * Created by yeanzhi on 15/11/3.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      */
+
+
+var _lodash = require('lodash.assign');
+
+var _lodash2 = _interopRequireDefault(_lodash);
+
+var _eventBus = require('./eventBus.js');
+
+var _eventBus2 = _interopRequireDefault(_eventBus);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-/**
- * Created by yeanzhi on 15/11/3.
- */
-import assign from 'lodash.assign';
-import eventEmitter from './eventBus.js';
 /**
  * @fileOverview Transport
  */
@@ -23,7 +38,7 @@ var _options = {
     fileName: void 0
 };
 
-export var Transport = function () {
+var Transport = exports.Transport = function () {
     function Transport(_blob, eventEmitter) {
         var opts = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
@@ -33,7 +48,7 @@ export var Transport = function () {
             throw new Error('blob should not empty');
         }
         this.eventEmitter = eventEmitter;
-        this.config = assign({}, _options, opts);
+        this.config = (0, _lodash2.default)({}, _options, opts);
         this._blob = _blob;
     }
 
@@ -44,7 +59,7 @@ export var Transport = function () {
         key: 'append',
         value: function append(key, value) {
             if ((typeof key === 'undefined' ? 'undefined' : _typeof(key)) === 'object') {
-                assign(this.config.formData, key);
+                (0, _lodash2.default)(this.config.formData, key);
             } else {
                 this.config.formData[key] = value;
             }
@@ -53,7 +68,7 @@ export var Transport = function () {
         key: 'setRequestHeader',
         value: function setRequestHeader(key, value) {
             if ((typeof key === 'undefined' ? 'undefined' : _typeof(key)) === 'object') {
-                assign(this._headers, key);
+                (0, _lodash2.default)(this._headers, key);
             } else {
                 this.config.headers[key] = value;
             }
@@ -91,7 +106,7 @@ export var Transport = function () {
                     }
                 };
                 xhr.ontimeout = function (event) {
-                    eventEmitter.emit('timeout', event);
+                    _eventBus2.default.emit('timeout', event);
                 };
                 if (_this.config.withCredentials) {
                     xhr.withCredentials = true;

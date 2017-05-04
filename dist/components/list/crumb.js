@@ -3,9 +3,22 @@
  */
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = undefined;
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _dec, _class;
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _rab = require('@rab');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -13,10 +26,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import React, { Component } from 'react';
-import { connect } from '@rab';
-
-var Crumb = (_dec = connect(function (state) {
+var Crumb = (_dec = (0, _rab.connect)(function (state) {
     return {
         path: state.file.currentPath
     };
@@ -46,24 +56,24 @@ var Crumb = (_dec = connect(function (state) {
 
             var pathArr = /(\/person\/\d+)(.*)/.exec(this.props.path);
             if (!pathArr) {
-                return React.createElement('span', null);
+                return _react2.default.createElement('span', null);
             }
             var childsPath = [];
             if (pathArr[2]) {
                 childsPath = pathArr[2].split('/');
             }
             var basePath = pathArr[1];
-            return React.createElement(
+            return _react2.default.createElement(
                 'div',
                 { className: 'crumb-container' },
-                React.createElement(
+                _react2.default.createElement(
                     'span',
                     { onClick: this.handleClick(basePath) },
                     '\u6839\u76EE\u5F55'
                 ),
                 childsPath.slice(1).map(function (_, i) {
                     basePath = basePath + '/' + _;
-                    return React.createElement(
+                    return _react2.default.createElement(
                         'span',
                         { key: i, onClick: _this3.handleClick(basePath) },
                         '>',
@@ -75,5 +85,5 @@ var Crumb = (_dec = connect(function (state) {
     }]);
 
     return Crumb;
-}(Component)) || _class);
-export { Crumb as default };
+}(_react.Component)) || _class);
+exports.default = Crumb;

@@ -3,7 +3,26 @@
  */
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = undefined;
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+require('./index.scss');
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _quillEditor = require('../../lib/quillEditor');
+
+var _editor = require('../../model/editor');
+
+var _editor2 = _interopRequireDefault(_editor);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -11,10 +30,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import './index.scss';
-import React, { Component } from 'react';
-import { getEditor } from '../../lib/quillEditor';
-import editor from '../../model/editor';
 var $ = window.jQuery;
 var fontSizeMap = {
     "": '小四',
@@ -36,13 +51,13 @@ var fontSizeMap = {
     "5pt": '八号'
 };
 function changeSize(e) {
-    if (getEditor()) {
-        var _editor$range = editor.range,
+    if ((0, _quillEditor.getEditor)()) {
+        var _editor$range = _editor2.default.range,
             index = _editor$range.index,
             length = _editor$range.length;
 
-        getEditor().setSelection(index, length, 'user');
-        getEditor().format('size', $(e.target).data('size'), 'user');
+        (0, _quillEditor.getEditor)().setSelection(index, length, 'user');
+        (0, _quillEditor.getEditor)().format('size', $(e.target).data('size'), 'user');
     }
 }
 
@@ -132,10 +147,10 @@ var SizeDropDown = function (_Component) {
         value: function render() {
             var _this2 = this;
 
-            return React.createElement(
+            return _react2.default.createElement(
                 'div',
                 { className: 'xm-size' },
-                React.createElement('input', {
+                _react2.default.createElement('input', {
                     className: 'xm-size-input',
                     onClick: this.inputClick,
                     onKeyPress: this.handleKeyPress,
@@ -143,8 +158,8 @@ var SizeDropDown = function (_Component) {
                         return _this2.input = input;
                     },
                     type: 'text' }),
-                React.createElement('div', { className: 'xm-size-button-dropdown' }),
-                React.createElement(
+                _react2.default.createElement('div', { className: 'xm-size-button-dropdown' }),
+                _react2.default.createElement(
                     'div',
                     {
                         className: 'xm-size-p',
@@ -152,187 +167,187 @@ var SizeDropDown = function (_Component) {
                         style: {
                             display: this.state.open ? 'block' : 'none'
                         } },
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '42pt' },
                         '\u521D\u53F7'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '36pt' },
                         '\u5C0F\u521D'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '26pt' },
                         '\u4E00\u53F7'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '24pt' },
                         '\u5C0F\u4E00'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '22pt' },
                         '\u4E8C\u53F7'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '18pt' },
                         '\u5C0F\u4E8C'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '15pt' },
                         '\u4E09\u53F7'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '14.5pt' },
                         '\u5C0F\u4E09'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '14pt' },
                         '\u56DB\u53F7'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '12pt' },
                         '\u5C0F\u56DB'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '10.5pt' },
                         '\u4E94\u53F7'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '9pt' },
                         '\u5C0F\u4E94'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '7.5pt' },
                         '\u516D\u53F7'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '6.5pt' },
                         '\u5C0F\u516D'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '5.5pt' },
                         '\u4E03\u53F7'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '5pt' },
                         '\u516B\u53F7'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '5pt' },
                         '5'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '5.5pt' },
                         '5.5'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '6.5pt' },
                         '6.5'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '7.5pt' },
                         '7.5'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '8pt' },
                         '8'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '9pt' },
                         '9'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '10pt' },
                         '10'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '10.5pt' },
                         '10.5'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '11pt' },
                         '11'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '12pt' },
                         '12'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '14pt' },
                         '14'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '16pt' },
                         '16'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '18pt' },
                         '18'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '20pt' },
                         '20'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '22pt' },
                         '22'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '24pt' },
                         '24'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '26pt' },
                         '26'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '28pt' },
                         '28'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '36pt' },
                         '36'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '48pt' },
                         '48'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '72pt' },
                         '72'
@@ -343,6 +358,6 @@ var SizeDropDown = function (_Component) {
     }]);
 
     return SizeDropDown;
-}(Component);
+}(_react.Component);
 
-export { SizeDropDown as default };
+exports.default = SizeDropDown;

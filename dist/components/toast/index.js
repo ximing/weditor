@@ -3,19 +3,36 @@
  */
 'use strict';
 
-import React, { Component } from "react";
-import Notification from 'rc-notification';
-import './index.scss';
-import Icon from '../icon';
-var notification = Notification.newInstance({});
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.error = exports.success = exports.info = exports.warning = undefined;
 
-export var warning = function warning(content, onClose) {
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _rcNotification = require('rc-notification');
+
+var _rcNotification2 = _interopRequireDefault(_rcNotification);
+
+require('./index.scss');
+
+var _icon = require('../icon');
+
+var _icon2 = _interopRequireDefault(_icon);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var notification = _rcNotification2.default.newInstance({});
+
+var warning = exports.warning = function warning(content, onClose) {
     notification.notice({
-        content: React.createElement(
+        content: _react2.default.createElement(
             'p',
             { className: 'weditor-toast' },
-            React.createElement(Icon, { type: 'warning' }),
-            React.createElement(
+            _react2.default.createElement(_icon2.default, { type: 'warning' }),
+            _react2.default.createElement(
                 'span',
                 null,
                 content
@@ -25,13 +42,13 @@ export var warning = function warning(content, onClose) {
         onClose: onClose
     });
 };
-export var info = function info(content, onClose) {
+var info = exports.info = function info(content, onClose) {
     notification.notice({
-        content: React.createElement(
+        content: _react2.default.createElement(
             'p',
             { className: 'weditor-toast' },
-            React.createElement(Icon, { type: 'info' }),
-            React.createElement(
+            _react2.default.createElement(_icon2.default, { type: 'info' }),
+            _react2.default.createElement(
                 'span',
                 null,
                 content
@@ -40,13 +57,13 @@ export var info = function info(content, onClose) {
         onClose: onClose
     });
 };
-export var success = function success(content, onClose) {
+var success = exports.success = function success(content, onClose) {
     notification.notice({
-        content: React.createElement(
+        content: _react2.default.createElement(
             'p',
             { className: 'weditor-toast' },
-            React.createElement(Icon, { type: 'success' }),
-            React.createElement(
+            _react2.default.createElement(_icon2.default, { type: 'success' }),
+            _react2.default.createElement(
                 'span',
                 null,
                 content
@@ -55,13 +72,13 @@ export var success = function success(content, onClose) {
         onClose: onClose
     });
 };
-export var error = function error(content, onClose) {
+var error = exports.error = function error(content, onClose) {
     notification.notice({
-        content: React.createElement(
+        content: _react2.default.createElement(
             'p',
             { className: 'weditor-toast' },
-            React.createElement(Icon, { type: 'error' }),
-            React.createElement(
+            _react2.default.createElement(_icon2.default, { type: 'error' }),
+            _react2.default.createElement(
                 'span',
                 null,
                 content

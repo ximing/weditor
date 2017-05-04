@@ -4,11 +4,23 @@
 
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
+exports.formatMessageDate = formatMessageDate;
+exports.formatDate = formatDate;
+exports.getWeekDay = getWeekDay;
+exports.getZeroTime = getZeroTime;
+exports.compareDateTime = compareDateTime;
+exports.getTimeByString = getTimeByString;
+exports.getWeekDay2 = getWeekDay2;
+exports.isToday = isToday;
 var ONEDAY = 24 * 60 * 60 * 1000;
 
-export function formatMessageDate(time) {
+function formatMessageDate(time) {
     var messageTime = new Date(time);
     var now = new Date();
     var result = void 0;
@@ -26,7 +38,7 @@ export function formatMessageDate(time) {
  * @param time 时间戳
  * @returns {*}
  */
-export function formatDate(fmt, time) {
+function formatDate(fmt, time) {
 
     var now = void 0;
     if (time) {
@@ -91,7 +103,7 @@ export function formatDate(fmt, time) {
 
 var weekArray = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
 
-export function getWeekDay(timestamp) {
+function getWeekDay(timestamp) {
     var needNumber = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
     var date = new Date(timestamp);
@@ -102,13 +114,13 @@ export function getWeekDay(timestamp) {
     }
 }
 
-export function getZeroTime() {
+function getZeroTime() {
     var timeStamp = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Date.now();
 
     return Math.floor(timeStamp / ONEDAY) * ONEDAY;
 }
 
-export function compareDateTime(time1) {
+function compareDateTime(time1) {
     var time2 = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : Date.now();
 
     var firstTime = new Date(time1);
@@ -126,7 +138,7 @@ export function compareDateTime(time1) {
 }
 
 //转化YYYYMMDD格式的日期字符串，返回时间戳
-export function getTimeByString(timeStr) {
+function getTimeByString(timeStr) {
     if (typeof timeStr !== 'string' || timeStr.length !== 10) {
         return new Date().getTime();
     }
@@ -136,13 +148,13 @@ export function getTimeByString(timeStr) {
     return new Date(year, month - 1, day).getTime();
 }
 
-export function getWeekDay2(timestamp) {
+function getWeekDay2(timestamp) {
     var date = new Date(timestamp);
     var arr = ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
     return arr[date.getDay()];
 }
 
-export function isToday(time) {
+function isToday(time) {
     var result = compareDateTime(time);
     return result.year && result.month && result.day;
 }

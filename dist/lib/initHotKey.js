@@ -3,7 +3,11 @@
  */
 'use strict';
 
-export default function (quill) {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+exports.default = function (quill) {
     quill.keyboard.addBinding({
         key: 's',
         shortKey: true
@@ -198,4 +202,4 @@ export default function (quill) {
     }, function (range, context) {
         this.quill.format('align', 'right', 'user');
     });
-}
+};

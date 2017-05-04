@@ -3,18 +3,32 @@
  */
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = undefined;
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+require('./index.scss');
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _quillEditor = require('../../lib/quillEditor');
+
+var _editor = require('../../model/editor');
+
+var _editor2 = _interopRequireDefault(_editor);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-import './index.scss';
-import React, { Component } from "react";
-import { getEditor } from '../../lib/quillEditor';
-import editor from '../../model/editor';
 
 var HeaderDropDown = function (_Component) {
     _inherits(HeaderDropDown, _Component);
@@ -25,13 +39,13 @@ var HeaderDropDown = function (_Component) {
         var _this = _possibleConstructorReturn(this, (HeaderDropDown.__proto__ || Object.getPrototypeOf(HeaderDropDown)).call(this));
 
         _this.changeSize = function (e) {
-            if (getEditor()) {
-                var _editor$range = editor.range,
+            if ((0, _quillEditor.getEditor)()) {
+                var _editor$range = _editor2.default.range,
                     index = _editor$range.index,
                     length = _editor$range.length;
 
-                getEditor().setSelection(index, length, 'user');
-                getEditor().format('header', $(e.target).data('size'), 'user');
+                (0, _quillEditor.getEditor)().setSelection(index, length, 'user');
+                (0, _quillEditor.getEditor)().format('header', $(e.target).data('size'), 'user');
                 _this.setState({
                     value: !!$(e.target).data('size') ? '\u6807\u9898' + $(e.target).data('size') : '正文'
                 });
@@ -89,10 +103,10 @@ var HeaderDropDown = function (_Component) {
         value: function render() {
             var _this2 = this;
 
-            return React.createElement(
+            return _react2.default.createElement(
                 'div',
                 { className: 'xm-header' },
-                React.createElement(
+                _react2.default.createElement(
                     'span',
                     {
                         className: 'xm-header-span',
@@ -102,8 +116,8 @@ var HeaderDropDown = function (_Component) {
                         } },
                     this.state.value
                 ),
-                React.createElement('div', { className: 'xm-size-button-dropdown' }),
-                React.createElement(
+                _react2.default.createElement('div', { className: 'xm-size-button-dropdown' }),
+                _react2.default.createElement(
                     'div',
                     {
                         className: 'xm-size-h',
@@ -111,37 +125,37 @@ var HeaderDropDown = function (_Component) {
                         style: {
                             display: this.state.open ? 'block' : 'none'
                         } },
-                    React.createElement(
+                    _react2.default.createElement(
                         'p',
                         { 'data-size': '', className: 'o-p-h' },
                         '\u6B63\u6587'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'h1',
                         { 'data-size': '1', className: 'o-p-h' },
                         '\u6807\u98981'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'h2',
                         { 'data-size': '2', className: 'o-p-h' },
                         '\u6807\u98982'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'h3',
                         { 'data-size': '3', className: 'o-p-h' },
                         '\u6807\u98983'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'h4',
                         { 'data-size': '4', className: 'o-p-h' },
                         '\u6807\u98984'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'h5',
                         { 'data-size': '5', className: 'o-p-h' },
                         '\u6807\u98985'
                     ),
-                    React.createElement(
+                    _react2.default.createElement(
                         'h6',
                         { 'data-size': '6', className: 'o-p-h' },
                         '\u6807\u98986'
@@ -152,6 +166,6 @@ var HeaderDropDown = function (_Component) {
     }]);
 
     return HeaderDropDown;
-}(Component);
+}(_react.Component);
 
-export { HeaderDropDown as default };
+exports.default = HeaderDropDown;

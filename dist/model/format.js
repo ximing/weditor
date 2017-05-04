@@ -4,6 +4,10 @@
 'use strict';
 //格式刷使用
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Format = function Format() {
@@ -14,4 +18,4 @@ var Format = function Format() {
 
 var format = new Format();
 
-export default format;
+exports.default = format;

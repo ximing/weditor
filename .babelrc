@@ -1,20 +1,15 @@
 {
-  'presets': [
-    [
-      'es2015',
-      {
-        'modules': false
-      }
-    ],
-    'stage-0',
-    'react'
+  "presets": [
+    "es2015",
+    "stage-0",
+    "react"
   ],
-  'env': {},
-  'ignore': [
-    'node_modules/**',
-    'dist'
+  "env": {},
+  "ignore": [
+    "node_modules/**",
+    "dist"
   ],
-  'plugins': [
-    'transform-decorators-legacy'
+  "plugins": [
+    "transform-decorators-legacy"
   ]
 }

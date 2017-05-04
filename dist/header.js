@@ -3,7 +3,58 @@
  */
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = undefined;
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _timeRelated = require("./lib/timeRelated");
+
+var _commonHeader = require("./commonHeader");
+
+var _commonHeader2 = _interopRequireDefault(_commonHeader);
+
+var _fileHeader = require("./fileHeader");
+
+var _fileHeader2 = _interopRequireDefault(_fileHeader);
+
+var _startHeader = require("./startHeader");
+
+var _startHeader2 = _interopRequireDefault(_startHeader);
+
+var _insertHeader = require("./insertHeader");
+
+var _insertHeader2 = _interopRequireDefault(_insertHeader);
+
+var _viewHeader = require("./viewHeader");
+
+var _viewHeader2 = _interopRequireDefault(_viewHeader);
+
+var _quillEditor = require("./lib/quillEditor");
+
+var _toast = require("./components/toast");
+
+var _rcDropdown = require("rc-dropdown");
+
+var _rcDropdown2 = _interopRequireDefault(_rcDropdown);
+
+var _rcMenu = require("rc-menu");
+
+var _rcMenu2 = _interopRequireDefault(_rcMenu);
+
+require("rc-dropdown/assets/index.css");
+
+var _help = require("./model/help");
+
+var _help2 = _interopRequireDefault(_help);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
@@ -12,20 +63,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-import React, { Component } from "react";
-import { formatDate } from "./lib/timeRelated";
-import CommonHeader from './commonHeader';
-import FileHeader from './fileHeader';
-import StartHeader from './startHeader';
-import InsertHeader from './insertHeader';
-import ViewHeader from './viewHeader';
-import { getEditor } from './lib/quillEditor';
-import { info } from './components/toast';
-import Dropdown from 'rc-dropdown';
-import Menu, { Item as MenuItem, Divider } from 'rc-menu';
-import 'rc-dropdown/assets/index.css';
-import help from './model/help';
 
 var EditorHeader = function (_Component) {
     _inherits(EditorHeader, _Component);
@@ -41,7 +78,7 @@ var EditorHeader = function (_Component) {
             var key = _ref.key;
 
             if (key === '0') {
-                help.hotKeysDialog = true;
+                _help2.default.hotKeysDialog = true;
             } else {
                 _this.props.helpOptions.forEach(function (item) {
                     if (item.key === key) {
@@ -56,7 +93,7 @@ var EditorHeader = function (_Component) {
                 while (1) {
                     switch (_context.prev = _context.next) {
                         case 0:
-                            if (getEditor()) {
+                            if ((0, _quillEditor.getEditor)()) {
                                 // let res = await api.getExportUrl(window.quillEditor.getContents());
                                 document.getElementById('gf_down_file').src = res.url;
                             }
@@ -89,14 +126,14 @@ var EditorHeader = function (_Component) {
         value: function renderOpverHeader() {
             var panel = this.state.panel;
 
-            return React.createElement(
+            return _react2.default.createElement(
                 "div",
                 { className: "toolbar-opver", id: "toolbarOpver" },
-                React.createElement(CommonHeader, null),
-                React.createElement(FileHeader, { style: { display: panel === 0 ? 'inline-block' : 'none' } }),
-                React.createElement(StartHeader, { style: { display: panel === 1 ? 'inline-block' : 'none' } }),
-                React.createElement(InsertHeader, { style: { display: panel === 2 ? 'inline-block' : 'none' } }),
-                React.createElement(ViewHeader, { style: { display: panel === 3 ? 'inline-block' : 'none' } })
+                _react2.default.createElement(_commonHeader2.default, null),
+                _react2.default.createElement(_fileHeader2.default, { style: { display: panel === 0 ? 'inline-block' : 'none' } }),
+                _react2.default.createElement(_startHeader2.default, { style: { display: panel === 1 ? 'inline-block' : 'none' } }),
+                _react2.default.createElement(_insertHeader2.default, { style: { display: panel === 2 ? 'inline-block' : 'none' } }),
+                _react2.default.createElement(_viewHeader2.default, { style: { display: panel === 3 ? 'inline-block' : 'none' } })
             );
         }
     }, {
@@ -106,7 +143,7 @@ var EditorHeader = function (_Component) {
 
             return function () {
                 if (panel === 4 || panel === 5) {
-                    info('稍后开放，敬请期待');
+                    (0, _toast.info)('稍后开放，敬请期待');
                     return;
                 }
                 _this3.setState({ panel: panel });
@@ -115,18 +152,18 @@ var EditorHeader = function (_Component) {
     }, {
         key: "renderToolbar",
         value: function renderToolbar() {
-            var menu = React.createElement(
-                Menu,
+            var menu = _react2.default.createElement(
+                _rcMenu2.default,
                 { selectable: false, onClick: this.HelpMenuClick },
-                React.createElement(
-                    MenuItem,
+                _react2.default.createElement(
+                    _rcMenu.Item,
                     { key: "0" },
                     "\u952E\u76D8\u5FEB\u6377\u952E"
                 ),
-                React.createElement(Divider, null),
+                _react2.default.createElement(_rcMenu.Divider, null),
                 this.props.helpOptions.map(function (item) {
-                    return React.createElement(
-                        MenuItem,
+                    return _react2.default.createElement(
+                        _rcMenu.Item,
                         { key: item.key },
                         item.content
                     );
@@ -134,42 +171,42 @@ var EditorHeader = function (_Component) {
             );
             var panel = this.state.panel;
 
-            return React.createElement(
+            return _react2.default.createElement(
                 "div",
                 { className: "toolbar-tab" },
-                React.createElement(
+                _react2.default.createElement(
                     "span",
                     { className: "file-tab " + (panel === 0 ? 'active' : ''), onClick: this.changePanel(0) },
                     "\u6587\u4EF6"
                 ),
-                React.createElement(
+                _react2.default.createElement(
                     "span",
                     { className: "start-tab " + (panel === 1 ? 'active' : ''), onClick: this.changePanel(1) },
                     "\u5F00\u59CB"
                 ),
-                React.createElement(
+                _react2.default.createElement(
                     "span",
                     { className: "insert-tab " + (panel === 2 ? 'active' : ''), onClick: this.changePanel(2) },
                     "\u63D2\u5165"
                 ),
-                React.createElement(
+                _react2.default.createElement(
                     "span",
                     { className: "view-tab " + (panel === 3 ? 'active' : ''), onClick: this.changePanel(3) },
                     "\u89C6\u56FE"
                 ),
-                React.createElement(
+                _react2.default.createElement(
                     "span",
                     { className: "history-tab", onClick: this.changePanel(4) },
                     "\u4FEE\u8BA2\u5386\u53F2"
                 ),
-                React.createElement(
-                    Dropdown,
+                _react2.default.createElement(
+                    _rcDropdown2.default,
                     {
                         trigger: ['click'],
                         overlay: menu,
                         animation: "slide-up"
                     },
-                    React.createElement(
+                    _react2.default.createElement(
                         "span",
                         { className: "help-tab" },
                         "\u5E2E\u52A9"
@@ -180,38 +217,38 @@ var EditorHeader = function (_Component) {
     }, {
         key: "render",
         value: function render() {
-            return React.createElement(
+            return _react2.default.createElement(
                 "div",
                 { className: "weditor-header" },
-                React.createElement(
+                _react2.default.createElement(
                     "div",
                     { className: "header-left-box list-header" },
-                    React.createElement(
+                    _react2.default.createElement(
                         "div",
                         { className: "s-header" },
-                        React.createElement(
+                        _react2.default.createElement(
                             "a",
                             { className: "header-back-up", onClick: this.backList },
-                            React.createElement("span", { className: "header-back-icon" })
+                            _react2.default.createElement("span", { className: "header-back-icon" })
                         ),
-                        React.createElement(
+                        _react2.default.createElement(
                             "span",
                             { className: "s-header-text" },
-                            React.createElement(
+                            _react2.default.createElement(
                                 "div",
                                 { className: "span-input-wrap" },
-                                React.createElement("input", { className: "title-input span-input", defaultValue: 'ceshi.doc', maxLength: "100",
+                                _react2.default.createElement("input", { className: "title-input span-input", defaultValue: 'ceshi.doc', maxLength: "100",
                                     style: {
                                         display: 'none'
                                     } }),
-                                React.createElement(
+                                _react2.default.createElement(
                                     "span",
                                     { className: "title-input-pre span-input-pre" },
                                     this.props.doc.name || '未命名'
                                 )
                             )
                         ),
-                        React.createElement(
+                        _react2.default.createElement(
                             "span",
                             { className: "s-header-time",
                                 id: "save-status" },
@@ -219,12 +256,12 @@ var EditorHeader = function (_Component) {
                         )
                     )
                 ),
-                React.createElement(
+                _react2.default.createElement(
                     "div",
                     { className: "header-right-box" },
                     this.props.rightContent
                 ),
-                React.createElement(
+                _react2.default.createElement(
                     "div",
                     { className: "editor-toolbar", id: "toolbar" },
                     this.renderToolbar(),
@@ -235,6 +272,6 @@ var EditorHeader = function (_Component) {
     }]);
 
     return EditorHeader;
-}(Component);
+}(_react.Component);
 
-export { EditorHeader as default };
+exports.default = EditorHeader;
