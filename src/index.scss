@@ -31,6 +31,9 @@ body{
   overflow: hidden;
   overflow-y: auto;
   background-color: rgb(246,246,246);
+  .ql-tooltip{
+    z-index: 1000000;
+  }
   .content-container{
     background-color: rgb(255, 255, 255);
     &::selection{

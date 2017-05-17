@@ -35,23 +35,24 @@ export const initQuillEditor = function (dom, options) {
                 container: '#toolbarOpver',
                 handlers: {
                     'link': function (value, ...args) {
+                        console.log(value,editor.range,editor.format,insert.openLinkDialog)
                         if (value) {
                             if (insert.openLinkDialog) {
                                 insert.openLinkDialog = false;
                                 insert.linkTitle = null;
                                 insert.linkUrl = null;
                             } else {
-                                if (getEditor() && getEditor().getSelection()) {
-                                    const {index, length} = getEditor().getSelection()
+                                if (editor.range) {
+                                    const {index, length} = editor.range//getEditor().getSelection()
                                     insert.openLinkDialog = true;
                                     insert.linkTitle = getEditor().getText(index, length);
                                     insert.linkUrl = null;
                                     setLinkBubble(index)
                                 }
                             }
-                            insert.linkSelection = getEditor().getSelection();
+                            insert.linkSelection = editor.range//getEditor().getSelection();
                         } else {
-                            const {index, length} = getEditor().getSelection()
+                            const {index, length} = editor.range;//getEditor().getSelection()
                             let [leaf, offset] = quillEditor.getLeaf(index);
                             let LinkIndex = quillEditor.getIndex(leaf);
                             //getEditor().format('link', false);

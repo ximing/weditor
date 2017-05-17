@@ -6,18 +6,21 @@ import React, {Component} from "react";
 import {formatDate} from "./lib/timeRelated";
 import CommonHeader from './commonHeader';
 import StartHeader from './startHeader';
-import InsertHeader from './insertHeader';
-import ViewHeader from './viewHeader';
 import {getEditor} from './lib/quillEditor'
 import {info} from './components/toast'
 import Dropdown from 'rc-dropdown';
 import Menu, { Item as MenuItem, Divider } from 'rc-menu';
 import 'rc-dropdown/assets/index.css';
-import help from './model/help';
+
 
 import printThis from './lib/printThis';
 const $ = window.jQuery;
 printThis($);
+
+import help from './model/help';
+import insert from './model/insert';
+import format from './model/format';
+import editor from './model/editor';
 
 export default class EditorHeader extends Component {
     static defaultProps ={
@@ -71,9 +74,13 @@ export default class EditorHeader extends Component {
 
     insertMenuClick = ({key}) =>{
         if(key === '0'){
-
+            insert.imageSelection = getEditor().getSelection();
+            insert.openImageDialog = true;
         }else{
-
+            if(getEditor()){
+                let toolbar = getEditor().getModule('toolbar');
+                toolbar.handlers['link'].call(toolbar, !(editor.format && editor.format.link));
+            }
         }
     };
 
