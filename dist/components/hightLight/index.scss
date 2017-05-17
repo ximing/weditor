@@ -1,0 +1,32 @@
+.weditor-hightlight{
+    position: relative;
+    display: inline-block;
+    float: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    height: 24px;
+    padding: 0px 5px;
+    width: 30px;
+    box-sizing: border-box;
+    line-height: 25px;
+    .hightlight-color-panel{
+        position: absolute;
+        width: 130px;
+        left: -40px;
+        top: 25px;
+        height: 100px;
+        border: none;
+        background: #ffffff;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+        padding: 10px;
+        &>span{
+            height: 17px;
+            width: 17px;
+            display: inline-block;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            border: 1px solid #eeeeee;
+        }
+    }
+}

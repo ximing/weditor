@@ -1,0 +1,25 @@
+.weditor-insert-image{
+    overflow: hidden;
+    .weditor-uploader-wrapper{
+        .weditor-uploader-file-inner{
+            height: 200px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            flex-direction:column;
+            justify-content: center;
+            border: 3px dashed #e6e6e6;
+        }
+        .rc-tabs-tabpane{
+            padding-top: 10px;
+            height: 300px;
+        }
+        .weditor-input{
+            display: inline-block;
+            width: 390px;
+            margin-right: 10px;
+        }
+    }
+    width: 500px;
+    height: 300px;
+}

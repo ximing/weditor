@@ -66,7 +66,7 @@ export default class CommonEditor extends Component {
                      overlay={<div>格式刷</div>}
                  >
                     <button className="ql-format" onClick={this.format}>
-                        <Icon type="geshishua"/>
+                        <Icon type="format"/>
                     </button>
                 </ToolTip>
                 <ToolTip
@@ -76,9 +76,10 @@ export default class CommonEditor extends Component {
                     overlay={<div>清除格式 Ctrl+Shift+C</div>}
                 >
                    <button className="ql-clear-format" onClick={this.clearFormat}>
-                        <Icon type="qingchu"/>
+                        <Icon type="clear"/>
                     </button>
                 </ToolTip>
+                <Icon type="vertical"/>
             </span>
         )
     }

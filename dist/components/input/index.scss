@@ -1,0 +1,12 @@
+.weditor-input{
+  border-radius: 1px;
+  border: 1px solid #d9d9d9;
+  border-top: 1px solid #c0c0c0;
+  font-size: 13px;
+  height: 25px;
+  padding: 1px 8px;
+  outline: none;
+  &:focus{
+    border: 1px solid #4d90fe;
+  }
+}

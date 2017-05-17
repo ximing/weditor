@@ -1,0 +1,27 @@
+.weditor-bubble {
+    position: absolute;
+    top: 0;
+    left: 0;
+    // display: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .2);
+    background-color: #fff;
+    border: 1px solid;
+    border-color: #bbb #bbb #a8a8a8;
+    padding: 16px;
+    z-index: 1201;
+    .weditor-bubble-item {
+        line-height: 2;
+        &:first-child {
+            margin-bottom: 10px;
+        }
+    }
+    .weditor-insert-input {
+        width: 244px;
+        display: inline-block;
+        color: #a9a9a9;
+    }
+    .nx-btn {
+        margin-left: 10px;
+    }
+
+}

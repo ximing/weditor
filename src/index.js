@@ -19,7 +19,8 @@ class  Editor extends Component {
     static defaultProps = {
         options:{
             uploadUrl:'',
-            helpOptions:[]
+            helpOptions:[],
+            fileOptions:[]
         },
         doc:{
             name:'',

@@ -1,0 +1,47 @@
+.yp-file-list-header{
+    position: relative;
+    display: block;
+    height: 40px;
+    width: 100%;
+    border-bottom: 1px solid #F1F1F1;
+    border-top: 1px solid #F1F1F1;
+    min-width: 870px;
+    &:before{
+        content: '';
+        display: inline-block;
+        vertical-align: middle;
+        width: 0;
+        height: 100%;
+        font-size: 0;
+    }
+    .list-header-title{
+        position: relative;
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 14px;
+        line-height: 20px;
+        color: #999999;
+        &.list-header-title-name{
+            margin-left: 39px;
+        }
+        &.list-header-title-size{
+            width: 120px;
+        }
+    }
+
+
+    .list-header-right{
+        display: inline-block;
+        height: 100%;
+        float: right;
+        width: 350px;
+        &:before{
+            content: '';
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 0;
+            width: 0;
+            height: 100%;
+        }
+    }
+}

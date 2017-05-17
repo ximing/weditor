@@ -1,0 +1,24 @@
+/**
+ * Created by liz
+ * Email: lizhengnacl@163.com
+ * Tel: 18686768624
+ * Date: 16/12/16
+ */
+
+@keyframes loadingCircle {
+    0% {
+        transform-origin: 50% 50%;
+        transform: rotate(0deg);
+    }
+    100% {
+        transform-origin: 50% 50%;
+        transform: rotate(360deg);
+    }
+}
+
+.iconfont {
+    &-spin {
+        display: inline-block;
+        animation: loadingCircle 1.6s infinite linear;
+    }
+}

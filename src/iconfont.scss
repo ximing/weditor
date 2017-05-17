@@ -1,0 +1,112 @@
+@import "./components/core/variables";
+
+@font-face {
+    font-family: '#{$iconfont-css-prefix}';
+    src: url('#{$icon-url}.eot');
+    src: url('#{$icon-url}.eot?#iefix') format('embedded-opentype'),
+    url('#{$icon-url}.woff') format('woff'),
+    url('#{$icon-url}.ttf') format('truetype'),
+    url('#{$icon-url}.svg#dxicon') format('svg');
+}
+
+@mixin iconfont-mixin {
+    display: inline-block;
+    font-style: normal;
+    vertical-align: middle;
+    text-align: center;
+    text-transform: none;
+    text-rendering: auto;
+    line-height: 1;
+    font-size: 14px;
+
+    &:before {
+        display: block;
+        font-family: "docicon" !important;
+    }
+}
+
+.#{$iconfont-css-prefix} {
+    @include iconfont-mixin;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.#{$iconfont-css-prefix}-undo:before {
+    content: "\e622";
+}
+
+.#{$iconfont-css-prefix}-redo:before {
+    content: "\e623";
+}
+
+.#{$iconfont-css-prefix}-ul:before {
+    content: "\e61e";
+}
+
+.#{$iconfont-css-prefix}-ol:before {
+    content: "\e624";
+}
+
+.#{$iconfont-css-prefix}-right-indent:before {
+    content: "\e621";
+}
+
+.#{$iconfont-css-prefix}-left-indent:before {
+    content: "\e620";
+}
+
+.#{$iconfont-css-prefix}-right-align:before {
+    content: "\e61f";
+}
+
+.#{$iconfont-css-prefix}-left-align:before {
+    content: "\e61b";
+}
+
+.#{$iconfont-css-prefix}-center-align:before {
+    content: "\e612";
+}
+
+.#{$iconfont-css-prefix}-justify-align:before {
+    content: "\e617";
+}
+
+.#{$iconfont-css-prefix}-strike:before {
+    content: "\e61d";
+}
+
+.#{$iconfont-css-prefix}-underline:before {
+    content: "\e61c";
+}
+.#{$iconfont-css-prefix}-italic:before {
+    content: "\e615";
+}
+
+.#{$iconfont-css-prefix}-clear:before {
+    content: "\e613";
+}
+
+.#{$iconfont-css-prefix}-blob:before {
+    content: "\e611";
+}
+.#{$iconfont-css-prefix}-format:before {
+    content: "\e60f";
+}
+.#{$iconfont-css-prefix}-max:before {
+    content: "\e60e";
+}
+.#{$iconfont-css-prefix}-zoom-out:before {
+    content: "\e60c";
+}
+.#{$iconfont-css-prefix}-zoom-in:before {
+    content: "\e609";
+}
+.#{$iconfont-css-prefix}-close:before {
+    content: "\e60a";
+}
+.#{$iconfont-css-prefix}-min:before {
+    content: "\e60b";
+}
+.#{$iconfont-css-prefix}-vertical:before {
+    content: "\e625";
+}

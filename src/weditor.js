@@ -16,6 +16,8 @@ import OtherSelection from './components/otherSelection';
 import Editor from './components/editor'
 const $ = window.jQuery;
 import editor from './model/editor'
+
+
 @inject(state => ({
     insert: state.insert,
     open: state.catalogue.open,
@@ -53,6 +55,7 @@ export default class WEditor extends Component {
         return (
             <div className="weditor-wrapper">
                 <Header doc={this.props.doc}
+                        fileOptions={this.props.options.fileOptions}
                         rightContent={this.props.rightContent}
                         helpOptions={this.props.options.helpOptions}/>
                 <div className="weditor-body">

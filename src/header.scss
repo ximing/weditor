@@ -1,230 +1,234 @@
 @import "./components/core/variables";
+
 .weditor-header {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  border-bottom: 1px solid #ddd;
-  position: relative;
-  z-index: 110;
-  background: #fff;
-  user-select: none;
-  background: -webkit-linear-gradient(top, #fdfdfd, #fff);
-  background: -ms-linear-gradient(top, #fdfdfd, #fff);
-  //box-shadow: 0 2px 3px 0 hsla(0,0%,39%,.15);
-  //height: 95px;
-  box-sizing: border-box;
-  button {
-    outline: none;
-  }
-  .header-left-box {
-    line-height: 34px;
-    .header-back-up {
-      float: left;
-      width: 40px;
-      height: 60px;
-      cursor: pointer;
-      background-color: #4285f4;
-      .header-back-icon {
-        display: block;
-        //width: 7px;
-        //height: 14px;
-        //margin-top: 18px;
-        //margin-left: 15px;
-        //background-image: url(https://assets-cdn.shimo.im/assets/images/icon_goback-4c58869ed2.png);
-        //background-repeat: no-repeat;
-        //background-size: 14px,14px;
-        //background-position: 0,0;
-        background: url(//mss.sankuai.com/v1/mss_814dc1610cda4b2e8febd6ea2c809db5/image/1489546222140.svg) center no-repeat;
-        height: 60px;
-        position: absolute;
-        width: 40px;
-        -webkit-transition: all 125ms linear;
-        -moz-transition: all 125ms linear;
-        -o-transition: all 125ms linear;
-        transition: all 125ms linear;
-      }
-    }
-    .team-sprite {
-      background-image: url(https://assets-cdn.shimo.im/assets/images/teams-31aea6334f.png);
-      background-size: 499px 310px;
-      background-repeat: no-repeat;
-    }
-
-    .s-header-text {
-      display: inline-block;
-      float: left;
-      height: 34px;
-      line-height: 34px;
-      margin-left: 16px;
-      vertical-align: top;
-      .title-input-pre {
-        font-size: 14px;
-        font-family: -apple-system, system-ui, "PingFang SC", Helvetica, Tahoma, Arial, "Hiragino Sans GB", "Microsoft YaHei", "\\5FAE软雅黑", SimSun, "\\5B8B体", Heiti, "\\9ED1体", sans-serif;
-        font-weight: bold;
-        font-style: normal;
-        letter-spacing: normal;
-      }
-    }
-    .s-header-time {
-      margin-left: 13px;
-      margin-top: 1px;
-      font-size: 12px;
-      color: #999;
-    }
-  }
-  .header-right-box {
-    position: absolute;
-    height: 100%;
-    top: 5px;
-    right: 20px;
-    line-height: 51px;
-    .header-item-wrap {
-      display: inline-block;
-      height: 40px;
-      width: 40px;
-      .header-item-inner {
-        border: 1px solid #eee;
-        height: 35px;
-        width: 35px;
-        border-radius: 50%;
-        text-align: center;
-        display: inline-block;
-        position: relative;
-        line-height: 0px;
-        &:before {
-          content: '';
-          display: inline-block;
-          vertical-align: middle;
-          width: 0;
-          height: 100%;
-          font-size: 0;
-        }
-        img {
-          height: 25px;
-          width: 25px;
-          border-radius: 50%;
-          vertical-align: middle;
-        }
-      }
-    }
-  }
-  .editor-toolbar {
-    .toolbar-tab {
-      height: 25px;
-      line-height: 25px;
-      span {
-        padding: 4px 20px;
-        user-select: none;
-        font-size: 13px;
-        font-weight: bold;
-        cursor: pointer;
-        color: #666666;
-      }
-      span.active {
-        color: #2374d1;
-        background: rgb(246, 246, 246);
-      }
-    }
-    .ql-toolbar.ql-snow {
-      border: none;
-      background-color: rgb(246, 246, 246);
-      height: 40px;
-      line-height: 35px;
-      padding: 0;
-      border-bottom: solid 1px rgb(226, 226, 226);
-      //padding: 2px;
-    }
-    .xm-color-picker-container {
-      background: none;
-      border: none;
-      cursor: pointer;
-      display: inline-block;
-      float: left;
-      height: 24px;
-      padding: 3px 5px;
-      width: 28px;
-    }
-    .ql-formats{
-      .iconfont{
-        background: none;
-        border: none;
-        cursor: pointer;
-        display: inline-block;
-        float: left;
-        width: 28px;
-        &.active{
-          color:$primary-color;
-        }
-      }
-    }
-  }
-  .common-header {
-    color: #444444;
-  }
-  .toolbar-opver {
-    padding-left: 30px !important;
-  }
-  .file-header {
-    .ql-pdf {
-      background: none;
-      border: 1px solid transparent;
-      cursor: pointer;
-      display: inline-block;
-      float: left;
-      height: 25px;
-      line-height: 25px;
-      padding: 0px 5px;
-      .pdf-icon {
-        background-position: -160px -180px;
-      }
-    }
-    .ql-word {
-      background: none;
-      border: 1px solid transparent;
-      cursor: pointer;
-      display: inline-block;
-      float: left;
-      height: 25px;
-      line-height: 25px;
-      padding: 0px 5px;
-      .word-icon {
-        background-position: -240px -40px;
-      }
-    }
-  }
-  .opver-icon {
-    background-image: url(https://s3.meituan.net/v1/mss_814dc1610cda4b2e8febd6ea2c809db5/image/1489914204976.png);
-    background-repeat: no-repeat;
-    height: 20px;
-    width: 20px;
-    display: inline-block;
-  }
-  .opver-area{
-    span {
-      vertical-align: middle;
-      font-size: 12px;
-    }
-    &:hover {
-      border: 1px solid #b6b6b6;
-
-    }
-  }
-  .view-header {
-    line-height: 24px;
-    height: 24px;
+    width: 100%;
+    margin: 0;
     padding: 0;
-    .ql-catalogue {
-      background: none;
-      border: 1px solid transparent;
-      cursor: pointer;
-      display: inline-block;
-      float: left;
-      height: 24px;
-      line-height: 24px;
-      padding: 0px 5px;
+    border-bottom: 1px solid #ddd;
+    position: relative;
+    z-index: 110;
+    background: #fff;
+    user-select: none;
+    background: -webkit-linear-gradient(top, #fdfdfd, #fff);
+    background: -ms-linear-gradient(top, #fdfdfd, #fff);
+    //box-shadow: 0 2px 3px 0 hsla(0,0%,39%,.15);
+    //height: 95px;
+    box-sizing: border-box;
+    button {
+        outline: none;
     }
-    .catalogue-icon {
-      background-position: -80px -180px;
+    .header-left-box {
+        line-height: 34px;
+        .header-back-up {
+            float: left;
+            width: 40px;
+            height: 60px;
+            cursor: pointer;
+            background-color: #4285f4;
+            .header-back-icon {
+                display: block;
+                background: url(//mss.sankuai.com/v1/mss_814dc1610cda4b2e8febd6ea2c809db5/image/1489546222140.svg) center no-repeat;
+                height: 60px;
+                position: absolute;
+                width: 40px;
+                -webkit-transition: all 125ms linear;
+                -moz-transition: all 125ms linear;
+                -o-transition: all 125ms linear;
+                transition: all 125ms linear;
+            }
+        }
+        .team-sprite {
+            background-image: url(https://assets-cdn.shimo.im/assets/images/teams-31aea6334f.png);
+            background-size: 499px 310px;
+            background-repeat: no-repeat;
+        }
+
+        .s-header-text {
+            display: inline-block;
+            float: left;
+            height: 34px;
+            line-height: 34px;
+            margin-left: 16px;
+            vertical-align: top;
+            .title-input-pre {
+                font-size: 14px;
+                font-family: -apple-system, system-ui, "PingFang SC", Helvetica, Tahoma, Arial, "Hiragino Sans GB", "Microsoft YaHei", "\\5FAE软雅黑", SimSun, "\\5B8B体", Heiti, "\\9ED1体", sans-serif;
+                font-weight: bold;
+                font-style: normal;
+                letter-spacing: normal;
+            }
+        }
+        .s-header-time {
+            margin-left: 13px;
+            margin-top: 1px;
+            font-size: 12px;
+            color: #999;
+        }
     }
-  }
+    .header-right-box {
+        position: absolute;
+        height: 100%;
+        top: 5px;
+        right: 20px;
+        line-height: 51px;
+        .header-item-wrap {
+            display: inline-block;
+            height: 40px;
+            width: 40px;
+            .header-item-inner {
+                border: 1px solid #eee;
+                height: 35px;
+                width: 35px;
+                border-radius: 50%;
+                text-align: center;
+                display: inline-block;
+                position: relative;
+                line-height: 0px;
+                &:before {
+                    content: '';
+                    display: inline-block;
+                    vertical-align: middle;
+                    width: 0;
+                    height: 100%;
+                    font-size: 0;
+                }
+                img {
+                    height: 25px;
+                    width: 25px;
+                    border-radius: 50%;
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+    .editor-toolbar {
+        .toolbar-tab {
+            height: 25px;
+            line-height: 25px;
+            span {
+                padding: 4px 20px;
+                user-select: none;
+                font-size: 13px;
+                font-weight: bold;
+                cursor: pointer;
+                color: #666666;
+            }
+            span.active {
+                color: #2374d1;
+                background: rgb(246, 246, 246);
+            }
+        }
+        .ql-toolbar.ql-snow {
+            border: none;
+            background-color: rgb(246, 246, 246);
+            height: 40px;
+            line-height: 35px;
+            padding: 0;
+            border-bottom: solid 1px rgb(226, 226, 226);
+            //padding: 2px;
+            .ql-formats{
+                margin-right: 0px;
+            }
+        }
+        .xm-color-picker-container {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            float: left;
+            height: 24px;
+            padding: 3px 5px;
+            width: 28px;
+        }
+        .ql-formats {
+            .docicon {
+                background: none;
+                border: none;
+                cursor: pointer;
+                display: inline-block;
+                float: left;
+                width: 28px;
+                color: #666666;
+                &.active {
+                    color: $primary-color;
+                }
+            }
+            .docicon-vertical {
+                display: inline-block;
+                float: left;
+                height: 24px;
+                padding: 5px 5px;
+                width: 28px;
+            }
+        }
+    }
+    .common-header {
+        color: #444444;
+    }
+    .toolbar-opver {
+        padding-left: 30px !important;
+    }
+    .file-header {
+        .ql-pdf {
+            background: none;
+            border: 1px solid transparent;
+            cursor: pointer;
+            display: inline-block;
+            float: left;
+            height: 25px;
+            line-height: 25px;
+            padding: 0px 5px;
+            .pdf-icon {
+                background-position: -160px -180px;
+            }
+        }
+        .ql-word {
+            background: none;
+            border: 1px solid transparent;
+            cursor: pointer;
+            display: inline-block;
+            float: left;
+            height: 25px;
+            line-height: 25px;
+            padding: 0px 5px;
+            .word-icon {
+                background-position: -240px -40px;
+            }
+        }
+    }
+    .opver-icon {
+        background-image: url(https://s3.meituan.net/v1/mss_814dc1610cda4b2e8febd6ea2c809db5/image/1489914204976.png);
+        background-repeat: no-repeat;
+        height: 20px;
+        width: 20px;
+        display: inline-block;
+    }
+    .opver-area {
+        span {
+            vertical-align: middle;
+            font-size: 12px;
+        }
+        &:hover {
+            border: 1px solid #b6b6b6;
+
+        }
+    }
+    .view-header {
+        line-height: 24px;
+        height: 24px;
+        padding: 0;
+        .ql-catalogue {
+            background: none;
+            border: 1px solid transparent;
+            cursor: pointer;
+            display: inline-block;
+            float: left;
+            height: 24px;
+            line-height: 24px;
+            padding: 0px 5px;
+        }
+        .catalogue-icon {
+            background-position: -80px -180px;
+        }
+    }
 }

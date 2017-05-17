@@ -101,14 +101,6 @@ export default class StartHeader extends Component {
                 </ToolTip>
                 </span>
                 <span className="ql-formats">
-                     {/*<ToolTip*/}
-                         {/*placement="bottom"*/}
-                         {/*mouseEnterDelay={0}*/}
-                         {/*mouseLeaveDelay={0}*/}
-                         {/*overlay={<div>字体背景</div>}*/}
-                     {/*>*/}
-                         {/*<span></span>*/}
-                     {/*</ToolTip>*/}
                     <HightLight />
                     <ToolTip
                         placement="bottom"
@@ -129,8 +121,7 @@ export default class StartHeader extends Component {
                         </span>
                     )}/>
                     </ToolTip>
-
-                    
+                    <Icon type="vertical"/>
                 </span>
                 <span className="ql-formats">
                     <ToolTip
@@ -157,7 +148,7 @@ export default class StartHeader extends Component {
                         mouseLeaveDelay={0}
                         overlay={<div>左对齐 Ctrl+Shift+L</div>}
                     >
-                        <Icon type="zuoduiqi" onClick={this.align('left')}/>
+                        <Icon type="left-align" onClick={this.align('left')}/>
                     </ToolTip>
                     <ToolTip
                         placement="bottom"
@@ -165,7 +156,7 @@ export default class StartHeader extends Component {
                         mouseLeaveDelay={0}
                         overlay={<div>居中对齐 Ctrl+Shift+E</div>}
                     >
-                        <Icon type="juzhongduiqi" onClick={this.align('center')}/>
+                        <Icon type="center-align" onClick={this.align('center')}/>
                     </ToolTip>
                     <ToolTip
                         placement="bottom"
@@ -173,7 +164,7 @@ export default class StartHeader extends Component {
                         mouseLeaveDelay={0}
                         overlay={<div>右对齐 Ctrl+Shift+R</div>}
                     >
-                        <Icon type="youduiqi" onClick={this.align('right')}/>
+                        <Icon type="right-align" onClick={this.align('right')}/>
                     </ToolTip>
                     <ToolTip
                         placement="bottom"
@@ -181,7 +172,7 @@ export default class StartHeader extends Component {
                         mouseLeaveDelay={0}
                         overlay={<div>两端对齐 Ctrl+Shift+J</div>}
                     >
-                        <Icon type="liangduanduiqi" onClick={this.align('justify')} />
+                        <Icon type="justify-align" onClick={this.align('justify')} />
                     </ToolTip>
 
                     {/*<button className="ql-align"></button>*/}
@@ -206,6 +197,7 @@ export default class StartHeader extends Component {
                     >
                         <button className="ql-indent" value="+1"></button>
                     </ToolTip>
+                    <Icon type="vertical"/>
                 </span>
                 <InsertHeader/>
             </span>

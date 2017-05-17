@@ -5,7 +5,6 @@
 import React, {Component} from "react";
 import {formatDate} from "./lib/timeRelated";
 import CommonHeader from './commonHeader';
-import FileHeader from './fileHeader';
 import StartHeader from './startHeader';
 import InsertHeader from './insertHeader';
 import ViewHeader from './viewHeader';
@@ -16,7 +15,15 @@ import Menu, { Item as MenuItem, Divider } from 'rc-menu';
 import 'rc-dropdown/assets/index.css';
 import help from './model/help';
 
+import printThis from './lib/printThis';
+const $ = window.jQuery;
+printThis($);
+
 export default class EditorHeader extends Component {
+    static defaultProps ={
+        fileOptions:[],
+        helpOptions:[]
+    }
     constructor() {
         super();
         this.backList = this.backList.bind(this);
@@ -44,7 +51,31 @@ export default class EditorHeader extends Component {
                 }
             })
         }
-    }
+    };
+
+    fileMenuClick = ({key}) =>{
+        if(key==='0'){
+            $('.ql-editor').printThis({
+                pageTitle:'',
+                header:null,
+                footer:null
+            })
+        }else{
+            this.props.helpOptions.forEach(item=>{
+                if(item.key === key){
+                    item.onClick(key);
+                }
+            })
+        }
+    };
+
+    insertMenuClick = ({key}) =>{
+        if(key === '0'){
+
+        }else{
+
+        }
+    };
 
     export = async() => {
         if (getEditor()) {
@@ -58,10 +89,7 @@ export default class EditorHeader extends Component {
         return (
             <div className="toolbar-opver" id="toolbarOpver">
                 <CommonHeader />
-                <FileHeader style={{display:panel===0?'inline-block':'none'}}/>
                 <StartHeader style={{display:panel===1?'inline-block':'none'}}/>
-                <InsertHeader style={{display:panel===2?'inline-block':'none'}}/>
-                <ViewHeader style={{display:panel===3?'inline-block':'none'}}/>
             </div>
         )
 
@@ -78,7 +106,6 @@ export default class EditorHeader extends Component {
     }
 
 
-
     renderToolbar(){
         let menu = (
             <Menu selectable={false} onClick={this.HelpMenuClick}>
@@ -93,15 +120,50 @@ export default class EditorHeader extends Component {
                 }
             </Menu>
         );
+
+        let fileMenu = (
+            <Menu selectable={false} onClick={this.fileMenuClick}>
+                {
+                    this.props.fileOptions.map(item=>{
+                        return(
+                            <MenuItem key={item.key}>{item.content}</MenuItem>
+                        )
+                    })
+                }
+                <Divider />
+                <MenuItem key="0">打印</MenuItem>
+            </Menu>
+        );
+
+
         const {panel} = this.state;
         return(
             <div className="toolbar-tab">
-                <span className={`file-tab ${panel===0?'active':''}`} onClick={this.changePanel(0)}>文件</span>
-                <span className={`start-tab ${panel===1?'active':''}`} onClick={this.changePanel(1)}>开始</span>
-                <span className={`insert-tab ${panel===2?'active':''}`} onClick={this.changePanel(2)}>插入</span>
-                {/*<span className="table-tab">视图</span>*/}
-                <span className={`view-tab ${panel===3?'active':''}`} onClick={this.changePanel(3)}>视图</span>
+                <Dropdown
+                    trigger={['click']}
+                    overlay={fileMenu}
+                    animation="slide-up"
+                >
+                    <span className={`file-tab`}>文件</span>
+                </Dropdown>
+
+                <Dropdown
+                    trigger={['click']}
+                    overlay={(
+                        <Menu selectable={false} onClick={this.insertMenuClick}>
+                            <MenuItem key="0">插入图片</MenuItem>
+                            <MenuItem key="1">插入链接</MenuItem>
+                        </Menu>
+                    )}
+                    animation="slide-up"
+                >
+                    <span className={`insert-tab`}>插入</span>
+                </Dropdown>
+
+                <span className={`view-tab ${panel===3?'active':''}`} onClick={this.changePanel(4)}>视图</span>
+
                 <span className="history-tab" onClick={this.changePanel(4)}>修订历史</span>
+
                 <Dropdown
                     trigger={['click']}
                     overlay={menu}

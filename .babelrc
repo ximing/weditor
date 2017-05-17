@@ -6,8 +6,7 @@
   ],
   "env": {},
   "ignore": [
-    "node_modules/**",
-    "dist"
+    "node_modules/**"
   ],
   "plugins": [
     "transform-decorators-legacy"

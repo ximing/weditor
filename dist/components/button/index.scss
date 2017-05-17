@@ -1,0 +1,61 @@
+@import "../core/variables.scss";
+
+.nx-btn {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  outline: none;
+  -webkit-user-select: none;
+  padding: $padding-4 $padding-16 ;
+  font-size: $font-size-base;
+  font-weight: normal;
+  border-radius: $border-radius-base;
+  border: 1px solid $color-blue;
+  background: $color-white;
+  box-sizing: border-box;
+  color: $color-blue;
+  -webkit-font-smoothing: antialiased;
+  outline: none;
+
+  &-orange {
+    @extend .nx-btn;
+    border: 1px solid $warning-border;
+    color: $color-white;
+    background: $warning;
+
+    &:hover {
+      background: $warning-hover;
+    }
+  }
+  &-blue{
+    @extend .nx-btn;
+    color: $color-white;
+    background: $color-blue;
+    cursor: pointer;
+    &:hover {
+      background: $supplement-hover;
+    }
+  }
+  &-red{
+    @extend .nx-btn;
+    color: $color-white;
+    border: 1px solid $error;
+    background: $error;
+    &:hover {
+      background: $error;
+    }
+  }
+  &-white{
+    @extend .nx-btn;
+    border: 1px solid $color-blue;
+    color: $color-blue;
+    background: $color-white;
+    cursor: pointer;
+    &:hover {
+      color: $color-white;
+      background: $color-blue;
+    }
+  }
+}
+

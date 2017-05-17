@@ -1,0 +1,59 @@
+.xm-size {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    float: left;
+    line-height: 20px;
+    .xm-size-input {
+        display: inline-block;
+        width: 48px;
+        background: transparent;
+        border: 1px solid transparent;
+        color: #333;
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        font-weight: bold;
+        height: 20px;
+        line-height: 20px;
+        overflow: hidden;
+        padding: 1px 8px;
+        border-radius: 1px;
+        outline: none;
+    }
+    input:focus {
+        background: #fff;
+    }
+    .xm-size-button-dropdown {
+        display: inline-block;
+        background: url(//ssl.gstatic.com/ui/v1/disclosure/small-grey-disclosure-arrow-down.png) center no-repeat;
+        float: right;
+        margin: 7px 0 0 0px;
+        padding: 0 0 0 1px;
+        min-width: 7px;
+        opacity: .8;
+        vertical-align: middle;
+        width: 5px;
+        height: 7px;
+    }
+    .xm-size-p {
+        display: block;
+        position: absolute;
+        padding: 10px 0px;
+        background: #ffffff;
+        font-size: 14px;
+        width: 80px;
+        height: 400px;
+        overflow-y: auto;
+        border-radius: 2px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        p {
+            margin: 5px 0;
+            padding-left: 15px;
+            line-height: 22px;
+            &:hover {
+                background: #f5f5f5;
+                cursor: pointer;
+            }
+        }
+    }
+}

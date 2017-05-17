@@ -1,0 +1,75 @@
+@import "../core/variables";
+.nx-modal-mask {
+  position: absolute;
+  z-index: $zindex-modal-mask;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  background: rgba(0,0,0,.6);;
+}
+.nx-modal, .nx-modal-mask {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.nx-dialog{
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  color: $color-dark ;
+  background-color: $color-white;
+  border-radius: $border-radius-base;
+  &-wrapper{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    white-space: nowrap;
+    overflow: auto;
+    &:after, &:before {
+      content: ' ';
+      display: inline-block;
+      height: 100%;
+      margin-left: -.25em;
+      vertical-align: middle;
+    }
+    &>div {
+      display: inline-block;
+      margin: 60px;
+      text-align: left;
+      vertical-align: middle;
+      white-space: normal;
+    }
+  }
+  &-normal {
+    >.nx-dialog-title {
+      padding: $padding-0 $padding-20;
+      line-height: 40px;
+      height: 40px;
+      font-size: 14px;
+      border-bottom: 1px solid $border-color-base;
+      border-radius: 2px 2px 0 0;
+    }
+    >.nx-dialog-content {
+      margin: 30px;
+    }
+    >.nx-dialog-buttons {
+      margin: 30px;
+      text-align: right;
+    }
+  }
+  &-icon{
+    float: right;
+    color: $text-color;
+    cursor: pointer;
+    i{
+      font-size: 12px;
+    }
+  }
+  &-buttons{
+    input{
+      margin-left: 30px;
+    }
+  }
+}

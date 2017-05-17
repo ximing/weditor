@@ -30,8 +30,8 @@ export default class extends Component {
     render (){
         let {type, spin, className} = this.props;
         let classString = classNames({
-            'xm-icon iconfont': true,
-            [`icon-${type}`]: type,
+            'xm-icon docicon': true,
+            [`docicon-${type}`]: type,
             'iconfont-spin': !!spin || type === 'loading'
         }, className);
         return (

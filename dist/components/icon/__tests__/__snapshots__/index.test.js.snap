@@ -1,0 +1,6 @@
+exports[`common-component Icon Snapshot Testing 1`] = `
+<i
+  className="xm-icon iconfont icon-wode iconfont-spin test"
+  onClick={[Function]}
+  style={Object {}} />
+`;
