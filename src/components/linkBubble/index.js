@@ -16,6 +16,10 @@ import insert from '../../model/insert';
 
 @inject('insert') @observer
 export default class LinkBubble extends Component {
+    static defaultProps = {
+        linkTitle:'',
+        linkUrl:''
+    }
     componentDidMount() {
         setTimeout(()=>{
             window.document.addEventListener('click', this.otherDOMClick);
