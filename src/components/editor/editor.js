@@ -5,22 +5,22 @@
 import React,{Component} from 'react';
 import ReactDOM from 'react-dom';
 
-import {initQuillEditor} from '../../lib/quillEditor'
+import {initQuillEditor} from '../../lib/quillEditor';
 
-export default class Editor extends Component{
+export default class Editor extends Component {
 
-    shouldComponentUpdate(){
+    shouldComponentUpdate() {
         return false;
     }
 
-    componentDidMount(){
+    componentDidMount() {
         let quillEditor = this.quill = initQuillEditor(ReactDOM.findDOMNode(this.refs.editor));
     }
 
-    render(){
+    render() {
         return(
             <div ref="editor">
             </div>
-        )
+        );
     }
 }

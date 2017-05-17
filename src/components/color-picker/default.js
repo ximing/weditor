@@ -24,7 +24,7 @@ export default class extends Component {
         let {defaultColor, onClick} = this.props;
         onClick(defaultColor, e);
     };
-    render (){
+    render () {
         let {color, defaultColor} = this.props;
         return (
             <div className="xm-color-picker-default">

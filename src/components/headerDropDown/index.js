@@ -3,8 +3,8 @@
  */
 'use strict';
 import './index.scss';
-import React, {Component} from "react";
-import {getEditor} from '../../lib/quillEditor'
+import React, {Component} from 'react';
+import {getEditor} from '../../lib/quillEditor';
 import editor from '../../model/editor';
 
 export default class HeaderDropDown extends Component {
@@ -14,7 +14,7 @@ export default class HeaderDropDown extends Component {
         this.state = {
             open: false,
             value:'正文'
-        }
+        };
     }
 
     componentDidMount() {
@@ -28,14 +28,14 @@ export default class HeaderDropDown extends Component {
     componentWillReceiveProps(nextProps) {
         if (this.span) {
             let header = nextProps.val;
-            if(!header){
+            if(!header) {
                 this.setState({
                     value:'正文'
-                })
+                });
             }else{
                 this.setState({
                     value:`标题${header}`
-                })
+                });
             }
         }
     }
@@ -46,8 +46,8 @@ export default class HeaderDropDown extends Component {
             getEditor().setSelection(index,length,'user');
             getEditor().format('header', $(e.target).data('size'), 'user');
             this.setState({
-                value:!!$(e.target).data('size')?`标题${$(e.target).data('size')}`:'正文'
-            })
+                value:!!$(e.target).data('size') ? `标题${$(e.target).data('size')}` : '正文'
+            });
         }
     }
     closePanel = () => {
@@ -63,7 +63,7 @@ export default class HeaderDropDown extends Component {
         this.setState({open: true});
     }
 
-    render(){
+    render() {
         return(
             <div className="xm-header">
                 <span
@@ -88,6 +88,6 @@ export default class HeaderDropDown extends Component {
                     <h6 data-size="6" className="o-p-h">标题6</h6>
                 </div>
             </div>
-        )
+        );
     }
 }

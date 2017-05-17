@@ -3,11 +3,11 @@
  */
 'use strict';
 import './catalogue.scss';
-import React, {Component} from "react";
+import React, {Component} from 'react';
 import Icon from './components/icon/index';
-import {observer,inject} from "mobx-react";
+import {observer,inject} from 'mobx-react';
 
-@inject("catalogue") @observer
+@inject('catalogue') @observer
 export default class CommonEditor extends Component {
 
     closeCatalogue = ()=>{
@@ -18,7 +18,7 @@ export default class CommonEditor extends Component {
         const {style, catalogue} = this.props;
         const {open} = catalogue;
         return (
-            <div className="catalogue-container" style={{display:open?'block':'none'}}>
+            <div className="catalogue-container" style={{display:open ? 'block' : 'none'}}>
                 <div className="catalogue-header">
                     <span>目录</span>
                     <Icon type="close" onClick={this.closeCatalogue}/>
@@ -26,11 +26,11 @@ export default class CommonEditor extends Component {
                 <div className="catalogue-body">
                     {
                         this.props.catalogue.list.map((_,i)=>{
-                            return <p key={i} className={`catalogue-h${_.h}`}>{_.content}</p>
+                            return <p key={i} className={`catalogue-h${_.h}`}>{_.content}</p>;
                         })
                     }
                 </div>
             </div>
-        )
+        );
     }
 }

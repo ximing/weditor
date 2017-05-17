@@ -3,13 +3,13 @@
  */
 
 'use strict';
-import React, {Component} from "react";
+import React, {Component} from 'react';
 import {observer,Provider} from 'mobx-react';
 
-import './index.scss'
-import 'quill/dist/quill.snow.css'
-import {getEditor,resize} from './lib/quillEditor'
-import WEditor from './weditor'
+import './index.scss';
+import 'quill/dist/quill.snow.css';
+import {getEditor,resize} from './lib/quillEditor';
+import WEditor from './weditor';
 import catalogue from './model/catalogue';
 import insert from './model/insert';
 import editor from './model/editor';
@@ -30,18 +30,18 @@ class  Editor extends Component {
         rightContent:null
     };
 
-    constructor(){
+    constructor() {
         super();
         this.getEditor = getEditor;
     };
 
-    setContents(content){
-        if(getEditor()){
+    setContents(content) {
+        if(getEditor()) {
             getEditor().setContents(content);
         }
     };
 
-    render(){
+    render() {
         return(
             <Provider
                 catalogue={catalogue}
@@ -54,7 +54,7 @@ class  Editor extends Component {
                          doc={this.props.doc}
                          rightContent = {this.props.rightContent}/>
             </Provider>
-        )
+        );
     }
 }
 export default Editor;

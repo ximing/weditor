@@ -8,7 +8,7 @@ import Button from '../button';
 import Icon from '../icon';
 
 
-export default class Dialog extends Component{
+export default class Dialog extends Component {
     static defaultProps = {
         prefixCls: 'nx-dialog',
         hasHeader: true,    //是否有header
@@ -21,7 +21,7 @@ export default class Dialog extends Component{
         return (
             <div className="nx-modal-mask">
                 <div className={`${cls}-wrapper`}>
-                    <div className={cls+' '+cls+'-normal ' + className}>
+                    <div className={cls + ' ' + cls + '-normal ' + className}>
                         {
                             hasHeader ? <div className={`${cls}-title`}>
                                 {title}

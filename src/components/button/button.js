@@ -5,7 +5,7 @@
 
 import React, {Component} from 'react';
 import classNames from 'classnames';
-import omit from 'omit.js'
+import omit from 'omit.js';
 export default class extends Component {
 
     constructor() {

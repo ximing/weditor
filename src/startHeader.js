@@ -2,16 +2,16 @@
  * Created by yeanzhi on 17/3/19.
  */
 'use strict';
-import React, {Component} from "react";
-import SizeDropDown from "./components/sizeDropDown/index";
-import HeaderDropDown from "./components/headerDropDown/index";
-import ColorPicker from "./components/color-picker";
+import React, {Component} from 'react';
+import SizeDropDown from './components/sizeDropDown/index';
+import HeaderDropDown from './components/headerDropDown/index';
+import ColorPicker from './components/color-picker';
 import {getEditor} from './lib/quillEditor';
 import ToolTip from './components/tooltip';
 import {inject,observer} from 'mobx-react';
 import Icon from './components/icon';
 import HightLight from './components/hightLight';
-import InsertHeader from './insertHeader'
+import InsertHeader from './insertHeader';
 @inject(state=>({
     rangeFormat:state.editor.format
 })) @observer
@@ -35,14 +35,14 @@ export default class StartHeader extends Component {
     align = (align)=>{
         return ()=>{
             const quillEditor = getEditor();
-            if(quillEditor){
+            if(quillEditor) {
                 // const {index,length} = editor.range;
                 // if(index===0 || !!index){
                 //     quillEditor.formatLine(index,length,'align',align);
                 // }
-                quillEditor.format('align',align,'user')
+                quillEditor.format('align',align,'user');
             }
-        }
+        };
     }
     render() {
         let {rangeFormat, style} = this.props;
@@ -74,31 +74,31 @@ export default class StartHeader extends Component {
                         overlay={<div>加粗 ctrl+b</div>}
                     >
                         <button className="ql-bold"></button>
-                </ToolTip>
+                    </ToolTip>
                     <ToolTip
                         placement="bottom"
                         mouseEnterDelay={0}
                         mouseLeaveDelay={0}
                         overlay={<div>斜体 ctrl+i</div>}
                     >
-                    <button className="ql-italic"></button>
-                </ToolTip>
+                        <button className="ql-italic"></button>
+                    </ToolTip>
                     <ToolTip
                         placement="bottom"
                         mouseEnterDelay={0}
                         mouseLeaveDelay={0}
                         overlay={<div>删除线 ctrl+shift+s</div>}
                     >
-                    <button className="ql-strike"></button>
-                </ToolTip>
+                        <button className="ql-strike"></button>
+                    </ToolTip>
                     <ToolTip
                         placement="bottom"
                         mouseEnterDelay={0}
                         mouseLeaveDelay={0}
                         overlay={<div>下划线 ctrl+u</div>}
                     >
-                    <button className="ql-underline"></button>
-                </ToolTip>
+                        <button className="ql-underline"></button>
+                    </ToolTip>
                 </span>
                 <span className="ql-formats">
                     <HightLight />
@@ -108,17 +108,17 @@ export default class StartHeader extends Component {
                         mouseLeaveDelay={0}
                         overlay={<div>字体颜色</div>}
                     >
-                    <ColorPicker onChangeComplete={this.setColor} defaultColor={color} icon={(
-                        <span className="ql-defalut-color">
-                            <svg viewBox="0 0 18 18">
-                                <line className="ql-color-label ql-stroke" x1="3" x2="15" y1="15" y2="15"
+                        <ColorPicker onChangeComplete={this.setColor} defaultColor={color} icon={(
+                            <span className="ql-defalut-color">
+                                <svg viewBox="0 0 18 18">
+                                    <line className="ql-color-label ql-stroke" x1="3" x2="15" y1="15" y2="15"
                                       style={{stroke: color}}></line>
-                                <polyline className="ql-stroke" points="5.5 11 9 3 12.5 11"
+                                    <polyline className="ql-stroke" points="5.5 11 9 3 12.5 11"
                                           style={{stroke: color === '#FFFFFF' ? '#000000' : color}}></polyline>
-                                <line className="ql-stroke" x1="11.63" x2="6.38" y1="9" y2="9"
+                                    <line className="ql-stroke" x1="11.63" x2="6.38" y1="9" y2="9"
                                       style={{stroke: color === '#FFFFFF' ? '#000000' : color}}></line>
-                            </svg>
-                        </span>
+                                </svg>
+                            </span>
                     )}/>
                     </ToolTip>
                     <Icon type="vertical"/>
@@ -201,6 +201,6 @@ export default class StartHeader extends Component {
                 </span>
                 <InsertHeader/>
             </span>
-        )
+        );
     }
 }

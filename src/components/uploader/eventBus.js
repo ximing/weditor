@@ -58,8 +58,7 @@ export default class EventEmitter {
                     response[key] = events[key];
                 }
             }
-        }
-        else {
+        }        else {
             response = events[evt] || (events[evt] = []);
         }
 
@@ -287,15 +286,13 @@ export default class EventEmitter {
                     // Pass the single listener straight through to the singular method
                     if (typeof value === 'function') {
                         single.call(this, i, value);
-                    }
-                    else {
+                    }                    else {
                         // Otherwise pass back to the multiple function
                         multiple.call(this, i, value);
                     }
                 }
             }
-        }
-        else {
+        }        else {
             // So evt must be a string
             // And listeners must be an array of listeners
             // Loop over it and pass each one to the multiple method
@@ -327,16 +324,14 @@ export default class EventEmitter {
         if (type === 'string') {
             // Remove all listeners for the specified event
             delete events[evt];
-        }
-        else if (evt instanceof RegExp) {
+        }        else if (evt instanceof RegExp) {
             // Remove all events matching the regex.
             for (key in events) {
                 if (events.hasOwnProperty(key) && evt.test(key)) {
                     delete events[key];
                 }
             }
-        }
-        else {
+        }        else {
             // Remove all listeners in all events
             delete this._events;
         }
@@ -429,8 +424,7 @@ export default class EventEmitter {
     _getOnceReturnValue () {
         if (this.hasOwnProperty('_onceReturnValue')) {
             return this._onceReturnValue;
-        }
-        else {
+        }        else {
             return 1;
         }
     }

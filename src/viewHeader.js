@@ -2,12 +2,12 @@
  * Created by yeanzhi on 17/3/20.
  */
 'use strict';
-import React, {Component} from "react";
+import React, {Component} from 'react';
 import Icon from './components/icon/index';
-import {getEditor} from './lib/quillEditor'
+import {getEditor} from './lib/quillEditor';
 
 import {observer,inject} from 'mobx-react';
-import {is} from './lib/util'
+import {is} from './lib/util';
 @inject('catalogue') @observer
 export default class CommonEditor extends Component {
 
@@ -20,10 +20,10 @@ export default class CommonEditor extends Component {
                     _ops.push({
                         h: ops[i + 1].attributes.header,
                         content: item.insert
-                    })
+                    });
                 }
             });
-            console.log(_ops)
+            console.log(_ops);
             this.props.catalogue.open = true;
             this.props.catalogue.list = _ops;
         }
@@ -38,6 +38,6 @@ export default class CommonEditor extends Component {
                     <span>显示目录</span>
                 </span>
             </span>
-        )
+        );
     }
 }

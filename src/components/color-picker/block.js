@@ -28,7 +28,7 @@ export default class extends Component {
         noWrap: PropTypes.bool
     };
 
-    render (){
+    render () {
         let {colors, onClick, title, noWrap, onHover} = this.props;
         let body = colors.map((color, i) => {
             return <Swatch color={color} onClick={onClick} onHover={onHover} key={i}/>;

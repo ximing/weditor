@@ -2,7 +2,7 @@
  * Created by yeanzhi on 17/3/30.
  */
 'use strict';
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
 import {inject, observer} from 'mobx-react';
@@ -11,10 +11,10 @@ import {getEditor, getEditorBoundingClientRect} from '../../lib/quillEditor';
 @inject('editor') @observer
 export default class Selection extends Component {
 
-    componentDidMount(){
+    componentDidMount() {
         this.selection = ReactDOM.findDOMNode(this.refs.selection);
     }
-    componentWillUnmount(){
+    componentWillUnmount() {
         clearInterval(this.interval);
     }
 
@@ -28,18 +28,18 @@ export default class Selection extends Component {
         if (editor) {
             if (index) {
                 const {left, height, top, width} = editor.getBounds(index, length || 0);
-                console.log(left,height,top,width)
+                console.log(left,height,top,width);
                 sLeft = left;
                 sHeight = height;
                 sTop = top;
                 sWidth = width;
-                if(width===0){
+                if(width === 0) {
                     this.interval = setInterval(()=>{
-                        if(this.selection){
-                            if(this.selection.style.display === 'block'){
-                                this.selection.style.display = 'none'
+                        if(this.selection) {
+                            if(this.selection.style.display === 'block') {
+                                this.selection.style.display = 'none';
                             }else{
-                                this.selection.style.display = 'block'
+                                this.selection.style.display = 'block';
                             }
                         }
                     },1200);
@@ -54,9 +54,9 @@ export default class Selection extends Component {
                      width: sWidth,
                      left: sLeft,
                      top: sTop,
-                     borderLeft:sWidth===0?'0.5px solid black':'none'
+                     borderLeft:sWidth === 0 ? '0.5px solid black' : 'none'
                  }}>
             </div>
-        )
+        );
     }
 }

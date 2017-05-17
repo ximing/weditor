@@ -2,7 +2,7 @@
  * Created by yeanzhi on 17/3/19.
  */
 'use strict';
-import React, {Component} from "react";
+import React, {Component} from 'react';
 import Icon from './components/icon/index';
 import printThis from './lib/printThis';
 const $ = window.jQuery;
@@ -16,7 +16,7 @@ export default class CommonEditor extends Component {
             pageTitle:'',
             header:null,
             footer:null
-        })
+        });
     }
 
 
@@ -37,6 +37,6 @@ export default class CommonEditor extends Component {
                     <span>导出word</span>
                 </span>
             </span>
-        )
+        );
     }
 }

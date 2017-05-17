@@ -27,7 +27,7 @@ export default class extends Component {
         spin: PropTypes.bool
     };
 
-    render (){
+    render () {
         let {type, spin, className} = this.props;
         let classString = classNames({
             'xm-icon docicon': true,

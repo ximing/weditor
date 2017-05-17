@@ -2,36 +2,36 @@
  * Created by yeanzhi on 17/3/19.
  */
 'use strict';
-import React, {Component} from "react";
+import React, {Component} from 'react';
 import Icon from './components/icon/index';
-import {getEditor} from './lib/quillEditor'
-import ToolTip from './components/tooltip'
+import {getEditor} from './lib/quillEditor';
+import ToolTip from './components/tooltip';
 export default class CommonEditor extends Component {
 
     clearFormat = ()=>{
-        if(getEditor()){
+        if(getEditor()) {
             const {index,length} = getEditor().getSelection();
-            if(index === 0 || !!index){
+            if(index === 0 || !!index) {
                 getEditor().removeFormat(index,length,'user');
             }
         }
     };
 
     undo = ()=>{
-        if(getEditor()){
+        if(getEditor()) {
             getEditor().history.undo();
         }
     };
 
     redo = ()=>{
-        if(getEditor()){
+        if(getEditor()) {
             getEditor().history.redo();
         }
     };
 
     format = ()=>{
         let {index,length} = getEditor().getSelection();
-        if(!!index){
+        if(!!index) {
             format.currentFormat = getEditor().getFormat(index,length);
         }
     }
@@ -59,7 +59,7 @@ export default class CommonEditor extends Component {
                         <Icon type="redo"/>
                     </button>
                 </ToolTip>
-                 <ToolTip
+                <ToolTip
                      placement="bottom"
                      mouseEnterDelay={0}
                      mouseLeaveDelay={0}
@@ -75,12 +75,12 @@ export default class CommonEditor extends Component {
                     mouseLeaveDelay={0}
                     overlay={<div>清除格式 Ctrl+Shift+C</div>}
                 >
-                   <button className="ql-clear-format" onClick={this.clearFormat}>
+                    <button className="ql-clear-format" onClick={this.clearFormat}>
                         <Icon type="clear"/>
                     </button>
                 </ToolTip>
                 <Icon type="vertical"/>
             </span>
-        )
+        );
     }
 }

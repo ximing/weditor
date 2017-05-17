@@ -76,7 +76,7 @@ export class Transport {
             xhr.ontimeout = function (event) {
                 eventEmitter.emit('timeout', event);
             };
-            if(this.config.withCredentials){
+            if(this.config.withCredentials) {
                 xhr.withCredentials = true;
             }
             Object.keys(this.config.formData).forEach((key)=>{

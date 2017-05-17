@@ -4,33 +4,33 @@
 'use strict';
 import './index.scss';
 import React, {Component} from 'react';
-import {getEditor} from '../../lib/quillEditor'
+import {getEditor} from '../../lib/quillEditor';
 import editor from '../../model/editor';
 const $ = window.jQuery;
 let fontSizeMap = {
-    "": '小四',
-    "42pt": '初号',
-    "36pt": '小初',
-    "26pt": '一号',
-    "24pt": '小一',
-    "22pt": '二号',
-    "18pt": '小二',
-    "15pt": '三号',
-    "14.5pt": '小三',
-    "14pt": '四号',
-    "12pt": '小四',
-    "10.5pt": '五号',
-    "9pt": '小五',
-    "7.5pt": '六号',
-    "6.5pt": '小六',
-    "5.5pt": '七号',
-    "5pt": '八号'
-}
+    '': '小四',
+    '42pt': '初号',
+    '36pt': '小初',
+    '26pt': '一号',
+    '24pt': '小一',
+    '22pt': '二号',
+    '18pt': '小二',
+    '15pt': '三号',
+    '14.5pt': '小三',
+    '14pt': '四号',
+    '12pt': '小四',
+    '10.5pt': '五号',
+    '9pt': '小五',
+    '7.5pt': '六号',
+    '6.5pt': '小六',
+    '5.5pt': '七号',
+    '5pt': '八号'
+};
 function changeSize(e) {
     if (getEditor()) {
         const {index,length} = editor.range;
         getEditor().setSelection(index,length,'user');
-        getEditor().format('size', $(e.target).data('size'), 'user')
+        getEditor().format('size', $(e.target).data('size'), 'user');
     }
 }
 export default class SizeDropDown extends Component {
@@ -40,7 +40,7 @@ export default class SizeDropDown extends Component {
         this.state = {
             value: 12,
             open: false
-        }
+        };
     }
     componentDidMount() {
         $('#xm-size-p').on('click', 'p', changeSize);
@@ -58,45 +58,42 @@ export default class SizeDropDown extends Component {
     formatSize = (size) => {
         size = Number.parseFloat(size, 10);
         if (isNaN(size)) {
-            return '12pt'
+            return '12pt';
+        } else if (size > 72) {
+            return '72pt';
+        } else if (size < 5) {
+            return '5pt';
         } else {
-            if (size > 72) {
-                return '72pt';
-            } else if (size < 5) {
-                return '5pt'
-            } else {
-                return `${size}pt`
-            }
+            return `${size}pt`;
         }
 
     }
     componentWillReceiveProps(nextProps) {
         if (this.input) {
             let val = this.formatSize(nextProps.size);
-            this.input.value = fontSizeMap[val]||val;
+            this.input.value = fontSizeMap[val] || val;
         }
     }
     changeSize = (value) => {
-        this.setState({value: value})
+        this.setState({value: value});
     }
     closePanel = () => {
-        this.setState({open: false})
-        $(document).off('click', this.closePanel)
+        this.setState({open: false});
+        $(document).off('click', this.closePanel);
     }
     inputClick = (e) => {
         e.stopPropagation();
         e
             .nativeEvent
             .stopImmediatePropagation();
-        // window     .quillEditor     .focus();
         $(document).on('click', this.closePanel);
-        this.setState({open: true})
+        this.setState({open: true});
     }
     handleKeyPress = (e) => {
         if (e.key === 'Enter') {
             this.closePanel();
-            if (quillEditor) {
-                quillEditor.format('size', this.formatSize(this.input.value), 'user')
+            if (getEditor()) {
+                getEditor().format('size', this.formatSize(this.input.value), 'user');
             }
         }
     }
@@ -116,10 +113,10 @@ export default class SizeDropDown extends Component {
                     className="xm-size-p"
                     id="xm-size-p"
                     style={{
-                    display: this.state.open
+                        display: this.state.open
                         ? 'block'
                         : 'none'
-                }}>
+                    }}>
                     <p data-size="42pt">初号</p>
                     <p data-size="36pt">小初</p>
                     <p data-size="26pt">一号</p>
@@ -159,6 +156,6 @@ export default class SizeDropDown extends Component {
                     <p data-size="72pt">72</p>
                 </div>
             </div>
-        )
+        );
     }
 }

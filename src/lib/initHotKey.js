@@ -7,7 +7,7 @@ export default function (quill) {
         key: 's',
         shortKey: true
     }, function(range, context) {
-        console.log('save')
+        console.log('save');
     });
 
     quill.keyboard.addBinding({
@@ -43,17 +43,18 @@ export default function (quill) {
         shortKey: true,
         shiftKey: true
     }, function(range, context) {
-        if(!context.format.list){
+        if(!context.format.list) {
             this.quill.formatLine(range, 'list', 'bullet','user');
         }else{
             this.quill.formatLine(range, 'list', false,'user');
-        }    });
+        }
+    });
     quill.keyboard.addBinding({
         key: 'l',
         shortKey: true,
         shiftKey: true
     }, function(range, context) {
-        if(!context.format.list){
+        if(!context.format.list) {
             this.quill.formatLine(range, 'list', 'ordered','user');
         }else{
             this.quill.formatLine(range, 'list', false,'user');
@@ -84,7 +85,7 @@ export default function (quill) {
         shortKey: true,
         altKey: true
     }, function(range, context) {
-        if(!context.format.header){
+        if(!context.format.header) {
             this.quill.formatLine(range, 'header', 1,'user');
         }else{
             this.quill.formatLine(range, 'header', false,'user');
@@ -95,7 +96,7 @@ export default function (quill) {
         shortKey: true,
         altKey: true
     }, function(range, context) {
-        if(!context.format.header){
+        if(!context.format.header) {
             this.quill.formatLine(range, 'header', 2,'user');
         }else{
             this.quill.formatLine(range, 'header', false,'user');
@@ -106,7 +107,7 @@ export default function (quill) {
         shortKey: true,
         altKey: true
     }, function(range, context) {
-        if(!context.format.header){
+        if(!context.format.header) {
             this.quill.formatLine(range, 'header', 3,'user');
         }else{
             this.quill.formatLine(range, 'header', false,'user');
@@ -117,7 +118,7 @@ export default function (quill) {
         shortKey: true,
         altKey: true
     }, function(range, context) {
-        if(!context.format.header){
+        if(!context.format.header) {
             this.quill.formatLine(range, 'header', 4,'user');
         }else{
             this.quill.formatLine(range, 'header', false,'user');
@@ -128,7 +129,7 @@ export default function (quill) {
         shortKey: true,
         altKey: true
     }, function(range, context) {
-        if(!context.format.header){
+        if(!context.format.header) {
             this.quill.formatLine(range, 'header', 5,'user');
         }else{
             this.quill.formatLine(range, 'header', false,'user');
@@ -139,7 +140,7 @@ export default function (quill) {
         shortKey: true,
         altKey: true
     }, function(range, context) {
-        if(!context.format.header){
+        if(!context.format.header) {
             this.quill.formatLine(range, 'header', 6,'user');
         }else{
             this.quill.formatLine(range, 'header', false,'user');
@@ -151,7 +152,7 @@ export default function (quill) {
         shortKey: true,
         shiftKey: true
     }, function(range, context) {
-        if(!context.format.header){
+        if(!context.format.header) {
             this.quill.formatLine(range, 'header', 6,'user');
         }else{
             this.quill.formatLine(range, 'header', false,'user');
@@ -163,7 +164,7 @@ export default function (quill) {
         shortKey: true,
         shiftKey: true
     }, function(range, context) {
-        this.quill.format('align','justify','user')
+        this.quill.format('align','justify','user');
     });
 
     quill.keyboard.addBinding({
@@ -171,7 +172,7 @@ export default function (quill) {
         shortKey: true,
         shiftKey: true
     }, function(range, context) {
-        this.quill.format('align','justify','user')
+        this.quill.format('align','justify','user');
     });
 
     quill.keyboard.addBinding({
@@ -179,27 +180,27 @@ export default function (quill) {
         shortKey: true,
         shiftKey: true
     }, function(range, context) {
-        this.quill.format('align','justify','user')
+        this.quill.format('align','justify','user');
     });
     quill.keyboard.addBinding({
         key: 'l',
         shortKey: true,
         shiftKey: true
     }, function(range, context) {
-        this.quill.format('align','left','user')
+        this.quill.format('align','left','user');
     });
     quill.keyboard.addBinding({
         key: 'e',
         shortKey: true,
         shiftKey: true
     }, function(range, context) {
-        this.quill.format('align','center','user')
+        this.quill.format('align','center','user');
     });
     quill.keyboard.addBinding({
         key: 'r',
         shortKey: true,
         shiftKey: true
     }, function(range, context) {
-        this.quill.format('align','right','user')
+        this.quill.format('align','right','user');
     });
 }

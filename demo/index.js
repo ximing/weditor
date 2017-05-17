@@ -3,11 +3,11 @@
  */
 'use strict';
 import 'babel-polyfill';
-import React, {Component} from "react";
+import React, {Component} from 'react';
 import rab, {connect, createAction} from 'rabjs/index.js';
 import {Router, Route} from 'rabjs/router';
 import EditContainer from './editContainer';
-import WrapEditContainer from './WrapEditContainer'
+import WrapEditContainer from './WrapEditContainer';
 
 
 //1. init app

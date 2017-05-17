@@ -6,14 +6,14 @@
  */
 'use strict';
 
-export let getArea = (selector, type='single', index=0) => {
+export let getArea = (selector, type = 'single', index = 0) => {
     try{
-        if(type === 'all'){
+        if(type === 'all') {
             return document.querySelectorAll(selector)[index].getBoundingClientRect();
         }else{
             return document.querySelector(selector).getBoundingClientRect();
         }
-    }catch(e){
+    }catch(e) {
 
     }
 };
@@ -22,7 +22,7 @@ export let inArea = (x, y, selector) => {
     let ele = getArea(selector);
     try{
         return (x >= ele.left && x <= ele.right) && (y >= ele.top && y <= ele.bottom);
-    }catch(e){}
+    }catch(e) {}
 };
 
 export let getFromLocalStorage = (key) => {
@@ -36,13 +36,13 @@ export let setIntoLocalStorage = (key, value) => {
 
 export let updateDefaultColors = (color, colors) => {
     let tmp = colors.slice();
-    if(tmp.indexOf(color) === -1){
+    if(tmp.indexOf(color) === -1) {
         tmp.unshift(color);
     }else{
         let found = tmp.splice(tmp.indexOf(color), 1);
         tmp = found.concat(tmp);
     }
-    if(tmp.length > 10){
+    if(tmp.length > 10) {
         tmp = tmp.slice(0, 10);
     }
     return tmp;
@@ -61,7 +61,7 @@ let rgbToHex = (r, g, b) => {
 let getColor = (selector, s, e) => {
     let list = document.querySelectorAll(selector);
     let arr = [];
-    for(let i = s; i <= e; i++){
+    for(let i = s; i <= e; i++) {
         let dom = list[i];
         let rgb = getComputedStyle(dom, null)['backgroundColor'];
         let result = /([0-9]+), ?([0-9]+), ?([0-9]+)/i.exec(rgb);

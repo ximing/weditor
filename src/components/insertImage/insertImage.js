@@ -8,21 +8,21 @@ import Quill from 'quill';
 import {inject, observer} from 'mobx-react';
 import 'rc-tabs/assets/index.css';
 import Tabs, { TabPane} from 'rc-tabs';
-import ScrollableInkTabBar from 'rc-tabs/lib/ScrollableInkTabBar.js'
-import TabContent from 'rc-tabs/lib/TabContent.js'
+import ScrollableInkTabBar from 'rc-tabs/lib/ScrollableInkTabBar.js';
+import TabContent from 'rc-tabs/lib/TabContent.js';
 import Dialog from '../dialog';
 import {contains} from '../../lib/util';
 import {Uploader} from '../uploader/index';
 import Button from '../button';
 import {getEditor} from '../../lib/quillEditor';
-import insert from '../../model/insert'
+import insert from '../../model/insert';
 import Input from '../input';
-import {error} from '../toast'
+import {error} from '../toast';
 const $ = window.jQuery;
 @inject('insert') @observer
 export default class InsertImage extends Component {
     state = {
-        activeKey:"1",
+        activeKey:'1',
         linkUrl:''
     }
     componentDidMount() {
@@ -35,11 +35,11 @@ export default class InsertImage extends Component {
     onLinkUrlChange = (e)=>{
         this.setState({
             linkUrl:e.target.value
-        })
+        });
     }
 
     insertLink = ()=>{
-        if(this.state.linkUrl){
+        if(this.state.linkUrl) {
             const {index, length} = this.props.insert.imageSelection;
             getEditor().insertEmbed(index, 'image', this.state.linkUrl, Quill.sources.USER);
         }
@@ -60,7 +60,7 @@ export default class InsertImage extends Component {
             'multiple': false,
             'method': 'post',
             'withCredentials':true,
-            'server': this.props.uploadUrl||''
+            'server': this.props.uploadUrl || ''
         });
         uploader.on('uploadAccept', (obj, res) => {
             res = JSON.parse(res);
@@ -80,7 +80,7 @@ export default class InsertImage extends Component {
         uploader.on('uploadError',()=>{
             uploader.reset();
             error('上传服务错误');
-        })
+        });
     }
 
     componentWillUnmount() {
@@ -126,13 +126,13 @@ export default class InsertImage extends Component {
                                 activeKey={this.state.activeKey}
                                 onChange={this.onChange}
                             >
-                                <TabPane tab={`本地上传`} key="1">
+                                <TabPane tab={'本地上传'} key="1">
                                     <div className="weditor-uploader-file-inner">
                                         <p className="weditor-image-tips">最大上传20M的图片</p>
                                         <Button id="weditorUploaderPick">点击上传</Button>
                                     </div>
                                 </TabPane>
-                                <TabPane tab={`插入外链`} key="2">
+                                <TabPane tab={'插入外链'} key="2">
                                     <div className="weditor-uploader-file-inner">
                                         <div>
                                             <Input onChange={this.onLinkUrlChange}/>
@@ -146,6 +146,6 @@ export default class InsertImage extends Component {
                 }
                 onClose={this.closeBubble}
             />
-        )
+        );
     }
 }

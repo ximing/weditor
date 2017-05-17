@@ -2,7 +2,7 @@
  * Created by yeanzhi on 17/3/26.
  */
 'use strict';
-import {observable,autorun} from 'mobx'
+import {observable} from 'mobx';
 class Insert {
     @observable
     openLinkDialog = false;

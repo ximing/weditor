@@ -224,7 +224,7 @@ export class Uploader {
                 // file.path = '/' + file.name;
                 Object.defineProperty(file,'path',{
                     value:'/' + file.name
-                })
+                });
                 if(!!this.config.multiple) {
                     await this.pushQueue(file);
                 }else{
@@ -252,7 +252,7 @@ export class Uploader {
                                     if(process.env.APP_ENV.indexOf('pc') > -1) {
                                         Object.defineProperty(file,'path',{
                                             value:_entry.fullPath
-                                        })
+                                        });
                                     }else{
                                         file.path = _entry.fullPath;
                                     }
@@ -311,7 +311,7 @@ export class Uploader {
 
     //特殊需求的私有方法，不建议使用
     async _pushUploaderFile(wuFile) {
-        if(!(wuFile instanceof WUFile)){
+        if(!(wuFile instanceof WUFile)) {
             wuFile = new WUFile(wuFile, {eventEmitter: this.eventEmitter, setName: this.config.setName});
         }
         wuFile.selectFileTransactionId = ++this._selectFileTransactionId;

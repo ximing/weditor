@@ -2,16 +2,16 @@
  * Created by yeanzhi on 17/3/26.
  */
 'use strict';
-import './index.scss'
+import './index.scss';
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import {observer, inject} from "mobx-react";
+import {observer, inject} from 'mobx-react';
 
 import Input from '../input/index';
-import Button from '../button/index'
-import {contains} from '../../lib/util'
-import {getEditor} from '../../lib/quillEditor'
-import insert from '../../model/insert'
+import Button from '../button/index';
+import {contains} from '../../lib/util';
+import {getEditor} from '../../lib/quillEditor';
+import insert from '../../model/insert';
 
 
 @inject('insert') @observer
@@ -90,6 +90,6 @@ export default class LinkBubble extends Component {
                     <Button onClick={this.apply}>应用</Button>
                 </div>
             </section>
-        )
+        );
     }
 }

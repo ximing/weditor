@@ -2,12 +2,12 @@
  * Created by yeanzhi on 17/2/26.
  */
 'use strict';
-import React, {Component} from "react";
-import {formatDate} from "./lib/timeRelated";
+import React, {Component} from 'react';
+import {formatDate} from './lib/timeRelated';
 import CommonHeader from './commonHeader';
 import StartHeader from './startHeader';
-import {getEditor} from './lib/quillEditor'
-import {info} from './components/toast'
+import {getEditor} from './lib/quillEditor';
+import {info} from './components/toast';
 import Dropdown from 'rc-dropdown';
 import Menu, { Item as MenuItem, Divider } from 'rc-menu';
 import 'rc-dropdown/assets/index.css';
@@ -45,42 +45,40 @@ export default class EditorHeader extends Component {
 
 
     HelpMenuClick = ({key}) =>{
-        if(key==='0'){
+        if(key === '0') {
             help.hotKeysDialog = true;
         }else{
             this.props.helpOptions.forEach(item=>{
-                if(item.key === key){
+                if(item.key === key) {
                     item.onClick(key);
                 }
-            })
+            });
         }
     };
 
     fileMenuClick = ({key}) =>{
-        if(key==='0'){
+        if(key === '0') {
             $('.ql-editor').printThis({
                 pageTitle:'',
                 header:null,
                 footer:null
-            })
+            });
         }else{
             this.props.helpOptions.forEach(item=>{
-                if(item.key === key){
+                if(item.key === key) {
                     item.onClick(key);
                 }
-            })
+            });
         }
     };
 
     insertMenuClick = ({key}) =>{
-        if(key === '0'){
+        if(key === '0') {
             insert.imageSelection = getEditor().getSelection();
             insert.openImageDialog = true;
-        }else{
-            if(getEditor()){
-                let toolbar = getEditor().getModule('toolbar');
-                toolbar.handlers['link'].call(toolbar, !(editor.format && editor.format.link));
-            }
+        }else if(getEditor()) {
+            let toolbar = getEditor().getModule('toolbar');
+            toolbar.handlers['link'].call(toolbar, !(editor.format && editor.format.link));
         }
     };
 
@@ -96,24 +94,24 @@ export default class EditorHeader extends Component {
         return (
             <div className="toolbar-opver" id="toolbarOpver">
                 <CommonHeader />
-                <StartHeader style={{display:panel===1?'inline-block':'none'}}/>
+                <StartHeader style={{display:panel === 1 ? 'inline-block' : 'none'}}/>
             </div>
-        )
+        );
 
     }
 
     changePanel(panel) {
         return () => {
-            if(panel===4 || panel === 5){
-                info('稍后开放，敬请期待')
+            if(panel === 4 || panel === 5) {
+                info('稍后开放，敬请期待');
                 return;
             }
             this.setState({panel});
-        }
+        };
     }
 
 
-    renderToolbar(){
+    renderToolbar() {
         let menu = (
             <Menu selectable={false} onClick={this.HelpMenuClick}>
                 <MenuItem key="0">键盘快捷键</MenuItem>
@@ -122,7 +120,7 @@ export default class EditorHeader extends Component {
                     this.props.helpOptions.map(item=>{
                         return(
                             <MenuItem key={item.key}>{item.content}</MenuItem>
-                        )
+                        );
                     })
                 }
             </Menu>
@@ -134,7 +132,7 @@ export default class EditorHeader extends Component {
                     this.props.fileOptions.map(item=>{
                         return(
                             <MenuItem key={item.key}>{item.content}</MenuItem>
-                        )
+                        );
                     })
                 }
                 <Divider />
@@ -151,7 +149,7 @@ export default class EditorHeader extends Component {
                     overlay={fileMenu}
                     animation="slide-up"
                 >
-                    <span className={`file-tab`}>文件</span>
+                    <span className={'file-tab'}>文件</span>
                 </Dropdown>
 
                 <Dropdown
@@ -164,10 +162,10 @@ export default class EditorHeader extends Component {
                     )}
                     animation="slide-up"
                 >
-                    <span className={`insert-tab`}>插入</span>
+                    <span className={'insert-tab'}>插入</span>
                 </Dropdown>
 
-                <span className={`view-tab ${panel===3?'active':''}`} onClick={this.changePanel(4)}>视图</span>
+                <span className={`view-tab ${panel === 3 ? 'active' : ''}`} onClick={this.changePanel(4)}>视图</span>
 
                 <span className="history-tab" onClick={this.changePanel(4)}>修订历史</span>
 
@@ -179,7 +177,7 @@ export default class EditorHeader extends Component {
                     <span className="help-tab" >帮助</span>
                 </Dropdown>
             </div>
-        )
+        );
     }
 
 

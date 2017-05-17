@@ -32,7 +32,7 @@ export default class extends Component {
         onHover(color, e);
     };
 
-    render (){
+    render () {
         let {color} = this.props;
         return (
             <div className="xm-color-picker-swatch"

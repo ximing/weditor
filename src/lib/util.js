@@ -10,7 +10,7 @@
  */
 export function contains(a, b) {
     return (a == b) || (a && a.contains ?
-            (a != b && a.contains(b)):
+            (a != b && a.contains(b)) :
             !!(a.compareDocumentPosition(b) & 16));
 }
 export function is(type, obj) {

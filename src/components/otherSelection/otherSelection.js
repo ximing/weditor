@@ -5,8 +5,8 @@
 import React,{Component} from 'react';
 import {getEditor} from '../../lib/quillEditor';
 
-export default class OtherSelection extends Component{
-    render(){
+export default class OtherSelection extends Component {
+    render() {
         let {name,range} = this.props;
         const editor = getEditor();
         const {index, length} = range;
@@ -31,9 +31,9 @@ export default class OtherSelection extends Component{
                     </div>
                     <p className="weditor-other-selection-name">{name}</p>
                 </div>
-            )
+            );
         }else{
-            return (<span></span>)
+            return (<span></span>);
         }
     }
 }

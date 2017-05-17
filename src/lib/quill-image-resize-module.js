@@ -39,8 +39,7 @@ export class ImageResize {
             }
             // clicked on an image inside the editor
             this.show(evt.target);
-        }
-        else if (this.img) {
+        }        else if (this.img) {
             // clicked on a non image
             this.hide();
         }
@@ -104,7 +103,7 @@ export class ImageResize {
             border: '1px solid #777',
             boxSizing: 'border-box',
             opacity: '0.80',
-            cursor: cursor,
+            cursor: cursor
         };
         this.extend(box.style, styles, this.options.handleStyles || {});
         // listen for mousedown on each box
@@ -132,11 +131,11 @@ export class ImageResize {
             { left: rect.left - 6,              top: rect.top - 6 },               // top left
             { left: rect.left + rect.width - 6, top: rect.top - 6 },               // top right
             { left: rect.left + rect.width - 6, top: rect.top + rect.height - 6 }, // bottom right
-            { left: rect.left - 6,              top: rect.top + rect.height - 6 }, // bottom left
+            { left: rect.left - 6,              top: rect.top + rect.height - 6 } // bottom left
         ].forEach((pos, idx) => {
             this.extend(this.boxes[idx].style, {
                 top: Math.round(pos.top + window.pageYOffset) + 'px',
-                left: Math.round(pos.left + window.pageXOffset) + 'px',
+                left: Math.round(pos.left + window.pageXOffset) + 'px'
             });
         });
     }
@@ -172,8 +171,7 @@ export class ImageResize {
         if (this.dragBox == this.boxes[0] || this.dragBox == this.boxes[3]) {
             // left-side resize handler; draging right shrinks image
             this.img.width = Math.round(this.preDragWidth - evt.clientX - this.dragStartX);
-        }
-        else {
+        }        else {
             // right-side resize handler; draging right enlarges image
             this.img.width = Math.round(this.preDragWidth + evt.clientX - this.dragStartX);
         }
@@ -226,14 +224,14 @@ export class ImageResize {
             border: '1px solid #777',
             boxSizing: 'border-box',
             opacity: '0.80',
-            cursor: 'default',
+            cursor: 'default'
         };
         this.extend(this.display.style, styles, this.options.displayStyles || {});
         document.body.appendChild(this.display);
     }
 
     hideSizeDisplay() {
-        if(this.display){
+        if(this.display) {
             document.body.removeChild(this.display);
         }
         this.display = undefined;
@@ -250,14 +248,13 @@ export class ImageResize {
             const dispRect = this.display.getBoundingClientRect();
             this.extend(this.display.style, {
                 left: Math.round(rect.left + rect.width + window.pageXOffset - dispRect.width - 8) + 'px',
-                top: Math.round(rect.top + rect.height + window.pageYOffset - dispRect.height - 8) + 'px',
+                top: Math.round(rect.top + rect.height + window.pageYOffset - dispRect.height - 8) + 'px'
             });
-        }
-        else {
+        }        else {
             // position off bottom right
             this.extend(this.display.style, {
                 left: Math.round(rect.left + rect.width + window.pageXOffset + 8) + 'px',
-                top: Math.round(rect.top + rect.height + window.pageYOffset + 8) + 'px',
+                top: Math.round(rect.top + rect.height + window.pageYOffset + 8) + 'px'
             });
         }
     }
@@ -265,7 +262,7 @@ export class ImageResize {
     getCurrentSize() {
         return [
             this.img.width,
-            Math.round(this.img.width / this.img.naturalWidth * this.img.naturalHeight),
+            Math.round(this.img.width / this.img.naturalWidth * this.img.naturalHeight)
         ];
     }
 

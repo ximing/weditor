@@ -2,7 +2,7 @@
  * Created by yeanzhi on 17/3/26.
  */
 'use strict';
-import React, {Component} from "react";
+import React, {Component} from 'react';
 import hotkeys from 'hotkeys-js';
 import ReactDOM from 'react-dom';
 import Header from './header';
@@ -13,9 +13,9 @@ import HotKeysDialog from './components/hotKeysDialog';
 import {inject, observer} from 'mobx-react';
 import Selection from './components/selection';
 import OtherSelection from './components/otherSelection';
-import Editor from './components/editor'
+import Editor from './components/editor';
 const $ = window.jQuery;
-import editor from './model/editor'
+import editor from './model/editor';
 
 
 @inject(state => ({
@@ -38,7 +38,7 @@ export default class WEditor extends Component {
         let editorDom = this.editorDom = $(ReactDOM.findDOMNode(this.refs.editor)).find('.ql-editor');
         editorDom.on('blur', () => {
             editor.focus = false;
-        })
+        });
 
     }
 
@@ -69,7 +69,7 @@ export default class WEditor extends Component {
                         <Editor />
                         {
                             this.props.coCursors.map(item=>{
-                                return <OtherSelection key={item.id} name={item.name} range={item.range} />
+                                return <OtherSelection key={item.id} name={item.name} range={item.range} />;
                             })
                         }
                     </div>

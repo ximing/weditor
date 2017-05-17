@@ -2,8 +2,8 @@
  * Created by yeanzhi on 17/3/19.
  */
 'use strict';
-import React, {Component} from "react";
-import ToolTip from './components/tooltip'
+import React, {Component} from 'react';
+import ToolTip from './components/tooltip';
 
 export default class CommonEditor extends Component {
 
@@ -32,6 +32,6 @@ export default class CommonEditor extends Component {
                 </ToolTip>
 
             </span>
-        )
+        );
     }
 }

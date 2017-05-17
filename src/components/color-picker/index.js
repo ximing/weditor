@@ -18,7 +18,7 @@ export default class extends Component {
         color: '#000000',
         isHide: true,
         recentlyUsedColors: ['#000000'],
-        id: `colorPicker${Math.floor(Math.random()*10000).toString(16)}`
+        id: `colorPicker${Math.floor(Math.random() * 10000).toString(16)}`
     };
     static defaultProps = {
         onChangeComplete: (color, e) => {
@@ -35,16 +35,16 @@ export default class extends Component {
         width: PropTypes.string
     };
 
-    componentDidMount(){
+    componentDidMount() {
         document.addEventListener('click', this._handleAreaClick, false);
-        if(getFromLocalStorage('_xmColorPickerDefaultColors').length > 0){
+        if(getFromLocalStorage('_xmColorPickerDefaultColors').length > 0) {
             this.setState({
                 recentlyUsedColors: getFromLocalStorage('_xmColorPickerDefaultColors')
             });
         }
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         document.removeEventListener('click', this._handleAreaClick, false);
         setIntoLocalStorage('_xmColorPickerDefaultColors', this.state.recentlyUsedColors);
     }
@@ -75,14 +75,14 @@ export default class extends Component {
     _handleAreaClick = (e) => {
         let x = e.clientX;
         let y = e.clientY;
-        if(!inArea(x, y, `#${this.state.id} .xm-color-picker`) && !inArea(x, y, `#${this.state.id} .xm-color-picker-icon`)){
+        if(!inArea(x, y, `#${this.state.id} .xm-color-picker`) && !inArea(x, y, `#${this.state.id} .xm-color-picker-icon`)) {
             this.setState({
                 isHide: true
             });
             document.removeEventListener('click', this._handleAreaClick, false);
         }
     };
-    render (){
+    render () {
         let {isHide, recentlyUsedColors, color} = this.state;
         let {icon, defaultColor, width} = this.props;
         let xmColorPicker = classnames({

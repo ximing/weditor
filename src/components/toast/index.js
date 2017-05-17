@@ -2,10 +2,10 @@
  * Created by yeanzhi on 17/3/29.
  */
 'use strict';
-import React, {Component} from "react";
+import React, {Component} from 'react';
 import Notification from 'rc-notification';
-import './index.scss'
-import Icon from '../icon'
+import './index.scss';
+import Icon from '../icon';
 const notification = Notification.newInstance({});
 
 export const warning = function (content,onClose) {
