@@ -132,7 +132,7 @@ var CommonEditor = function (_Component) {
                     _react2.default.createElement(
                         'button',
                         { className: 'ql-format', onClick: this.format },
-                        _react2.default.createElement(_index2.default, { type: 'geshishua' })
+                        _react2.default.createElement(_index2.default, { type: 'format' })
                     )
                 ),
                 _react2.default.createElement(
@@ -150,9 +150,10 @@ var CommonEditor = function (_Component) {
                     _react2.default.createElement(
                         'button',
                         { className: 'ql-clear-format', onClick: this.clearFormat },
-                        _react2.default.createElement(_index2.default, { type: 'qingchu' })
+                        _react2.default.createElement(_index2.default, { type: 'clear' })
                     )
-                )
+                ),
+                _react2.default.createElement(_index2.default, { type: 'vertical' })
             );
         }
     }]);

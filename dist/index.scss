@@ -1,129 +1,154 @@
-body{
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: 0;
-  overflow: hidden;
-  background-color: #f2f2f2;
-}
-.weditor-wrapper{
-  overflow: hidden;
-  position: absolute;
-  top:0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  div{
-    box-sizing: border-box;
-  }
-}
-@import "./header.scss";
-.weditor-body{
-  padding: 0;
-  position: absolute;
-  left: 0;
-  top: 102px;
-  right: 0px;
-  bottom: 0px;
-  overflow: hidden;
-  overflow-y: auto;
-  background-color: rgb(246,246,246);
-  .content-container{
-    background-color: rgb(255, 255, 255);
-    &::selection{
-      background: rgba(130, 182, 255,.4);
-    }
-    box-shadow: 0 0 0 0.1px #d1d1d1, 0 0 1px 0.1px #ccc;
-    position: relative;
-    top:20px;
-    //bottom: 10px;
-    //left: 0;
-    width: 830px;
-    //margin: 0 auto;
-    border: 0;
-    //padding: 40px 57px;
-    padding: 0;
-    margin-bottom: 60px;
-    min-height: 100%;
-    height:  auto;
-    display: flex;
-    flex-direction: column;
-    .ql-container{
-      font-size: 12pt;
-      height:100%;
-      flex: 1;
-      display: flex;
-      &.ql-snow{
-        border: none;
-      }
-      .ql-editor{
-        z-index: 30;
-        text-align: justify;
-        //padding: 0;
-        padding: 40px 57px;
-        margin: 0;
-        overflow: hidden;
-        //height:100%;
-        border: none;
-        height:  auto;
-        flex: 1;
-        //display: inline-block;
-        //min-width: 30px;
-        //min-height: 30px;
-      }
-    }
-  }
-  .editormd-toolbar{
-    width: 100%;
-    min-height: 37px;
-    background: #f0f0f0;
-    display: none;
-    position: fixed;
-    top: 55px;
+body {
+    position: absolute;
+    top: 0;
+    bottom: 0;
     left: 0;
-    z-index: 10;
-    //box-shadow: 0 2px 4px hsla(0,0%,8%,.15);
-    &.scroll{
-      box-shadow: 0 2px 4px hsla(0,0%,8%,.15);
-    }
-    border: none;
-    .editormd-menu{
-      width: 910px;
-      margin: 0 auto;
-    }
-    .editormd-menu>li>a{
-      border: none;
-      i{
-        font-weight:200;
-      }
-    }
-  }
+    right: 0;
+    margin: 0;
+    overflow: hidden;
+    background-color: #f2f2f2;
 }
-.rc-dropdown-menu-item{
-  width: 150px;
-  padding-left: 20px !important;
-  cursor: pointer;
+
+.weditor-wrapper {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    div {
+        box-sizing: border-box;
+    }
 }
+
+@import "./header.scss";
+@import "./iconfont.scss";
+.weditor-body {
+    padding: 0;
+    position: absolute;
+    left: 0;
+    top: 102px;
+    right: 0px;
+    bottom: 0px;
+    overflow: hidden;
+    overflow-y: auto;
+    background-color: rgb(246, 246, 246);
+    .ql-tooltip {
+        z-index: 1000000;
+    }
+    .content-container {
+        background-color: rgb(255, 255, 255);
+        &::selection {
+            background: rgba(130, 182, 255, .4);
+        }
+        box-shadow: 0 0 0 0.1px #d1d1d1, 0 0 1px 0.1px #ccc;
+        position: relative;
+        top: 20px;
+        //bottom: 10px;
+        //left: 0;
+        width: 830px;
+        //margin: 0 auto;
+        border: 0;
+        //padding: 40px 57px;
+        padding: 0;
+        margin-bottom: 60px;
+        min-height: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        .ql-container {
+            font-size: 12pt;
+            height: 100%;
+            flex: 1;
+            display: flex;
+            &.ql-snow {
+                border: none;
+            }
+            .ql-editor {
+                z-index: 30;
+                text-align: justify;
+                //padding: 0;
+                padding: 40px 57px;
+                margin: 0;
+                overflow: hidden;
+                //height:100%;
+                border: none;
+                height: auto;
+                flex: 1;
+                //display: inline-block;
+                //min-width: 30px;
+                //min-height: 30px;
+            }
+        }
+    }
+    .editormd-toolbar {
+        width: 100%;
+        min-height: 37px;
+        background: #f0f0f0;
+        display: none;
+        position: fixed;
+        top: 55px;
+        left: 0;
+        z-index: 10;
+        //box-shadow: 0 2px 4px hsla(0,0%,8%,.15);
+        &.scroll {
+            box-shadow: 0 2px 4px hsla(0, 0%, 8%, .15);
+        }
+        border: none;
+        .editormd-menu {
+            width: 910px;
+            margin: 0 auto;
+        }
+        .editormd-menu > li > a {
+            border: none;
+            i {
+                font-weight: 200;
+            }
+        }
+    }
+}
+
+.rc-dropdown {
+    background: #FFFFFF;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.10);
+    border: none !important;
+    .rc-dropdown-menu {
+        border: none !important;
+        border-radius: 2px;
+    }
+}
+
+.rc-dropdown-menu-item {
+    width: 150px;
+    cursor: pointer;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 !important;
+    padding-left: 20px !important;
+    border: none !important;
+}
+
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(0,0,0,.2);
-  background-clip: padding-box;
-  border: solid transparent;
-  border-width: 1px 1px 1px 6px;
-  min-height: 28px;
-  padding: 100px 0 0;
-  box-shadow: inset 1px 1px 0 rgba(0,0,0,.1), inset 0 -1px 0 rgba(0,0,0,.07);
+    background-color: rgba(0, 0, 0, .2);
+    background-clip: padding-box;
+    border: solid transparent;
+    border-width: 1px 1px 1px 6px;
+    min-height: 28px;
+    padding: 100px 0 0;
+    box-shadow: inset 1px 1px 0 rgba(0, 0, 0, .1), inset 0 -1px 0 rgba(0, 0, 0, .07);
 }
+
 ::-webkit-scrollbar-corner {
-  background: transparent;
+    background: transparent;
 }
+
 ::-webkit-scrollbar-button {
-  height: 0;
-  width: 0;
+    height: 0;
+    width: 0;
 }
+
 ::-webkit-scrollbar {
-  height: 16px;
-  overflow: visible;
-  width: 16px;
+    height: 16px;
+    overflow: visible;
+    width: 16px;
 }

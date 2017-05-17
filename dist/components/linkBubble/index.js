@@ -10,7 +10,7 @@ exports.default = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _dec, _class;
+var _dec, _class, _class2, _temp2;
 
 require('./index.scss');
 
@@ -48,7 +48,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var LinkBubble = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _mobxReact.observer)(_class = function (_Component) {
+var LinkBubble = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _mobxReact.observer)(_class = (_temp2 = _class2 = function (_Component) {
     _inherits(LinkBubble, _Component);
 
     function LinkBubble() {
@@ -162,5 +162,8 @@ var LinkBubble = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _mo
     }]);
 
     return LinkBubble;
-}(_react.Component)) || _class) || _class);
+}(_react.Component), _class2.defaultProps = {
+    linkTitle: '',
+    linkUrl: ''
+}, _temp2)) || _class) || _class);
 exports.default = LinkBubble;

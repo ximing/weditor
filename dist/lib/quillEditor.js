@@ -6,7 +6,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.setLinkBubble = exports.getEditorBoundingClientRect = exports.getDom = exports.getEditor = exports.resize = exports.initQuillEditor = undefined;
+exports.resize = exports.initQuillEditor = exports.setLinkBubble = exports.getEditorBoundingClientRect = exports.getDom = exports.getEditor = undefined;
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
@@ -32,19 +32,10 @@ var _editor = require('../model/editor');
 
 var _editor2 = _interopRequireDefault(_editor);
 
-var _catalogue = require('../model/catalogue');
-
-var _catalogue2 = _interopRequireDefault(_catalogue);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// setInterval(()=>{
-//     catalogue.open = !catalogue.open;
-// },2000)
 
 var quillEditor = null;
 var quillDom = null;
-var $quillDom = null;
 var $quillEditorDom = null;
 var $quillContainer = null;
 var $weditorBody = null;
@@ -52,9 +43,40 @@ var linkBubble = {
     height: 95,
     width: 380
 };
+var getEditor = exports.getEditor = function getEditor() {
+    return quillEditor;
+};
+
+var getDom = exports.getDom = function getDom() {
+    return quillDom;
+};
+
+var getEditorBoundingClientRect = exports.getEditorBoundingClientRect = function getEditorBoundingClientRect() {
+    return quillDom.getBoundingClientRect();
+};
+
+var setLinkBubble = exports.setLinkBubble = function setLinkBubble(index) {
+    var _getEditor$getBounds = getEditor().getBounds(index),
+        left = _getEditor$getBounds.left,
+        top = _getEditor$getBounds.top,
+        height = _getEditor$getBounds.height;
+
+    var linkLeft = getEditorBoundingClientRect().left + left;
+    var linkTop = getEditorBoundingClientRect().top + top + height;
+    if (linkLeft + linkBubble.width >= window.innerWidth) {
+        linkLeft = linkLeft - linkBubble.width;
+    }
+    if (linkTop + linkBubble.height >= window.innerHeight) {
+        linkTop = linkTop - linkBubble.height - height - 10;
+    }
+    _insert2.default.linkPosition = {
+        left: linkLeft,
+        top: linkTop
+    };
+};
+
 var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, options) {
     quillDom = dom;
-    $quillDom = $(quillDom);
     $quillContainer = $('.content-container');
     quillEditor = new _quill2.default(dom, {
         modules: {
@@ -62,28 +84,27 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
                 container: '#toolbarOpver',
                 handlers: {
                     'link': function link(value) {
+                        console.log(value, _editor2.default.range, _editor2.default.format, _insert2.default.openLinkDialog);
                         if (value) {
                             if (_insert2.default.openLinkDialog) {
                                 _insert2.default.openLinkDialog = false;
                                 _insert2.default.linkTitle = null;
                                 _insert2.default.linkUrl = null;
-                            } else {
-                                if (getEditor() && getEditor().getSelection()) {
-                                    var _getEditor$getSelecti = getEditor().getSelection(),
-                                        index = _getEditor$getSelecti.index,
-                                        length = _getEditor$getSelecti.length;
+                            } else if (_editor2.default.range) {
+                                var _editor$range = _editor2.default.range,
+                                    index = _editor$range.index,
+                                    length = _editor$range.length; //getEditor().getSelection()
 
-                                    _insert2.default.openLinkDialog = true;
-                                    _insert2.default.linkTitle = getEditor().getText(index, length);
-                                    _insert2.default.linkUrl = null;
-                                    setLinkBubble(index);
-                                }
+                                _insert2.default.openLinkDialog = true;
+                                _insert2.default.linkTitle = getEditor().getText(index, length);
+                                _insert2.default.linkUrl = null;
+                                setLinkBubble(index);
                             }
-                            _insert2.default.linkSelection = getEditor().getSelection();
+                            _insert2.default.linkSelection = _editor2.default.range; //getEditor().getSelection();
                         } else {
-                            var _getEditor$getSelecti2 = getEditor().getSelection(),
-                                _index = _getEditor$getSelecti2.index,
-                                _length = _getEditor$getSelecti2.length;
+                            var _editor$range2 = _editor2.default.range,
+                                _index = _editor$range2.index,
+                                _length = _editor$range2.length; //getEditor().getSelection()
 
                             var _quillEditor$getLeaf = quillEditor.getLeaf(_index),
                                 _quillEditor$getLeaf2 = _slicedToArray(_quillEditor$getLeaf, 2),
@@ -170,35 +191,4 @@ var resize = exports.resize = function resize() {
     // } else {
     //     $quillContainer.height($weditorBody.height() - 50);
     // }
-};
-var getEditor = exports.getEditor = function getEditor() {
-    return quillEditor;
-};
-
-var getDom = exports.getDom = function getDom() {
-    return quillDom;
-};
-
-var getEditorBoundingClientRect = exports.getEditorBoundingClientRect = function getEditorBoundingClientRect() {
-    return quillDom.getBoundingClientRect();
-};
-
-var setLinkBubble = exports.setLinkBubble = function setLinkBubble(index) {
-    var _getEditor$getBounds = getEditor().getBounds(index),
-        left = _getEditor$getBounds.left,
-        top = _getEditor$getBounds.top,
-        height = _getEditor$getBounds.height;
-
-    var linkLeft = getEditorBoundingClientRect().left + left;
-    var linkTop = getEditorBoundingClientRect().top + top + height;
-    if (linkLeft + linkBubble.width >= window.innerWidth) {
-        linkLeft = linkLeft - linkBubble.width;
-    }
-    if (linkTop + linkBubble.height >= window.innerHeight) {
-        linkTop = linkTop - linkBubble.height - height - 10;
-    }
-    _insert2.default.linkPosition = {
-        left: linkLeft,
-        top: linkTop
-    };
 };

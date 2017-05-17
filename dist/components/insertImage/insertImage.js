@@ -88,7 +88,7 @@ var InsertImage = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _m
         }
 
         return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = InsertImage.__proto__ || Object.getPrototypeOf(InsertImage)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-            activeKey: "1",
+            activeKey: '1',
             linkUrl: ''
         }, _this.onLinkUrlChange = function (e) {
             _this.setState({
@@ -212,7 +212,7 @@ var InsertImage = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _m
                             },
                             _react2.default.createElement(
                                 _rcTabs.TabPane,
-                                { tab: '\u672C\u5730\u4E0A\u4F20', key: '1' },
+                                { tab: '本地上传', key: '1' },
                                 _react2.default.createElement(
                                     'div',
                                     { className: 'weditor-uploader-file-inner' },
@@ -230,7 +230,7 @@ var InsertImage = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _m
                             ),
                             _react2.default.createElement(
                                 _rcTabs.TabPane,
-                                { tab: '\u63D2\u5165\u5916\u94FE', key: '2' },
+                                { tab: '插入外链', key: '2' },
                                 _react2.default.createElement(
                                     'div',
                                     { className: 'weditor-uploader-file-inner' },

@@ -118,6 +118,7 @@ var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
                 'div',
                 { className: 'weditor-wrapper' },
                 _react2.default.createElement(_header2.default, { doc: this.props.doc,
+                    fileOptions: this.props.options.fileOptions,
                     rightContent: this.props.rightContent,
                     helpOptions: this.props.options.helpOptions }),
                 _react2.default.createElement(

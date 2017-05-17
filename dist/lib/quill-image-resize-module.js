@@ -159,7 +159,8 @@ var ImageResize = exports.ImageResize = function () {
             [{ left: rect.left - 6, top: rect.top - 6 }, // top left
             { left: rect.left + rect.width - 6, top: rect.top - 6 }, // top right
             { left: rect.left + rect.width - 6, top: rect.top + rect.height - 6 }, // bottom right
-            { left: rect.left - 6, top: rect.top + rect.height - 6 }].forEach(function (pos, idx) {
+            { left: rect.left - 6, top: rect.top + rect.height - 6 } // bottom left
+            ].forEach(function (pos, idx) {
                 _this.extend(_this.boxes[idx].style, {
                     top: Math.round(pos.top + window.pageYOffset) + 'px',
                     left: Math.round(pos.left + window.pageXOffset) + 'px'

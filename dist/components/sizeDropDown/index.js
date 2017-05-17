@@ -32,23 +32,23 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var $ = window.jQuery;
 var fontSizeMap = {
-    "": '小四',
-    "42pt": '初号',
-    "36pt": '小初',
-    "26pt": '一号',
-    "24pt": '小一',
-    "22pt": '二号',
-    "18pt": '小二',
-    "15pt": '三号',
-    "14.5pt": '小三',
-    "14pt": '四号',
-    "12pt": '小四',
-    "10.5pt": '五号',
-    "9pt": '小五',
-    "7.5pt": '六号',
-    "6.5pt": '小六',
-    "5.5pt": '七号',
-    "5pt": '八号'
+    '': '小四',
+    '42pt': '初号',
+    '36pt': '小初',
+    '26pt': '一号',
+    '24pt': '小一',
+    '22pt': '二号',
+    '18pt': '小二',
+    '15pt': '三号',
+    '14.5pt': '小三',
+    '14pt': '四号',
+    '12pt': '小四',
+    '10.5pt': '五号',
+    '9pt': '小五',
+    '7.5pt': '六号',
+    '6.5pt': '小六',
+    '5.5pt': '七号',
+    '5pt': '八号'
 };
 function changeSize(e) {
     if ((0, _quillEditor.getEditor)()) {
@@ -73,14 +73,12 @@ var SizeDropDown = function (_Component) {
             size = Number.parseFloat(size, 10);
             if (isNaN(size)) {
                 return '12pt';
+            } else if (size > 72) {
+                return '72pt';
+            } else if (size < 5) {
+                return '5pt';
             } else {
-                if (size > 72) {
-                    return '72pt';
-                } else if (size < 5) {
-                    return '5pt';
-                } else {
-                    return size + 'pt';
-                }
+                return size + 'pt';
             }
         };
 
@@ -96,7 +94,6 @@ var SizeDropDown = function (_Component) {
         _this.inputClick = function (e) {
             e.stopPropagation();
             e.nativeEvent.stopImmediatePropagation();
-            // window     .quillEditor     .focus();
             $(document).on('click', _this.closePanel);
             _this.setState({ open: true });
         };
@@ -104,8 +101,8 @@ var SizeDropDown = function (_Component) {
         _this.handleKeyPress = function (e) {
             if (e.key === 'Enter') {
                 _this.closePanel();
-                if (quillEditor) {
-                    quillEditor.format('size', _this.formatSize(_this.input.value), 'user');
+                if ((0, _quillEditor.getEditor)()) {
+                    (0, _quillEditor.getEditor)().format('size', _this.formatSize(_this.input.value), 'user');
                 }
             }
         };

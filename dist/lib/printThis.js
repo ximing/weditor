@@ -50,34 +50,36 @@ exports.default = function ($) {
         opt = $.extend({}, $.fn.printThis.defaults, options);
         var $element = this instanceof $ ? this : $(this);
 
-        var strFrameName = "printThis-" + new Date().getTime();
+        var strFrameName = 'printThis-' + new Date().getTime();
 
         if (window.location.hostname !== document.domain && navigator.userAgent.match(/msie/i)) {
             // Ugly IE hacks due to IE not inheriting document.domain from parent
             // checks if document.domain is set by comparing the host name against document.domain
-            var iframeSrc = "javascript:document.write(\"<head><script>document.domain=\\\"" + document.domain + "\\\";</s" + "cript></head><body></body>\")";
+            var iframeSrc = 'javascript:document.write("<head><script>document.domain=\\"' + document.domain + '\\";</s' + 'cript></head><body></body>")';
             var printI = document.createElement('iframe');
-            printI.name = "printIframe";
+            printI.name = 'printIframe';
             printI.id = strFrameName;
-            printI.className = "MSIE";
+            printI.className = 'MSIE';
             document.body.appendChild(printI);
             printI.src = iframeSrc;
         } else {
             // other browsers inherit document.domain, and IE works if document.domain is not explicitly set
             var $frame = $("<iframe id='" + strFrameName + "' name='printIframe' />");
-            $frame.appendTo("body");
+            $frame.appendTo('body');
         }
 
-        var $iframe = $("#" + strFrameName);
+        var $iframe = $('#' + strFrameName);
 
         // show frame if in debug mode
-        if (!opt.debug) $iframe.css({
-            position: "absolute",
-            width: "0px",
-            height: "0px",
-            left: "-600px",
-            top: "-600px"
-        });
+        if (!opt.debug) {
+            $iframe.css({
+                position: 'absolute',
+                width: '0px',
+                height: '0px',
+                left: '-600px',
+                top: '-600px'
+            });
+        }
 
         // $iframe.ready() and $iframe.load were inconsistent between browsers
         setTimeout(function () {
@@ -105,8 +107,8 @@ exports.default = function ($) {
             }
 
             var $doc = $iframe.contents(),
-                $head = $doc.find("head"),
-                $body = $doc.find("body"),
+                $head = $doc.find('head'),
+                $body = $doc.find('body'),
                 $base = $('base'),
                 baseURL;
 
@@ -125,21 +127,25 @@ exports.default = function ($) {
             $head.append('<base href="' + baseURL + '">');
 
             // import page stylesheets
-            if (opt.importCSS) $("link[rel=stylesheet]").each(function () {
-                var href = $(this).attr("href");
-                if (href) {
-                    var media = $(this).attr("media") || "all";
-                    $head.append("<link type='text/css' rel='stylesheet' href='" + href + "' media='" + media + "'>");
-                }
-            });
+            if (opt.importCSS) {
+                $('link[rel=stylesheet]').each(function () {
+                    var href = $(this).attr('href');
+                    if (href) {
+                        var media = $(this).attr('media') || 'all';
+                        $head.append("<link type='text/css' rel='stylesheet' href='" + href + "' media='" + media + "'>");
+                    }
+                });
+            }
 
             // import style tags
-            if (opt.importStyle) $("style").each(function () {
-                $(this).clone().appendTo($head);
-            });
+            if (opt.importStyle) {
+                $('style').each(function () {
+                    $(this).clone().appendTo($head);
+                });
+            }
 
             // add title of the page
-            if (opt.pageTitle) $head.append("<title>" + opt.pageTitle + "</title>");
+            if (opt.pageTitle) $head.append('<title>' + opt.pageTitle + '</title>');
 
             // import additional stylesheet(s)
             if (opt.loadCSS) {
@@ -167,9 +173,11 @@ exports.default = function ($) {
             if (opt.printContainer) $body.append($element.outer());
 
             // otherwise just print interior elements of container
-            else $element.each(function () {
-                    $body.append($(this).html());
-                });
+            else {
+                    $element.each(function () {
+                        $body.append($(this).html());
+                    });
+                }
 
             if (opt.canvas) {
                 // Re-draw new canvases by referencing the originals
@@ -236,9 +244,9 @@ exports.default = function ($) {
             if (opt.removeInline) {
                 // $.removeAttr available jQuery 1.7+
                 if ($.isFunction($.removeAttr)) {
-                    $doc.find("body *").removeAttr("style");
+                    $doc.find('body *').removeAttr('style');
                 } else {
-                    $doc.find("body *").attr("style", "");
+                    $doc.find('body *').attr('style', '');
                 }
             }
 
@@ -246,15 +254,15 @@ exports.default = function ($) {
             appendContent($body, opt.footer);
 
             setTimeout(function () {
-                if ($iframe.hasClass("MSIE")) {
+                if ($iframe.hasClass('MSIE')) {
                     // check if the iframe was created with the ugly hack
                     // and perform another ugly hack out of neccessity
-                    window.frames["printIframe"].focus();
-                    $head.append("<script>  window.print(); </s" + "cript>");
+                    window.frames['printIframe'].focus();
+                    $head.append('<script>  window.print(); </s' + 'cript>');
                 } else {
                     // proper method
-                    if (document.queryCommandSupported("print")) {
-                        $iframe[0].contentWindow.document.execCommand("print", false, null);
+                    if (document.queryCommandSupported('print')) {
+                        $iframe[0].contentWindow.document.execCommand('print', false, null);
                     } else {
                         $iframe[0].contentWindow.focus();
                         $iframe[0].contentWindow.print();
@@ -277,8 +285,8 @@ exports.default = function ($) {
         importCSS: true, // import parent page css
         importStyle: false, // import style tags
         printContainer: true, // print outer container/$.selector
-        loadCSS: "", // load an additional css file - load multiple stylesheets with an array []
-        pageTitle: "", // add title to print page
+        loadCSS: '', // load an additional css file - load multiple stylesheets with an array []
+        pageTitle: '', // add title to print page
         removeInline: false, // remove all inline styles
         printDelay: 333, // variable print delay
         header: null, // prefix to html
@@ -291,7 +299,7 @@ exports.default = function ($) {
 
     // $.selector container
     $.fn.outer = function () {
-        return $($("<div></div>").html(this.clone())).html();
+        return $($('<div></div>').html(this.clone())).html();
     };
 };
 

@@ -62,8 +62,8 @@ var _default = (_temp = _class = function (_Component) {
                 className = _props.className;
 
             var classString = (0, _classnames2.default)((_classNames = {
-                'xm-icon iconfont': true
-            }, _defineProperty(_classNames, 'icon-' + type, type), _defineProperty(_classNames, 'iconfont-spin', !!spin || type === 'loading'), _classNames), className);
+                'xm-icon docicon': true
+            }, _defineProperty(_classNames, 'docicon-' + type, type), _defineProperty(_classNames, 'iconfont-spin', !!spin || type === 'loading'), _classNames), className);
             return _react2.default.createElement('i', _extends({ className: classString }, (0, _omit2.default)(this.props, ['type', 'spin', 'className'])));
         }
     }]);

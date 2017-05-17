@@ -81,8 +81,8 @@ $shadow-2               : 0 1px 8px $shadow-color;
 $box-shadow-base        : $shadow-1-down;
 
 /* font */
-$iconfont-css-prefix: anticon;
-$icon-url: "https://at.alicdn.com/t/font_1473840929_824008";
+$iconfont-css-prefix: docicon;
+$icon-url: "https://at.alicdn.com/t/font_19hj9opnmfopf1or";
 
 // Color
 $primary-color          : #2db7f5;
@@ -107,10 +107,6 @@ $line-height-base       : 1.5;
 $line-height-computed   : floor(($font-size-base * $line-height-base));
 $border-radius-base     : 2px;
 $border-radius-sm       : 4px;
-
-// ICONFONT
-$iconfont-css-prefix    : anticon;
-$icon-url               : "https://at.alicdn.com/t/font_1473840929_824008";
 
 // LINK
 $link-color             : #2db7f5;

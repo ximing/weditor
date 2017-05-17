@@ -94,7 +94,8 @@ var Editor = (_temp = _class = function (_Component) {
 }(_react.Component), _class.defaultProps = {
     options: {
         uploadUrl: '',
-        helpOptions: []
+        helpOptions: [],
+        fileOptions: []
     },
     doc: {
         name: '',
