@@ -90,3 +90,7 @@ export default class WEditor extends Component {
         );
     }
 }
+
+export const call = function () {
+
+}

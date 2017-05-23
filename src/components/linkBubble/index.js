@@ -10,11 +10,8 @@ import {observer, inject} from 'mobx-react';
 import Input from '../input/index';
 import Button from '../button/index';
 import {contains} from '../../lib/util';
-import {getEditor} from '../../lib/quillEditor';
-import insert from '../../model/insert';
 
 
-@inject('insert') @observer
 export default class LinkBubble extends Component {
     static defaultProps = {
         linkTitle:'',

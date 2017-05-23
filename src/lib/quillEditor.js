@@ -97,7 +97,7 @@ export const initQuillEditor = function (dom, options) {
             imageResize: true
         },
         placeholder: '输入文档...',
-        theme: 'snow',
+        //theme: 'bubble',
         scrollingContainer:document.querySelector('.weditor-body')
     });
     $quillEditorDom = $(quillDom).find('.ql-editor');
@@ -105,6 +105,14 @@ export const initQuillEditor = function (dom, options) {
     // quillEditor.on('text-change', (range, oldRange, source) => {
     //     resize();
     // });
+    quillEditor.on('text-change', function(delta, oldDelta, source) {
+        editor.focus = true;
+        if(editor.range){
+            editor.format = quillEditor.getFormat(editor.range) || {};
+        }else{
+            editor.format = {};
+        }
+    });
     quillEditor.on('selection-change', (range, oldRange, source) => {
         console.log('selection-change', range, source);
         if (range) {

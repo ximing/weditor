@@ -2,7 +2,7 @@
  * Created by yeanzhi on 17/3/20.
  */
 'use strict';
-import './catalogue.scss';
+import './style/catalogue.scss';
 import React, {Component} from 'react';
 import Icon from './components/icon/index';
 import {observer,inject} from 'mobx-react';
