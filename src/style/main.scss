@@ -127,6 +127,48 @@ body {
     border: none !important;
 }
 
+
+.img-selection{
+    position: absolute;
+    top: 0px;
+    width: 200px;
+    height: 200px;
+    border: 1px solid #0096fd;
+    z-index: 999;
+    .docs-squarehandleselectionbox-handle {
+        position: absolute;
+        border: 1px solid #fff;
+        background-color: #0096fd;
+        width: 8px;
+        z-index: 999;
+        height: 8px;
+        font-size: 0;
+    }
+    .docx-selection-topleft{
+        position: absolute;
+        top: -4px;
+        left: -4px;
+    }
+
+    .docx-selection-topright{
+        position: absolute;
+        top: -4px;
+        right: -4px;
+    }
+
+    .docx-selection-bottomleft{
+        position: absolute;
+        bottom: -4px;
+        left: -4px;
+    }
+
+    .docx-selection-bottomright{
+        position: absolute;
+        bottom: -4px;
+        right: -4px;
+    }
+}
+
 ::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, .2);
     background-clip: padding-box;

@@ -72,6 +72,12 @@ export default class WEditor extends Component {
                                 return <OtherSelection key={item.id} name={item.name} range={item.range} />;
                             })
                         }
+                        <div className="img-selection">
+                            <div className="docs-squarehandleselectionbox-handle docx-selection-topleft"></div>
+                            <div className="docs-squarehandleselectionbox-handle docx-selection-topright"></div>
+                            <div className="docs-squarehandleselectionbox-handle docx-selection-bottomleft"></div>
+                            <div className="docs-squarehandleselectionbox-handle docx-selection-bottomright"></div>
+                        </div>
                     </div>
                 </div>
                 {

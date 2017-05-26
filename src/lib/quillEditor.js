@@ -94,7 +94,12 @@ export const initQuillEditor = function (dom, options) {
             },
             //'syntax': true        // Enable with default configuration
             //imageDrop: true,
-            imageResize: true
+            imageResize: {
+                container:'.weditor-body',
+                imgSelection:'.img-selection',
+                top:102,
+                left:0
+            }
         },
         placeholder: '输入文档...',
         //theme: 'bubble',
