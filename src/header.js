@@ -4,14 +4,13 @@
 'use strict';
 import React, {Component} from 'react';
 import {formatDate} from './lib/timeRelated';
-import CommonHeader from './commonHeader';
-import StartHeader from './startHeader';
+import Toolbar from './toolbar';
 import {getEditor} from './lib/quillEditor';
 import {info} from './components/toast';
 import Dropdown from 'rc-dropdown';
 import Menu, { Item as MenuItem, Divider } from 'rc-menu';
 import 'rc-dropdown/assets/index.css';
-
+import {is} from './lib/util';
 
 import printThis from './lib/printThis';
 const $ = window.jQuery;
@@ -19,7 +18,6 @@ printThis($);
 
 import help from './model/help';
 import insert from './model/insert';
-import format from './model/format';
 import editor from './model/editor';
 
 export default class EditorHeader extends Component {
@@ -39,8 +37,35 @@ export default class EditorHeader extends Component {
     }
 
 
+    toggleCatalogue = () => {
+        if (getEditor()) {
+            let ops = getEditor().getContents().ops;
+            let _ops = [];
+            ops = ops.forEach((item, i) => {
+                if (ops[i + 1] && ops[i + 1].attributes && ops[i + 1].attributes.header && is('String',item.insert)) {
+                    _ops.push({
+                        h: ops[i + 1].attributes.header,
+                        content: item.insert
+                    });
+                }
+            });
+            console.log(_ops);
+            this.props.catalogue.open = true;
+            this.props.catalogue.list = _ops;
+        }
+    }
+
+
     backList() {
         // this.props.dispatch(push('/xnote/index'));
+    }
+
+    print = () =>{
+        $('.ql-editor').printThis({
+            pageTitle:'',
+            header:null,
+            footer:null
+        });
     }
 
 
@@ -89,16 +114,16 @@ export default class EditorHeader extends Component {
         }
     }
 
-    renderOpverHeader() {
-        const {panel} = this.state;
-        return (
-            <div className="toolbar-opver" id="toolbarOpver">
-                <CommonHeader />
-                <StartHeader style={{display:panel === 1 ? 'inline-block' : 'none'}}/>
-            </div>
-        );
-
-    }
+    // renderOpverHeader() {
+    //     const {panel} = this.state;
+    //     return (
+    //         <div className="toolbar-opver" id="toolbarOpver">
+    //             <CommonHeader />
+    //             <StartHeader style={{display:panel === 1 ? 'inline-block' : 'none'}}/>
+    //         </div>
+    //     );
+    //
+    // }
 
     changePanel(panel) {
         return () => {
@@ -111,7 +136,7 @@ export default class EditorHeader extends Component {
     }
 
 
-    renderToolbar() {
+    renderMenubar() {
         let menu = (
             <Menu selectable={false} onClick={this.HelpMenuClick}>
                 <MenuItem key="0">键盘快捷键</MenuItem>
@@ -206,8 +231,8 @@ export default class EditorHeader extends Component {
                     {this.props.rightContent}
                 </div>
                 <div className="editor-toolbar" id="toolbar">
-                    {this.renderToolbar()}
-                    {this.renderOpverHeader()}
+                    {this.renderMenubar()}
+                    <Toolbar/>
                 </div>
             </div>
         );

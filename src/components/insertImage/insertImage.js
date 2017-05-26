@@ -14,12 +14,12 @@ import Dialog from '../dialog';
 import {contains} from '../../lib/util';
 import {Uploader} from '../uploader/index';
 import Button from '../button';
-import {getEditor} from '../../lib/quillEditor';
-import insert from '../../model/insert';
+
+
 import Input from '../input';
 import {error} from '../toast';
 const $ = window.jQuery;
-@inject('insert') @observer
+
 export default class InsertImage extends Component {
     state = {
         activeKey:'1',
@@ -40,10 +40,9 @@ export default class InsertImage extends Component {
 
     insertLink = ()=>{
         if(this.state.linkUrl) {
-            const {index, length} = this.props.insert.imageSelection;
-            getEditor().insertEmbed(index, 'image', this.state.linkUrl, Quill.sources.USER);
+
         }
-        insert.openImageDialog = false;
+
     }
     initUploader() {
         this.rootNode = ReactDOM.findDOMNode(this);

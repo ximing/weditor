@@ -6,8 +6,9 @@
 import React, {Component} from 'react';
 import {observer,Provider} from 'mobx-react';
 
-import './index.scss';
+import './style/index.scss';
 import 'quill/dist/quill.snow.css';
+//import 'quill/dist/quill.bubble.css';
 import {getEditor,resize} from './lib/quillEditor';
 import WEditor from './weditor';
 import catalogue from './model/catalogue';

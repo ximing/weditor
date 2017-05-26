@@ -1,4 +1,4 @@
-@import "./components/core/variables";
+@import "./variables";
 
 .weditor-header {
     width: 100%;
@@ -126,7 +126,7 @@
             padding: 0;
             border-bottom: solid 1px rgb(226, 226, 226);
             //padding: 2px;
-            .ql-formats{
+            .ql-formats {
                 margin-right: 0px;
             }
         }
@@ -135,7 +135,6 @@
             border: none;
             cursor: pointer;
             display: inline-block;
-            float: left;
             height: 24px;
             padding: 3px 5px;
             width: 28px;
@@ -146,7 +145,6 @@
                 border: none;
                 cursor: pointer;
                 display: inline-block;
-                float: left;
                 width: 28px;
                 color: #666666;
                 &.active {
@@ -155,7 +153,6 @@
             }
             .docicon-vertical {
                 display: inline-block;
-                float: left;
                 height: 24px;
                 padding: 5px 5px;
                 width: 28px;
@@ -167,35 +164,18 @@
     }
     .toolbar-opver {
         padding-left: 30px !important;
-    }
-    .file-header {
-        .ql-pdf {
+        button {
             background: none;
-            border: 1px solid transparent;
+            border: none;
             cursor: pointer;
             display: inline-block;
-            float: left;
-            height: 25px;
-            line-height: 25px;
-            padding: 0px 5px;
-            .pdf-icon {
-                background-position: -160px -180px;
-            }
-        }
-        .ql-word {
-            background: none;
-            border: 1px solid transparent;
-            cursor: pointer;
-            display: inline-block;
-            float: left;
-            height: 25px;
-            line-height: 25px;
-            padding: 0px 5px;
-            .word-icon {
-                background-position: -240px -40px;
-            }
+            height: 24px;
+            padding: 3px 5px;
+            width: 28px;
+            outline: none;
         }
     }
+
     .opver-icon {
         background-image: url(https://s3.meituan.net/v1/mss_814dc1610cda4b2e8febd6ea2c809db5/image/1489914204976.png);
         background-repeat: no-repeat;
@@ -222,7 +202,6 @@
             border: 1px solid transparent;
             cursor: pointer;
             display: inline-block;
-            float: left;
             height: 24px;
             line-height: 24px;
             padding: 0px 5px;

@@ -1,4 +1,4 @@
-@import "./components/core/variables";
+@import "./variables";
 
 @font-face {
     font-family: '#{$iconfont-css-prefix}';
@@ -86,7 +86,7 @@
     content: "\e613";
 }
 
-.#{$iconfont-css-prefix}-blob:before {
+.#{$iconfont-css-prefix}-bold:before {
     content: "\e611";
 }
 .#{$iconfont-css-prefix}-format:before {
@@ -109,4 +109,10 @@
 }
 .#{$iconfont-css-prefix}-vertical:before {
     content: "\e625";
+}
+.#{$iconfont-css-prefix}-color:before {
+    content: "\e619";
+}
+.#{$iconfont-css-prefix}-background:before {
+    content: "\e610";
 }
