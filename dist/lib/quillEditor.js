@@ -39,6 +39,7 @@ var quillDom = null;
 var $quillEditorDom = null;
 var $quillContainer = null;
 var $weditorBody = null;
+
 var linkBubble = {
     height: 95,
     width: 380
@@ -177,11 +178,10 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
                         length = range.length;
 
                     quillEditor.removeFormat(index, length, 'user');
+                    quillEditor.formatLine(index, length, _format2.default.currentFormat, 'user');
                     quillEditor.formatText(index, length, _format2.default.currentFormat, 'user');
+
                     _format2.default.currentFormat = null;
-                    // Object.keys(format.currentFormat).forEach(item=>{
-                    //
-                    // })
                 }
             }
         } else {

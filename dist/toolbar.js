@@ -48,6 +48,10 @@ var _classnames2 = _interopRequireDefault(_classnames);
 
 var _quillEditor = require('./lib/quillEditor');
 
+var _format = require('./model/format');
+
+var _format2 = _interopRequireDefault(_format);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -202,13 +206,13 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
             }
         };
 
-        _this.format = function () {
+        _this.formatPainter = function () {
             var _getEditor$getSelecti2 = (0, _quillEditor.getEditor)().getSelection(),
                 index = _getEditor$getSelecti2.index,
                 length = _getEditor$getSelecti2.length;
 
-            if (!!index) {
-                format.currentFormat = (0, _quillEditor.getEditor)().getFormat(index, length);
+            if (index >= 0) {
+                _format2.default.currentFormat = (0, _quillEditor.getEditor)().getFormat(index, length);
             }
         };
 
@@ -331,7 +335,7 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                     },
                     _react2.default.createElement(
                         'button',
-                        { className: 'ql-format', onClick: this.format },
+                        { className: 'ql-format', onClick: this.formatPainter },
                         _react2.default.createElement(_icon2.default, { type: 'format' })
                     )
                 ),
