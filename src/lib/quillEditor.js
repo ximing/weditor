@@ -136,10 +136,8 @@ export const initQuillEditor = function (dom, options) {
             // }
             if (range.length !== 0) {
                 //处理格式刷
-                console.log('currentFormat'.repeat(10),format.currentFormat)
                 if (format.currentFormat) {
                     const {index, length} = range;
-                    console.log('hello',format,index, length);
                     quillEditor.removeFormat(index, length, 'user');
                     quillEditor.formatLine(index,length,format.currentFormat, 'user');
                     quillEditor.formatText(index,length,format.currentFormat, 'user');

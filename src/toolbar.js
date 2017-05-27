@@ -200,10 +200,8 @@ export default class EditorToolbar extends Component {
 
     formatPainter = () => {
         let {index, length} = getEditor().getSelection();
-        console.log(index, length, !!index, !length)
         if (index >= 0) {
             format.currentFormat = getEditor().getFormat(index, length);
-            console.log('hello'.repeat(10), getEditor().getFormat(index, length))
         }
     }
 
