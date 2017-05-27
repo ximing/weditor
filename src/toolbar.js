@@ -12,8 +12,9 @@ import ToolTip from './components/tooltip';
 import Icon from './components/icon';
 import HightLight from './components/hightLight';
 import classnames from 'classnames';
-
 import {getEditor} from './lib/quillEditor';
+import format from './model/format';
+
 
 @inject(state => ({
     rangeFormat: state.editor.format,
@@ -137,9 +138,9 @@ export default class EditorToolbar extends Component {
         e.preventDefault()
         const quillEditor = getEditor();
         if (quillEditor) {
-            if(this.hasMark(type)){
+            if (this.hasMark(type)) {
                 quillEditor.format(type, false, 'user');
-            }else{
+            } else {
                 quillEditor.format(type, true, 'user');
             }
         }
@@ -157,17 +158,17 @@ export default class EditorToolbar extends Component {
         e.preventDefault();
         const quillEditor = getEditor();
         if (quillEditor) {
-            console.log(this.hasBlock(type),this.props.editor.format[type],type)
-            if(this.hasBlock(type)){
-                if(this.props.editor.format[type] === val){
+            console.log(this.hasBlock(type), this.props.editor.format[type], type)
+            if (this.hasBlock(type)) {
+                if (this.props.editor.format[type] === val) {
                     quillEditor.format(type, false, 'user');
-                }else{
+                } else {
                     quillEditor.format(type, val, 'user');
                 }
-            }else{
-                if(val){
+            } else {
+                if (val) {
                     quillEditor.format(type, val, 'user');
-                }else{
+                } else {
                     quillEditor.format(type, true, 'user');
                 }
             }
@@ -197,10 +198,12 @@ export default class EditorToolbar extends Component {
         }
     };
 
-    format = () => {
+    formatPainter = () => {
         let {index, length} = getEditor().getSelection();
-        if (!!index) {
+        console.log(index, length, !!index, !length)
+        if (index >= 0) {
             format.currentFormat = getEditor().getFormat(index, length);
+            console.log('hello'.repeat(10), getEditor().getFormat(index, length))
         }
     }
 
@@ -241,7 +244,7 @@ export default class EditorToolbar extends Component {
                     mouseLeaveDelay={0}
                     overlay={<div>格式刷</div>}
                 >
-                    <button className="ql-format" onClick={this.format}>
+                    <button className="ql-format" onClick={this.formatPainter}>
                         <Icon type="format"/>
                     </button>
                 </ToolTip>
@@ -310,7 +313,7 @@ export default class EditorToolbar extends Component {
                     mouseLeaveDelay={0}
                     overlay={<div>有序列表 ctrl+Option+L</div>}
                 >
-                    {this.renderBlockButton('list', 'ol','ordered')}
+                    {this.renderBlockButton('list', 'ol', 'ordered')}
                 </ToolTip>
                 <ToolTip
                     placement="bottom"
@@ -318,7 +321,7 @@ export default class EditorToolbar extends Component {
                     mouseLeaveDelay={0}
                     overlay={<div>无序列表 ctrl+Option+U</div>}
                 >
-                    {this.renderBlockButton('list', 'ul','bullet')}
+                    {this.renderBlockButton('list', 'ul', 'bullet')}
                 </ToolTip>
                 <ToolTip
                     placement="bottom"

@@ -15,6 +15,7 @@ let quillDom = null;
 let $quillEditorDom = null;
 let $quillContainer = null;
 let $weditorBody = null;
+
 const linkBubble = {
     height: 95,
     width: 380
@@ -135,14 +136,15 @@ export const initQuillEditor = function (dom, options) {
             // }
             if (range.length !== 0) {
                 //处理格式刷
+                console.log('currentFormat'.repeat(10),format.currentFormat)
                 if (format.currentFormat) {
                     const {index, length} = range;
+                    console.log('hello',format,index, length);
                     quillEditor.removeFormat(index, length, 'user');
-                    quillEditor.formatText(index, length, format.currentFormat, 'user');
+                    quillEditor.formatLine(index,length,format.currentFormat, 'user');
+                    quillEditor.formatText(index,length,format.currentFormat, 'user');
+
                     format.currentFormat = null;
-                    // Object.keys(format.currentFormat).forEach(item=>{
-                    //
-                    // })
                 }
             }
         } else {
