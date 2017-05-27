@@ -7,7 +7,7 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5;
+var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6;
 
 var _mobx = require('mobx');
 
@@ -67,7 +67,11 @@ var Insert = (_class = function Insert() {
 
     _initDefineProp(this, 'linkUrl', _descriptor4, this);
 
-    _initDefineProp(this, 'linkPosition', _descriptor5, this);
+    _initDefineProp(this, 'isReadOnlyLink', _descriptor5, this);
+
+    this.isCreateNewLink = true;
+
+    _initDefineProp(this, 'linkPosition', _descriptor6, this);
 
     this.linkSelection = {
         length: 0,
@@ -97,7 +101,12 @@ var Insert = (_class = function Insert() {
     initializer: function initializer() {
         return '';
     }
-}), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, 'linkPosition', [_mobx.observable], {
+}), _descriptor5 = _applyDecoratedDescriptor(_class.prototype, 'isReadOnlyLink', [_mobx.observable], {
+    enumerable: true,
+    initializer: function initializer() {
+        return false;
+    }
+}), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, 'linkPosition', [_mobx.observable], {
     enumerable: true,
     initializer: function initializer() {
         return {

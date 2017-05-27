@@ -85,7 +85,6 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
                 container: '#toolbarOpver',
                 handlers: {
                     'link': function link(value) {
-                        console.log(value, _editor2.default.range, _editor2.default.format, _insert2.default.openLinkDialog);
                         if (value) {
                             if (_insert2.default.openLinkDialog) {
                                 _insert2.default.openLinkDialog = false;
@@ -94,18 +93,19 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
                             } else if (_editor2.default.range) {
                                 var _editor$range = _editor2.default.range,
                                     index = _editor$range.index,
-                                    length = _editor$range.length; //getEditor().getSelection()
+                                    length = _editor$range.length;
 
                                 _insert2.default.openLinkDialog = true;
                                 _insert2.default.linkTitle = getEditor().getText(index, length);
                                 _insert2.default.linkUrl = null;
                                 setLinkBubble(index);
                             }
-                            _insert2.default.linkSelection = _editor2.default.range; //getEditor().getSelection();
+                            _insert2.default.linkSelection = _editor2.default.range;
+                            _insert2.default.isCreateNewLink = true;
                         } else {
                             var _editor$range2 = _editor2.default.range,
                                 _index = _editor$range2.index,
-                                _length = _editor$range2.length; //getEditor().getSelection()
+                                _length = _editor$range2.length;
 
                             var _quillEditor$getLeaf = quillEditor.getLeaf(_index),
                                 _quillEditor$getLeaf2 = _slicedToArray(_quillEditor$getLeaf, 2),
@@ -114,7 +114,7 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
 
                             var LinkIndex = quillEditor.getIndex(leaf);
                             //getEditor().format('link', false);
-                            getEditor().removeFormat(LinkIndex, leaf.text.length);
+                            getEditor().removeFormat(LinkIndex, leaf.text.length, 'user');
                         }
                     },
                     'image': function image(args) {
@@ -162,15 +162,23 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
             _editor2.default.range = range;
             _editor2.default.focus = true;
             _editor2.default.format = quillEditor.getFormat(range) || {};
-            //let rangeFormat = quillEditor.getFormat(range);
-            // if (rangeFormat.link) {
-            //     insert.openLinkDialog = true;
-            //     insert.linkUrl = rangeFormat.link;
-            //     let [leaf, offset] = quillEditor.getLeaf(range.index);
-            //     insert.linkTitle = leaf.text;
-            //     // let index= quillEditor.getIndex(leaf);
-            //     setLinkBubble(range.index)
-            // }
+            if (_editor2.default.format.link) {
+                var _quillEditor$getLeaf3 = quillEditor.getLeaf(range.index),
+                    _quillEditor$getLeaf4 = _slicedToArray(_quillEditor$getLeaf3, 2),
+                    leaf = _quillEditor$getLeaf4[0],
+                    offset = _quillEditor$getLeaf4[1];
+                // let linkIndex = quillEditor.getIndex(leaf);
+                //在文本最开始的时候，拿不到 link format 所以不用判断左区间的问题了。
+
+
+                if (offset < leaf.length()) {
+                    _insert2.default.openLinkDialog = true;
+                    _insert2.default.linkUrl = _editor2.default.format.link;
+                    _insert2.default.isReadOnlyLink = true;
+                    _insert2.default.linkTitle = leaf.text;
+                    setLinkBubble(range.index);
+                }
+            }
             if (range.length !== 0) {
                 //处理格式刷
                 if (_format2.default.currentFormat) {

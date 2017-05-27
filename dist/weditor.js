@@ -153,7 +153,7 @@ var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
                         )
                     )
                 ),
-                this.props.insert.openLinkDialog && _react2.default.createElement(_linkBubble2.default, null),
+                this.props.insert.openLinkDialog && _react2.default.createElement(_linkBubble2.default, { insert: this.props.insert }),
                 this.props.insert.openImageDialog && _react2.default.createElement(_insertImage2.default, { uploadUrl: this.props.options.uploadUrl }),
                 this.props.help.hotKeysDialog && _react2.default.createElement(_hotKeysDialog2.default, null)
             );
