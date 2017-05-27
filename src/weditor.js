@@ -6,6 +6,7 @@ import React, {Component} from 'react';
 import hotkeys from 'hotkeys-js';
 import ReactDOM from 'react-dom';
 import Header from './header';
+import Toolbar from './toolbar';
 import Catalogue from './catalogue';
 import LinkBubble from './components/linkBubble';
 import InsertImage from './components/insertImage';
@@ -58,6 +59,9 @@ export default class WEditor extends Component {
                         fileOptions={this.props.options.fileOptions}
                         rightContent={this.props.rightContent}
                         helpOptions={this.props.options.helpOptions}/>
+                <div className="editor-toolbar" id="toolbar">
+                    <Toolbar/>
+                </div>
                 <div className="weditor-body">
                     <Catalogue/>
                     <div className="content-container"
