@@ -9,6 +9,15 @@
     border-color: #bbb #bbb #a8a8a8;
     padding: 16px;
     z-index: 1201;
+    .weditor-bubble-only-read{
+        a:active,a:link,a:visited{
+            color: #15c;
+        }
+        font-size: 14px;
+        span{
+            margin: 0 8px;
+        }
+    }
     .weditor-bubble-item {
         line-height: 2;
         &:first-child {

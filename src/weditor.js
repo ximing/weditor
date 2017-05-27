@@ -86,7 +86,7 @@ export default class WEditor extends Component {
                 </div>
                 {
                     this.props.insert.openLinkDialog &&
-                    <LinkBubble />
+                    <LinkBubble insert={this.props.insert}/>
                 }
                 {
                     this.props.insert.openImageDialog &&

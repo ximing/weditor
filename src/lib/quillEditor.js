@@ -42,6 +42,7 @@ export const setLinkBubble = function (index) {
     if (linkTop + linkBubble.height >= window.innerHeight) {
         linkTop = linkTop - linkBubble.height - height - 10;
     }
+    console.log(index,left, top, height,getEditorBoundingClientRect(),linkTop,linkLeft)
     insert.linkPosition = {
         left: linkLeft,
         top: linkTop
@@ -58,7 +59,6 @@ export const initQuillEditor = function (dom, options) {
                 container: '#toolbarOpver',
                 handlers: {
                     'link': function (value, ...args) {
-                        console.log(value,editor.range,editor.format,insert.openLinkDialog);
                         if (value) {
                             if (insert.openLinkDialog) {
                                 insert.openLinkDialog = false;
@@ -77,7 +77,7 @@ export const initQuillEditor = function (dom, options) {
                             let [leaf, offset] = quillEditor.getLeaf(index);
                             let LinkIndex = quillEditor.getIndex(leaf);
                             //getEditor().format('link', false);
-                            getEditor().removeFormat(LinkIndex, leaf.text.length);
+                            getEditor().removeFormat(LinkIndex, leaf.text.length,'user');
                         }
                     },
                     'image': function (args) {
@@ -96,26 +96,26 @@ export const initQuillEditor = function (dom, options) {
             //'syntax': true        // Enable with default configuration
             //imageDrop: true,
             imageResize: {
-                container:'.weditor-body',
-                imgSelection:'.img-selection',
-                top:102,
-                left:0
+                container: '.weditor-body',
+                imgSelection: '.img-selection',
+                top: 102,
+                left: 0
             }
         },
         placeholder: '输入文档...',
         //theme: 'bubble',
-        scrollingContainer:document.querySelector('.weditor-body')
+        scrollingContainer: document.querySelector('.weditor-body')
     });
     $quillEditorDom = $(quillDom).find('.ql-editor');
     $weditorBody = $('.weditor-body');
     // quillEditor.on('text-change', (range, oldRange, source) => {
     //     resize();
     // });
-    quillEditor.on('text-change', function(delta, oldDelta, source) {
+    quillEditor.on('text-change', function (delta, oldDelta, source) {
         editor.focus = true;
-        if(editor.range){
+        if (editor.range) {
             editor.format = quillEditor.getFormat(editor.range) || {};
-        }else{
+        } else {
             editor.format = {};
         }
     });
@@ -125,22 +125,22 @@ export const initQuillEditor = function (dom, options) {
             editor.range = range;
             editor.focus = true;
             editor.format = quillEditor.getFormat(range) || {};
-            //let rangeFormat = quillEditor.getFormat(range);
-            // if (rangeFormat.link) {
-            //     insert.openLinkDialog = true;
-            //     insert.linkUrl = rangeFormat.link;
-            //     let [leaf, offset] = quillEditor.getLeaf(range.index);
-            //     insert.linkTitle = leaf.text;
-            //     // let index= quillEditor.getIndex(leaf);
-            //     setLinkBubble(range.index)
-            // }
+            if (editor.format.link) {
+                insert.openLinkDialog = true;
+                insert.linkUrl = editor.format.link;
+                insert.isReadOnlyLink = true;
+                let [leaf, offset] = quillEditor.getLeaf(range.index);
+                insert.linkTitle = leaf.text;
+                // let index= quillEditor.getIndex(leaf);
+                setLinkBubble(range.index)
+            }
             if (range.length !== 0) {
                 //处理格式刷
                 if (format.currentFormat) {
                     const {index, length} = range;
                     quillEditor.removeFormat(index, length, 'user');
-                    quillEditor.formatLine(index,length,format.currentFormat, 'user');
-                    quillEditor.formatText(index,length,format.currentFormat, 'user');
+                    quillEditor.formatLine(index, length, format.currentFormat, 'user');
+                    quillEditor.formatText(index, length, format.currentFormat, 'user');
 
                     format.currentFormat = null;
                 }
@@ -156,7 +156,7 @@ export const initQuillEditor = function (dom, options) {
     // $( window ).on("load", resize);
     return quillEditor;
 };
-export const resize = function() {
+export const resize = function () {
     // console.log('resize')
     // let scrollHeight = $quillEditorDom[0].scrollHeight;
     // console.log('scrollHeight',scrollHeight);

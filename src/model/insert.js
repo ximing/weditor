@@ -13,6 +13,9 @@ class Insert {
     @observable
     linkUrl = '';
     @observable
+    isReadOnlyLink = false;
+
+    @observable
     linkPosition = {
         left:0,
         top:0
