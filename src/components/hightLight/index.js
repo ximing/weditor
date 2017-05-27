@@ -7,6 +7,8 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {contains} from '../../lib/util';
 import Icon from '../icon';
+import {getEditor} from '../../lib/quillEditor';
+import editor from '../../model/editor';
 
 const $ = window.$;
 
@@ -56,13 +58,16 @@ export default class extends Component {
     selectBackground(color) {
         return ()=>{
             this.onClose();
+            if(getEditor()){
+                getEditor().formatText(editor.range,'background',color,'user');
+            }
         };
     }
 
     render() {
         return (
             <span className="weditor-hightlight">
-                <Icon type="background"/>
+                <Icon type="background" onClick={this.onClick}/>
                 <div className="hightlight-color-panel" style={{display:this.state.open ? 'block' : 'none'}}>
                     {
                         ['yellow','green','cyan','magenta','darkYellow','darkGray','lightGray','black',

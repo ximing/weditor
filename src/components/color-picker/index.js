@@ -14,7 +14,7 @@ import classnames from 'classnames';
 import {inArea, getFromLocalStorage, setIntoLocalStorage, updateDefaultColors} from './tools';
 import {COLORS} from './static';
 export default class extends Component {
-    state               = {
+    state = {
         color: '#000000',
         isHide: true,
         recentlyUsedColors: ['#000000'],
@@ -23,12 +23,13 @@ export default class extends Component {
     static defaultProps = {
         onChangeComplete: (color, e) => {
         },
-        onChange: (color, e) => {},
+        onChange: (color, e) => {
+        },
         defaultColor: '#00b050',
         icon: 'picker icon',
         width: '193px'
     };
-    static propTypes    = {
+    static propTypes = {
         onChangeComplete: PropTypes.func,
         onChange: PropTypes.func,
         defaultColor: PropTypes.string,
@@ -37,7 +38,7 @@ export default class extends Component {
 
     componentDidMount() {
         document.addEventListener('click', this._handleAreaClick, false);
-        if(getFromLocalStorage('_xmColorPickerDefaultColors').length > 0) {
+        if (getFromLocalStorage('_xmColorPickerDefaultColors').length > 0) {
             this.setState({
                 recentlyUsedColors: getFromLocalStorage('_xmColorPickerDefaultColors')
             });
@@ -75,14 +76,15 @@ export default class extends Component {
     _handleAreaClick = (e) => {
         let x = e.clientX;
         let y = e.clientY;
-        if(!inArea(x, y, `#${this.state.id} .xm-color-picker`) && !inArea(x, y, `#${this.state.id} .xm-color-picker-icon`)) {
+        if (!inArea(x, y, `#${this.state.id} .xm-color-picker`) && !inArea(x, y, `#${this.state.id} .xm-color-picker-icon`)) {
             this.setState({
                 isHide: true
             });
             document.removeEventListener('click', this._handleAreaClick, false);
         }
     };
-    render () {
+
+    render() {
         let {isHide, recentlyUsedColors, color} = this.state;
         let {icon, defaultColor, width} = this.props;
         let xmColorPicker = classnames({
@@ -92,15 +94,18 @@ export default class extends Component {
         return (
             <div className="xm-color-picker-container" id={this.state.id}>
                 <span className="xm-color-picker-icon"
-                    onClick={this._handleIconClick}
+                      onClick={this._handleIconClick}
                 >
                     {icon}
                 </span>
                 <div className={xmColorPicker} style={{width: width}}>
                     <Default onClick={this._handleClick} recentlyUsedColors={defaultColor} color={color}/>
-                    <Block onClick={this._handleClick} onHover={this._handleHover} title="最近使用" colors={recentlyUsedColors}/>
-                    <Block onClick={this._handleClick} onHover={this._handleHover} title="主题颜色" colors={COLORS.THEME} noWrap={false} />
-                    <Block onClick={this._handleClick} onHover={this._handleHover} title="标准颜色" colors={COLORS.STANDARD}/>
+                    <Block onClick={this._handleClick} onHover={this._handleHover} title="最近使用"
+                           colors={recentlyUsedColors}/>
+                    <Block onClick={this._handleClick} onHover={this._handleHover} title="主题颜色" colors={COLORS.THEME}
+                           noWrap={false}/>
+                    <Block onClick={this._handleClick} onHover={this._handleHover} title="标准颜色"
+                           colors={COLORS.STANDARD}/>
                 </div>
             </div>
         );
