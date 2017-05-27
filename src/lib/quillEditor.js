@@ -42,7 +42,6 @@ export const setLinkBubble = function (index) {
     if (linkTop + linkBubble.height >= window.innerHeight) {
         linkTop = linkTop - linkBubble.height - height - 10;
     }
-    console.log(index,left, top, height,getEditorBoundingClientRect(),linkTop,linkLeft)
     insert.linkPosition = {
         left: linkLeft,
         top: linkTop
@@ -65,19 +64,20 @@ export const initQuillEditor = function (dom, options) {
                                 insert.linkTitle = null;
                                 insert.linkUrl = null;
                             } else if (editor.range) {
-                                const {index, length} = editor.range;//getEditor().getSelection()
+                                const {index, length} = editor.range;
                                 insert.openLinkDialog = true;
                                 insert.linkTitle = getEditor().getText(index, length);
                                 insert.linkUrl = null;
                                 setLinkBubble(index);
                             }
-                            insert.linkSelection = editor.range;//getEditor().getSelection();
+                            insert.linkSelection = editor.range;
+                            insert.isCreateNewLink = true;
                         } else {
-                            const {index, length} = editor.range;//getEditor().getSelection()
+                            const {index, length} = editor.range;
                             let [leaf, offset] = quillEditor.getLeaf(index);
                             let LinkIndex = quillEditor.getIndex(leaf);
                             //getEditor().format('link', false);
-                            getEditor().removeFormat(LinkIndex, leaf.text.length,'user');
+                            getEditor().removeFormat(LinkIndex, leaf.text.length, 'user');
                         }
                     },
                     'image': function (args) {
@@ -126,13 +126,17 @@ export const initQuillEditor = function (dom, options) {
             editor.focus = true;
             editor.format = quillEditor.getFormat(range) || {};
             if (editor.format.link) {
-                insert.openLinkDialog = true;
-                insert.linkUrl = editor.format.link;
-                insert.isReadOnlyLink = true;
                 let [leaf, offset] = quillEditor.getLeaf(range.index);
-                insert.linkTitle = leaf.text;
-                // let index= quillEditor.getIndex(leaf);
-                setLinkBubble(range.index)
+                // let linkIndex = quillEditor.getIndex(leaf);
+                //在文本最开始的时候，拿不到 link format 所以不用判断左区间的问题了。
+                if (offset < leaf.length()) {
+                    insert.openLinkDialog = true;
+                    insert.linkUrl = editor.format.link;
+                    insert.isReadOnlyLink = true;
+                    insert.linkTitle = leaf.text;
+                    setLinkBubble(range.index)
+                }
+
             }
             if (range.length !== 0) {
                 //处理格式刷

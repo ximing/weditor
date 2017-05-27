@@ -62,32 +62,46 @@ export default class LinkBubble extends Component {
             let editor = getEditor();
             let selection = insert.linkSelection;
             if (selection) {
-                if (editor.getText(selection.index, selection.length) === insert.linkTitle) {
+                //if editor.getText(selection.index, selection.length) === insert.linkTitle
+                if (insert.isCreateNewLink) {
                     getEditor().format('link', insert.linkUrl, 'user');
                 } else {
                     const {index, length} = selection;
+                    console.log('edit link', index, length)
+
                     editor.deleteText(index, length, 'user');
                     let linkTitle = insert.linkTitle || insert.linkUrl;
                     editor.insertText(index, linkTitle, 'user');
                     editor.setSelection(index, linkTitle.length, 'user');
-                    getEditor().format('link', insert.linkUrl, 'user');
+                    getEditor().formatText(index, linkTitle.length, 'link', insert.linkUrl, 'user');
                 }
             }
             insert.openLinkDialog = false;
         }
     }
 
-    ableEditLink = () => {
+    ableEditLink = (e) => {
+        e.stopPropagation();
+        e
+            .nativeEvent
+            .stopImmediatePropagation();
+        let [leaf, offset] = quillEditor.getLeaf(editor.range.index);
+        let LinkIndex = quillEditor.getIndex(leaf);
+        insert.linkSelection = {
+            index: LinkIndex,
+            length: insert.linkTitle.length || 0
+        };
         this.closeBubble();
         insert.openLinkDialog = true;
+        insert.isCreateNewLink = false;
     };
 
     removeLink = () => {
-        if(getEditor()){
+        if (getEditor()) {
             const {index, length} = editor.range;//getEditor().getSelection()
             let [leaf, offset] = quillEditor.getLeaf(index);
             let LinkIndex = quillEditor.getIndex(leaf);
-            getEditor().removeFormat(LinkIndex, leaf.text.length,'user');
+            getEditor().removeFormat(LinkIndex, leaf.text.length, 'user');
             this.closeBubble();
         }
     };

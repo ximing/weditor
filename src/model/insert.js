@@ -15,6 +15,8 @@ class Insert {
     @observable
     isReadOnlyLink = false;
 
+    isCreateNewLink = true;
+
     @observable
     linkPosition = {
         left:0,
