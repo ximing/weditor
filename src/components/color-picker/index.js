@@ -92,7 +92,7 @@ export default class extends Component {
             isHide: isHide
         });
         return (
-            <div className="xm-color-picker-container" id={this.state.id}>
+            <button className="xm-color-picker-container" id={this.state.id}>
                 <span className="xm-color-picker-icon"
                       onClick={this._handleIconClick}
                 >
@@ -107,7 +107,7 @@ export default class extends Component {
                     <Block onClick={this._handleClick} onHover={this._handleHover} title="标准颜色"
                            colors={COLORS.STANDARD}/>
                 </div>
-            </div>
+            </button>
         );
     }
 }

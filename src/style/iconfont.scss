@@ -32,87 +32,93 @@
 }
 
 .#{$iconfont-css-prefix}-undo:before {
-    content: "\e622";
+    content: "\e688";
 }
 
 .#{$iconfont-css-prefix}-redo:before {
-    content: "\e623";
-}
-
-.#{$iconfont-css-prefix}-ul:before {
-    content: "\e61e";
+    content: "\e697";
 }
 
 .#{$iconfont-css-prefix}-ol:before {
-    content: "\e624";
+    content: "\e68f";
+}
+
+.#{$iconfont-css-prefix}-ul:before {
+    content: "\e691";
 }
 
 .#{$iconfont-css-prefix}-right-indent:before {
-    content: "\e621";
+    content: "\e690";
 }
 
 .#{$iconfont-css-prefix}-left-indent:before {
-    content: "\e620";
+    content: "\e698";
 }
 
 .#{$iconfont-css-prefix}-right-align:before {
-    content: "\e61f";
+    content: "\e68d";
 }
 
 .#{$iconfont-css-prefix}-left-align:before {
-    content: "\e61b";
+    content: "\e68b";
 }
 
 .#{$iconfont-css-prefix}-center-align:before {
-    content: "\e612";
+    content: "\e693";
 }
 
 .#{$iconfont-css-prefix}-justify-align:before {
-    content: "\e617";
+    content: "\e696";
 }
 
 .#{$iconfont-css-prefix}-strike:before {
-    content: "\e61d";
+    content: "\e692";
 }
 
 .#{$iconfont-css-prefix}-underline:before {
-    content: "\e61c";
+    content: "\e68e";
 }
 .#{$iconfont-css-prefix}-italic:before {
-    content: "\e615";
+    content: "\e694";
 }
 
 .#{$iconfont-css-prefix}-clear:before {
-    content: "\e613";
+    content: "\e68a";
 }
 
 .#{$iconfont-css-prefix}-bold:before {
-    content: "\e611";
+    content: "\e686";
 }
 .#{$iconfont-css-prefix}-format:before {
-    content: "\e60f";
+    content: "\e687";
 }
 .#{$iconfont-css-prefix}-max:before {
     content: "\e60e";
 }
 .#{$iconfont-css-prefix}-zoom-out:before {
-    content: "\e60c";
+    content: "\e69e";
 }
 .#{$iconfont-css-prefix}-zoom-in:before {
-    content: "\e609";
+    content: "\e69a";
 }
 .#{$iconfont-css-prefix}-close:before {
-    content: "\e60a";
+    content: "\e631";
 }
 .#{$iconfont-css-prefix}-min:before {
-    content: "\e60b";
+    content: "\e699";
 }
 .#{$iconfont-css-prefix}-vertical:before {
     content: "\e625";
 }
 .#{$iconfont-css-prefix}-color:before {
-    content: "\e619";
+    content: "\e68c";
 }
 .#{$iconfont-css-prefix}-background:before {
-    content: "\e610";
+    content: "\e695";
+}
+.#{$iconfont-css-prefix}-image:before {
+    content: "\e674";
+}
+.#{$iconfont-css-prefix}-link:before {
+    content: "\e602";
 }

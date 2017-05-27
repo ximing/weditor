@@ -5,13 +5,12 @@
     line-height: 20px;
     .xm-size-span{
         display: inline-block;
-        width: 48px;
+        width: 40px;
         background: transparent;
         border: 1px solid transparent;
-        color: #333;
+        color: #333333;
         font-family: Arial,sans-serif;
-        font-size: 11px;
-        font-weight: bold;
+        font-size: 12px;
         height: 20px;
         line-height: 20px;
         overflow: hidden;
@@ -19,7 +18,7 @@
         border-radius: 1px;
         outline: none;
         cursor: pointer;
-        text-align: center;
+        text-align: left;
     }
     .xm-size-input {
         display: inline-block;

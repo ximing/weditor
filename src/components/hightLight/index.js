@@ -66,7 +66,7 @@ export default class extends Component {
 
     render() {
         return (
-            <span className="weditor-hightlight">
+            <button className="weditor-hightlight">
                 <Icon type="background" onClick={this.onClick}/>
                 <div className="hightlight-color-panel" style={{display:this.state.open ? 'block' : 'none'}}>
                     {
@@ -76,7 +76,7 @@ export default class extends Component {
                             })
                     }
                 </div>
-            </span>
+            </button>
         );
     }
 }

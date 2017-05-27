@@ -257,7 +257,9 @@ export default class EditorToolbar extends Component {
                 </ToolTip>
                 <Icon type="vertical"/>
                 <HeaderDropDown val={header}/>
+                <Icon type="vertical"/>
                 <SizeDropDown size={size}/>
+                <Icon type="vertical"/>
                 <ToolTip
                     placement="bottom"
                     mouseEnterDelay={0}
@@ -371,6 +373,27 @@ export default class EditorToolbar extends Component {
                     </button>
                 </ToolTip>
                 <Icon type="vertical"/>
+                <ToolTip
+                    placement="bottom"
+                    mouseEnterDelay={0}
+                    mouseLeaveDelay={0}
+                    overlay={<div>插入链接</div>}
+                >
+                    <button className="ql-link">
+                        <Icon type="link"/>
+                    </button>
+                </ToolTip>
+                <ToolTip
+                    placement="bottom"
+                    mouseEnterDelay={0}
+                    mouseLeaveDelay={0}
+                    overlay={<div>插入图片</div>}
+                >
+                    <button className="ql-image">
+                        <Icon type="image"/>
+                    </button>
+                </ToolTip>
+
             </div>
         );
 

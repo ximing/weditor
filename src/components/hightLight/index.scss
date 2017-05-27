@@ -9,6 +9,11 @@
     width: 30px;
     box-sizing: border-box;
     line-height: 25px;
+    i{
+        font-size: 18px;
+        position: relative;
+        top: -1px;
+    }
     .hightlight-color-panel{
         position: absolute;
         width: 140px;

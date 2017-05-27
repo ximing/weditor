@@ -130,33 +130,11 @@
                 margin-right: 0px;
             }
         }
-        .xm-color-picker-container {
-            background: none;
-            border: none;
-            cursor: pointer;
+        .docicon-vertical {
             display: inline-block;
-            height: 24px;
-            padding: 3px 5px;
-            width: 28px;
-        }
-        .ql-formats {
-            .docicon {
-                background: none;
-                border: none;
-                cursor: pointer;
-                display: inline-block;
-                width: 28px;
-                color: #666666;
-                &.active {
-                    color: $primary-color;
-                }
-            }
-            .docicon-vertical {
-                display: inline-block;
-                height: 24px;
-                padding: 5px 5px;
-                width: 28px;
-            }
+            //height: 24px;
+            //width: 28px;
+            margin: 0 5px;
         }
     }
     .common-header {
@@ -164,15 +142,28 @@
     }
     .toolbar-opver {
         padding-left: 30px !important;
+        background: #F0F0F0;
+        box-shadow: 0 1px 0 0 rgba(221,221,221,0.50);
+        line-height: 50px;
+        height: 50px;
         button {
             background: none;
-            border: none;
             cursor: pointer;
             display: inline-block;
-            height: 24px;
-            padding: 3px 5px;
-            width: 28px;
+            height: 26px;
+            width: 26px;
+            padding: 0;
             outline: none;
+            margin-right: 10px;
+            border: 1px solid #F0F0F0;
+            border-radius: 2px;
+            &:hover{
+                border: 1px solid #CCCCCC;
+            }
+            &:active{
+                background: #DDDDDD;
+                border: 1px solid #CCCCCC;
+            }
         }
     }
 

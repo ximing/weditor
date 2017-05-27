@@ -5,7 +5,6 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import Quill from 'quill';
-import {inject, observer} from 'mobx-react';
 import 'rc-tabs/assets/index.css';
 import Tabs, { TabPane} from 'rc-tabs';
 import ScrollableInkTabBar from 'rc-tabs/lib/ScrollableInkTabBar.js';
@@ -14,7 +13,7 @@ import Dialog from '../dialog';
 import {contains} from '../../lib/util';
 import {Uploader} from '../uploader/index';
 import Button from '../button';
-
+import insert from '../../model/insert';
 
 import Input from '../input';
 import {error} from '../toast';
@@ -91,7 +90,7 @@ export default class InsertImage extends Component {
     }
 
     closeBubble = () => {
-        this.props.insert.openImageDialog = false;
+        insert.openImageDialog = false;
     };
 
     otherDOMClick = (e) => {
