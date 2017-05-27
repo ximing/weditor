@@ -4,6 +4,8 @@
 'use strict';
 import './index.scss';
 import React, {Component} from 'react';
+import {getEditor} from '../../lib/quillEditor';
+import editor from '../../model/editor';
 
 export default class HeaderDropDown extends Component {
 
@@ -39,7 +41,13 @@ export default class HeaderDropDown extends Component {
     }
 
     changeSize = (e) => {
+        this.closePanel();
+        if(getEditor()){
+            getEditor().formatLine(editor.range, 'header', e.target.getAttribute('data-size'),'user');
+        }
     }
+
+
     closePanel = () => {
         this.setState({open: false});
         $(document).off('click', this.closePanel);
@@ -60,7 +68,7 @@ export default class HeaderDropDown extends Component {
                     className="xm-header-span"
                     onClick={this.spanClick}
                     ref={(span) => this.span = span}>{this.state.value}</span>
-                <div className="xm-size-button-dropdown"></div>
+                <div className="xm-size-button-dropdown" onClick={this.spanClick}></div>
                 <div
                     className="xm-size-h"
                     id="xm-size-h"
@@ -68,7 +76,7 @@ export default class HeaderDropDown extends Component {
                         display: this.state.open
                             ? 'block'
                             : 'none'
-                    }}>
+                    }} onClick={this.changeSize}>
                     <p data-size="" className="o-p-h">正文</p>
                     <h1 data-size="1" className="o-p-h">标题1</h1>
                     <h2 data-size="2" className="o-p-h">标题2</h2>

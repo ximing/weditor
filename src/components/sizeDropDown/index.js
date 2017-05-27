@@ -4,7 +4,7 @@
 'use strict';
 import './index.scss';
 import React, {Component} from 'react';
-
+import {getEditor} from '../../lib/quillEditor';
 
 const $ = window.jQuery;
 let fontSizeMap = {
@@ -41,7 +41,7 @@ export default class SizeDropDown extends Component {
     componentDidMount() {
         $('#xm-size-p').on('click', 'p', changeSize);
         this.setState({
-            value: this.props.size,
+            value: this.props.size || 12,
             open: false
         });
 
@@ -70,13 +70,19 @@ export default class SizeDropDown extends Component {
             this.input.value = fontSizeMap[val] || val;
         }
     }
+
     changeSize = (value) => {
         this.setState({value: value});
+        if (getEditor()) {
+            getEditor().format('size', this.formatSize(value), 'user');
+        }
     }
+
     closePanel = () => {
         this.setState({open: false});
         $(document).off('click', this.closePanel);
     }
+
     inputClick = (e) => {
         e.stopPropagation();
         e
@@ -86,25 +92,36 @@ export default class SizeDropDown extends Component {
         this.setState({open: true});
     }
     handleKeyPress = (e) => {
-        if (e.key === 'Enter') {
-            this.closePanel();
-            if (getEditor()) {
-                getEditor().format('size', this.formatSize(this.input.value), 'user');
-            }
-        }
+        // if (e.key === 'Enter') {
+        //     this.closePanel();
+        //     if (getEditor()) {
+        //         getEditor().format('size', this.formatSize(this.input.value), 'user');
+        //     }
+        // }
+        this.changeSize(e.target.getAttribute("data-size")||`12pt`)
+
+        this.closePanel();
+        $(document).off('click', this.closePanel);
+
     }
     //                       {/*onChange={this.changeSize}*/}
+    /*
+     <input
+     className="xm-size-input"
+     onClick={this.inputClick}
+     onKeyPress={this.handleKeyPress}
+     ref={(input) => this.input = input}
+     type="text"/>
+    * */
 
     render() {
         return (
             <div className="xm-size">
-                <input
-                    className="xm-size-input"
+                <span
+                    className="xm-size-span"
                     onClick={this.inputClick}
-                    onKeyPress={this.handleKeyPress}
-                    ref={(input) => this.input = input}
-                    type="text"/>
-                <div className="xm-size-button-dropdown"></div>
+                    ref={(span) => this.span = span}>{this.state.value}</span>
+                <div className="xm-size-button-dropdown" onClick={this.inputClick}></div>
                 <div
                     className="xm-size-p"
                     id="xm-size-p"
@@ -112,7 +129,7 @@ export default class SizeDropDown extends Component {
                         display: this.state.open
                         ? 'block'
                         : 'none'
-                    }}>
+                    }} onClick={this.handleKeyPress}>
                     <p data-size="42pt">初号</p>
                     <p data-size="36pt">小初</p>
                     <p data-size="26pt">一号</p>
