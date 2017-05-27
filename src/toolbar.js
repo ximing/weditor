@@ -288,7 +288,7 @@ export default class EditorToolbar extends Component {
                     mouseLeaveDelay={0}
                     overlay={<div>下划线 ctrl+u</div>}
                 >
-                    {this.renderMarkButton('underlined', 'underline')}
+                    {this.renderMarkButton('underline', 'underline')}
                 </ToolTip>
                 <HightLight />
                 <ToolTip
