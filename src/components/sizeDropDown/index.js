@@ -26,29 +26,35 @@ let fontSizeMap = {
     '5.5pt': '七号',
     '5pt': '八号'
 };
-function changeSize(e) {
 
+function hummenSize(size){
+    if(!!size){
+        if(fontSizeMap[size]){
+            return fontSizeMap[size];
+        }else {
+            return size;
+        }
+    }
+    return '小四';
 }
+
 export default class SizeDropDown extends Component {
 
     constructor() {
         super();
         this.state = {
-            value: 12,
             open: false
         };
     }
+
     componentDidMount() {
-        $('#xm-size-p').on('click', 'p', changeSize);
         this.setState({
-            value: this.props.size || 12,
             open: false
         });
 
     }
 
     componentWillUnmount() {
-        $('#xm-size-p').off('click', 'p', changeSize);
     }
 
     formatSize = (size) => {
@@ -64,15 +70,15 @@ export default class SizeDropDown extends Component {
         }
 
     }
+
     componentWillReceiveProps(nextProps) {
-        if (this.input) {
-            let val = this.formatSize(nextProps.size);
-            this.input.value = fontSizeMap[val] || val;
-        }
+        // if (this.input) {
+        //     let val = this.formatSize(nextProps.size);
+        //     this.input.value = fontSizeMap[val] || val;
+        // }
     }
 
     changeSize = (value) => {
-        this.setState({value: value});
         if (getEditor()) {
             getEditor().format('size', this.formatSize(value), 'user');
         }
@@ -98,8 +104,7 @@ export default class SizeDropDown extends Component {
         //         getEditor().format('size', this.formatSize(this.input.value), 'user');
         //     }
         // }
-        this.changeSize(e.target.getAttribute("data-size")||`12pt`)
-
+        this.changeSize(e.target.getAttribute("data-size") || `12pt`)
         this.closePanel();
         $(document).off('click', this.closePanel);
 
@@ -112,7 +117,7 @@ export default class SizeDropDown extends Component {
      onKeyPress={this.handleKeyPress}
      ref={(input) => this.input = input}
      type="text"/>
-    * */
+     * */
 
     render() {
         return (
@@ -120,15 +125,15 @@ export default class SizeDropDown extends Component {
                 <span
                     className="xm-size-span"
                     onClick={this.inputClick}
-                    ref={(span) => this.span = span}>{this.state.value}</span>
+                    ref={(span) => this.span = span}>{hummenSize(this.props.size)}</span>
                 <div className="xm-size-button-dropdown" onClick={this.inputClick}></div>
                 <div
                     className="xm-size-p"
                     id="xm-size-p"
                     style={{
                         display: this.state.open
-                        ? 'block'
-                        : 'none'
+                            ? 'block'
+                            : 'none'
                     }} onClick={this.handleKeyPress}>
                     <p data-size="42pt">初号</p>
                     <p data-size="36pt">小初</p>
