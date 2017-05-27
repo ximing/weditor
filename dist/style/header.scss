@@ -1,4 +1,4 @@
-@import "./components/core/variables";
+@import "./variables";
 
 .weditor-header {
     width: 100%;
@@ -7,18 +7,41 @@
     border-bottom: 1px solid #ddd;
     position: relative;
     z-index: 110;
-    background: #fff;
     user-select: none;
-    background: -webkit-linear-gradient(top, #fdfdfd, #fff);
-    background: -ms-linear-gradient(top, #fdfdfd, #fff);
-    //box-shadow: 0 2px 3px 0 hsla(0,0%,39%,.15);
-    //height: 95px;
+    background: #FFFFFF;
+    box-shadow: 0 1px 0 0 #DDDDDD;
     box-sizing: border-box;
+    height: 69px;
     button {
         outline: none;
     }
+    .menu-bar {
+        height: 35px;
+        line-height: 35px;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        padding-left: 10px;
+        span {
+            padding: 0 10px;
+            user-select: none;
+            font-size: 14px;
+            cursor: pointer;
+            color: #333333;
+        }
+        span.active {
+            color: #2374d1;
+            background: rgb(246, 246, 246);
+        }
+    }
+
     .header-left-box {
-        line-height: 34px;
+        line-height: 35px;
+        height: 35px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding-left: 20px;
         .header-back-up {
             float: left;
             width: 40px;
@@ -42,13 +65,10 @@
             background-size: 499px 310px;
             background-repeat: no-repeat;
         }
-
         .s-header-text {
             display: inline-block;
-            float: left;
-            height: 34px;
-            line-height: 34px;
-            margin-left: 16px;
+            height: 35px;
+            line-height: 35px;
             vertical-align: top;
             .title-input-pre {
                 font-size: 14px;
@@ -58,19 +78,13 @@
                 letter-spacing: normal;
             }
         }
-        .s-header-time {
-            margin-left: 13px;
-            margin-top: 1px;
-            font-size: 12px;
-            color: #999;
-        }
     }
+
     .header-right-box {
-        position: absolute;
-        height: 100%;
-        top: 5px;
-        right: 20px;
-        line-height: 51px;
+        position: relative;
+        height: 69px;
+        float: right;
+        line-height: 69px;
         .header-item-wrap {
             display: inline-block;
             height: 40px;
@@ -101,101 +115,7 @@
             }
         }
     }
-    .editor-toolbar {
-        .toolbar-tab {
-            height: 25px;
-            line-height: 25px;
-            span {
-                padding: 4px 20px;
-                user-select: none;
-                font-size: 13px;
-                font-weight: bold;
-                cursor: pointer;
-                color: #666666;
-            }
-            span.active {
-                color: #2374d1;
-                background: rgb(246, 246, 246);
-            }
-        }
-        .ql-toolbar.ql-snow {
-            border: none;
-            background-color: rgb(246, 246, 246);
-            height: 40px;
-            line-height: 35px;
-            padding: 0;
-            border-bottom: solid 1px rgb(226, 226, 226);
-            //padding: 2px;
-            .ql-formats{
-                margin-right: 0px;
-            }
-        }
-        .xm-color-picker-container {
-            background: none;
-            border: none;
-            cursor: pointer;
-            display: inline-block;
-            float: left;
-            height: 24px;
-            padding: 3px 5px;
-            width: 28px;
-        }
-        .ql-formats {
-            .docicon {
-                background: none;
-                border: none;
-                cursor: pointer;
-                display: inline-block;
-                float: left;
-                width: 28px;
-                color: #666666;
-                &.active {
-                    color: $primary-color;
-                }
-            }
-            .docicon-vertical {
-                display: inline-block;
-                float: left;
-                height: 24px;
-                padding: 5px 5px;
-                width: 28px;
-            }
-        }
-    }
-    .common-header {
-        color: #444444;
-    }
-    .toolbar-opver {
-        padding-left: 30px !important;
-    }
-    .file-header {
-        .ql-pdf {
-            background: none;
-            border: 1px solid transparent;
-            cursor: pointer;
-            display: inline-block;
-            float: left;
-            height: 25px;
-            line-height: 25px;
-            padding: 0px 5px;
-            .pdf-icon {
-                background-position: -160px -180px;
-            }
-        }
-        .ql-word {
-            background: none;
-            border: 1px solid transparent;
-            cursor: pointer;
-            display: inline-block;
-            float: left;
-            height: 25px;
-            line-height: 25px;
-            padding: 0px 5px;
-            .word-icon {
-                background-position: -240px -40px;
-            }
-        }
-    }
+
     .opver-icon {
         background-image: url(https://s3.meituan.net/v1/mss_814dc1610cda4b2e8febd6ea2c809db5/image/1489914204976.png);
         background-repeat: no-repeat;
@@ -222,7 +142,6 @@
             border: 1px solid transparent;
             cursor: pointer;
             display: inline-block;
-            float: left;
             height: 24px;
             line-height: 24px;
             padding: 0px 5px;

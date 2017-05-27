@@ -18,14 +18,6 @@ var _react2 = _interopRequireDefault(_react);
 
 var _timeRelated = require('./lib/timeRelated');
 
-var _commonHeader = require('./commonHeader');
-
-var _commonHeader2 = _interopRequireDefault(_commonHeader);
-
-var _startHeader = require('./startHeader');
-
-var _startHeader2 = _interopRequireDefault(_startHeader);
-
 var _quillEditor = require('./lib/quillEditor');
 
 var _toast = require('./components/toast');
@@ -40,6 +32,8 @@ var _rcMenu2 = _interopRequireDefault(_rcMenu);
 
 require('rc-dropdown/assets/index.css');
 
+var _util = require('./lib/util');
+
 var _printThis = require('./lib/printThis');
 
 var _printThis2 = _interopRequireDefault(_printThis);
@@ -51,10 +45,6 @@ var _help2 = _interopRequireDefault(_help);
 var _insert = require('./model/insert');
 
 var _insert2 = _interopRequireDefault(_insert);
-
-var _format = require('./model/format');
-
-var _format2 = _interopRequireDefault(_format);
 
 var _editor = require('./model/editor');
 
@@ -82,6 +72,32 @@ var EditorHeader = (_temp = _class = function (_Component) {
         _classCallCheck(this, EditorHeader);
 
         var _this = _possibleConstructorReturn(this, (EditorHeader.__proto__ || Object.getPrototypeOf(EditorHeader)).call(this));
+
+        _this.toggleCatalogue = function () {
+            if ((0, _quillEditor.getEditor)()) {
+                var ops = (0, _quillEditor.getEditor)().getContents().ops;
+                var _ops = [];
+                ops = ops.forEach(function (item, i) {
+                    if (ops[i + 1] && ops[i + 1].attributes && ops[i + 1].attributes.header && (0, _util.is)('String', item.insert)) {
+                        _ops.push({
+                            h: ops[i + 1].attributes.header,
+                            content: item.insert
+                        });
+                    }
+                });
+                console.log(_ops);
+                _this.props.catalogue.open = true;
+                _this.props.catalogue.list = _ops;
+            }
+        };
+
+        _this.print = function () {
+            $('.ql-editor').printThis({
+                pageTitle: '',
+                header: null,
+                footer: null
+            });
+        };
 
         _this.HelpMenuClick = function (_ref) {
             var key = _ref.key;
@@ -161,18 +177,6 @@ var EditorHeader = (_temp = _class = function (_Component) {
             // this.props.dispatch(push('/xnote/index'));
         }
     }, {
-        key: 'renderOpverHeader',
-        value: function renderOpverHeader() {
-            var panel = this.state.panel;
-
-            return _react2.default.createElement(
-                'div',
-                { className: 'toolbar-opver', id: 'toolbarOpver' },
-                _react2.default.createElement(_commonHeader2.default, null),
-                _react2.default.createElement(_startHeader2.default, { style: { display: panel === 1 ? 'inline-block' : 'none' } })
-            );
-        }
-    }, {
         key: 'changePanel',
         value: function changePanel(panel) {
             var _this3 = this;
@@ -186,8 +190,8 @@ var EditorHeader = (_temp = _class = function (_Component) {
             };
         }
     }, {
-        key: 'renderToolbar',
-        value: function renderToolbar() {
+        key: 'renderMenubar',
+        value: function renderMenubar() {
             var menu = _react2.default.createElement(
                 _rcMenu2.default,
                 { selectable: false, onClick: this.HelpMenuClick },
@@ -228,7 +232,7 @@ var EditorHeader = (_temp = _class = function (_Component) {
 
             return _react2.default.createElement(
                 'div',
-                { className: 'toolbar-tab' },
+                { className: 'menu-bar' },
                 _react2.default.createElement(
                     _rcDropdown2.default,
                     {
@@ -296,6 +300,7 @@ var EditorHeader = (_temp = _class = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
+            //this.props.doc.status
             return _react2.default.createElement(
                 'div',
                 { className: 'weditor-header' },
@@ -305,11 +310,6 @@ var EditorHeader = (_temp = _class = function (_Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 's-header' },
-                        _react2.default.createElement(
-                            'a',
-                            { className: 'header-back-up', onClick: this.backList },
-                            _react2.default.createElement('span', { className: 'header-back-icon' })
-                        ),
                         _react2.default.createElement(
                             'span',
                             { className: 's-header-text' },
@@ -326,25 +326,14 @@ var EditorHeader = (_temp = _class = function (_Component) {
                                     this.props.doc.name || '未命名'
                                 )
                             )
-                        ),
-                        _react2.default.createElement(
-                            'span',
-                            { className: 's-header-time',
-                                id: 'save-status' },
-                            this.props.doc.status
                         )
                     )
                 ),
+                this.renderMenubar(),
                 _react2.default.createElement(
                     'div',
                     { className: 'header-right-box' },
                     this.props.rightContent
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'editor-toolbar', id: 'toolbar' },
-                    this.renderToolbar(),
-                    this.renderOpverHeader()
                 )
             );
         }

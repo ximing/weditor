@@ -18,10 +18,6 @@ var _react2 = _interopRequireDefault(_react);
 
 var _quillEditor = require('../../lib/quillEditor');
 
-var _editor = require('../../model/editor');
-
-var _editor2 = _interopRequireDefault(_editor);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -50,15 +46,16 @@ var fontSizeMap = {
     '5.5pt': '七号',
     '5pt': '八号'
 };
-function changeSize(e) {
-    if ((0, _quillEditor.getEditor)()) {
-        var _editor$range = _editor2.default.range,
-            index = _editor$range.index,
-            length = _editor$range.length;
 
-        (0, _quillEditor.getEditor)().setSelection(index, length, 'user');
-        (0, _quillEditor.getEditor)().format('size', $(e.target).data('size'), 'user');
+function hummenSize(size) {
+    if (!!size) {
+        if (fontSizeMap[size]) {
+            return fontSizeMap[size];
+        } else {
+            return size;
+        }
     }
+    return '小四';
 }
 
 var SizeDropDown = function (_Component) {
@@ -83,7 +80,9 @@ var SizeDropDown = function (_Component) {
         };
 
         _this.changeSize = function (value) {
-            _this.setState({ value: value });
+            if ((0, _quillEditor.getEditor)()) {
+                (0, _quillEditor.getEditor)().format('size', _this.formatSize(value), 'user');
+            }
         };
 
         _this.closePanel = function () {
@@ -99,16 +98,18 @@ var SizeDropDown = function (_Component) {
         };
 
         _this.handleKeyPress = function (e) {
-            if (e.key === 'Enter') {
-                _this.closePanel();
-                if ((0, _quillEditor.getEditor)()) {
-                    (0, _quillEditor.getEditor)().format('size', _this.formatSize(_this.input.value), 'user');
-                }
-            }
+            // if (e.key === 'Enter') {
+            //     this.closePanel();
+            //     if (getEditor()) {
+            //         getEditor().format('size', this.formatSize(this.input.value), 'user');
+            //     }
+            // }
+            _this.changeSize(e.target.getAttribute("data-size") || '12pt');
+            _this.closePanel();
+            $(document).off('click', _this.closePanel);
         };
 
         _this.state = {
-            value: 12,
             open: false
         };
         return _this;
@@ -117,29 +118,33 @@ var SizeDropDown = function (_Component) {
     _createClass(SizeDropDown, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            $('#xm-size-p').on('click', 'p', changeSize);
             this.setState({
-                value: this.props.size,
                 open: false
             });
         }
     }, {
         key: 'componentWillUnmount',
-        value: function componentWillUnmount() {
-            $('#xm-size-p').off('click', 'p', changeSize);
-        }
+        value: function componentWillUnmount() {}
     }, {
         key: 'componentWillReceiveProps',
         value: function componentWillReceiveProps(nextProps) {
-            if (this.input) {
-                var val = this.formatSize(nextProps.size);
-                this.input.value = fontSizeMap[val] || val;
-            }
+            // if (this.input) {
+            //     let val = this.formatSize(nextProps.size);
+            //     this.input.value = fontSizeMap[val] || val;
+            // }
         }
     }, {
         key: 'render',
 
         //                       {/*onChange={this.changeSize}*/}
+        /*
+         <input
+         className="xm-size-input"
+         onClick={this.inputClick}
+         onKeyPress={this.handleKeyPress}
+         ref={(input) => this.input = input}
+         type="text"/>
+         * */
 
         value: function render() {
             var _this2 = this;
@@ -147,15 +152,17 @@ var SizeDropDown = function (_Component) {
             return _react2.default.createElement(
                 'div',
                 { className: 'xm-size' },
-                _react2.default.createElement('input', {
-                    className: 'xm-size-input',
-                    onClick: this.inputClick,
-                    onKeyPress: this.handleKeyPress,
-                    ref: function ref(input) {
-                        return _this2.input = input;
-                    },
-                    type: 'text' }),
-                _react2.default.createElement('div', { className: 'xm-size-button-dropdown' }),
+                _react2.default.createElement(
+                    'span',
+                    {
+                        className: 'xm-size-span',
+                        onClick: this.inputClick,
+                        ref: function ref(span) {
+                            return _this2.span = span;
+                        } },
+                    hummenSize(this.props.size)
+                ),
+                _react2.default.createElement('div', { className: 'xm-size-button-dropdown', onClick: this.inputClick }),
                 _react2.default.createElement(
                     'div',
                     {
@@ -163,7 +170,7 @@ var SizeDropDown = function (_Component) {
                         id: 'xm-size-p',
                         style: {
                             display: this.state.open ? 'block' : 'none'
-                        } },
+                        }, onClick: this.handleKeyPress },
                     _react2.default.createElement(
                         'p',
                         { 'data-size': '42pt' },

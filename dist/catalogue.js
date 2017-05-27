@@ -12,7 +12,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _dec, _class;
 
-require('./catalogue.scss');
+require('./style/catalogue.scss');
 
 var _react = require('react');
 

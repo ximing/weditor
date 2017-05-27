@@ -39,16 +39,9 @@ var HeaderDropDown = function (_Component) {
         var _this = _possibleConstructorReturn(this, (HeaderDropDown.__proto__ || Object.getPrototypeOf(HeaderDropDown)).call(this));
 
         _this.changeSize = function (e) {
+            _this.closePanel();
             if ((0, _quillEditor.getEditor)()) {
-                var _editor$range = _editor2.default.range,
-                    index = _editor$range.index,
-                    length = _editor$range.length;
-
-                (0, _quillEditor.getEditor)().setSelection(index, length, 'user');
-                (0, _quillEditor.getEditor)().format('header', $(e.target).data('size'), 'user');
-                _this.setState({
-                    value: !!$(e.target).data('size') ? '\u6807\u9898' + $(e.target).data('size') : '正文'
-                });
+                (0, _quillEditor.getEditor)().formatLine(_editor2.default.range, 'header', e.target.getAttribute('data-size'), 'user');
             }
         };
 
@@ -116,7 +109,7 @@ var HeaderDropDown = function (_Component) {
                         } },
                     this.state.value
                 ),
-                _react2.default.createElement('div', { className: 'xm-size-button-dropdown' }),
+                _react2.default.createElement('div', { className: 'xm-size-button-dropdown', onClick: this.spanClick }),
                 _react2.default.createElement(
                     'div',
                     {
@@ -124,7 +117,7 @@ var HeaderDropDown = function (_Component) {
                         id: 'xm-size-h',
                         style: {
                             display: this.state.open ? 'block' : 'none'
-                        } },
+                        }, onClick: this.changeSize },
                     _react2.default.createElement(
                         'p',
                         { 'data-size': '', className: 'o-p-h' },

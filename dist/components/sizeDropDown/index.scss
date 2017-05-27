@@ -2,8 +2,24 @@
     display: inline-block;
     position: relative;
     vertical-align: middle;
-    float: left;
     line-height: 20px;
+    .xm-size-span{
+        display: inline-block;
+        width: 40px;
+        background: transparent;
+        border: 1px solid transparent;
+        color: #333333;
+        font-family: Arial,sans-serif;
+        font-size: 12px;
+        height: 20px;
+        line-height: 20px;
+        overflow: hidden;
+        padding: 1px 6px;
+        border-radius: 1px;
+        outline: none;
+        cursor: pointer;
+        text-align: left;
+    }
     .xm-size-input {
         display: inline-block;
         width: 48px;
@@ -46,6 +62,7 @@
         overflow-y: auto;
         border-radius: 2px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        z-index: 100;
         p {
             margin: 5px 0;
             padding-left: 15px;

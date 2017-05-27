@@ -6,7 +6,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.default = undefined;
+exports.call = exports.default = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -27,6 +27,10 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 var _header = require('./header');
 
 var _header2 = _interopRequireDefault(_header);
+
+var _toolbar = require('./toolbar');
+
+var _toolbar2 = _interopRequireDefault(_toolbar);
 
 var _catalogue = require('./catalogue');
 
@@ -123,6 +127,11 @@ var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
                     helpOptions: this.props.options.helpOptions }),
                 _react2.default.createElement(
                     'div',
+                    { className: 'editor-toolbar', id: 'toolbar' },
+                    _react2.default.createElement(_toolbar2.default, null)
+                ),
+                _react2.default.createElement(
+                    'div',
                     { className: 'weditor-body' },
                     _react2.default.createElement(_catalogue2.default, null),
                     _react2.default.createElement(
@@ -133,7 +142,15 @@ var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
                         _react2.default.createElement(_editor2.default, null),
                         this.props.coCursors.map(function (item) {
                             return _react2.default.createElement(_otherSelection2.default, { key: item.id, name: item.name, range: item.range });
-                        })
+                        }),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'img-selection' },
+                            _react2.default.createElement('div', { className: 'docs-squarehandleselectionbox-handle docx-selection-topleft' }),
+                            _react2.default.createElement('div', { className: 'docs-squarehandleselectionbox-handle docx-selection-topright' }),
+                            _react2.default.createElement('div', { className: 'docs-squarehandleselectionbox-handle docx-selection-bottomleft' }),
+                            _react2.default.createElement('div', { className: 'docs-squarehandleselectionbox-handle docx-selection-bottomright' })
+                        )
                     )
                 ),
                 this.props.insert.openLinkDialog && _react2.default.createElement(_linkBubble2.default, null),
@@ -146,3 +163,4 @@ var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
     return WEditor;
 }(_react.Component)) || _class) || _class);
 exports.default = WEditor;
+var call = exports.call = function call() {};

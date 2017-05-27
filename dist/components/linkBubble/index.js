@@ -10,7 +10,7 @@ exports.default = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _dec, _class, _class2, _temp2;
+var _class, _temp2;
 
 require('./index.scss');
 
@@ -22,8 +22,6 @@ var _reactDom = require('react-dom');
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _mobxReact = require('mobx-react');
-
 var _index = require('../input/index');
 
 var _index2 = _interopRequireDefault(_index);
@@ -33,8 +31,6 @@ var _index3 = require('../button/index');
 var _index4 = _interopRequireDefault(_index3);
 
 var _util = require('../../lib/util');
-
-var _quillEditor = require('../../lib/quillEditor');
 
 var _insert = require('../../model/insert');
 
@@ -48,7 +44,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var LinkBubble = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _mobxReact.observer)(_class = (_temp2 = _class2 = function (_Component) {
+var LinkBubble = (_temp2 = _class = function (_Component) {
     _inherits(LinkBubble, _Component);
 
     function LinkBubble() {
@@ -63,7 +59,7 @@ var LinkBubble = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _mo
         }
 
         return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = LinkBubble.__proto__ || Object.getPrototypeOf(LinkBubble)).call.apply(_ref, [this].concat(args))), _this), _this.closeBubble = function (e) {
-            _this.props.insert.openLinkDialog = false;
+            _insert2.default.openLinkDialog = false;
         }, _this.otherDOMClick = function (e) {
             var node = e.target;
             if (!_insert2.default.openLinkDialog) {
@@ -74,28 +70,28 @@ var LinkBubble = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _mo
                 _this.closeBubble();
             }
         }, _this.changeTitle = function (e) {
-            _this.props.insert.linkTitle = e.target.value || '';
+            _insert2.default.linkTitle = e.target.value || '';
         }, _this.changeUrl = function (e) {
-            _this.props.insert.linkUrl = e.target.value || '';
+            _insert2.default.linkUrl = e.target.value || '';
         }, _this.apply = function () {
-            if ((0, _quillEditor.getEditor)() && !!_this.props.insert.linkUrl) {
-                var editor = (0, _quillEditor.getEditor)();
-                var selection = _this.props.insert.linkSelection;
+            if (getEditor() && !!_insert2.default.linkUrl) {
+                var editor = getEditor();
+                var selection = _insert2.default.linkSelection;
                 if (selection) {
-                    if (editor.getText(selection.index, selection.length) === _this.props.insert.linkTitle) {
-                        (0, _quillEditor.getEditor)().format('link', _this.props.insert.linkUrl, 'user');
+                    if (editor.getText(selection.index, selection.length) === _insert2.default.linkTitle) {
+                        getEditor().format('link', _insert2.default.linkUrl, 'user');
                     } else {
                         var index = selection.index,
                             length = selection.length;
 
                         editor.deleteText(index, length, 'user');
-                        var linkTitle = _this.props.insert.linkTitle || _this.props.insert.linkUrl;
+                        var linkTitle = _insert2.default.linkTitle || _insert2.default.linkUrl;
                         editor.insertText(index, linkTitle, 'user');
                         editor.setSelection(index, linkTitle.length, 'user');
-                        (0, _quillEditor.getEditor)().format('link', _this.props.insert.linkUrl, 'user');
+                        getEditor().format('link', _insert2.default.linkUrl, 'user');
                     }
                 }
-                _this.props.insert.openLinkDialog = false;
+                _insert2.default.openLinkDialog = false;
             }
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
@@ -122,9 +118,9 @@ var LinkBubble = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _mo
             return _react2.default.createElement(
                 'section',
                 { className: 'weditor-bubble', style: {
-                        top: this.props.insert.linkPosition.top,
-                        left: this.props.insert.linkPosition.left,
-                        display: this.props.insert.openLinkDialog ? 'block' : 'none'
+                        top: _insert2.default.linkPosition.top,
+                        left: _insert2.default.linkPosition.left,
+                        display: _insert2.default.openLinkDialog ? 'block' : 'none'
                     } },
                 _react2.default.createElement(
                     'div',
@@ -136,7 +132,7 @@ var LinkBubble = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _mo
                     ),
                     ' ',
                     _react2.default.createElement(_index2.default, { className: 'weditor-insert-input',
-                        value: this.props.insert.linkTitle,
+                        value: _insert2.default.linkTitle,
                         onChange: this.changeTitle })
                 ),
                 _react2.default.createElement(
@@ -149,7 +145,7 @@ var LinkBubble = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _mo
                     ),
                     ' ',
                     _react2.default.createElement(_index2.default, { className: 'weditor-insert-input',
-                        value: this.props.insert.linkUrl,
+                        value: _insert2.default.linkUrl,
                         onChange: this.changeUrl }),
                     _react2.default.createElement(
                         _index4.default,
@@ -162,8 +158,8 @@ var LinkBubble = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _mo
     }]);
 
     return LinkBubble;
-}(_react.Component), _class2.defaultProps = {
+}(_react.Component), _class.defaultProps = {
     linkTitle: '',
     linkUrl: ''
-}, _temp2)) || _class) || _class);
+}, _temp2);
 exports.default = LinkBubble;

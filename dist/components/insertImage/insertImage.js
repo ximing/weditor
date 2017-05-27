@@ -10,8 +10,6 @@ exports.default = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _dec, _class;
-
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -23,8 +21,6 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 var _quill = require('quill');
 
 var _quill2 = _interopRequireDefault(_quill);
-
-var _mobxReact = require('mobx-react');
 
 require('rc-tabs/assets/index.css');
 
@@ -52,8 +48,6 @@ var _button = require('../button');
 
 var _button2 = _interopRequireDefault(_button);
 
-var _quillEditor = require('../../lib/quillEditor');
-
 var _insert = require('../../model/insert');
 
 var _insert2 = _interopRequireDefault(_insert);
@@ -73,7 +67,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var $ = window.jQuery;
-var InsertImage = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _mobxReact.observer)(_class = function (_Component) {
+
+var InsertImage = function (_Component) {
     _inherits(InsertImage, _Component);
 
     function InsertImage() {
@@ -95,16 +90,9 @@ var InsertImage = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _m
                 linkUrl: e.target.value
             });
         }, _this.insertLink = function () {
-            if (_this.state.linkUrl) {
-                var _this$props$insert$im = _this.props.insert.imageSelection,
-                    index = _this$props$insert$im.index,
-                    length = _this$props$insert$im.length;
-
-                (0, _quillEditor.getEditor)().insertEmbed(index, 'image', _this.state.linkUrl, _quill2.default.sources.USER);
-            }
-            _insert2.default.openImageDialog = false;
+            if (_this.state.linkUrl) {}
         }, _this.closeBubble = function () {
-            _this.props.insert.openImageDialog = false;
+            _insert2.default.openImageDialog = false;
         }, _this.otherDOMClick = function (e) {
             var node = e.target;
             if (!_insert2.default.openImageDialog) {
@@ -160,7 +148,7 @@ var InsertImage = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _m
                             index = _props$insert$imageSe.index,
                             length = _props$insert$imageSe.length;
 
-                        (0, _quillEditor.getEditor)().insertEmbed(index, 'image', res.data.url, _quill2.default.sources.USER);
+                        getEditor().insertEmbed(index, 'image', res.data.url, _quill2.default.sources.USER);
                         _this3.props.insert.openImageDialog = false;
                     }
                 } else {
@@ -255,5 +243,6 @@ var InsertImage = (_dec = (0, _mobxReact.inject)('insert'), _dec(_class = (0, _m
     }]);
 
     return InsertImage;
-}(_react.Component)) || _class) || _class);
+}(_react.Component);
+
 exports.default = InsertImage;

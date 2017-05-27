@@ -131,10 +131,15 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
             },
             //'syntax': true        // Enable with default configuration
             //imageDrop: true,
-            imageResize: true
+            imageResize: {
+                container: '.weditor-body',
+                imgSelection: '.img-selection',
+                top: 102,
+                left: 0
+            }
         },
         placeholder: '输入文档...',
-        theme: 'snow',
+        //theme: 'bubble',
         scrollingContainer: document.querySelector('.weditor-body')
     });
     $quillEditorDom = $(quillDom).find('.ql-editor');
@@ -142,6 +147,14 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
     // quillEditor.on('text-change', (range, oldRange, source) => {
     //     resize();
     // });
+    quillEditor.on('text-change', function (delta, oldDelta, source) {
+        _editor2.default.focus = true;
+        if (_editor2.default.range) {
+            _editor2.default.format = quillEditor.getFormat(_editor2.default.range) || {};
+        } else {
+            _editor2.default.format = {};
+        }
+    });
     quillEditor.on('selection-change', function (range, oldRange, source) {
         console.log('selection-change', range, source);
         if (range) {

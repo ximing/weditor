@@ -130,7 +130,7 @@ var _default = (_temp2 = _class = function (_Component) {
                 isHide: isHide
             });
             return _react2.default.createElement(
-                'div',
+                'button',
                 { className: 'xm-color-picker-container', id: this.state.id },
                 _react2.default.createElement(
                     'span',
@@ -143,9 +143,12 @@ var _default = (_temp2 = _class = function (_Component) {
                     'div',
                     { className: xmColorPicker, style: { width: width } },
                     _react2.default.createElement(_default3.default, { onClick: this._handleClick, recentlyUsedColors: defaultColor, color: color }),
-                    _react2.default.createElement(_block2.default, { onClick: this._handleClick, onHover: this._handleHover, title: '\u6700\u8FD1\u4F7F\u7528', colors: recentlyUsedColors }),
-                    _react2.default.createElement(_block2.default, { onClick: this._handleClick, onHover: this._handleHover, title: '\u4E3B\u9898\u989C\u8272', colors: _static.COLORS.THEME, noWrap: false }),
-                    _react2.default.createElement(_block2.default, { onClick: this._handleClick, onHover: this._handleHover, title: '\u6807\u51C6\u989C\u8272', colors: _static.COLORS.STANDARD })
+                    _react2.default.createElement(_block2.default, { onClick: this._handleClick, onHover: this._handleHover, title: '\u6700\u8FD1\u4F7F\u7528',
+                        colors: recentlyUsedColors }),
+                    _react2.default.createElement(_block2.default, { onClick: this._handleClick, onHover: this._handleHover, title: '\u4E3B\u9898\u989C\u8272', colors: _static.COLORS.THEME,
+                        noWrap: false }),
+                    _react2.default.createElement(_block2.default, { onClick: this._handleClick, onHover: this._handleHover, title: '\u6807\u51C6\u989C\u8272',
+                        colors: _static.COLORS.STANDARD })
                 )
             );
         }

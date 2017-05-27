@@ -1,7 +1,6 @@
 .weditor-hightlight{
     position: relative;
     display: inline-block;
-    float: left;
     background: none;
     border: none;
     cursor: pointer;
@@ -10,9 +9,14 @@
     width: 30px;
     box-sizing: border-box;
     line-height: 25px;
+    i{
+        font-size: 18px;
+        position: relative;
+        top: -1px;
+    }
     .hightlight-color-panel{
         position: absolute;
-        width: 130px;
+        width: 140px;
         left: -40px;
         top: 25px;
         height: 100px;
