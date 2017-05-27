@@ -4,6 +4,7 @@
 'use strict';
 import React, {Component} from 'react';
 import {inject, observer} from 'mobx-react';
+import {getCtrl} from './lib/util';
 
 import SizeDropDown from './components/sizeDropDown/index';
 import HeaderDropDown from './components/headerDropDown/index';
@@ -220,7 +221,7 @@ export default class EditorToolbar extends Component {
                     placement="bottom"
                     mouseEnterDelay={0}
                     mouseLeaveDelay={0}
-                    overlay={<div>撤销(ctrl+Z)</div>}
+                    overlay={<div>撤销({getCtrl()}+Z)</div>}
                 >
                     <button className="ql-undo" onClick={this.undo}>
                         <Icon type="undo"/>
@@ -230,7 +231,7 @@ export default class EditorToolbar extends Component {
                     placement="bottom"
                     mouseEnterDelay={0}
                     mouseLeaveDelay={0}
-                    overlay={<div>重做(ctrl+Y)</div>}
+                    overlay={<div>重做({getCtrl()}+Y)</div>}
                 >
                     <button className="ql-redo" onClick={this.redo}>
                         <Icon type="redo"/>
@@ -250,7 +251,7 @@ export default class EditorToolbar extends Component {
                     placement="bottom"
                     mouseEnterDelay={0}
                     mouseLeaveDelay={0}
-                    overlay={<div>清除格式 Ctrl+Shift+C</div>}
+                    overlay={<div>清除格式 {getCtrl()}+Shift+C</div>}
                 >
                     <button className="ql-clear-format" onClick={this.clearFormat}>
                         <Icon type="clear"/>
@@ -265,7 +266,7 @@ export default class EditorToolbar extends Component {
                     placement="bottom"
                     mouseEnterDelay={0}
                     mouseLeaveDelay={0}
-                    overlay={<div>加粗 ctrl+b</div>}
+                    overlay={<div>加粗 {getCtrl()}+B</div>}
                 >
                     {this.renderMarkButton('bold', 'bold')}
                 </ToolTip>
@@ -273,7 +274,7 @@ export default class EditorToolbar extends Component {
                     placement="bottom"
                     mouseEnterDelay={0}
                     mouseLeaveDelay={0}
-                    overlay={<div>斜体 ctrl+i</div>}
+                    overlay={<div>斜体 {getCtrl()}+I</div>}
                 >
                     {this.renderMarkButton('italic', 'italic')}
                 </ToolTip>
@@ -281,7 +282,7 @@ export default class EditorToolbar extends Component {
                     placement="bottom"
                     mouseEnterDelay={0}
                     mouseLeaveDelay={0}
-                    overlay={<div>删除线 ctrl+shift+s</div>}
+                    overlay={<div>删除线 {getCtrl()}+Shift+S</div>}
                 >
                     {this.renderMarkButton('strike', 'strike')}
                 </ToolTip>
@@ -289,7 +290,7 @@ export default class EditorToolbar extends Component {
                     placement="bottom"
                     mouseEnterDelay={0}
                     mouseLeaveDelay={0}
-                    overlay={<div>下划线 ctrl+u</div>}
+                    overlay={<div>下划线 {getCtrl()}+U</div>}
                 >
                     {this.renderMarkButton('underline', 'underline')}
                 </ToolTip>
@@ -309,7 +310,7 @@ export default class EditorToolbar extends Component {
                     placement="bottom"
                     mouseEnterDelay={0}
                     mouseLeaveDelay={0}
-                    overlay={<div>有序列表 ctrl+Option+L</div>}
+                    overlay={<div>有序列表 {getCtrl()}+Option+L</div>}
                 >
                     {this.renderBlockButton('list', 'ol', 'ordered')}
                 </ToolTip>
@@ -317,7 +318,7 @@ export default class EditorToolbar extends Component {
                     placement="bottom"
                     mouseEnterDelay={0}
                     mouseLeaveDelay={0}
-                    overlay={<div>无序列表 ctrl+Option+U</div>}
+                    overlay={<div>无序列表 {getCtrl()}+Option+U</div>}
                 >
                     {this.renderBlockButton('list', 'ul', 'bullet')}
                 </ToolTip>
@@ -325,7 +326,7 @@ export default class EditorToolbar extends Component {
                     placement="bottom"
                     mouseEnterDelay={0}
                     mouseLeaveDelay={0}
-                    overlay={<div>左对齐 Ctrl+Shift+L</div>}
+                    overlay={<div>左对齐 {getCtrl()}+Shift+L</div>}
                 >
                     {this.renderAlignButton('left', 'left-align')}
                 </ToolTip>
@@ -333,7 +334,7 @@ export default class EditorToolbar extends Component {
                     placement="bottom"
                     mouseEnterDelay={0}
                     mouseLeaveDelay={0}
-                    overlay={<div>居中对齐 Ctrl+Shift+E</div>}
+                    overlay={<div>居中对齐 {getCtrl()}+Shift+E</div>}
                 >
                     {this.renderAlignButton('center', 'center-align')}
                 </ToolTip>
@@ -341,7 +342,7 @@ export default class EditorToolbar extends Component {
                     placement="bottom"
                     mouseEnterDelay={0}
                     mouseLeaveDelay={0}
-                    overlay={<div>右对齐 Ctrl+Shift+R</div>}
+                    overlay={<div>右对齐 {getCtrl()}+Shift+R</div>}
                 >
                     {this.renderAlignButton('right', 'right-align')}
                 </ToolTip>
@@ -349,7 +350,7 @@ export default class EditorToolbar extends Component {
                     placement="bottom"
                     mouseEnterDelay={0}
                     mouseLeaveDelay={0}
-                    overlay={<div>两端对齐 Ctrl+Shift+J</div>}
+                    overlay={<div>两端对齐 {getCtrl()}+Shift+J</div>}
                 >
                     {this.renderAlignButton('justify', 'justify-align')}
                 </ToolTip>

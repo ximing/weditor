@@ -17,3 +17,12 @@ export function is(type, obj) {
     var clas = Object.prototype.toString.call(obj).slice(8, -1);
     return obj !== undefined && obj !== null && clas === type;
 }
+
+export function platform() {
+    var p = navigator.platform;
+    return p.indexOf("Win") === 0?'windows':'mac';
+}
+
+export function getCtrl() {
+    return platform()==='mac'?'Cmd':'Ctrl';
+}
