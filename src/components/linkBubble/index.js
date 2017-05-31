@@ -136,12 +136,27 @@ export default class LinkBubble extends Component {
         )
     }
 
+    calcTop() {
+        const isReadOnlyLink = this.props.insert.isReadOnlyLink;
+        const {textHeight, top, isAbove} = this.props.insert.linkPosition;
+        if (isAbove) {
+            if (isReadOnlyLink) {
+                return top - 40;
+            } else {
+                return top - 115;
+            }
+        } else {
+            return textHeight + top;
+        }
+    }
+
     render() {
         const {linkPosition, openLinkDialog, isReadOnlyLink} = this.props.insert;
+        const {left} = linkPosition;
         return (
             <section className="weditor-bubble" style={{
-                top: linkPosition.top + (isReadOnlyLink ? 55 : 0),
-                left: linkPosition.left,
+                top: this.calcTop(),
+                left: left,
                 display: openLinkDialog ? 'block' : 'none',
                 padding: isReadOnlyLink ? 8 : 16
             }}>

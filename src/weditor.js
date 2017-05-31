@@ -82,12 +82,13 @@ export default class WEditor extends Component {
                             <div className="docs-squarehandleselectionbox-handle docx-selection-bottomleft"></div>
                             <div className="docs-squarehandleselectionbox-handle docx-selection-bottomright"></div>
                         </div>
+                        {
+                            this.props.insert.openLinkDialog &&
+                            <LinkBubble insert={this.props.insert}/>
+                        }
                     </div>
                 </div>
-                {
-                    this.props.insert.openLinkDialog &&
-                    <LinkBubble insert={this.props.insert}/>
-                }
+
                 {
                     this.props.insert.openImageDialog &&
                     <InsertImage uploadUrl={this.props.options.uploadUrl}/>

@@ -20,12 +20,16 @@ class Insert {
     @observable
     linkPosition = {
         left:0,
-        top:0
+        top:0,
+        isAbove:false,
+        textHeight:20
     }
+
     linkSelection = {
         length:0,
         index:0
     }
+
     imageSelection = {
         length:0,
         index:0

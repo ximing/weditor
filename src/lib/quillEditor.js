@@ -33,19 +33,38 @@ export const getEditorBoundingClientRect = function () {
 };
 
 export const setLinkBubble = function (index) {
+    // const {left, top, height} = getEditor().getBounds(index);
+    // let linkLeft = getEditorBoundingClientRect().left + left;
+    // let linkTop = getEditorBoundingClientRect().top + top + height;
+    // if (linkLeft + linkBubble.width >= window.innerWidth) {
+    //     linkLeft = linkLeft - linkBubble.width;
+    // }
+    // if (linkTop + linkBubble.height >= window.innerHeight) {
+    //     linkTop = linkTop - linkBubble.height - height - 10;
+    // }
+    // console.log(top,linkTop,height,getEditorBoundingClientRect().top);
+    // insert.linkPosition = {
+    //     left: linkLeft,
+    //     top: linkTop
+    // };
+    //======================badk end========================
     const {left, top, height} = getEditor().getBounds(index);
-    let linkLeft = getEditorBoundingClientRect().left + left;
-    let linkTop = getEditorBoundingClientRect().top + top + height;
-    if (linkLeft + linkBubble.width >= window.innerWidth) {
-        linkLeft = linkLeft - linkBubble.width;
+    //120 是body 到浏览器顶部的高度
+    if(top+getEditorBoundingClientRect().top>window.innerHeight-linkBubble.height-20){
+        insert.linkPosition = {
+            left: left,
+            top: top,
+            isAbove:true,
+            textHeight:height
+        };
+    }else{
+        insert.linkPosition = {
+            left: left,
+            top: top,
+            isAbove:false,
+            textHeight:height
+        };
     }
-    if (linkTop + linkBubble.height >= window.innerHeight) {
-        linkTop = linkTop - linkBubble.height - height - 10;
-    }
-    insert.linkPosition = {
-        left: linkLeft,
-        top: linkTop
-    };
 };
 
 
