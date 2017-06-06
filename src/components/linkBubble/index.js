@@ -20,7 +20,7 @@ export default class LinkBubble extends Component {
     static defaultProps = {
         linkTitle: '',
         linkUrl: ''
-    }
+    };
 
     componentDidMount() {
         setTimeout(() => {
@@ -47,7 +47,7 @@ export default class LinkBubble extends Component {
         if (insert.openLinkDialog && !(contains(target, node))) {
             this.closeBubble();
         }
-    }
+    };
 
     changeTitle = (e) => {
         insert.linkTitle = e.target.value || '';
@@ -67,7 +67,7 @@ export default class LinkBubble extends Component {
                     getEditor().format('link', insert.linkUrl, 'user');
                 } else {
                     const {index, length} = selection;
-                    console.log('edit link', index, length)
+                    console.log('edit link', index, length);
 
                     editor.deleteText(index, length, 'user');
                     let linkTitle = insert.linkTitle || insert.linkUrl;
@@ -78,7 +78,7 @@ export default class LinkBubble extends Component {
             }
             insert.openLinkDialog = false;
         }
-    }
+    };
 
     ableEditLink = (e) => {
         e.stopPropagation();

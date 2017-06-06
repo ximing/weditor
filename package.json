@@ -8,7 +8,8 @@
     "scripts": {
         "i": "SASS_BINARY_SITE=http://npm.sankuai.com/dist/node-sass/ npm install",
         "dev": "./node_modules/.bin/webpack-dev-server ",
-        "buildold": "webpack --config webpack.build.config.js",
+        "prepublish":"npm run build",
+        "buildlib": "webpack --config webpack.build.config.js",
         "build": "rimraf dist && rsync -va -progress  ./src/* ./dist && babel src --out-dir dist",
         "test": "jest"
     },

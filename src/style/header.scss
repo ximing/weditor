@@ -11,16 +11,13 @@
     background: #FFFFFF;
     box-shadow: 0 1px 0 0 #DDDDDD;
     box-sizing: border-box;
-    height: 69px;
     button {
         outline: none;
     }
     .menu-bar {
         height: 35px;
         line-height: 35px;
-        position: absolute;
-        bottom: 0px;
-        left: 0px;
+        position: relative;
         padding-left: 10px;
         span {
             padding: 0 10px;

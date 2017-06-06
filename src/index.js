@@ -52,8 +52,7 @@ class  Editor extends Component {
             >
                 <WEditor options={this.props.options}
                          coCursors = {this.props.coCursors}
-                         doc={this.props.doc}
-                         rightContent = {this.props.rightContent}/>
+                         doc={this.props.doc}/>
             </Provider>
         );
     }
