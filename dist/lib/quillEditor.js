@@ -57,23 +57,43 @@ var getEditorBoundingClientRect = exports.getEditorBoundingClientRect = function
 };
 
 var setLinkBubble = exports.setLinkBubble = function setLinkBubble(index) {
+    // const {left, top, height} = getEditor().getBounds(index);
+    // let linkLeft = getEditorBoundingClientRect().left + left;
+    // let linkTop = getEditorBoundingClientRect().top + top + height;
+    // if (linkLeft + linkBubble.width >= window.innerWidth) {
+    //     linkLeft = linkLeft - linkBubble.width;
+    // }
+    // if (linkTop + linkBubble.height >= window.innerHeight) {
+    //     linkTop = linkTop - linkBubble.height - height - 10;
+    // }
+    // console.log(top,linkTop,height,getEditorBoundingClientRect().top);
+    // insert.linkPosition = {
+    //     left: linkLeft,
+    //     top: linkTop
+    // };
+    //======================badk end========================
     var _getEditor$getBounds = getEditor().getBounds(index),
         left = _getEditor$getBounds.left,
         top = _getEditor$getBounds.top,
         height = _getEditor$getBounds.height;
+    //120 是body 到浏览器顶部的高度
 
-    var linkLeft = getEditorBoundingClientRect().left + left;
-    var linkTop = getEditorBoundingClientRect().top + top + height;
-    if (linkLeft + linkBubble.width >= window.innerWidth) {
-        linkLeft = linkLeft - linkBubble.width;
+
+    if (top + getEditorBoundingClientRect().top > window.innerHeight - linkBubble.height - 20) {
+        _insert2.default.linkPosition = {
+            left: left,
+            top: top,
+            isAbove: true,
+            textHeight: height
+        };
+    } else {
+        _insert2.default.linkPosition = {
+            left: left,
+            top: top,
+            isAbove: false,
+            textHeight: height
+        };
     }
-    if (linkTop + linkBubble.height >= window.innerHeight) {
-        linkTop = linkTop - linkBubble.height - height - 10;
-    }
-    _insert2.default.linkPosition = {
-        left: linkLeft,
-        top: linkTop
-    };
 };
 
 var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, options) {

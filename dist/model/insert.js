@@ -111,7 +111,9 @@ var Insert = (_class = function Insert() {
     initializer: function initializer() {
         return {
             left: 0,
-            top: 0
+            top: 0,
+            isAbove: false,
+            textHeight: 20
         };
     }
 })), _class);

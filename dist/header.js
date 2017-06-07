@@ -297,6 +297,26 @@ var EditorHeader = (_temp = _class = function (_Component) {
                 )
             );
         }
+
+        /*
+         <div className="header-left-box list-header">
+         <div className="s-header">
+         <span className="s-header-text">
+         <div className="span-input-wrap">
+         <input className="title-input span-input" defaultValue={'ceshi.doc'} maxLength="100"
+         style={{
+         display: 'none'
+         }}/>
+         <span className="title-input-pre span-input-pre">{this.props.doc.name || '未命名'}</span>
+         </div>
+         </span>
+         </div>
+         </div>
+         <div className="header-right-box">
+         {this.props.rightContent}
+         </div>
+        * */
+
     }, {
         key: 'render',
         value: function render() {
@@ -304,37 +324,7 @@ var EditorHeader = (_temp = _class = function (_Component) {
             return _react2.default.createElement(
                 'div',
                 { className: 'weditor-header' },
-                _react2.default.createElement(
-                    'div',
-                    { className: 'header-left-box list-header' },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 's-header' },
-                        _react2.default.createElement(
-                            'span',
-                            { className: 's-header-text' },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'span-input-wrap' },
-                                _react2.default.createElement('input', { className: 'title-input span-input', defaultValue: 'ceshi.doc', maxLength: '100',
-                                    style: {
-                                        display: 'none'
-                                    } }),
-                                _react2.default.createElement(
-                                    'span',
-                                    { className: 'title-input-pre span-input-pre' },
-                                    this.props.doc.name || '未命名'
-                                )
-                            )
-                        )
-                    )
-                ),
-                this.renderMenubar(),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'header-right-box' },
-                    this.props.rightContent
-                )
+                this.renderMenubar()
             );
         }
     }]);

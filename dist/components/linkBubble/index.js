@@ -230,18 +230,38 @@ var LinkBubble = (0, _mobxReact.observer)(_class = (_temp2 = _class2 = function 
             );
         }
     }, {
+        key: 'calcTop',
+        value: function calcTop() {
+            var isReadOnlyLink = this.props.insert.isReadOnlyLink;
+            var _props$insert$linkPos = this.props.insert.linkPosition,
+                textHeight = _props$insert$linkPos.textHeight,
+                top = _props$insert$linkPos.top,
+                isAbove = _props$insert$linkPos.isAbove;
+
+            if (isAbove) {
+                if (isReadOnlyLink) {
+                    return top - 40;
+                } else {
+                    return top - 115;
+                }
+            } else {
+                return textHeight + top;
+            }
+        }
+    }, {
         key: 'render',
         value: function render() {
             var _props$insert = this.props.insert,
                 linkPosition = _props$insert.linkPosition,
                 openLinkDialog = _props$insert.openLinkDialog,
                 isReadOnlyLink = _props$insert.isReadOnlyLink;
+            var left = linkPosition.left;
 
             return _react2.default.createElement(
                 'section',
                 { className: 'weditor-bubble', style: {
-                        top: linkPosition.top + (isReadOnlyLink ? 55 : 0),
-                        left: linkPosition.left,
+                        top: this.calcTop(),
+                        left: left,
                         display: openLinkDialog ? 'block' : 'none',
                         padding: isReadOnlyLink ? 8 : 16
                     } },

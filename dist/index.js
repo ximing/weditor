@@ -86,8 +86,7 @@ var Editor = (_temp = _class = function (_Component) {
                 },
                 _react2.default.createElement(_weditor2.default, { options: this.props.options,
                     coCursors: this.props.coCursors,
-                    doc: this.props.doc,
-                    rightContent: this.props.rightContent })
+                    doc: this.props.doc })
             );
         }
     }]);

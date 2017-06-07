@@ -25,11 +25,10 @@ body {
 
 .weditor-body {
     padding: 0;
-    position: absolute;
+    position: relative;
     left: 0;
-    top: 120px;
-    right: 0px;
-    bottom: 0px;
+    top: 1px;
+    height: 100%;
     overflow: hidden;
     overflow-y: auto;
     background-color: #f0f0f0;
@@ -46,7 +45,7 @@ body {
         top: 20px;
         //bottom: 10px;
         //left: 0;
-        width: 830px;
+        width: 595.2755880000001pt;
         //margin: 0 auto;
         border: 0;
         //padding: 40px 57px;
@@ -68,7 +67,7 @@ body {
                 z-index: 30;
                 text-align: justify;
                 //padding: 0;
-                padding: 40px 57px;
+                padding: 72pt 90pt;
                 margin: 0;
                 overflow: hidden;
                 //height:100%;

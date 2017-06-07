@@ -18,6 +18,8 @@ var _react2 = _interopRequireDefault(_react);
 
 var _mobxReact = require('mobx-react');
 
+var _util = require('./lib/util');
+
 var _index = require('./components/sizeDropDown/index');
 
 var _index2 = _interopRequireDefault(_index);
@@ -294,7 +296,9 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                         overlay: _react2.default.createElement(
                             'div',
                             null,
-                            '\u64A4\u9500(ctrl+Z)'
+                            '\u64A4\u9500(',
+                            (0, _util.getCtrl)(),
+                            '+Z)'
                         )
                     },
                     _react2.default.createElement(
@@ -312,7 +316,9 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                         overlay: _react2.default.createElement(
                             'div',
                             null,
-                            '\u91CD\u505A(ctrl+Y)'
+                            '\u91CD\u505A(',
+                            (0, _util.getCtrl)(),
+                            '+Y)'
                         )
                     },
                     _react2.default.createElement(
@@ -348,7 +354,9 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                         overlay: _react2.default.createElement(
                             'div',
                             null,
-                            '\u6E05\u9664\u683C\u5F0F Ctrl+Shift+C'
+                            '\u6E05\u9664\u683C\u5F0F ',
+                            (0, _util.getCtrl)(),
+                            '+Shift+C'
                         )
                     },
                     _react2.default.createElement(
@@ -371,7 +379,9 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                         overlay: _react2.default.createElement(
                             'div',
                             null,
-                            '\u52A0\u7C97 ctrl+b'
+                            '\u52A0\u7C97 ',
+                            (0, _util.getCtrl)(),
+                            '+B'
                         )
                     },
                     this.renderMarkButton('bold', 'bold')
@@ -385,7 +395,9 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                         overlay: _react2.default.createElement(
                             'div',
                             null,
-                            '\u659C\u4F53 ctrl+i'
+                            '\u659C\u4F53 ',
+                            (0, _util.getCtrl)(),
+                            '+I'
                         )
                     },
                     this.renderMarkButton('italic', 'italic')
@@ -399,7 +411,9 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                         overlay: _react2.default.createElement(
                             'div',
                             null,
-                            '\u5220\u9664\u7EBF ctrl+shift+s'
+                            '\u5220\u9664\u7EBF ',
+                            (0, _util.getCtrl)(),
+                            '+Shift+S'
                         )
                     },
                     this.renderMarkButton('strike', 'strike')
@@ -413,7 +427,9 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                         overlay: _react2.default.createElement(
                             'div',
                             null,
-                            '\u4E0B\u5212\u7EBF ctrl+u'
+                            '\u4E0B\u5212\u7EBF ',
+                            (0, _util.getCtrl)(),
+                            '+U'
                         )
                     },
                     this.renderMarkButton('underline', 'underline')
@@ -443,7 +459,9 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                         overlay: _react2.default.createElement(
                             'div',
                             null,
-                            '\u6709\u5E8F\u5217\u8868 ctrl+Option+L'
+                            '\u6709\u5E8F\u5217\u8868 ',
+                            (0, _util.getCtrl)(),
+                            '+Option+L'
                         )
                     },
                     this.renderBlockButton('list', 'ol', 'ordered')
@@ -457,7 +475,9 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                         overlay: _react2.default.createElement(
                             'div',
                             null,
-                            '\u65E0\u5E8F\u5217\u8868 ctrl+Option+U'
+                            '\u65E0\u5E8F\u5217\u8868 ',
+                            (0, _util.getCtrl)(),
+                            '+Option+U'
                         )
                     },
                     this.renderBlockButton('list', 'ul', 'bullet')
@@ -471,7 +491,9 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                         overlay: _react2.default.createElement(
                             'div',
                             null,
-                            '\u5DE6\u5BF9\u9F50 Ctrl+Shift+L'
+                            '\u5DE6\u5BF9\u9F50 ',
+                            (0, _util.getCtrl)(),
+                            '+Shift+L'
                         )
                     },
                     this.renderAlignButton('left', 'left-align')
@@ -485,7 +507,9 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                         overlay: _react2.default.createElement(
                             'div',
                             null,
-                            '\u5C45\u4E2D\u5BF9\u9F50 Ctrl+Shift+E'
+                            '\u5C45\u4E2D\u5BF9\u9F50 ',
+                            (0, _util.getCtrl)(),
+                            '+Shift+E'
                         )
                     },
                     this.renderAlignButton('center', 'center-align')
@@ -499,7 +523,9 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                         overlay: _react2.default.createElement(
                             'div',
                             null,
-                            '\u53F3\u5BF9\u9F50 Ctrl+Shift+R'
+                            '\u53F3\u5BF9\u9F50 ',
+                            (0, _util.getCtrl)(),
+                            '+Shift+R'
                         )
                     },
                     this.renderAlignButton('right', 'right-align')
@@ -513,7 +539,9 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                         overlay: _react2.default.createElement(
                             'div',
                             null,
-                            '\u4E24\u7AEF\u5BF9\u9F50 Ctrl+Shift+J'
+                            '\u4E24\u7AEF\u5BF9\u9F50 ',
+                            (0, _util.getCtrl)(),
+                            '+Shift+J'
                         )
                     },
                     this.renderAlignButton('justify', 'justify-align')
