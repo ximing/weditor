@@ -233,9 +233,45 @@ export default class EditorToolbar extends Component {
         })
     }
 
+    renderLinkBtn = () => {
+        const isActive = this.hasMark('link');
+        const onMouseDown = e => {
+            if (getEditor()) {
+                let toolbar = getEditor().getModule('toolbar');
+                toolbar.handlers['link'].call(toolbar, !this.props.editor.format['link']);
+            }
+        };
+        const classname = classnames({
+            button: true,
+            active: isActive
+        })
+        return (
+            <button className={classname} onMouseDown={onMouseDown}>
+                <Icon type="link"/>
+            </button>
+        )
+    }
+
+    renderImageBtn = () => {
+        const onMouseDown = e => {
+            if (getEditor()) {
+                let toolbar = getEditor().getModule('toolbar');
+                toolbar.handlers['image'].call(toolbar, !this.props.editor.format['image']);
+            }
+        };
+        const classname = classnames({
+            button: true
+        })
+        return (
+            <button className={classname} onMouseDown={onMouseDown}>
+                <Icon type="image"/>
+            </button>
+        )
+    };
+
     renderMore = ()=>{
         return(
-            <span className="more-toolbar-container">
+            <span className="more-toolbar-container" onClick={preventDefault}>
                 <div className="popup-triangle-wrapper">
                     <div className="popup-triangle-inner"></div>
                 </div>
@@ -293,9 +329,7 @@ export default class EditorToolbar extends Component {
                     mouseLeaveDelay={0}
                     overlay={<div>减少缩进</div>}
                 >
-                    <button className="ql-indent" value="-1">
-                        <Icon type="left-indent"/>
-                    </button>
+                    {this.renderBlockButton('indent', 'left-indent', '-1')}
                 </ToolTip>
                 <ToolTip
                     placement="bottom"
@@ -303,9 +337,7 @@ export default class EditorToolbar extends Component {
                     mouseLeaveDelay={0}
                     overlay={<div>增加缩进</div>}
                 >
-                    <button className="ql-indent" value="+1">
-                        <Icon type="right-indent"/>
-                    </button>
+                    {this.renderBlockButton('indent', 'right-indent', '+1')}
                 </ToolTip>
                 <Icon type="vertical"/>
                 <ToolTip
@@ -314,9 +346,7 @@ export default class EditorToolbar extends Component {
                     mouseLeaveDelay={0}
                     overlay={<div>插入链接</div>}
                 >
-                    <button className="ql-link">
-                        <Icon type="link"/>
-                    </button>
+                    {this.renderLinkBtn()}
                 </ToolTip>
                 <ToolTip
                     placement="bottom"
@@ -324,9 +354,7 @@ export default class EditorToolbar extends Component {
                     mouseLeaveDelay={0}
                     overlay={<div>插入图片</div>}
                 >
-                    <button className="ql-image">
-                        <Icon type="image"/>
-                    </button>
+                    {this.renderImageBtn()}
                 </ToolTip>
                 </span>
         )
@@ -390,7 +418,7 @@ export default class EditorToolbar extends Component {
                     mouseLeaveDelay={0}
                     overlay={<div>撤销({getCtrl()}+Z)</div>}
                 >
-                    <button className="ql-undo" onClick={this.undo}>
+                    <button onClick={this.undo}>
                         <Icon type="undo"/>
                     </button>
                 </ToolTip>
@@ -400,7 +428,7 @@ export default class EditorToolbar extends Component {
                     mouseLeaveDelay={0}
                     overlay={<div>重做({getCtrl()}+Y)</div>}
                 >
-                    <button className="ql-redo" onClick={this.redo}>
+                    <button onClick={this.redo}>
                         <Icon type="redo"/>
                     </button>
                 </ToolTip>
@@ -410,7 +438,7 @@ export default class EditorToolbar extends Component {
                     mouseLeaveDelay={0}
                     overlay={<div>格式刷</div>}
                 >
-                    <button className="ql-format" onClick={this.formatPainter}>
+                    <button onClick={this.formatPainter}>
                         <Icon type="format"/>
                     </button>
                 </ToolTip>
