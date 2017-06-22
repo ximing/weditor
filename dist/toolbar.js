@@ -249,10 +249,46 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
             });
         };
 
+        _this.renderLinkBtn = function () {
+            var isActive = _this.hasMark('link');
+            var onMouseDown = function onMouseDown(e) {
+                if ((0, _quillEditor.getEditor)()) {
+                    var toolbar = (0, _quillEditor.getEditor)().getModule('toolbar');
+                    toolbar.handlers['link'].call(toolbar, !_this.props.editor.format['link']);
+                }
+            };
+            var classname = (0, _classnames2.default)({
+                button: true,
+                active: isActive
+            });
+            return _react2.default.createElement(
+                'button',
+                { className: classname, onMouseDown: onMouseDown },
+                _react2.default.createElement(_icon2.default, { type: 'link' })
+            );
+        };
+
+        _this.renderImageBtn = function () {
+            var onMouseDown = function onMouseDown(e) {
+                if ((0, _quillEditor.getEditor)()) {
+                    var toolbar = (0, _quillEditor.getEditor)().getModule('toolbar');
+                    toolbar.handlers['image'].call(toolbar, !_this.props.editor.format['image']);
+                }
+            };
+            var classname = (0, _classnames2.default)({
+                button: true
+            });
+            return _react2.default.createElement(
+                'button',
+                { className: classname, onMouseDown: onMouseDown },
+                _react2.default.createElement(_icon2.default, { type: 'image' })
+            );
+        };
+
         _this.renderMore = function () {
             return _react2.default.createElement(
                 'span',
-                { className: 'more-toolbar-container' },
+                { className: 'more-toolbar-container', onClick: preventDefault },
                 _react2.default.createElement(
                     'div',
                     { className: 'popup-triangle-wrapper' },
@@ -366,11 +402,7 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                             '\u51CF\u5C11\u7F29\u8FDB'
                         )
                     },
-                    _react2.default.createElement(
-                        'button',
-                        { className: 'ql-indent', value: '-1' },
-                        _react2.default.createElement(_icon2.default, { type: 'left-indent' })
-                    )
+                    _this.renderBlockButton('indent', 'left-indent', '-1')
                 ),
                 _react2.default.createElement(
                     _tooltip2.default,
@@ -384,11 +416,7 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                             '\u589E\u52A0\u7F29\u8FDB'
                         )
                     },
-                    _react2.default.createElement(
-                        'button',
-                        { className: 'ql-indent', value: '+1' },
-                        _react2.default.createElement(_icon2.default, { type: 'right-indent' })
-                    )
+                    _this.renderBlockButton('indent', 'right-indent', '+1')
                 ),
                 _react2.default.createElement(_icon2.default, { type: 'vertical' }),
                 _react2.default.createElement(
@@ -403,11 +431,7 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                             '\u63D2\u5165\u94FE\u63A5'
                         )
                     },
-                    _react2.default.createElement(
-                        'button',
-                        { className: 'ql-link' },
-                        _react2.default.createElement(_icon2.default, { type: 'link' })
-                    )
+                    _this.renderLinkBtn()
                 ),
                 _react2.default.createElement(
                     _tooltip2.default,
@@ -421,11 +445,7 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                             '\u63D2\u5165\u56FE\u7247'
                         )
                     },
-                    _react2.default.createElement(
-                        'button',
-                        { className: 'ql-image' },
-                        _react2.default.createElement(_icon2.default, { type: 'image' })
-                    )
+                    _this.renderImageBtn()
                 )
             );
         };
@@ -573,7 +593,7 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                     },
                     _react2.default.createElement(
                         'button',
-                        { className: 'ql-undo', onClick: this.undo },
+                        { onClick: this.undo },
                         _react2.default.createElement(_icon2.default, { type: 'undo' })
                     )
                 ),
@@ -593,7 +613,7 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                     },
                     _react2.default.createElement(
                         'button',
-                        { className: 'ql-redo', onClick: this.redo },
+                        { onClick: this.redo },
                         _react2.default.createElement(_icon2.default, { type: 'redo' })
                     )
                 ),
@@ -611,7 +631,7 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                     },
                     _react2.default.createElement(
                         'button',
-                        { className: 'ql-format', onClick: this.formatPainter },
+                        { onClick: this.formatPainter },
                         _react2.default.createElement(_icon2.default, { type: 'format' })
                     )
                 ),
