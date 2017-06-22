@@ -1,3 +1,9 @@
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.WUFile = WUFile;
 /**
  * @fileOverview 文件属性封装
  */
@@ -6,8 +12,8 @@ var idPrefix = 'WU_FILE_',
     rExt = /\.([^.]+)$/,
     statusMap = {};
 
-function gid () {
-    return idPrefix + idSuffix++;
+function gid() {
+  return idPrefix + idSuffix++;
 }
 /**
  * 文件类
@@ -16,142 +22,139 @@ function gid () {
  * @grammar new File( source ) => File
  * @param {Lib.File} source [lib.File](#Lib.File)实例, 此source对象是带有Runtime信息的。
  */
-export function WUFile (source,opt) {
-    this.eventEmitter = opt.eventEmitter;
-    let arrKeys = Object.keys(source);
-    for(let i in arrKeys) {
-        this[arrKeys[i]] = source[arrKeys[i]];
+function WUFile(source, opt) {
+  this.eventEmitter = opt.eventEmitter;
+  var arrKeys = Object.keys(source);
+  for (var i in arrKeys) {
+    this[arrKeys[i]] = source[arrKeys[i]];
+  }
+  /**
+   * 文件ID，每个对象具有唯一ID，与文件名无关
+   * @property id
+   * @type {string}
+   */
+  this.id = gid();
+  /**
+   * 文件名，包括扩展名（后缀）
+   * @property name
+   * @type {string}
+   */
+  this.name = source.name || opt.setName(this.id) || 'Untitled';
+
+  var ext = rExt.exec(source.name) ? RegExp.$1.toLowerCase() : '';
+  /**
+   * 文件扩展名，通过文件名获取，例如test.png的扩展名为png
+   * @property ext
+   * @type {string}
+   */
+  this.ext = ext;
+
+  if (!this.ext && source.type) {
+    ext = /\/(jpg|jpeg|png|gif|bmp)$/i.exec(source.type) ? RegExp.$1.toLowerCase() : '';
+    if (!!ext) {
+      this.name += '.' + ext;
     }
-    /**
-     * 文件ID，每个对象具有唯一ID，与文件名无关
-     * @property id
-     * @type {string}
-     */
-    this.id = gid();
-    /**
-     * 文件名，包括扩展名（后缀）
-     * @property name
-     * @type {string}
-     */
-    this.name = source.name || opt.setName(this.id) || 'Untitled';
+  }
 
-    let ext = rExt.exec(source.name) ? RegExp.$1.toLowerCase() : '';
-    /**
-     * 文件扩展名，通过文件名获取，例如test.png的扩展名为png
-     * @property ext
-     * @type {string}
-     */
-    this.ext = ext;
+  this.path = source.path || 'Untitled';
 
-    if (!this.ext && source.type) {
-        ext = /\/(jpg|jpeg|png|gif|bmp)$/i.exec(source.type) ?
-            RegExp.$1.toLowerCase() : '';
-        if(!!ext) {
-            this.name += '.' + ext;
-        }
-    }
+  this.isFile = true;
+  /**
+   * 文件体积（字节）
+   * @property size
+   * @type {uint}
+   * @default 0
+   */
+  this.size = source.size || 0;
 
+  /**
+   * 文件MIMETYPE类型，与文件类型的对应关系请参考[http://t.cn/z8ZnFny](http://t.cn/z8ZnFny)
+   * @property type
+   * @type {string}
+   * @default 'application/octet-stream'
+   */
+  this.type = source.type || 'application/octet-stream';
 
-    this.path = source.path || 'Untitled';
+  /**
+   * 文件最后修改日期
+   * @property lastModifiedDate
+   * @type {int}
+   * @default 当前时间戳
+   */
+  this.lastModifiedDate = source.lastModifiedDate || new Date() * 1;
 
-    this.isFile = true;
-    /**
-     * 文件体积（字节）
-     * @property size
-     * @type {uint}
-     * @default 0
-     */
-    this.size = source.size || 0;
+  /**
+   * 状态文字说明。在不同的status语境下有不同的用途。
+   * @property statusText
+   * @type {string}
+   */
+  this.statusText = 'inited';
 
-    /**
-     * 文件MIMETYPE类型，与文件类型的对应关系请参考[http://t.cn/z8ZnFny](http://t.cn/z8ZnFny)
-     * @property type
-     * @type {string}
-     * @default 'application/octet-stream'
-     */
-    this.type = source.type || 'application/octet-stream';
+  // 存储文件状态，防止通过属性直接修改
+  statusMap[this.id] = WUFile.Status.INITED;
 
-    /**
-     * 文件最后修改日期
-     * @property lastModifiedDate
-     * @type {int}
-     * @default 当前时间戳
-     */
-    this.lastModifiedDate = source.lastModifiedDate || (new Date() * 1);
-
-
-    /**
-     * 状态文字说明。在不同的status语境下有不同的用途。
-     * @property statusText
-     * @type {string}
-     */
-    this.statusText = 'inited';
-
-    // 存储文件状态，防止通过属性直接修改
-    statusMap[this.id] = WUFile.Status.INITED;
-
-    this.source = source;
-    this.loaded = 0;
+  this.source = source;
+  this.loaded = 0;
 }
 
 WUFile.prototype = {
-    constructor: WUFile,
+  constructor: WUFile,
 
-    /**
-     * 设置状态，状态变化时会触发`change`事件。
-     * @method setStatus
-     * @grammar setStatus( status[, statusText] );
-     * @param {File.Status|String} status [文件状态值](#WebUploader:File:File.Status)
-     * @param {String} [statusText=''] 状态说明，常在error时使用，用http, abort,server等来标记是由于什么原因导致文件错误。
-     */
-    setStatus: function (status, text) {
-        var prevStatus = statusMap[this.id];
-        typeof text !== 'undefined' && (this.statusText = text);
-        if (status !== prevStatus) {
-            statusMap[this.id] = status;
-            /**
-             * 文件状态变化
-             * @event statuschange
-             */
-            this.eventEmitter.trigger('statuschange', status, prevStatus);
-        }
-    },
-
-    /**
-     * 获取文件状态
-     * @return {File.Status}
-     * @example
-     文件状态具体包括以下几种类型：
-     {
-         // 初始化
-        INITED:     0,
-        // 已入队列
-        QUEUED:     1,
-        // 正在上传
-        PROGRESS:     2,
-        // 上传出错
-        ERROR:         3,
-        // 上传成功
-        COMPLETE:     4,
-        // 上传取消
-        CANCELLED:     5
+  /**
+   * 设置状态，状态变化时会触发`change`事件。
+   * @method setStatus
+   * @grammar setStatus( status[, statusText] );
+   * @param {File.Status|String} status [文件状态值](#WebUploader:File:File.Status)
+   * @param {String} [statusText=''] 状态说明，常在error时使用，用http, abort,server等来标记是由于什么原因导致文件错误。
+   */
+  setStatus: function setStatus(status, text) {
+    var prevStatus = statusMap[this.id];
+    typeof text !== 'undefined' && (this.statusText = text);
+    if (status !== prevStatus) {
+      statusMap[this.id] = status;
+      /**
+       * 文件状态变化
+       * @event statuschange
+       */
+      this.eventEmitter.trigger('statuschange', status, prevStatus);
     }
-     */
-    getStatus: function () {
-        return statusMap[this.id];
-    },
+  },
 
-    /**
-     * 获取文件原始信息。
-     * @return {*}
-     */
-    getSource: function () {
-        return this.source;
-    },
+  /**
+   * 获取文件状态
+   * @return {File.Status}
+   * @example
+   文件状态具体包括以下几种类型：
+   {
+       // 初始化
+      INITED:     0,
+      // 已入队列
+      QUEUED:     1,
+      // 正在上传
+      PROGRESS:     2,
+      // 上传出错
+      ERROR:         3,
+      // 上传成功
+      COMPLETE:     4,
+      // 上传取消
+      CANCELLED:     5
+  }
+   */
+  getStatus: function getStatus() {
+    return statusMap[this.id];
+  },
 
-    destroy: function () {
-        delete statusMap[this.id];
-    }
+  /**
+   * 获取文件原始信息。
+   * @return {*}
+   */
+  getSource: function getSource() {
+    return this.source;
+  },
+
+  destroy: function destroy() {
+    delete statusMap[this.id];
+  }
 };
 
 /**
@@ -170,12 +173,12 @@ WUFile.prototype = {
  * @static
  */
 WUFile.Status = {
-    INITED: 'inited',    // 初始状态
-    QUEUED: 'queued',    // 已经进入队列, 等待上传
-    PROGRESS: 'progress',    // 上传中
-    ERROR: 'error',    // 上传出错，可重试
-    COMPLETE: 'complete',    // 上传完成。
-    CANCELLED: 'cancelled',    // 上传取消。
-    INTERRUPT: 'interrupt',    // 上传中断，可续传。
-    INVALID: 'invalid'    // 文件不合格，不能重试上传。
+  INITED: 'inited', // 初始状态
+  QUEUED: 'queued', // 已经进入队列, 等待上传
+  PROGRESS: 'progress', // 上传中
+  ERROR: 'error', // 上传出错，可重试
+  COMPLETE: 'complete', // 上传完成。
+  CANCELLED: 'cancelled', // 上传取消。
+  INTERRUPT: 'interrupt', // 上传中断，可续传。
+  INVALID: 'invalid' // 文件不合格，不能重试上传。
 };

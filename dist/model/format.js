@@ -3,10 +3,19 @@
  */
 'use strict';
 //格式刷使用
-class Format {
-    currentFormat = null;
-}
 
-const format = new Format();
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-export default format;
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Format = function Format() {
+  _classCallCheck(this, Format);
+
+  this.currentFormat = null;
+};
+
+var format = new Format();
+
+exports.default = format;
