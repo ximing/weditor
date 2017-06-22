@@ -8,27 +8,21 @@
  * @param b 子节点
  * @returns {boolean|*}
  */
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.contains = contains;
-exports.is = is;
-exports.platform = platform;
-exports.getCtrl = getCtrl;
-function contains(a, b) {
-    return a == b || (a && a.contains ? a != b && a.contains(b) : !!(a.compareDocumentPosition(b) & 16));
+export function contains(a, b) {
+    return (a == b) || (a && a.contains ?
+            (a != b && a.contains(b)) :
+            !!(a.compareDocumentPosition(b) & 16));
 }
-function is(type, obj) {
+export function is(type, obj) {
     var clas = Object.prototype.toString.call(obj).slice(8, -1);
     return obj !== undefined && obj !== null && clas === type;
 }
 
-function platform() {
+export function platform() {
     var p = navigator.platform;
-    return p.indexOf("Win") === 0 ? 'windows' : 'mac';
+    return p.indexOf("Win") === 0?'windows':'mac';
 }
 
-function getCtrl() {
-    return platform() === 'mac' ? 'Cmd' : 'Ctrl';
+export function getCtrl() {
+    return platform()==='mac'?'Cmd':'Ctrl';
 }

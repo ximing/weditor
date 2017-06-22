@@ -34,16 +34,22 @@ export default class WEditor extends Component {
     constructor() {
         super();
     }
-
+    onWindowResize = ()=>{
+        this.setState({
+            left: this.props.open ? window.innerWidth / 2 - 300 : window.innerWidth / 2 - 400
+        });
+    };
     componentDidMount() {
         let editorDom = this.editorDom = $(ReactDOM.findDOMNode(this.refs.editor)).find('.ql-editor');
         editorDom.on('blur', () => {
             editor.focus = false;
         });
-
+        $(window).on('resize',this.onWindowResize)
     }
 
     componentWillUnmount() {
+        $(window).off('resize',this.onWindowResize)
+
     }
 
     componentWillReceiveProps(nextProps) {

@@ -3,9 +3,9 @@
  */
 'use strict';
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 import {inject, observer} from 'mobx-react';
 import {getCtrl} from './lib/util';
-
 import SizeDropDown from './components/sizeDropDown/index';
 import HeaderDropDown from './components/headerDropDown/index';
 import ColorPicker from './components/color-picker';
@@ -13,8 +13,15 @@ import ToolTip from './components/tooltip';
 import Icon from './components/icon';
 import HightLight from './components/hightLight';
 import classnames from 'classnames';
+import Trigger from 'rc-trigger';
+import 'rc-trigger/assets/index.css';
+
 import {getEditor} from './lib/quillEditor';
 import format from './model/format';
+function preventDefault(e) {
+    e.preventDefault();
+}
+const $ = window.jQuery;
 
 
 @inject(state => ({
@@ -24,6 +31,20 @@ import format from './model/format';
 export default class EditorToolbar extends Component {
     constructor() {
         super();
+    }
+    onWindowResize = ()=>{
+        this.forceUpdate();
+    };
+    componentDidMount(){
+        $(window).on('resize',this.onWindowResize)
+    }
+    componentWillUnmount(){
+        $(window).off('resize',this.onWindowResize)
+    }
+    state = {moreBtnActive:false}
+
+    getPopupContainer = (trigger) => {
+        return ReactDOM.findDOMNode(this);
     }
 
     setColor = (color) => {
@@ -206,6 +227,152 @@ export default class EditorToolbar extends Component {
         }
     }
 
+    onPopupVisibleChange = (visible)=>{
+        this.setState({
+            moreBtnActive:visible
+        })
+    }
+
+    renderMore = ()=>{
+        return(
+            <span className="more-toolbar-container">
+                <div className="popup-triangle-wrapper">
+                    <div className="popup-triangle-inner"></div>
+                </div>
+                    <ToolTip
+                        placement="bottom"
+                        mouseEnterDelay={0}
+                        mouseLeaveDelay={0}
+                        overlay={<div>有序列表 {getCtrl()}+Option+L</div>}
+                    >
+                    {this.renderBlockButton('list', 'ol', 'ordered')}
+                </ToolTip>
+                <ToolTip
+                    placement="bottom"
+                    mouseEnterDelay={0}
+                    mouseLeaveDelay={0}
+                    overlay={<div>无序列表 {getCtrl()}+Option+U</div>}
+                >
+                    {this.renderBlockButton('list', 'ul', 'bullet')}
+                </ToolTip>
+                <ToolTip
+                    placement="bottom"
+                    mouseEnterDelay={0}
+                    mouseLeaveDelay={0}
+                    overlay={<div>左对齐 {getCtrl()}+Shift+L</div>}
+                >
+                    {this.renderAlignButton('left', 'left-align')}
+                </ToolTip>
+                <ToolTip
+                    placement="bottom"
+                    mouseEnterDelay={0}
+                    mouseLeaveDelay={0}
+                    overlay={<div>居中对齐 {getCtrl()}+Shift+E</div>}
+                >
+                    {this.renderAlignButton('center', 'center-align')}
+                </ToolTip>
+                <ToolTip
+                    placement="bottom"
+                    mouseEnterDelay={0}
+                    mouseLeaveDelay={0}
+                    overlay={<div>右对齐 {getCtrl()}+Shift+R</div>}
+                >
+                    {this.renderAlignButton('right', 'right-align')}
+                </ToolTip>
+                <ToolTip
+                    placement="bottom"
+                    mouseEnterDelay={0}
+                    mouseLeaveDelay={0}
+                    overlay={<div>两端对齐 {getCtrl()}+Shift+J</div>}
+                >
+                    {this.renderAlignButton('justify', 'justify-align')}
+                </ToolTip>
+                <ToolTip
+                    placement="bottom"
+                    mouseEnterDelay={0}
+                    mouseLeaveDelay={0}
+                    overlay={<div>减少缩进</div>}
+                >
+                    <button className="ql-indent" value="-1">
+                        <Icon type="left-indent"/>
+                    </button>
+                </ToolTip>
+                <ToolTip
+                    placement="bottom"
+                    mouseEnterDelay={0}
+                    mouseLeaveDelay={0}
+                    overlay={<div>增加缩进</div>}
+                >
+                    <button className="ql-indent" value="+1">
+                        <Icon type="right-indent"/>
+                    </button>
+                </ToolTip>
+                <Icon type="vertical"/>
+                <ToolTip
+                    placement="bottom"
+                    mouseEnterDelay={0}
+                    mouseLeaveDelay={0}
+                    overlay={<div>插入链接</div>}
+                >
+                    <button className="ql-link">
+                        <Icon type="link"/>
+                    </button>
+                </ToolTip>
+                <ToolTip
+                    placement="bottom"
+                    mouseEnterDelay={0}
+                    mouseLeaveDelay={0}
+                    overlay={<div>插入图片</div>}
+                >
+                    <button className="ql-image">
+                        <Icon type="image"/>
+                    </button>
+                </ToolTip>
+                </span>
+        )
+    }
+
+    renderMoreBtn(){
+        let btnClassName = classnames({
+            'more-btn':true,
+            'active':this.state.moreBtnActive
+        })
+        return (
+            <Trigger
+                popupClassName="popup-opver-wrapper"
+                getPopupContainer={this.getPopupContainer}
+                popupPlacement="bottomRight"
+                builtinPlacements={{
+                    bottomLeft: {
+                        points: ['tl', 'bl'],
+                    },
+                    bottomRight: {
+                        points: ['tr', 'br'],
+                    },
+                    bottom: {
+                        points: ['tc', 'bc'],
+                    },
+                }}
+                popupAlign={{
+                    offset: [16, 12],
+                    overflow: {
+                        adjustX: 1,
+                        adjustY: 1
+                    }}}
+                destroyPopupOnHide={false}
+                zIndex={40}
+                defaultPopupVisible={false}
+                mask={false}
+                action={['click']}
+                popup={(this.renderMore())}
+                popupTransitionName={'rc-trigger-popup-zoom'}
+                onPopupVisibleChange={this.onPopupVisibleChange}
+            >
+                <button className={btnClassName} onClick={preventDefault}>更多 <Icon type="triangle"/></button>
+            </Trigger>
+
+        )
+    }
     render() {
         let {rangeFormat, style} = this.props;
         let {color, background, size, header} = rangeFormat;
@@ -306,96 +473,9 @@ export default class EditorToolbar extends Component {
                     )}/>
                 </ToolTip>
                 <Icon type="vertical"/>
-                <ToolTip
-                    placement="bottom"
-                    mouseEnterDelay={0}
-                    mouseLeaveDelay={0}
-                    overlay={<div>有序列表 {getCtrl()}+Option+L</div>}
-                >
-                    {this.renderBlockButton('list', 'ol', 'ordered')}
-                </ToolTip>
-                <ToolTip
-                    placement="bottom"
-                    mouseEnterDelay={0}
-                    mouseLeaveDelay={0}
-                    overlay={<div>无序列表 {getCtrl()}+Option+U</div>}
-                >
-                    {this.renderBlockButton('list', 'ul', 'bullet')}
-                </ToolTip>
-                <ToolTip
-                    placement="bottom"
-                    mouseEnterDelay={0}
-                    mouseLeaveDelay={0}
-                    overlay={<div>左对齐 {getCtrl()}+Shift+L</div>}
-                >
-                    {this.renderAlignButton('left', 'left-align')}
-                </ToolTip>
-                <ToolTip
-                    placement="bottom"
-                    mouseEnterDelay={0}
-                    mouseLeaveDelay={0}
-                    overlay={<div>居中对齐 {getCtrl()}+Shift+E</div>}
-                >
-                    {this.renderAlignButton('center', 'center-align')}
-                </ToolTip>
-                <ToolTip
-                    placement="bottom"
-                    mouseEnterDelay={0}
-                    mouseLeaveDelay={0}
-                    overlay={<div>右对齐 {getCtrl()}+Shift+R</div>}
-                >
-                    {this.renderAlignButton('right', 'right-align')}
-                </ToolTip>
-                <ToolTip
-                    placement="bottom"
-                    mouseEnterDelay={0}
-                    mouseLeaveDelay={0}
-                    overlay={<div>两端对齐 {getCtrl()}+Shift+J</div>}
-                >
-                    {this.renderAlignButton('justify', 'justify-align')}
-                </ToolTip>
-                <ToolTip
-                    placement="bottom"
-                    mouseEnterDelay={0}
-                    mouseLeaveDelay={0}
-                    overlay={<div>减少缩进</div>}
-                >
-                    <button className="ql-indent" value="-1">
-                        <Icon type="left-indent"/>
-                    </button>
-                </ToolTip>
-                <ToolTip
-                    placement="bottom"
-                    mouseEnterDelay={0}
-                    mouseLeaveDelay={0}
-                    overlay={<div>增加缩进</div>}
-                >
-                    <button className="ql-indent" value="+1">
-                        <Icon type="right-indent"/>
-                    </button>
-                </ToolTip>
-                <Icon type="vertical"/>
-                <ToolTip
-                    placement="bottom"
-                    mouseEnterDelay={0}
-                    mouseLeaveDelay={0}
-                    overlay={<div>插入链接</div>}
-                >
-                    <button className="ql-link">
-                        <Icon type="link"/>
-                    </button>
-                </ToolTip>
-                <ToolTip
-                    placement="bottom"
-                    mouseEnterDelay={0}
-                    mouseLeaveDelay={0}
-                    overlay={<div>插入图片</div>}
-                >
-                    <button className="ql-image">
-                        <Icon type="image"/>
-                    </button>
-                </ToolTip>
-
+                {
+                    window.innerWidth<900?this.renderMoreBtn():this.renderMore()
+                }
             </div>
         );
 

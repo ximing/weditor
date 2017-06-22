@@ -2,247 +2,148 @@
  * Created by yeanzhi on 17/3/27.
  */
 'use strict';
+import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
+import Quill from 'quill';
+import 'rc-tabs/assets/index.css';
+import Tabs, { TabPane} from 'rc-tabs';
+import ScrollableInkTabBar from 'rc-tabs/lib/ScrollableInkTabBar.js';
+import TabContent from 'rc-tabs/lib/TabContent.js';
+import Dialog from '../dialog';
+import {contains} from '../../lib/util';
+import {Uploader} from '../uploader/index';
+import Button from '../button';
+import insert from '../../model/insert';
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = undefined;
+import Input from '../input';
+import {error} from '../toast';
+const $ = window.jQuery;
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = require('react-dom');
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _quill = require('quill');
-
-var _quill2 = _interopRequireDefault(_quill);
-
-require('rc-tabs/assets/index.css');
-
-var _rcTabs = require('rc-tabs');
-
-var _rcTabs2 = _interopRequireDefault(_rcTabs);
-
-var _ScrollableInkTabBar = require('rc-tabs/lib/ScrollableInkTabBar.js');
-
-var _ScrollableInkTabBar2 = _interopRequireDefault(_ScrollableInkTabBar);
-
-var _TabContent = require('rc-tabs/lib/TabContent.js');
-
-var _TabContent2 = _interopRequireDefault(_TabContent);
-
-var _dialog = require('../dialog');
-
-var _dialog2 = _interopRequireDefault(_dialog);
-
-var _util = require('../../lib/util');
-
-var _index = require('../uploader/index');
-
-var _button = require('../button');
-
-var _button2 = _interopRequireDefault(_button);
-
-var _insert = require('../../model/insert');
-
-var _insert2 = _interopRequireDefault(_insert);
-
-var _input = require('../input');
-
-var _input2 = _interopRequireDefault(_input);
-
-var _toast = require('../toast');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var $ = window.jQuery;
-
-var InsertImage = function (_Component) {
-    _inherits(InsertImage, _Component);
-
-    function InsertImage() {
-        var _ref;
-
-        var _temp, _this, _ret;
-
-        _classCallCheck(this, InsertImage);
-
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-        }
-
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = InsertImage.__proto__ || Object.getPrototypeOf(InsertImage)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-            activeKey: '1',
-            linkUrl: ''
-        }, _this.onLinkUrlChange = function (e) {
-            _this.setState({
-                linkUrl: e.target.value
-            });
-        }, _this.insertLink = function () {
-            if (_this.state.linkUrl) {}
-        }, _this.closeBubble = function () {
-            _insert2.default.openImageDialog = false;
-        }, _this.otherDOMClick = function (e) {
-            var node = e.target;
-            if (!_insert2.default.openImageDialog) {
-                return false;
-            }
-            var target = _this.target;
-            if (_insert2.default.openImageDialog && !(0, _util.contains)(target, node)) {
-                _this.closeBubble();
-            }
-        }, _this.onChange = function (activeKey) {
-            _this.setState({
-                activeKey: activeKey
-            });
-        }, _temp), _possibleConstructorReturn(_this, _ret);
+export default class InsertImage extends Component {
+    state = {
+        activeKey:'1',
+        linkUrl:''
+    }
+    componentDidMount() {
+        setTimeout(()=>{
+            window.document.addEventListener('click', this.otherDOMClick);
+        },100);
+        this.initUploader();
     }
 
-    _createClass(InsertImage, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
-            var _this2 = this;
+    onLinkUrlChange = (e)=>{
+        this.setState({
+            linkUrl:e.target.value
+        });
+    }
 
-            setTimeout(function () {
-                window.document.addEventListener('click', _this2.otherDOMClick);
-            }, 100);
-            this.initUploader();
+    insertLink = ()=>{
+        if(this.state.linkUrl) {
+
         }
-    }, {
-        key: 'initUploader',
-        value: function initUploader() {
-            var _this3 = this;
 
-            this.rootNode = _reactDom2.default.findDOMNode(this);
-            this.target = this.rootNode.getElementsByClassName('weditor-insert-image-dialog')[0];
-            var uploader = this.uploader = new _index.Uploader({
-                'dnd': '.weditor-uploader-wrapper',
-                'pick': '#weditorUploaderPick',
-                'auto': true,
-                'chunked': false,
-                'chunkSize': 20971520,
-                'linterContiner': document,
-                '$': $,
-                'body': this.target,
-                'multiple': false,
-                'method': 'post',
-                'withCredentials': true,
-                'server': this.props.uploadUrl || ''
-            });
-            uploader.on('uploadAccept', function (obj, res) {
-                res = JSON.parse(res);
-                if (res.errno === 0) {
-                    if (res.data.url) {
-                        var _props$insert$imageSe = _this3.props.insert.imageSelection,
-                            index = _props$insert$imageSe.index,
-                            length = _props$insert$imageSe.length;
-
-                        getEditor().insertEmbed(index, 'image', res.data.url, _quill2.default.sources.USER);
-                        _this3.props.insert.openImageDialog = false;
-                    }
-                } else {
-                    (0, _toast.error)('上传服务错误');
+    }
+    initUploader() {
+        this.rootNode = ReactDOM.findDOMNode(this);
+        this.target = this.rootNode.getElementsByClassName('weditor-insert-image-dialog')[0];
+        let uploader = this.uploader = new Uploader({
+            'dnd': '.weditor-uploader-wrapper',
+            'pick': '#weditorUploaderPick',
+            'auto': true,
+            'chunked': false,
+            'chunkSize': 20971520,
+            'linterContiner': document,
+            '$': $,
+            'body': this.target,
+            'multiple': false,
+            'method': 'post',
+            'withCredentials':true,
+            'server': this.props.uploadUrl || ''
+        });
+        uploader.on('uploadAccept', (obj, res) => {
+            res = JSON.parse(res);
+            if (res.errno === 0) {
+                if (res.data.url) {
+                    const {index, length} = this.props.insert.imageSelection;
+                    getEditor().insertEmbed(index, 'image', res.data.url, Quill.sources.USER);
+                    this.props.insert.openImageDialog = false;
                 }
-            });
-            uploader.on('uploadComplete', function () {
-                uploader.reset();
-            });
-            uploader.on('uploadError', function () {
-                uploader.reset();
-                (0, _toast.error)('上传服务错误');
-            });
-        }
-    }, {
-        key: 'componentWillUnmount',
-        value: function componentWillUnmount() {
-            window.document.removeEventListener('click', this.otherDOMClick);
-            this.uploader.removeEvent('uploadAccept');
-            this.uploader.removeEvent('uploadComplete');
-            this.uploader.removeEvent('uploadError');
-            this.uploader.destory();
-        }
-    }, {
-        key: 'render',
-        value: function render() {
-            var _this4 = this;
+            } else {
+                error('上传服务错误');
+            }
+        });
+        uploader.on('uploadComplete',()=>{
+            uploader.reset();
+        });
+        uploader.on('uploadError',()=>{
+            uploader.reset();
+            error('上传服务错误');
+        });
+    }
 
-            return _react2.default.createElement(_dialog2.default, {
-                title: '\u63D2\u5165\u56FE\u7247',
-                className: 'weditor-insert-image-dialog',
-                content: _react2.default.createElement(
-                    'div',
-                    { className: 'weditor-insert-image' },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'weditor-uploader-wrapper' },
-                        _react2.default.createElement(
-                            _rcTabs2.default,
-                            {
-                                renderTabBar: function renderTabBar() {
-                                    return _react2.default.createElement(_ScrollableInkTabBar2.default, { onTabClick: _this4.onTabClick });
-                                },
-                                renderTabContent: function renderTabContent() {
-                                    return _react2.default.createElement(_TabContent2.default, { animatedWithMargin: true });
-                                },
-                                activeKey: this.state.activeKey,
-                                onChange: this.onChange
-                            },
-                            _react2.default.createElement(
-                                _rcTabs.TabPane,
-                                { tab: '本地上传', key: '1' },
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'weditor-uploader-file-inner' },
-                                    _react2.default.createElement(
-                                        'p',
-                                        { className: 'weditor-image-tips' },
-                                        '\u6700\u5927\u4E0A\u4F2020M\u7684\u56FE\u7247'
-                                    ),
-                                    _react2.default.createElement(
-                                        _button2.default,
-                                        { id: 'weditorUploaderPick' },
-                                        '\u70B9\u51FB\u4E0A\u4F20'
-                                    )
-                                )
-                            ),
-                            _react2.default.createElement(
-                                _rcTabs.TabPane,
-                                { tab: '插入外链', key: '2' },
-                                _react2.default.createElement(
-                                    'div',
-                                    { className: 'weditor-uploader-file-inner' },
-                                    _react2.default.createElement(
-                                        'div',
-                                        null,
-                                        _react2.default.createElement(_input2.default, { onChange: this.onLinkUrlChange }),
-                                        _react2.default.createElement(
-                                            _button2.default,
-                                            { onClick: this.insertLink },
-                                            '\u63D2\u5165'
-                                        )
-                                    )
-                                )
-                            )
-                        )
-                    )
-                ),
-                onClose: this.closeBubble
-            });
+    componentWillUnmount() {
+        window.document.removeEventListener('click', this.otherDOMClick);
+        this.uploader.removeEvent('uploadAccept');
+        this.uploader.removeEvent('uploadComplete');
+        this.uploader.removeEvent('uploadError');
+        this.uploader.destory();
+    }
+
+    closeBubble = () => {
+        insert.openImageDialog = false;
+    };
+
+    otherDOMClick = (e) => {
+        let node = e.target;
+        if (!insert.openImageDialog) {
+            return false;
         }
-    }]);
+        let target = this.target;
+        if (insert.openImageDialog && !contains(target, node)) {
+            this.closeBubble();
+        }
+    }
 
-    return InsertImage;
-}(_react.Component);
+    onChange = (activeKey) => {
+        this.setState({
+            activeKey
+        });
+    }
 
-exports.default = InsertImage;
+    render() {
+        return (
+            <Dialog
+                title="插入图片"
+                className="weditor-insert-image-dialog"
+                content={
+                    <div className="weditor-insert-image">
+                        <div className="weditor-uploader-wrapper">
+                            <Tabs
+                                renderTabBar={() => <ScrollableInkTabBar onTabClick={this.onTabClick}/>}
+                                renderTabContent={() => <TabContent animatedWithMargin />}
+                                activeKey={this.state.activeKey}
+                                onChange={this.onChange}
+                            >
+                                <TabPane tab={'本地上传'} key="1">
+                                    <div className="weditor-uploader-file-inner">
+                                        <p className="weditor-image-tips">最大上传20M的图片</p>
+                                        <Button id="weditorUploaderPick">点击上传</Button>
+                                    </div>
+                                </TabPane>
+                                <TabPane tab={'插入外链'} key="2">
+                                    <div className="weditor-uploader-file-inner">
+                                        <div>
+                                            <Input onChange={this.onLinkUrlChange}/>
+                                            <Button onClick={this.insertLink}>插入</Button>
+                                        </div>
+                                    </div>
+                                </TabPane>
+                            </Tabs>
+                        </div>
+                    </div>
+                }
+                onClose={this.closeBubble}
+            />
+        );
+    }
+}

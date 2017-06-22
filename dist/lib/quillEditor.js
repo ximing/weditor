@@ -2,61 +2,37 @@
  * Created by yeanzhi on 17/3/26.
  */
 'use strict';
+import  Quill from 'quill';
+import './initQuill';
+import initHotKey from './initHotKey';
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.resize = exports.initQuillEditor = exports.setLinkBubble = exports.getEditorBoundingClientRect = exports.getDom = exports.getEditor = undefined;
+import insert from '../model/insert';
+import format from '../model/format';
+import editor from '../model/editor';
 
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+let quillEditor = null;
+let quillDom = null;
+let $quillEditorDom = null;
+let $quillContainer = null;
+let $weditorBody = null;
 
-var _quill = require('quill');
-
-var _quill2 = _interopRequireDefault(_quill);
-
-require('./initQuill');
-
-var _initHotKey = require('./initHotKey');
-
-var _initHotKey2 = _interopRequireDefault(_initHotKey);
-
-var _insert = require('../model/insert');
-
-var _insert2 = _interopRequireDefault(_insert);
-
-var _format = require('../model/format');
-
-var _format2 = _interopRequireDefault(_format);
-
-var _editor = require('../model/editor');
-
-var _editor2 = _interopRequireDefault(_editor);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var quillEditor = null;
-var quillDom = null;
-var $quillEditorDom = null;
-var $quillContainer = null;
-var $weditorBody = null;
-
-var linkBubble = {
+const linkBubble = {
     height: 95,
     width: 380
 };
-var getEditor = exports.getEditor = function getEditor() {
+export const getEditor = function () {
     return quillEditor;
 };
 
-var getDom = exports.getDom = function getDom() {
+export const getDom = function () {
     return quillDom;
 };
 
-var getEditorBoundingClientRect = exports.getEditorBoundingClientRect = function getEditorBoundingClientRect() {
+export const getEditorBoundingClientRect = function () {
     return quillDom.getBoundingClientRect();
 };
 
-var setLinkBubble = exports.setLinkBubble = function setLinkBubble(index) {
+export const setLinkBubble = function (index) {
     // const {left, top, height} = getEditor().getBounds(index);
     // let linkLeft = getEditorBoundingClientRect().left + left;
     // let linkTop = getEditorBoundingClientRect().top + top + height;
@@ -72,76 +48,62 @@ var setLinkBubble = exports.setLinkBubble = function setLinkBubble(index) {
     //     top: linkTop
     // };
     //======================badk end========================
-    var _getEditor$getBounds = getEditor().getBounds(index),
-        left = _getEditor$getBounds.left,
-        top = _getEditor$getBounds.top,
-        height = _getEditor$getBounds.height;
+    const {left, top, height} = getEditor().getBounds(index);
     //120 是body 到浏览器顶部的高度
-
-
-    if (top + getEditorBoundingClientRect().top > window.innerHeight - linkBubble.height - 20) {
-        _insert2.default.linkPosition = {
+    if(top+getEditorBoundingClientRect().top>window.innerHeight-linkBubble.height-20){
+        insert.linkPosition = {
             left: left,
             top: top,
-            isAbove: true,
-            textHeight: height
+            isAbove:true,
+            textHeight:height
         };
-    } else {
-        _insert2.default.linkPosition = {
+    }else{
+        insert.linkPosition = {
             left: left,
             top: top,
-            isAbove: false,
-            textHeight: height
+            isAbove:false,
+            textHeight:height
         };
     }
 };
 
-var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, options) {
+
+export const initQuillEditor = function (dom, options) {
     quillDom = dom;
     $quillContainer = $('.content-container');
-    quillEditor = new _quill2.default(dom, {
+    quillEditor = new Quill(dom, {
         modules: {
             toolbar: {
                 container: '#toolbarOpver',
                 handlers: {
-                    'link': function link(value) {
+                    'link': function (value, ...args) {
                         if (value) {
-                            if (_insert2.default.openLinkDialog) {
-                                _insert2.default.openLinkDialog = false;
-                                _insert2.default.linkTitle = null;
-                                _insert2.default.linkUrl = null;
-                            } else if (_editor2.default.range) {
-                                var _editor$range = _editor2.default.range,
-                                    index = _editor$range.index,
-                                    length = _editor$range.length;
-
-                                _insert2.default.openLinkDialog = true;
-                                _insert2.default.linkTitle = getEditor().getText(index, length);
-                                _insert2.default.linkUrl = null;
+                            if (insert.openLinkDialog) {
+                                insert.openLinkDialog = false;
+                                insert.linkTitle = null;
+                                insert.linkUrl = null;
+                            } else if (editor.range) {
+                                const {index, length} = editor.range;
+                                insert.openLinkDialog = true;
+                                insert.linkTitle = getEditor().getText(index, length);
+                                insert.linkUrl = null;
                                 setLinkBubble(index);
                             }
-                            _insert2.default.linkSelection = _editor2.default.range;
-                            _insert2.default.isCreateNewLink = true;
+                            insert.linkSelection = editor.range;
+                            insert.isCreateNewLink = true;
                         } else {
-                            var _editor$range2 = _editor2.default.range,
-                                _index = _editor$range2.index,
-                                _length = _editor$range2.length;
-
-                            var _quillEditor$getLeaf = quillEditor.getLeaf(_index),
-                                _quillEditor$getLeaf2 = _slicedToArray(_quillEditor$getLeaf, 2),
-                                leaf = _quillEditor$getLeaf2[0],
-                                offset = _quillEditor$getLeaf2[1];
-
-                            var LinkIndex = quillEditor.getIndex(leaf);
+                            const {index, length} = editor.range;
+                            let [leaf, offset] = quillEditor.getLeaf(index);
+                            let LinkIndex = quillEditor.getIndex(leaf);
                             //getEditor().format('link', false);
                             getEditor().removeFormat(LinkIndex, leaf.text.length, 'user');
                         }
                     },
-                    'image': function image(args) {
+                    'image': function (args) {
                         // var range = this.quill.getSelection();
                         // var value = prompt('What is the image URL');
-                        _insert2.default.imageSelection = getEditor().getSelection();
-                        _insert2.default.openImageDialog = true;
+                        insert.imageSelection = getEditor().getSelection();
+                        insert.openImageDialog = true;
                     }
                 }
             },
@@ -169,61 +131,55 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
     //     resize();
     // });
     quillEditor.on('text-change', function (delta, oldDelta, source) {
-        _editor2.default.focus = true;
-        if (_editor2.default.range) {
-            _editor2.default.format = quillEditor.getFormat(_editor2.default.range) || {};
+        editor.focus = true;
+        if (editor.range) {
+            editor.format = quillEditor.getFormat(editor.range) || {};
         } else {
-            _editor2.default.format = {};
+            editor.format = {};
         }
     });
-    quillEditor.on('selection-change', function (range, oldRange, source) {
+    quillEditor.on('selection-change', (range, oldRange, source) => {
         console.log('selection-change', range, source);
         if (range) {
-            _editor2.default.range = range;
-            _editor2.default.focus = true;
-            _editor2.default.format = quillEditor.getFormat(range) || {};
-            if (_editor2.default.format.link) {
-                var _quillEditor$getLeaf3 = quillEditor.getLeaf(range.index),
-                    _quillEditor$getLeaf4 = _slicedToArray(_quillEditor$getLeaf3, 2),
-                    leaf = _quillEditor$getLeaf4[0],
-                    offset = _quillEditor$getLeaf4[1];
+            editor.range = range;
+            editor.focus = true;
+            editor.format = quillEditor.getFormat(range) || {};
+            if (editor.format.link) {
+                let [leaf, offset] = quillEditor.getLeaf(range.index);
                 // let linkIndex = quillEditor.getIndex(leaf);
                 //在文本最开始的时候，拿不到 link format 所以不用判断左区间的问题了。
-
-
                 if (offset < leaf.length()) {
-                    _insert2.default.openLinkDialog = true;
-                    _insert2.default.linkUrl = _editor2.default.format.link;
-                    _insert2.default.isReadOnlyLink = true;
-                    _insert2.default.linkTitle = leaf.text;
-                    setLinkBubble(range.index);
+                    insert.openLinkDialog = true;
+                    insert.linkUrl = editor.format.link;
+                    insert.isReadOnlyLink = true;
+                    insert.linkTitle = leaf.text;
+                    setLinkBubble(range.index)
                 }
+
             }
             if (range.length !== 0) {
                 //处理格式刷
-                if (_format2.default.currentFormat) {
-                    var index = range.index,
-                        length = range.length;
-
+                if (format.currentFormat) {
+                    const {index, length} = range;
                     quillEditor.removeFormat(index, length, 'user');
-                    quillEditor.formatLine(index, length, _format2.default.currentFormat, 'user');
-                    quillEditor.formatText(index, length, _format2.default.currentFormat, 'user');
+                    quillEditor.formatLine(index, length, format.currentFormat, 'user');
+                    quillEditor.formatText(index, length, format.currentFormat, 'user');
 
-                    _format2.default.currentFormat = null;
+                    format.currentFormat = null;
                 }
             }
         } else {
             console.log('blur');
         }
     });
-    (0, _initHotKey2.default)(quillEditor);
+    initHotKey(quillEditor);
 
     //$(window).on('resize', resize);
     //fix有图片的时候高度问题
     // $( window ).on("load", resize);
     return quillEditor;
 };
-var resize = exports.resize = function resize() {
+export const resize = function () {
     // console.log('resize')
     // let scrollHeight = $quillEditorDom[0].scrollHeight;
     // console.log('scrollHeight',scrollHeight);

@@ -82,35 +82,7 @@
         height: 69px;
         float: right;
         line-height: 69px;
-        .header-item-wrap {
-            display: inline-block;
-            height: 40px;
-            width: 40px;
-            .header-item-inner {
-                border: 1px solid #eee;
-                height: 35px;
-                width: 35px;
-                border-radius: 50%;
-                text-align: center;
-                display: inline-block;
-                position: relative;
-                line-height: 0px;
-                &:before {
-                    content: '';
-                    display: inline-block;
-                    vertical-align: middle;
-                    width: 0;
-                    height: 100%;
-                    font-size: 0;
-                }
-                img {
-                    height: 25px;
-                    width: 25px;
-                    border-radius: 50%;
-                    vertical-align: middle;
-                }
-            }
-        }
+
     }
 
     .opver-icon {
