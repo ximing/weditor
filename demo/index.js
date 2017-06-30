@@ -7,6 +7,7 @@ import React, {Component} from 'react';
 import rab, {connect, createAction} from 'rabjs/index.js';
 import {Router, Route} from 'rabjs/router';
 import EditContainer from './editContainer';
+import OnlyreadContainer from './onlyreadContainer';
 import WrapEditContainer from './WrapEditContainer';
 
 
@@ -20,6 +21,7 @@ app.router(({history}) => {
         <Router history={history}>
             <Route path="/ot" component={WrapEditContainer}>
                 <Route path="edit" component={EditContainer}/>
+                <Route path="read" component={OnlyreadContainer}/>
             </Route>
         </Router>
     );

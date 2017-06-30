@@ -131,11 +131,11 @@ var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
             return _react2.default.createElement(
                 'div',
                 { className: 'weditor-wrapper' },
-                _react2.default.createElement(_header2.default, { doc: this.props.doc,
+                !this.props.onlyRead && _react2.default.createElement(_header2.default, { doc: this.props.doc,
                     fileOptions: this.props.options.fileOptions,
                     rightContent: this.props.rightContent,
                     helpOptions: this.props.options.helpOptions }),
-                _react2.default.createElement(
+                !this.props.onlyRead && _react2.default.createElement(
                     'div',
                     { className: 'editor-toolbar', id: 'toolbar' },
                     _react2.default.createElement(_toolbar2.default, null)
@@ -149,7 +149,7 @@ var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
                         { className: 'content-container',
                             style: { left: this.state.left } },
                         !this.props.focus && _react2.default.createElement(_selection2.default, { scrollTop: this.state.scrollTop }),
-                        _react2.default.createElement(_editor2.default, null),
+                        _react2.default.createElement(_editor2.default, { onlyRead: this.props.onlyRead }),
                         this.props.coCursors.map(function (item) {
                             return _react2.default.createElement(_otherSelection2.default, { key: item.id, name: item.name, range: item.range });
                         }),

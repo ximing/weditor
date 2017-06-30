@@ -61,13 +61,21 @@ export default class WEditor extends Component {
     render() {
         return (
             <div className="weditor-wrapper">
-                <Header doc={this.props.doc}
-                        fileOptions={this.props.options.fileOptions}
-                        rightContent={this.props.rightContent}
-                        helpOptions={this.props.options.helpOptions}/>
-                <div className="editor-toolbar" id="toolbar">
-                    <Toolbar/>
-                </div>
+                {
+                    !this.props.onlyRead&&(
+                        <Header doc={this.props.doc}
+                                fileOptions={this.props.options.fileOptions}
+                                rightContent={this.props.rightContent}
+                                helpOptions={this.props.options.helpOptions}/>
+                    )
+                }
+                {
+                    !this.props.onlyRead&&(
+                        <div className="editor-toolbar" id="toolbar">
+                            <Toolbar/>
+                        </div>
+                    )
+                }
                 <div className="weditor-body">
                     <Catalogue/>
                     <div className="content-container"
@@ -76,7 +84,7 @@ export default class WEditor extends Component {
                         {
                             !this.props.focus && <Selection scrollTop={this.state.scrollTop}/>
                         }
-                        <Editor />
+                        <Editor onlyRead={this.props.onlyRead}/>
                         {
                             this.props.coCursors.map(item=>{
                                 return <OtherSelection key={item.id} name={item.name} range={item.range} />;

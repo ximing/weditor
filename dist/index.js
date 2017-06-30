@@ -84,7 +84,8 @@ var Editor = (_temp = _class = function (_Component) {
                     editor: _editor2.default,
                     help: _help2.default
                 },
-                _react2.default.createElement(_weditor2.default, { options: this.props.options,
+                _react2.default.createElement(_weditor2.default, { onlyRead: this.props.onlyRead,
+                    options: this.props.options,
                     coCursors: this.props.coCursors,
                     doc: this.props.doc })
             );
@@ -103,6 +104,7 @@ var Editor = (_temp = _class = function (_Component) {
         status: ''
     },
     coCursors: [],
-    rightContent: null
+    rightContent: null,
+    onlyRead: false
 }, _temp);
 exports.default = Editor;
