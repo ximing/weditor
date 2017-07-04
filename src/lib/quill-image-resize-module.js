@@ -16,6 +16,7 @@ export class ImageResize {
         // save the quill reference and options
         this.quill = quill;
         this.options = options;
+        let imageRect = {};
         interact('.img-selection')
             .resizable({
                 // preserveAspectRatio: true,
@@ -26,7 +27,7 @@ export class ImageResize {
                 if (this.img) {
                     this.img.style.width = event.rect.width + 'px';
                     this.img.style.height = event.rect.height + 'px';
-
+                    imageRect = event.rect;
                     const rect = this.img.getBoundingClientRect();
                     const rootRect = this.quill.root.getBoundingClientRect();
 
@@ -37,8 +38,8 @@ export class ImageResize {
                 }
             })
             .on('resizeend', (event) => {
-                this.img.width = this.img.style.width;
-                this.img.height = this.img.style.height;
+                this.img.width = imageRect.width || undefined;
+                this.img.height = imageRect.height  || undefined;
             });
         this.handleClick = this.handleClick.bind(this);
         this.quill.root.addEventListener('click', this.handleClick, false);
