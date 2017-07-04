@@ -52,6 +52,8 @@ var _insert = require('../../model/insert');
 
 var _insert2 = _interopRequireDefault(_insert);
 
+var _quillEditor = require('../../lib/quillEditor');
+
 var _input = require('../input');
 
 var _input2 = _interopRequireDefault(_input);
@@ -90,7 +92,14 @@ var InsertImage = function (_Component) {
                 linkUrl: e.target.value
             });
         }, _this.insertLink = function () {
-            if (_this.state.linkUrl) {}
+            if (_this.state.linkUrl) {
+                var _insert$imageSelectio = _insert2.default.imageSelection,
+                    index = _insert$imageSelectio.index,
+                    length = _insert$imageSelectio.length;
+
+                (0, _quillEditor.getEditor)().insertEmbed(index, 'image', _this.state.linkUrl, _quill2.default.sources.USER);
+                _insert2.default.openImageDialog = false;
+            }
         }, _this.closeBubble = function () {
             _insert2.default.openImageDialog = false;
         }, _this.otherDOMClick = function (e) {
@@ -122,8 +131,6 @@ var InsertImage = function (_Component) {
     }, {
         key: 'initUploader',
         value: function initUploader() {
-            var _this3 = this;
-
             this.rootNode = _reactDom2.default.findDOMNode(this);
             this.target = this.rootNode.getElementsByClassName('weditor-insert-image-dialog')[0];
             var uploader = this.uploader = new _index.Uploader({
@@ -144,12 +151,12 @@ var InsertImage = function (_Component) {
                 res = JSON.parse(res);
                 if (res.errno === 0) {
                     if (res.data.url) {
-                        var _props$insert$imageSe = _this3.props.insert.imageSelection,
-                            index = _props$insert$imageSe.index,
-                            length = _props$insert$imageSe.length;
+                        var _insert$imageSelectio2 = _insert2.default.imageSelection,
+                            index = _insert$imageSelectio2.index,
+                            length = _insert$imageSelectio2.length;
 
-                        getEditor().insertEmbed(index, 'image', res.data.url, _quill2.default.sources.USER);
-                        _this3.props.insert.openImageDialog = false;
+                        (0, _quillEditor.getEditor)().insertEmbed(index, 'image', res.data.url, _quill2.default.sources.USER);
+                        _insert2.default.openImageDialog = false;
                     }
                 } else {
                     (0, _toast.error)('上传服务错误');
@@ -175,7 +182,7 @@ var InsertImage = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _this4 = this;
+            var _this3 = this;
 
             return _react2.default.createElement(_dialog2.default, {
                 title: '\u63D2\u5165\u56FE\u7247',
@@ -190,7 +197,7 @@ var InsertImage = function (_Component) {
                             _rcTabs2.default,
                             {
                                 renderTabBar: function renderTabBar() {
-                                    return _react2.default.createElement(_ScrollableInkTabBar2.default, { onTabClick: _this4.onTabClick });
+                                    return _react2.default.createElement(_ScrollableInkTabBar2.default, { onTabClick: _this3.onTabClick });
                                 },
                                 renderTabContent: function renderTabContent() {
                                     return _react2.default.createElement(_TabContent2.default, { animatedWithMargin: true });

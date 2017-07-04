@@ -135,6 +135,7 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
                             var LinkIndex = quillEditor.getIndex(leaf);
                             //getEditor().format('link', false);
                             getEditor().removeFormat(LinkIndex, leaf.text.length, 'user');
+                            _insert2.default.isCreateNewLink = false;
                         }
                     },
                     'image': function image(args) {
