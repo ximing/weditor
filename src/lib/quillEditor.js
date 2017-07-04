@@ -97,6 +97,7 @@ export const initQuillEditor = function (dom, options) {
                             let LinkIndex = quillEditor.getIndex(leaf);
                             //getEditor().format('link', false);
                             getEditor().removeFormat(LinkIndex, leaf.text.length, 'user');
+                            insert.isCreateNewLink = false;
                         }
                     },
                     'image': function (args) {
