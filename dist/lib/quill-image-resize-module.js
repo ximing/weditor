@@ -35,6 +35,7 @@ var ImageResize = exports.ImageResize = function () {
         // save the quill reference and options
         this.quill = quill;
         this.options = options;
+        var imageRect = {};
         (0, _interactjs2.default)('.img-selection').resizable({
             // preserveAspectRatio: true,
             edges: { left: true, right: true, bottom: true, top: true }
@@ -43,7 +44,7 @@ var ImageResize = exports.ImageResize = function () {
             if (_this.img) {
                 _this.img.style.width = event.rect.width + 'px';
                 _this.img.style.height = event.rect.height + 'px';
-
+                imageRect = event.rect;
                 var rect = _this.img.getBoundingClientRect();
                 var rootRect = _this.quill.root.getBoundingClientRect();
 
@@ -53,8 +54,8 @@ var ImageResize = exports.ImageResize = function () {
                 target.style.height = event.rect.height + 'px';
             }
         }).on('resizeend', function (event) {
-            _this.img.width = _this.img.style.width;
-            _this.img.height = _this.img.style.height;
+            _this.img.width = imageRect.width || undefined;
+            _this.img.height = imageRect.height || undefined;
         });
         this.handleClick = this.handleClick.bind(this);
         this.quill.root.addEventListener('click', this.handleClick, false);
