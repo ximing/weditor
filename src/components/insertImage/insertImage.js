@@ -14,6 +14,7 @@ import {contains} from '../../lib/util';
 import {Uploader} from '../uploader/index';
 import Button from '../button';
 import insert from '../../model/insert';
+import {getEditor} from '../../lib/quillEditor'
 
 import Input from '../input';
 import {error} from '../toast';
@@ -39,7 +40,9 @@ export default class InsertImage extends Component {
 
     insertLink = ()=>{
         if(this.state.linkUrl) {
-
+            const {index, length} = insert.imageSelection;
+            getEditor().insertEmbed(index, 'image', this.state.linkUrl, Quill.sources.USER);
+            insert.openImageDialog = false;
         }
 
     }
@@ -64,9 +67,9 @@ export default class InsertImage extends Component {
             res = JSON.parse(res);
             if (res.errno === 0) {
                 if (res.data.url) {
-                    const {index, length} = this.props.insert.imageSelection;
+                    const {index, length} = insert.imageSelection;
                     getEditor().insertEmbed(index, 'image', res.data.url, Quill.sources.USER);
-                    this.props.insert.openImageDialog = false;
+                    insert.openImageDialog = false;
                 }
             } else {
                 error('上传服务错误');
