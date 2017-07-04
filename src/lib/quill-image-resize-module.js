@@ -36,7 +36,9 @@ export class ImageResize {
                     target.style.height = event.rect.height + 'px';
                 }
             })
-            .on('resizestart', (event) => {
+            .on('resizeend', (event) => {
+                this.img.width = this.img.style.width;
+                this.img.height = this.img.style.height;
             });
         this.handleClick = this.handleClick.bind(this);
         this.quill.root.addEventListener('click', this.handleClick, false);

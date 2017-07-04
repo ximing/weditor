@@ -52,7 +52,10 @@ var ImageResize = exports.ImageResize = function () {
                 target.style.width = event.rect.width + 'px';
                 target.style.height = event.rect.height + 'px';
             }
-        }).on('resizestart', function (event) {});
+        }).on('resizeend', function (event) {
+            _this.img.width = _this.img.style.width;
+            _this.img.height = _this.img.style.height;
+        });
         this.handleClick = this.handleClick.bind(this);
         this.quill.root.addEventListener('click', this.handleClick, false);
     }
