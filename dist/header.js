@@ -123,7 +123,7 @@ var EditorHeader = (_temp = _class = function (_Component) {
                     footer: null
                 });
             } else {
-                _this.props.helpOptions.forEach(function (item) {
+                _this.props.fileOptions.forEach(function (item) {
                     if (item.key === key) {
                         item.onClick(key);
                     }
