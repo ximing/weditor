@@ -90,7 +90,7 @@ export default class EditorHeader extends Component {
                 footer:null
             });
         }else{
-            this.props.helpOptions.forEach(item=>{
+            this.props.fileOptions.forEach(item=>{
                 if(item.key === key) {
                     item.onClick(key);
                 }

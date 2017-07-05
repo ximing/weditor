@@ -32,6 +32,9 @@ export default class EditContainer extends Component {
                     uploadUrl:'http://mind.xm.test.sankuai.com/api/upload',
                     helpOptions:[
                         {key:'nihao',content:'nihaoa',onClick:(key)=>{console.log(key);}}
+                    ],
+                    fileOptions: [
+                        {key: 'new', content: '新建文档', onClick: () => {console.log('new doc')}}
                     ]
                 }}/>
             </div>
