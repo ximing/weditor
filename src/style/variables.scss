@@ -231,6 +231,14 @@ $error                      : #ff7d6e;
 $error-hover                : #ff696e;
 
 $hover-color: rgba($primary-color, 0.05); //hover时候的颜色
+$color-darker               : rgba(0,0,0,.87);/*#333333*/
+$color-dark                 : rgba(0,0,0,.54);/*#666666*/
+$color-base                 : rgba(0,0,0,.38);/*#999999*/
+$color-medium               : rgba(0,0,0,.24);/*#CCCCCC*/
+$color-light                : rgba(0,0,0,.1);/*#E5E5E5*/
+$color-light-1              : rgba(0,0,0,.05);
+$color-lighter              : #F8F8F8;
+$color-lightest             : #FFFFFF;
 
 //padding和margin
 

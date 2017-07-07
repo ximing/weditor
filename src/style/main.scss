@@ -22,7 +22,6 @@ body {
     }
 }
 
-
 .weditor-body {
     padding: 0;
     position: relative;
@@ -199,4 +198,12 @@ body {
     height: 16px;
     overflow: visible;
     width: 16px;
+}
+@media screen and (max-width: 900px) {
+    .weditor-body {
+        background-color: #FFFFFF;
+        .content-container{
+            box-shadow:none;
+        }
+    }
 }
