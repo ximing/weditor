@@ -145,7 +145,12 @@ var InsertImage = function (_Component) {
                 'multiple': false,
                 'method': 'post',
                 'withCredentials': true,
-                'server': this.props.uploadUrl || ''
+                'server': this.props.uploadUrl || '',
+                accept: {
+                    title: 'Images',
+                    extensions: 'jpg,jpeg,bmp,png',
+                    mimeTypes: 'image/*'
+                }
             });
             uploader.on('uploadAccept', function (obj, res) {
                 res = JSON.parse(res);
