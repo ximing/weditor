@@ -163,7 +163,8 @@ var EditorHeader = (_temp = _class = function (_Component) {
 
         _this.backList = _this.backList.bind(_this);
         _this.state = {
-            panel: 1
+            panel: 1,
+            panelType: ''
         };
         return _this;
     }
@@ -187,6 +188,23 @@ var EditorHeader = (_temp = _class = function (_Component) {
                     return;
                 }
                 _this3.setState({ panel: panel });
+            };
+        }
+    }, {
+        key: 'dropdownChange',
+        value: function dropdownChange(type) {
+            var _this4 = this;
+
+            return function (visible) {
+                if (visible) {
+                    _this4.setState({
+                        panelType: type
+                    });
+                } else {
+                    _this4.setState({
+                        panelType: ''
+                    });
+                }
             };
         }
     }, {
@@ -228,7 +246,9 @@ var EditorHeader = (_temp = _class = function (_Component) {
                 )
             );
 
-            var panel = this.state.panel;
+            var _state = this.state,
+                panel = _state.panel,
+                panelType = _state.panelType;
 
             return _react2.default.createElement(
                 'div',
@@ -238,11 +258,12 @@ var EditorHeader = (_temp = _class = function (_Component) {
                     {
                         trigger: ['click'],
                         overlay: fileMenu,
-                        animation: 'slide-up'
+                        animation: 'slide-up',
+                        onVisibleChange: this.dropdownChange('file')
                     },
                     _react2.default.createElement(
                         'span',
-                        { className: 'file-tab' },
+                        { className: 'file-tab ' + (panelType === 'file' && 'active') },
                         '\u6587\u4EF6'
                     )
                 ),
@@ -264,11 +285,12 @@ var EditorHeader = (_temp = _class = function (_Component) {
                                 '\u63D2\u5165\u94FE\u63A5'
                             )
                         ),
+                        onVisibleChange: this.dropdownChange('insert'),
                         animation: 'slide-up'
                     },
                     _react2.default.createElement(
                         'span',
-                        { className: 'insert-tab' },
+                        { className: 'insert-tab ' + (panelType === 'insert' && 'active') },
                         '\u63D2\u5165'
                     )
                 ),
@@ -287,11 +309,12 @@ var EditorHeader = (_temp = _class = function (_Component) {
                     {
                         trigger: ['click'],
                         overlay: menu,
-                        animation: 'slide-up'
+                        animation: 'slide-up',
+                        onVisibleChange: this.dropdownChange('help')
                     },
                     _react2.default.createElement(
                         'span',
-                        { className: 'help-tab' },
+                        { className: 'help-tab ' + (panelType === 'help' && 'active') },
                         '\u5E2E\u52A9'
                     )
                 )

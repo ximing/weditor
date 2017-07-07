@@ -342,6 +342,7 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                     },
                     _this.renderAlignButton('left', 'left-align')
                 ),
+                _react2.default.createElement(_icon2.default, { type: 'vertical' }),
                 _react2.default.createElement(
                     _tooltip2.default,
                     {

@@ -126,7 +126,7 @@ export default class LinkBubble extends Component {
 
     renderEdit() {
         return (
-            <div style={{width:420,height:77}}>
+            <div style={{width:388,height:77}}>
                 <div className="weditor-bubble-item">
                     <span>文本：</span> <Input className="weditor-insert-input"
                                             value={insert.linkTitle || ''}

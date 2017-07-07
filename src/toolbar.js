@@ -350,7 +350,7 @@ export default class EditorToolbar extends Component {
                     {this.renderLinkBtn()}
                 </ToolTip>
                 <ToolTip
-                    placement="bottom"
+                    placement="bottomRight"
                     mouseEnterDelay={0}
                     mouseLeaveDelay={0}
                     overlay={<div>插入图片</div>}
@@ -359,7 +359,7 @@ export default class EditorToolbar extends Component {
                 </ToolTip>
                 </span>
         )
-    }
+    };
 
     renderMoreBtn(){
         let btnClassName = classnames({
@@ -402,6 +402,7 @@ export default class EditorToolbar extends Component {
 
         )
     }
+
     render() {
         let {rangeFormat, style} = this.props;
         let {color, background, size, header} = rangeFormat;
@@ -414,7 +415,7 @@ export default class EditorToolbar extends Component {
         return (
             <div className="toolbar-opver" id="toolbarOpver">
                 <ToolTip
-                    placement="bottom"
+                    placement="bottomLeft"
                     mouseEnterDelay={0}
                     mouseLeaveDelay={0}
                     overlay={<div>撤销({getCtrl()}+Z)</div>}

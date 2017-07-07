@@ -22,7 +22,6 @@ body {
     }
 }
 
-
 .weditor-body {
     padding: 0;
     position: relative;
@@ -112,11 +111,14 @@ body {
 
 .rc-dropdown {
     background: #FFFFFF;
-    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.10);
+    //box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.10);
+    border-radius: 4px;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.24);
     border: none !important;
     .rc-dropdown-menu {
         border: none !important;
         border-radius: 2px;
+        box-shadow:none !important;
     }
 }
 
@@ -196,4 +198,12 @@ body {
     height: 16px;
     overflow: visible;
     width: 16px;
+}
+@media screen and (max-width: 900px) {
+    .weditor-body {
+        background-color: #FFFFFF;
+        .content-container{
+            box-shadow:none;
+        }
+    }
 }

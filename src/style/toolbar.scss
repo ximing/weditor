@@ -25,6 +25,7 @@
         //height: 24px;
         //width: 28px;
         margin: 0 5px;
+        color: #bbbbbb;
     }
     .more-btn{
         width: 51px;
@@ -84,11 +85,11 @@
     .more-toolbar-container button{
         border-color: #F8F8F8;
         &:hover{
-            border-color: #F0F0F0;
+            border-color: #CCCCCC;
         }
     }
     .more-toolbar-container{
-        width: 390px;
+        width: 415px;
         height: 59px;
         display: inline-block;
         .popup-triangle-wrapper{

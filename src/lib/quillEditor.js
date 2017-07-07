@@ -50,19 +50,19 @@ export const setLinkBubble = function (index) {
     //======================badk end========================
     const {left, top, height} = getEditor().getBounds(index);
     //120 是body 到浏览器顶部的高度
-    if(top+getEditorBoundingClientRect().top>window.innerHeight-linkBubble.height-20){
+    if (top + getEditorBoundingClientRect().top > window.innerHeight - linkBubble.height - 20) {
         insert.linkPosition = {
             left: left,
             top: top,
-            isAbove:true,
-            textHeight:height
+            isAbove: true,
+            textHeight: height
         };
-    }else{
+    } else {
         insert.linkPosition = {
             left: left,
             top: top,
-            isAbove:false,
-            textHeight:height
+            isAbove: false,
+            textHeight: height
         };
     }
 };
@@ -123,7 +123,7 @@ export const initQuillEditor = function (dom, options) {
             }
         },
         placeholder: '输入文档...',
-        //theme: 'bubble',
+        //theme: 'snow',
         scrollingContainer: document.querySelector('.weditor-body')
     });
     $quillEditorDom = $(quillDom).find('.ql-editor');
