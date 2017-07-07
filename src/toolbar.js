@@ -299,6 +299,7 @@ export default class EditorToolbar extends Component {
                 >
                     {this.renderAlignButton('left', 'left-align')}
                 </ToolTip>
+                <Icon type="vertical"/>
                 <ToolTip
                     placement="bottom"
                     mouseEnterDelay={0}

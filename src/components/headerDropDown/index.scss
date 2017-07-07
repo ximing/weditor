@@ -1,3 +1,4 @@
+@import "../../style/variables";
 .xm-header{
   display: inline-block;
   position: relative;
@@ -51,7 +52,7 @@
       padding-left: 15px;
       //line-height: 25px;
       &:hover{
-        background: #f5f5f5;
+        background: $hover-color;
         cursor: pointer;
       }
     }
@@ -60,7 +61,7 @@
       min-height: 25px;
       margin: 0;
       &:hover{
-        background: #f5f5f5;
+        background: $hover-color;
         cursor: pointer;
       }
     }
