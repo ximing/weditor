@@ -61,7 +61,12 @@ export default class InsertImage extends Component {
             'multiple': false,
             'method': 'post',
             'withCredentials':true,
-            'server': this.props.uploadUrl || ''
+            'server': this.props.uploadUrl || '',
+            accept: {
+                title: 'Images',
+                extensions: 'jpg,jpeg,bmp,png',
+                mimeTypes: 'image/*'
+            }
         });
         uploader.on('uploadAccept', (obj, res) => {
             res = JSON.parse(res);
