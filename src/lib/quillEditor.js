@@ -50,16 +50,17 @@ export const setLinkBubble = function (index) {
     //======================badk end========================
     const {left, top, height} = getEditor().getBounds(index);
     //120 是body 到浏览器顶部的高度
+    console.log('link left', left,window.innerWidth);
     if (top + getEditorBoundingClientRect().top > window.innerHeight - linkBubble.height - 20) {
         insert.linkPosition = {
-            left: left,
+            left: left + 430 > window.innerWidth ? window.innerWidth - 430 : left,
             top: top,
             isAbove: true,
             textHeight: height
         };
     } else {
         insert.linkPosition = {
-            left: left,
+            left: left + 430 > window.innerWidth ? window.innerWidth - 430 : left,
             top: top,
             isAbove: false,
             textHeight: height
