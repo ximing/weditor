@@ -1,20 +1,33 @@
-.weditor-insert-image{
+@import "../../style/variables";
+
+.weditor-insert-image {
     overflow: hidden;
-    .weditor-uploader-wrapper{
-        .weditor-uploader-file-inner{
+    .weditor-uploader-wrapper {
+        .weditor-uploader-file-inner {
             height: 200px;
             width: 100%;
             display: flex;
             align-items: center;
-            flex-direction:column;
+            flex-direction: column;
             justify-content: center;
             border: 3px dashed #e6e6e6;
         }
-        .rc-tabs-tabpane{
+        .rc-tabs-tab-active, .rc-tabs-tab-active:hover {
+            color: $primary-color;
+        }
+        .rc-tabs-tab{
+            &:hover{
+                color: $primary-color;
+            }
+        }
+        .rc-tabs-ink-bar {
+            background-color: $primary-color;
+        }
+        .rc-tabs-tabpane {
             padding-top: 10px;
             height: 300px;
         }
-        .weditor-input{
+        .weditor-input {
             display: inline-block;
             width: 390px;
             margin-right: 10px;
@@ -23,10 +36,11 @@
     width: 500px;
     height: 300px;
 }
-.nx-modal-mask{
+
+.nx-modal-mask {
     background: rgba(255, 255, 255, 0.6) !important;
-    .weditor-insert-image-dialog{
-        box-shadow: 0 5px 10px rgba(0,0,0,.2);
-        border: 1px solid rgba(0,0,0,.2);
+    .weditor-insert-image-dialog {
+        box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+        border: 1px solid rgba(0, 0, 0, .2);
     }
 }

@@ -45,8 +45,9 @@
     width: 150px;
     height: 300px;
     overflow-y: auto;
-    border-radius: 2px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    border-radius: 4px;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.24);
+    //box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     z-index: 100;
     p{
       padding-left: 15px;

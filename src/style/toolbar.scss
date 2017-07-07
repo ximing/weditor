@@ -15,6 +15,10 @@
         .docicon{
             font-size: 16px;
         }
+        .docicon-undo,.docicon-redo{
+            position: relative;
+            top: -2px;
+        }
     }
     .docicon-vertical {
         display: inline-block;

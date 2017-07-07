@@ -30,7 +30,8 @@ export default class EditorHeader extends Component {
         super();
         this.backList = this.backList.bind(this);
         this.state = {
-            panel: 1
+            panel: 1,
+            panelType:''
         };
     }
 
@@ -125,6 +126,19 @@ export default class EditorHeader extends Component {
         };
     }
 
+    dropdownChange(type){
+        return (visible) =>{
+            if(visible){
+                this.setState({
+                    panelType:type
+                });
+            }else{
+                this.setState({
+                    panelType:''
+                });
+            }
+        }
+    }
 
     renderMenubar() {
         let menu = (
@@ -156,15 +170,16 @@ export default class EditorHeader extends Component {
         );
 
 
-        const {panel} = this.state;
+        const {panel,panelType} = this.state;
         return(
             <div className="menu-bar">
                 <Dropdown
                     trigger={['click']}
                     overlay={fileMenu}
                     animation="slide-up"
+                    onVisibleChange={this.dropdownChange('file')}
                 >
-                    <span className={'file-tab'}>文件</span>
+                    <span className={`file-tab ${panelType === 'file' && 'active'}`}>文件</span>
                 </Dropdown>
 
                 <Dropdown
@@ -175,9 +190,10 @@ export default class EditorHeader extends Component {
                             <MenuItem key="1">插入链接</MenuItem>
                         </Menu>
                     )}
+                    onVisibleChange={this.dropdownChange('insert')}
                     animation="slide-up"
                 >
-                    <span className={'insert-tab'}>插入</span>
+                    <span className={`insert-tab ${panelType === 'insert' && 'active'}`}>插入</span>
                 </Dropdown>
 
                 <span className={`view-tab ${panel === 3 ? 'active' : ''}`} onClick={this.changePanel(4)}>视图</span>
@@ -188,8 +204,9 @@ export default class EditorHeader extends Component {
                     trigger={['click']}
                     overlay={menu}
                     animation="slide-up"
+                    onVisibleChange={this.dropdownChange('help')}
                 >
-                    <span className="help-tab" >帮助</span>
+                    <span className={`help-tab ${panelType === 'help' && 'active'}`} >帮助</span>
                 </Dropdown>
             </div>
         );
