@@ -79,16 +79,17 @@ var setLinkBubble = exports.setLinkBubble = function setLinkBubble(index) {
     //120 是body 到浏览器顶部的高度
 
 
+    console.log('link left', left, window.innerWidth);
     if (top + getEditorBoundingClientRect().top > window.innerHeight - linkBubble.height - 20) {
         _insert2.default.linkPosition = {
-            left: left,
+            left: left + 430 > window.innerWidth ? window.innerWidth - 430 : left,
             top: top,
             isAbove: true,
             textHeight: height
         };
     } else {
         _insert2.default.linkPosition = {
-            left: left,
+            left: left + 430 > window.innerWidth ? window.innerWidth - 430 : left,
             top: top,
             isAbove: false,
             textHeight: height
@@ -161,7 +162,7 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
             }
         },
         placeholder: '输入文档...',
-        //theme: 'bubble',
+        //theme: 'snow',
         scrollingContainer: document.querySelector('.weditor-body')
     });
     $quillEditorDom = $(quillDom).find('.ql-editor');

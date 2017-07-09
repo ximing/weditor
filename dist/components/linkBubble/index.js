@@ -202,7 +202,7 @@ var LinkBubble = (0, _mobxReact.observer)(_class = (_temp2 = _class2 = function 
         value: function renderEdit() {
             return _react2.default.createElement(
                 'div',
-                { style: { width: 420, height: 77 } },
+                { style: { width: 388, height: 77 } },
                 _react2.default.createElement(
                     'div',
                     { className: 'weditor-bubble-item' },

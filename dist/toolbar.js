@@ -437,7 +437,7 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                 _react2.default.createElement(
                     _tooltip2.default,
                     {
-                        placement: 'bottom',
+                        placement: 'bottomRight',
                         mouseEnterDelay: 0,
                         mouseLeaveDelay: 0,
                         overlay: _react2.default.createElement(
@@ -581,7 +581,7 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                 _react2.default.createElement(
                     _tooltip2.default,
                     {
-                        placement: 'bottom',
+                        placement: 'bottomLeft',
                         mouseEnterDelay: 0,
                         mouseLeaveDelay: 0,
                         overlay: _react2.default.createElement(
