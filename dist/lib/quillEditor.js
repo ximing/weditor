@@ -164,60 +164,114 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
         placeholder: '输入文档...',
         //theme: 'snow',
         scrollingContainer: document.querySelector('.weditor-body')
+        // scrollingContainer: document.querySelector('.ql-container')
     });
     $quillEditorDom = $(quillDom).find('.ql-editor');
     $weditorBody = $('.weditor-body');
     // quillEditor.on('text-change', (range, oldRange, source) => {
     //     resize();
     // });
-    quillEditor.on('text-change', function (delta, oldDelta, source) {
-        _editor2.default.focus = true;
-        if (_editor2.default.range) {
-            _editor2.default.format = quillEditor.getFormat(_editor2.default.range) || {};
-        } else {
-            _editor2.default.format = {};
-        }
-    });
-    quillEditor.on('selection-change', function (range, oldRange, source) {
-        console.log('selection-change', range, source);
-        if (range) {
-            _editor2.default.range = range;
+    quillEditor.on('editor-change', function (eventName) {
+        if (eventName === 'text-change') {
             _editor2.default.focus = true;
-            _editor2.default.format = quillEditor.getFormat(range) || {};
-            if (_editor2.default.format.link) {
-                var _quillEditor$getLeaf3 = quillEditor.getLeaf(range.index),
-                    _quillEditor$getLeaf4 = _slicedToArray(_quillEditor$getLeaf3, 2),
-                    leaf = _quillEditor$getLeaf4[0],
-                    offset = _quillEditor$getLeaf4[1];
-                // let linkIndex = quillEditor.getIndex(leaf);
-                //在文本最开始的时候，拿不到 link format 所以不用判断左区间的问题了。
-
-
-                if (offset < leaf.length()) {
-                    _insert2.default.openLinkDialog = true;
-                    _insert2.default.linkUrl = _editor2.default.format.link;
-                    _insert2.default.isReadOnlyLink = true;
-                    _insert2.default.linkTitle = leaf.text;
-                    setLinkBubble(range.index);
-                }
+            if (_editor2.default.range) {
+                _editor2.default.format = quillEditor.getFormat(_editor2.default.range) || {};
+            } else {
+                _editor2.default.format = {};
             }
-            if (range.length !== 0) {
-                //处理格式刷
-                if (_format2.default.currentFormat) {
-                    var index = range.index,
-                        length = range.length;
-
-                    quillEditor.removeFormat(index, length, 'user');
-                    quillEditor.formatLine(index, length, _format2.default.currentFormat, 'user');
-                    quillEditor.formatText(index, length, _format2.default.currentFormat, 'user');
-
-                    _format2.default.currentFormat = null;
-                }
+        } else if (eventName === 'selection-change') {
+            for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+                args[_key - 1] = arguments[_key];
             }
-        } else {
-            console.log('blur');
+
+            // args[0] will be old range
+            var range = args[0],
+                oldRange = args[1],
+                source = args[2];
+
+            if (range) {
+                _editor2.default.range = range;
+                _editor2.default.focus = true;
+                _editor2.default.format = quillEditor.getFormat(range) || {};
+                if (_editor2.default.format.link) {
+                    var _quillEditor$getLeaf3 = quillEditor.getLeaf(range.index),
+                        _quillEditor$getLeaf4 = _slicedToArray(_quillEditor$getLeaf3, 2),
+                        leaf = _quillEditor$getLeaf4[0],
+                        offset = _quillEditor$getLeaf4[1];
+                    // let linkIndex = quillEditor.getIndex(leaf);
+                    //在文本最开始的时候，拿不到 link format 所以不用判断左区间的问题了。
+
+
+                    if (offset < leaf.length()) {
+                        _insert2.default.openLinkDialog = true;
+                        _insert2.default.linkUrl = _editor2.default.format.link;
+                        _insert2.default.isReadOnlyLink = true;
+                        _insert2.default.linkTitle = leaf.text;
+                        setLinkBubble(range.index);
+                    }
+                }
+                if (range.length !== 0) {
+                    //处理格式刷
+                    if (_format2.default.currentFormat) {
+                        var index = range.index,
+                            length = range.length;
+
+                        quillEditor.removeFormat(index, length, 'user');
+                        quillEditor.formatLine(index, length, _format2.default.currentFormat, 'user');
+                        quillEditor.formatText(index, length, _format2.default.currentFormat, 'user');
+
+                        _format2.default.currentFormat = null;
+                    }
+                }
+            } else {
+                console.log('blur');
+            }
         }
     });
+
+    // quillEditor.on('text-change', function (delta, oldDelta, source) {
+    //     editor.focus = true;
+    //     if (editor.range) {
+    //         editor.format = quillEditor.getFormat(editor.range) || {};
+    //     } else {
+    //         editor.format = {};
+    //     }
+    // });
+    // quillEditor.on('selection-change', (range, oldRange, source) => {
+    //     console.log('selection-change', range, oldRange,source);
+    //     if (range) {
+    //         editor.range = range;
+    //         editor.focus = true;
+    //         editor.format = quillEditor.getFormat(range) || {};
+    //         if (editor.format.link) {
+    //             let [leaf, offset] = quillEditor.getLeaf(range.index);
+    //             // let linkIndex = quillEditor.getIndex(leaf);
+    //             //在文本最开始的时候，拿不到 link format 所以不用判断左区间的问题了。
+    //             if (offset < leaf.length()) {
+    //                 insert.openLinkDialog = true;
+    //                 insert.linkUrl = editor.format.link;
+    //                 insert.isReadOnlyLink = true;
+    //                 insert.linkTitle = leaf.text;
+    //                 setLinkBubble(range.index)
+    //             }
+    //
+    //         }
+    //         if (range.length !== 0) {
+    //             //处理格式刷
+    //             if (format.currentFormat) {
+    //                 const {index, length} = range;
+    //                 quillEditor.removeFormat(index, length, 'user');
+    //                 quillEditor.formatLine(index, length, format.currentFormat, 'user');
+    //                 quillEditor.formatText(index, length, format.currentFormat, 'user');
+    //
+    //                 format.currentFormat = null;
+    //             }
+    //         }
+    //     } else {
+    //         console.log('blur');
+    //     }
+    // });
+
     (0, _initHotKey2.default)(quillEditor);
 
     //$(window).on('resize', resize);

@@ -126,54 +126,101 @@ export const initQuillEditor = function (dom, options) {
         placeholder: '输入文档...',
         //theme: 'snow',
         scrollingContainer: document.querySelector('.weditor-body')
+        // scrollingContainer: document.querySelector('.ql-container')
     });
     $quillEditorDom = $(quillDom).find('.ql-editor');
     $weditorBody = $('.weditor-body');
     // quillEditor.on('text-change', (range, oldRange, source) => {
     //     resize();
     // });
-    quillEditor.on('text-change', function (delta, oldDelta, source) {
-        editor.focus = true;
-        if (editor.range) {
-            editor.format = quillEditor.getFormat(editor.range) || {};
-        } else {
-            editor.format = {};
-        }
-    });
-    quillEditor.on('selection-change', (range, oldRange, source) => {
-        console.log('selection-change', range, source);
-        if (range) {
-            editor.range = range;
+    quillEditor.on('editor-change', function(eventName, ...args) {
+        if (eventName === 'text-change') {
             editor.focus = true;
-            editor.format = quillEditor.getFormat(range) || {};
-            if (editor.format.link) {
-                let [leaf, offset] = quillEditor.getLeaf(range.index);
-                // let linkIndex = quillEditor.getIndex(leaf);
-                //在文本最开始的时候，拿不到 link format 所以不用判断左区间的问题了。
-                if (offset < leaf.length()) {
-                    insert.openLinkDialog = true;
-                    insert.linkUrl = editor.format.link;
-                    insert.isReadOnlyLink = true;
-                    insert.linkTitle = leaf.text;
-                    setLinkBubble(range.index)
-                }
-
+            if (editor.range) {
+                editor.format = quillEditor.getFormat(editor.range) || {};
+            } else {
+                editor.format = {};
             }
-            if (range.length !== 0) {
-                //处理格式刷
-                if (format.currentFormat) {
-                    const {index, length} = range;
-                    quillEditor.removeFormat(index, length, 'user');
-                    quillEditor.formatLine(index, length, format.currentFormat, 'user');
-                    quillEditor.formatText(index, length, format.currentFormat, 'user');
+        } else if (eventName === 'selection-change') {
+            // args[0] will be old range
+            let [range, oldRange, source] = args;
+            if (range) {
+                editor.range = range;
+                editor.focus = true;
+                editor.format = quillEditor.getFormat(range) || {};
+                if (editor.format.link) {
+                    let [leaf, offset] = quillEditor.getLeaf(range.index);
+                    // let linkIndex = quillEditor.getIndex(leaf);
+                    //在文本最开始的时候，拿不到 link format 所以不用判断左区间的问题了。
+                    if (offset < leaf.length()) {
+                        insert.openLinkDialog = true;
+                        insert.linkUrl = editor.format.link;
+                        insert.isReadOnlyLink = true;
+                        insert.linkTitle = leaf.text;
+                        setLinkBubble(range.index)
+                    }
 
-                    format.currentFormat = null;
                 }
+                if (range.length !== 0) {
+                    //处理格式刷
+                    if (format.currentFormat) {
+                        const {index, length} = range;
+                        quillEditor.removeFormat(index, length, 'user');
+                        quillEditor.formatLine(index, length, format.currentFormat, 'user');
+                        quillEditor.formatText(index, length, format.currentFormat, 'user');
+
+                        format.currentFormat = null;
+                    }
+                }
+            } else {
+                console.log('blur');
             }
-        } else {
-            console.log('blur');
         }
     });
+
+    // quillEditor.on('text-change', function (delta, oldDelta, source) {
+    //     editor.focus = true;
+    //     if (editor.range) {
+    //         editor.format = quillEditor.getFormat(editor.range) || {};
+    //     } else {
+    //         editor.format = {};
+    //     }
+    // });
+    // quillEditor.on('selection-change', (range, oldRange, source) => {
+    //     console.log('selection-change', range, oldRange,source);
+    //     if (range) {
+    //         editor.range = range;
+    //         editor.focus = true;
+    //         editor.format = quillEditor.getFormat(range) || {};
+    //         if (editor.format.link) {
+    //             let [leaf, offset] = quillEditor.getLeaf(range.index);
+    //             // let linkIndex = quillEditor.getIndex(leaf);
+    //             //在文本最开始的时候，拿不到 link format 所以不用判断左区间的问题了。
+    //             if (offset < leaf.length()) {
+    //                 insert.openLinkDialog = true;
+    //                 insert.linkUrl = editor.format.link;
+    //                 insert.isReadOnlyLink = true;
+    //                 insert.linkTitle = leaf.text;
+    //                 setLinkBubble(range.index)
+    //             }
+    //
+    //         }
+    //         if (range.length !== 0) {
+    //             //处理格式刷
+    //             if (format.currentFormat) {
+    //                 const {index, length} = range;
+    //                 quillEditor.removeFormat(index, length, 'user');
+    //                 quillEditor.formatLine(index, length, format.currentFormat, 'user');
+    //                 quillEditor.formatText(index, length, format.currentFormat, 'user');
+    //
+    //                 format.currentFormat = null;
+    //             }
+    //         }
+    //     } else {
+    //         console.log('blur');
+    //     }
+    // });
+
     initHotKey(quillEditor);
 
     //$(window).on('resize', resize);

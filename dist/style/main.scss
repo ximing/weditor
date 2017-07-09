@@ -22,88 +22,55 @@ body {
     }
 }
 
+.weditor-header{
+
+}
+
 .weditor-body {
-    padding: 0;
-    position: relative;
-    left: 0;
-    top: 0px;
-    height: 100%;
-    overflow: hidden;
-    overflow-y: auto;
     background-color: #f0f0f0;
+    padding: 0;
+
+    position: absolute;
+    top: 90px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow-y: auto;
+
     .ql-tooltip {
         z-index: 1000000;
     }
+
+
     .content-container {
         background-color: rgb(255, 255, 255);
         &::selection {
             background: rgba(130, 182, 255, .4);
         }
+
         box-shadow: 0 0 0 0.1px #d1d1d1, 0 0 1px 0.1px #ccc;
         position: relative;
         top: 20px;
-        //bottom: 10px;
-        //left: 0;
-        width: 595.2755880000001pt;
-        //margin: 0 auto;
+        width: 595pt;
         border: 0;
-        //padding: 40px 57px;
         padding: 0;
         margin-bottom: 60px;
-        min-height: 100%;
-        height: auto;
-        display: flex;
-        flex-direction: column;
         .ql-container {
             font-size: 12pt;
-            height: 100%;
-            flex: 1;
-            display: flex;
             &.ql-snow {
                 border: none;
             }
             .ql-editor {
                 z-index: 30;
                 text-align: justify;
-                //padding: 0;
                 padding: 72pt 90pt;
                 margin: 0;
-                overflow: hidden;
-                //height:100%;
                 border: none;
-                height: auto;
-                flex: 1;
-                //display: inline-block;
-                //min-width: 30px;
-                //min-height: 30px;
+                overflow-y: auto;
+                min-height: 900pt;
                 a:active,a:link,a:visited{
                     color: #15c;
                 }
-            }
-        }
-    }
-    .editormd-toolbar {
-        width: 100%;
-        min-height: 37px;
-        background: #f0f0f0;
-        display: none;
-        position: fixed;
-        top: 55px;
-        left: 0;
-        z-index: 10;
-        //box-shadow: 0 2px 4px hsla(0,0%,8%,.15);
-        &.scroll {
-            box-shadow: 0 2px 4px hsla(0, 0%, 8%, .15);
-        }
-        border: none;
-        .editormd-menu {
-            width: 910px;
-            margin: 0 auto;
-        }
-        .editormd-menu > li > a {
-            border: none;
-            i {
-                font-weight: 200;
             }
         }
     }
@@ -199,6 +166,7 @@ body {
     overflow: visible;
     width: 16px;
 }
+
 @media screen and (max-width: 900px) {
     .weditor-body {
         background-color: #FFFFFF;
