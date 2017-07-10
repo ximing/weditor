@@ -166,8 +166,8 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
         scrollingContainer: document.querySelector('.weditor-body')
         // scrollingContainer: document.querySelector('.ql-container')
     });
-    $quillEditorDom = $(quillDom).find('.ql-editor');
-    $weditorBody = $('.weditor-body');
+    // $quillEditorDom = $(quillDom).find('.ql-editor');
+    // $weditorBody = $('.weditor-body');
     // quillEditor.on('text-change', (range, oldRange, source) => {
     //     resize();
     // });
@@ -189,6 +189,7 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
                 oldRange = args[1],
                 source = args[2];
 
+            console.log('selection-change', range);
             if (range) {
                 _editor2.default.range = range;
                 _editor2.default.focus = true;

@@ -68,17 +68,18 @@ export default class LinkBubble extends Component {
                     const {index} = selection;
                     let linkTitle = insert.linkTitle || insert.linkUrl;
                     editor.insertText(index, linkTitle, 'user');
-                    editor.setSelection(index, linkTitle.length, 'user');
+                    // editor.setSelection(index, linkTitle.length, 'user');
                     getEditor().formatText(index, linkTitle.length, 'link', insert.linkUrl, 'user');
                     // getEditor().format('link', insert.linkUrl, 'user');
                 } else {
                     const {index, length} = selection;
-                    console.log('edit link', index, length);
-
-                    editor.deleteText(index, length, 'user');
                     let linkTitle = insert.linkTitle || insert.linkUrl;
-                    editor.insertText(index, linkTitle, 'user');
-                    editor.setSelection(index, linkTitle.length, 'user');
+                    if(editor.getText(index,linkTitle.length) !== linkTitle){
+                        console.log('sssssss'.repeat(10))
+                        editor.deleteText(index, length, 'user');
+                        editor.insertText(index, linkTitle, 'user');
+                    }
+                    // editor.setSelection(index, linkTitle.length, 'user');
                     getEditor().formatText(index, linkTitle.length, 'link', insert.linkUrl, 'user');
                 }
             }

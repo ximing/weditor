@@ -128,8 +128,8 @@ export const initQuillEditor = function (dom, options) {
         scrollingContainer: document.querySelector('.weditor-body')
         // scrollingContainer: document.querySelector('.ql-container')
     });
-    $quillEditorDom = $(quillDom).find('.ql-editor');
-    $weditorBody = $('.weditor-body');
+    // $quillEditorDom = $(quillDom).find('.ql-editor');
+    // $weditorBody = $('.weditor-body');
     // quillEditor.on('text-change', (range, oldRange, source) => {
     //     resize();
     // });
@@ -144,6 +144,7 @@ export const initQuillEditor = function (dom, options) {
         } else if (eventName === 'selection-change') {
             // args[0] will be old range
             let [range, oldRange, source] = args;
+            console.log('selection-change',range);
             if (range) {
                 editor.range = range;
                 editor.focus = true;

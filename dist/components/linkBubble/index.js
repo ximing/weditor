@@ -96,19 +96,20 @@ var LinkBubble = (0, _mobxReact.observer)(_class = (_temp2 = _class2 = function 
 
                         var linkTitle = _insert2.default.linkTitle || _insert2.default.linkUrl;
                         _editor.insertText(index, linkTitle, 'user');
-                        _editor.setSelection(index, linkTitle.length, 'user');
+                        // editor.setSelection(index, linkTitle.length, 'user');
                         (0, _quillEditor.getEditor)().formatText(index, linkTitle.length, 'link', _insert2.default.linkUrl, 'user');
                         // getEditor().format('link', insert.linkUrl, 'user');
                     } else {
                         var _index = selection.index,
                             length = selection.length;
 
-                        console.log('edit link', _index, length);
-
-                        _editor.deleteText(_index, length, 'user');
                         var _linkTitle = _insert2.default.linkTitle || _insert2.default.linkUrl;
-                        _editor.insertText(_index, _linkTitle, 'user');
-                        _editor.setSelection(_index, _linkTitle.length, 'user');
+                        if (_editor.getText(_index, _linkTitle.length) !== _linkTitle) {
+                            console.log('sssssss'.repeat(10));
+                            _editor.deleteText(_index, length, 'user');
+                            _editor.insertText(_index, _linkTitle, 'user');
+                        }
+                        // editor.setSelection(index, linkTitle.length, 'user');
                         (0, _quillEditor.getEditor)().formatText(_index, _linkTitle.length, 'link', _insert2.default.linkUrl, 'user');
                     }
                 }
