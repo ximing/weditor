@@ -295,16 +295,6 @@ var EditorHeader = (_temp = _class = function (_Component) {
                     )
                 ),
                 _react2.default.createElement(
-                    'span',
-                    { className: 'view-tab ' + (panel === 3 ? 'active' : ''), onClick: this.changePanel(4) },
-                    '\u89C6\u56FE'
-                ),
-                _react2.default.createElement(
-                    'span',
-                    { className: 'history-tab', onClick: this.changePanel(4) },
-                    '\u4FEE\u8BA2\u5386\u53F2'
-                ),
-                _react2.default.createElement(
                     _rcDropdown2.default,
                     {
                         trigger: ['click'],
