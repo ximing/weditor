@@ -196,9 +196,9 @@ export default class EditorHeader extends Component {
                     <span className={`insert-tab ${panelType === 'insert' && 'active'}`}>插入</span>
                 </Dropdown>
 
-                <span className={`view-tab ${panel === 3 ? 'active' : ''}`} onClick={this.changePanel(4)}>视图</span>
+                {/*<span className={`view-tab ${panel === 3 ? 'active' : ''}`} onClick={this.changePanel(4)}>视图</span>*/}
 
-                <span className="history-tab" onClick={this.changePanel(4)}>修订历史</span>
+                {/*<span className="history-tab" onClick={this.changePanel(4)}>修订历史</span>*/}
 
                 <Dropdown
                     trigger={['click']}
