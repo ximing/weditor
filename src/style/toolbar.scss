@@ -36,12 +36,12 @@
             border-radius: 2px;
         }
     }
+    box-shadow: 0 1px 0 0 rgba(221,221,221,0.50);
 }
 
 .toolbar-opver {
     padding-left: 15px !important;
     background: #F0F0F0;
-    box-shadow: 0 1px 0 0 rgba(221,221,221,0.50);
     line-height: 50px;
     height: 50px;
     .xm-header, .xm-size{
@@ -86,6 +86,9 @@
         border-color: #F8F8F8;
         &:hover{
             border-color: #CCCCCC;
+        }
+        &.active{
+            border: 1px solid #CCCCCC;
         }
     }
     .more-toolbar-container{

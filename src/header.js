@@ -176,7 +176,7 @@ export default class EditorHeader extends Component {
                 <Dropdown
                     trigger={['click']}
                     overlay={fileMenu}
-                    animation="slide-up"
+                    animation=""
                     onVisibleChange={this.dropdownChange('file')}
                 >
                     <span className={`file-tab ${panelType === 'file' && 'active'}`}>文件</span>
@@ -191,7 +191,7 @@ export default class EditorHeader extends Component {
                         </Menu>
                     )}
                     onVisibleChange={this.dropdownChange('insert')}
-                    animation="slide-up"
+                    animation=""
                 >
                     <span className={`insert-tab ${panelType === 'insert' && 'active'}`}>插入</span>
                 </Dropdown>
@@ -203,7 +203,7 @@ export default class EditorHeader extends Component {
                 <Dropdown
                     trigger={['click']}
                     overlay={menu}
-                    animation="slide-up"
+                    animation=""
                     onVisibleChange={this.dropdownChange('help')}
                 >
                     <span className={`help-tab ${panelType === 'help' && 'active'}`} >帮助</span>
