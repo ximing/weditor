@@ -394,12 +394,12 @@ export default class EditorToolbar extends Component {
                 mask={false}
                 action={['click']}
                 popup={(this.renderMore())}
-                popupTransitionName={'rc-trigger-popup-zoom'}
+                popupTransitionName={''}
                 onPopupVisibleChange={this.onPopupVisibleChange}
             >
                 <button className={btnClassName} onClick={preventDefault}>更多 <Icon type="triangle"/></button>
             </Trigger>
-
+//rc-trigger-popup-zoom
         )
     }
 
