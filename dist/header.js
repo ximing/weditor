@@ -258,7 +258,7 @@ var EditorHeader = (_temp = _class = function (_Component) {
                     {
                         trigger: ['click'],
                         overlay: fileMenu,
-                        animation: 'slide-up',
+                        animation: '',
                         onVisibleChange: this.dropdownChange('file')
                     },
                     _react2.default.createElement(
@@ -286,7 +286,7 @@ var EditorHeader = (_temp = _class = function (_Component) {
                             )
                         ),
                         onVisibleChange: this.dropdownChange('insert'),
-                        animation: 'slide-up'
+                        animation: ''
                     },
                     _react2.default.createElement(
                         'span',
@@ -299,7 +299,7 @@ var EditorHeader = (_temp = _class = function (_Component) {
                     {
                         trigger: ['click'],
                         overlay: menu,
-                        animation: 'slide-up',
+                        animation: '',
                         onVisibleChange: this.dropdownChange('help')
                     },
                     _react2.default.createElement(

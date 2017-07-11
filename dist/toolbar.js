@@ -547,7 +547,7 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                     mask: false,
                     action: ['click'],
                     popup: this.renderMore(),
-                    popupTransitionName: 'rc-trigger-popup-zoom',
+                    popupTransitionName: '',
                     onPopupVisibleChange: this.onPopupVisibleChange
                 },
                 _react2.default.createElement(
@@ -556,7 +556,9 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                     '\u66F4\u591A ',
                     _react2.default.createElement(_icon2.default, { type: 'triangle' })
                 )
-            );
+            )
+            //rc-trigger-popup-zoom
+            ;
         }
     }, {
         key: 'render',
