@@ -98,7 +98,7 @@ body {
     padding: 0 !important;
     padding-left: 20px !important;
     border: none !important;
-    color:#333333;
+    color:#333333 !important;
     font-size: 14px;
 }
 .rc-dropdown-menu-item-divider{
@@ -179,6 +179,9 @@ body {
         background-color: #FFFFFF;
         .content-container{
             box-shadow:none;
+            .ql-container .ql-editor{
+                padding: 30pt 45pt;
+            }
         }
     }
     .weditor-wrapper{
