@@ -51,11 +51,14 @@ var HeaderDropDown = function (_Component) {
         };
 
         _this.spanClick = function (e) {
-            e.stopPropagation();
-            e.nativeEvent.stopImmediatePropagation();
-            // window     .quillEditor     .focus();
-            $(document).on('click', _this.closePanel);
-            _this.setState({ open: true });
+            // e.stopPropagation();
+            // e.nativeEvent.stopImmediatePropagation();
+            _this.setState({ open: !_this.state.open });
+            if (!_this.state.open) {
+                setTimeout(function () {
+                    $(document).on('click', _this.closePanel);
+                }, 10);
+            }
         };
 
         _this.state = {
@@ -109,7 +112,7 @@ var HeaderDropDown = function (_Component) {
                         } },
                     this.state.value
                 ),
-                _react2.default.createElement('div', { className: 'xm-size-button-dropdown', onClick: this.spanClick }),
+                _react2.default.createElement('i', { className: 'xm-icon docicon docicon-triangle', onClick: this.spanClick }),
                 _react2.default.createElement(
                     'div',
                     {

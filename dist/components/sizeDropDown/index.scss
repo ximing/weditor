@@ -3,11 +3,26 @@
     display: inline-block;
     position: relative;
     vertical-align: middle;
-    line-height: 20px;
+    height: 26px;
     border-radius: 2px;
+    font-size: 0px;
+    padding: 0 6px;
+    &:before{
+        content: '';
+        display: inline-block;
+        vertical-align: middle;
+        width: 0;
+        height: 100%;
+        font-size: 0;
+    }
+    .docicon{
+        display: inline-block;
+        position: relative;
+        top: -11px;
+    }
     .xm-size-span{
         display: inline-block;
-        width: 40px;
+        width: 28px;
         background: transparent;
         border: 1px solid transparent;
         color: #333333;
@@ -16,7 +31,7 @@
         height: 20px;
         line-height: 20px;
         overflow: hidden;
-        padding: 1px 6px;
+        padding: 0;
         border-radius: 1px;
         outline: none;
         cursor: pointer;
@@ -41,21 +56,11 @@
     input:focus {
         background: #fff;
     }
-    .xm-size-button-dropdown {
-        display: inline-block;
-        background: url(//ssl.gstatic.com/ui/v1/disclosure/small-grey-disclosure-arrow-down.png) center no-repeat;
-        float: right;
-        margin: 7px 0 0 0px;
-        padding: 0 0 0 1px;
-        min-width: 7px;
-        opacity: .8;
-        vertical-align: middle;
-        width: 5px;
-        height: 7px;
-    }
     .xm-size-p {
         display: block;
         position: absolute;
+        top: 30px;
+        left: -10px;
         padding: 10px 0px;
         background: #ffffff;
         font-size: 14px;

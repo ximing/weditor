@@ -91,10 +91,17 @@ var SizeDropDown = function (_Component) {
         };
 
         _this.inputClick = function (e) {
-            e.stopPropagation();
-            e.nativeEvent.stopImmediatePropagation();
-            $(document).on('click', _this.closePanel);
-            _this.setState({ open: true });
+            // e.stopPropagation();
+            // e
+            //     .nativeEvent
+            //     .stopImmediatePropagation();
+            console.log('size this.state.open', _this.state.open);
+            _this.setState({ open: !_this.state.open });
+            if (!_this.state.open) {
+                setTimeout(function () {
+                    $(document).on('click', _this.closePanel);
+                }, 10);
+            }
         };
 
         _this.handleKeyPress = function (e) {
@@ -162,7 +169,7 @@ var SizeDropDown = function (_Component) {
                         } },
                     hummenSize(this.props.size)
                 ),
-                _react2.default.createElement('div', { className: 'xm-size-button-dropdown', onClick: this.inputClick }),
+                _react2.default.createElement('i', { className: 'xm-icon docicon docicon-triangle', onClick: this.inputClick }),
                 _react2.default.createElement(
                     'div',
                     {
