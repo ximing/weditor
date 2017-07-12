@@ -54,11 +54,14 @@ export default class HeaderDropDown extends Component {
     }
 
     spanClick = (e) => {
-        e.stopPropagation();
-        e.nativeEvent.stopImmediatePropagation();
-        // window     .quillEditor     .focus();
-        $(document).on('click', this.closePanel);
-        this.setState({open: true});
+        // e.stopPropagation();
+        // e.nativeEvent.stopImmediatePropagation();
+        this.setState({open: !this.state.open});
+        if(!this.state.open){
+            setTimeout(()=>{
+                $(document).on('click', this.closePanel);
+            },10);
+        }
     }
 
     render() {
@@ -68,7 +71,7 @@ export default class HeaderDropDown extends Component {
                     className="xm-header-span"
                     onClick={this.spanClick}
                     ref={(span) => this.span = span}>{this.state.value}</span>
-                <div className="xm-size-button-dropdown" onClick={this.spanClick}></div>
+                <i className="xm-icon docicon docicon-triangle" onClick={this.spanClick}></i>
                 <div
                     className="xm-size-h"
                     id="xm-size-h"

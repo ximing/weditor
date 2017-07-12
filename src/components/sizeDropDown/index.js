@@ -90,12 +90,17 @@ export default class SizeDropDown extends Component {
     }
 
     inputClick = (e) => {
-        e.stopPropagation();
-        e
-            .nativeEvent
-            .stopImmediatePropagation();
-        $(document).on('click', this.closePanel);
-        this.setState({open: true});
+        // e.stopPropagation();
+        // e
+        //     .nativeEvent
+        //     .stopImmediatePropagation();
+        console.log('size this.state.open',this.state.open)
+        this.setState({open: !this.state.open});
+        if(!this.state.open){
+           setTimeout(()=>{
+               $(document).on('click', this.closePanel);
+           },10)
+        }
     }
     handleKeyPress = (e) => {
         // if (e.key === 'Enter') {
@@ -126,7 +131,7 @@ export default class SizeDropDown extends Component {
                     className="xm-size-span"
                     onClick={this.inputClick}
                     ref={(span) => this.span = span}>{hummenSize(this.props.size)}</span>
-                <div className="xm-size-button-dropdown" onClick={this.inputClick}></div>
+                <i className="xm-icon docicon docicon-triangle" onClick={this.inputClick}></i>
                 <div
                     className="xm-size-p"
                     id="xm-size-p"
