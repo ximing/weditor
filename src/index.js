@@ -27,7 +27,7 @@ class  Editor extends Component {
             name:'',
             status:''
         },
-        coCursors:[],
+        // coCursors:[],
         rightContent:null,
         onlyRead:false
     };
@@ -53,7 +53,6 @@ class  Editor extends Component {
             >
                 <WEditor onlyRead={this.props.onlyRead}
                          options={this.props.options}
-                         coCursors = {this.props.coCursors}
                          doc={this.props.doc}/>
             </Provider>
         );

@@ -13,7 +13,7 @@ import InsertImage from './components/insertImage';
 import HotKeysDialog from './components/hotKeysDialog';
 import {inject, observer} from 'mobx-react';
 import Selection from './components/selection';
-import OtherSelection from './components/otherSelection';
+// import OtherSelection from './components/otherSelection';
 import Editor from './components/editor';
 const $ = window.jQuery;
 import editor from './model/editor';
@@ -85,11 +85,6 @@ export default class WEditor extends Component {
                             !this.props.focus && <Selection scrollTop={this.state.scrollTop}/>
                         }
                         <Editor onlyRead={this.props.onlyRead}/>
-                        {
-                            this.props.coCursors.map(item=>{
-                                return <OtherSelection key={item.id} name={item.name} range={item.range} />;
-                            })
-                        }
                         <div className="img-selection">
                             <div className="docs-squarehandleselectionbox-handle docx-selection-topleft"></div>
                             <div className="docs-squarehandleselectionbox-handle docx-selection-topright"></div>
@@ -116,6 +111,11 @@ export default class WEditor extends Component {
     }
 }
 
-export const call = function () {
-
-}
+// export const call = function () {
+//
+// }
+// {
+//     this.props.coCursors.map(item=>{
+//         return <OtherSelection key={item.id} name={item.name} range={item.range} />;
+//     })
+// }

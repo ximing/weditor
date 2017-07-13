@@ -3,6 +3,8 @@
  */
 'use strict';
 import  Quill from 'quill';
+import QuillCursors from 'quill-cursors';
+import 'quill-cursors/dist/quill-cursors.css'
 import './initQuill';
 import initHotKey from './initHotKey';
 
@@ -114,6 +116,9 @@ export const initQuillEditor = function (dom, options) {
                 maxStack: 500,
                 userOnly: true
             },
+            cursors: {
+                autoRegisterListener: false
+            },
             //'syntax': true        // Enable with default configuration
             //imageDrop: true,
             imageResize: {
@@ -128,11 +133,8 @@ export const initQuillEditor = function (dom, options) {
         scrollingContainer: document.querySelector('.weditor-body')
         // scrollingContainer: document.querySelector('.ql-container')
     });
-    // $quillEditorDom = $(quillDom).find('.ql-editor');
-    // $weditorBody = $('.weditor-body');
-    // quillEditor.on('text-change', (range, oldRange, source) => {
-    //     resize();
-    // });
+    var cursorsModule = quillEditor.getModule('cursors');
+
     quillEditor.on('editor-change', function(eventName, ...args) {
         if (eventName === 'text-change') {
             editor.focus = true;
@@ -178,6 +180,7 @@ export const initQuillEditor = function (dom, options) {
             }
         }
     });
+    cursorsModule.registerTextChangeListener();
 
     // quillEditor.on('text-change', function (delta, oldDelta, source) {
     //     editor.focus = true;
