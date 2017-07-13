@@ -6,7 +6,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.resize = exports.initQuillEditor = exports.setLinkBubble = exports.getEditorBoundingClientRect = exports.getDom = exports.getEditor = undefined;
+exports.initQuillEditor = exports.setLinkBubble = exports.getEditorBoundingClientRect = exports.getDom = exports.getEditor = undefined;
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
@@ -120,9 +120,11 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
                                 _insert2.default.linkTitle = getEditor().getText(index, length);
                                 _insert2.default.linkUrl = null;
                                 setLinkBubble(index);
+                                _insert2.default.isCreateNewLink = false;
+                            } else {
+                                _insert2.default.isCreateNewLink = true;
                             }
                             _insert2.default.linkSelection = _editor2.default.range;
-                            _insert2.default.isCreateNewLink = true;
                         } else {
                             var _editor$range2 = _editor2.default.range,
                                 _index = _editor$range2.index,
@@ -140,8 +142,6 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
                         }
                     },
                     'image': function image(args) {
-                        // var range = this.quill.getSelection();
-                        // var value = prompt('What is the image URL');
                         _insert2.default.imageSelection = getEditor().getSelection();
                         _insert2.default.openImageDialog = true;
                     }
@@ -274,19 +274,5 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
     // });
 
     (0, _initHotKey2.default)(quillEditor);
-
-    //$(window).on('resize', resize);
-    //fix有图片的时候高度问题
-    // $( window ).on("load", resize);
     return quillEditor;
-};
-var resize = exports.resize = function resize() {
-    // console.log('resize')
-    // let scrollHeight = $quillEditorDom[0].scrollHeight;
-    // console.log('scrollHeight',scrollHeight);
-    // if ($weditorBody.height() < scrollHeight) {
-    //     $quillContainer.height(scrollHeight);
-    // } else {
-    //     $quillContainer.height($weditorBody.height() - 50);
-    // }
 };

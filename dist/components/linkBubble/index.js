@@ -88,9 +88,8 @@ var LinkBubble = (0, _mobxReact.observer)(_class = (_temp2 = _class2 = function 
             if ((0, _quillEditor.getEditor)() && !!_insert2.default.linkUrl) {
                 var _editor = (0, _quillEditor.getEditor)();
                 var selection = _insert2.default.linkSelection;
+                console.log('selection', selection, _insert2.default.isCreateNewLink);
                 if (selection) {
-                    //if editor.getText(selection.index, selection.length) === insert.linkTitle
-                    console.log('insert.isCreateNewLink', _insert2.default.isCreateNewLink);
                     if (_insert2.default.isCreateNewLink) {
                         var index = selection.index;
 

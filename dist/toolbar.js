@@ -140,8 +140,12 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
             return _this.props.editor.format[type];
         };
 
-        _this.hasBlock = function (type) {
-            return _this.props.editor.format[type];
+        _this.hasBlock = function (type, val) {
+            if (val) {
+                return _this.props.editor.format[type] === val;
+            } else {
+                return _this.props.editor.format[type];
+            }
         };
 
         _this.renderMarkButton = function (type, icon) {
@@ -161,7 +165,7 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
         };
 
         _this.renderBlockButton = function (type, icon, val) {
-            var isActive = _this.hasBlock(type);
+            var isActive = _this.hasBlock(type, val);
             var onMouseDown = function onMouseDown(e) {
                 return _this.onClickBlock(e, type, val);
             };
@@ -326,6 +330,7 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                     },
                     _this.renderBlockButton('list', 'ul', 'bullet')
                 ),
+                _react2.default.createElement(_icon2.default, { type: 'vertical' }),
                 _react2.default.createElement(
                     _tooltip2.default,
                     {
@@ -342,7 +347,6 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                     },
                     _this.renderAlignButton('left', 'left-align')
                 ),
-                _react2.default.createElement(_icon2.default, { type: 'vertical' }),
                 _react2.default.createElement(
                     _tooltip2.default,
                     {
@@ -476,6 +480,7 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
          * Check if the any of the currently selected blocks are of `type`.
          *
          * @param {String} type
+         * @param {String} val
          * @return {Boolean}
          */
 
