@@ -96,11 +96,16 @@ export default class EditorToolbar extends Component {
      * Check if the any of the currently selected blocks are of `type`.
      *
      * @param {String} type
+     * @param {String} val
      * @return {Boolean}
      */
 
-    hasBlock = (type) => {
-        return this.props.editor.format[type]
+    hasBlock = (type,val) => {
+        if(val){
+            return this.props.editor.format[type] === val;
+        }else{
+            return this.props.editor.format[type]
+        }
     }
 
 
@@ -136,7 +141,7 @@ export default class EditorToolbar extends Component {
      */
 
     renderBlockButton = (type, icon, val) => {
-        const isActive = this.hasBlock(type)
+        const isActive = this.hasBlock(type,val)
         const onMouseDown = e => this.onClickBlock(e, type, val);
         const classname = classnames({
             button: true,
