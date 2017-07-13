@@ -17,7 +17,7 @@ var AlignStyle = Quill.import('attributors/style/align');
 SizeStyle.whitelist = [];
 ColorStyle.whitelist = null;
 BackgroundStyle.whitelist = ['yellow','green','cyan','magenta','darkYellow','darkyellow','darkGray','darkgray','lightGray','lightgray','black',
-    'blue','red','darkBlue','darkblue','darkCyan','darkcyan','darkGreen','darkgreen','darkMagenta','darkmagenta','darkRed','darkred'];
+    'blue','red','darkBlue','darkblue','darkCyan','darkcyan','darkGreen','darkgreen','darkMagenta','darkmagenta','darkRed','darkred','white'];
 AlignStyle.whitelist = ['right', 'center', 'justify','left'];
 for (let i = 5; i <= 72; i++) {
     SizeStyle.whitelist.push(`${i}pt`);
