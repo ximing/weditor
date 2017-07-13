@@ -154,12 +154,14 @@ var InsertImage = function (_Component) {
             });
             uploader.on('uploadAccept', function (obj, res) {
                 res = JSON.parse(res);
+                console.log('uploadAccept', res, res.errno === 0);
                 if (res.errno === 0) {
                     if (res.data.url) {
                         var _insert$imageSelectio2 = _insert2.default.imageSelection,
                             index = _insert$imageSelectio2.index,
                             length = _insert$imageSelectio2.length;
 
+                        console.log('res.data.url', res.data.url);
                         (0, _quillEditor.getEditor)().insertEmbed(index, 'image', res.data.url, _quill2.default.sources.USER);
                         _insert2.default.openImageDialog = false;
                     }
