@@ -61,9 +61,8 @@ export default class LinkBubble extends Component {
         if (getEditor() && !!insert.linkUrl) {
             let editor = getEditor();
             let selection = insert.linkSelection;
+            console.log('selection', selection,insert.isCreateNewLink);
             if (selection) {
-                //if editor.getText(selection.index, selection.length) === insert.linkTitle
-                console.log('insert.isCreateNewLink',insert.isCreateNewLink)
                 if (insert.isCreateNewLink) {
                     const {index} = selection;
                     let linkTitle = insert.linkTitle || insert.linkUrl;

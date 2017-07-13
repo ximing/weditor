@@ -89,9 +89,11 @@ export const initQuillEditor = function (dom, options) {
                                 insert.linkTitle = getEditor().getText(index, length);
                                 insert.linkUrl = null;
                                 setLinkBubble(index);
+                                insert.isCreateNewLink = false;
+                            }else{
+                                insert.isCreateNewLink = true;
                             }
                             insert.linkSelection = editor.range;
-                            insert.isCreateNewLink = true;
                         } else {
                             const {index, length} = editor.range;
                             let [leaf, offset] = quillEditor.getLeaf(index);
@@ -102,8 +104,6 @@ export const initQuillEditor = function (dom, options) {
                         }
                     },
                     'image': function (args) {
-                        // var range = this.quill.getSelection();
-                        // var value = prompt('What is the image URL');
                         insert.imageSelection = getEditor().getSelection();
                         insert.openImageDialog = true;
                     }
@@ -223,19 +223,5 @@ export const initQuillEditor = function (dom, options) {
     // });
 
     initHotKey(quillEditor);
-
-    //$(window).on('resize', resize);
-    //fix有图片的时候高度问题
-    // $( window ).on("load", resize);
     return quillEditor;
-};
-export const resize = function () {
-    // console.log('resize')
-    // let scrollHeight = $quillEditorDom[0].scrollHeight;
-    // console.log('scrollHeight',scrollHeight);
-    // if ($weditorBody.height() < scrollHeight) {
-    //     $quillContainer.height(scrollHeight);
-    // } else {
-    //     $quillContainer.height($weditorBody.height() - 50);
-    // }
 };
