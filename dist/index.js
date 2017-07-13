@@ -86,7 +86,6 @@ var Editor = (_temp = _class = function (_Component) {
                 },
                 _react2.default.createElement(_weditor2.default, { onlyRead: this.props.onlyRead,
                     options: this.props.options,
-                    coCursors: this.props.coCursors,
                     doc: this.props.doc })
             );
         }
@@ -103,7 +102,7 @@ var Editor = (_temp = _class = function (_Component) {
         name: '',
         status: ''
     },
-    coCursors: [],
+    // coCursors:[],
     rightContent: null,
     onlyRead: false
 }, _temp);

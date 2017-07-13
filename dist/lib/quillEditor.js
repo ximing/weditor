@@ -14,6 +14,12 @@ var _quill = require('quill');
 
 var _quill2 = _interopRequireDefault(_quill);
 
+var _quillCursors = require('quill-cursors');
+
+var _quillCursors2 = _interopRequireDefault(_quillCursors);
+
+require('quill-cursors/dist/quill-cursors.css');
+
 require('./initQuill');
 
 var _initHotKey = require('./initHotKey');
@@ -152,6 +158,9 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
                 maxStack: 500,
                 userOnly: true
             },
+            cursors: {
+                autoRegisterListener: false
+            },
             //'syntax': true        // Enable with default configuration
             //imageDrop: true,
             imageResize: {
@@ -166,11 +175,8 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
         scrollingContainer: document.querySelector('.weditor-body')
         // scrollingContainer: document.querySelector('.ql-container')
     });
-    // $quillEditorDom = $(quillDom).find('.ql-editor');
-    // $weditorBody = $('.weditor-body');
-    // quillEditor.on('text-change', (range, oldRange, source) => {
-    //     resize();
-    // });
+    var cursorsModule = quillEditor.getModule('cursors');
+
     quillEditor.on('editor-change', function (eventName) {
         if (eventName === 'text-change') {
             _editor2.default.focus = true;
@@ -229,6 +235,7 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
             }
         }
     });
+    cursorsModule.registerTextChangeListener();
 
     // quillEditor.on('text-change', function (delta, oldDelta, source) {
     //     editor.focus = true;

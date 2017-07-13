@@ -6,11 +6,13 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.call = exports.default = undefined;
+exports.default = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _dec, _class;
+// import OtherSelection from './components/otherSelection';
+
 
 var _react = require('react');
 
@@ -53,10 +55,6 @@ var _mobxReact = require('mobx-react');
 var _selection = require('./components/selection');
 
 var _selection2 = _interopRequireDefault(_selection);
-
-var _otherSelection = require('./components/otherSelection');
-
-var _otherSelection2 = _interopRequireDefault(_otherSelection);
 
 var _editor = require('./components/editor');
 
@@ -150,9 +148,6 @@ var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
                             style: { left: this.state.left } },
                         !this.props.focus && _react2.default.createElement(_selection2.default, { scrollTop: this.state.scrollTop }),
                         _react2.default.createElement(_editor2.default, { onlyRead: this.props.onlyRead }),
-                        this.props.coCursors.map(function (item) {
-                            return _react2.default.createElement(_otherSelection2.default, { key: item.id, name: item.name, range: item.range });
-                        }),
                         _react2.default.createElement(
                             'div',
                             { className: 'img-selection' },
@@ -172,5 +167,14 @@ var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
 
     return WEditor;
 }(_react.Component)) || _class) || _class);
+
+// export const call = function () {
+//
+// }
+// {
+//     this.props.coCursors.map(item=>{
+//         return <OtherSelection key={item.id} name={item.name} range={item.range} />;
+//     })
+// }
+
 exports.default = WEditor;
-var call = exports.call = function call() {};
