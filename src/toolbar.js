@@ -291,6 +291,7 @@ export default class EditorToolbar extends Component {
                 >
                     {this.renderBlockButton('list', 'ul', 'bullet')}
                 </ToolTip>
+                <Icon type="vertical"/>
                 <ToolTip
                     placement="bottom"
                     mouseEnterDelay={0}
@@ -299,7 +300,6 @@ export default class EditorToolbar extends Component {
                 >
                     {this.renderAlignButton('left', 'left-align')}
                 </ToolTip>
-                <Icon type="vertical"/>
                 <ToolTip
                     placement="bottom"
                     mouseEnterDelay={0}
