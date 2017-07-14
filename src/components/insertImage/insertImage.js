@@ -75,8 +75,10 @@ export default class InsertImage extends Component {
             console.log('uploadAccept',res,res.errno === 0,insert)
             if (res.errno === 0) {
                 if (res.data.url) {
-                    const {index, length} = insert.imageSelection;
-                    console.log('res.data.url',res.data.url)
+                    let index = 0;
+                    if(insert.imageSelection){
+                        index = insert.imageSelection
+                    }
                     getEditor().insertEmbed(index, 'image', res.data.url, Quill.sources.USER);
                     insert.openImageDialog = false;
                 }
