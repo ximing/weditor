@@ -16,6 +16,7 @@ exports.contains = contains;
 exports.is = is;
 exports.platform = platform;
 exports.getCtrl = getCtrl;
+exports.loop = loop;
 function contains(a, b) {
     return a == b || (a && a.contains ? a != b && a.contains(b) : !!(a.compareDocumentPosition(b) & 16));
 }
@@ -32,3 +33,5 @@ function platform() {
 function getCtrl() {
     return platform() === 'mac' ? 'Cmd' : 'Ctrl';
 }
+
+function loop() {}

@@ -46,6 +46,12 @@ var _help = require('./model/help');
 
 var _help2 = _interopRequireDefault(_help);
 
+var _hooks = require('./lib/hooks');
+
+var _hooks2 = _interopRequireDefault(_hooks);
+
+var _util = require('./lib/util');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -57,12 +63,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Editor = (_temp = _class = function (_Component) {
     _inherits(Editor, _Component);
 
-    function Editor() {
+    function Editor(props) {
         _classCallCheck(this, Editor);
 
-        var _this = _possibleConstructorReturn(this, (Editor.__proto__ || Object.getPrototypeOf(Editor)).call(this));
+        var _this = _possibleConstructorReturn(this, (Editor.__proto__ || Object.getPrototypeOf(Editor)).call(this, props));
 
         _this.getEditor = _quillEditor.getEditor;
+        _hooks2.default.onSave = props.hooks.onSave || _util.loop;
         return _this;
     }
 
@@ -104,6 +111,7 @@ var Editor = (_temp = _class = function (_Component) {
     },
     // coCursors:[],
     rightContent: null,
-    onlyRead: false
+    onlyRead: false,
+    hooks: {}
 }, _temp);
 exports.default = Editor;

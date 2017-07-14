@@ -13,6 +13,7 @@ exports.default = function (quill) {
         shortKey: true
     }, function (range, context) {
         console.log('save');
+        _hooks2.default.onSave(range, context);
     });
 
     quill.keyboard.addBinding({
@@ -203,3 +204,9 @@ exports.default = function (quill) {
         this.quill.format('align', 'right', 'user');
     });
 };
+
+var _hooks = require('./hooks');
+
+var _hooks2 = _interopRequireDefault(_hooks);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
