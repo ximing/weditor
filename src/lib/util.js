@@ -26,3 +26,6 @@ export function platform() {
 export function getCtrl() {
     return platform()==='mac'?'Cmd':'Ctrl';
 }
+
+export function loop() {
+}

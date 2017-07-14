@@ -48,7 +48,10 @@ export default class EditContainer extends Component {
                     fileOptions: [
                         {key: 'new', content: '新建文档', onClick: () => {console.log('new doc')}}
                     ]
-                }}/>
+                }}
+                hooks = {
+                    {onSave:()=>{console.log('hook save')}}
+                }/>
             </div>
         );
     }

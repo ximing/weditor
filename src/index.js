@@ -15,7 +15,8 @@ import catalogue from './model/catalogue';
 import insert from './model/insert';
 import editor from './model/editor';
 import help from './model/help';
-
+import hooks from './lib/hooks';
+import {loop} from './lib/util'
 class  Editor extends Component {
     static defaultProps = {
         options:{
@@ -29,12 +30,14 @@ class  Editor extends Component {
         },
         // coCursors:[],
         rightContent:null,
-        onlyRead:false
+        onlyRead:false,
+        hooks:{}
     };
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.getEditor = getEditor;
+        hooks.onSave = props.hooks.onSave || loop;
     };
 
     setContents(content) {

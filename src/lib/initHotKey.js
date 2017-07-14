@@ -2,12 +2,14 @@
  * Created by yeanzhi on 17/4/2.
  */
 'use strict';
+import hooks from './hooks';
 export default function (quill) {
     quill.keyboard.addBinding({
         key: 's',
         shortKey: true
     }, function(range, context) {
         console.log('save');
+        hooks.onSave(range,context);
     });
 
     quill.keyboard.addBinding({
