@@ -153,8 +153,10 @@ var InsertImage = function (_Component) {
                 }
             });
             uploader.on('uploadAccept', function (obj, res) {
-                res = JSON.parse(res);
-                console.log('uploadAccept', res, res.errno === 0);
+                if (typeof res === 'string') {
+                    res = JSON.parse(res);
+                }
+                console.log('uploadAccept', res, res.errno === 0, _insert2.default);
                 if (res.errno === 0) {
                     if (res.data.url) {
                         var _insert$imageSelectio2 = _insert2.default.imageSelection,
@@ -172,9 +174,10 @@ var InsertImage = function (_Component) {
             uploader.on('uploadComplete', function () {
                 uploader.reset();
             });
-            uploader.on('uploadError', function () {
+            uploader.on('uploadError', function (err) {
+                console.error(err);
                 uploader.reset();
-                (0, _toast.error)('上传服务错误');
+                (0, _toast.error)('上传服务错误!');
             });
         }
     }, {
