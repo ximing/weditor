@@ -8,7 +8,7 @@
  * @see https://quilljs.com/blog/building-a-custom-module/
  */
 import interact from 'interactjs';
-
+import Parchment from 'parchment'
 export class ImageResize {
 
     constructor(quill, options = {}) {
@@ -64,7 +64,14 @@ export class ImageResize {
         this.img = img;
         const rect = this.img.getBoundingClientRect();
         const rootRect = this.quill.root.getBoundingClientRect();
-        this.showBox(rect, rootRect)
+        this.showBox(rect, rootRect);
+        // 移动游标到图片右侧
+        let blot = Parchment.find(img);
+        let index = blot.offset(this.quill.scroll);
+        console.log('image index', index);
+        this.quill.setSelection(index+1, 0);
+        //鼠标点击，删除键等操作的时候，去掉选中态
+        this.quill.once('editor-change',()=>{this.hide();});
     }
 
     showBox(rect, rootRect) {
