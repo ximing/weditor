@@ -101,7 +101,7 @@ export default class EditorHeader extends Component {
 
     insertMenuClick = ({key}) =>{
         if(key === '0') {
-            insert.imageSelection = getEditor().getSelection();
+            insert.imageSelection = editor.range;
             insert.openImageDialog = true;
         }else if(getEditor()) {
             let toolbar = getEditor().getModule('toolbar');

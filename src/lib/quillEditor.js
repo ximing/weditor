@@ -107,7 +107,7 @@ export const initQuillEditor = function (dom, options) {
                     },
                     'image': function (args) {
                         console.log('select img',args);
-                        insert.imageSelection = getEditor().getSelection();
+                        insert.imageSelection = editor.range;
                         insert.openImageDialog = true;
                     }
                 }

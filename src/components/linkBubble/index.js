@@ -104,7 +104,7 @@ export default class LinkBubble extends Component {
 
     removeLink = () => {
         if (getEditor()) {
-            const {index, length} = editor.range;//getEditor().getSelection()
+            const {index, length} = editor.range;
             let [leaf, offset] = quillEditor.getLeaf(index);
             let LinkIndex = quillEditor.getIndex(leaf);
             getEditor().removeFormat(LinkIndex, leaf.text.length, 'user');
