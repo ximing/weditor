@@ -69,8 +69,10 @@ export default class InsertImage extends Component {
             }
         });
         uploader.on('uploadAccept', (obj, res) => {
-            res = JSON.parse(res);
-            console.log('uploadAccept',res,res.errno === 0)
+            if(typeof res === 'string'){
+                res = JSON.parse(res);
+            }
+            console.log('uploadAccept',res,res.errno === 0,insert)
             if (res.errno === 0) {
                 if (res.data.url) {
                     const {index, length} = insert.imageSelection;
@@ -85,9 +87,10 @@ export default class InsertImage extends Component {
         uploader.on('uploadComplete',()=>{
             uploader.reset();
         });
-        uploader.on('uploadError',()=>{
+        uploader.on('uploadError',(err)=>{
+            console.error(err);
             uploader.reset();
-            error('上传服务错误');
+            error('上传服务错误!');
         });
     }
 
