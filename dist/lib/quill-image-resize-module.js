@@ -19,6 +19,10 @@ var _interactjs = require('interactjs');
 
 var _interactjs2 = _interopRequireDefault(_interactjs);
 
+var _parchment = require('parchment');
+
+var _parchment2 = _interopRequireDefault(_parchment);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -79,11 +83,22 @@ var ImageResize = exports.ImageResize = function () {
     }, {
         key: 'show',
         value: function show(img) {
+            var _this2 = this;
+
             // keep track of this img element
             this.img = img;
             var rect = this.img.getBoundingClientRect();
             var rootRect = this.quill.root.getBoundingClientRect();
             this.showBox(rect, rootRect);
+            // 移动游标到图片右侧
+            var blot = _parchment2.default.find(img);
+            var index = blot.offset(this.quill.scroll);
+            console.log('image index', index);
+            this.quill.setSelection(index + 1, 0);
+            //鼠标点击，删除键等操作的时候，去掉选中态
+            this.quill.once('editor-change', function () {
+                _this2.hide();
+            });
         }
     }, {
         key: 'showBox',

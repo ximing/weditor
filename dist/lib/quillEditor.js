@@ -148,6 +148,7 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
                         }
                     },
                     'image': function image(args) {
+                        console.log('select img', args);
                         _insert2.default.imageSelection = getEditor().getSelection();
                         _insert2.default.openImageDialog = true;
                     }
