@@ -68,6 +68,7 @@ body {
                 margin: 0;
                 border: none;
                 overflow-y: auto;
+                overflow-x: hidden;
                 min-height: 900pt;
                 a:active,a:link,a:visited{
                     color: #15c;
@@ -75,10 +76,12 @@ body {
             }
         }
         .ql-cursors{
-            z-index: 100;
             .ql-cursor{
                 .ql-cursor-flag .ql-cursor-name{
                     font-size: 12px;
+                }
+                .ql-cursor-caret-container{
+                    z-index: 1000;
                 }
             }
         }

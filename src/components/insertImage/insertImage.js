@@ -38,14 +38,23 @@ export default class InsertImage extends Component {
         });
     }
 
+    insertImage = (url) => {
+        let index = 0;
+        if(insert.imageSelection){
+            index = insert.imageSelection.index;
+        }
+        console.log('insert Image ',index);
+        getEditor().insertEmbed(index, 'image', url, Quill.sources.USER);
+        insert.openImageDialog = false;
+    };
+
     insertLink = ()=>{
         if(this.state.linkUrl) {
-            const {index, length} = insert.imageSelection;
-            getEditor().insertEmbed(index, 'image', this.state.linkUrl, Quill.sources.USER);
-            insert.openImageDialog = false;
+            this.insertImage(this.state.linkUrl);
         }
 
-    }
+    };
+
     initUploader() {
         this.rootNode = ReactDOM.findDOMNode(this);
         this.target = this.rootNode.getElementsByClassName('weditor-insert-image-dialog')[0];
@@ -64,7 +73,7 @@ export default class InsertImage extends Component {
             'server': this.props.uploadUrl || '',
             accept: {
                 title: 'Images',
-                extensions: 'jpg,jpeg,bmp,png',
+                extensions: 'jpg,jpeg,bmp,png,gif',
                 mimeTypes: 'image/*'
             }
         });
@@ -75,12 +84,7 @@ export default class InsertImage extends Component {
             console.log('uploadAccept',res,res.errno === 0,insert)
             if (res.errno === 0) {
                 if (res.data.url) {
-                    let index = 0;
-                    if(insert.imageSelection){
-                        index = insert.imageSelection
-                    }
-                    getEditor().insertEmbed(index, 'image', res.data.url, Quill.sources.USER);
-                    insert.openImageDialog = false;
+                    this.insertImage(res.data.url);
                 }
             } else {
                 error('上传服务错误');
