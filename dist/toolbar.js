@@ -278,6 +278,7 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                     var toolbar = (0, _quillEditor.getEditor)().getModule('toolbar');
                     toolbar.handlers['image'].call(toolbar, !_this.props.editor.format['image']);
                 }
+                $(document).trigger('click');
             };
             var classname = (0, _classnames2.default)({
                 button: true
@@ -526,7 +527,8 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
             return _react2.default.createElement(
                 _rcTrigger2.default,
                 {
-                    popupClassName: 'popup-opver-wrapper',
+                    style: { zIndex: 400000 },
+                    popupClassName: 'popup-opver-wrapper more-popup-opver-wrapper',
                     getPopupContainer: this.getPopupContainer,
                     popupPlacement: 'bottomRight',
                     builtinPlacements: {

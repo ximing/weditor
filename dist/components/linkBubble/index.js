@@ -54,6 +54,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var $ = window.jQuery;
+
 var LinkBubble = (0, _mobxReact.observer)(_class = (_temp2 = _class2 = function (_Component) {
     _inherits(LinkBubble, _Component);
 
@@ -135,7 +137,7 @@ var LinkBubble = (0, _mobxReact.observer)(_class = (_temp2 = _class2 = function 
             if ((0, _quillEditor.getEditor)()) {
                 var _editor$range = _editor3.default.range,
                     index = _editor$range.index,
-                    length = _editor$range.length; //getEditor().getSelection()
+                    length = _editor$range.length;
 
                 var _quillEditor$getLeaf3 = quillEditor.getLeaf(index),
                     _quillEditor$getLeaf4 = _slicedToArray(_quillEditor$getLeaf3, 2),
@@ -155,14 +157,14 @@ var LinkBubble = (0, _mobxReact.observer)(_class = (_temp2 = _class2 = function 
             var _this2 = this;
 
             setTimeout(function () {
-                window.document.addEventListener('click', _this2.otherDOMClick);
+                $(document).on('click', _this2.otherDOMClick);
             }, 100);
             this.target = _reactDom2.default.findDOMNode(this);
         }
     }, {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
-            window.document.removeEventListener('click', this.otherDOMClick, false);
+            $(document).off('click', this.otherDOMClick);
         }
     }, {
         key: 'renderReadOnly',

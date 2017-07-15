@@ -38,7 +38,9 @@
     }
     box-shadow: 0 1px 0 0 rgba(221,221,221,0.50);
 }
-
+.more-popup-opver-wrapper{
+    z-index:400000 !important;
+}
 .toolbar-opver {
     padding-left: 15px !important;
     background: #F0F0F0;

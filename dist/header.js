@@ -135,7 +135,7 @@ var EditorHeader = (_temp = _class = function (_Component) {
             var key = _ref3.key;
 
             if (key === '0') {
-                _insert2.default.imageSelection = (0, _quillEditor.getEditor)().getSelection();
+                _insert2.default.imageSelection = _editor2.default.range;
                 _insert2.default.openImageDialog = true;
             } else if ((0, _quillEditor.getEditor)()) {
                 var toolbar = (0, _quillEditor.getEditor)().getModule('toolbar');
