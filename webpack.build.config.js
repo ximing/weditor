@@ -24,7 +24,11 @@ module.exports = {
         libraryTarget: 'umd'
     },
     devtool: 'cheap-module-source-map',
-
+    resolve:{
+        alias:{
+            'quill-cursors': path.join(__dirname, './src/lib/quill-cursors'),
+        }
+    },
     performance: {
         hints: false
     },

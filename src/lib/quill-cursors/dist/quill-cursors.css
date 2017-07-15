@@ -1,0 +1,73 @@
+/********
+ * VARS *
+ ********/
+/**********
+ * MIXINS *
+ **********/
+/***********
+ * CURSORS *
+ ***********/
+.ql-container {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column; }
+
+.ql-editor {
+  position: relative;
+  position: relative;
+  flex: 1;
+  outline: none;
+  tab-size: 4;
+  white-space: pre-wrap; }
+
+.ql-cursor.hidden {
+  display: none; }
+
+.ql-cursor .ql-cursor-caret-container,
+.ql-cursor .ql-cursor-flag {
+  position: absolute; }
+
+.ql-cursor .ql-cursor-flag {
+  z-index: 1;
+  transform: translate3d(-1px, -100%, 0);
+  opacity: 0;
+  color: white;
+  padding-bottom: 2px; }
+  @media screen {
+    .ql-cursor .ql-cursor-flag {
+      transition: opacity 0ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0ms; } }
+  .ql-cursor .ql-cursor-flag .ql-cursor-name {
+    margin-left: 5px;
+    margin-right: 2.5px;
+    display: inline-block;
+    margin-top: -2px; }
+  .ql-cursor .ql-cursor-flag .ql-cursor-flag-flap {
+    display: inline-block;
+    z-index: -1;
+    width: 5px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: -2.5px;
+    border-radius: 3px;
+    background-color: inherit; }
+
+.ql-cursor .ql-cursor-caret-container:hover + .ql-cursor-flag {
+  opacity: 1;
+  transition: none; }
+
+.ql-cursor .ql-cursor-caret-container {
+  margin-left: -9px;
+  padding: 0 9px;
+  z-index: 1; }
+  .ql-cursor .ql-cursor-caret-container .ql-cursor-caret {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    margin-left: -1px;
+    background-color: attr(data-color); }
+
+.ql-cursor .ql-cursor-selection-block {
+  position: absolute; }

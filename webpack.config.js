@@ -21,7 +21,11 @@ module.exports = {
         publicPath: '/dist/'
     },
     devtool: 'cheap-module-eval-source-map',
-
+    resolve:{
+        alias:{
+            'quill-cursors': path.join(__dirname, './src/lib/quill-cursors'),
+        }
+    },
     devServer: {
         contentBase: [path.join(__dirname, 'html'), path.join(__dirname, 'dist')],
         compress: true,
