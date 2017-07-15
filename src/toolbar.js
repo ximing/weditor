@@ -263,6 +263,7 @@ export default class EditorToolbar extends Component {
                 let toolbar = getEditor().getModule('toolbar');
                 toolbar.handlers['image'].call(toolbar, !this.props.editor.format['image']);
             }
+            $(document).trigger('click')
         };
         const classname = classnames({
             button: true
@@ -373,7 +374,8 @@ export default class EditorToolbar extends Component {
         })
         return (
             <Trigger
-                popupClassName="popup-opver-wrapper"
+                style={{zIndex:400000}}
+                popupClassName="popup-opver-wrapper more-popup-opver-wrapper"
                 getPopupContainer={this.getPopupContainer}
                 popupPlacement="bottomRight"
                 builtinPlacements={{

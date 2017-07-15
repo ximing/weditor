@@ -12,6 +12,7 @@ import {contains} from '../../lib/util';
 import {getEditor} from '../../lib/quillEditor'
 import insert from '../../model/insert';
 import editor from '../../model/editor';
+const $ = window.jQuery;
 
 import {inject, observer} from 'mobx-react';
 
@@ -24,13 +25,13 @@ export default class LinkBubble extends Component {
 
     componentDidMount() {
         setTimeout(() => {
-            window.document.addEventListener('click', this.otherDOMClick);
+            $(document).on('click',this.otherDOMClick);
         }, 100);
         this.target = ReactDOM.findDOMNode(this);
     }
 
     componentWillUnmount() {
-        window.document.removeEventListener('click', this.otherDOMClick, false);
+        $(document).off('click',this.otherDOMClick);
     }
 
     closeBubble = () => {

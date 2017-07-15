@@ -77,8 +77,11 @@ body {
         }
         .ql-cursors{
             .ql-cursor{
-                .ql-cursor-flag .ql-cursor-name{
-                    font-size: 12px;
+                .ql-cursor-flag {
+                    z-index: 40000;
+                    .ql-cursor-name{
+                        font-size: 12px;
+                    }
                 }
                 .ql-cursor-caret-container{
                     z-index: 1000;
