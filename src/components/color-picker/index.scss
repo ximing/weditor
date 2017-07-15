@@ -37,6 +37,7 @@
 .xm-color-picker-container{
     display: inline-block;
     line-height: 24px;
+    position: relative;
 }
 .xm-color-picker-icon{
     font-style: normal;
@@ -50,6 +51,7 @@
         padding: 0;
         box-sizing: border-box;
     }
+    right: 0px;
     text-align: left;
     width: 193px;
     position: absolute;
