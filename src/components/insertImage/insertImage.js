@@ -6,7 +6,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import Quill from 'quill';
 import 'rc-tabs/assets/index.css';
-import Tabs, { TabPane} from 'rc-tabs';
+import Tabs, {TabPane} from 'rc-tabs';
 import ScrollableInkTabBar from 'rc-tabs/lib/ScrollableInkTabBar.js';
 import TabContent from 'rc-tabs/lib/TabContent.js';
 import Dialog from '../dialog';
@@ -15,41 +15,44 @@ import {Uploader} from '../uploader/index';
 import Button from '../button';
 import insert from '../../model/insert';
 import {getEditor} from '../../lib/quillEditor'
-
+import {Line} from 'rc-progress';
+import {error} from '../toast';
 import Input from '../input';
 import {error} from '../toast';
 const $ = window.jQuery;
 
 export default class InsertImage extends Component {
     state = {
-        activeKey:'1',
-        linkUrl:''
+        activeKey: '1',
+        linkUrl: '',
+        progress: 0
     }
+
     componentDidMount() {
-        setTimeout(()=>{
+        setTimeout(() => {
             window.document.addEventListener('click', this.otherDOMClick);
-        },100);
+        }, 100);
         this.initUploader();
     }
 
-    onLinkUrlChange = (e)=>{
+    onLinkUrlChange = (e) => {
         this.setState({
-            linkUrl:e.target.value
+            linkUrl: e.target.value
         });
     }
 
     insertImage = (url) => {
         let index = 0;
-        if(insert.imageSelection){
+        if (insert.imageSelection) {
             index = insert.imageSelection.index;
         }
-        console.log('insert Image ',index);
+        console.log('insert Image ', index);
         getEditor().insertEmbed(index, 'image', url, Quill.sources.USER);
         insert.openImageDialog = false;
     };
 
-    insertLink = ()=>{
-        if(this.state.linkUrl) {
+    insertLink = () => {
+        if (this.state.linkUrl) {
             this.insertImage(this.state.linkUrl);
         }
 
@@ -69,7 +72,7 @@ export default class InsertImage extends Component {
             'body': this.target,
             'multiple': false,
             'method': 'post',
-            'withCredentials':true,
+            'withCredentials': true,
             'server': this.props.uploadUrl || '',
             accept: {
                 title: 'Images',
@@ -77,11 +80,30 @@ export default class InsertImage extends Component {
                 mimeTypes: 'image/*'
             }
         });
+        uploader.on('beforeFileQueued', (wuFile) => {
+            if (wuFile.size > 1024 * 1024 * 20) {
+                error('图片大小不能超过20M');
+                return false;
+            }
+            return true;
+        });
+        uploader.on('fileQueued',(wuFile)=>{
+            this.file = wuFile;
+        });
+
+        uploader.on('uploadProgress', (file, currentProgress, loaded, total) => {
+            console.log('uploadProgress'.repeat(10))
+            console.log(currentProgress, loaded, total)
+            this.setState({
+                progress: (currentProgress / total) * 100
+            })
+        });
         uploader.on('uploadAccept', (obj, res) => {
-            if(typeof res === 'string'){
+            this.file = null;
+            if (typeof res === 'string') {
                 res = JSON.parse(res);
             }
-            console.log('uploadAccept',res,res.errno === 0,insert)
+            console.log('uploadAccept', res, res.errno === 0, insert)
             if (res.errno === 0) {
                 if (res.data.url) {
                     this.insertImage(res.data.url);
@@ -90,10 +112,10 @@ export default class InsertImage extends Component {
                 error('上传服务错误');
             }
         });
-        uploader.on('uploadComplete',()=>{
+        uploader.on('uploadComplete', () => {
             uploader.reset();
         });
-        uploader.on('uploadError',(err)=>{
+        uploader.on('uploadError', (file, err) => {
             console.error(err);
             uploader.reset();
             error('上传服务错误!');
@@ -109,6 +131,9 @@ export default class InsertImage extends Component {
     }
 
     closeBubble = () => {
+        if (this.file && this.file.id) {
+            this.uploader.removeFile(this.file.id);
+        }
         insert.openImageDialog = false;
     };
 
@@ -129,7 +154,9 @@ export default class InsertImage extends Component {
         });
     }
 
+
     render() {
+        const {progress} = this.state;
         return (
             <Dialog
                 title="插入图片"
@@ -139,14 +166,20 @@ export default class InsertImage extends Component {
                         <div className="weditor-uploader-wrapper">
                             <Tabs
                                 renderTabBar={() => <ScrollableInkTabBar onTabClick={this.onTabClick}/>}
-                                renderTabContent={() => <TabContent animatedWithMargin />}
+                                renderTabContent={() => <TabContent animatedWithMargin/>}
                                 activeKey={this.state.activeKey}
                                 onChange={this.onChange}
                             >
                                 <TabPane tab={'本地上传'} key="1">
                                     <div className="weditor-uploader-file-inner">
-                                        <p className="weditor-image-tips">最大上传20M的图片</p>
-                                        <Button id="weditorUploaderPick">点击上传</Button>
+                                        <p className="weditor-image-tips"
+                                           style={{display: (progress === 0 || progress === 100) ? 'block' : 'none'}}>
+                                            最大上传20M的图片</p>
+                                        <Button id="weditorUploaderPick"
+                                                style={{display: (progress === 0 || progress === 100) ? 'block' : 'none'}}>点击上传</Button>
+                                        <Line percent={progress} trailWidth="2" strokeWidth="2" strokeColor="#118bfb"
+                                              style={{display: (progress > 0 && progress < 100) ? 'block' : 'none'}}/>
+
                                     </div>
                                 </TabPane>
                                 <TabPane tab={'插入外链'} key="2">

@@ -360,7 +360,7 @@ export class Uploader {
         let currentProgress = 0;
         file.statusText = WUFile.Status.PROGRESS;
         this.eventEmitter.on('uploadBeforeSend', (obj)=> {
-            currentShared = obj.currentShard;
+            currentShared = obj.currentShard || 1;
         });
 
         this.eventEmitter.on('uploadBlobProgress', (loaded,total)=> {

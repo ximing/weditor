@@ -5,7 +5,7 @@
 'use strict';
 import React, {Component} from 'react';
 import {observer,Provider} from 'mobx-react';
-
+window.RangeFix = require('rangefix');
 import './style/index.scss';
 import 'quill/dist/quill.snow.css';
 //import 'quill/dist/quill.bubble.css';
