@@ -3,7 +3,6 @@
  */
 'use strict';
 import React, {Component} from 'react';
-import hotkeys from 'hotkeys-js';
 import ReactDOM from 'react-dom';
 import Header from './header';
 import Toolbar from './toolbar';
@@ -13,7 +12,6 @@ import InsertImage from './components/insertImage';
 import HotKeysDialog from './components/hotKeysDialog';
 import {inject, observer} from 'mobx-react';
 import Selection from './components/selection';
-// import OtherSelection from './components/otherSelection';
 import Editor from './components/editor';
 const $ = window.jQuery;
 import editor from './model/editor';
@@ -78,8 +76,7 @@ export default class WEditor extends Component {
                 }
                 <div className="weditor-body">
                     <Catalogue/>
-                    <div className="content-container"
-                         style={{left: this.state.left}}>
+                    <div className="content-container">
 
                         {
                             !this.props.focus && <Selection scrollTop={this.state.scrollTop}/>
@@ -112,7 +109,7 @@ export default class WEditor extends Component {
 }
 
 // export const call = function () {
-//
+//style={{left: this.state.left}}
 // }
 // {
 //     this.props.coCursors.map(item=>{
