@@ -118,9 +118,13 @@ export default class LinkBubble extends Component {
     };
 
     renderReadOnly() {
+        let linkUrl = '';
+        if(insert.linkUrl.indexOf('http')!==0){
+            linkUrl = `http://${insert.linkUrl}`
+        }
         return (
             <div className="weditor-bubble-only-read">
-                <a href={insert.linkUrl} target="_blank">{insert.linkUrl}</a>
+                <a href={linkUrl} target="_blank">{insert.linkUrl}</a>
                 <span>-</span>
                 <a href="javascript:void(0)" onClick={this.ableEditLink}>编辑</a>
                 <span>|</span>
