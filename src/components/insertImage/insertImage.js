@@ -82,6 +82,7 @@ export default class InsertImage extends Component {
         uploader.on('beforeFileQueued', (wuFile) => {
             if (wuFile.size > 1024 * 1024 * 20) {
                 error('图片大小不能超过20M');
+                uploader.reset();
                 return false;
             }
             return true;
