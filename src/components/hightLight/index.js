@@ -24,7 +24,7 @@ export default class extends Component {
     }
 
     componentWillUnmount() {
-        window.document.removeEventListener('click',this.otherDOMClick);
+        $(document).off('click',this.otherDOMClick);
     }
 
     otherDOMClick = (e) => {
@@ -43,7 +43,7 @@ export default class extends Component {
             open:true
         });
         setTimeout(()=>{
-            window.document.addEventListener('click',this.otherDOMClick);
+            $(document).on('click',this.otherDOMClick);
         },100);
     }
 
@@ -51,15 +51,15 @@ export default class extends Component {
         this.setState({
             open:false
         });
-        window.document.removeEventListener('click',this.otherDOMClick);
-
+        $(document).off('click',this.otherDOMClick);
     }
 
     selectBackground(color) {
         return ()=>{
             this.onClose();
             if(getEditor()){
-                getEditor().formatText(editor.range,'background',color,'user');
+                const {index,length} = editor.range;
+                getEditor().formatText({index,length},'background',color,'user');
             }
         };
     }

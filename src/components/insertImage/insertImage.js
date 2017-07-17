@@ -29,7 +29,7 @@ export default class InsertImage extends Component {
 
     componentDidMount() {
         setTimeout(() => {
-            window.document.addEventListener('click', this.otherDOMClick);
+            $(document).on('click',this.otherDOMClick);
         }, 100);
         this.initUploader();
     }
@@ -122,7 +122,7 @@ export default class InsertImage extends Component {
     }
 
     componentWillUnmount() {
-        window.document.removeEventListener('click', this.otherDOMClick);
+        $(document).off('click',this.otherDOMClick);
         this.uploader.removeEvent('uploadAccept');
         this.uploader.removeEvent('uploadComplete');
         this.uploader.removeEvent('uploadError');
