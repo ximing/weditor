@@ -172,12 +172,16 @@ var LinkBubble = (0, _mobxReact.observer)(_class = (_temp2 = _class2 = function 
     }, {
         key: 'renderReadOnly',
         value: function renderReadOnly() {
+            var linkUrl = '';
+            if (_insert2.default.linkUrl.indexOf('http') !== 0) {
+                linkUrl = 'http://' + _insert2.default.linkUrl;
+            }
             return _react2.default.createElement(
                 'div',
                 { className: 'weditor-bubble-only-read' },
                 _react2.default.createElement(
                     'a',
-                    { href: _insert2.default.linkUrl, target: '_blank' },
+                    { href: linkUrl, target: '_blank' },
                     _insert2.default.linkUrl
                 ),
                 _react2.default.createElement(
