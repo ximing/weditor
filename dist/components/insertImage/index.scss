@@ -38,6 +38,7 @@
 }
 
 .nx-modal-mask {
+    z-index: 400000 !important;
     background: rgba(255, 255, 255, 0.6) !important;
     .weditor-insert-image-dialog {
         box-shadow: 0 5px 10px rgba(0, 0, 0, .2);

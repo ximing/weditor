@@ -54,11 +54,13 @@ var _insert2 = _interopRequireDefault(_insert);
 
 var _quillEditor = require('../../lib/quillEditor');
 
+var _rcProgress = require('rc-progress');
+
+var _toast = require('../toast');
+
 var _input = require('../input');
 
 var _input2 = _interopRequireDefault(_input);
-
-var _toast = require('../toast');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -86,7 +88,8 @@ var InsertImage = function (_Component) {
 
         return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = InsertImage.__proto__ || Object.getPrototypeOf(InsertImage)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
             activeKey: '1',
-            linkUrl: ''
+            linkUrl: '',
+            progress: 0
         }, _this.onLinkUrlChange = function (e) {
             _this.setState({
                 linkUrl: e.target.value
@@ -104,6 +107,9 @@ var InsertImage = function (_Component) {
                 _this.insertImage(_this.state.linkUrl);
             }
         }, _this.closeBubble = function () {
+            if (_this.file && _this.file.id) {
+                _this.uploader.removeFile(_this.file.id);
+            }
             _insert2.default.openImageDialog = false;
         }, _this.otherDOMClick = function (e) {
             var node = e.target;
@@ -157,7 +163,26 @@ var InsertImage = function (_Component) {
                     mimeTypes: 'image/*'
                 }
             });
+            uploader.on('beforeFileQueued', function (wuFile) {
+                if (wuFile.size > 1024 * 1024 * 20) {
+                    (0, _toast.error)('图片大小不能超过20M');
+                    return false;
+                }
+                return true;
+            });
+            uploader.on('fileQueued', function (wuFile) {
+                _this3.file = wuFile;
+            });
+
+            uploader.on('uploadProgress', function (file, currentProgress, loaded, total) {
+                console.log('uploadProgress'.repeat(10));
+                console.log(currentProgress, loaded, total);
+                _this3.setState({
+                    progress: currentProgress / total * 100
+                });
+            });
             uploader.on('uploadAccept', function (obj, res) {
+                _this3.file = null;
                 if (typeof res === 'string') {
                     res = JSON.parse(res);
                 }
@@ -173,7 +198,7 @@ var InsertImage = function (_Component) {
             uploader.on('uploadComplete', function () {
                 uploader.reset();
             });
-            uploader.on('uploadError', function (err) {
+            uploader.on('uploadError', function (file, err) {
                 console.error(err);
                 uploader.reset();
                 (0, _toast.error)('上传服务错误!');
@@ -192,6 +217,8 @@ var InsertImage = function (_Component) {
         key: 'render',
         value: function render() {
             var _this4 = this;
+
+            var progress = this.state.progress;
 
             return _react2.default.createElement(_dialog2.default, {
                 title: '\u63D2\u5165\u56FE\u7247',
@@ -222,14 +249,18 @@ var InsertImage = function (_Component) {
                                     { className: 'weditor-uploader-file-inner' },
                                     _react2.default.createElement(
                                         'p',
-                                        { className: 'weditor-image-tips' },
+                                        { className: 'weditor-image-tips',
+                                            style: { display: progress === 0 || progress === 100 ? 'block' : 'none' } },
                                         '\u6700\u5927\u4E0A\u4F2020M\u7684\u56FE\u7247'
                                     ),
                                     _react2.default.createElement(
                                         _button2.default,
-                                        { id: 'weditorUploaderPick' },
+                                        { id: 'weditorUploaderPick',
+                                            style: { display: progress === 0 || progress === 100 ? 'block' : 'none' } },
                                         '\u70B9\u51FB\u4E0A\u4F20'
-                                    )
+                                    ),
+                                    _react2.default.createElement(_rcProgress.Line, { percent: progress, trailWidth: '2', strokeWidth: '2', strokeColor: '#118bfb',
+                                        style: { display: progress > 0 && progress < 100 ? 'block' : 'none' } })
                                 )
                             ),
                             _react2.default.createElement(

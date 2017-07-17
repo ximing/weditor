@@ -863,7 +863,7 @@ var Uploader = exports.Uploader = function () {
 
                                 file.statusText = _file.WUFile.Status.PROGRESS;
                                 this.eventEmitter.on('uploadBeforeSend', function (obj) {
-                                    currentShared = obj.currentShard;
+                                    currentShared = obj.currentShard || 1;
                                 });
 
                                 this.eventEmitter.on('uploadBlobProgress', function (loaded, total) {

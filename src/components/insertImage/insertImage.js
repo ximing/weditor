@@ -18,7 +18,6 @@ import {getEditor} from '../../lib/quillEditor'
 import {Line} from 'rc-progress';
 import {error} from '../toast';
 import Input from '../input';
-import {error} from '../toast';
 const $ = window.jQuery;
 
 export default class InsertImage extends Component {
