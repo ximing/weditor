@@ -4,7 +4,9 @@
 'use strict';
 import React, {Component} from 'react';
 import Notification from 'rc-notification';
+import 'rc-notification/assets/index.css';
 import './index.scss';
+
 import Icon from '../icon';
 const notification = Notification.newInstance({});
 
@@ -16,7 +18,7 @@ export const warning = function (content,onClose) {
 };
 export const info = function (content,onClose) {
     notification.notice({
-        content: <p className="weditor-toast"><Icon type="info"/><span>{content}</span></p>,
+        content: <p className="weditor-toast weditor-toast-info"><Icon type="info"/><span>{content}</span></p>,
         onClose
     });
 };
@@ -28,7 +30,7 @@ export const success = function (content,onClose) {
 };
 export const error = function (content,onClose) {
     notification.notice({
-        content: <p className="weditor-toast"><Icon type="error"/><span>{content}</span></p>,
+        content: <p className="weditor-toast weditor-toast-error"><Icon type="error"/><span>{content}</span></p>,
         onClose
     });
 };

@@ -23,7 +23,7 @@ export default class extends Component {
     }
 
     componentWillUnmount() {
-        $(document).off('click',this.otherDOMClick);
+        $(document).off('mousedown',this.otherDOMClick);
     }
 
     otherDOMClick = (e) => {
@@ -42,7 +42,7 @@ export default class extends Component {
             open:true
         });
         setTimeout(()=>{
-            $(document).on('click',this.otherDOMClick);
+            $(document).on('mousedown',this.otherDOMClick);
         },10);
     }
 
@@ -50,7 +50,7 @@ export default class extends Component {
         this.setState({
             open:false
         });
-        $(document).off('click',this.otherDOMClick);
+        $(document).off('mousedown',this.otherDOMClick);
     }
 
     selectBackground(color) {
