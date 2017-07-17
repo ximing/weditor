@@ -27,6 +27,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var $ = window.$;
+
 var ImageResize = exports.ImageResize = function () {
     function ImageResize(quill) {
         var _this = this;
@@ -34,6 +36,10 @@ var ImageResize = exports.ImageResize = function () {
         var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
         _classCallCheck(this, ImageResize);
+
+        this.onWindowResize = function () {
+            _this.hide();
+        };
 
         console.log(options);
         // save the quill reference and options
@@ -63,6 +69,7 @@ var ImageResize = exports.ImageResize = function () {
         });
         this.handleClick = this.handleClick.bind(this);
         this.quill.root.addEventListener('click', this.handleClick, false);
+        $(window).on('resize', this.onWindowResize);
     }
 
     _createClass(ImageResize, [{
