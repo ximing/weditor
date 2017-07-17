@@ -30,7 +30,7 @@ export default class InsertImage extends Component {
     componentDidMount() {
         setTimeout(() => {
             $(document).on('click',this.otherDOMClick);
-        }, 100);
+        }, 10);
         this.initUploader();
     }
 

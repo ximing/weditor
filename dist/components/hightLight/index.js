@@ -72,7 +72,7 @@ var _default = function (_Component) {
                 open: true
             });
             setTimeout(function () {
-                window.document.addEventListener('click', _this.otherDOMClick);
+                $(document).on('click', _this.otherDOMClick);
             }, 100);
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
@@ -86,7 +86,7 @@ var _default = function (_Component) {
     }, {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
-            window.document.removeEventListener('click', this.otherDOMClick);
+            $(document).off('click', this.otherDOMClick);
         }
     }, {
         key: 'onClose',
@@ -94,7 +94,7 @@ var _default = function (_Component) {
             this.setState({
                 open: false
             });
-            window.document.removeEventListener('click', this.otherDOMClick);
+            $(document).off('click', this.otherDOMClick);
         }
     }, {
         key: 'selectBackground',
@@ -104,7 +104,11 @@ var _default = function (_Component) {
             return function () {
                 _this2.onClose();
                 if ((0, _quillEditor.getEditor)()) {
-                    (0, _quillEditor.getEditor)().formatText(_editor2.default.range, 'background', color, 'user');
+                    var _editor$range = _editor2.default.range,
+                        index = _editor$range.index,
+                        length = _editor$range.length;
+
+                    (0, _quillEditor.getEditor)().formatText({ index: index, length: length }, 'background', color, 'user');
                 }
             };
         }

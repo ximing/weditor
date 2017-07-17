@@ -140,7 +140,7 @@ export const initQuillEditor = function (dom, options) {
         if (eventName === 'text-change') {
             editor.focus = true;
             if (editor.range) {
-                editor.format = quillEditor.getFormat(editor.range) || {};
+                editor.format = Object.assign({},quillEditor.getFormat(editor.range));
             } else {
                 editor.format = {};
             }
@@ -149,9 +149,9 @@ export const initQuillEditor = function (dom, options) {
             let [range, oldRange, source] = args;
             console.log('selection-change',range);
             if (range) {
-                editor.range = range;
+                editor.range = Object.assign({},range);
                 editor.focus = true;
-                editor.format = quillEditor.getFormat(range) || {};
+                editor.format = Object.assign({},quillEditor.getFormat(range));
                 if (editor.format.link) {
                     let [leaf, offset] = quillEditor.getLeaf(range.index);
                     // let linkIndex = quillEditor.getIndex(leaf);

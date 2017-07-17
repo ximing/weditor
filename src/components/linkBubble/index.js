@@ -26,7 +26,7 @@ export default class LinkBubble extends Component {
     componentDidMount() {
         setTimeout(() => {
             $(document).on('click',this.otherDOMClick);
-        }, 100);
+        }, 10);
         this.target = ReactDOM.findDOMNode(this);
     }
 
@@ -75,7 +75,6 @@ export default class LinkBubble extends Component {
                     const {index, length} = selection;
                     let linkTitle = insert.linkTitle || insert.linkUrl;
                     if(editor.getText(index,linkTitle.length) !== linkTitle){
-                        console.log('sssssss'.repeat(10))
                         editor.deleteText(index, length, 'user');
                         editor.insertText(index, linkTitle, 'user');
                     }

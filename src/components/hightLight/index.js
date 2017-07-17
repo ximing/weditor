@@ -20,7 +20,6 @@ export default class extends Component {
 
     componentDidMount() {
         this.target = ReactDOM.findDOMNode(this);
-        console.log('fdsaf',this.target);
     }
 
     componentWillUnmount() {
@@ -44,7 +43,7 @@ export default class extends Component {
         });
         setTimeout(()=>{
             $(document).on('click',this.otherDOMClick);
-        },100);
+        },10);
     }
 
     onClose() {

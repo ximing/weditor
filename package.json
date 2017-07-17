@@ -1,6 +1,6 @@
 {
   "name": "weditorjs",
-  "version": "1.6.9",
+  "version": "1.6.10",
   "description": "weditor",
   "author": "ximing",
   "main": "dist/index.js",
