@@ -9,6 +9,7 @@
  */
 import interact from 'interactjs';
 import Parchment from 'parchment'
+const $ = window.$;
 export class ImageResize {
 
     constructor(quill, options = {}) {
@@ -43,7 +44,12 @@ export class ImageResize {
             });
         this.handleClick = this.handleClick.bind(this);
         this.quill.root.addEventListener('click', this.handleClick, false);
+        $(window).on('resize',this.onWindowResize)
     }
+
+    onWindowResize = ()=>{
+        this.hide();
+    };
 
     handleClick(evt) {
         if (evt.target && evt.target.tagName && evt.target.tagName.toUpperCase() === 'IMG') {
