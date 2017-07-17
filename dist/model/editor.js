@@ -70,7 +70,10 @@ var Editor = (_class = function Editor() {
 }, (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'range', [_mobx.observable], {
     enumerable: true,
     initializer: function initializer() {
-        return {};
+        return {
+            index: 0,
+            length: 0
+        };
     }
 }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, 'focus', [_mobx.observable], {
     enumerable: true,

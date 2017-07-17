@@ -117,17 +117,22 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
                                 _insert2.default.openLinkDialog = false;
                                 _insert2.default.linkTitle = null;
                                 _insert2.default.linkUrl = null;
-                            } else if (_editor2.default.range) {
+                            } else if (_editor2.default.range && _editor2.default.range.index) {
                                 var _editor$range = _editor2.default.range,
                                     index = _editor$range.index,
                                     length = _editor$range.length;
 
+                                console.log('ssss'.repeat(10), index, length);
                                 _insert2.default.openLinkDialog = true;
                                 _insert2.default.linkTitle = getEditor().getText(index, length);
                                 _insert2.default.linkUrl = null;
                                 setLinkBubble(index);
                                 _insert2.default.isCreateNewLink = false;
                             } else {
+                                _insert2.default.openLinkDialog = true;
+                                _insert2.default.linkTitle = '';
+                                _insert2.default.linkUrl = null;
+                                setLinkBubble(0);
                                 _insert2.default.isCreateNewLink = true;
                             }
                             _insert2.default.linkSelection = _editor2.default.range;

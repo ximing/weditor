@@ -581,9 +581,6 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
             if (Array.isArray(color)) {
                 color = '#FFFFFF';
             }
-            if (Array.isArray(background)) {
-                background = '#FFFFFF';
-            }
             return _react2.default.createElement(
                 'div',
                 { className: 'toolbar-opver', id: 'toolbarOpver' },
