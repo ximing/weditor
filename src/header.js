@@ -81,6 +81,9 @@ export default class EditorHeader extends Component {
                 }
             });
         }
+        this.setState({
+            panelType:''
+        });
     };
 
     fileMenuClick = ({key}) =>{
@@ -97,6 +100,9 @@ export default class EditorHeader extends Component {
                 }
             });
         }
+        this.setState({
+            panelType:''
+        });
     };
 
     insertMenuClick = ({key}) =>{
@@ -107,6 +113,9 @@ export default class EditorHeader extends Component {
             let toolbar = getEditor().getModule('toolbar');
             toolbar.handlers['link'].call(toolbar, !(editor.format && editor.format.link));
         }
+        this.setState({
+            panelType:''
+        });
     };
 
     export = async() => {
@@ -213,26 +222,7 @@ export default class EditorHeader extends Component {
     }
 
 
-    /*
-     <div className="header-left-box list-header">
-     <div className="s-header">
-     <span className="s-header-text">
-     <div className="span-input-wrap">
-     <input className="title-input span-input" defaultValue={'ceshi.doc'} maxLength="100"
-     style={{
-     display: 'none'
-     }}/>
-     <span className="title-input-pre span-input-pre">{this.props.doc.name || '未命名'}</span>
-     </div>
-     </span>
-     </div>
-     </div>
-     <div className="header-right-box">
-     {this.props.rightContent}
-     </div>
-    * */
     render() {
-        //this.props.doc.status
         return (
             <div className="weditor-header">
                 {this.renderMenubar()}
