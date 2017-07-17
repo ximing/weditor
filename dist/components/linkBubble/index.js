@@ -70,7 +70,9 @@ var LinkBubble = (0, _mobxReact.observer)(_class = (_temp2 = _class2 = function 
             args[_key] = arguments[_key];
         }
 
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = LinkBubble.__proto__ || Object.getPrototypeOf(LinkBubble)).call.apply(_ref, [this].concat(args))), _this), _this.closeBubble = function () {
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = LinkBubble.__proto__ || Object.getPrototypeOf(LinkBubble)).call.apply(_ref, [this].concat(args))), _this), _this.onWindowResize = function () {
+            _this.closeBubble();
+        }, _this.closeBubble = function () {
             _insert2.default.openLinkDialog = false;
             _insert2.default.isReadOnlyLink = false;
         }, _this.otherDOMClick = function (e) {
@@ -159,11 +161,13 @@ var LinkBubble = (0, _mobxReact.observer)(_class = (_temp2 = _class2 = function 
                 $(document).on('mousedown', _this2.otherDOMClick);
             }, 10);
             this.target = _reactDom2.default.findDOMNode(this);
+            $(window).on('resize', this.onWindowResize);
         }
     }, {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
             $(document).off('mousedown', this.otherDOMClick);
+            $(window).off('resize', this.onWindowResize);
         }
     }, {
         key: 'renderReadOnly',

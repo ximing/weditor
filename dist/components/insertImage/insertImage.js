@@ -166,6 +166,7 @@ var InsertImage = function (_Component) {
             uploader.on('beforeFileQueued', function (wuFile) {
                 if (wuFile.size > 1024 * 1024 * 20) {
                     (0, _toast.error)('图片大小不能超过20M');
+                    uploader.reset();
                     return false;
                 }
                 return true;
