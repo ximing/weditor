@@ -55,6 +55,7 @@ body {
         width: 595pt;
         border: 0;
         padding: 0;
+        margin: 0 auto;
         margin-bottom: 60px;
         .ql-container {
             font-size: 12pt;
@@ -188,7 +189,7 @@ body {
 //    width: 16px;
 //}
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 900px) and (min-width: 750px) {
     .weditor-body {
         background-color: #FFFFFF;
         .content-container{
@@ -196,6 +197,22 @@ body {
             width: 585pt;
             .ql-container .ql-editor{
                 padding: 30pt 55pt;
+            }
+        }
+    }
+    .weditor-wrapper{
+        background-color: #FFFFFF;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .weditor-body {
+        background-color: #FFFFFF;
+        .content-container{
+            box-shadow:none;
+            width: 700px;
+            .ql-container .ql-editor{
+                padding: 20pt 30px;
             }
         }
     }

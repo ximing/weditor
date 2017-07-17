@@ -31,6 +31,7 @@ function platform() {
 }
 
 function getCtrl() {
+    //⌘
     return platform() === 'mac' ? 'Cmd' : 'Ctrl';
 }
 

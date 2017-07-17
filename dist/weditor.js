@@ -11,16 +11,10 @@ exports.default = undefined;
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _dec, _class;
-// import OtherSelection from './components/otherSelection';
-
 
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
-
-var _hotkeysJs = require('hotkeys-js');
-
-var _hotkeysJs2 = _interopRequireDefault(_hotkeysJs);
 
 var _reactDom = require('react-dom');
 
@@ -144,8 +138,7 @@ var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
                     _react2.default.createElement(_catalogue2.default, null),
                     _react2.default.createElement(
                         'div',
-                        { className: 'content-container',
-                            style: { left: this.state.left } },
+                        { className: 'content-container' },
                         !this.props.focus && _react2.default.createElement(_selection2.default, { scrollTop: this.state.scrollTop }),
                         _react2.default.createElement(_editor2.default, { onlyRead: this.props.onlyRead }),
                         _react2.default.createElement(
@@ -169,7 +162,7 @@ var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
 }(_react.Component)) || _class) || _class);
 
 // export const call = function () {
-//
+//style={{left: this.state.left}}
 // }
 // {
 //     this.props.coCursors.map(item=>{

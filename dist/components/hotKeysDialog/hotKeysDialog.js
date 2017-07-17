@@ -22,6 +22,8 @@ var _help = require('../../model/help');
 
 var _help2 = _interopRequireDefault(_help);
 
+var _util = require('../../lib/util');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -98,7 +100,8 @@ var HotKeysDialog = function (_Component) {
                                     _react2.default.createElement(
                                         'span',
                                         null,
-                                        '\u2318B'
+                                        (0, _util.getCtrl)(),
+                                        '+B'
                                     )
                                 )
                             ),
@@ -118,7 +121,8 @@ var HotKeysDialog = function (_Component) {
                                     _react2.default.createElement(
                                         'span',
                                         null,
-                                        '\u2318I'
+                                        (0, _util.getCtrl)(),
+                                        '+I'
                                     )
                                 )
                             ),
@@ -138,7 +142,8 @@ var HotKeysDialog = function (_Component) {
                                     _react2.default.createElement(
                                         'span',
                                         null,
-                                        '\u2318U'
+                                        (0, _util.getCtrl)(),
+                                        '+U'
                                     )
                                 )
                             ),
@@ -158,7 +163,8 @@ var HotKeysDialog = function (_Component) {
                                     _react2.default.createElement(
                                         'span',
                                         null,
-                                        '\u2318+Shift+X'
+                                        (0, _util.getCtrl)(),
+                                        '+Shift+X'
                                     )
                                 )
                             ),
@@ -178,7 +184,8 @@ var HotKeysDialog = function (_Component) {
                                     _react2.default.createElement(
                                         'span',
                                         null,
-                                        '\u2318+Shift+C'
+                                        (0, _util.getCtrl)(),
+                                        '+Shift+C'
                                     )
                                 )
                             ),
@@ -211,7 +218,8 @@ var HotKeysDialog = function (_Component) {
                                     _react2.default.createElement(
                                         'span',
                                         null,
-                                        '\u2318+Alt+0'
+                                        (0, _util.getCtrl)(),
+                                        '+Alt+0'
                                     )
                                 )
                             ),
@@ -231,7 +239,8 @@ var HotKeysDialog = function (_Component) {
                                     _react2.default.createElement(
                                         'span',
                                         null,
-                                        '\u2318+Shift+1'
+                                        (0, _util.getCtrl)(),
+                                        '+Shift+1'
                                     )
                                 )
                             ),
@@ -251,7 +260,8 @@ var HotKeysDialog = function (_Component) {
                                     _react2.default.createElement(
                                         'span',
                                         null,
-                                        '\u2318+Alt+2'
+                                        (0, _util.getCtrl)(),
+                                        '+Alt+2'
                                     )
                                 )
                             ),
@@ -271,7 +281,8 @@ var HotKeysDialog = function (_Component) {
                                     _react2.default.createElement(
                                         'span',
                                         null,
-                                        '\u2318+Alt+3'
+                                        (0, _util.getCtrl)(),
+                                        '+Alt+3'
                                     )
                                 )
                             ),
@@ -291,7 +302,8 @@ var HotKeysDialog = function (_Component) {
                                     _react2.default.createElement(
                                         'span',
                                         null,
-                                        '\u2318+Alt+4'
+                                        (0, _util.getCtrl)(),
+                                        '+Alt+4'
                                     )
                                 )
                             ),
@@ -311,7 +323,8 @@ var HotKeysDialog = function (_Component) {
                                     _react2.default.createElement(
                                         'span',
                                         null,
-                                        '\u2318+Alt+5'
+                                        (0, _util.getCtrl)(),
+                                        '+Alt+5'
                                     )
                                 )
                             ),
@@ -331,7 +344,8 @@ var HotKeysDialog = function (_Component) {
                                     _react2.default.createElement(
                                         'span',
                                         null,
-                                        '\u2318+Alt+6'
+                                        (0, _util.getCtrl)(),
+                                        '+Alt+6'
                                     )
                                 )
                             ),
@@ -351,7 +365,8 @@ var HotKeysDialog = function (_Component) {
                                     _react2.default.createElement(
                                         'span',
                                         null,
-                                        '\u2318+Shift+L'
+                                        (0, _util.getCtrl)(),
+                                        '+Shift+L'
                                     )
                                 )
                             ),
@@ -371,7 +386,8 @@ var HotKeysDialog = function (_Component) {
                                     _react2.default.createElement(
                                         'span',
                                         null,
-                                        '\u2318+Shift+E'
+                                        (0, _util.getCtrl)(),
+                                        '+Shift+E'
                                     )
                                 )
                             ),
@@ -391,7 +407,8 @@ var HotKeysDialog = function (_Component) {
                                     _react2.default.createElement(
                                         'span',
                                         null,
-                                        '\u2318+Shift+R'
+                                        (0, _util.getCtrl)(),
+                                        '+Shift+R'
                                     )
                                 )
                             ),
@@ -411,7 +428,8 @@ var HotKeysDialog = function (_Component) {
                                     _react2.default.createElement(
                                         'span',
                                         null,
-                                        '\u2318+Shift+J'
+                                        (0, _util.getCtrl)(),
+                                        '+Shift+J'
                                     )
                                 )
                             ),
@@ -431,7 +449,8 @@ var HotKeysDialog = function (_Component) {
                                     _react2.default.createElement(
                                         'span',
                                         null,
-                                        '\u2318+Option+l'
+                                        (0, _util.getCtrl)(),
+                                        '+Option+l'
                                     )
                                 )
                             ),
@@ -451,7 +470,8 @@ var HotKeysDialog = function (_Component) {
                                     _react2.default.createElement(
                                         'span',
                                         null,
-                                        '\u2318+Option+u'
+                                        (0, _util.getCtrl)(),
+                                        '+Option+u'
                                     )
                                 )
                             ),
@@ -484,7 +504,8 @@ var HotKeysDialog = function (_Component) {
                                     _react2.default.createElement(
                                         'span',
                                         null,
-                                        '\u2318+z'
+                                        (0, _util.getCtrl)(),
+                                        '+z'
                                     )
                                 )
                             ),
@@ -504,7 +525,8 @@ var HotKeysDialog = function (_Component) {
                                     _react2.default.createElement(
                                         'span',
                                         null,
-                                        '\u2318+y'
+                                        (0, _util.getCtrl)(),
+                                        '+y'
                                     )
                                 )
                             )
