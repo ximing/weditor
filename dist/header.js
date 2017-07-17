@@ -111,6 +111,9 @@ var EditorHeader = (_temp = _class = function (_Component) {
                     }
                 });
             }
+            _this.setState({
+                panelType: ''
+            });
         };
 
         _this.fileMenuClick = function (_ref2) {
@@ -129,6 +132,9 @@ var EditorHeader = (_temp = _class = function (_Component) {
                     }
                 });
             }
+            _this.setState({
+                panelType: ''
+            });
         };
 
         _this.insertMenuClick = function (_ref3) {
@@ -141,6 +147,9 @@ var EditorHeader = (_temp = _class = function (_Component) {
                 var toolbar = (0, _quillEditor.getEditor)().getModule('toolbar');
                 toolbar.handlers['link'].call(toolbar, !(_editor2.default.format && _editor2.default.format.link));
             }
+            _this.setState({
+                panelType: ''
+            });
         };
 
         _this.export = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
@@ -310,30 +319,9 @@ var EditorHeader = (_temp = _class = function (_Component) {
                 )
             );
         }
-
-        /*
-         <div className="header-left-box list-header">
-         <div className="s-header">
-         <span className="s-header-text">
-         <div className="span-input-wrap">
-         <input className="title-input span-input" defaultValue={'ceshi.doc'} maxLength="100"
-         style={{
-         display: 'none'
-         }}/>
-         <span className="title-input-pre span-input-pre">{this.props.doc.name || '未命名'}</span>
-         </div>
-         </span>
-         </div>
-         </div>
-         <div className="header-right-box">
-         {this.props.rightContent}
-         </div>
-        * */
-
     }, {
         key: 'render',
         value: function render() {
-            //this.props.doc.status
             return _react2.default.createElement(
                 'div',
                 { className: 'weditor-header' },
