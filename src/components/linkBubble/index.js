@@ -22,16 +22,21 @@ export default class LinkBubble extends Component {
         linkTitle: '',
         linkUrl: ''
     };
+    onWindowResize = ()=>{
+        this.closeBubble();
+    };
 
     componentDidMount() {
         setTimeout(() => {
             $(document).on('mousedown',this.otherDOMClick);
         }, 10);
         this.target = ReactDOM.findDOMNode(this);
+        $(window).on('resize',this.onWindowResize)
     }
 
     componentWillUnmount() {
         $(document).off('mousedown',this.otherDOMClick);
+        $(window).off('resize',this.onWindowResize);
     }
 
     closeBubble = () => {

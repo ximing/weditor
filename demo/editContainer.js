@@ -12,7 +12,6 @@ export default class EditContainer extends Component {
         let cursorsModule = quillEditor.getModule('cursors');
         this.wEditor.getEditor().on('text-change',(range)=>{
             let _range = this.wEditor.getEditor().getSelection();
-            console.log('ssss'.repeat(10),range,_range);
             if(_range){
                 cursorsModule.setCursor(
                     '1',
