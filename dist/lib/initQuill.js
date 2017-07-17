@@ -18,7 +18,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // import { ImageDrop } from './quill-image-drop-module';
 // Quill.register('modules/imageDrop', ImageDrop);
 _quill2.default.register('modules/imageResize', _quillImageResizeModule.ImageResize);
-
 var SizeStyle = _quill2.default.import('attributors/style/size');
 var ColorStyle = _quill2.default.import('attributors/style/color');
 var BackgroundStyle = _quill2.default.import('attributors/style/background');

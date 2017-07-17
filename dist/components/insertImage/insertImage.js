@@ -8,6 +8,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = undefined;
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
@@ -64,6 +66,8 @@ var _input2 = _interopRequireDefault(_input);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -76,7 +80,8 @@ var InsertImage = function (_Component) {
     _inherits(InsertImage, _Component);
 
     function InsertImage() {
-        var _ref;
+        var _ref,
+            _this2 = this;
 
         var _temp, _this, _ret;
 
@@ -94,15 +99,82 @@ var InsertImage = function (_Component) {
             _this.setState({
                 linkUrl: e.target.value
             });
-        }, _this.insertImage = function (url) {
-            var index = 0;
-            if (_insert2.default.imageSelection) {
-                index = _insert2.default.imageSelection.index;
-            }
-            console.log('insert Image ', index);
-            (0, _quillEditor.getEditor)().insertEmbed(index, 'image', url, _quill2.default.sources.USER);
-            _insert2.default.openImageDialog = false;
-        }, _this.insertLink = function () {
+        }, _this.onLoad = function () {
+            var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee(url) {
+                return regeneratorRuntime.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                return _context.abrupt('return', new Promise(function (res, rej) {
+                                    var elem = document.createElement("img");
+                                    elem.setAttribute("src", url);
+                                    elem.onload = function () {
+                                        res({
+                                            width: this.width,
+                                            height: this.height
+                                        });
+                                    };
+                                    elem.onerror = function () {
+                                        res({
+                                            code: 500
+                                        });
+                                    };
+                                }));
+
+                            case 1:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, _this2);
+            }));
+
+            return function (_x) {
+                return _ref2.apply(this, arguments);
+            };
+        }(), _this.insertImage = function () {
+            var _ref3 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(url) {
+                var index, res, _getEditor$getLeaf, _getEditor$getLeaf2, leaf, offset;
+
+                return regeneratorRuntime.wrap(function _callee2$(_context2) {
+                    while (1) {
+                        switch (_context2.prev = _context2.next) {
+                            case 0:
+                                index = 0;
+
+                                if (_insert2.default.imageSelection) {
+                                    index = _insert2.default.imageSelection.index;
+                                }
+                                _context2.next = 4;
+                                return _this.onLoad(url);
+
+                            case 4:
+                                res = _context2.sent;
+
+                                console.log('insert Image ', index);
+                                if (!res.code) {
+                                    (0, _quillEditor.getEditor)().insertEmbed(index, 'image', url, _quill2.default.sources.USER);
+                                    _getEditor$getLeaf = (0, _quillEditor.getEditor)().getLeaf(index + 1), _getEditor$getLeaf2 = _slicedToArray(_getEditor$getLeaf, 2), leaf = _getEditor$getLeaf2[0], offset = _getEditor$getLeaf2[1];
+
+                                    console.log(leaf);
+                                    if (leaf && leaf.domNode.nodeName.toLowerCase() === 'img') {
+                                        leaf.format('width', Math.min($('.ql-editor').width(), res.width));
+                                    }
+                                } else {}
+                                _insert2.default.openImageDialog = false;
+
+                            case 8:
+                            case 'end':
+                                return _context2.stop();
+                        }
+                    }
+                }, _callee2, _this2);
+            }));
+
+            return function (_x2) {
+                return _ref3.apply(this, arguments);
+            };
+        }(), _this.insertLink = function () {
             if (_this.state.linkUrl) {
                 _this.insertImage(_this.state.linkUrl);
             }
@@ -130,17 +202,17 @@ var InsertImage = function (_Component) {
     _createClass(InsertImage, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            var _this2 = this;
+            var _this3 = this;
 
             setTimeout(function () {
-                $(document).on('mousedown', _this2.otherDOMClick);
+                $(document).on('mousedown', _this3.otherDOMClick);
             }, 10);
             this.initUploader();
         }
     }, {
         key: 'initUploader',
         value: function initUploader() {
-            var _this3 = this;
+            var _this4 = this;
 
             this.rootNode = _reactDom2.default.findDOMNode(this);
             this.target = this.rootNode.getElementsByClassName('weditor-insert-image-dialog')[0];
@@ -163,6 +235,7 @@ var InsertImage = function (_Component) {
                     mimeTypes: 'image/*'
                 }
             });
+
             uploader.on('beforeFileQueued', function (wuFile) {
                 if (wuFile.size > 1024 * 1024 * 20) {
                     (0, _toast.error)('图片大小不能超过20M');
@@ -171,34 +244,38 @@ var InsertImage = function (_Component) {
                 }
                 return true;
             });
+
             uploader.on('fileQueued', function (wuFile) {
-                _this3.file = wuFile;
+                _this4.file = wuFile;
             });
 
             uploader.on('uploadProgress', function (file, currentProgress, loaded, total) {
                 console.log('uploadProgress'.repeat(10));
                 console.log(currentProgress, loaded, total);
-                _this3.setState({
+                _this4.setState({
                     progress: currentProgress / total * 100
                 });
             });
+
             uploader.on('uploadAccept', function (obj, res) {
-                _this3.file = null;
+                _this4.file = null;
                 if (typeof res === 'string') {
                     res = JSON.parse(res);
                 }
                 console.log('uploadAccept', res, res.errno === 0, _insert2.default);
                 if (res.errno === 0) {
                     if (res.data.url) {
-                        _this3.insertImage(res.data.url);
+                        _this4.insertImage(res.data.url);
                     }
                 } else {
                     (0, _toast.error)('上传服务错误');
                 }
             });
+
             uploader.on('uploadComplete', function () {
                 uploader.reset();
             });
+
             uploader.on('uploadError', function (file, err) {
                 console.error(err);
                 uploader.reset();
@@ -217,7 +294,7 @@ var InsertImage = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _this4 = this;
+            var _this5 = this;
 
             var progress = this.state.progress;
 
@@ -234,7 +311,7 @@ var InsertImage = function (_Component) {
                             _rcTabs2.default,
                             {
                                 renderTabBar: function renderTabBar() {
-                                    return _react2.default.createElement(_ScrollableInkTabBar2.default, { onTabClick: _this4.onTabClick });
+                                    return _react2.default.createElement(_ScrollableInkTabBar2.default, { onTabClick: _this5.onTabClick });
                                 },
                                 renderTabContent: function renderTabContent() {
                                     return _react2.default.createElement(_TabContent2.default, { animatedWithMargin: true });
