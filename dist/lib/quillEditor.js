@@ -112,17 +112,17 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
                 container: '#toolbarOpver',
                 handlers: {
                     'link': function link(value) {
+                        console.log('link', value, _insert2.default.openLinkDialog, _editor2.default.range);
                         if (value) {
                             if (_insert2.default.openLinkDialog) {
                                 _insert2.default.openLinkDialog = false;
                                 _insert2.default.linkTitle = null;
                                 _insert2.default.linkUrl = null;
-                            } else if (_editor2.default.range && _editor2.default.range.index) {
+                            } else if (_editor2.default.range && (_editor2.default.range.index === 0 || !!_editor2.default.range.index)) {
                                 var _editor$range = _editor2.default.range,
                                     index = _editor$range.index,
                                     length = _editor$range.length;
 
-                                console.log('ssss'.repeat(10), index, length);
                                 _insert2.default.openLinkDialog = true;
                                 _insert2.default.linkTitle = getEditor().getText(index, length);
                                 _insert2.default.linkUrl = null;
