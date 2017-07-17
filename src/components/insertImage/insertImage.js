@@ -25,11 +25,11 @@ export default class InsertImage extends Component {
         activeKey: '1',
         linkUrl: '',
         progress: 0
-    }
+    };
 
     componentDidMount() {
         setTimeout(() => {
-            $(document).on('mousedown',this.otherDOMClick);
+            $(document).on('mousedown', this.otherDOMClick);
         }, 10);
         this.initUploader();
     }
@@ -38,15 +38,43 @@ export default class InsertImage extends Component {
         this.setState({
             linkUrl: e.target.value
         });
-    }
+    };
 
-    insertImage = (url) => {
+    onLoad = async (url) => {
+        return new Promise((res, rej) => {
+            let elem = document.createElement("img");
+            elem.setAttribute("src", url);
+            elem.onload = function () {
+                res({
+                    width: this.width,
+                    height: this.height
+                });
+            };
+            elem.onerror = function () {
+                res({
+                    code: 500
+                })
+            }
+        })
+    };
+
+    insertImage = async (url) => {
         let index = 0;
         if (insert.imageSelection) {
             index = insert.imageSelection.index;
         }
+        let res = await this.onLoad(url);
         console.log('insert Image ', index);
-        getEditor().insertEmbed(index, 'image', url, Quill.sources.USER);
+        if (!res.code) {
+            getEditor().insertEmbed(index, 'image', url, Quill.sources.USER);
+            let [leaf, offset] = getEditor().getLeaf(index + 1);
+            console.log(leaf)
+            if (leaf && leaf.domNode.nodeName.toLowerCase() === 'img') {
+                leaf.format('width', Math.min($('.ql-editor').width(), res.width));
+            }
+        } else {
+
+        }
         insert.openImageDialog = false;
     };
 
@@ -79,6 +107,7 @@ export default class InsertImage extends Component {
                 mimeTypes: 'image/*'
             }
         });
+
         uploader.on('beforeFileQueued', (wuFile) => {
             if (wuFile.size > 1024 * 1024 * 20) {
                 error('图片大小不能超过20M');
@@ -87,7 +116,8 @@ export default class InsertImage extends Component {
             }
             return true;
         });
-        uploader.on('fileQueued',(wuFile)=>{
+
+        uploader.on('fileQueued', (wuFile) => {
             this.file = wuFile;
         });
 
@@ -98,6 +128,7 @@ export default class InsertImage extends Component {
                 progress: (currentProgress / total) * 100
             })
         });
+
         uploader.on('uploadAccept', (obj, res) => {
             this.file = null;
             if (typeof res === 'string') {
@@ -112,9 +143,11 @@ export default class InsertImage extends Component {
                 error('上传服务错误');
             }
         });
+
         uploader.on('uploadComplete', () => {
             uploader.reset();
         });
+
         uploader.on('uploadError', (file, err) => {
             console.error(err);
             uploader.reset();
@@ -123,7 +156,7 @@ export default class InsertImage extends Component {
     }
 
     componentWillUnmount() {
-        $(document).off('mousedown',this.otherDOMClick);
+        $(document).off('mousedown', this.otherDOMClick);
         this.uploader.removeEvent('uploadAccept');
         this.uploader.removeEvent('uploadComplete');
         this.uploader.removeEvent('uploadError');
@@ -146,13 +179,13 @@ export default class InsertImage extends Component {
         if (insert.openImageDialog && !contains(target, node)) {
             this.closeBubble();
         }
-    }
+    };
 
     onChange = (activeKey) => {
         this.setState({
             activeKey
         });
-    }
+    };
 
 
     render() {
