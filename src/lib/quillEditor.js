@@ -80,14 +80,14 @@ export const initQuillEditor = function (dom, options) {
                 container: '#toolbarOpver',
                 handlers: {
                     'link': function (value, ...args) {
+                        console.log('link',value,insert.openLinkDialog,editor.range);
                         if (value) {
                             if (insert.openLinkDialog) {
                                 insert.openLinkDialog = false;
                                 insert.linkTitle = null;
                                 insert.linkUrl = null;
-                            } else if (editor.range && editor.range.index) {
+                            } else if (editor.range && (editor.range.index === 0 || !!editor.range.index)) {
                                 let {index, length} = editor.range;
-                                console.log('ssss'.repeat(10),index,length)
                                 insert.openLinkDialog = true;
                                 insert.linkTitle = getEditor().getText(index, length);
                                 insert.linkUrl = null;
