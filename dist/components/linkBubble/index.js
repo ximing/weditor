@@ -106,7 +106,6 @@ var LinkBubble = (0, _mobxReact.observer)(_class = (_temp2 = _class2 = function 
 
                         var _linkTitle = _insert2.default.linkTitle || _insert2.default.linkUrl;
                         if (_editor.getText(_index, _linkTitle.length) !== _linkTitle) {
-                            console.log('sssssss'.repeat(10));
                             _editor.deleteText(_index, length, 'user');
                             _editor.insertText(_index, _linkTitle, 'user');
                         }
@@ -158,7 +157,7 @@ var LinkBubble = (0, _mobxReact.observer)(_class = (_temp2 = _class2 = function 
 
             setTimeout(function () {
                 $(document).on('click', _this2.otherDOMClick);
-            }, 100);
+            }, 10);
             this.target = _reactDom2.default.findDOMNode(this);
         }
     }, {

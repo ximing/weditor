@@ -134,7 +134,7 @@ var InsertImage = function (_Component) {
 
             setTimeout(function () {
                 $(document).on('click', _this2.otherDOMClick);
-            }, 100);
+            }, 10);
             this.initUploader();
         }
     }, {

@@ -73,7 +73,7 @@ var _default = function (_Component) {
             });
             setTimeout(function () {
                 $(document).on('click', _this.otherDOMClick);
-            }, 100);
+            }, 10);
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
@@ -81,7 +81,6 @@ var _default = function (_Component) {
         key: 'componentDidMount',
         value: function componentDidMount() {
             this.target = _reactDom2.default.findDOMNode(this);
-            console.log('fdsaf', this.target);
         }
     }, {
         key: 'componentWillUnmount',

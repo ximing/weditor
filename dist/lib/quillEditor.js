@@ -182,7 +182,7 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
         if (eventName === 'text-change') {
             _editor2.default.focus = true;
             if (_editor2.default.range) {
-                _editor2.default.format = quillEditor.getFormat(_editor2.default.range) || {};
+                _editor2.default.format = Object.assign({}, quillEditor.getFormat(_editor2.default.range));
             } else {
                 _editor2.default.format = {};
             }
@@ -198,9 +198,9 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
 
             console.log('selection-change', range);
             if (range) {
-                _editor2.default.range = range;
+                _editor2.default.range = Object.assign({}, range);
                 _editor2.default.focus = true;
-                _editor2.default.format = quillEditor.getFormat(range) || {};
+                _editor2.default.format = Object.assign({}, quillEditor.getFormat(range));
                 if (_editor2.default.format.link) {
                     var _quillEditor$getLeaf3 = quillEditor.getLeaf(range.index),
                         _quillEditor$getLeaf4 = _slicedToArray(_quillEditor$getLeaf3, 2),
