@@ -249,7 +249,7 @@ export default class EditorToolbar extends Component {
         const classname = classnames({
             button: true,
             active: isActive
-        })
+        });
         return (
             <button className={classname} onMouseDown={onMouseDown}>
                 <Icon type="link"/>
@@ -415,9 +415,6 @@ export default class EditorToolbar extends Component {
         let {color, background, size, header} = rangeFormat;
         if (Array.isArray(color)) {
             color = '#FFFFFF';
-        }
-        if (Array.isArray(background)) {
-            background = '#FFFFFF';
         }
         return (
             <div className="toolbar-opver" id="toolbarOpver">

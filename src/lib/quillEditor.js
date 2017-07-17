@@ -85,14 +85,19 @@ export const initQuillEditor = function (dom, options) {
                                 insert.openLinkDialog = false;
                                 insert.linkTitle = null;
                                 insert.linkUrl = null;
-                            } else if (editor.range) {
-                                const {index, length} = editor.range;
+                            } else if (editor.range && editor.range.index) {
+                                let {index, length} = editor.range;
+                                console.log('ssss'.repeat(10),index,length)
                                 insert.openLinkDialog = true;
                                 insert.linkTitle = getEditor().getText(index, length);
                                 insert.linkUrl = null;
                                 setLinkBubble(index);
                                 insert.isCreateNewLink = false;
                             }else{
+                                insert.openLinkDialog = true;
+                                insert.linkTitle = '';
+                                insert.linkUrl = null;
+                                setLinkBubble(0);
                                 insert.isCreateNewLink = true;
                             }
                             insert.linkSelection = editor.range;

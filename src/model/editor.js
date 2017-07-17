@@ -13,7 +13,10 @@ class Editor {
     * 会保留最后一次selection的值
     * */
     @observable
-    range={};
+    range={
+        index:0,
+        length:0
+    };
 
     @observable
     focus=false;
