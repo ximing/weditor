@@ -133,7 +133,7 @@ var InsertImage = function (_Component) {
             var _this2 = this;
 
             setTimeout(function () {
-                $(document).on('click', _this2.otherDOMClick);
+                $(document).on('mousedown', _this2.otherDOMClick);
             }, 10);
             this.initUploader();
         }
@@ -207,7 +207,7 @@ var InsertImage = function (_Component) {
     }, {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
-            $(document).off('click', this.otherDOMClick);
+            $(document).off('mousedown', this.otherDOMClick);
             this.uploader.removeEvent('uploadAccept');
             this.uploader.removeEvent('uploadComplete');
             this.uploader.removeEvent('uploadError');

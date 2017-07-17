@@ -16,6 +16,8 @@ var _rcNotification = require('rc-notification');
 
 var _rcNotification2 = _interopRequireDefault(_rcNotification);
 
+require('rc-notification/assets/index.css');
+
 require('./index.scss');
 
 var _icon = require('../icon');
@@ -46,7 +48,7 @@ var info = exports.info = function info(content, onClose) {
     notification.notice({
         content: _react2.default.createElement(
             'p',
-            { className: 'weditor-toast' },
+            { className: 'weditor-toast weditor-toast-info' },
             _react2.default.createElement(_icon2.default, { type: 'info' }),
             _react2.default.createElement(
                 'span',
@@ -76,7 +78,7 @@ var error = exports.error = function error(content, onClose) {
     notification.notice({
         content: _react2.default.createElement(
             'p',
-            { className: 'weditor-toast' },
+            { className: 'weditor-toast weditor-toast-error' },
             _react2.default.createElement(_icon2.default, { type: 'error' }),
             _react2.default.createElement(
                 'span',

@@ -72,7 +72,7 @@ var _default = function (_Component) {
                 open: true
             });
             setTimeout(function () {
-                $(document).on('click', _this.otherDOMClick);
+                $(document).on('mousedown', _this.otherDOMClick);
             }, 10);
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
@@ -85,7 +85,7 @@ var _default = function (_Component) {
     }, {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
-            $(document).off('click', this.otherDOMClick);
+            $(document).off('mousedown', this.otherDOMClick);
         }
     }, {
         key: 'onClose',
@@ -93,7 +93,7 @@ var _default = function (_Component) {
             this.setState({
                 open: false
             });
-            $(document).off('click', this.otherDOMClick);
+            $(document).off('mousedown', this.otherDOMClick);
         }
     }, {
         key: 'selectBackground',

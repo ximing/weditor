@@ -156,14 +156,14 @@ var LinkBubble = (0, _mobxReact.observer)(_class = (_temp2 = _class2 = function 
             var _this2 = this;
 
             setTimeout(function () {
-                $(document).on('click', _this2.otherDOMClick);
+                $(document).on('mousedown', _this2.otherDOMClick);
             }, 10);
             this.target = _reactDom2.default.findDOMNode(this);
         }
     }, {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
-            $(document).off('click', this.otherDOMClick);
+            $(document).off('mousedown', this.otherDOMClick);
         }
     }, {
         key: 'renderReadOnly',
