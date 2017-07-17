@@ -102,6 +102,13 @@ body {
         border: none !important;
         border-radius: 2px;
         box-shadow:none !important;
+        .rc-dropdown-menu-item{
+            box-sizing: content-box !important;
+            &:hover{
+                background-color: rgba($primary-color,0.05);
+            }
+        }
+
     }
 }
 
