@@ -162,8 +162,9 @@ export default class EditorToolbar extends Component {
      */
 
     onClickMark = (e, type) => {
-        e.preventDefault()
+        e.preventDefault();
         const quillEditor = getEditor();
+        console.log('mark click',quillEditor,type);
         if (quillEditor) {
             if (this.hasMark(type)) {
                 quillEditor.format(type, false, 'user');

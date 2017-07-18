@@ -52,7 +52,7 @@ export const setLinkBubble = function (index) {
     //======================badk end========================
     const {left, top, height} = getEditor().getBounds(index);
     //120 是body 到浏览器顶部的高度
-    console.log('link left', left,window.innerWidth);
+    console.log('link left', left, window.innerWidth);
     if (top + getEditorBoundingClientRect().top > window.innerHeight - linkBubble.height - 20) {
         insert.linkPosition = {
             left: left + 430 > window.innerWidth ? window.innerWidth - 430 : left,
@@ -80,7 +80,7 @@ export const initQuillEditor = function (dom, options) {
                 container: '#toolbarOpver',
                 handlers: {
                     'link': function (value, ...args) {
-                        console.log('link',value,insert.openLinkDialog,editor.range);
+                        console.log('link', value, insert.openLinkDialog, editor.range);
                         if (value) {
                             if (insert.openLinkDialog) {
                                 insert.openLinkDialog = false;
@@ -93,7 +93,7 @@ export const initQuillEditor = function (dom, options) {
                                 insert.linkUrl = null;
                                 setLinkBubble(index);
                                 insert.isCreateNewLink = false;
-                            }else{
+                            } else {
                                 insert.openLinkDialog = true;
                                 insert.linkTitle = '';
                                 insert.linkUrl = null;
@@ -111,7 +111,7 @@ export const initQuillEditor = function (dom, options) {
                         }
                     },
                     'image': function (args) {
-                        console.log('select img',args);
+                        console.log('select img', args);
                         insert.imageSelection = editor.range;
                         insert.openImageDialog = true;
                     }
@@ -125,13 +125,16 @@ export const initQuillEditor = function (dom, options) {
             cursors: {
                 autoRegisterListener: false
             },
-            //'syntax': true        // Enable with default configuration
+            syntax: false,        // Enable with default configuration
             //imageDrop: true,
             imageResize: {
                 container: '.weditor-body',
                 imgSelection: '.img-selection',
                 top: 102,
                 left: 0
+            },
+            clipboard: {
+                matchers: []
             }
         },
         placeholder: '输入文档...',
@@ -141,22 +144,22 @@ export const initQuillEditor = function (dom, options) {
     });
     var cursorsModule = quillEditor.getModule('cursors');
 
-    quillEditor.on('editor-change', function(eventName, ...args) {
+    quillEditor.on('editor-change', function (eventName, ...args) {
         if (eventName === 'text-change') {
             editor.focus = true;
             if (editor.range) {
-                editor.format = Object.assign({},quillEditor.getFormat(editor.range));
+                editor.format = Object.assign({}, quillEditor.getFormat(editor.range));
             } else {
                 editor.format = {};
             }
         } else if (eventName === 'selection-change') {
             // args[0] will be old range
             let [range, oldRange, source] = args;
-            console.log('selection-change',range);
+            console.log('selection-change', range);
             if (range) {
-                editor.range = Object.assign({},range);
+                editor.range = Object.assign({}, range);
                 editor.focus = true;
-                editor.format = Object.assign({},quillEditor.getFormat(range));
+                editor.format = Object.assign({}, quillEditor.getFormat(range));
                 if (editor.format.link) {
                     let [leaf, offset] = quillEditor.getLeaf(range.index);
                     // let linkIndex = quillEditor.getIndex(leaf);
