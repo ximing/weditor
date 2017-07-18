@@ -10,6 +10,7 @@ import Catalogue from './catalogue';
 import LinkBubble from './components/linkBubble';
 import InsertImage from './components/insertImage';
 import HotKeysDialog from './components/hotKeysDialog';
+import CommentBtn from './components/comment/button';
 import {inject, observer} from 'mobx-react';
 import Selection from './components/selection';
 import Editor from './components/editor';
@@ -77,7 +78,6 @@ export default class WEditor extends Component {
                 <div className="weditor-body">
                     <Catalogue/>
                     <div className="content-container">
-
                         {
                             !this.props.focus && <Selection scrollTop={this.state.scrollTop}/>
                         }
@@ -92,9 +92,9 @@ export default class WEditor extends Component {
                             this.props.insert.openLinkDialog &&
                             <LinkBubble insert={this.props.insert}/>
                         }
+                        <CommentBtn/>
                     </div>
                 </div>
-
                 {
                     this.props.insert.openImageDialog &&
                     <InsertImage uploadUrl={this.props.options.uploadUrl}/>
