@@ -32,16 +32,20 @@ export default class EditorToolbar extends Component {
     constructor() {
         super();
     }
-    onWindowResize = ()=>{
+
+    onWindowResize = () => {
         this.forceUpdate();
     };
-    componentDidMount(){
-        $(window).on('resize',this.onWindowResize)
+
+    componentDidMount() {
+        $(window).on('resize', this.onWindowResize)
     }
-    componentWillUnmount(){
-        $(window).off('resize',this.onWindowResize)
+
+    componentWillUnmount() {
+        $(window).off('resize', this.onWindowResize)
     }
-    state = {moreBtnActive:false}
+
+    state = {moreBtnActive: false}
 
     getPopupContainer = (trigger) => {
         return ReactDOM.findDOMNode(this);
@@ -100,10 +104,10 @@ export default class EditorToolbar extends Component {
      * @return {Boolean}
      */
 
-    hasBlock = (type,val) => {
-        if(val){
+    hasBlock = (type, val) => {
+        if (val) {
             return this.props.editor.format[type] === val;
-        }else{
+        } else {
             return this.props.editor.format[type]
         }
     }
@@ -141,7 +145,7 @@ export default class EditorToolbar extends Component {
      */
 
     renderBlockButton = (type, icon, val) => {
-        const isActive = this.hasBlock(type,val)
+        const isActive = this.hasBlock(type, val)
         const onMouseDown = e => this.onClickBlock(e, type, val);
         const classname = classnames({
             button: true,
@@ -164,7 +168,7 @@ export default class EditorToolbar extends Component {
     onClickMark = (e, type) => {
         e.preventDefault();
         const quillEditor = getEditor();
-        console.log('mark click',quillEditor,type);
+        console.log('mark click', quillEditor, type);
         if (quillEditor) {
             if (this.hasMark(type)) {
                 quillEditor.format(type, false, 'user');
@@ -233,11 +237,31 @@ export default class EditorToolbar extends Component {
         }
     }
 
-    onPopupVisibleChange = (visible)=>{
+    onPopupVisibleChange = (visible) => {
         this.setState({
-            moreBtnActive:visible
+            moreBtnActive: visible
         })
-    }
+    };
+
+    renderTodoBtn = () => {
+        const isActive = this.hasMark('link');
+        const onMouseDown = e => {
+            if (getEditor()) {
+                const {index, length} = this.props.editor.range;
+                //unchecked
+                getEditor().formatLine(index, length, 'list', 'checked');
+            }
+        };
+        const classname = classnames({
+            button: true,
+            active: isActive
+        });
+        return (
+            <button className={classname} onMouseDown={onMouseDown}>
+                <Icon type="link"/>
+            </button>
+        )
+    };
 
     renderLinkBtn = () => {
         const isActive = this.hasMark('link');
@@ -256,7 +280,7 @@ export default class EditorToolbar extends Component {
                 <Icon type="link"/>
             </button>
         )
-    }
+    };
 
     renderImageBtn = () => {
         const onMouseDown = e => {
@@ -276,8 +300,8 @@ export default class EditorToolbar extends Component {
         )
     };
 
-    renderMore = ()=>{
-        return(
+    renderMore = () => {
+        return (
             <span className="more-toolbar-container" onClick={preventDefault}>
                 <div className="popup-triangle-wrapper">
                     <div className="popup-triangle-inner"></div>
@@ -347,6 +371,15 @@ export default class EditorToolbar extends Component {
                 >
                     {this.renderBlockButton('indent', 'right-indent', '+1')}
                 </ToolTip>
+                {/*<Icon type="vertical"/>*/}
+                {/*<ToolTip*/}
+                    {/*placement="bottom"*/}
+                    {/*mouseEnterDelay={0}*/}
+                    {/*mouseLeaveDelay={0}*/}
+                    {/*overlay={<div>插入TODO</div>}*/}
+                {/*>*/}
+                    {/*{this.renderTodoBtn()}*/}
+                {/*</ToolTip>*/}
                 <Icon type="vertical"/>
                 <ToolTip
                     placement="bottom"
@@ -368,14 +401,14 @@ export default class EditorToolbar extends Component {
         )
     };
 
-    renderMoreBtn(){
+    renderMoreBtn() {
         let btnClassName = classnames({
-            'more-btn':true,
-            'active':this.state.moreBtnActive
+            'more-btn': true,
+            'active': this.state.moreBtnActive
         })
         return (
             <Trigger
-                style={{zIndex:400000}}
+                style={{zIndex: 400000}}
                 popupClassName="popup-opver-wrapper more-popup-opver-wrapper"
                 getPopupContainer={this.getPopupContainer}
                 popupPlacement="bottomRight"
@@ -395,7 +428,8 @@ export default class EditorToolbar extends Component {
                     overflow: {
                         adjustX: 1,
                         adjustY: 1
-                    }}}
+                    }
+                }}
                 destroyPopupOnHide={false}
                 zIndex={40}
                 defaultPopupVisible={false}
@@ -509,7 +543,7 @@ export default class EditorToolbar extends Component {
                 </ToolTip>
                 <Icon type="vertical"/>
                 {
-                    window.innerWidth<900?this.renderMoreBtn():this.renderMore()
+                    window.innerWidth < 900 ? this.renderMoreBtn() : this.renderMore()
                 }
             </div>
         );
