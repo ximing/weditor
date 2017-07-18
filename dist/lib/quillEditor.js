@@ -167,13 +167,16 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
             cursors: {
                 autoRegisterListener: false
             },
-            //'syntax': true        // Enable with default configuration
+            syntax: false, // Enable with default configuration
             //imageDrop: true,
             imageResize: {
                 container: '.weditor-body',
                 imgSelection: '.img-selection',
                 top: 102,
                 left: 0
+            },
+            clipboard: {
+                matchers: []
             }
         },
         placeholder: '输入文档...',

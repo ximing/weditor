@@ -183,6 +183,7 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
         _this.onClickMark = function (e, type) {
             e.preventDefault();
             var quillEditor = (0, _quillEditor.getEditor)();
+            console.log('mark click', quillEditor, type);
             if (quillEditor) {
                 if (_this.hasMark(type)) {
                     quillEditor.format(type, false, 'user');
