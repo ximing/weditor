@@ -4,7 +4,7 @@
 'use strict';
 import Quill from 'quill';
 import Delta from 'quill-delta';
-import {ImageResize} from './quill-image-resize-module';
+import {ImageResize} from './modules/quill-image-resize-module';
 import {LineHeightStyle, LineHeightAttribute} from './format/lineHeight';
 
 var SizeStyle = Quill.import('attributors/style/size');

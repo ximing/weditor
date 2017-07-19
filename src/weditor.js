@@ -11,6 +11,7 @@ import LinkBubble from './components/linkBubble';
 import InsertImage from './components/insertImage';
 import HotKeysDialog from './components/hotKeysDialog';
 import CommentBtn from './components/comment/button';
+import CommentList from './components/comment/list';
 import {inject, observer} from 'mobx-react';
 import Selection from './components/selection';
 import Editor from './components/editor';
@@ -83,16 +84,17 @@ export default class WEditor extends Component {
                         }
                         <Editor onlyRead={this.props.onlyRead}/>
                         <div className="img-selection">
-                            <div className="docs-squarehandleselectionbox-handle docx-selection-topleft"></div>
-                            <div className="docs-squarehandleselectionbox-handle docx-selection-topright"></div>
-                            <div className="docs-squarehandleselectionbox-handle docx-selection-bottomleft"></div>
-                            <div className="docs-squarehandleselectionbox-handle docx-selection-bottomright"></div>
+                            <div className="docs-squarehandleselectionbox-handle docx-selection-topleft" />
+                            <div className="docs-squarehandleselectionbox-handle docx-selection-topright" />
+                            <div className="docs-squarehandleselectionbox-handle docx-selection-bottomleft" />
+                            <div className="docs-squarehandleselectionbox-handle docx-selection-bottomright" />
                         </div>
                         {
                             this.props.insert.openLinkDialog &&
                             <LinkBubble insert={this.props.insert}/>
                         }
                         <CommentBtn/>
+                        <CommentList/>
                     </div>
                 </div>
                 {
