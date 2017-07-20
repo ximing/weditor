@@ -136,7 +136,6 @@ var BubbleToolbar = function (_Component) {
         }, _this.onClickMark = function (e, type) {
             e.preventDefault();
             var quillEditor = (0, _quillEditor.getEditor)();
-            console.log('mark click', quillEditor, type);
             if (quillEditor) {
                 if (_this.hasMark(type)) {
                     quillEditor.format(type, false, 'user');
@@ -213,9 +212,9 @@ var BubbleToolbar = function (_Component) {
                     this.renderMarkButton('italic', 'italic'),
                     this.renderLinkBtn(),
                     _react2.default.createElement(_icon2.default, { type: 'vertical' }),
-                    this.renderBlockButton('header', 'h1', '1'),
-                    this.renderBlockButton('header', 'h2', '2'),
-                    this.renderBlockButton('header', 'h3', '3')
+                    this.renderBlockButton('header', 'h1', 1),
+                    this.renderBlockButton('header', 'h2', 2),
+                    this.renderBlockButton('header', 'h3', 3)
                 )
             );
         }
