@@ -16,6 +16,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactDom = require('react-dom');
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
@@ -54,31 +58,48 @@ var BubbleToolbar = function (_Component) {
 
         return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = BubbleToolbar.__proto__ || Object.getPrototypeOf(BubbleToolbar)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
             show: true,
-            left: 0,
-            top: 0,
-            marginTop: 0,
-            display: 'block',
+            bubbleStyle: {
+                left: 0,
+                top: 0,
+                marginTop: 0,
+                display: 'block'
+            },
+            arrowStyle: {
+                marginLeft: 0
+            },
             bubbleOpacity: false
         }, _this.onSelectionChange = function (range) {
-            if (range && range.length) {
+            if (range && range.length && _this.rect) {
                 var _getEditor$getBounds = (0, _quillEditor.getEditor)().getBounds(range.index + Math.floor(range.length / 2)),
                     left = _getEditor$getBounds.left,
                     top = _getEditor$getBounds.top,
                     height = _getEditor$getBounds.height,
                     width = _getEditor$getBounds.width;
 
+                var bubbleLeft = Math.max(0, left - _this.rect.width / 2),
+                    marginLeft = 0;
+                if (bubbleLeft === 0) {
+                    marginLeft = -(_this.rect.width / 2 - left + width);
+                }
                 _this.setState({
                     show: true,
-                    left: left - 105, //105 is bubble width/2
-                    top: top,
-                    marginTop: -(height + 20),
-                    display: 'block',
+                    bubbleStyle: {
+                        left: Math.max(0, left - _this.rect.width / 2),
+                        top: top,
+                        marginTop: -(height + 20),
+                        display: 'block'
+                    },
+                    arrowStyle: {
+                        marginLeft: marginLeft
+                    },
                     bubbleOpacity: true
                 });
-                _this.transition();
+                //this.transition();
             } else {
                 _this.setState({
-                    display: 'none'
+                    bubbleStyle: Object.assign({}, _this.state.bubbleStyle, {
+                        display: 'none'
+                    })
                 });
                 _this.clearTransition();
             }
@@ -89,7 +110,9 @@ var BubbleToolbar = function (_Component) {
             _this.clearTransition();
             _this.timer = setTimeout(function () {
                 _this.setState({
-                    display: 'none'
+                    bubbleStyle: Object.assign({}, _this.state.bubbleStyle, {
+                        display: 'none'
+                    })
                 });
             }, 4100);
             _this.bubbleOpacityTimer = setTimeout(function () {
@@ -187,6 +210,7 @@ var BubbleToolbar = function (_Component) {
             if ((0, _quillEditor.getEditor)()) {
                 (0, _quillEditor.getEditor)().on('selection-change', this.onSelectionChange);
             }
+            this.rect = _reactDom2.default.findDOMNode(this).getBoundingClientRect();
         }
     }, {
         key: 'componentWillUnmount',
@@ -203,8 +227,8 @@ var BubbleToolbar = function (_Component) {
             });
             return _react2.default.createElement(
                 'div',
-                { className: classname, style: this.state },
-                _react2.default.createElement('span', { className: 'weditor-tooltip-arrow' }),
+                { className: classname, style: this.state.bubbleStyle },
+                _react2.default.createElement('span', { className: 'weditor-tooltip-arrow', style: this.state.arrowStyle }),
                 _react2.default.createElement(
                     'div',
                     { className: 'weditor-bubble-toolbar-inner' },
