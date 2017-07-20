@@ -20,54 +20,58 @@ export default class BubbleToolbar extends Component {
             marginTop: 0,
             display: 'block'
         },
-        arrowStyle:{
-            marginLeft:0
+        arrowStyle: {
+            marginLeft: 0
         },
         bubbleOpacity: false
     };
 
     componentDidMount() {
         if (getEditor()) {
-            getEditor().on('selection-change', this.onSelectionChange);
+            getEditor().on('editor-change', this.onSelectionChange);
         }
         this.rect = ReactDOM.findDOMNode(this).getBoundingClientRect();
     }
 
     componentWillUnmount() {
-        getEditor().off('selection-change', this.onSelectionChange);
+        getEditor().off('editor-change', this.onSelectionChange);
         this.clearTransition();
     }
 
-    onSelectionChange = (range) => {
-        if (range && range.length && this.rect) {
-            let {left, top, height, width} = getEditor().getBounds(range.index + Math.floor(range.length / 2));
-            let bubbleLeft = Math.max(0, left - this.rect.width / 2),
-                marginLeft = 0;
-            if(bubbleLeft === 0){
-                marginLeft = -(this.rect.width/2 - left+width);
+    onSelectionChange = (eventName, ...args) => {
+        if(eventName === 'selection-change'){
+            let [range] = args;
+            if (!!getEditor() && !!range && !!range.length &&
+                !!this.rect && !!getEditor().getText(range.index, range.length).trim()) {
+                let {left, top, height, width} = getEditor().getBounds(range.index + Math.floor(range.length / 2));
+                let bubbleLeft = Math.max(0, left - this.rect.width / 2),
+                    marginLeft = 0;
+                if (bubbleLeft === 0) {
+                    marginLeft = -(this.rect.width / 2 - left + width);
+                }
+                this.setState({
+                    show: true,
+                    bubbleStyle: {
+                        left: Math.max(0, left - this.rect.width / 2),
+                        top,
+                        marginTop: -(height + 20),
+                        display: 'block',
+                    },
+                    arrowStyle: {
+                        marginLeft
+                    },
+                    bubbleOpacity: true
+                });
+                this.transition();
+            } else {
+                this.setState({
+                    bubbleStyle: Object.assign({},
+                        this.state.bubbleStyle, {
+                            display: 'none'
+                        })
+                });
+                this.clearTransition();
             }
-            this.setState({
-                show: true,
-                bubbleStyle: {
-                    left: Math.max(0, left - this.rect.width / 2),
-                    top,
-                    marginTop: -(height + 20),
-                    display: 'block',
-                },
-                arrowStyle:{
-                    marginLeft
-                },
-                bubbleOpacity: true
-            });
-            this.transition();
-        } else {
-            this.setState({
-                bubbleStyle: Object.assign({},
-                    this.state.bubbleStyle, {
-                        display: 'none'
-                    })
-            });
-            this.clearTransition();
         }
     };
 
