@@ -113,7 +113,6 @@ export default class BubbleToolbar extends Component {
     onClickMark = (e, type) => {
         e.preventDefault();
         const quillEditor = getEditor();
-        console.log('mark click', quillEditor, type);
         if (quillEditor) {
             if (this.hasMark(type)) {
                 quillEditor.format(type, false, 'user');
@@ -176,9 +175,9 @@ export default class BubbleToolbar extends Component {
                     {this.renderMarkButton('italic', 'italic')}
                     {this.renderLinkBtn()}
                     <Icon type="vertical"/>
-                    {this.renderBlockButton('header', 'h1', '1')}
-                    {this.renderBlockButton('header', 'h2', '2')}
-                    {this.renderBlockButton('header', 'h3', '3')}
+                    {this.renderBlockButton('header', 'h1', 1)}
+                    {this.renderBlockButton('header', 'h2', 2)}
+                    {this.renderBlockButton('header', 'h3', 3)}
                 </div>
             </div>
         )
