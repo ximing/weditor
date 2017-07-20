@@ -44,6 +44,10 @@ var _hotKeysDialog = require('./components/hotKeysDialog');
 
 var _hotKeysDialog2 = _interopRequireDefault(_hotKeysDialog);
 
+var _bubbleToolbar = require('./components/bubble-toolbar');
+
+var _bubbleToolbar2 = _interopRequireDefault(_bubbleToolbar);
+
 var _mobxReact = require('mobx-react');
 
 var _selection = require('./components/selection');
@@ -149,7 +153,8 @@ var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
                             _react2.default.createElement('div', { className: 'docs-squarehandleselectionbox-handle docx-selection-bottomleft' }),
                             _react2.default.createElement('div', { className: 'docs-squarehandleselectionbox-handle docx-selection-bottomright' })
                         ),
-                        this.props.insert.openLinkDialog && _react2.default.createElement(_linkBubble2.default, { insert: this.props.insert })
+                        this.props.insert.openLinkDialog && _react2.default.createElement(_linkBubble2.default, { insert: this.props.insert }),
+                        _react2.default.createElement(_bubbleToolbar2.default, null)
                     )
                 ),
                 this.props.insert.openImageDialog && _react2.default.createElement(_insertImage2.default, { uploadUrl: this.props.options.uploadUrl }),

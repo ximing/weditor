@@ -1,0 +1,47 @@
+.weditor-bubble-toolbar {
+    position: absolute;
+    background-color: #444;
+    border-radius: 25px;
+    color: #fff;
+    transform: translateY(-10px);
+    box-sizing: border-box;
+    z-index: 10000;
+
+    transition-delay: 2600ms;
+    transition-duration: 400ms;
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition-property: opacity;
+    opacity: 0;
+
+    &.bubble-opacity {
+        opacity: 100;
+    }
+
+    .weditor-tooltip-arrow {
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        content: " ";
+        display: block;
+        left: 50%;
+        margin-left: -6px;
+        position: absolute;
+        border-top: 6px solid #444;
+        bottom: -6px;
+    }
+    .weditor-bubble-toolbar-inner {
+        margin: 8px 12px;
+        button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            height: 24px;
+            padding: 3px 5px;
+            width: 28px;
+            font-size: 11px;
+            outline: none;
+            text-align: center;
+            color: #FFFFFF;
+        }
+    }
+}

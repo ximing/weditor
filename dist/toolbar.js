@@ -254,6 +254,29 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
             });
         };
 
+        _this.renderTodoBtn = function () {
+            var isActive = _this.hasMark('link');
+            var onMouseDown = function onMouseDown(e) {
+                if ((0, _quillEditor.getEditor)()) {
+                    var _this$props$editor$ra = _this.props.editor.range,
+                        index = _this$props$editor$ra.index,
+                        length = _this$props$editor$ra.length;
+                    //unchecked
+
+                    (0, _quillEditor.getEditor)().formatLine(index, length, 'list', 'checked');
+                }
+            };
+            var classname = (0, _classnames2.default)({
+                button: true,
+                active: isActive
+            });
+            return _react2.default.createElement(
+                'button',
+                { className: classname, onMouseDown: onMouseDown },
+                _react2.default.createElement(_icon2.default, { type: 'link' })
+            );
+        };
+
         _this.renderLinkBtn = function () {
             var isActive = _this.hasMark('link');
             var onMouseDown = function onMouseDown(e) {
@@ -548,7 +571,8 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                         overflow: {
                             adjustX: 1,
                             adjustY: 1
-                        } },
+                        }
+                    },
                     destroyPopupOnHide: false,
                     zIndex: 40,
                     defaultPopupVisible: false,
