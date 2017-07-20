@@ -4,6 +4,7 @@
 'use strict';
 import './index.scss';
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 
 import {getEditor} from '../../lib/quillEditor'
@@ -13,17 +14,23 @@ import Icon from '../icon';
 export default class BubbleToolbar extends Component {
     state = {
         show: true,
-        left: 0,
-        top: 0,
-        marginTop: 0,
-        display: 'block',
+        bubbleStyle: {
+            left: 0,
+            top: 0,
+            marginTop: 0,
+            display: 'block'
+        },
+        arrowStyle:{
+            marginLeft:0
+        },
         bubbleOpacity: false
     };
 
     componentDidMount() {
         if (getEditor()) {
-            getEditor().on('selection-change', this.onSelectionChange)
+            getEditor().on('selection-change', this.onSelectionChange);
         }
+        this.rect = ReactDOM.findDOMNode(this).getBoundingClientRect();
     }
 
     componentWillUnmount() {
@@ -32,20 +39,33 @@ export default class BubbleToolbar extends Component {
     }
 
     onSelectionChange = (range) => {
-        if (range && range.length) {
+        if (range && range.length && this.rect) {
             let {left, top, height, width} = getEditor().getBounds(range.index + Math.floor(range.length / 2));
+            let bubbleLeft = Math.max(0, left - this.rect.width / 2),
+                marginLeft = 0;
+            if(bubbleLeft === 0){
+                marginLeft = -(this.rect.width/2 - left+width);
+            }
             this.setState({
                 show: true,
-                left: left - 105,//105 is bubble width/2
-                top,
-                marginTop: -(height + 20),
-                display: 'block',
+                bubbleStyle: {
+                    left: Math.max(0, left - this.rect.width / 2),
+                    top,
+                    marginTop: -(height + 20),
+                    display: 'block',
+                },
+                arrowStyle:{
+                    marginLeft
+                },
                 bubbleOpacity: true
             });
-            this.transition();
+            //this.transition();
         } else {
             this.setState({
-                display: 'none'
+                bubbleStyle: Object.assign({},
+                    this.state.bubbleStyle, {
+                        display: 'none'
+                    })
             });
             this.clearTransition();
         }
@@ -60,7 +80,10 @@ export default class BubbleToolbar extends Component {
         this.clearTransition();
         this.timer = setTimeout(() => {
             this.setState({
-                display: 'none'
+                bubbleStyle: Object.assign({},
+                    this.state.bubbleStyle, {
+                        display: 'none'
+                    })
             });
         }, 4100);
         this.bubbleOpacityTimer = setTimeout(() => {
@@ -168,8 +191,8 @@ export default class BubbleToolbar extends Component {
             'bubble-opacity': this.state.bubbleOpacity
         })
         return (
-            <div className={classname} style={this.state}>
-                <span className="weditor-tooltip-arrow"/>
+            <div className={classname} style={this.state.bubbleStyle}>
+                <span className="weditor-tooltip-arrow" style={this.state.arrowStyle}/>
                 <div className="weditor-bubble-toolbar-inner">
                     {this.renderMarkButton('bold', 'bold')}
                     {this.renderMarkButton('italic', 'italic')}
