@@ -5,7 +5,7 @@
 import Quill from 'quill';
 import Delta from 'quill-delta';
 import {ImageResize} from './quill-image-resize-module';
-import {LineHeightStyle, LineHeightAttribute} from './format/lineHeight';
+import {LineHeightStyle, LineHeightAttribute} from './formats/lineHeight';
 
 var SizeStyle = Quill.import('attributors/style/size');
 var ColorStyle = Quill.import('attributors/style/color');

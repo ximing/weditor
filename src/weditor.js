@@ -10,6 +10,8 @@ import Catalogue from './catalogue';
 import LinkBubble from './components/linkBubble';
 import InsertImage from './components/insertImage';
 import HotKeysDialog from './components/hotKeysDialog';
+import BubbleToolbar from './components/bubble-toolbar';
+
 import {inject, observer} from 'mobx-react';
 import Selection from './components/selection';
 import Editor from './components/editor';
@@ -92,6 +94,7 @@ export default class WEditor extends Component {
                             this.props.insert.openLinkDialog &&
                             <LinkBubble insert={this.props.insert}/>
                         }
+                        <BubbleToolbar/>
                     </div>
                 </div>
 

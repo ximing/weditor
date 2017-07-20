@@ -126,3 +126,15 @@
     content: "\e689";
 }
 
+.#{$iconfont-css-prefix}-h1:before {
+    content: "\e93a";
+}
+
+.#{$iconfont-css-prefix}-h2:before {
+    content: "\e628";
+}
+
+.#{$iconfont-css-prefix}-h3:before {
+    content: "\e93b";
+}
+
