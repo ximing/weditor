@@ -94,7 +94,7 @@ var BubbleToolbar = function (_Component) {
                     },
                     bubbleOpacity: true
                 });
-                //this.transition();
+                _this.transition();
             } else {
                 _this.setState({
                     bubbleStyle: Object.assign({}, _this.state.bubbleStyle, {
