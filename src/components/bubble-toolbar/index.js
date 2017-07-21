@@ -6,12 +6,17 @@ import './index.scss';
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
-
+import debounce from 'lodash.debounce';
 import {getEditor} from '../../lib/quillEditor'
 import editor from '../../model/editor';
 import Icon from '../icon';
 
 export default class BubbleToolbar extends Component {
+
+    constructor(){
+        super();
+        this.onSelectionChangeDebounce = debounce(this.onSelectionChange,150)
+    }
     state = {
         show: true,
         bubbleStyle: {
@@ -28,13 +33,13 @@ export default class BubbleToolbar extends Component {
 
     componentDidMount() {
         if (getEditor()) {
-            getEditor().on('editor-change', this.onSelectionChange);
+            getEditor().on('editor-change', this.onSelectionChangeDebounce);
         }
         this.rect = ReactDOM.findDOMNode(this).getBoundingClientRect();
     }
 
     componentWillUnmount() {
-        getEditor().off('editor-change', this.onSelectionChange);
+        getEditor().off('editor-change', this.onSelectionChangeDebounce);
         this.clearTransition();
     }
 
