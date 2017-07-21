@@ -138,3 +138,10 @@
     content: "\e93b";
 }
 
+.#{$iconfont-css-prefix}-todo:before {
+    content: "\e6c4";
+}
+
+.#{$iconfont-css-prefix}-lineheight:before {
+    content: "\e600";
+}

@@ -39,8 +39,8 @@ var config = {
   whitelist: null //[1, 1.15, 1.35, 1.5, 2, 2.5, 3]
 };
 
-var LineHeightAttribute = new Parchment.Attributor.Attribute('lineheight', 'lineHeight', config);
-var LineHeightStyle = new Parchment.Attributor.Style('lineheight', 'line-height', config);
+var LineHeightAttribute = new Parchment.Attributor.Attribute('lineHeight', 'lineHeight', config);
+var LineHeightStyle = new Parchment.Attributor.Style('lineHeight', 'line-height', config);
 // Parchment.register(LineHeightStyle)
 exports.LineHeightAttribute = LineHeightAttribute;
 exports.LineHeightStyle = LineHeightStyle;
