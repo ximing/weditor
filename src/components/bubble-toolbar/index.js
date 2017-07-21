@@ -34,14 +34,25 @@ export default class BubbleToolbar extends Component {
     componentDidMount() {
         if (getEditor()) {
             getEditor().on('editor-change', this.onSelectionChangeDebounce);
+            getEditor().on('text-change', this.onTextChange);
         }
         this.rect = ReactDOM.findDOMNode(this).getBoundingClientRect();
     }
 
     componentWillUnmount() {
         getEditor().off('editor-change', this.onSelectionChangeDebounce);
+        getEditor().off('text-change', this.onTextChange);
         this.clearTransition();
     }
+
+    onTextChange = () => {
+        this.setState({
+            bubbleStyle: Object.assign({},
+                this.state.bubbleStyle, {
+                    display: 'none'
+                })
+        });
+    };
 
     onSelectionChange = (eventName, ...args) => {
         if(eventName === 'selection-change'){
