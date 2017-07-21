@@ -68,6 +68,14 @@ var BubbleToolbar = function (_Component) {
             bubbleOpacity: false
         };
 
+        _this.onTextChange = function () {
+            _this.setState({
+                bubbleStyle: Object.assign({}, _this.state.bubbleStyle, {
+                    display: 'none'
+                })
+            });
+        };
+
         _this.onSelectionChange = function (eventName) {
             for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
                 args[_key - 1] = arguments[_key];
@@ -238,6 +246,7 @@ var BubbleToolbar = function (_Component) {
         value: function componentDidMount() {
             if ((0, _quillEditor.getEditor)()) {
                 (0, _quillEditor.getEditor)().on('editor-change', this.onSelectionChangeDebounce);
+                (0, _quillEditor.getEditor)().on('text-change', this.onTextChange);
             }
             this.rect = _reactDom2.default.findDOMNode(this).getBoundingClientRect();
         }
@@ -245,6 +254,7 @@ var BubbleToolbar = function (_Component) {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
             (0, _quillEditor.getEditor)().off('editor-change', this.onSelectionChangeDebounce);
+            (0, _quillEditor.getEditor)().off('text-change', this.onTextChange);
             this.clearTransition();
         }
     }, {

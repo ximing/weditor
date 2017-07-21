@@ -46,12 +46,14 @@ export default class BubbleToolbar extends Component {
     }
 
     onTextChange = () => {
-        this.setState({
-            bubbleStyle: Object.assign({},
-                this.state.bubbleStyle, {
-                    display: 'none'
-                })
-        });
+        if(this.state.bubbleStyle.display !== 'none'){
+            this.setState({
+                bubbleStyle: Object.assign({},
+                    this.state.bubbleStyle, {
+                        display: 'none'
+                    })
+            });
+        }
     };
 
     onSelectionChange = (eventName, ...args) => {
