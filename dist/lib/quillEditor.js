@@ -199,48 +199,51 @@ var initQuillEditor = exports.initQuillEditor = function initQuillEditor(dom, op
                 args[_key - 1] = arguments[_key];
             }
 
-            // args[0] will be old range
             var range = args[0],
                 oldRange = args[1],
                 source = args[2];
 
             console.log('selection-change', range);
-            if (range) {
-                _editor2.default.range = Object.assign({}, range);
-                _editor2.default.focus = true;
-                _editor2.default.format = Object.assign({}, quillEditor.getFormat(range));
-                if (_editor2.default.format.link) {
-                    var _quillEditor$getLeaf3 = quillEditor.getLeaf(range.index),
-                        _quillEditor$getLeaf4 = _slicedToArray(_quillEditor$getLeaf3, 2),
-                        leaf = _quillEditor$getLeaf4[0],
-                        offset = _quillEditor$getLeaf4[1];
-                    // let linkIndex = quillEditor.getIndex(leaf);
-                    //在文本最开始的时候，拿不到 link format 所以不用判断左区间的问题了。
+            try {
+                if (range) {
+                    _editor2.default.range = Object.assign({}, range);
+                    _editor2.default.focus = true;
+                    _editor2.default.format = Object.assign({}, quillEditor.getFormat(range));
+                    if (_editor2.default.format.link) {
+                        var _quillEditor$getLeaf3 = quillEditor.getLeaf(range.index),
+                            _quillEditor$getLeaf4 = _slicedToArray(_quillEditor$getLeaf3, 2),
+                            leaf = _quillEditor$getLeaf4[0],
+                            offset = _quillEditor$getLeaf4[1];
+                        // let linkIndex = quillEditor.getIndex(leaf);
+                        //在文本最开始的时候，拿不到 link format 所以不用判断左区间的问题了。
 
 
-                    if (offset < leaf.length()) {
-                        _insert2.default.openLinkDialog = true;
-                        _insert2.default.linkUrl = _editor2.default.format.link;
-                        _insert2.default.isReadOnlyLink = true;
-                        _insert2.default.linkTitle = leaf.text;
-                        setLinkBubble(range.index);
+                        if (offset < leaf.length()) {
+                            _insert2.default.openLinkDialog = true;
+                            _insert2.default.linkUrl = _editor2.default.format.link;
+                            _insert2.default.isReadOnlyLink = true;
+                            _insert2.default.linkTitle = leaf.text;
+                            setLinkBubble(range.index);
+                        }
                     }
-                }
-                if (range.length !== 0) {
-                    //处理格式刷
-                    if (_format2.default.currentFormat) {
-                        var index = range.index,
-                            length = range.length;
+                    if (range.length !== 0) {
+                        //处理格式刷
+                        if (_format2.default.currentFormat) {
+                            var index = range.index,
+                                length = range.length;
 
-                        quillEditor.removeFormat(index, length, 'user');
-                        quillEditor.formatLine(index, length, _format2.default.currentFormat, 'user');
-                        quillEditor.formatText(index, length, _format2.default.currentFormat, 'user');
+                            quillEditor.removeFormat(index, length, 'user');
+                            quillEditor.formatLine(index, length, _format2.default.currentFormat, 'user');
+                            quillEditor.formatText(index, length, _format2.default.currentFormat, 'user');
 
-                        _format2.default.currentFormat = null;
+                            _format2.default.currentFormat = null;
+                        }
                     }
+                } else {
+                    console.log('blur');
                 }
-            } else {
-                console.log('blur');
+            } catch (err) {
+                console.error(err);
             }
         }
     });

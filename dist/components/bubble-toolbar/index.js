@@ -10,6 +10,8 @@ exports.default = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _class, _temp2, _initialiseProps;
+
 require('./index.scss');
 
 var _react = require('react');
@@ -42,7 +44,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var BubbleToolbar = function (_Component) {
+var BubbleToolbar = (_temp2 = _class = function (_Component) {
     _inherits(BubbleToolbar, _Component);
 
     function BubbleToolbar() {
@@ -56,166 +58,21 @@ var BubbleToolbar = function (_Component) {
             args[_key] = arguments[_key];
         }
 
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = BubbleToolbar.__proto__ || Object.getPrototypeOf(BubbleToolbar)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-            show: true,
-            bubbleStyle: {
-                left: 0,
-                top: 0,
-                marginTop: 0,
-                display: 'block'
-            },
-            arrowStyle: {
-                marginLeft: 0
-            },
-            bubbleOpacity: false
-        }, _this.onSelectionChange = function (range) {
-            if (range && range.length && _this.rect) {
-                var _getEditor$getBounds = (0, _quillEditor.getEditor)().getBounds(range.index + Math.floor(range.length / 2)),
-                    left = _getEditor$getBounds.left,
-                    top = _getEditor$getBounds.top,
-                    height = _getEditor$getBounds.height,
-                    width = _getEditor$getBounds.width;
-
-                var bubbleLeft = Math.max(0, left - _this.rect.width / 2),
-                    marginLeft = 0;
-                if (bubbleLeft === 0) {
-                    marginLeft = -(_this.rect.width / 2 - left + width);
-                }
-                _this.setState({
-                    show: true,
-                    bubbleStyle: {
-                        left: Math.max(0, left - _this.rect.width / 2),
-                        top: top,
-                        marginTop: -(height + 20),
-                        display: 'block'
-                    },
-                    arrowStyle: {
-                        marginLeft: marginLeft
-                    },
-                    bubbleOpacity: true
-                });
-                _this.transition();
-            } else {
-                _this.setState({
-                    bubbleStyle: Object.assign({}, _this.state.bubbleStyle, {
-                        display: 'none'
-                    })
-                });
-                _this.clearTransition();
-            }
-        }, _this.clearTransition = function () {
-            clearTimeout(_this.timer);
-            clearTimeout(_this.bubbleOpacityTimer);
-        }, _this.transition = function () {
-            _this.clearTransition();
-            _this.timer = setTimeout(function () {
-                _this.setState({
-                    bubbleStyle: Object.assign({}, _this.state.bubbleStyle, {
-                        display: 'none'
-                    })
-                });
-            }, 4100);
-            _this.bubbleOpacityTimer = setTimeout(function () {
-                _this.setState({
-                    bubbleOpacity: false
-                });
-            }, 1000);
-        }, _this.hasMark = function (type) {
-            return _editor2.default.format[type];
-        }, _this.hasBlock = function (type, val) {
-            if (val) {
-                return _editor2.default.format[type] === val;
-            } else {
-                return _editor2.default.format[type];
-            }
-        }, _this.renderMarkButton = function (type, icon) {
-            var isActive = _this.hasMark(type);
-            var onMouseDown = function onMouseDown(e) {
-                return _this.onClickMark(e, type);
-            };
-            var classname = (0, _classnames2.default)({
-                button: true,
-                active: isActive
-            });
-            return _react2.default.createElement(
-                'button',
-                { className: classname, onMouseDown: onMouseDown },
-                _react2.default.createElement(_icon2.default, { type: icon })
-            );
-        }, _this.renderBlockButton = function (type, icon, val) {
-            var isActive = _this.hasBlock(type, val);
-            var onMouseDown = function onMouseDown(e) {
-                return _this.onClickBlock(e, type, val);
-            };
-            var classname = (0, _classnames2.default)({
-                button: true,
-                active: isActive
-            });
-            return _react2.default.createElement(
-                'button',
-                { className: classname, onMouseDown: onMouseDown },
-                _react2.default.createElement(_icon2.default, { type: icon })
-            );
-        }, _this.onClickMark = function (e, type) {
-            e.preventDefault();
-            var quillEditor = (0, _quillEditor.getEditor)();
-            if (quillEditor) {
-                if (_this.hasMark(type)) {
-                    quillEditor.format(type, false, 'user');
-                } else {
-                    quillEditor.format(type, true, 'user');
-                }
-            }
-        }, _this.onClickBlock = function (e, type, val) {
-            e.preventDefault();
-            var quillEditor = (0, _quillEditor.getEditor)();
-            if (quillEditor) {
-                if (_this.hasBlock(type)) {
-                    if (_editor2.default.format[type] === val) {
-                        quillEditor.format(type, false, 'user');
-                    } else {
-                        quillEditor.format(type, val, 'user');
-                    }
-                } else {
-                    if (val) {
-                        quillEditor.format(type, val, 'user');
-                    } else {
-                        quillEditor.format(type, true, 'user');
-                    }
-                }
-            }
-        }, _this.renderLinkBtn = function () {
-            var isActive = _this.hasMark('link');
-            var onMouseDown = function onMouseDown(e) {
-                if ((0, _quillEditor.getEditor)()) {
-                    var toolbar = (0, _quillEditor.getEditor)().getModule('toolbar');
-                    toolbar.handlers['link'].call(toolbar, !_editor2.default.format['link']);
-                }
-            };
-            var classname = (0, _classnames2.default)({
-                button: true,
-                active: isActive
-            });
-            return _react2.default.createElement(
-                'button',
-                { className: classname, onMouseDown: onMouseDown },
-                _react2.default.createElement(_icon2.default, { type: 'link' })
-            );
-        }, _temp), _possibleConstructorReturn(_this, _ret);
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = BubbleToolbar.__proto__ || Object.getPrototypeOf(BubbleToolbar)).call.apply(_ref, [this].concat(args))), _this), _initialiseProps.call(_this), _temp), _possibleConstructorReturn(_this, _ret);
     }
 
     _createClass(BubbleToolbar, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
             if ((0, _quillEditor.getEditor)()) {
-                (0, _quillEditor.getEditor)().on('selection-change', this.onSelectionChange);
+                (0, _quillEditor.getEditor)().on('editor-change', this.onSelectionChange);
             }
             this.rect = _reactDom2.default.findDOMNode(this).getBoundingClientRect();
         }
     }, {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
-            (0, _quillEditor.getEditor)().off('selection-change', this.onSelectionChange);
+            (0, _quillEditor.getEditor)().off('editor-change', this.onSelectionChange);
             this.clearTransition();
         }
     }, {
@@ -245,6 +102,182 @@ var BubbleToolbar = function (_Component) {
     }]);
 
     return BubbleToolbar;
-}(_react.Component);
+}(_react.Component), _initialiseProps = function _initialiseProps() {
+    var _this2 = this;
 
+    this.state = {
+        show: true,
+        bubbleStyle: {
+            left: 0,
+            top: 0,
+            marginTop: 0,
+            display: 'block'
+        },
+        arrowStyle: {
+            marginLeft: 0
+        },
+        bubbleOpacity: false
+    };
+
+    this.onSelectionChange = function (eventName) {
+        for (var _len2 = arguments.length, args = Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+            args[_key2 - 1] = arguments[_key2];
+        }
+
+        if (eventName === 'selection-change') {
+            var range = args[0];
+
+            if (!!(0, _quillEditor.getEditor)() && !!range && !!range.length && !!_this2.rect && !!(0, _quillEditor.getEditor)().getText(range.index, range.length).trim()) {
+                var _getEditor$getBounds = (0, _quillEditor.getEditor)().getBounds(range.index + Math.floor(range.length / 2)),
+                    left = _getEditor$getBounds.left,
+                    top = _getEditor$getBounds.top,
+                    height = _getEditor$getBounds.height,
+                    width = _getEditor$getBounds.width;
+
+                var bubbleLeft = Math.max(0, left - _this2.rect.width / 2),
+                    marginLeft = 0;
+                if (bubbleLeft === 0) {
+                    marginLeft = -(_this2.rect.width / 2 - left + width);
+                }
+                _this2.setState({
+                    show: true,
+                    bubbleStyle: {
+                        left: Math.max(0, left - _this2.rect.width / 2),
+                        top: top,
+                        marginTop: -(height + 20),
+                        display: 'block'
+                    },
+                    arrowStyle: {
+                        marginLeft: marginLeft
+                    },
+                    bubbleOpacity: true
+                });
+                _this2.transition();
+            } else {
+                _this2.setState({
+                    bubbleStyle: Object.assign({}, _this2.state.bubbleStyle, {
+                        display: 'none'
+                    })
+                });
+                _this2.clearTransition();
+            }
+        }
+    };
+
+    this.clearTransition = function () {
+        clearTimeout(_this2.timer);
+        clearTimeout(_this2.bubbleOpacityTimer);
+    };
+
+    this.transition = function () {
+        _this2.clearTransition();
+        _this2.timer = setTimeout(function () {
+            _this2.setState({
+                bubbleStyle: Object.assign({}, _this2.state.bubbleStyle, {
+                    display: 'none'
+                })
+            });
+        }, 4100);
+        _this2.bubbleOpacityTimer = setTimeout(function () {
+            _this2.setState({
+                bubbleOpacity: false
+            });
+        }, 1000);
+    };
+
+    this.hasMark = function (type) {
+        return _editor2.default.format[type];
+    };
+
+    this.hasBlock = function (type, val) {
+        if (val) {
+            return _editor2.default.format[type] === val;
+        } else {
+            return _editor2.default.format[type];
+        }
+    };
+
+    this.renderMarkButton = function (type, icon) {
+        var isActive = _this2.hasMark(type);
+        var onMouseDown = function onMouseDown(e) {
+            return _this2.onClickMark(e, type);
+        };
+        var classname = (0, _classnames2.default)({
+            button: true,
+            active: isActive
+        });
+        return _react2.default.createElement(
+            'button',
+            { className: classname, onMouseDown: onMouseDown },
+            _react2.default.createElement(_icon2.default, { type: icon })
+        );
+    };
+
+    this.renderBlockButton = function (type, icon, val) {
+        var isActive = _this2.hasBlock(type, val);
+        var onMouseDown = function onMouseDown(e) {
+            return _this2.onClickBlock(e, type, val);
+        };
+        var classname = (0, _classnames2.default)({
+            button: true,
+            active: isActive
+        });
+        return _react2.default.createElement(
+            'button',
+            { className: classname, onMouseDown: onMouseDown },
+            _react2.default.createElement(_icon2.default, { type: icon })
+        );
+    };
+
+    this.onClickMark = function (e, type) {
+        e.preventDefault();
+        var quillEditor = (0, _quillEditor.getEditor)();
+        if (quillEditor) {
+            if (_this2.hasMark(type)) {
+                quillEditor.format(type, false, 'user');
+            } else {
+                quillEditor.format(type, true, 'user');
+            }
+        }
+    };
+
+    this.onClickBlock = function (e, type, val) {
+        e.preventDefault();
+        var quillEditor = (0, _quillEditor.getEditor)();
+        if (quillEditor) {
+            if (_this2.hasBlock(type)) {
+                if (_editor2.default.format[type] === val) {
+                    quillEditor.format(type, false, 'user');
+                } else {
+                    quillEditor.format(type, val, 'user');
+                }
+            } else {
+                if (val) {
+                    quillEditor.format(type, val, 'user');
+                } else {
+                    quillEditor.format(type, true, 'user');
+                }
+            }
+        }
+    };
+
+    this.renderLinkBtn = function () {
+        var isActive = _this2.hasMark('link');
+        var onMouseDown = function onMouseDown(e) {
+            if ((0, _quillEditor.getEditor)()) {
+                var toolbar = (0, _quillEditor.getEditor)().getModule('toolbar');
+                toolbar.handlers['link'].call(toolbar, !_editor2.default.format['link']);
+            }
+        };
+        var classname = (0, _classnames2.default)({
+            button: true,
+            active: isActive
+        });
+        return _react2.default.createElement(
+            'button',
+            { className: classname, onMouseDown: onMouseDown },
+            _react2.default.createElement(_icon2.default, { type: 'link' })
+        );
+    };
+}, _temp2);
 exports.default = BubbleToolbar;
