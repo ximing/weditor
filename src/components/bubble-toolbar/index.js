@@ -88,7 +88,7 @@ export default class BubbleToolbar extends Component {
                     },
                     bubbleOpacity: true
                 });
-                //this.transition();
+                this.transition();
             } else {
                 this.setState({
                     bubbleStyle: Object.assign({},
