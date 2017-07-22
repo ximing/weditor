@@ -10,13 +10,15 @@ import debounce from 'lodash.debounce';
 import {getEditor} from '../../lib/quillEditor'
 import editor from '../../model/editor';
 import Icon from '../icon';
-
+const $ = window.$;
+const bubbleToolbarWidth = 206;
 export default class BubbleToolbar extends Component {
 
-    constructor(){
+    constructor() {
         super();
-        this.onSelectionChangeDebounce = debounce(this.onSelectionChange,150)
+        this.onSelectionChangeDebounce = debounce(this.onSelectionChange, 150)
     }
+
     state = {
         show: true,
         bubbleStyle: {
@@ -36,7 +38,7 @@ export default class BubbleToolbar extends Component {
             getEditor().on('editor-change', this.onSelectionChangeDebounce);
             getEditor().on('text-change', this.onTextChange);
         }
-        this.rect = ReactDOM.findDOMNode(this).getBoundingClientRect();
+        this.$editor = $('.ql-editor');
     }
 
     componentWillUnmount() {
@@ -46,7 +48,7 @@ export default class BubbleToolbar extends Component {
     }
 
     onTextChange = () => {
-        if(this.state.bubbleStyle.display !== 'none'){
+        if (this.state.bubbleStyle.display !== 'none') {
             this.setState({
                 bubbleStyle: Object.assign({},
                     this.state.bubbleStyle, {
@@ -57,20 +59,26 @@ export default class BubbleToolbar extends Component {
     };
 
     onSelectionChange = (eventName, ...args) => {
-        if(eventName === 'selection-change'){
+        if (eventName === 'selection-change') {
             let [range] = args;
             if (!!getEditor() && !!range && !!range.length &&
-                !!this.rect && !!getEditor().getText(range.index, range.length).trim()) {
-                let {left, top, height, width} = getEditor().getBounds(range.index + Math.floor(range.length / 2));
-                let bubbleLeft = Math.max(0, left - this.rect.width / 2),
+                !!getEditor().getText(range.index, range.length).trim()) {
+                let {left, top, height, width, right} = getEditor().getBounds(range.index + Math.floor(range.length / 2));
+                let bubbleLeft = Math.max(0, left - bubbleToolbarWidth/ 2),
                     marginLeft = 0;
                 if (bubbleLeft === 0) {
-                    marginLeft = -(this.rect.width / 2 - left + width);
+                    marginLeft = -(bubbleToolbarWidth / 2 - left + width);
+                } else {
+                    let maxLeft = this.$editor[0].getBoundingClientRect().width - bubbleToolbarWidth;
+                    if (bubbleLeft > maxLeft) {
+                        bubbleLeft = maxLeft;
+                        marginLeft = left - maxLeft - bubbleToolbarWidth / 2;
+                    }
                 }
                 this.setState({
                     show: true,
                     bubbleStyle: {
-                        left: Math.max(0, left - this.rect.width / 2),
+                        left: bubbleLeft,
                         top,
                         marginTop: -(height + 20),
                         display: 'block',
@@ -80,7 +88,7 @@ export default class BubbleToolbar extends Component {
                     },
                     bubbleOpacity: true
                 });
-                this.transition();
+                //this.transition();
             } else {
                 this.setState({
                     bubbleStyle: Object.assign({},
