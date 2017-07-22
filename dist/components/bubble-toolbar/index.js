@@ -46,6 +46,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var $ = window.$;
+var bubbleToolbarWidth = 206;
+
 var BubbleToolbar = function (_Component) {
     _inherits(BubbleToolbar, _Component);
 
@@ -69,11 +72,13 @@ var BubbleToolbar = function (_Component) {
         };
 
         _this.onTextChange = function () {
-            _this.setState({
-                bubbleStyle: Object.assign({}, _this.state.bubbleStyle, {
-                    display: 'none'
-                })
-            });
+            if (_this.state.bubbleStyle.display !== 'none') {
+                _this.setState({
+                    bubbleStyle: Object.assign({}, _this.state.bubbleStyle, {
+                        display: 'none'
+                    })
+                });
+            }
         };
 
         _this.onSelectionChange = function (eventName) {
@@ -84,22 +89,29 @@ var BubbleToolbar = function (_Component) {
             if (eventName === 'selection-change') {
                 var range = args[0];
 
-                if (!!(0, _quillEditor.getEditor)() && !!range && !!range.length && !!_this.rect && !!(0, _quillEditor.getEditor)().getText(range.index, range.length).trim()) {
+                if (!!(0, _quillEditor.getEditor)() && !!range && !!range.length && !!(0, _quillEditor.getEditor)().getText(range.index, range.length).trim()) {
                     var _getEditor$getBounds = (0, _quillEditor.getEditor)().getBounds(range.index + Math.floor(range.length / 2)),
                         left = _getEditor$getBounds.left,
                         top = _getEditor$getBounds.top,
                         height = _getEditor$getBounds.height,
-                        width = _getEditor$getBounds.width;
+                        width = _getEditor$getBounds.width,
+                        right = _getEditor$getBounds.right;
 
-                    var bubbleLeft = Math.max(0, left - _this.rect.width / 2),
+                    var bubbleLeft = Math.max(0, left - bubbleToolbarWidth / 2),
                         marginLeft = 0;
                     if (bubbleLeft === 0) {
-                        marginLeft = -(_this.rect.width / 2 - left + width);
+                        marginLeft = -(bubbleToolbarWidth / 2 - left + width);
+                    } else {
+                        var maxLeft = _this.$editor[0].getBoundingClientRect().width - bubbleToolbarWidth;
+                        if (bubbleLeft > maxLeft) {
+                            bubbleLeft = maxLeft;
+                            marginLeft = left - maxLeft - bubbleToolbarWidth / 2;
+                        }
                     }
                     _this.setState({
                         show: true,
                         bubbleStyle: {
-                            left: Math.max(0, left - _this.rect.width / 2),
+                            left: bubbleLeft,
                             top: top,
                             marginTop: -(height + 20),
                             display: 'block'
@@ -109,7 +121,7 @@ var BubbleToolbar = function (_Component) {
                         },
                         bubbleOpacity: true
                     });
-                    _this.transition();
+                    //this.transition();
                 } else {
                     _this.setState({
                         bubbleStyle: Object.assign({}, _this.state.bubbleStyle, {
@@ -248,7 +260,7 @@ var BubbleToolbar = function (_Component) {
                 (0, _quillEditor.getEditor)().on('editor-change', this.onSelectionChangeDebounce);
                 (0, _quillEditor.getEditor)().on('text-change', this.onTextChange);
             }
-            this.rect = _reactDom2.default.findDOMNode(this).getBoundingClientRect();
+            this.$editor = $('.ql-editor');
         }
     }, {
         key: 'componentWillUnmount',
