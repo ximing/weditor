@@ -90,6 +90,18 @@ body {
                 }
             }
         }
+        .weditor-rename-input{
+            border: none;
+            border-bottom: 1px solid #dddddd;
+            outline: none;
+            height: 38px;
+            line-height: 28px;
+            padding: 0 90pt 10px 90pt;
+            font-size: 20px;
+            color:#333333;
+            width: 100%;
+            box-sizing: border-box;
+        }
     }
 }
 
