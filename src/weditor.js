@@ -65,7 +65,6 @@ export default class WEditor extends Component {
                     !this.props.onlyRead&&(
                         <Header doc={this.props.doc}
                                 fileOptions={this.props.options.fileOptions}
-                                rightContent={this.props.rightContent}
                                 helpOptions={this.props.options.helpOptions}/>
                     )
                 }
@@ -77,11 +76,12 @@ export default class WEditor extends Component {
                     )
                 }
                 <div className="weditor-body">
-                    <Catalogue/>
                     <div className="content-container">
-
                         {
                             !this.props.focus && <Selection scrollTop={this.state.scrollTop}/>
+                        }
+                        {
+                            this.props.title
                         }
                         <Editor onlyRead={this.props.onlyRead}/>
                         <div className="img-selection">
