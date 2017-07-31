@@ -77,12 +77,12 @@ body {
                 }
 
                 ul[data-checked=true] > li::before{
-                    content: "\e63e";
+                    content: "\e63b";
                     font-family: "docicon" !important;
                     color: #000000;
                 }
                 ul[data-checked=false] > li::before{
-                    content: "\e63d";
+                    content: "\e63a";
                     font-family: "docicon" !important;
                     color: #000000;
                 }
