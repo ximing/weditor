@@ -75,6 +75,17 @@ body {
                 a:active,a:link,a:visited{
                     color: #15c;
                 }
+
+                ul[data-checked=true] > li::before{
+                    content: "\e63e";
+                    font-family: "docicon" !important;
+                    color: #000000;
+                }
+                ul[data-checked=false] > li::before{
+                    content: "\e63d";
+                    font-family: "docicon" !important;
+                    color: #000000;
+                }
             }
         }
         .ql-cursors{
