@@ -146,7 +146,8 @@ var LinkBubble = (0, _mobxReact.observer)(_class = (_temp2 = _class2 = function 
                     offset = _quillEditor$getLeaf4[1];
 
                 var LinkIndex = quillEditor.getIndex(leaf);
-                (0, _quillEditor.getEditor)().removeFormat(LinkIndex, leaf.text.length, 'user');
+                // getEditor().removeFormat(LinkIndex, leaf.text.length, 'user');
+                (0, _quillEditor.getEditor)().formatText(LinkIndex, leaf.text.length, 'link', false, 'user');
                 _this.closeBubble();
             }
         }, _temp), _possibleConstructorReturn(_this, _ret);
