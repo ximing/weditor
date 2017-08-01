@@ -105,8 +105,10 @@ export const initQuillEditor = function (dom, options) {
                             const {index, length} = editor.range;
                             let [leaf, offset] = quillEditor.getLeaf(index);
                             let LinkIndex = quillEditor.getIndex(leaf);
-                            //getEditor().format('link', false);
-                            getEditor().removeFormat(LinkIndex, leaf.text.length, 'user');
+                            // getEditor().format('link', false,'user');
+                            getEditor().formatText(LinkIndex,leaf.text.length,'link', false,'user');
+                            console.log('format')
+                            // getEditor().removeFormat(LinkIndex, leaf.text.length, 'user');
                             insert.isCreateNewLink = false;
                         }
                     },
