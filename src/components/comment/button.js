@@ -32,21 +32,33 @@ export default class CommentBtn extends Component{
     }
 
     selectionChange = (range, oldRange, source) => {
-        if (range) {
-            const {top} = getEditor().getBounds(range.index);
-            this.setState({
-                top
-            });
+        if (range && range.length>0) {
+            const formats = getEditor().getFormat(range);
+            if(!formats['comments']){
+                const {top} = getEditor().getBounds(range.index);
+                this.setState({
+                    top,
+                    display:'block'
+                });
+            }else{
+                this.setState({
+                    display:'none'
+                });
+            }
         } else {
             //Cursor not in the editor
+            this.setState({
+                display:'none'
+            });
         }
     };
 
     render(){
-        const {top} = this.state;
+        const {top,display} = this.state;
         return(
             <button className="ql-comment-btn" style={{
-                top:top
+                top:top,
+                display:display
             }}>
                 <Icon type="comment"/>
             </button>

@@ -5,7 +5,8 @@
 import Quill from 'quill';
 import Delta from 'quill-delta';
 import {ImageResize} from './modules/quill-image-resize-module';
-import {LineHeightStyle, LineHeightAttribute} from './formats/lineHeight';
+import {LineHeightStyle} from './formats/lineHeight';
+import {CommentsAttribute} from './formats/comments';
 
 var SizeStyle = Quill.import('attributors/style/size');
 var ColorStyle = Quill.import('attributors/style/color');
@@ -32,11 +33,10 @@ Quill.register(ColorStyle, true);
 Quill.register(BackgroundStyle, true);
 Quill.register(AlignStyle, true);
 Quill.register({
-    'modules/imageResize': ImageResize,
-    // 'formats/lineheight': LineHeightStyle
+    'modules/imageResize': ImageResize
 }, true);
-Quill.register(LineHeightAttribute);
 Quill.register(LineHeightStyle);
+Quill.register(CommentsAttribute);
 
 var Clipboard = Quill.import('modules/clipboard');
 class PlainClipboard extends Clipboard {
@@ -48,5 +48,5 @@ class PlainClipboard extends Clipboard {
         this.container.innerHTML = '';
         return new Delta().insert(text);
     }
-}
+};
 Quill.register('modules/clipboard', PlainClipboard, true);

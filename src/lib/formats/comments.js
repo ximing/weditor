@@ -8,5 +8,5 @@ let config = {
     scope: Parchment.Scope.INLINE,
     whitelist: null
 };
-let CommentAttribute = new Parchment.Attributor.Attribute('comment', 'data-comment', config);
-export { CommentAttribute };
+let CommentsAttribute = new Parchment.Attributor.Attribute('comments', 'data-comments', config);
+export { CommentsAttribute };
