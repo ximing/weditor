@@ -1,6 +1,6 @@
 {
   "name": "weditorjs",
-  "version": "1.7.6",
+  "version": "1.8.6",
   "description": "weditor",
   "author": "ximing",
   "main": "dist/index.js",
@@ -17,6 +17,7 @@
     "classnames": "^2.2.5",
     "hotkeys-js": "^2.0.1",
     "interactjs": "^1.2.8",
+    "lodash.debounce": "^4.0.8",
     "mobx": "^3.1.9",
     "mobx-react": "^4.1.8",
     "omit.js": "^0.1.0",

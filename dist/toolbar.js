@@ -48,6 +48,10 @@ var _hightLight = require('./components/hightLight');
 
 var _hightLight2 = _interopRequireDefault(_hightLight);
 
+var _lineHeightDropDown = require('./components/lineHeightDropDown');
+
+var _lineHeightDropDown2 = _interopRequireDefault(_lineHeightDropDown);
+
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
@@ -292,6 +296,8 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
         };
 
         _this.renderMore = function () {
+            var lineheight = _this.props.rangeFormat.lineheight;
+
             return _react2.default.createElement(
                 'span',
                 { className: 'more-toolbar-container', onClick: preventDefault },
@@ -435,6 +441,22 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                         overlay: _react2.default.createElement(
                             'div',
                             null,
+                            '\u63D2\u5165TODO'
+                        )
+                    },
+                    _this.renderBlockButton('list', 'todo', 'checked')
+                ),
+                _react2.default.createElement(_lineHeightDropDown2.default, { lineheight: lineheight }),
+                _react2.default.createElement(_icon2.default, { type: 'vertical' }),
+                _react2.default.createElement(
+                    _tooltip2.default,
+                    {
+                        placement: 'bottom',
+                        mouseEnterDelay: 0,
+                        mouseLeaveDelay: 0,
+                        overlay: _react2.default.createElement(
+                            'div',
+                            null,
                             '\u63D2\u5165\u94FE\u63A5'
                         )
                     },
@@ -518,6 +540,30 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
          * @param {String} val
          */
 
+        // renderTodoBtn = () => {
+        //     const isActive = this.hasMark('checked');
+        //     const onMouseDown = e => {
+        //         if (getEditor()) {
+        //             const {index, length} = this.props.editor.range;
+        //             //unchecked
+        //             if(isActive){
+        //
+        //             }else{
+        //                 getEditor().formatLine(index, length, 'list', 'checked');
+        //             }
+        //         }
+        //     };
+        //     const classname = classnames({
+        //         button: true,
+        //         active: isActive
+        //     });
+        //     return (
+        //         <button className={classname} onMouseDown={onMouseDown}>
+        //             <Icon type="link"/>
+        //         </button>
+        //     )
+        // };
+
     }, {
         key: 'renderMoreBtn',
         value: function renderMoreBtn() {
@@ -548,7 +594,8 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                         overflow: {
                             adjustX: 1,
                             adjustY: 1
-                        } },
+                        }
+                    },
                     destroyPopupOnHide: false,
                     zIndex: 40,
                     defaultPopupVisible: false,

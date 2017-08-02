@@ -15,6 +15,8 @@ var _quillDelta2 = _interopRequireDefault(_quillDelta);
 
 var _quillImageResizeModule = require('./quill-image-resize-module');
 
+var _lineHeight = require('./formats/lineHeight');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -23,9 +25,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-// import { ImageDrop } from './quill-image-drop-module';
-// Quill.register('modules/imageDrop', ImageDrop);
-_quill2.default.register('modules/imageResize', _quillImageResizeModule.ImageResize);
 var SizeStyle = _quill2.default.import('attributors/style/size');
 var ColorStyle = _quill2.default.import('attributors/style/color');
 var BackgroundStyle = _quill2.default.import('attributors/style/background');
@@ -35,14 +34,21 @@ SizeStyle.whitelist = [];
 ColorStyle.whitelist = null;
 BackgroundStyle.whitelist = ['yellow', 'green', 'cyan', 'magenta', 'darkYellow', 'darkyellow', 'darkGray', 'darkgray', 'lightGray', 'lightgray', 'black', 'blue', 'red', 'darkBlue', 'darkblue', 'darkCyan', 'darkcyan', 'darkGreen', 'darkgreen', 'darkMagenta', 'darkmagenta', 'darkRed', 'darkred', 'white'];
 AlignStyle.whitelist = ['right', 'center', 'justify', 'left'];
+
 for (var i = 5; i <= 72; i++) {
     SizeStyle.whitelist.push(i + 'pt');
     SizeStyle.whitelist.push(i + '.5pt');
 }
+
 _quill2.default.register(SizeStyle, true);
 _quill2.default.register(ColorStyle, true);
 _quill2.default.register(BackgroundStyle, true);
 _quill2.default.register(AlignStyle, true);
+_quill2.default.register({
+    'modules/imageResize': _quillImageResizeModule.ImageResize
+}, true);
+_quill2.default.register(_lineHeight.LineHeightAttribute);
+_quill2.default.register(_lineHeight.LineHeightStyle);
 
 var Clipboard = _quill2.default.import('modules/clipboard');
 

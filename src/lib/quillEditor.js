@@ -105,8 +105,10 @@ export const initQuillEditor = function (dom, options) {
                             const {index, length} = editor.range;
                             let [leaf, offset] = quillEditor.getLeaf(index);
                             let LinkIndex = quillEditor.getIndex(leaf);
-                            //getEditor().format('link', false);
-                            getEditor().removeFormat(LinkIndex, leaf.text.length, 'user');
+                            // getEditor().format('link', false,'user');
+                            getEditor().formatText(LinkIndex,leaf.text.length,'link', false,'user');
+                            console.log('format')
+                            // getEditor().removeFormat(LinkIndex, leaf.text.length, 'user');
                             insert.isCreateNewLink = false;
                         }
                     },
@@ -153,39 +155,42 @@ export const initQuillEditor = function (dom, options) {
                 editor.format = {};
             }
         } else if (eventName === 'selection-change') {
-            // args[0] will be old range
             let [range, oldRange, source] = args;
             console.log('selection-change', range);
-            if (range) {
-                editor.range = Object.assign({}, range);
-                editor.focus = true;
-                editor.format = Object.assign({}, quillEditor.getFormat(range));
-                if (editor.format.link) {
-                    let [leaf, offset] = quillEditor.getLeaf(range.index);
-                    // let linkIndex = quillEditor.getIndex(leaf);
-                    //在文本最开始的时候，拿不到 link format 所以不用判断左区间的问题了。
-                    if (offset < leaf.length()) {
-                        insert.openLinkDialog = true;
-                        insert.linkUrl = editor.format.link;
-                        insert.isReadOnlyLink = true;
-                        insert.linkTitle = leaf.text;
-                        setLinkBubble(range.index)
-                    }
+            try {
+                if (range) {
+                    editor.range = Object.assign({}, range);
+                    editor.focus = true;
+                    editor.format = Object.assign({}, quillEditor.getFormat(range));
+                    if (editor.format.link) {
+                        let [leaf, offset] = quillEditor.getLeaf(range.index);
+                        // let linkIndex = quillEditor.getIndex(leaf);
+                        //在文本最开始的时候，拿不到 link format 所以不用判断左区间的问题了。
+                        if (offset < leaf.length()) {
+                            insert.openLinkDialog = true;
+                            insert.linkUrl = editor.format.link;
+                            insert.isReadOnlyLink = true;
+                            insert.linkTitle = leaf.text;
+                            setLinkBubble(range.index)
+                        }
 
-                }
-                if (range.length !== 0) {
-                    //处理格式刷
-                    if (format.currentFormat) {
-                        const {index, length} = range;
-                        quillEditor.removeFormat(index, length, 'user');
-                        quillEditor.formatLine(index, length, format.currentFormat, 'user');
-                        quillEditor.formatText(index, length, format.currentFormat, 'user');
-
-                        format.currentFormat = null;
                     }
+                    if (range.length !== 0) {
+                        //处理格式刷
+                        if (format.currentFormat) {
+                            const {index, length} = range;
+                            quillEditor.removeFormat(index, length, 'user');
+                            quillEditor.formatLine(index, length, format.currentFormat, 'user');
+                            quillEditor.formatText(index, length, format.currentFormat, 'user');
+
+                            format.currentFormat = null;
+                        }
+                    }
+                } else {
+                    console.log('blur');
                 }
-            } else {
-                console.log('blur');
+            }catch (err){
+                console.error(err);
             }
         }
     });

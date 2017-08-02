@@ -44,6 +44,10 @@ var _hotKeysDialog = require('./components/hotKeysDialog');
 
 var _hotKeysDialog2 = _interopRequireDefault(_hotKeysDialog);
 
+var _bubbleToolbar = require('./components/bubble-toolbar');
+
+var _bubbleToolbar2 = _interopRequireDefault(_bubbleToolbar);
+
 var _mobxReact = require('mobx-react');
 
 var _selection = require('./components/selection');
@@ -125,7 +129,6 @@ var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
                 { className: 'weditor-wrapper' },
                 !this.props.onlyRead && _react2.default.createElement(_header2.default, { doc: this.props.doc,
                     fileOptions: this.props.options.fileOptions,
-                    rightContent: this.props.rightContent,
                     helpOptions: this.props.options.helpOptions }),
                 !this.props.onlyRead && _react2.default.createElement(
                     'div',
@@ -135,11 +138,11 @@ var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
                 _react2.default.createElement(
                     'div',
                     { className: 'weditor-body' },
-                    _react2.default.createElement(_catalogue2.default, null),
                     _react2.default.createElement(
                         'div',
                         { className: 'content-container' },
                         !this.props.focus && _react2.default.createElement(_selection2.default, { scrollTop: this.state.scrollTop }),
+                        this.props.title,
                         _react2.default.createElement(_editor2.default, { onlyRead: this.props.onlyRead }),
                         _react2.default.createElement(
                             'div',
@@ -149,7 +152,8 @@ var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
                             _react2.default.createElement('div', { className: 'docs-squarehandleselectionbox-handle docx-selection-bottomleft' }),
                             _react2.default.createElement('div', { className: 'docs-squarehandleselectionbox-handle docx-selection-bottomright' })
                         ),
-                        this.props.insert.openLinkDialog && _react2.default.createElement(_linkBubble2.default, { insert: this.props.insert })
+                        this.props.insert.openLinkDialog && _react2.default.createElement(_linkBubble2.default, { insert: this.props.insert }),
+                        _react2.default.createElement(_bubbleToolbar2.default, null)
                     )
                 ),
                 this.props.insert.openImageDialog && _react2.default.createElement(_insertImage2.default, { uploadUrl: this.props.options.uploadUrl }),

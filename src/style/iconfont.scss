@@ -117,7 +117,7 @@
     content: "\e695";
 }
 .#{$iconfont-css-prefix}-image:before {
-    content: "\e674";
+    content: "\e639";
 }
 .#{$iconfont-css-prefix}-link:before {
     content: "\e602";
@@ -129,3 +129,22 @@
     content: "\e75a";
 }
 
+.#{$iconfont-css-prefix}-h1:before {
+    content: "\e93a";
+}
+
+.#{$iconfont-css-prefix}-h2:before {
+    content: "\e628";
+}
+
+.#{$iconfont-css-prefix}-h3:before {
+    content: "\e93b";
+}
+
+.#{$iconfont-css-prefix}-todo:before {
+    content: "\e63b";
+}
+
+.#{$iconfont-css-prefix}-lineheight:before {
+    content: "\e600";
+}

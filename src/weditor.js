@@ -12,6 +12,8 @@ import InsertImage from './components/insertImage';
 import HotKeysDialog from './components/hotKeysDialog';
 import CommentBtn from './components/comment/button';
 import CommentList from './components/comment/list';
+import BubbleToolbar from './components/bubble-toolbar';
+
 import {inject, observer} from 'mobx-react';
 import Selection from './components/selection';
 import Editor from './components/editor';
@@ -65,7 +67,6 @@ export default class WEditor extends Component {
                     !this.props.onlyRead&&(
                         <Header doc={this.props.doc}
                                 fileOptions={this.props.options.fileOptions}
-                                rightContent={this.props.rightContent}
                                 helpOptions={this.props.options.helpOptions}/>
                     )
                 }
@@ -77,17 +78,19 @@ export default class WEditor extends Component {
                     )
                 }
                 <div className="weditor-body">
-                    <Catalogue/>
                     <div className="content-container">
                         {
                             !this.props.focus && <Selection scrollTop={this.state.scrollTop}/>
                         }
+                        {
+                            this.props.title
+                        }
                         <Editor onlyRead={this.props.onlyRead}/>
                         <div className="img-selection">
-                            <div className="docs-squarehandleselectionbox-handle docx-selection-topleft" />
-                            <div className="docs-squarehandleselectionbox-handle docx-selection-topright" />
-                            <div className="docs-squarehandleselectionbox-handle docx-selection-bottomleft" />
-                            <div className="docs-squarehandleselectionbox-handle docx-selection-bottomright" />
+                            <div className="docs-squarehandleselectionbox-handle docx-selection-topleft"></div>
+                            <div className="docs-squarehandleselectionbox-handle docx-selection-topright"></div>
+                            <div className="docs-squarehandleselectionbox-handle docx-selection-bottomleft"></div>
+                            <div className="docs-squarehandleselectionbox-handle docx-selection-bottomright"></div>
                         </div>
                         {
                             this.props.insert.openLinkDialog &&
@@ -95,6 +98,7 @@ export default class WEditor extends Component {
                         }
                         <CommentBtn/>
                         <CommentList/>
+                        <BubbleToolbar/>
                     </div>
                 </div>
                 {

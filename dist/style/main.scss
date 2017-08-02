@@ -57,6 +57,7 @@ body {
         padding: 0;
         margin: 0 auto;
         margin-bottom: 60px;
+        font-size: 12pt;
         .ql-container {
             font-size: 12pt;
             &.ql-snow {
@@ -74,6 +75,17 @@ body {
                 a:active,a:link,a:visited{
                     color: #15c;
                 }
+
+                ul[data-checked=true] > li::before{
+                    content: "\e63b";
+                    font-family: "docicon" !important;
+                    color: #000000;
+                }
+                ul[data-checked=false] > li::before{
+                    content: "\e63a";
+                    font-family: "docicon" !important;
+                    color: #000000;
+                }
             }
         }
         .ql-cursors{
@@ -88,6 +100,18 @@ body {
                     z-index: 1000;
                 }
             }
+        }
+        .weditor-rename-input{
+            border: none;
+            border-bottom: 1px solid #dddddd;
+            outline: none;
+            height: 38px;
+            line-height: 28px;
+            padding: 0 90pt 10px 90pt;
+            font-size: 20px;
+            color:#333333;
+            width: 100%;
+            box-sizing: border-box;
         }
     }
 }

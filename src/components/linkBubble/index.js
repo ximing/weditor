@@ -112,7 +112,8 @@ export default class LinkBubble extends Component {
             const {index, length} = editor.range;
             let [leaf, offset] = quillEditor.getLeaf(index);
             let LinkIndex = quillEditor.getIndex(leaf);
-            getEditor().removeFormat(LinkIndex, leaf.text.length, 'user');
+            // getEditor().removeFormat(LinkIndex, leaf.text.length, 'user');
+            getEditor().formatText(LinkIndex,leaf.text.length,'link', false,'user');
             this.closeBubble();
         }
     };

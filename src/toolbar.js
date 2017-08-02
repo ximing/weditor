@@ -12,6 +12,7 @@ import ColorPicker from './components/color-picker';
 import ToolTip from './components/tooltip';
 import Icon from './components/icon';
 import HightLight from './components/hightLight';
+import LineHeightDropDown from './components/lineHeightDropDown';
 import classnames from 'classnames';
 import Trigger from 'rc-trigger';
 import 'rc-trigger/assets/index.css';
@@ -243,25 +244,29 @@ export default class EditorToolbar extends Component {
         })
     };
 
-    renderTodoBtn = () => {
-        const isActive = this.hasMark('link');
-        const onMouseDown = e => {
-            if (getEditor()) {
-                const {index, length} = this.props.editor.range;
-                //unchecked
-                getEditor().formatLine(index, length, 'list', 'checked');
-            }
-        };
-        const classname = classnames({
-            button: true,
-            active: isActive
-        });
-        return (
-            <button className={classname} onMouseDown={onMouseDown}>
-                <Icon type="link"/>
-            </button>
-        )
-    };
+    // renderTodoBtn = () => {
+    //     const isActive = this.hasMark('checked');
+    //     const onMouseDown = e => {
+    //         if (getEditor()) {
+    //             const {index, length} = this.props.editor.range;
+    //             //unchecked
+    //             if(isActive){
+    //
+    //             }else{
+    //                 getEditor().formatLine(index, length, 'list', 'checked');
+    //             }
+    //         }
+    //     };
+    //     const classname = classnames({
+    //         button: true,
+    //         active: isActive
+    //     });
+    //     return (
+    //         <button className={classname} onMouseDown={onMouseDown}>
+    //             <Icon type="link"/>
+    //         </button>
+    //     )
+    // };
 
     renderLinkBtn = () => {
         const isActive = this.hasMark('link');
@@ -301,6 +306,7 @@ export default class EditorToolbar extends Component {
     };
 
     renderMore = () => {
+        let {lineheight} = this.props.rangeFormat;
         return (
             <span className="more-toolbar-container" onClick={preventDefault}>
                 <div className="popup-triangle-wrapper">
@@ -371,15 +377,16 @@ export default class EditorToolbar extends Component {
                 >
                     {this.renderBlockButton('indent', 'right-indent', '+1')}
                 </ToolTip>
-                {/*<Icon type="vertical"/>*/}
-                {/*<ToolTip*/}
-                    {/*placement="bottom"*/}
-                    {/*mouseEnterDelay={0}*/}
-                    {/*mouseLeaveDelay={0}*/}
-                    {/*overlay={<div>插入TODO</div>}*/}
-                {/*>*/}
-                    {/*{this.renderTodoBtn()}*/}
-                {/*</ToolTip>*/}
+                <Icon type="vertical"/>
+                <ToolTip
+                    placement="bottom"
+                    mouseEnterDelay={0}
+                    mouseLeaveDelay={0}
+                    overlay={<div>插入TODO</div>}
+                >
+                    {this.renderBlockButton('list', 'todo', 'checked')}
+                </ToolTip>
+                <LineHeightDropDown lineheight={lineheight}/>
                 <Icon type="vertical"/>
                 <ToolTip
                     placement="bottom"

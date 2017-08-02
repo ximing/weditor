@@ -1,5 +1,5 @@
 @import "../../style/variables";
-.xm-size {
+.xm-lineheight {
     display: inline-block;
     position: relative;
     vertical-align: middle;
@@ -18,42 +18,7 @@
     .docicon{
         display: inline-block;
         position: relative;
-        top: -13px;
-    }
-    .xm-size-span{
-        display: inline-block;
-        width: 28px;
-        background: transparent;
-        border: 1px solid transparent;
-        color: #333333;
-        font-family: Arial,sans-serif;
-        font-size: 12px;
-        height: 20px;
-        line-height: 20px;
-        overflow: hidden;
-        padding: 0;
-        border-radius: 1px;
-        outline: none;
-        cursor: pointer;
-        text-align: left;
-        position: relative;
-        top: -2px;
-    }
-    .xm-size-input {
-        display: inline-block;
-        width: 48px;
-        background: transparent;
-        border: 1px solid transparent;
-        color: #333;
-        font-family: Arial, sans-serif;
-        font-size: 12px;
-        font-weight: bold;
-        height: 20px;
-        line-height: 20px;
-        overflow: hidden;
-        padding: 1px 8px;
-        border-radius: 1px;
-        outline: none;
+        top: -11px;
     }
     input:focus {
         background: #fff;
@@ -67,7 +32,7 @@
         background: #ffffff;
         font-size: 14px;
         width: 80px;
-        height: 400px;
+        height: 210px;
         overflow-y: auto;
         border-radius: 4px;
         box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.24);
