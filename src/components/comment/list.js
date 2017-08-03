@@ -14,6 +14,7 @@ export default class CommentList extends Component {
     render() {
         let preComment = {top:-itemHeight},comments=[];
         const {activeCommentId,list,activeCommentIndex} = this.props.comments;
+        console.log(activeCommentId,activeCommentIndex);
         if(activeCommentIndex<0){
             list.forEach(item=>{
                 let comment = Object.assign({},item);

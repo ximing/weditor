@@ -29,7 +29,7 @@ class Comments {
    * }
    * */
     @observable list = list;
-    @observable activeCommentId = 0;
+    @observable activeCommentId = '';
     @observable activeCommentIndex = -1;
 }
 
