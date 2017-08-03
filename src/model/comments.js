@@ -30,6 +30,7 @@ class Comments {
    * */
     @observable list = list;
     @observable activeCommentId = 0;
+    @observable activeCommentIndex = -1;
 }
 
 let comments = new Comments();

@@ -13,6 +13,7 @@ const $ = window.$;
 export class Comments {
     constructor(quill, options = {}) {
         this.quill = quill;
+        const that = this;
         $(quill.root).on('click', 'span[data-comments]', function (e) {
             if ($(this).data('comments')) {
                 let comments = `${$(this).data('comments')}`.split(',');
@@ -25,7 +26,8 @@ export class Comments {
                     * */
                     // let blot = Parchment.find(event.target);
                     // let index = blot.offset(quill.scroll);
-                    comments.activeComment = comments[0];
+                    comments.activeCommentId = comments[0].commentId;
+                    that.reflushComments();
                 }
             }
         });
@@ -56,23 +58,30 @@ export class Comments {
             }
         });
         if(hasAttributes){
-            let _comments = [];
+            this.reflushComments();
+        }
+    };
+    
+    reflushComments = () => {
+        let _comments = [];
             $('span[data-comments]').toArray().forEach(item=>{
                 let blot = Parchment.find(item);
                 let index = blot.offset(this.quill.scroll);
                 let {top,left,height,width} = this.quill.getBounds(index,0);
-                console.log(top)
+                let commentId = `${item.dataset['comments']}`;
                 _comments.push({
                     index:index,
                     top:top,
                     left:left,
                     height:height,
                     width:width,
-                    commentId:item.dataset['comments']
-                })
+                    commentId:commentId
+                });
+                if(commentId === comments.activeCommentId){
+                    comments.activeCommentIndex = _comments.length-1;
+                }
             });
             comments.list = _comments;
-        }
     };
 
 }
