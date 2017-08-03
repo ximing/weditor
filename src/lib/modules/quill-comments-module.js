@@ -28,7 +28,6 @@ export class Comments {
                     // let blot = Parchment.find(event.target);
                     // let index = blot.offset(quill.scroll);
                     comments.activeCommentId = comments[0];
-                    console.log('comments.activeCommentId',comments.activeCommentId);
                     that.reflushComments(comments[0]);
                 }
             }
@@ -67,22 +66,21 @@ export class Comments {
     reflushComments = (activeCommentId = '') => {
         let _comments = [];
         $('span[data-comments]').toArray().forEach(item=>{
-                let blot = Parchment.find(item);
-                let index = blot.offset(this.quill.scroll);
-                let {top,left,height,width} = this.quill.getBounds(index,0);
-                let commentId = `${item.dataset['comments']}`;
-                _comments.push({
-                    index:index,
-                    top:top,
-                    left:left,
-                    height:height,
-                    width:width,
-                    commentId:commentId
-                });
-                console.log('commentId === activeCommentId',commentId , activeCommentId)
-                if(commentId === activeCommentId){
-                    comments.activeCommentIndex = _comments.length-1;
-                }
+            let blot = Parchment.find(item);
+            let index = blot.offset(this.quill.scroll);
+            let {top,left,height,width} = this.quill.getBounds(index,0);
+            let commentId = `${item.dataset['comments']}`;
+             _comments.push({
+                index:index,
+                top:top,
+                left:left,
+                height:height,
+                width:width,
+                commentId:commentId
+            });
+            if(commentId === activeCommentId){
+                comments.activeCommentIndex = _comments.length-1;
+            }
             });
             comments.list = _comments;
     };
