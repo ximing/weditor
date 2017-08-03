@@ -123,6 +123,9 @@ export const initQuillEditor = function (dom, options) {
             },
             clipboard: {
                 matchers: []
+            },
+            comments:{
+
             }
         },
         placeholder: '输入文档...',

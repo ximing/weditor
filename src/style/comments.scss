@@ -34,12 +34,18 @@
             position: absolute;
             top: 0;
             right: -10px;
+            height: 100%;
             .comment-item{
-                margin-left: 100%;
+                position: absolute;
+                z-index: 500;
                 width: 200px;
                 background: #FFFFFF;
                 height: 100px;
                 margin-bottom: 10px;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+                cursor: pointer;
+                border: none;
+                border-radius: 2px;
             }
         }
     }

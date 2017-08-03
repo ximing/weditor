@@ -3,42 +3,34 @@
  */
 'use strict';
 import {observable} from 'mobx';
+
+let list = [];
+// for (let i = 0; i < 50; i++) {
+//     list.push({
+//         index: i * 2 + 4,
+//         left: 2,
+//         commentId: i+1
+//     })
+// }
+
 class Comments {
     @observable range = {
-        index:0,
-        length:0
+        index: 0,
+        length: 0
     };
     /*
    * comment:{
    *   index:0,
-   *   length:0
-   *   comment:'1,2,3'
+   *   left:0,
+   *   top:0,
+   *   height:0,
+   *   width:0,
+   *   comment:'1'
    * }
    * */
-    @observable list = [
-        {
-            index:10,
-            length:2,
-            commentId:'1'
-        },{
-            index:14,
-            length:2,
-            commentId:'2'
-        },{
-            index:17,
-            length:2,
-            commentId:'3'
-        },{
-            index:20,
-            length:2,
-            commentId:'4'
-        },{
-            index:24,
-            length:2,
-            commentId:'5'
-        }
-    ];
+    @observable list = list;
     @observable activeCommentId = 0;
 }
+
 let comments = new Comments();
 export default comments;
