@@ -5,6 +5,7 @@
 import Quill from 'quill';
 import Delta from 'quill-delta';
 import {ImageResize} from './modules/quill-image-resize-module';
+import {Comments} from './modules/quill-comments-module';
 import {LineHeightStyle} from './formats/lineHeight';
 import {CommentsAttribute} from './formats/comments';
 
@@ -33,7 +34,8 @@ Quill.register(ColorStyle, true);
 Quill.register(BackgroundStyle, true);
 Quill.register(AlignStyle, true);
 Quill.register({
-    'modules/imageResize': ImageResize
+    'modules/imageResize': ImageResize,
+    'modules/comments': Comments
 }, true);
 Quill.register(LineHeightStyle);
 Quill.register(CommentsAttribute);

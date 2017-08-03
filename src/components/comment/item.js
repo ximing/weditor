@@ -9,8 +9,8 @@ export default class CommentItem extends Component {
     }
     render(){
         return(
-            <div>
-                hs
+            <div className="comment-item">
+                CommentItem{this.props.commentId}
             </div>
         )
     }

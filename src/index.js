@@ -15,6 +15,7 @@ import catalogue from './model/catalogue';
 import insert from './model/insert';
 import editor from './model/editor';
 import help from './model/help';
+import comments from './model/comments';
 import hooks from './lib/hooks';
 import {loop} from './lib/util'
 class  Editor extends Component {
@@ -52,6 +53,7 @@ class  Editor extends Component {
                 insert={insert}
                 editor={editor}
                 help={help}
+                comments={comments}
             >
                 <WEditor onlyRead={this.props.onlyRead}
                          title = {this.props.title}

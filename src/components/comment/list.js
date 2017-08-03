@@ -5,19 +5,10 @@
 import React, {Component} from 'react';
 import CommentItem from './item';
 import {getEditor} from '../../lib/quillEditor';
+import {observer,inject} from 'mobx-react';
 
+@inject('comments') @observer
 export default class CommentList extends Component {
-
-    /*
-    * comment:{
-    *   index:0,
-    *   length:0
-    *   comment:'1,2,3'
-    * }
-    * */
-    state = {
-        comments: []
-    };
 
     componentDidMount() {
         if (getEditor()) {
@@ -39,7 +30,7 @@ export default class CommentList extends Component {
     *
     * */
     onTextChange = (delta, oldDelta, source) => {
-        console.log('comments',delta)
+        console.log('comments',delta);
         delta.ops.forEach(item => {
             if (item.attributes) {
                 if (item.attributes['comments']) {
@@ -51,12 +42,12 @@ export default class CommentList extends Component {
 
     render() {
         return (
-            <div>
+            <div className="comments-list">
                 {
-                    this.state.comments.sort((a, b) => a.index - b.index).map((_, i) => {
+                    this.props.comments.list.sort((a, b) => a.index - b.index).map((_, i) => {
                         return (
-                            <CommentItem key={i} comment={_}/>
-                        )
+                            <CommentItem key={i} commentId={_.commentId}/>
+                        );
                     })
                 }
             </div>

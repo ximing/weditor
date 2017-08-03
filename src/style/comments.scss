@@ -11,5 +11,36 @@
                 }
             }
         }
+        .ql-comment-btn{
+            border: none;
+            background: transparent;
+            outline: none;
+            position: absolute;
+            top: 0;
+            right: 0;
+            cursor: pointer;
+            z-index: 2000;
+            //display: none;
+            i{
+                cursor: pointer;
+                font-size: 20px;
+                &:hover {
+                    color: $primary-color;
+                }
+            }
+        }
+        .comments-list{
+            background: transparent;
+            position: absolute;
+            top: 0;
+            right: -10px;
+            .comment-item{
+                margin-left: 100%;
+                width: 200px;
+                background: #FFFFFF;
+                height: 100px;
+                margin-bottom: 10px;
+            }
+        }
     }
 }
