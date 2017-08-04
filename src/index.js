@@ -46,6 +46,10 @@ class  Editor extends Component {
         }
     };
 
+    setComments(){}
+
+    updateComments(){}
+
     render() {
         return(
             <Provider

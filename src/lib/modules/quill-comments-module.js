@@ -23,7 +23,7 @@ export class Comments {
                     // comments.range = range;
                     /*
                     The reason I say unofficially is because quill.scroll is not documented, and the variable name or visibility may change in the future (though none is planned). But find and offset are both part of Parchment's API. There may be an official API for Quill in the future for this use case as well.
-                    Not quill.root is the DOM node, quill.container is the DOM parent of quill.root and elements not just the editor part but any for modules like the clipboard. quill.scroll is the blot counterpart of quill.root (Parchment.find(quill.root) === quill.scroll).
+                    Not q                                 uill.root is the DOM node, quill.container is the DOM parent of quill.root and elements not just the editor part but any for modules like the clipboard. quill.scroll is the blot counterpart of quill.root (Parchment.find(quill.root) === quill.scroll).
                     * */
                     // let blot = Parchment.find(event.target);
                     // let index = blot.offset(quill.scroll);

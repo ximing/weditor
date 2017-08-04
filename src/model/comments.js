@@ -14,10 +14,6 @@ let list = [];
 // }
 
 class Comments {
-    @observable range = {
-        index: 0,
-        length: 0
-    };
     /*
    * comment:{
    *   index:0,

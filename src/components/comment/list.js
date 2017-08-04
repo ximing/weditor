@@ -15,6 +15,10 @@ export default class CommentList extends Component {
         let preComment = {top:-itemHeight},comments=[];
         const {activeCommentId,list,activeCommentIndex} = this.props.comments;
         console.log(activeCommentId,activeCommentIndex);
+        /*
+        * 核心思路
+        * 根据定位到文本的那个 评论，将数组分割成 两部分，分别计算其Top值
+        * */
         if(activeCommentIndex<0){
             list.forEach(item=>{
                 let comment = Object.assign({},item);
