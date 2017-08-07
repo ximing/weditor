@@ -4,28 +4,34 @@
 'use strict';
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import Header from './header';
-import Toolbar from './toolbar';
-import Catalogue from './catalogue';
+import {inject, observer} from 'mobx-react';
+
 import LinkBubble from './components/linkBubble';
 import InsertImage from './components/insertImage';
 import HotKeysDialog from './components/hotKeysDialog';
 import CommentBtn from './components/comment/button';
 import CommentList from './components/comment/list';
+import CreateComment from './components/comment/create';
 import BubbleToolbar from './components/bubble-toolbar';
-
-import {inject, observer} from 'mobx-react';
 import Selection from './components/selection';
 import Editor from './components/editor';
+
+import Header from './header';
+import Toolbar from './toolbar';
+
 const $ = window.jQuery;
+
 import editor from './model/editor';
 
+import layer from './lib/layer';
 
 @inject(state => ({
     insert: state.insert,
     open: state.catalogue.open,
     focus: state.editor.focus,
-    help:state.help
+    createPanelPosition: state.comments.createPanelPosition,
+    help: state.help,
+    forceUpdate:state.forceUpdate
 })) @observer
 export default class WEditor extends Component {
     state = {
@@ -36,21 +42,23 @@ export default class WEditor extends Component {
     constructor() {
         super();
     }
-    onWindowResize = ()=>{
+
+    onWindowResize = () => {
         this.setState({
             left: this.props.open ? window.innerWidth / 2 - 300 : window.innerWidth / 2 - 400
         });
     };
+
     componentDidMount() {
         let editorDom = this.editorDom = $(ReactDOM.findDOMNode(this.refs.editor)).find('.ql-editor');
         editorDom.on('blur', () => {
             editor.focus = false;
         });
-        $(window).on('resize',this.onWindowResize)
+        $(window).on('resize', this.onWindowResize)
     }
 
     componentWillUnmount() {
-        $(window).off('resize',this.onWindowResize)
+        $(window).off('resize', this.onWindowResize)
 
     }
 
@@ -64,14 +72,14 @@ export default class WEditor extends Component {
         return (
             <div className="weditor-wrapper">
                 {
-                    !this.props.onlyRead&&(
+                    !this.props.onlyRead && (
                         <Header doc={this.props.doc}
                                 fileOptions={this.props.options.fileOptions}
                                 helpOptions={this.props.options.helpOptions}/>
                     )
                 }
                 {
-                    !this.props.onlyRead&&(
+                    !this.props.onlyRead && (
                         <div className="editor-toolbar" id="toolbar">
                             <Toolbar/>
                         </div>
@@ -85,12 +93,10 @@ export default class WEditor extends Component {
                         {
                             this.props.title
                         }
+                        <div className="backend-marker-layer" dangerouslySetInnerHTML={{__html:layer.renderBackend()}}>
+                        </div>
                         <Editor onlyRead={this.props.onlyRead}/>
-                        <div className="img-selection">
-                            <div className="docs-squarehandleselectionbox-handle docx-selection-topleft"></div>
-                            <div className="docs-squarehandleselectionbox-handle docx-selection-topright"></div>
-                            <div className="docs-squarehandleselectionbox-handle docx-selection-bottomleft"></div>
-                            <div className="docs-squarehandleselectionbox-handle docx-selection-bottomright"></div>
+                        <div className="frontend-marker-layer" dangerouslySetInnerHTML={{__html:layer.renderFrontend()}}>
                         </div>
                         {
                             this.props.insert.openLinkDialog &&
@@ -98,6 +104,11 @@ export default class WEditor extends Component {
                         }
                         <CommentBtn/>
                         <CommentList/>
+                        {
+                            this.props.createPanelPosition.display !== 'none' && (
+                                <CreateComment/>
+                            )
+                        }
                         <BubbleToolbar/>
                     </div>
                 </div>
@@ -107,7 +118,7 @@ export default class WEditor extends Component {
                 }
                 {
                     this.props.help.hotKeysDialog &&
-                    <HotKeysDialog />
+                    <HotKeysDialog/>
                 }
             </div>
         );

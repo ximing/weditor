@@ -25,8 +25,9 @@
                 cursor: pointer;
                 font-size: 20px;
                 &:hover {
-                    color: $primary-color;
+                    color: #999;
                 }
+                color:#4d4d4d;
             }
         }
         .comments-list{
@@ -35,6 +36,9 @@
             top: 0;
             right: -10px;
             height: 100%;
+            max-height: 360px;
+            overflow: hidden;
+            overflow-y: auto;
             .comment-item{
                 position: absolute;
                 z-index: 500;
@@ -46,6 +50,75 @@
                 cursor: pointer;
                 border: none;
                 border-radius: 2px;
+            }
+        }
+        .comment-create{
+            position: absolute;
+            top: 0;
+            height: 116px;
+            width: 260px;
+            background: #FFFFFF;
+            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.20);
+            border-radius: 2px;
+            padding: 10px;
+            z-index: 2001;
+            right: -220px;
+            .comment-create-header{
+                display: flex;
+                img{
+                    width: 26px;
+                    height: 26px;
+                    border-radius: 50%;
+                }
+                section{
+                    flex: 1;
+                    margin-left: 10px;
+                    height: 26px;
+                    p{
+                        margin: 0;
+                        padding: 0;
+                    }
+                    .user-name{
+                        font-size: 12px;
+                        color: #333333;
+                        line-height: 16px;
+                    }
+                    .create-time{
+                        font-size: 10px;
+                        color: #999999;
+                        transform:scale(0.875);
+                        position: relative;
+                        left: -12px;
+                        top: -5px;
+                    }
+                }
+            }
+            .comment-create-body{
+                padding: 10px 0;
+                input{
+                    border: none;
+                    outline: none;
+                    width: 100%;
+                }
+            }
+            .comment-create-footer{
+                text-align: right;
+                .cancel-create-comment{
+                    border: none !important;
+                    font-size: 12px;
+                    color: #333333;
+                    &:hover{
+                        background: #FFFFFF;
+                    }
+                }
+                .create-comment{
+
+                }
+                & input+input {
+                    margin-left: 8px;
+                    margin-bottom: 0;
+                    border-radius: 4px;
+                }
             }
         }
     }

@@ -87,7 +87,8 @@ module.exports = {
                 commonjs2: 'react-dom',
                 commonjs: 'react-dom',
                 amd: 'react-dom'
-            }
+            },
+            jquery: 'jQuery'
         }
     ],
     plugins: [

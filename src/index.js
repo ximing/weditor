@@ -5,6 +5,7 @@
 'use strict';
 import React, {Component} from 'react';
 import {observer,Provider} from 'mobx-react';
+import {autorun,observe} from 'mobx';
 window.RangeFix = require('rangefix');
 import './style/index.scss';
 import 'quill/dist/quill.snow.css';
@@ -15,9 +16,14 @@ import catalogue from './model/catalogue';
 import insert from './model/insert';
 import editor from './model/editor';
 import help from './model/help';
+import user from './model/user';
 import comments from './model/comments';
+import {forceUpdate} from './model/markerLayer'
 import hooks from './lib/hooks';
 import {loop} from './lib/util'
+import {defaultAvatar} from './lib/consts';
+
+
 class  Editor extends Component {
     static defaultProps = {
         options:{
@@ -31,13 +37,23 @@ class  Editor extends Component {
         },
         title:null,
         onlyRead:false,
-        hooks:{}
+        hooks:{},
+        user:{
+            name:'薛之谦',
+            avatar:defaultAvatar,
+            uid:0,
+            sid:0
+        }
     };
 
     constructor(props) {
         super(props);
         this.getEditor = getEditor;
         hooks.onSave = props.hooks.onSave || loop;
+        user.name = props.user.name;
+        user.avatar = props.user.avatar || defaultAvatar;
+        user.uid = props.user.uid;
+        user.sid = props.user.sid;
     };
 
     setContents(content) {
@@ -46,9 +62,30 @@ class  Editor extends Component {
         }
     };
 
-    setComments(){}
+    on(eventName, callback){
+        let disposer = null;
+        if(eventName === 'comments-change'){
+            disposer = observe(comments.list,callback);
+        }else if(eventName === 'editor-change'){
+            disposer = observe(editor,callback);
+        }
+        return disposer;
+    }
 
-    updateComments(){}
+    setComments(comments){
+        comments.list = comments;
+    }
+
+    updateComments(comment){
+
+    }
+
+    updateUser(_user){
+        user.name = _user.name || user.name;
+        user.avatar = _user.avatar || user.avatar;
+        user.uid = _user.uid || user.uid;
+        user.sid = _user.sid || user.sid;
+    }
 
     render() {
         return(
@@ -58,6 +95,7 @@ class  Editor extends Component {
                 editor={editor}
                 help={help}
                 comments={comments}
+                forceUpdate={forceUpdate}
             >
                 <WEditor onlyRead={this.props.onlyRead}
                          title = {this.props.title}
@@ -68,3 +106,7 @@ class  Editor extends Component {
     }
 }
 export default Editor;
+
+export {
+    catalogue,insert,editor,help,user,comments,WEditor,getEditor
+};

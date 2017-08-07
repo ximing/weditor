@@ -30,3 +30,10 @@ export function getCtrl() {
 
 export function loop() {
 }
+
+export function stopPropagation(e) {
+    e.stopPropagation();
+    e
+        .nativeEvent
+        .stopImmediatePropagation();
+}

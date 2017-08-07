@@ -9,6 +9,7 @@
  */
 import interact from 'interactjs';
 import Parchment from 'parchment'
+import layer from '../../lib/layer';
 const $ = window.$;
 export class ImageResize {
 
@@ -44,7 +45,19 @@ export class ImageResize {
             });
         this.handleClick = this.handleClick.bind(this);
         this.quill.root.addEventListener('click', this.handleClick, false);
-        $(window).on('resize',this.onWindowResize)
+        $(window).on('resize',this.onWindowResize);
+        layer.addFrontendMarker({
+            update:function (html) {
+                html.push(
+                    `<div class="img-selection">
+                                <div class="docs-squarehandleselectionbox-handle docx-selection-topleft"></div>
+                                <div class="docs-squarehandleselectionbox-handle docx-selection-topright"></div>
+                                <div class="docs-squarehandleselectionbox-handle docx-selection-bottomleft"></div>
+                                <div class="docs-squarehandleselectionbox-handle docx-selection-bottomright"></div>
+                            </div>`
+                )
+            }
+        })
     }
 
     onWindowResize = ()=>{

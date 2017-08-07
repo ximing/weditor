@@ -177,6 +177,7 @@ export const initQuillEditor = function (dom, options) {
                     }
                 } else {
                     console.log('blur');
+                    editor.focus = false;
                 }
             }catch (err){
                 console.error(err);

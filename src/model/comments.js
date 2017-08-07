@@ -27,6 +27,10 @@ class Comments {
     @observable list = list;
     @observable activeCommentId = '';
     @observable activeCommentIndex = -1;
+    @observable createPanelPosition = {
+        top:0,
+        display:'none'
+    }
 }
 
 let comments = new Comments();

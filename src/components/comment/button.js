@@ -6,8 +6,8 @@ import React,{Component} from 'react';
 import {inject, observer} from 'mobx-react';
 
 import {getEditor} from '../../lib/quillEditor';
-
 import Icon from '../icon';
+import comments from '../../model/comments';
 
 @inject(state => ({
     editor: state.editor
@@ -53,10 +53,23 @@ export default class CommentBtn extends Component{
         }
     };
 
+    showCreatePanel(top){
+        return ()=>{
+            comments.createPanelPosition = {
+                top,
+                display:'block'
+            };
+            this.setState({
+                display:'none'
+            })
+        }
+
+    }
+
     render(){
         const {top,display} = this.state;
         return(
-            <button className="ql-comment-btn" style={{
+            <button className="ql-comment-btn" onClick={this.showCreatePanel(top)} style={{
                 top:top,
                 display:display
             }}>
