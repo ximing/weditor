@@ -1,9 +1,16 @@
 .weditor-selection{
-    background: rgba(130, 182, 255,.4);
-    border: none;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
+    //border: none;
+    //margin: 0;
+    //padding: 0;
+    //position: absolute;
+    //top: 0;
+    //left: 0;
+    //width: 100%;
+    //height: 100%;
+    pointer-events:none;
+    & span{
+        background: rgba(130, 182, 255,.4);
+        pointer-events:none;
+        position: absolute;
+    }
 }

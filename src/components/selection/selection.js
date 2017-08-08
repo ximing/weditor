@@ -19,12 +19,35 @@ export default class Selection extends Component {
     }
 
     interval = null;
+    createSelectionBlock(rect,containerRect,key) {
+        return <span key={key} className="ql-cursor-selection-block" style={{
+            top:rect.top - containerRect.top,
+            left:rect.left - containerRect.left,
+            width:rect.width,height:rect.height
+        }}/>;
+    }
 
+    _updateSelection(rects,containerRect){
+        let index = [];
+        let rectIndex,selectionArray = [];
+
+        rects.forEach((rect,i) => {
+            rectIndex = ('' + rect.top + rect.left + rect.width + rect.height);
+
+            // Note: Safari throws a rect with length 1 when caret with no selection.
+            // A check was addedfor to avoid drawing those carets - they show up on blinking.
+            if (!~index.indexOf(rectIndex) && rect.width > 1) {
+                index.push(rectIndex);
+                selectionArray.push(this.createSelectionBlock(rect,containerRect,i))
+            }
+        });
+        return selectionArray;
+    }
     render() {
         const editor = getEditor();
         clearInterval(this.interval);
         const {index, length} = this.props.editor.range;
-        let sLeft = 0, sHeight = 0, sWidth = 0, sTop = 0;
+        let sLeft = 0, sHeight = 0, sWidth = 0, sTop = 0,selectionArray;
         if (editor) {
             if (index) {
                 const {left, height, top, width} = editor.getBounds(index, length || 0);
@@ -44,18 +67,46 @@ export default class Selection extends Component {
                         }
                     },1200);
                 }
+
+
+                let containerRect = editor.container.getBoundingClientRect();
+                let startLeaf = editor.getLeaf(index);
+                let endLeaf = editor.getLeaf(index + length);
+                let range = document.createRange();
+                let rects;
+
+                // Sanity check
+                if (!startLeaf || !endLeaf ||
+                    !startLeaf[0] || !endLeaf[0] ||
+                    startLeaf[1] < 0 || endLeaf[1] < 0 ||
+                    !startLeaf[0].domNode || !endLeaf[0].domNode) {
+                    console.log('default Troubles!', cursor);
+
+                    return (<span></span>);
+                }
+
+                if (startLeaf[0].domNode.nodeName.toLowerCase() === 'img' ||
+                    endLeaf[0].domNode.nodeName.toLowerCase() === 'img') {
+                    return (<span></span>);
+                }
+                range.setStart(startLeaf[0].domNode, startLeaf[1]);
+                range.setEnd(endLeaf[0].domNode, endLeaf[1]);
+                rects = window.RangeFix.getClientRects(range);
+
+                selectionArray = this._updateSelection(rects, containerRect);
             }
         }
         return (
             <div className="weditor-selection" ref="selection"
                  style={{
                      diplay:'block',
-                     height: sHeight,
-                     width: sWidth,
-                     left: sLeft,
-                     top: sTop,
-                     borderLeft:sWidth === 0 ? '0.5px solid black' : 'none'
+                     // height: sHeight,
+                     // width: sWidth,
+                     // left: sLeft,
+                     // top: sTop,
+                     // borderLeft:sWidth === 0 ? '0.5px solid black' : 'none'
                  }}>
+                {selectionArray}
             </div>
         );
     }

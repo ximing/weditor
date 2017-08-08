@@ -9,9 +9,6 @@ import {inject, observer} from 'mobx-react';
 import LinkBubble from './components/linkBubble';
 import InsertImage from './components/insertImage';
 import HotKeysDialog from './components/hotKeysDialog';
-import CommentBtn from './components/comment/button';
-import CommentList from './components/comment/list';
-import CreateComment from './components/comment/create';
 import BubbleToolbar from './components/bubble-toolbar';
 import Selection from './components/selection';
 import Editor from './components/editor';
@@ -29,7 +26,6 @@ import layer from './lib/layer';
     insert: state.insert,
     open: state.catalogue.open,
     focus: state.editor.focus,
-    createPanelPosition: state.comments.createPanelPosition,
     help: state.help,
     forceUpdate:state.forceUpdate
 })) @observer
@@ -90,24 +86,12 @@ export default class WEditor extends Component {
                         {
                             !this.props.focus && <Selection scrollTop={this.state.scrollTop}/>
                         }
-                        {
-                            this.props.title
-                        }
-                        <div className="backend-marker-layer" dangerouslySetInnerHTML={{__html:layer.renderBackend()}}>
-                        </div>
+                        {layer.renderBackend()}
                         <Editor onlyRead={this.props.onlyRead}/>
-                        <div className="frontend-marker-layer" dangerouslySetInnerHTML={{__html:layer.renderFrontend()}}>
-                        </div>
+                        {layer.renderFrontend()}
                         {
                             this.props.insert.openLinkDialog &&
                             <LinkBubble insert={this.props.insert}/>
-                        }
-                        <CommentBtn/>
-                        <CommentList/>
-                        {
-                            this.props.createPanelPosition.display !== 'none' && (
-                                <CreateComment/>
-                            )
                         }
                         <BubbleToolbar/>
                     </div>
@@ -124,12 +108,3 @@ export default class WEditor extends Component {
         );
     }
 }
-
-// export const call = function () {
-//style={{left: this.state.left}}
-// }
-// {
-//     this.props.coCursors.map(item=>{
-//         return <OtherSelection key={item.id} name={item.name} range={item.range} />;
-//     })
-// }

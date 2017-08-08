@@ -2,53 +2,52 @@
  * Created by yeanzhi on 17/8/7.
  */
 'use strict';
-import {backendMarkerLayer,frontendMarkerLayer,incrementId,forceUpdate} from '../model/markerLayer'
+import React, {createElement} from 'react';
+import {backendMarkerLayer, frontendMarkerLayer, incrementId, forceUpdate} from '../model/markerLayer'
 
 class Layer {
 
-    update(){
-        forceUpdate.set(forceUpdate.get()+1);
+    update() {
+        forceUpdate.set(forceUpdate.get() + 1);
     }
 
-    addBackendMarker(marker){
-        if(!marker['update']){
-            throw new Error('marker must has update function')
+    addBackendMarker(marker) {
+        if(!marker){
+            throw new Error('marker param require')
         }
-        backendMarkerLayer[incrementId.set(incrementId.get()+1)] = marker;
+        incrementId.set(incrementId.get() + 1)
+        backendMarkerLayer[incrementId.get()] = marker;
         this.update();
         return incrementId.get();
     }
 
-    addFrontendMarker(marker){
-        console.log('fffff'.repeat(10))
-        if(!marker['update']){
-            throw new Error('marker must has update function')
+    addFrontendMarker(marker) {
+        if(!marker){
+            throw new Error('marker param require')
         }
-        frontendMarkerLayer[incrementId.set(incrementId.get()+1)] = marker;
+        incrementId.set(incrementId.get() + 1)
+        frontendMarkerLayer[incrementId.get()] = marker;
+        console.log('addFrontendMarker',frontendMarkerLayer)
         this.update();
         return incrementId.get();
     }
 
-    removeBackendMarker(id){
+    removeBackendMarker(id) {
         delete backendMarkerLayer[id];
         this.update();
     }
 
-    removeFrontendMarker(id){
+    removeFrontendMarker(id) {
         delete frontendMarkerLayer[id];
         this.update();
     }
 
-    renderBackend(){
-        let backendHtml = [];
-        Object.values(backendMarkerLayer).forEach(item=>item.update(backendHtml));
-        return backendHtml;
+    renderBackend(props) {
+        return Object.values(backendMarkerLayer).map((item, index) => createElement(item, {key: index, ...props}));
     }
 
-    renderFrontend(){
-        let frontendHtml = [];
-        Object.values(frontendMarkerLayer).forEach(item=>item.update(frontendHtml));
-        return frontendHtml;
+    renderFrontend(props) {
+        return Object.values(frontendMarkerLayer).map((item, index) => createElement(item, {key: index, ...props}));
     }
 }
 

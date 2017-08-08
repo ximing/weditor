@@ -7,6 +7,7 @@
  * (Works on Chrome, Edge, Safari and replaces Firefox's native resize behavior)
  * @see https://quilljs.com/blog/building-a-custom-module/
  */
+import React from 'react';
 import interact from 'interactjs';
 import Parchment from 'parchment'
 import layer from '../../lib/layer';
@@ -46,17 +47,15 @@ export class ImageResize {
         this.handleClick = this.handleClick.bind(this);
         this.quill.root.addEventListener('click', this.handleClick, false);
         $(window).on('resize',this.onWindowResize);
-        layer.addFrontendMarker({
-            update:function (html) {
-                html.push(
-                    `<div class="img-selection">
-                                <div class="docs-squarehandleselectionbox-handle docx-selection-topleft"></div>
-                                <div class="docs-squarehandleselectionbox-handle docx-selection-topright"></div>
-                                <div class="docs-squarehandleselectionbox-handle docx-selection-bottomleft"></div>
-                                <div class="docs-squarehandleselectionbox-handle docx-selection-bottomright"></div>
-                            </div>`
-                )
-            }
+        layer.addFrontendMarker(function (props) {
+            return (
+                <div className="img-selection">
+                    <div className="docs-squarehandleselectionbox-handle docx-selection-topleft"></div>
+                    <div className="docs-squarehandleselectionbox-handle docx-selection-topright"></div>
+                    <div className="docs-squarehandleselectionbox-handle docx-selection-bottomleft"></div>
+                    <div className="docs-squarehandleselectionbox-handle docx-selection-bottomright"></div>
+                </div>
+            )
         })
     }
 
