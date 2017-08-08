@@ -15,7 +15,6 @@ import catalogue from './model/catalogue';
 import insert from './model/insert';
 import editor from './model/editor';
 import help from './model/help';
-import user from '../../co-word/editor/model/user';
 import {forceUpdate} from './model/markerLayer'
 import hooks from './lib/hooks';
 import layerManager from './lib/layer';
@@ -78,5 +77,5 @@ class  Editor extends Component {
 export default Editor;
 
 export {
-    catalogue,insert,editor,help,user,WEditor,getEditor,layerManager
+    catalogue,insert,editor,help,WEditor,getEditor,layerManager
 };
