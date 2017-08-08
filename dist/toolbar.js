@@ -444,7 +444,7 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                             '\u63D2\u5165TODO'
                         )
                     },
-                    _this.renderBlockButton('list', 'todo', 'checked')
+                    _this.renderBlockButton('list', 'todo', 'unchecked')
                 ),
                 _react2.default.createElement(_lineHeightDropDown2.default, { lineheight: lineheight }),
                 _react2.default.createElement(_icon2.default, { type: 'vertical' }),
