@@ -87,7 +87,7 @@ export default class WEditor extends Component {
                             !this.props.focus && <Selection scrollTop={this.state.scrollTop}/>
                         }
                         {layer.renderBackend()}
-                        <Editor onlyRead={this.props.onlyRead}/>
+                        <Editor modules={this.props.modules} onlyRead={this.props.onlyRead}/>
                         {layer.renderFrontend()}
                         {
                             this.props.insert.openLinkDialog &&

@@ -68,3 +68,4 @@ class PlainClipboard extends Clipboard {
   }
 };
 Quill.register('modules/clipboard', PlainClipboard, true);
+

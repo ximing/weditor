@@ -20,7 +20,6 @@ import hooks from './lib/hooks';
 import layerManager from './lib/layer';
 import {loop} from './lib/util'
 
-
 class  Editor extends Component {
     static defaultProps = {
         options:{
@@ -34,7 +33,8 @@ class  Editor extends Component {
         },
         models:{},
         onlyRead:false,
-        hooks:{}
+        hooks:{},
+        modules:{}
     };
 
     constructor(props) {
@@ -68,6 +68,7 @@ class  Editor extends Component {
                 forceUpdate={forceUpdate}
             >
                 <WEditor onlyRead={this.props.onlyRead}
+                         modules={this.props.modules}
                          options={this.props.options}
                          doc={this.props.doc}/>
             </Provider>

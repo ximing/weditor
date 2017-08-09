@@ -123,7 +123,8 @@ export const initQuillEditor = function (dom, options) {
             },
             clipboard: {
                 matchers: []
-            }
+            },
+            ...options.modules
         },
         placeholder: '输入文档...',
         //theme: 'snow',
