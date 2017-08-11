@@ -80,7 +80,7 @@ export default class Selection extends Component {
                     !startLeaf[0] || !endLeaf[0] ||
                     startLeaf[1] < 0 || endLeaf[1] < 0 ||
                     !startLeaf[0].domNode || !endLeaf[0].domNode) {
-                    console.log('default Troubles!', cursor);
+                    console.log('default Troubles!');
 
                     return (<span></span>);
                 }

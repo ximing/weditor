@@ -16,6 +16,11 @@ import LineHeightDropDown from './components/lineHeightDropDown';
 import classnames from 'classnames';
 import Trigger from 'rc-trigger';
 import 'rc-trigger/assets/index.css';
+import Quill from 'quill';
+import Delta from 'quill-delta';
+import DeltaOp from 'quill-delta/lib/op';
+const CodeBlock = Quill.import('formats/code');
+const Block = Quill.import('blots/block');
 
 import {getEditor} from './lib/quillEditor';
 import format from './model/format';
@@ -24,6 +29,25 @@ function preventDefault(e) {
 }
 const $ = window.jQuery;
 
+function shiftRange(range, index, length, source) {
+    if (range == null) return null;
+    let start, end;
+    if (index instanceof Delta) {
+        [start, end] = [range.index, range.index + range.length].map(function(pos) {
+            return index.transformPosition(pos, source !== 'user');
+        });
+    } else {
+        [start, end] = [range.index, range.index + range.length].map(function(pos) {
+            if (pos < index || (pos === index && source === 'user')) return pos;
+            if (length >= 0) {
+                return pos + length;
+            } else {
+                return Math.max(index, pos + length);
+            }
+        });
+    }
+    return new Range(start, end - start);
+}
 
 @inject(state => ({
     rangeFormat: state.editor.format,
@@ -212,9 +236,52 @@ export default class EditorToolbar extends Component {
 
     clearFormat = () => {
         if (getEditor()) {
-            const {index, length} = getEditor().getSelection();
+            let {index, length} = getEditor().getSelection();
+            //重写 removeformat ，标注格式不能被清除
             if (index === 0 || !!index) {
-                getEditor().removeFormat(index, length, 'user');
+                // getEditor().removeFormat(index, length, 'user');
+
+                let range =  getEditor().getSelection();
+                let oldDelta = getEditor().editor.delta;
+
+                let text = getEditor().getText(index, length);
+                let [line, offset] = getEditor().scroll.line(index + length);
+                let suffixLength = 0, suffix = new Delta();
+                if (line != null) {
+                    if (!(line instanceof CodeBlock)) {
+                        suffixLength = line.length() - offset;
+                    } else {
+                        suffixLength = line.newlineIndex(offset) - offset + 1;
+                    }
+                    suffix = line.delta().slice(offset, offset + suffixLength - 1).insert('\n');
+                }
+                let contents = getEditor().getContents(index, length + suffixLength);
+                let diff = contents.diff(new Delta().insert(text).concat(suffix));
+                let delta = new Delta().retain(index).concat(diff);
+
+                delta.ops = delta.ops.map(item=>{
+                    if(item.attributes && item.attributes['comments']==null){
+                        delete item.attributes['comments'];
+                    }
+                    console.log('delta.ops.map',item);
+                    return item;
+                });
+
+                console.log(delta);
+
+                let change = getEditor().editor.applyDelta(delta)
+
+                if (range != null) {
+                    if (index === true) index = range.index;
+                    range = shiftRange(range, change, 'user');
+                    getEditor().setSelection(range, 'silent');
+                }
+                if (change.length() > 0) {
+                    let args = ['text-change', change, oldDelta, 'user'];
+                    getEditor().emitter.emit('editor-change', ...args);
+                    getEditor().emitter.emit(...args);
+                }
+                return change;
             }
         }
     };
