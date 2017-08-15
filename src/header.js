@@ -135,9 +135,9 @@ export default class EditorHeader extends Component {
         };
     }
 
-    dropdownChange(type){
+    dropdownChange(type) {
         return (visible) =>{
-            if(visible){
+            if(visible) {
                 this.setState({
                     panelType:type
                 });
@@ -146,7 +146,7 @@ export default class EditorHeader extends Component {
                     panelType:''
                 });
             }
-        }
+        };
     }
 
     renderMenubar() {

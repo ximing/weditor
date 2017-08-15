@@ -48,13 +48,13 @@ export default class extends Component {
 
     }
     render() {
-        var {prefixCls,color,type,className,children,...otherProps} = this.props;
+        var {prefixCls,color,type,className,children,disabled,...otherProps} = this.props;
         let classes = classNames({
             [className]:true,
             [prefixCls]: true,
             [`${prefixCls}-${color}`]: color,
-            [`${prefixCls}-${type}`]: type
-            //[`${prefixCls}-disabled`]: disabled,
+            [`${prefixCls}-${type}`]: type,
+            [`${prefixCls}-disabled`]: disabled
             //[`${prefixCls}-${sizeCls}`]: sizeCls,
             //[`${prefixCls}-mix-icon`]: kids && (!loading && icon),
             //[`${prefixCls}-icon-only`]: !kids && icon,

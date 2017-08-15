@@ -14,7 +14,7 @@ import {contains} from '../../lib/util';
 import {Uploader} from '../uploader/index';
 import Button from '../button';
 import insert from '../../model/insert';
-import {getEditor} from '../../lib/quillEditor'
+import {getEditor} from '../../lib/quillEditor';
 import {Line} from 'rc-progress';
 import {error} from '../toast';
 import Input from '../input';
@@ -42,8 +42,8 @@ export default class InsertImage extends Component {
 
     onLoad = async (url) => {
         return new Promise((res, rej) => {
-            let elem = document.createElement("img");
-            elem.setAttribute("src", url);
+            let elem = document.createElement('img');
+            elem.setAttribute('src', url);
             elem.onload = function () {
                 res({
                     width: this.width,
@@ -53,9 +53,9 @@ export default class InsertImage extends Component {
             elem.onerror = function () {
                 res({
                     code: 500
-                })
-            }
-        })
+                });
+            };
+        });
     };
 
     insertImage = async (url) => {
@@ -68,7 +68,7 @@ export default class InsertImage extends Component {
         if (!res.code) {
             getEditor().insertEmbed(index, 'image', url, Quill.sources.USER);
             let [leaf, offset] = getEditor().getLeaf(index + 1);
-            console.log(leaf)
+            console.log(leaf);
             if (leaf && leaf.domNode.nodeName.toLowerCase() === 'img') {
                 leaf.format('width', Math.min($('.ql-editor').width(), res.width));
             }
@@ -122,11 +122,11 @@ export default class InsertImage extends Component {
         });
 
         uploader.on('uploadProgress', (file, currentProgress, loaded, total) => {
-            console.log('uploadProgress'.repeat(10))
-            console.log(currentProgress, loaded, total)
+            console.log('uploadProgress'.repeat(10));
+            console.log(currentProgress, loaded, total);
             this.setState({
                 progress: (currentProgress / total) * 100
-            })
+            });
         });
 
         uploader.on('uploadAccept', (obj, res) => {
@@ -134,7 +134,7 @@ export default class InsertImage extends Component {
             if (typeof res === 'string') {
                 res = JSON.parse(res);
             }
-            console.log('uploadAccept', res, res.errno === 0, insert)
+            console.log('uploadAccept', res, res.errno === 0, insert);
             if (res.errno === 0) {
                 if (res.data.url) {
                     this.insertImage(res.data.url);

@@ -27,9 +27,9 @@ let fontSizeMap = {
     '5pt': '八号'
 };
 
-function hummenSize(size){
-    if(!!size){
-        if(fontSizeMap[size]){
+function hummenSize(size) {
+    if(!!size) {
+        if(fontSizeMap[size]) {
             return fontSizeMap[size];
         }else {
             return size;
@@ -94,12 +94,12 @@ export default class SizeDropDown extends Component {
         // e
         //     .nativeEvent
         //     .stopImmediatePropagation();
-        console.log('size this.state.open',this.state.open)
+        console.log('size this.state.open',this.state.open);
         this.setState({open: !this.state.open});
-        if(!this.state.open){
-           setTimeout(()=>{
-               $(document).on('click', this.closePanel);
-           },10)
+        if(!this.state.open) {
+            setTimeout(()=>{
+                $(document).on('click', this.closePanel);
+            },10);
         }
     }
     handleKeyPress = (e) => {
@@ -109,7 +109,7 @@ export default class SizeDropDown extends Component {
         //         getEditor().format('size', this.formatSize(this.input.value), 'user');
         //     }
         // }
-        this.changeSize(e.target.getAttribute("data-size") || `12pt`)
+        this.changeSize(e.target.getAttribute('data-size') || '12pt');
         this.closePanel();
         $(document).off('click', this.closePanel);
 

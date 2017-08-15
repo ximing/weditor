@@ -7,7 +7,7 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import debounce from 'lodash.debounce';
-import {getEditor} from '../../lib/quillEditor'
+import {getEditor} from '../../lib/quillEditor';
 import editor from '../../model/editor';
 import Icon from '../icon';
 const $ = window.$;
@@ -16,7 +16,7 @@ export default class BubbleToolbar extends Component {
 
     constructor() {
         super();
-        this.onSelectionChangeDebounce = debounce(this.onSelectionChange, 150)
+        this.onSelectionChangeDebounce = debounce(this.onSelectionChange, 150);
     }
 
     state = {
@@ -64,7 +64,7 @@ export default class BubbleToolbar extends Component {
             if (!!getEditor() && !!range && !!range.length &&
                 !!getEditor().getText(range.index, range.length).trim()) {
                 let {left, top, height, width, right} = getEditor().getBounds(range.index + Math.floor(range.length / 2));
-                let bubbleLeft = Math.max(0, left - bubbleToolbarWidth/ 2),
+                let bubbleLeft = Math.max(0, left - bubbleToolbarWidth / 2),
                     marginLeft = 0;
                 if (bubbleLeft === 0) {
                     marginLeft = -(bubbleToolbarWidth / 2 - left + width);
@@ -81,7 +81,7 @@ export default class BubbleToolbar extends Component {
                         left: bubbleLeft,
                         top,
                         marginTop: -(height + 20),
-                        display: 'block',
+                        display: 'block'
                     },
                     arrowStyle: {
                         marginLeft
@@ -124,14 +124,14 @@ export default class BubbleToolbar extends Component {
     };
 
     hasMark = (type) => {
-        return editor.format[type]
+        return editor.format[type];
     };
 
     hasBlock = (type, val) => {
         if (val) {
             return editor.format[type] === val;
         } else {
-            return editor.format[type]
+            return editor.format[type];
         }
     };
 
@@ -141,26 +141,26 @@ export default class BubbleToolbar extends Component {
         const classname = classnames({
             button: true,
             active: isActive
-        })
+        });
         return (
             <button className={classname} onMouseDown={onMouseDown}>
                 <Icon type={icon}/>
             </button>
-        )
+        );
     };
 
     renderBlockButton = (type, icon, val) => {
-        const isActive = this.hasBlock(type, val)
+        const isActive = this.hasBlock(type, val);
         const onMouseDown = e => this.onClickBlock(e, type, val);
         const classname = classnames({
             button: true,
             active: isActive
-        })
+        });
         return (
             <button className={classname} onMouseDown={onMouseDown}>
                 <Icon type={icon}/>
             </button>
-        )
+        );
     };
 
     onClickMark = (e, type) => {
@@ -212,14 +212,14 @@ export default class BubbleToolbar extends Component {
             <button className={classname} onMouseDown={onMouseDown}>
                 <Icon type="link"/>
             </button>
-        )
+        );
     };
 
     render() {
         let classname = classnames({
             'weditor-bubble-toolbar': true,
             'bubble-opacity': this.state.bubbleOpacity
-        })
+        });
         return (
             <div className={classname} style={this.state.bubbleStyle}>
                 <span className="weditor-tooltip-arrow" style={this.state.arrowStyle}/>
@@ -233,6 +233,6 @@ export default class BubbleToolbar extends Component {
                     {this.renderBlockButton('header', 'h3', 3)}
                 </div>
             </div>
-        )
+        );
     }
 }

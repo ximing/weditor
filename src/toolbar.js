@@ -19,25 +19,29 @@ import 'rc-trigger/assets/index.css';
 import Quill from 'quill';
 import Delta from 'quill-delta';
 import DeltaOp from 'quill-delta/lib/op';
+import Measure from 'react-measure';
+
 const CodeBlock = Quill.import('formats/code');
 const Block = Quill.import('blots/block');
 
 import {getEditor} from './lib/quillEditor';
 import format from './model/format';
+
 function preventDefault(e) {
     e.preventDefault();
 }
+
 const $ = window.jQuery;
 
 function shiftRange(range, index, length, source) {
     if (range == null) return null;
     let start, end;
     if (index instanceof Delta) {
-        [start, end] = [range.index, range.index + range.length].map(function(pos) {
+        [start, end] = [range.index, range.index + range.length].map(function (pos) {
             return index.transformPosition(pos, source !== 'user');
         });
     } else {
-        [start, end] = [range.index, range.index + range.length].map(function(pos) {
+        [start, end] = [range.index, range.index + range.length].map(function (pos) {
             if (pos < index || (pos === index && source === 'user')) return pos;
             if (length >= 0) {
                 return pos + length;
@@ -63,11 +67,11 @@ export default class EditorToolbar extends Component {
     };
 
     componentDidMount() {
-        $(window).on('resize', this.onWindowResize)
+        $(window).on('resize', this.onWindowResize);
     }
 
     componentWillUnmount() {
-        $(window).off('resize', this.onWindowResize)
+        $(window).off('resize', this.onWindowResize);
     }
 
     state = {moreBtnActive: false}
@@ -107,7 +111,7 @@ export default class EditorToolbar extends Component {
             <button className={classname} onMouseDown={onMouseDown}>
                 <Icon type={icon}/>
             </button>
-        )
+        );
     }
 
     /**
@@ -118,7 +122,7 @@ export default class EditorToolbar extends Component {
      */
 
     hasMark = (type) => {
-        return this.props.editor.format[type]
+        return this.props.editor.format[type];
     }
 
     /**
@@ -133,7 +137,7 @@ export default class EditorToolbar extends Component {
         if (val) {
             return this.props.editor.format[type] === val;
         } else {
-            return this.props.editor.format[type]
+            return this.props.editor.format[type];
         }
     }
 
@@ -152,12 +156,12 @@ export default class EditorToolbar extends Component {
         const classname = classnames({
             button: true,
             active: isActive
-        })
+        });
         return (
             <button className={classname} onMouseDown={onMouseDown}>
                 <Icon type={icon}/>
             </button>
-        )
+        );
     }
 
     /**
@@ -170,17 +174,17 @@ export default class EditorToolbar extends Component {
      */
 
     renderBlockButton = (type, icon, val) => {
-        const isActive = this.hasBlock(type, val)
+        const isActive = this.hasBlock(type, val);
         const onMouseDown = e => this.onClickBlock(e, type, val);
         const classname = classnames({
             button: true,
             active: isActive
-        })
+        });
         return (
             <button className={classname} onMouseDown={onMouseDown}>
                 <Icon type={icon}/>
             </button>
-        )
+        );
     }
 
     /**
@@ -215,7 +219,7 @@ export default class EditorToolbar extends Component {
         e.preventDefault();
         const quillEditor = getEditor();
         if (quillEditor) {
-            console.log(this.hasBlock(type), this.props.editor.format[type], type)
+            console.log(this.hasBlock(type), this.props.editor.format[type], type);
             if (this.hasBlock(type)) {
                 if (this.props.editor.format[type] === val) {
                     quillEditor.format(type, false, 'user');
@@ -241,7 +245,7 @@ export default class EditorToolbar extends Component {
             if (index === 0 || !!index) {
                 // getEditor().removeFormat(index, length, 'user');
 
-                let range =  getEditor().getSelection();
+                let range = getEditor().getSelection();
                 let oldDelta = getEditor().editor.delta;
 
                 let text = getEditor().getText(index, length);
@@ -259,17 +263,17 @@ export default class EditorToolbar extends Component {
                 let diff = contents.diff(new Delta().insert(text).concat(suffix));
                 let delta = new Delta().retain(index).concat(diff);
 
-                delta.ops = delta.ops.map(item=>{
-                    if(item.attributes && item.attributes['comments']==null){
+                delta.ops = delta.ops.map(item => {
+                    if (item.attributes && item.attributes['comments'] == null) {
                         delete item.attributes['comments'];
                     }
-                    console.log('delta.ops.map',item);
+                    console.log('delta.ops.map', item);
                     return item;
                 });
 
                 console.log(delta);
 
-                let change = getEditor().editor.applyDelta(delta)
+                let change = getEditor().editor.applyDelta(delta);
 
                 if (range != null) {
                     if (index === true) index = range.index;
@@ -308,7 +312,7 @@ export default class EditorToolbar extends Component {
     onPopupVisibleChange = (visible) => {
         this.setState({
             moreBtnActive: visible
-        })
+        });
     };
 
     // renderTodoBtn = () => {
@@ -351,7 +355,7 @@ export default class EditorToolbar extends Component {
             <button className={classname} onMouseDown={onMouseDown}>
                 <Icon type="link"/>
             </button>
-        )
+        );
     };
 
     renderImageBtn = () => {
@@ -360,31 +364,32 @@ export default class EditorToolbar extends Component {
                 let toolbar = getEditor().getModule('toolbar');
                 toolbar.handlers['image'].call(toolbar, !this.props.editor.format['image']);
             }
-            $(document).trigger('click')
+            $(document).trigger('click');
         };
         const classname = classnames({
             button: true
-        })
+        });
         return (
             <button className={classname} onMouseDown={onMouseDown}>
                 <Icon type="image"/>
             </button>
-        )
+        );
     };
 
     renderMore = () => {
         let {lineheight} = this.props.rangeFormat;
         return (
-            <span className="more-toolbar-container" onClick={preventDefault}>
+            <span className="more-toolbar-container"
+                  onClick={preventDefault}>
                 <div className="popup-triangle-wrapper">
                     <div className="popup-triangle-inner"></div>
                 </div>
-                    <ToolTip
-                        placement="bottom"
-                        mouseEnterDelay={0}
-                        mouseLeaveDelay={0}
-                        overlay={<div>有序列表 {getCtrl()}+Option+L</div>}
-                    >
+                <ToolTip
+                    placement="bottom"
+                    mouseEnterDelay={0}
+                    mouseLeaveDelay={0}
+                    overlay={<div>有序列表 {getCtrl()}+Option+L</div>}
+                >
                     {this.renderBlockButton('list', 'ol', 'ordered')}
                 </ToolTip>
                 <ToolTip
@@ -471,15 +476,16 @@ export default class EditorToolbar extends Component {
                 >
                     {this.renderImageBtn()}
                 </ToolTip>
-                </span>
-        )
+                {this.props.toolbar}
+            </span>
+        );
     };
 
     renderMoreBtn() {
         let btnClassName = classnames({
             'more-btn': true,
             'active': this.state.moreBtnActive
-        })
+        });
         return (
             <Trigger
                 style={{zIndex: 400000}}
@@ -488,14 +494,14 @@ export default class EditorToolbar extends Component {
                 popupPlacement="bottomRight"
                 builtinPlacements={{
                     bottomLeft: {
-                        points: ['tl', 'bl'],
+                        points: ['tl', 'bl']
                     },
                     bottomRight: {
-                        points: ['tr', 'br'],
+                        points: ['tr', 'br']
                     },
                     bottom: {
-                        points: ['tc', 'bc'],
-                    },
+                        points: ['tc', 'bc']
+                    }
                 }}
                 popupAlign={{
                     offset: [16, 12],
@@ -516,7 +522,7 @@ export default class EditorToolbar extends Component {
                 <button className={btnClassName} onClick={preventDefault}>更多 <Icon type="triangle"/></button>
             </Trigger>
 //rc-trigger-popup-zoom
-        )
+        );
     }
 
     render() {
@@ -604,7 +610,7 @@ export default class EditorToolbar extends Component {
                 >
                     {this.renderMarkButton('underline', 'underline')}
                 </ToolTip>
-                <HightLight />
+                <HightLight/>
                 <ToolTip
                     placement="bottom"
                     mouseEnterDelay={0}

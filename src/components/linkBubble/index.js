@@ -9,7 +9,7 @@ import ReactDOM from 'react-dom';
 import Input from '../input/index';
 import Button from '../button/index';
 import {contains} from '../../lib/util';
-import {getEditor} from '../../lib/quillEditor'
+import {getEditor} from '../../lib/quillEditor';
 import insert from '../../model/insert';
 import editor from '../../model/editor';
 const $ = window.jQuery;
@@ -31,7 +31,7 @@ export default class LinkBubble extends Component {
             $(document).on('mousedown',this.otherDOMClick);
         }, 10);
         this.target = ReactDOM.findDOMNode(this);
-        $(window).on('resize',this.onWindowResize)
+        $(window).on('resize',this.onWindowResize);
     }
 
     componentWillUnmount() {
@@ -79,7 +79,7 @@ export default class LinkBubble extends Component {
                 } else {
                     const {index, length} = selection;
                     let linkTitle = insert.linkTitle || insert.linkUrl;
-                    if(editor.getText(index,linkTitle.length) !== linkTitle){
+                    if(editor.getText(index,linkTitle.length) !== linkTitle) {
                         editor.deleteText(index, length, 'user');
                         editor.insertText(index, linkTitle, 'user');
                     }
@@ -120,8 +120,8 @@ export default class LinkBubble extends Component {
 
     renderReadOnly() {
         let linkUrl = '';
-        if(insert.linkUrl.indexOf('http')!==0){
-            linkUrl = `http://${insert.linkUrl}`
+        if(insert.linkUrl.indexOf('http') !== 0) {
+            linkUrl = `http://${insert.linkUrl}`;
         }
         return (
             <div className="weditor-bubble-only-read">
@@ -131,7 +131,7 @@ export default class LinkBubble extends Component {
                 <span>|</span>
                 <a href="javascript:void(0)" onClick={this.removeLink}>移除</a>
             </div>
-        )
+        );
     }
 
     renderEdit() {
@@ -149,7 +149,7 @@ export default class LinkBubble extends Component {
                     <Button onClick={this.apply}>应用</Button>
                 </div>
             </div>
-        )
+        );
     }
 
     calcTop() {

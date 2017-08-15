@@ -42,7 +42,7 @@ export default class HeaderDropDown extends Component {
 
     changeSize = (e) => {
         this.closePanel();
-        if(getEditor()){
+        if(getEditor()) {
             getEditor().formatLine(editor.range, 'header', e.target.getAttribute('data-size'),'user');
         }
     }
@@ -57,7 +57,7 @@ export default class HeaderDropDown extends Component {
         // e.stopPropagation();
         // e.nativeEvent.stopImmediatePropagation();
         this.setState({open: !this.state.open});
-        if(!this.state.open){
+        if(!this.state.open) {
             setTimeout(()=>{
                 $(document).on('click', this.closePanel);
             },10);

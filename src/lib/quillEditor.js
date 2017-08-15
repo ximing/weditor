@@ -4,7 +4,7 @@
 'use strict';
 import  Quill from 'quill';
 import QuillCursors from 'quill-cursors';
-import 'quill-cursors/dist/quill-cursors.css'
+import 'quill-cursors/dist/quill-cursors.css';
 import './initQuill';
 
 import initHotKey from './initHotKey';
@@ -93,7 +93,7 @@ export const initQuillEditor = function (dom, options) {
                             let LinkIndex = quillEditor.getIndex(leaf);
                             // getEditor().format('link', false,'user');
                             getEditor().formatText(LinkIndex,leaf.text.length,'link', false,'user');
-                            console.log('format')
+                            console.log('format');
                             // getEditor().removeFormat(LinkIndex, leaf.text.length, 'user');
                             insert.isCreateNewLink = false;
                         }
@@ -158,7 +158,7 @@ export const initQuillEditor = function (dom, options) {
                             insert.linkUrl = editor.format.link;
                             insert.isReadOnlyLink = true;
                             insert.linkTitle = leaf.text;
-                            setLinkBubble(range.index)
+                            setLinkBubble(range.index);
                         }
 
                     }
@@ -177,7 +177,7 @@ export const initQuillEditor = function (dom, options) {
                     console.log('blur');
                     editor.focus = false;
                 }
-            }catch (err){
+            }catch (err) {
                 console.error(err);
             }
         }

@@ -27,7 +27,7 @@ export default class Selection extends Component {
         }}/>;
     }
 
-    _updateSelection(rects,containerRect){
+    _updateSelection(rects,containerRect) {
         let index = [];
         let rectIndex,selectionArray = [];
 
@@ -38,7 +38,7 @@ export default class Selection extends Component {
             // A check was addedfor to avoid drawing those carets - they show up on blinking.
             if (!~index.indexOf(rectIndex) && rect.width > 1) {
                 index.push(rectIndex);
-                selectionArray.push(this.createSelectionBlock(rect,containerRect,i))
+                selectionArray.push(this.createSelectionBlock(rect,containerRect,i));
             }
         });
         return selectionArray;
@@ -99,7 +99,7 @@ export default class Selection extends Component {
         return (
             <div className="weditor-selection" ref="selection"
                  style={{
-                     diplay:'block',
+                     diplay:'block'
                      // height: sHeight,
                      // width: sWidth,
                      // left: sLeft,

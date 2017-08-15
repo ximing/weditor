@@ -20,12 +20,12 @@ export function is(type, obj) {
 
 export function platform() {
     var p = navigator.platform;
-    return p.indexOf("Win") === 0?'windows':'mac';
+    return p.indexOf('Win') === 0 ? 'windows' : 'mac';
 }
 
 export function getCtrl() {
     //⌘
-    return platform()==='mac'?'Cmd':'Ctrl';
+    return platform() === 'mac' ? 'Cmd' : 'Ctrl';
 }
 
 export function loop() {

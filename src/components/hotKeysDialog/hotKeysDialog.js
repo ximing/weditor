@@ -5,7 +5,7 @@
 import React, {Component} from 'react';
 import Dialog from '../dialog';
 import help from '../../model/help';
-import {getCtrl} from '../../lib/util'
+import {getCtrl} from '../../lib/util';
 export default class HotKeysDialog extends Component {
 
     closeDialog = ()=>{

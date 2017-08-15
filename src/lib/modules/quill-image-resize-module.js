@@ -9,13 +9,13 @@
  */
 import React from 'react';
 import interact from 'interactjs';
-import Parchment from 'parchment'
+import Parchment from 'parchment';
 import layer from '../../lib/layer';
 const $ = window.$;
 export class ImageResize {
 
     constructor(quill, options = {}) {
-        console.log(options)
+        console.log(options);
         // save the quill reference and options
         this.quill = quill;
         this.options = options;
@@ -55,8 +55,8 @@ export class ImageResize {
                     <div className="docs-squarehandleselectionbox-handle docx-selection-bottomleft"></div>
                     <div className="docs-squarehandleselectionbox-handle docx-selection-bottomright"></div>
                 </div>
-            )
-        })
+            );
+        });
     }
 
     onWindowResize = ()=>{
@@ -87,7 +87,7 @@ export class ImageResize {
         let blot = Parchment.find(img);
         let index = blot.offset(this.quill.scroll);
         console.log('image index', index);
-        this.quill.setSelection(index+1, 0);
+        this.quill.setSelection(index + 1, 0);
         //鼠标点击，删除键等操作的时候，去掉选中态
         this.quill.once('editor-change',()=>{this.hide();});
     }
@@ -104,7 +104,7 @@ export class ImageResize {
 
     hide() {
         this.img = undefined;
-        $(this.options.imgSelection).hide()
+        $(this.options.imgSelection).hide();
     }
 
 }

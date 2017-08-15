@@ -63,6 +63,7 @@
         margin-right: 10px;
         border: 1px solid #F0F0F0;
         border-radius: 2px;
+        line-height: 1;
         &:hover{
             border: 1px solid #CCCCCC;
         }
@@ -94,8 +95,8 @@
         }
     }
     .more-toolbar-container{
-        width: 508px;
-        height: 59px;
+        //width: 508px;
+        //height: 59px;
         display: inline-block;
         .popup-triangle-wrapper{
             width: 0;

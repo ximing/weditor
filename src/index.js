@@ -15,10 +15,10 @@ import catalogue from './model/catalogue';
 import insert from './model/insert';
 import editor from './model/editor';
 import help from './model/help';
-import {forceUpdate} from './model/markerLayer'
+import {forceUpdate} from './model/markerLayer';
 import hooks from './lib/hooks';
 import layerManager from './lib/layer';
-import {loop} from './lib/util'
+import {loop} from './lib/util';
 
 class  Editor extends Component {
     static defaultProps = {
@@ -34,7 +34,8 @@ class  Editor extends Component {
         models:{},
         onlyRead:false,
         hooks:{},
-        modules:{}
+        modules:{},
+        toolbar:null
     };
 
     constructor(props) {
@@ -49,9 +50,9 @@ class  Editor extends Component {
         }
     };
 
-    on(eventName, callback){
+    on(eventName, callback) {
         let disposer = null;
-        if(eventName === 'editor-change'){
+        if(eventName === 'editor-change') {
             disposer = observe(editor,callback);
         }
         return disposer;
@@ -70,6 +71,7 @@ class  Editor extends Component {
                 <WEditor onlyRead={this.props.onlyRead}
                          modules={this.props.modules}
                          options={this.props.options}
+                         toolbar={this.props.toolbar}
                          doc={this.props.doc}/>
             </Provider>
         );

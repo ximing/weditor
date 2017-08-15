@@ -3,7 +3,7 @@
  */
 'use strict';
 import React, {createElement} from 'react';
-import {backendMarkerLayer, frontendMarkerLayer, incrementId, forceUpdate} from '../model/markerLayer'
+import {backendMarkerLayer, frontendMarkerLayer, incrementId, forceUpdate} from '../model/markerLayer';
 
 class Layer {
 
@@ -12,22 +12,22 @@ class Layer {
     }
 
     addBackendMarker(marker) {
-        if(!marker){
-            throw new Error('marker param require')
+        if(!marker) {
+            throw new Error('marker param require');
         }
-        incrementId.set(incrementId.get() + 1)
+        incrementId.set(incrementId.get() + 1);
         backendMarkerLayer[incrementId.get()] = marker;
         this.update();
         return incrementId.get();
     }
 
     addFrontendMarker(marker) {
-        if(!marker){
-            throw new Error('marker param require')
+        if(!marker) {
+            throw new Error('marker param require');
         }
-        incrementId.set(incrementId.get() + 1)
+        incrementId.set(incrementId.get() + 1);
         frontendMarkerLayer[incrementId.get()] = marker;
-        console.log('addFrontendMarker',frontendMarkerLayer)
+        console.log('addFrontendMarker',frontendMarkerLayer);
         this.update();
         return incrementId.get();
     }

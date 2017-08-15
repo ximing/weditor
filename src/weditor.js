@@ -50,11 +50,11 @@ export default class WEditor extends Component {
         editorDom.on('blur', () => {
             editor.focus = false;
         });
-        $(window).on('resize', this.onWindowResize)
+        $(window).on('resize', this.onWindowResize);
     }
 
     componentWillUnmount() {
-        $(window).off('resize', this.onWindowResize)
+        $(window).off('resize', this.onWindowResize);
 
     }
 
@@ -77,7 +77,7 @@ export default class WEditor extends Component {
                 {
                     !this.props.onlyRead && (
                         <div className="editor-toolbar" id="toolbar">
-                            <Toolbar/>
+                            <Toolbar toolbar={this.props.toolbar}/>
                         </div>
                     )
                 }

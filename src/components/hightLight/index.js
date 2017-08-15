@@ -56,7 +56,7 @@ export default class extends Component {
     selectBackground(color) {
         return ()=>{
             this.onClose();
-            if(getEditor()){
+            if(getEditor()) {
                 const {index,length} = editor.range;
                 getEditor().formatText({index,length},'background',color,'user');
             }
