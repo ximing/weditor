@@ -19,7 +19,6 @@ import 'rc-trigger/assets/index.css';
 import Quill from 'quill';
 import Delta from 'quill-delta';
 import DeltaOp from 'quill-delta/lib/op';
-import Measure from 'react-measure';
 
 const CodeBlock = Quill.import('formats/code');
 const Block = Quill.import('blots/block');

@@ -39,13 +39,30 @@ Quill.register(LineHeightStyle);
 
 var Clipboard = Quill.import('modules/clipboard');
 class PlainClipboard extends Clipboard {
-    convert(html = null) {
+    // convert(html = null) {
+    //     if (typeof html === 'string') {
+    //         this.container.innerHTML = html;
+    //     }
+    //     let text = this.container.innerText;
+    //     this.container.innerHTML = '';
+    //     return new Delta().insert(text);
+    // }
+
+    convert(html) {
         if (typeof html === 'string') {
-            this.container.innerHTML = html;
+            this.container.innerHTML = html.replace(/\>\r?\n +\</g, '><'); // Remove spaces between tags
         }
-        let text = this.container.innerText;
+        this.container.innerHTML = this.container.innerHTML
+            .replace(/<pre/gi,'<div').replace(/<\/pre>/gi,"</div>");
+        let [elementMatchers, textMatchers] = this.prepareMatching();
+        let delta = traverse(this.container, elementMatchers, textMatchers);
+        // Remove trailing newline
+        if (deltaEndsWith(delta, '\n') && delta.ops[delta.ops.length - 1].attributes == null) {
+            delta = delta.compose(new Delta().retain(delta.length() - 1).delete(1));
+        }
+        console.log('convert', this.container.innerHTML, delta);
         this.container.innerHTML = '';
-        return new Delta().insert(text);
+        return delta;
     }
 
     onPaste(e) {
@@ -67,5 +84,42 @@ class PlainClipboard extends Clipboard {
         }, 1);
     }
 };
+const DOM_KEY = '__ql-matcher';
+
+function traverse(node, elementMatchers, textMatchers) {  // Post-order
+    if (node.nodeType === node.TEXT_NODE) {
+        return textMatchers.reduce(function(delta, matcher) {
+            return matcher(node, delta);
+        }, new Delta());
+    } else if (node.nodeType === node.ELEMENT_NODE) {
+        return [].reduce.call(node.childNodes || [], (delta, childNode) => {
+            let childrenDelta = traverse(childNode, elementMatchers, textMatchers);
+            if (childNode.nodeType === node.ELEMENT_NODE) {
+                childrenDelta = elementMatchers.reduce(function(childrenDelta, matcher) {
+                    return matcher(childNode, childrenDelta);
+                }, childrenDelta);
+                childrenDelta = (childNode[DOM_KEY] || []).reduce(function(childrenDelta, matcher) {
+                    return matcher(childNode, childrenDelta);
+                }, childrenDelta);
+            }
+            return delta.concat(childrenDelta);
+        }, new Delta());
+    } else {
+        return new Delta();
+    }
+}
+
+
+function deltaEndsWith(delta, text) {
+    let endText = "";
+    for (let i = delta.ops.length - 1; i >= 0 && endText.length < text.length; --i) {
+        let op  = delta.ops[i];
+        if (typeof op.insert !== 'string') break;
+        endText = op.insert + endText;
+    }
+    return endText.slice(-1*text.length) === text;
+}
+
+
 Quill.register('modules/clipboard', PlainClipboard, true);
 
