@@ -24,14 +24,12 @@ import layer from './lib/layer';
 
 @inject(state => ({
     insert: state.insert,
-    open: state.catalogue.open,
     focus: state.editor.focus,
     help: state.help,
     forceUpdate:state.forceUpdate
 })) @observer
 export default class WEditor extends Component {
     state = {
-        left: window.innerWidth / 2 - 400,
         scrollTop: 0
     };
 
@@ -39,29 +37,23 @@ export default class WEditor extends Component {
         super();
     }
 
-    onWindowResize = () => {
-        this.setState({
-            left: this.props.open ? window.innerWidth / 2 - 300 : window.innerWidth / 2 - 400
-        });
-    };
+    // onWindowResize = () => {
+    // };
 
     componentDidMount() {
         let editorDom = this.editorDom = $(ReactDOM.findDOMNode(this.refs.editor)).find('.ql-editor');
         editorDom.on('blur', () => {
             editor.focus = false;
         });
-        $(window).on('resize', this.onWindowResize);
+        // $(window).on('resize', this.onWindowResize);
     }
 
     componentWillUnmount() {
-        $(window).off('resize', this.onWindowResize);
+        // $(window).off('resize', this.onWindowResize);
 
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({
-            left: nextProps.open ? window.innerWidth / 2 - 300 : window.innerWidth / 2 - 400
-        });
     }
 
     render() {

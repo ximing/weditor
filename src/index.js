@@ -11,7 +11,6 @@ import './style/index.scss';
 import 'quill/dist/quill.snow.css';
 import {getEditor,resize} from './lib/quillEditor';
 import WEditor from './weditor';
-import catalogue from './model/catalogue';
 import insert from './model/insert';
 import editor from './model/editor';
 import help from './model/help';
@@ -62,7 +61,6 @@ class  Editor extends Component {
         return(
             <Provider
                 {...this.props.models}
-                catalogue={catalogue}
                 insert={insert}
                 editor={editor}
                 help={help}
@@ -80,5 +78,5 @@ class  Editor extends Component {
 export default Editor;
 
 export {
-    catalogue,insert,editor,help,WEditor,getEditor,layerManager
+    insert,editor,help,WEditor,getEditor,layerManager
 };

@@ -1,15 +1,9 @@
 .weditor-selection{
-    //border: none;
-    //margin: 0;
-    //padding: 0;
-    //position: absolute;
-    //top: 0;
-    //left: 0;
-    //width: 100%;
-    //height: 100%;
     pointer-events:none;
     & span{
-        background: rgba(130, 182, 255,.4);
+        background: rgba(130, 182, 255,.7);
+        //background: rgba(51, 141, 233,.7);
+        //background: #338de9;
         pointer-events:none;
         position: absolute;
     }

@@ -87,6 +87,11 @@ body {
                     font-family: "docicon" !important;
                     color: #000000;
                 }
+
+                pre{
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
+                }
             }
         }
         .ql-cursors{
