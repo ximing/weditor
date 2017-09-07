@@ -101,6 +101,24 @@ body {
                 }
             }
         }
+        .ql-comment-btn{
+            border: none;
+            background: transparent;
+            outline: none;
+            position: absolute;
+            top: 0;
+            right: 0;
+            cursor: pointer;
+            z-index: 2000;
+            //display: none;
+            i{
+                cursor: pointer;
+                font-size: 20px;
+                &:hover {
+                    color: $primary-color;
+                }
+            }
+        }
         .weditor-rename-input{
             border: none;
             border-bottom: 1px solid #dddddd;

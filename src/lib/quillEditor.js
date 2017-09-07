@@ -4,8 +4,9 @@
 'use strict';
 import  Quill from 'quill';
 import QuillCursors from 'quill-cursors';
-import 'quill-cursors/dist/quill-cursors.css'
+import 'quill-cursors/dist/quill-cursors.css';
 import './initQuill';
+
 import initHotKey from './initHotKey';
 
 import insert from '../model/insert';
@@ -35,21 +36,6 @@ export const getEditorBoundingClientRect = function () {
 };
 
 export const setLinkBubble = function (index) {
-    // const {left, top, height} = getEditor().getBounds(index);
-    // let linkLeft = getEditorBoundingClientRect().left + left;
-    // let linkTop = getEditorBoundingClientRect().top + top + height;
-    // if (linkLeft + linkBubble.width >= window.innerWidth) {
-    //     linkLeft = linkLeft - linkBubble.width;
-    // }
-    // if (linkTop + linkBubble.height >= window.innerHeight) {
-    //     linkTop = linkTop - linkBubble.height - height - 10;
-    // }
-    // console.log(top,linkTop,height,getEditorBoundingClientRect().top);
-    // insert.linkPosition = {
-    //     left: linkLeft,
-    //     top: linkTop
-    // };
-    //======================badk end========================
     const {left, top, height} = getEditor().getBounds(index);
     //120 是body 到浏览器顶部的高度
     console.log('link left', left, window.innerWidth);
@@ -107,7 +93,7 @@ export const initQuillEditor = function (dom, options) {
                             let LinkIndex = quillEditor.getIndex(leaf);
                             // getEditor().format('link', false,'user');
                             getEditor().formatText(LinkIndex,leaf.text.length,'link', false,'user');
-                            console.log('format')
+                            console.log('format');
                             // getEditor().removeFormat(LinkIndex, leaf.text.length, 'user');
                             insert.isCreateNewLink = false;
                         }
@@ -137,7 +123,8 @@ export const initQuillEditor = function (dom, options) {
             },
             clipboard: {
                 matchers: []
-            }
+            },
+            ...options.modules
         },
         placeholder: '输入文档...',
         //theme: 'snow',
@@ -171,7 +158,7 @@ export const initQuillEditor = function (dom, options) {
                             insert.linkUrl = editor.format.link;
                             insert.isReadOnlyLink = true;
                             insert.linkTitle = leaf.text;
-                            setLinkBubble(range.index)
+                            setLinkBubble(range.index);
                         }
 
                     }
@@ -188,57 +175,14 @@ export const initQuillEditor = function (dom, options) {
                     }
                 } else {
                     console.log('blur');
+                    editor.focus = false;
                 }
-            }catch (err){
+            }catch (err) {
                 console.error(err);
             }
         }
     });
     cursorsModule.registerTextChangeListener();
-
-    // quillEditor.on('text-change', function (delta, oldDelta, source) {
-    //     editor.focus = true;
-    //     if (editor.range) {
-    //         editor.format = quillEditor.getFormat(editor.range) || {};
-    //     } else {
-    //         editor.format = {};
-    //     }
-    // });
-    // quillEditor.on('selection-change', (range, oldRange, source) => {
-    //     console.log('selection-change', range, oldRange,source);
-    //     if (range) {
-    //         editor.range = range;
-    //         editor.focus = true;
-    //         editor.format = quillEditor.getFormat(range) || {};
-    //         if (editor.format.link) {
-    //             let [leaf, offset] = quillEditor.getLeaf(range.index);
-    //             // let linkIndex = quillEditor.getIndex(leaf);
-    //             //在文本最开始的时候，拿不到 link format 所以不用判断左区间的问题了。
-    //             if (offset < leaf.length()) {
-    //                 insert.openLinkDialog = true;
-    //                 insert.linkUrl = editor.format.link;
-    //                 insert.isReadOnlyLink = true;
-    //                 insert.linkTitle = leaf.text;
-    //                 setLinkBubble(range.index)
-    //             }
-    //
-    //         }
-    //         if (range.length !== 0) {
-    //             //处理格式刷
-    //             if (format.currentFormat) {
-    //                 const {index, length} = range;
-    //                 quillEditor.removeFormat(index, length, 'user');
-    //                 quillEditor.formatLine(index, length, format.currentFormat, 'user');
-    //                 quillEditor.formatText(index, length, format.currentFormat, 'user');
-    //
-    //                 format.currentFormat = null;
-    //             }
-    //         }
-    //     } else {
-    //         console.log('blur');
-    //     }
-    // });
-
     initHotKey(quillEditor);
     return quillEditor;
 };

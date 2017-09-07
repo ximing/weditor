@@ -50,17 +50,17 @@ export default class SizeDropDown extends Component {
         // e
         //     .nativeEvent
         //     .stopImmediatePropagation();
-        console.log('size this.state.open', this.state.open)
+        console.log('size this.state.open', this.state.open);
         this.setState({open: !this.state.open});
         if (!this.state.open) {
             setTimeout(() => {
                 $(document).on('click', this.closePanel);
-            }, 10)
+            }, 10);
         }
     }
 
     handleKeyPress = (e) => {
-        this.changeLineHeight(e.target.getAttribute("data-size") || '1')
+        this.changeLineHeight(e.target.getAttribute('data-size') || '1');
         this.closePanel();
         $(document).off('click', this.closePanel);
 

@@ -125,6 +125,15 @@
 .#{$iconfont-css-prefix}-triangle:before {
     content: "\e689";
 }
+.#{$iconfont-css-prefix}-comment:before {
+    content: "\e63d";
+}
+.#{$iconfont-css-prefix}-comment-switch:before {
+    content: "\e63f";
+}
+.#{$iconfont-css-prefix}-delete-comment:before {
+    content: "\e63e";
+}
 
 .#{$iconfont-css-prefix}-h1:before {
     content: "\e93a";
@@ -143,5 +152,5 @@
 }
 
 .#{$iconfont-css-prefix}-lineheight:before {
-    content: "\e600";
+    content: "\e642";
 }

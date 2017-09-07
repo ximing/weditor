@@ -5,18 +5,20 @@
 'use strict';
 import React, {Component} from 'react';
 import {observer,Provider} from 'mobx-react';
+import {autorun,observe} from 'mobx';
 window.RangeFix = require('rangefix');
 import './style/index.scss';
 import 'quill/dist/quill.snow.css';
-//import 'quill/dist/quill.bubble.css';
 import {getEditor,resize} from './lib/quillEditor';
 import WEditor from './weditor';
-import catalogue from './model/catalogue';
 import insert from './model/insert';
 import editor from './model/editor';
 import help from './model/help';
+import {forceUpdate} from './model/markerLayer';
 import hooks from './lib/hooks';
-import {loop} from './lib/util'
+import layerManager from './lib/layer';
+import {loop} from './lib/util';
+
 class  Editor extends Component {
     static defaultProps = {
         options:{
@@ -28,9 +30,11 @@ class  Editor extends Component {
             name:'',
             status:''
         },
-        title:null,
+        models:{},
         onlyRead:false,
-        hooks:{}
+        hooks:{},
+        modules:{},
+        toolbar:null
     };
 
     constructor(props) {
@@ -45,20 +49,34 @@ class  Editor extends Component {
         }
     };
 
+    on(eventName, callback) {
+        let disposer = null;
+        if(eventName === 'editor-change') {
+            disposer = observe(editor,callback);
+        }
+        return disposer;
+    }
+
     render() {
         return(
             <Provider
-                catalogue={catalogue}
+                {...this.props.models}
                 insert={insert}
                 editor={editor}
                 help={help}
+                forceUpdate={forceUpdate}
             >
                 <WEditor onlyRead={this.props.onlyRead}
-                         title = {this.props.title}
+                         modules={this.props.modules}
                          options={this.props.options}
+                         toolbar={this.props.toolbar}
                          doc={this.props.doc}/>
             </Provider>
         );
     }
 }
 export default Editor;
+
+export {
+    insert,editor,help,WEditor,getEditor,layerManager
+};

@@ -31,7 +31,7 @@ body {
     padding: 0;
 
     position: absolute;
-    top: 90px;
+    top: 87px;
     bottom: 0;
     left: 0;
     right: 0;
@@ -72,6 +72,7 @@ body {
                 overflow-y: auto;
                 overflow-x: hidden;
                 min-height: 900pt;
+                color: #000000;
                 a:active,a:link,a:visited{
                     color: #15c;
                 }
@@ -85,6 +86,11 @@ body {
                     content: "\e63a";
                     font-family: "docicon" !important;
                     color: #000000;
+                }
+
+                pre{
+                    white-space: pre-wrap;
+                    word-wrap: break-word;
                 }
             }
         }
@@ -112,6 +118,20 @@ body {
             color:#333333;
             width: 100%;
             box-sizing: border-box;
+        }
+        .backend-marker-layer{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top:0;
+            left: 0;
+        }
+        .frontend-marker-layer{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top:0;
+            left: 0;
         }
     }
 }
@@ -243,7 +263,7 @@ body {
             box-shadow:none;
             width: 700px;
             .ql-container .ql-editor{
-                padding: 20pt 30px;
+                padding: 20pt 49px;
             }
         }
     }

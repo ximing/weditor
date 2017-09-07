@@ -28,7 +28,6 @@ export default class EditorHeader extends Component {
     }
     constructor() {
         super();
-        this.backList = this.backList.bind(this);
         this.state = {
             panel: 1,
             panelType:''
@@ -36,30 +35,6 @@ export default class EditorHeader extends Component {
     }
 
     componentDidMount() {
-    }
-
-
-    toggleCatalogue = () => {
-        if (getEditor()) {
-            let ops = getEditor().getContents().ops;
-            let _ops = [];
-            ops = ops.forEach((item, i) => {
-                if (ops[i + 1] && ops[i + 1].attributes && ops[i + 1].attributes.header && is('String',item.insert)) {
-                    _ops.push({
-                        h: ops[i + 1].attributes.header,
-                        content: item.insert
-                    });
-                }
-            });
-            console.log(_ops);
-            this.props.catalogue.open = true;
-            this.props.catalogue.list = _ops;
-        }
-    }
-
-
-    backList() {
-        // this.props.dispatch(push('/xnote/index'));
     }
 
     print = () =>{
@@ -135,9 +110,9 @@ export default class EditorHeader extends Component {
         };
     }
 
-    dropdownChange(type){
+    dropdownChange(type) {
         return (visible) =>{
-            if(visible){
+            if(visible) {
                 this.setState({
                     panelType:type
                 });
@@ -146,7 +121,7 @@ export default class EditorHeader extends Component {
                     panelType:''
                 });
             }
-        }
+        };
     }
 
     renderMenubar() {

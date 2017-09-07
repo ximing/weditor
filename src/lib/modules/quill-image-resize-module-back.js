@@ -10,7 +10,7 @@
 export class ImageResize {
 
     constructor(quill, options = {}) {
-        console.log(options)
+        console.log(options);
         // save the quill reference and options
         this.quill = quill;
         this.options = options;
