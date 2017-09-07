@@ -119,7 +119,8 @@ export const initQuillEditor = function (dom, options) {
                 container: '.weditor-body',
                 imgSelection: '.img-selection',
                 top: 102,
-                left: 0
+                left: 0,
+                readOnly:options.readOnly
             },
             clipboard: {
                 matchers: []

@@ -20,43 +20,46 @@ export class ImageResize {
         this.quill = quill;
         this.options = options;
         let imageRect = {};
-        interact('.img-selection')
-            .resizable({
-                // preserveAspectRatio: true,
-                edges: {left: true, right: true, bottom: true, top: true}
-            })
-            .on('resizemove', (event) => {
-                var target = event.target;
-                if (this.img) {
-                    this.img.style.width = event.rect.width + 'px';
-                    this.img.style.height = event.rect.height + 'px';
-                    imageRect = event.rect;
-                    const rect = this.img.getBoundingClientRect();
-                    const rootRect = this.quill.root.getBoundingClientRect();
+        if(!options.readOnly){
+            interact('.img-selection')
+                .resizable({
+                    // preserveAspectRatio: true,
+                    edges: {left: true, right: true, bottom: true, top: true}
+                })
+                .on('resizemove', (event) => {
+                    var target = event.target;
+                    if (this.img) {
+                        this.img.style.width = event.rect.width + 'px';
+                        this.img.style.height = event.rect.height + 'px';
+                        imageRect = event.rect;
+                        const rect = this.img.getBoundingClientRect();
+                        const rootRect = this.quill.root.getBoundingClientRect();
 
-                    target.style.top = `${rect.top - rootRect.top}px`;
-                    target.style.left = `${rect.left - rootRect.left}px`;
-                    target.style.width = event.rect.width + 'px';
-                    target.style.height = event.rect.height + 'px';
-                }
-            })
-            .on('resizeend', (event) => {
-                this.img.width = imageRect.width || undefined;
-                this.img.height = imageRect.height  || undefined;
+                        target.style.top = `${rect.top - rootRect.top}px`;
+                        target.style.left = `${rect.left - rootRect.left}px`;
+                        target.style.width = event.rect.width + 'px';
+                        target.style.height = event.rect.height + 'px';
+                    }
+                })
+                .on('resizeend', (event) => {
+                    this.img.width = imageRect.width || undefined;
+                    this.img.height = imageRect.height  || undefined;
+                });
+            this.handleClick = this.handleClick.bind(this);
+            this.quill.root.addEventListener('click', this.handleClick, false);
+            $(window).on('resize',this.onWindowResize);
+            layer.addFrontendMarker(function (props) {
+                return (
+                    <div className="img-selection">
+                        <div className="docs-squarehandleselectionbox-handle docx-selection-topleft"></div>
+                        <div className="docs-squarehandleselectionbox-handle docx-selection-topright"></div>
+                        <div className="docs-squarehandleselectionbox-handle docx-selection-bottomleft"></div>
+                        <div className="docs-squarehandleselectionbox-handle docx-selection-bottomright"></div>
+                    </div>
+                );
             });
-        this.handleClick = this.handleClick.bind(this);
-        this.quill.root.addEventListener('click', this.handleClick, false);
-        $(window).on('resize',this.onWindowResize);
-        layer.addFrontendMarker(function (props) {
-            return (
-                <div className="img-selection">
-                    <div className="docs-squarehandleselectionbox-handle docx-selection-topleft"></div>
-                    <div className="docs-squarehandleselectionbox-handle docx-selection-topright"></div>
-                    <div className="docs-squarehandleselectionbox-handle docx-selection-bottomleft"></div>
-                    <div className="docs-squarehandleselectionbox-handle docx-selection-bottomright"></div>
-                </div>
-            );
-        });
+        }
+
     }
 
     onWindowResize = ()=>{

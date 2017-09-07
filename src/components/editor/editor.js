@@ -15,7 +15,8 @@ export default class Editor extends Component {
 
     componentDidMount() {
         let quillEditor = this.quill = initQuillEditor(ReactDOM.findDOMNode(this.refs.editor),{
-            modules:this.props.modules
+            modules:this.props.modules,
+            readOnly:this.props.onlyRead
         });
         quillEditor.enable(!this.props.onlyRead);
     }
