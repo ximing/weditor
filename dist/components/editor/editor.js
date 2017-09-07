@@ -46,7 +46,8 @@ var Editor = function (_Component) {
         key: 'componentDidMount',
         value: function componentDidMount() {
             var quillEditor = this.quill = (0, _quillEditor.initQuillEditor)(_reactDom2.default.findDOMNode(this.refs.editor), {
-                modules: this.props.modules
+                modules: this.props.modules,
+                readOnly: this.props.onlyRead
             });
             quillEditor.enable(!this.props.onlyRead);
         }
