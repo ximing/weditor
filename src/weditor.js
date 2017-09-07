@@ -85,7 +85,7 @@ export default class WEditor extends Component {
                             this.props.insert.openLinkDialog &&
                             <LinkBubble insert={this.props.insert}/>
                         }
-                        <BubbleToolbar/>
+                        {!this.props.onlyRead && <BubbleToolbar/>}
                     </div>
                 </div>
                 {
