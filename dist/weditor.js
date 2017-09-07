@@ -139,7 +139,7 @@ var WEditor = (_dec = (0, _mobxReact.inject)(function (state) {
                         _react2.default.createElement(_editor2.default, { modules: this.props.modules, onlyRead: this.props.onlyRead }),
                         _layer2.default.renderFrontend(),
                         this.props.insert.openLinkDialog && _react2.default.createElement(_linkBubble2.default, { insert: this.props.insert }),
-                        _react2.default.createElement(_bubbleToolbar2.default, null)
+                        !this.props.onlyRead && _react2.default.createElement(_bubbleToolbar2.default, null)
                     )
                 ),
                 this.props.insert.openImageDialog && _react2.default.createElement(_insertImage2.default, { uploadUrl: this.props.options.uploadUrl }),
