@@ -119,7 +119,7 @@ export default class LinkBubble extends Component {
     };
 
     renderReadOnly() {
-        let linkUrl = '';
+        let linkUrl = insert.linkUrl;
         if(insert.linkUrl.indexOf('http') !== 0) {
             linkUrl = `http://${insert.linkUrl}`;
         }

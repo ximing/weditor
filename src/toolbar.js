@@ -455,7 +455,7 @@ export default class EditorToolbar extends Component {
                     mouseLeaveDelay={0}
                     overlay={<div>插入TODO</div>}
                 >
-                    {this.renderBlockButton('list', 'todo', 'checked')}
+                    {this.renderBlockButton('list', 'todo', 'unchecked')}
                 </ToolTip>
                 <LineHeightDropDown lineheight={lineheight}/>
                 <Icon type="vertical"/>
