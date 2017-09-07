@@ -39,14 +39,18 @@
  * Notes:
  *  - the loadCSS will load additional css (with or without @media print) into the iframe, adjusting layout
  */
-;
-export default function ($) {
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+exports.default = function ($) {
     var opt;
-    $.fn.printThis = function(options) {
+    $.fn.printThis = function (options) {
         opt = $.extend({}, $.fn.printThis.defaults, options);
         var $element = this instanceof $ ? this : $(this);
 
-        var strFrameName = 'printThis-' + (new Date()).getTime();
+        var strFrameName = 'printThis-' + new Date().getTime();
 
         if (window.location.hostname !== document.domain && navigator.userAgent.match(/msie/i)) {
             // Ugly IE hacks due to IE not inheriting document.domain from parent
@@ -58,13 +62,11 @@ export default function ($) {
             printI.className = 'MSIE';
             document.body.appendChild(printI);
             printI.src = iframeSrc;
-
         } else {
             // other browsers inherit document.domain, and IE works if document.domain is not explicitly set
             var $frame = $("<iframe id='" + strFrameName + "' name='printIframe' />");
             $frame.appendTo('body');
         }
-
 
         var $iframe = $('#' + strFrameName);
 
@@ -80,10 +82,10 @@ export default function ($) {
         }
 
         // $iframe.ready() and $iframe.load were inconsistent between browsers
-        setTimeout(function() {
+        setTimeout(function () {
 
             // Add doctype to fix the style difference between printing and render
-            function setDocType($iframe,doctype) {
+            function setDocType($iframe, doctype) {
                 var win, doc;
                 win = $iframe.get(0);
                 win = win.contentWindow || win.contentDocument || win;
@@ -93,8 +95,8 @@ export default function ($) {
                 doc.close();
             }
 
-            if(opt.doctypeString) {
-                setDocType($iframe,opt.doctypeString);
+            if (opt.doctypeString) {
+                setDocType($iframe, opt.doctypeString);
             }
 
             function appendContent($el, content) {
@@ -126,7 +128,7 @@ export default function ($) {
 
             // import page stylesheets
             if (opt.importCSS) {
-                $('link[rel=stylesheet]').each(function() {
+                $('link[rel=stylesheet]').each(function () {
                     var href = $(this).attr('href');
                     if (href) {
                         var media = $(this).attr('media') || 'all';
@@ -137,7 +139,7 @@ export default function ($) {
 
             // import style tags
             if (opt.importStyle) {
-                $('style').each(function() {
+                $('style').each(function () {
                     $(this).clone().appendTo($head);
                 });
             }
@@ -147,8 +149,8 @@ export default function ($) {
 
             // import additional stylesheet(s)
             if (opt.loadCSS) {
-                if($.isArray(opt.loadCSS)) {
-                    $.each(opt.loadCSS, function(index, value) {
+                if ($.isArray(opt.loadCSS)) {
+                    $.each(opt.loadCSS, function (index, value) {
                         $head.append("<link type='text/css' rel='stylesheet' href='" + this + "'>");
                     });
                 } else {
@@ -162,7 +164,7 @@ export default function ($) {
             if (opt.canvas) {
                 // add canvas data-ids for easy access after the cloning.
                 var canvasId = 0;
-                $element.find('canvas').each(function() {
+                $element.find('canvas').each(function () {
                     $(this).attr('data-printthis', canvasId++);
                 });
             }
@@ -172,14 +174,14 @@ export default function ($) {
 
             // otherwise just print interior elements of container
             else {
-                $element.each(function() {
-                    $body.append($(this).html());
-                });
-            }
+                    $element.each(function () {
+                        $body.append($(this).html());
+                    });
+                }
 
             if (opt.canvas) {
                 // Re-draw new canvases by referencing the originals
-                $body.find('canvas').each(function() {
+                $body.find('canvas').each(function () {
                     var cid = $(this).data('printthis'),
                         $src = $('[data-printthis="' + cid + '"]');
 
@@ -195,7 +197,7 @@ export default function ($) {
                 // loop through inputs
                 var $input = $element.find('input');
                 if ($input.length) {
-                    $input.each(function() {
+                    $input.each(function () {
                         var $this = $(this),
                             $name = $(this).attr('name'),
                             $checker = $this.is(':checkbox') || $this.is(':radio'),
@@ -212,14 +214,13 @@ export default function ($) {
                                 $doc.find('input[name="' + $name + '"][value="' + $value + '"]').attr('checked', 'checked');
                             }
                         }
-
                     });
                 }
 
                 // loop through selects
                 var $select = $element.find('select');
                 if ($select.length) {
-                    $select.each(function() {
+                    $select.each(function () {
                         var $this = $(this),
                             $name = $(this).attr('name'),
                             $value = $this.val();
@@ -230,7 +231,7 @@ export default function ($) {
                 // loop through textareas
                 var $textarea = $element.find('textarea');
                 if ($textarea.length) {
-                    $textarea.each(function() {
+                    $textarea.each(function () {
                         var $this = $(this),
                             $name = $(this).attr('name'),
                             $value = $this.val();
@@ -252,7 +253,7 @@ export default function ($) {
             // print "footer"
             appendContent($body, opt.footer);
 
-            setTimeout(function() {
+            setTimeout(function () {
                 if ($iframe.hasClass('MSIE')) {
                     // check if the iframe was created with the ugly hack
                     // and perform another ugly hack out of neccessity
@@ -270,37 +271,36 @@ export default function ($) {
 
                 // remove iframe after print
                 if (!opt.debug) {
-                    setTimeout(function() {
+                    setTimeout(function () {
                         $iframe.remove();
                     }, 1000);
                 }
-
             }, opt.printDelay);
-
         }, 333);
-
     };
 
     // defaults
     $.fn.printThis.defaults = {
-        debug: false,           // show the iframe for debugging
-        importCSS: true,        // import parent page css
-        importStyle: false,     // import style tags
-        printContainer: true,   // print outer container/$.selector
-        loadCSS: '',            // load an additional css file - load multiple stylesheets with an array []
-        pageTitle: '',          // add title to print page
-        removeInline: false,    // remove all inline styles
-        printDelay: 333,        // variable print delay
-        header: null,           // prefix to html
-        footer: null,           // postfix to html
-        formValues: true,       // preserve input/form values
-        canvas: false,          // Copy canvas content (experimental)
-        base: false,            // preserve the BASE tag, or accept a string for the URL
+        debug: false, // show the iframe for debugging
+        importCSS: true, // import parent page css
+        importStyle: false, // import style tags
+        printContainer: true, // print outer container/$.selector
+        loadCSS: '', // load an additional css file - load multiple stylesheets with an array []
+        pageTitle: '', // add title to print page
+        removeInline: false, // remove all inline styles
+        printDelay: 333, // variable print delay
+        header: null, // prefix to html
+        footer: null, // postfix to html
+        formValues: true, // preserve input/form values
+        canvas: false, // Copy canvas content (experimental)
+        base: false, // preserve the BASE tag, or accept a string for the URL
         doctypeString: '<!DOCTYPE html>' // html doctype
     };
 
     // $.selector container
-    $.fn.outer = function() {
+    $.fn.outer = function () {
         return $($('<div></div>').html(this.clone())).html();
     };
-}
+};
+
+;

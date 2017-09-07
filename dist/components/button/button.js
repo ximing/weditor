@@ -3,70 +3,116 @@
  */
 'use strict';
 
-import React, {Component} from 'react';
-import classNames from 'classnames';
-import omit from 'omit.js';
-export default class extends Component {
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = undefined;
 
-    constructor() {
-        super();
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-        this.state = {
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _class, _temp;
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _classnames = require('classnames');
+
+var _classnames2 = _interopRequireDefault(_classnames);
+
+var _omit = require('omit.js');
+
+var _omit2 = _interopRequireDefault(_omit);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _default = (_temp = _class = function (_Component) {
+    _inherits(_default, _Component);
+
+    function _default() {
+        _classCallCheck(this, _default);
+
+        var _this = _possibleConstructorReturn(this, (_default.__proto__ || Object.getPrototypeOf(_default)).call(this));
+
+        _this.state = {
             processing: false
         };
 
-        this.onClick = this.onClick.bind(this);
+        _this.onClick = _this.onClick.bind(_this);
+        return _this;
     }
 
-    static defaultProps = {
-        prefixCls: 'nx-btn',
-        color:'blue',
-        type:'',
-        onClick: function() {},
-        disabled: false
-    };
+    _createClass(_default, [{
+        key: 'reset',
 
-    // 重置,回到初始状态
-    reset() {
-        this.setState({processing: false});
-    }
 
-    onClick(SyntheticEvent) {
-        var {disabled, onClick, async} = this.props;
-        if(disabled) {
-            return;
+        // 重置,回到初始状态
+        value: function reset() {
+            this.setState({ processing: false });
         }
+    }, {
+        key: 'onClick',
+        value: function onClick(SyntheticEvent) {
+            var _props = this.props,
+                disabled = _props.disabled,
+                onClick = _props.onClick,
+                async = _props.async;
 
-        if(async) {
-            if(!this.state.processing) {
-                this.setState({processing: true});
-            } else {
+            if (disabled) {
                 return;
             }
+
+            if (async) {
+                if (!this.state.processing) {
+                    this.setState({ processing: true });
+                } else {
+                    return;
+                }
+            }
+            onClick(SyntheticEvent, this);
         }
-        onClick(SyntheticEvent,this);
+    }, {
+        key: 'render',
+        value: function render() {
+            var _classNames;
 
-    }
-    render() {
-        var {prefixCls,color,type} = this.props;
-        let otherProps = omit(this.props,['prefixCls','color','type','children']);
-        let classes = classNames({
-            [prefixCls]: true,
-            [`${prefixCls}-${color}`]: color
-            //[`${prefixCls}-${type}`]: type,
-            //[`${prefixCls}-disabled`]: disabled,
-            //[`${prefixCls}-${sizeCls}`]: sizeCls,
-            //[`${prefixCls}-mix-icon`]: kids && (!loading && icon),
-            //[`${prefixCls}-icon-only`]: !kids && icon,
-            //[`${prefixCls}-icon-right`]: kids && (loading || icon) && iconRight,
-            //[`${prefixCls}-loading`]: loading,
-        });
-        return <input type="button"
-                      value={this.props.children}
-                      onClick={this.onClick}
-                      className={classes}
-                      {...otherProps}
-        />;
-    }
-}
+            var _props2 = this.props,
+                prefixCls = _props2.prefixCls,
+                color = _props2.color,
+                type = _props2.type,
+                className = _props2.className,
+                children = _props2.children,
+                disabled = _props2.disabled,
+                otherProps = _objectWithoutProperties(_props2, ['prefixCls', 'color', 'type', 'className', 'children', 'disabled']);
 
+            var classes = (0, _classnames2.default)((_classNames = {}, _defineProperty(_classNames, className, true), _defineProperty(_classNames, prefixCls, true), _defineProperty(_classNames, prefixCls + '-' + color, color), _defineProperty(_classNames, prefixCls + '-' + type, type), _defineProperty(_classNames, prefixCls + '-disabled', disabled), _classNames));
+            return _react2.default.createElement('input', _extends({ type: 'button',
+                value: this.props.children,
+                onClick: this.onClick,
+                className: classes
+            }, otherProps));
+        }
+    }]);
+
+    return _default;
+}(_react.Component), _class.defaultProps = {
+    prefixCls: 'nx-btn',
+    color: 'blue',
+    type: '',
+    onClick: function onClick() {},
+    disabled: false
+}, _temp);
+
+exports.default = _default;

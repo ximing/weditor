@@ -2,258 +2,543 @@
  * Created by yeanzhi on 17/4/4.
  */
 'use strict';
-import React, {Component} from 'react';
-import Dialog from '../dialog';
-import help from '../../model/help';
-import {getCtrl} from '../../lib/util'
-export default class HotKeysDialog extends Component {
 
-    closeDialog = ()=>{
-        help.hotKeysDialog = false;
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = undefined;
 
-    };
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-    render() {
-        return (
-            <Dialog
-                title="键盘快捷键"
-                className="weditor-hotkeys-dialog"
-                content={(
-                    < div className="weditor-hotkeys-inner">
-                        <table
-                            cellPadding="0"
-                            tabIndex="0"
-                            className="apps-shortcutshelppopup-content"
-                            >
-                            <tbody>
-                                <tr>
-                                    <th colSpan="2">
-                                        <h3
-                                        className="apps-shortcutshelppopup-content-header apps-shortcutshelppopup-content-header-first">
-                                        文本格式</h3>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element">
-                                    粗体
-                                </td>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element">
-                                        <span >{getCtrl()}+B</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element">
-                                    斜体
-                                </td>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element">
-                                        <span >{getCtrl()}+I</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element">
-                                    加下划线
-                                </td>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element">
-                                        <span >{getCtrl()}+U</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element">
-                                    删除线
-                                </td>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element">
-                                        <span >{getCtrl()}+Shift+X</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element">
-                                    清除格式
-                                </td>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element">
-                                        <span >{getCtrl()}+Shift+C</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th colSpan="2">
-                                        <h3 className="apps-shortcutshelppopup-content-header">段落格式</h3>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element">
-                                    应用“普通文本”
-                                </td>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element">
-                                        <span >{getCtrl()}+Alt+0</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element">
-                                    应用“标题1”
-                                </td>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element">
-                                        <span >{getCtrl()}+Shift+1</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element">
-                                    应用“标题2”
-                                </td>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element">
-                                        <span >{getCtrl()}+Alt+2</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element">
-                                    应用“标题3”
-                                </td>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element">
-                                        <span >{getCtrl()}+Alt+3</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element">
-                                    应用“标题4”
-                                </td>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element">
-                                        <span >{getCtrl()}+Alt+4</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element">
-                                    应用“标题5”
-                                </td>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element">
-                                        <span >{getCtrl()}+Alt+5</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element">
-                                    应用“标题6”
-                                </td>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element">
-                                        <span >{getCtrl()}+Alt+6</span>
-                                    </td>
-                                </tr>
+var _react = require('react');
 
+var _react2 = _interopRequireDefault(_react);
 
-                                <tr>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element">
-                                    左对齐文本
-                                </td>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element">
-                                        <span >{getCtrl()}+Shift+L</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element">
-                                    居中对齐文本
-                                </td>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element">
-                                        <span >{getCtrl()}+Shift+E</span>
-                                    </td>
-                                </tr>
+var _dialog = require('../dialog');
 
-                                <tr>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element">
-                                    右对齐文本
-                                </td>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element">
-                                        <span >{getCtrl()}+Shift+R</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element">
-                                    对齐文本
-                                </td>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element">
-                                        <span >{getCtrl()}+Shift+J</span>
-                                    </td>
-                                </tr>
+var _dialog2 = _interopRequireDefault(_dialog);
 
+var _help = require('../../model/help');
 
-                                <tr>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element">
-                                    有序列表
-                                </td>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element">
-                                        <span >{getCtrl()}+Option+l</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element">
-                                    无序列表
-                                </td>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element">
-                                        <span >{getCtrl()}+Option+u</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th colSpan="2">
-                                        <h3 className="apps-shortcutshelppopup-content-header">编辑</h3>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element">
-                                    撤销
-                                </td>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element">
-                                        <span >{getCtrl()}+z</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element">
-                                    重做
-                                </td>
-                                    <td
-                                    className="apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element">
-                                        <span >{getCtrl()}+y</span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                )}
-                onClose={this.closeDialog}
-            />
-        );
+var _help2 = _interopRequireDefault(_help);
+
+var _util = require('../../lib/util');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var HotKeysDialog = function (_Component) {
+    _inherits(HotKeysDialog, _Component);
+
+    function HotKeysDialog() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
+        _classCallCheck(this, HotKeysDialog);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = HotKeysDialog.__proto__ || Object.getPrototypeOf(HotKeysDialog)).call.apply(_ref, [this].concat(args))), _this), _this.closeDialog = function () {
+            _help2.default.hotKeysDialog = false;
+        }, _temp), _possibleConstructorReturn(_this, _ret);
     }
-}
+
+    _createClass(HotKeysDialog, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(_dialog2.default, {
+                title: '\u952E\u76D8\u5FEB\u6377\u952E',
+                className: 'weditor-hotkeys-dialog',
+                content: _react2.default.createElement(
+                    'div',
+                    { className: 'weditor-hotkeys-inner' },
+                    _react2.default.createElement(
+                        'table',
+                        {
+                            cellPadding: '0',
+                            tabIndex: '0',
+                            className: 'apps-shortcutshelppopup-content'
+                        },
+                        _react2.default.createElement(
+                            'tbody',
+                            null,
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'th',
+                                    { colSpan: '2' },
+                                    _react2.default.createElement(
+                                        'h3',
+                                        {
+                                            className: 'apps-shortcutshelppopup-content-header apps-shortcutshelppopup-content-header-first' },
+                                        '\u6587\u672C\u683C\u5F0F'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u7C97\u4F53'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        (0, _util.getCtrl)(),
+                                        '+B'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u659C\u4F53'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        (0, _util.getCtrl)(),
+                                        '+I'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u52A0\u4E0B\u5212\u7EBF'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        (0, _util.getCtrl)(),
+                                        '+U'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u5220\u9664\u7EBF'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        (0, _util.getCtrl)(),
+                                        '+Shift+X'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u6E05\u9664\u683C\u5F0F'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        (0, _util.getCtrl)(),
+                                        '+Shift+C'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'th',
+                                    { colSpan: '2' },
+                                    _react2.default.createElement(
+                                        'h3',
+                                        { className: 'apps-shortcutshelppopup-content-header' },
+                                        '\u6BB5\u843D\u683C\u5F0F'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u5E94\u7528\u201C\u666E\u901A\u6587\u672C\u201D'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        (0, _util.getCtrl)(),
+                                        '+Alt+0'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u5E94\u7528\u201C\u6807\u98981\u201D'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        (0, _util.getCtrl)(),
+                                        '+Shift+1'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u5E94\u7528\u201C\u6807\u98982\u201D'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        (0, _util.getCtrl)(),
+                                        '+Alt+2'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u5E94\u7528\u201C\u6807\u98983\u201D'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        (0, _util.getCtrl)(),
+                                        '+Alt+3'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u5E94\u7528\u201C\u6807\u98984\u201D'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        (0, _util.getCtrl)(),
+                                        '+Alt+4'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u5E94\u7528\u201C\u6807\u98985\u201D'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        (0, _util.getCtrl)(),
+                                        '+Alt+5'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u5E94\u7528\u201C\u6807\u98986\u201D'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        (0, _util.getCtrl)(),
+                                        '+Alt+6'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u5DE6\u5BF9\u9F50\u6587\u672C'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        (0, _util.getCtrl)(),
+                                        '+Shift+L'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u5C45\u4E2D\u5BF9\u9F50\u6587\u672C'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        (0, _util.getCtrl)(),
+                                        '+Shift+E'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u53F3\u5BF9\u9F50\u6587\u672C'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        (0, _util.getCtrl)(),
+                                        '+Shift+R'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u5BF9\u9F50\u6587\u672C'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        (0, _util.getCtrl)(),
+                                        '+Shift+J'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u6709\u5E8F\u5217\u8868'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        (0, _util.getCtrl)(),
+                                        '+Option+l'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u65E0\u5E8F\u5217\u8868'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        (0, _util.getCtrl)(),
+                                        '+Option+u'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'th',
+                                    { colSpan: '2' },
+                                    _react2.default.createElement(
+                                        'h3',
+                                        { className: 'apps-shortcutshelppopup-content-header' },
+                                        '\u7F16\u8F91'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u64A4\u9500'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        (0, _util.getCtrl)(),
+                                        '+z'
+                                    )
+                                )
+                            ),
+                            _react2.default.createElement(
+                                'tr',
+                                null,
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-desc apps-shortcutshelppopup-content-element' },
+                                    '\u91CD\u505A'
+                                ),
+                                _react2.default.createElement(
+                                    'td',
+                                    {
+                                        className: 'apps-shortcutshelppopup-shortcut-key apps-shortcutshelppopup-content-element' },
+                                    _react2.default.createElement(
+                                        'span',
+                                        null,
+                                        (0, _util.getCtrl)(),
+                                        '+y'
+                                    )
+                                )
+                            )
+                        )
+                    )
+                ),
+                onClose: this.closeDialog
+            });
+        }
+    }]);
+
+    return HotKeysDialog;
+}(_react.Component);
+
+exports.default = HotKeysDialog;

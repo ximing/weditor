@@ -6,24 +6,31 @@
  */
 'use strict';
 
-import React from 'react';
-import renderer from 'react-test-renderer';
-import {shallow} from 'enzyme';
-import Icon from '..';
+var _react = require('react');
 
-describe('common-component', () => {
-    it('Icon Snapshot Testing', () => {
-        const component = renderer.create(
-            <Icon type="wode" spin={true} className="test" style={{}}/>
-        );
-        let tree = component.toJSON();
+var _react2 = _interopRequireDefault(_react);
+
+var _reactTestRenderer = require('react-test-renderer');
+
+var _reactTestRenderer2 = _interopRequireDefault(_reactTestRenderer);
+
+var _enzyme = require('enzyme');
+
+var _ = require('..');
+
+var _2 = _interopRequireDefault(_);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+describe('common-component', function () {
+    it('Icon Snapshot Testing', function () {
+        var component = _reactTestRenderer2.default.create(_react2.default.createElement(_2.default, { type: 'wode', spin: true, className: 'test', style: {} }));
+        var tree = component.toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it('Icon DOM Testing', () => {
+    it('Icon DOM Testing', function () {
         // Render a checkbox with label in the document
-        const component = shallow(
-            <Icon type="wode" spin={true} className="test" style={{}}/>
-        );
+        var component = (0, _enzyme.shallow)(_react2.default.createElement(_2.default, { type: 'wode', spin: true, className: 'test', style: {} }));
 
         expect(component.text()).toEqual('');
         // component.find('input').simulate('change');
