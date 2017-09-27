@@ -32,6 +32,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -76,11 +80,11 @@ var _default = (_temp = _class = function (_Component) {
     style: {},
     spin: false
 }, _class.propTypes = {
-    type: _react.PropTypes.string,
-    className: _react.PropTypes.string,
-    onClick: _react.PropTypes.func,
-    style: _react.PropTypes.object,
-    spin: _react.PropTypes.bool
+    type: _propTypes2.default.string,
+    className: _propTypes2.default.string,
+    onClick: _propTypes2.default.func,
+    style: _propTypes2.default.object,
+    spin: _propTypes2.default.bool
 }, _temp);
 
 exports.default = _default;

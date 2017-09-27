@@ -22,6 +22,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _classnames = require('classnames');
 
 var _classnames2 = _interopRequireDefault(_classnames);
@@ -85,10 +89,10 @@ var _default = (_temp = _class = function (_Component) {
     title: '默认title',
     noWrap: true
 }, _class.propTypes = {
-    colors: _react.PropTypes.array,
-    onClick: _react.PropTypes.func,
-    title: _react.PropTypes.string,
-    noWrap: _react.PropTypes.bool
+    colors: _propTypes2.default.array,
+    onClick: _propTypes2.default.func,
+    title: _propTypes2.default.string,
+    noWrap: _propTypes2.default.bool
 }, _temp);
 
 exports.default = _default;

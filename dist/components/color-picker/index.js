@@ -22,6 +22,10 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 var _block = require('./block');
 
 var _block2 = _interopRequireDefault(_block);
@@ -162,10 +166,10 @@ var _default = (_temp2 = _class = function (_Component) {
     icon: 'picker icon',
     width: '193px'
 }, _class.propTypes = {
-    onChangeComplete: _react.PropTypes.func,
-    onChange: _react.PropTypes.func,
-    defaultColor: _react.PropTypes.string,
-    width: _react.PropTypes.string
+    onChangeComplete: _propTypes2.default.func,
+    onChange: _propTypes2.default.func,
+    defaultColor: _propTypes2.default.string,
+    width: _propTypes2.default.string
 }, _temp2);
 
 exports.default = _default;
