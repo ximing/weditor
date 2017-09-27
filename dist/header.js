@@ -134,7 +134,7 @@ var EditorHeader = (_temp = _class = function (_Component) {
             });
         };
 
-        _this.export = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
+        _this.export = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
             return regeneratorRuntime.wrap(function _callee$(_context) {
                 while (1) {
                     switch (_context.prev = _context.next) {

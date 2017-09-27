@@ -181,7 +181,7 @@ var Uploader = exports.Uploader = function () {
     }, {
         key: '_pickOnChange',
         value: function () {
-            var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee(event) {
+            var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(event) {
                 return regeneratorRuntime.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
@@ -208,7 +208,7 @@ var Uploader = exports.Uploader = function () {
     }, {
         key: '_pickOnClick',
         value: function () {
-            var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(event) {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(event) {
                 return regeneratorRuntime.wrap(function _callee2$(_context2) {
                     while (1) {
                         switch (_context2.prev = _context2.next) {
@@ -244,7 +244,7 @@ var Uploader = exports.Uploader = function () {
     }, {
         key: '_dndHandleDragenter',
         value: function () {
-            var _ref3 = _asyncToGenerator(regeneratorRuntime.mark(function _callee3(event) {
+            var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(event) {
                 return regeneratorRuntime.wrap(function _callee3$(_context3) {
                     while (1) {
                         switch (_context3.prev = _context3.next) {
@@ -269,7 +269,7 @@ var Uploader = exports.Uploader = function () {
     }, {
         key: '_dndHandleDragover',
         value: function () {
-            var _ref4 = _asyncToGenerator(regeneratorRuntime.mark(function _callee4(event) {
+            var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(event) {
                 return regeneratorRuntime.wrap(function _callee4$(_context4) {
                     while (1) {
                         switch (_context4.prev = _context4.next) {
@@ -296,7 +296,7 @@ var Uploader = exports.Uploader = function () {
     }, {
         key: '_dndHandleDragleave',
         value: function () {
-            var _ref5 = _asyncToGenerator(regeneratorRuntime.mark(function _callee5(event) {
+            var _ref5 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee5(event) {
                 return regeneratorRuntime.wrap(function _callee5$(_context5) {
                     while (1) {
                         switch (_context5.prev = _context5.next) {
@@ -322,7 +322,7 @@ var Uploader = exports.Uploader = function () {
     }, {
         key: '_dndHandleDrop',
         value: function () {
-            var _ref6 = _asyncToGenerator(regeneratorRuntime.mark(function _callee6(event) {
+            var _ref6 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee6(event) {
                 return regeneratorRuntime.wrap(function _callee6$(_context6) {
                     while (1) {
                         switch (_context6.prev = _context6.next) {
@@ -352,7 +352,7 @@ var Uploader = exports.Uploader = function () {
     }, {
         key: 'funGetFiles',
         value: function () {
-            var _ref7 = _asyncToGenerator(regeneratorRuntime.mark(function _callee7(e) {
+            var _ref7 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee7(e) {
                 var files, items, entrys, key, index, l, file, entry;
                 return regeneratorRuntime.wrap(function _callee7$(_context7) {
                     while (1) {
@@ -462,7 +462,7 @@ var Uploader = exports.Uploader = function () {
     }, {
         key: 'folderRead',
         value: function () {
-            var _ref8 = _asyncToGenerator(regeneratorRuntime.mark(function _callee10(entry) {
+            var _ref8 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee10(entry) {
                 var _this2 = this;
 
                 var res;
@@ -486,14 +486,14 @@ var Uploader = exports.Uploader = function () {
                                 _context11.next = 8;
                                 return new Promise(function (res) {
                                     entry.createReader().readEntries(function () {
-                                        var _ref9 = _asyncToGenerator(regeneratorRuntime.mark(function _callee9(entries) {
+                                        var _ref9 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee9(entries) {
                                             var _loop, i;
 
                                             return regeneratorRuntime.wrap(function _callee9$(_context10) {
                                                 while (1) {
                                                     switch (_context10.prev = _context10.next) {
                                                         case 0:
-                                                            _loop = regeneratorRuntime.mark(function _loop() {
+                                                            _loop = /*#__PURE__*/regeneratorRuntime.mark(function _loop() {
                                                                 var _entry, file;
 
                                                                 return regeneratorRuntime.wrap(function _loop$(_context9) {
@@ -510,7 +510,7 @@ var Uploader = exports.Uploader = function () {
                                                                                 _context9.next = 4;
                                                                                 return new Promise(function (res) {
                                                                                     _entry.file(function () {
-                                                                                        var _ref10 = _asyncToGenerator(regeneratorRuntime.mark(function _callee8(file) {
+                                                                                        var _ref10 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee8(file) {
                                                                                             return regeneratorRuntime.wrap(function _callee8$(_context8) {
                                                                                                 while (1) {
                                                                                                     switch (_context8.prev = _context8.next) {
@@ -645,7 +645,7 @@ var Uploader = exports.Uploader = function () {
     }, {
         key: 'pushQueue',
         value: function () {
-            var _ref11 = _asyncToGenerator(regeneratorRuntime.mark(function _callee11(file) {
+            var _ref11 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee11(file) {
                 var wuFile, res;
                 return regeneratorRuntime.wrap(function _callee11$(_context12) {
                     while (1) {
@@ -701,7 +701,7 @@ var Uploader = exports.Uploader = function () {
     }, {
         key: '_pushUploaderFile',
         value: function () {
-            var _ref12 = _asyncToGenerator(regeneratorRuntime.mark(function _callee12(wuFile) {
+            var _ref12 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee12(wuFile) {
                 return regeneratorRuntime.wrap(function _callee12$(_context13) {
                     while (1) {
                         switch (_context13.prev = _context13.next) {
@@ -754,7 +754,7 @@ var Uploader = exports.Uploader = function () {
     }, {
         key: 'startUpload',
         value: function () {
-            var _ref13 = _asyncToGenerator(regeneratorRuntime.mark(function _callee13() {
+            var _ref13 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee13() {
                 var file;
                 return regeneratorRuntime.wrap(function _callee13$(_context14) {
                     while (1) {
@@ -829,7 +829,7 @@ var Uploader = exports.Uploader = function () {
     }, {
         key: 'startHandleDir',
         value: function () {
-            var _ref14 = _asyncToGenerator(regeneratorRuntime.mark(function _callee14() {
+            var _ref14 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee14() {
                 return regeneratorRuntime.wrap(function _callee14$(_context15) {
                     while (1) {
                         switch (_context15.prev = _context15.next) {
@@ -850,7 +850,7 @@ var Uploader = exports.Uploader = function () {
     }, {
         key: 'startHandleFile',
         value: function () {
-            var _ref15 = _asyncToGenerator(regeneratorRuntime.mark(function _callee15(file) {
+            var _ref15 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee15(file) {
                 var _this3 = this;
 
                 var currentShared, currentProgress;
@@ -920,7 +920,7 @@ var Uploader = exports.Uploader = function () {
     }, {
         key: '_upfile',
         value: function () {
-            var _ref16 = _asyncToGenerator(regeneratorRuntime.mark(function _callee16(file) {
+            var _ref16 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee16(file) {
                 var shardCount, i, start, end, obj, res, _res;
 
                 return regeneratorRuntime.wrap(function _callee16$(_context17) {
@@ -1096,7 +1096,7 @@ var Uploader = exports.Uploader = function () {
     }, {
         key: '_catchUpfileError',
         value: function () {
-            var _ref17 = _asyncToGenerator(regeneratorRuntime.mark(function _callee17(err, file) {
+            var _ref17 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee17(err, file) {
                 return regeneratorRuntime.wrap(function _callee17$(_context18) {
                     while (1) {
                         switch (_context18.prev = _context18.next) {
@@ -1191,7 +1191,7 @@ var Uploader = exports.Uploader = function () {
     }, {
         key: 'resetFile',
         value: function () {
-            var _ref18 = _asyncToGenerator(regeneratorRuntime.mark(function _callee18(id) {
+            var _ref18 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee18(id) {
                 return regeneratorRuntime.wrap(function _callee18$(_context19) {
                     while (1) {
                         switch (_context19.prev = _context19.next) {
@@ -1229,7 +1229,7 @@ var Uploader = exports.Uploader = function () {
     }, {
         key: '_baseupload',
         value: function () {
-            var _ref19 = _asyncToGenerator(regeneratorRuntime.mark(function _callee19(blob, fileName) {
+            var _ref19 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee19(blob, fileName) {
                 var config, res, i;
                 return regeneratorRuntime.wrap(function _callee19$(_context20) {
                     while (1) {

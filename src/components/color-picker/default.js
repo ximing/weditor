@@ -7,7 +7,8 @@
 
 'use strict';
 import './index.scss';
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 export default class extends Component {
     static defaultProps = {

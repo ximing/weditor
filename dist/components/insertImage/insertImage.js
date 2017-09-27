@@ -100,7 +100,7 @@ var InsertImage = function (_Component) {
                 linkUrl: e.target.value
             });
         }, _this.onLoad = function () {
-            var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee(url) {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(url) {
                 return regeneratorRuntime.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
@@ -133,7 +133,7 @@ var InsertImage = function (_Component) {
                 return _ref2.apply(this, arguments);
             };
         }(), _this.insertImage = function () {
-            var _ref3 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(url) {
+            var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(url) {
                 var index, res, _getEditor$getLeaf, _getEditor$getLeaf2, leaf, offset;
 
                 return regeneratorRuntime.wrap(function _callee2$(_context2) {
