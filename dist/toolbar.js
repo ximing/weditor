@@ -82,6 +82,8 @@ var _format = require('./model/format');
 
 var _format2 = _interopRequireDefault(_format);
 
+var _rabjs = require('rabjs');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -396,6 +398,28 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
             );
         };
 
+        _this.renderMention = function () {
+            var onMouseDown = function onMouseDown(e) {
+                if (window.store.getState().plugins.mentionDialog != true) {
+                    _this.setState({ moreBtnActive: false });
+                    (0, _rabjs.call)('plugins.mentionDialog', true);
+                }
+                // if (getEditor()) {
+                //     let toolbar = getEditor().getModule('toolbar');
+                //     toolbar.handlers['image'].call(toolbar, !this.props.editor.format['image']);
+                // }
+                // $(document).trigger('click');
+            };
+            var classname = (0, _classnames2.default)({
+                button: true
+            });
+            return _react2.default.createElement(
+                'button',
+                { className: classname, onMouseDown: onMouseDown },
+                _react2.default.createElement(_icon2.default, { type: 'ren' })
+            );
+        };
+
         _this.renderMore = function () {
             var lineheight = _this.props.rangeFormat.lineheight;
 
@@ -578,6 +602,21 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                     },
                     _this.renderImageBtn()
                 ),
+                window.coDoc.ownerType === 1 ? _react2.default.createElement(_icon2.default, { type: 'vertical' }) : null,
+                window.coDoc.ownerType === 1 ? _react2.default.createElement(
+                    _tooltip2.default,
+                    {
+                        placement: 'bottomRight',
+                        mouseEnterDelay: 0,
+                        mouseLeaveDelay: 0,
+                        overlay: _react2.default.createElement(
+                            'div',
+                            null,
+                            '@\u4EBA'
+                        )
+                    },
+                    _this.renderMention()
+                ) : null,
                 _this.props.toolbar
             );
         };
@@ -702,6 +741,7 @@ var EditorToolbar = (_dec = (0, _mobxReact.inject)(function (state) {
                     destroyPopupOnHide: false,
                     zIndex: 40,
                     defaultPopupVisible: false,
+                    popupVisible: this.state.moreBtnActive,
                     mask: false,
                     action: ['click'],
                     popup: this.renderMore(),

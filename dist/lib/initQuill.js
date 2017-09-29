@@ -19,6 +19,10 @@ var _quillImageResizeModule = require('./modules/quill-image-resize-module');
 
 var _lineHeight = require('./formats/lineHeight');
 
+var _mention = require('./formats/mention');
+
+var _mention2 = _interopRequireDefault(_mention);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -46,6 +50,7 @@ _quill2.default.register(SizeStyle, true);
 _quill2.default.register(ColorStyle, true);
 _quill2.default.register(BackgroundStyle, true);
 _quill2.default.register(AlignStyle, true);
+_quill2.default.register(_mention2.default, true);
 _quill2.default.register({
     'modules/imageResize': _quillImageResizeModule.ImageResize
 }, true);
