@@ -48,7 +48,7 @@ var Mention = function (_Embed) {
             node.setAttribute('sponsoruid', value.sponsoruid);
             node.setAttribute('receiveruid', value.receiveruid);
             node.setAttribute('name', value.name);
-            if (window.userInfo.uid == value.receiveruid) {
+            if (window.userInfo && window.userInfo.uid == value.receiveruid) {
                 node.setAttribute('data-me', 'true');
             }
             // debugger
