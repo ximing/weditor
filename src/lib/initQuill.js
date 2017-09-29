@@ -6,6 +6,7 @@ import Quill from 'quill';
 import Delta from 'quill-delta';
 import {ImageResize} from './modules/quill-image-resize-module';
 import {LineHeightStyle} from './formats/lineHeight';
+import Mention from './formats/mention';
 
 var SizeStyle = Quill.import('attributors/style/size');
 var ColorStyle = Quill.import('attributors/style/color');
@@ -31,6 +32,7 @@ Quill.register(SizeStyle, true);
 Quill.register(ColorStyle, true);
 Quill.register(BackgroundStyle, true);
 Quill.register(AlignStyle, true);
+Quill.register(Mention, true);
 Quill.register({
     'modules/imageResize': ImageResize
 }, true);
@@ -38,6 +40,7 @@ Quill.register({
 Quill.register(LineHeightStyle);
 
 var Clipboard = Quill.import('modules/clipboard');
+
 class PlainClipboard extends Clipboard {
     // convert(html = null) {
     //     if (typeof html === 'string') {
@@ -53,7 +56,7 @@ class PlainClipboard extends Clipboard {
             this.container.innerHTML = html.replace(/\>\r?\n +\</g, '><'); // Remove spaces between tags
         }
         this.container.innerHTML = this.container.innerHTML
-            .replace(/<pre/gi,'<div').replace(/<\/pre>/gi,"</div>");
+            .replace(/<pre/gi, '<div').replace(/<\/pre>/gi, "</div>");
         let [elementMatchers, textMatchers] = this.prepareMatching();
         let delta = traverse(this.container, elementMatchers, textMatchers);
         // Remove trailing newline
@@ -77,7 +80,7 @@ class PlainClipboard extends Clipboard {
         setTimeout(() => {
             delta = delta.concat(this.convert()).delete(range.length);
             this.quill.updateContents(delta, Quill.sources.USER);
-      // range.length contributes to delta.length()
+            // range.length contributes to delta.length()
             this.quill.setSelection(delta.length() - range.length, Quill.sources.SILENT);
             this.quill.scrollingContainer.scrollTop = scrollTop;
             this.quill.focus();
@@ -88,17 +91,17 @@ const DOM_KEY = '__ql-matcher';
 
 function traverse(node, elementMatchers, textMatchers) {  // Post-order
     if (node.nodeType === node.TEXT_NODE) {
-        return textMatchers.reduce(function(delta, matcher) {
+        return textMatchers.reduce(function (delta, matcher) {
             return matcher(node, delta);
         }, new Delta());
     } else if (node.nodeType === node.ELEMENT_NODE) {
         return [].reduce.call(node.childNodes || [], (delta, childNode) => {
             let childrenDelta = traverse(childNode, elementMatchers, textMatchers);
             if (childNode.nodeType === node.ELEMENT_NODE) {
-                childrenDelta = elementMatchers.reduce(function(childrenDelta, matcher) {
+                childrenDelta = elementMatchers.reduce(function (childrenDelta, matcher) {
                     return matcher(childNode, childrenDelta);
                 }, childrenDelta);
-                childrenDelta = (childNode[DOM_KEY] || []).reduce(function(childrenDelta, matcher) {
+                childrenDelta = (childNode[DOM_KEY] || []).reduce(function (childrenDelta, matcher) {
                     return matcher(childNode, childrenDelta);
                 }, childrenDelta);
             }
@@ -113,11 +116,11 @@ function traverse(node, elementMatchers, textMatchers) {  // Post-order
 function deltaEndsWith(delta, text) {
     let endText = "";
     for (let i = delta.ops.length - 1; i >= 0 && endText.length < text.length; --i) {
-        let op  = delta.ops[i];
+        let op = delta.ops[i];
         if (typeof op.insert !== 'string') break;
         endText = op.insert + endText;
     }
-    return endText.slice(-1*text.length) === text;
+    return endText.slice(-1 * text.length) === text;
 }
 
 

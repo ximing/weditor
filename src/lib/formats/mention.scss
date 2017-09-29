@@ -1,0 +1,10 @@
+.mention-embed {
+    color: #118bfb;
+    &[data-me=true] {
+        color: #ff9900;
+    }
+    &.ql-embed-selected {
+        border: none;
+        // background-color: #efefef;
+    }
+}

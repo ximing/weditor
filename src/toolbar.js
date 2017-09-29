@@ -29,7 +29,7 @@ import format from './model/format';
 function preventDefault(e) {
     e.preventDefault();
 }
-
+import {connect, call, put} from 'rabjs';
 const $ = window.jQuery;
 
 function shiftRange(range, index, length, source) {
@@ -375,6 +375,28 @@ export default class EditorToolbar extends Component {
         );
     };
 
+    renderMention = () => {
+        const onMouseDown = e => {
+            if (window.store.getState().plugins.mentionDialog != true) {
+                this.setState({moreBtnActive: false});
+                call('plugins.mentionDialog', true);
+            }
+            // if (getEditor()) {
+            //     let toolbar = getEditor().getModule('toolbar');
+            //     toolbar.handlers['image'].call(toolbar, !this.props.editor.format['image']);
+            // }
+            // $(document).trigger('click');
+        };
+        const classname = classnames({
+            button: true
+        });
+        return (
+            <button className={classname} onMouseDown={onMouseDown}>
+                <Icon type="ren"/>
+            </button>
+        );
+    }
+
     renderMore = () => {
         let {lineheight} = this.props.rangeFormat;
         return (
@@ -475,6 +497,18 @@ export default class EditorToolbar extends Component {
                 >
                     {this.renderImageBtn()}
                 </ToolTip>
+                { window.coDoc.ownerType === 1 ? <Icon type="vertical"/> : null }
+                {
+                    window.coDoc.ownerType === 1 ?
+                    <ToolTip
+                        placement="bottomRight"
+                        mouseEnterDelay={0}
+                        mouseLeaveDelay={0}
+                        overlay={<div>@人</div>}
+                    >
+                        {this.renderMention()}
+                    </ToolTip> : null
+                }
                 {this.props.toolbar}
             </span>
         );
@@ -512,6 +546,7 @@ export default class EditorToolbar extends Component {
                 destroyPopupOnHide={false}
                 zIndex={40}
                 defaultPopupVisible={false}
+                popupVisible={this.state.moreBtnActive}
                 mask={false}
                 action={['click']}
                 popup={(this.renderMore())}
