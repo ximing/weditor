@@ -81,16 +81,20 @@ var Selection = (_dec = (0, _mobxReact.inject)('editor'), _dec(_class = (0, _mob
             var rectIndex = void 0,
                 selectionArray = [];
             if (rects) {
-                rects.forEach(function (rect, i) {
-                    rectIndex = '' + rect.top + rect.left + rect.width + rect.height;
+                try {
+                    rects.forEach(function (rect, i) {
+                        rectIndex = '' + rect.top + rect.left + rect.width + rect.height;
 
-                    // Note: Safari throws a rect with length 1 when caret with no selection. A
-                    // check was addedfor to avoid drawing those carets - they show up on blinking.
-                    if (!~index.indexOf(rectIndex) && rect.width > 1) {
-                        index.push(rectIndex);
-                        selectionArray.push(_this2.createSelectionBlock(rect, containerRect, i));
-                    }
-                });
+                        // Note: Safari throws a rect with length 1 when caret with no selection. A
+                        // check was addedfor to avoid drawing those carets - they show up on blinking.
+                        if (!~index.indexOf(rectIndex) && rect.width > 1) {
+                            index.push(rectIndex);
+                            selectionArray.push(_this2.createSelectionBlock(rect, containerRect, i));
+                        }
+                    });
+                } catch (err) {
+                    console.error(err);
+                }
             }
             return selectionArray;
         }
