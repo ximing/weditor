@@ -62,8 +62,8 @@ export default class WEditor extends Component {
                 {
                     !this.props.onlyRead && (
                         <Header doc={this.props.doc}
-                                fileOptions={this.props.options.fileOptions}
-                                helpOptions={this.props.options.helpOptions}/>
+                            fileOptions={this.props.options.fileOptions}
+                            helpOptions={this.props.options.helpOptions}/>
                     )
                 }
                 {

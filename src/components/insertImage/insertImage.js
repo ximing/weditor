@@ -206,12 +206,12 @@ export default class InsertImage extends Component {
                                 <TabPane tab={'本地上传'} key="1">
                                     <div className="weditor-uploader-file-inner">
                                         <p className="weditor-image-tips"
-                                           style={{display: (progress === 0 || progress === 100) ? 'block' : 'none'}}>
+                                            style={{display: (progress === 0 || progress === 100) ? 'block' : 'none'}}>
                                             最大上传20M的图片</p>
                                         <Button id="weditorUploaderPick"
-                                                style={{display: (progress === 0 || progress === 100) ? 'block' : 'none'}}>点击上传</Button>
+                                            style={{display: (progress === 0 || progress === 100) ? 'block' : 'none'}}>点击上传</Button>
                                         <Line percent={progress} trailWidth="2" strokeWidth="2" strokeColor="#118bfb"
-                                              style={{display: (progress > 0 && progress < 100) ? 'block' : 'none'}}/>
+                                            style={{display: (progress > 0 && progress < 100) ? 'block' : 'none'}}/>
 
                                     </div>
                                 </TabPane>

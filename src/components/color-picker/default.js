@@ -30,10 +30,10 @@ export default class extends Component {
         return (
             <div className="xm-color-picker-default">
                 <div className="xm-color-picker-default-show"
-                     style={{backgroundColor: color || defaultColor}}
+                    style={{backgroundColor: color || defaultColor}}
                 ></div>
                 <div className="xm-color-picker-default-button"
-                     onClick={this._handleClick}
+                    onClick={this._handleClick}
                 >默认颜色</div>
             </div>
         );

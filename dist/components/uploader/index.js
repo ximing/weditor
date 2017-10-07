@@ -213,6 +213,7 @@ var Uploader = exports.Uploader = function () {
                     while (1) {
                         switch (_context2.prev = _context2.next) {
                             case 0:
+                                // debugger 如果全局绑定的事件return false 会导致这个失效
                                 event.stopPropagation();
                                 event.preventDefault();
                                 this.$('#' + this.inputId).click();

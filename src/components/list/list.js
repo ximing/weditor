@@ -39,8 +39,8 @@ export default class List extends Component {
                     <div className="file-list-view">
                         {this.props.file.list.map((_,i)=>{
                             return <FileItem onSelect={()=>{}}
-                                             clickItem={this.edit(_)}
-                                             item={_} key={i}/>;
+                                clickItem={this.edit(_)}
+                                item={_} key={i}/>;
                         })}
                     </div>
                 </div>

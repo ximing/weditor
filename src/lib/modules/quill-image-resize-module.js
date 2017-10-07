@@ -20,7 +20,7 @@ export class ImageResize {
         this.quill = quill;
         this.options = options;
         let imageRect = {};
-        if(!options.readOnly){
+        if(!options.readOnly) {
             interact('.img-selection')
                 .resizable({
                     // preserveAspectRatio: true,

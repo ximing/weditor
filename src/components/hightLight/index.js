@@ -71,8 +71,8 @@ export default class extends Component {
                     {
                         ['yellow','green','cyan','magenta','white','darkGray','lightGray','black',
                             'blue','red','darkBlue','darkCyan','darkGreen','darkMagenta','darkRed'].map((item)=>{
-                                return <span style={{background:item}} key={item} onClick={this.selectBackground(item)}></span>;
-                            })
+                            return <span style={{background:item}} key={item} onClick={this.selectBackground(item)}></span>;
+                        })
                     }
                 </div>
             </button>

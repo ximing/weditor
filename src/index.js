@@ -67,10 +67,10 @@ class  Editor extends Component {
                 forceUpdate={forceUpdate}
             >
                 <WEditor onlyRead={this.props.onlyRead}
-                         modules={this.props.modules}
-                         options={this.props.options}
-                         toolbar={this.props.toolbar}
-                         doc={this.props.doc}/>
+                    modules={this.props.modules}
+                    options={this.props.options}
+                    toolbar={this.props.toolbar}
+                    doc={this.props.doc}/>
             </Provider>
         );
     }

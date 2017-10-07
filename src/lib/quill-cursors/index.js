@@ -25,7 +25,7 @@ function CursorsModule(quill, options) {
     this.container = this.quill.addContainer('ql-cursors');
 
     if (this.options.autoRegisterListener)
-        {this.registerTextChangeListener();}
+    {this.registerTextChangeListener();}
 
     window.addEventListener('resize', this.update.bind(this));
 }
@@ -51,7 +51,7 @@ CursorsModule.prototype.moveCursor = function (userId, range) {
 CursorsModule.prototype.removeCursor = function (userId) {
     var cursor = this.cursors[userId];
     if (cursor)
-        {cursor.el.parentNode.removeChild(cursor.el);}
+    {cursor.el.parentNode.removeChild(cursor.el);}
     delete this.cursors[userId];
 };
 
@@ -88,11 +88,11 @@ CursorsModule.prototype.shiftCursors = function (index, length) {
             // If characters we're added or there is no selection
             // advance start/end if it's greater or equal than index
             if (length > 0 || cursor.range.length == 0)
-                {this._shiftCursor(userId, index - 1, length);}
+            {this._shiftCursor(userId, index - 1, length);}
             // Else if characters were removed
             // move start/end back if it's only greater than index
             else
-                {this._shiftCursor(userId, index, length);}
+            {this._shiftCursor(userId, index, length);}
         }
     }, this);
 };
@@ -169,13 +169,13 @@ CursorsModule.prototype._buildCursor = function (userId, name) {
 CursorsModule.prototype._shiftCursor = function (userId, index, length) {
     var cursor = this.cursors[userId];
     if (cursor.range.index > index)
-        {cursor.range.index += length;}
+    {cursor.range.index += length;}
 };
 
 CursorsModule.prototype._hideCursor = function (userId) {
     var cursor = this.cursors[userId];
     if (cursor)
-        {cursor.el.classList.add('hidden');}
+    {cursor.el.classList.add('hidden');}
 };
 
 CursorsModule.prototype._updateCursor = function (cursor) {

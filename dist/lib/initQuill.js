@@ -84,7 +84,7 @@ var PlainClipboard = function (_Clipboard) {
             if (typeof html === 'string') {
                 this.container.innerHTML = html.replace(/\>\r?\n +\</g, '><'); // Remove spaces between tags
             }
-            this.container.innerHTML = this.container.innerHTML.replace(/<pre/gi, '<div').replace(/<\/pre>/gi, "</div>");
+            this.container.innerHTML = this.container.innerHTML.replace(/<pre/gi, '<div').replace(/<\/pre>/gi, '</div>');
 
             var _prepareMatching = this.prepareMatching(),
                 _prepareMatching2 = _slicedToArray(_prepareMatching, 2),
@@ -155,7 +155,7 @@ function traverse(node, elementMatchers, textMatchers) {
 }
 
 function deltaEndsWith(delta, text) {
-    var endText = "";
+    var endText = '';
     for (var _i2 = delta.ops.length - 1; _i2 >= 0 && endText.length < text.length; --_i2) {
         var op = delta.ops[_i2];
         if (typeof op.insert !== 'string') break;

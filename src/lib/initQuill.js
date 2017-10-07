@@ -56,7 +56,7 @@ class PlainClipboard extends Clipboard {
             this.container.innerHTML = html.replace(/\>\r?\n +\</g, '><'); // Remove spaces between tags
         }
         this.container.innerHTML = this.container.innerHTML
-            .replace(/<pre/gi, '<div').replace(/<\/pre>/gi, "</div>");
+            .replace(/<pre/gi, '<div').replace(/<\/pre>/gi, '</div>');
         let [elementMatchers, textMatchers] = this.prepareMatching();
         let delta = traverse(this.container, elementMatchers, textMatchers);
         // Remove trailing newline
@@ -114,7 +114,7 @@ function traverse(node, elementMatchers, textMatchers) {  // Post-order
 
 
 function deltaEndsWith(delta, text) {
-    let endText = "";
+    let endText = '';
     for (let i = delta.ops.length - 1; i >= 0 && endText.length < text.length; --i) {
         let op = delta.ops[i];
         if (typeof op.insert !== 'string') break;

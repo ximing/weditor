@@ -8,10 +8,9 @@
 'use strict';
 import './index.scss';
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Swatch from './swatch';
-
+import PropTypes from 'prop-types';
 export default class extends Component {
     static defaultProps = {
         colors: [],

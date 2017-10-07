@@ -401,7 +401,7 @@ export default class EditorToolbar extends Component {
         let {lineheight} = this.props.rangeFormat;
         return (
             <span className="more-toolbar-container"
-                  onClick={preventDefault}>
+                onClick={preventDefault}>
                 <div className="popup-triangle-wrapper">
                     <div className="popup-triangle-inner"></div>
                 </div>
@@ -500,14 +500,14 @@ export default class EditorToolbar extends Component {
                 { window.coDoc.ownerType === 1 ? <Icon type="vertical"/> : null }
                 {
                     window.coDoc.ownerType === 1 ?
-                    <ToolTip
-                        placement="bottomRight"
-                        mouseEnterDelay={0}
-                        mouseLeaveDelay={0}
-                        overlay={<div>@人</div>}
-                    >
-                        {this.renderMention()}
-                    </ToolTip> : null
+                        <ToolTip
+                            placement="bottomRight"
+                            mouseEnterDelay={0}
+                            mouseLeaveDelay={0}
+                            overlay={<div>@人</div>}
+                        >
+                            {this.renderMention()}
+                        </ToolTip> : null
                 }
                 {this.props.toolbar}
             </span>
@@ -555,7 +555,7 @@ export default class EditorToolbar extends Component {
             >
                 <button className={btnClassName} onClick={preventDefault}>更多 <Icon type="triangle"/></button>
             </Trigger>
-//rc-trigger-popup-zoom
+        //rc-trigger-popup-zoom
         );
     }
 

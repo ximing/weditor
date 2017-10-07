@@ -62,10 +62,10 @@ export default class extends Component {
             //[`${prefixCls}-loading`]: loading,
         });
         return <input type="button"
-                      value={this.props.children}
-                      onClick={this.onClick}
-                      className={classes}
-                      {...otherProps}
+            value={this.props.children}
+            onClick={this.onClick}
+            className={classes}
+            {...otherProps}
         />;
     }
 }

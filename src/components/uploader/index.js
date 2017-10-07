@@ -60,8 +60,8 @@ export class Uploader {
             }
             if (arr.length) {
                 this.accept = '\\.' + arr.join(',')
-                        .replace(/,/g, '$|\\.')
-                        .replace(/\*/g, '.*') + '$';
+                    .replace(/,/g, '$|\\.')
+                    .replace(/\*/g, '.*') + '$';
             }
             this.accept = new RegExp(this.accept, 'i');
         }
@@ -157,6 +157,7 @@ export class Uploader {
     }
 
     async _pickOnClick (event) {
+        // debugger 如果全局绑定的事件return false 会导致这个失效
         event.stopPropagation();
         event.preventDefault();
         this.$(`#${this.inputId}`).click();

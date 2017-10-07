@@ -62,10 +62,14 @@ var Selection = (_dec = (0, _mobxReact.inject)('editor'), _dec(_class = (0, _mob
     }, {
         key: 'createSelectionBlock',
         value: function createSelectionBlock(rect, containerRect, key) {
-            return _react2.default.createElement('span', { key: key, className: 'ql-cursor-selection-block', style: {
+            return _react2.default.createElement('span', {
+                key: key,
+                className: 'ql-cursor-selection-block',
+                style: {
                     top: rect.top - containerRect.top,
                     left: rect.left - containerRect.left,
-                    width: rect.width, height: rect.height
+                    width: rect.width,
+                    height: rect.height
                 } });
         }
     }, {
@@ -76,17 +80,18 @@ var Selection = (_dec = (0, _mobxReact.inject)('editor'), _dec(_class = (0, _mob
             var index = [];
             var rectIndex = void 0,
                 selectionArray = [];
+            if (rects) {
+                rects.forEach(function (rect, i) {
+                    rectIndex = '' + rect.top + rect.left + rect.width + rect.height;
 
-            rects.forEach(function (rect, i) {
-                rectIndex = '' + rect.top + rect.left + rect.width + rect.height;
-
-                // Note: Safari throws a rect with length 1 when caret with no selection.
-                // A check was addedfor to avoid drawing those carets - they show up on blinking.
-                if (!~index.indexOf(rectIndex) && rect.width > 1) {
-                    index.push(rectIndex);
-                    selectionArray.push(_this2.createSelectionBlock(rect, containerRect, i));
-                }
-            });
+                    // Note: Safari throws a rect with length 1 when caret with no selection. A
+                    // check was addedfor to avoid drawing those carets - they show up on blinking.
+                    if (!~index.indexOf(rectIndex) && rect.width > 1) {
+                        index.push(rectIndex);
+                        selectionArray.push(_this2.createSelectionBlock(rect, containerRect, i));
+                    }
+                });
+            }
             return selectionArray;
         }
     }, {
@@ -155,14 +160,11 @@ var Selection = (_dec = (0, _mobxReact.inject)('editor'), _dec(_class = (0, _mob
             }
             return _react2.default.createElement(
                 'div',
-                { className: 'weditor-selection', ref: 'selection',
+                {
+                    className: 'weditor-selection',
+                    ref: 'selection',
                     style: {
                         diplay: 'block'
-                        // height: sHeight,
-                        // width: sWidth,
-                        // left: sLeft,
-                        // top: sTop,
-                        // borderLeft:sWidth === 0 ? '0.5px solid black' : 'none'
                     } },
                 selectionArray
             );

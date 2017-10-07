@@ -95,18 +95,18 @@ export default class extends Component {
         return (
             <button className="xm-color-picker-container" id={this.state.id}>
                 <span className="xm-color-picker-icon"
-                      onClick={this._handleIconClick}
+                    onClick={this._handleIconClick}
                 >
                     {icon}
                 </span>
                 <div className={xmColorPicker} style={{width: width}}>
                     <Default onClick={this._handleClick} recentlyUsedColors={defaultColor} color={color}/>
                     <Block onClick={this._handleClick} onHover={this._handleHover} title="最近使用"
-                           colors={recentlyUsedColors}/>
+                        colors={recentlyUsedColors}/>
                     <Block onClick={this._handleClick} onHover={this._handleHover} title="主题颜色" colors={COLORS.THEME}
-                           noWrap={false}/>
+                        noWrap={false}/>
                     <Block onClick={this._handleClick} onHover={this._handleHover} title="标准颜色"
-                           colors={COLORS.STANDARD}/>
+                        colors={COLORS.STANDARD}/>
                 </div>
             </button>
         );

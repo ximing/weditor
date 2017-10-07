@@ -139,13 +139,13 @@ export default class LinkBubble extends Component {
             <div style={{width:388,height:77}}>
                 <div className="weditor-bubble-item">
                     <span>文本：</span> <Input className="weditor-insert-input"
-                                            value={insert.linkTitle || ''}
-                                            onChange={this.changeTitle}/>
+                        value={insert.linkTitle || ''}
+                        onChange={this.changeTitle}/>
                 </div>
                 <div className="weditor-bubble-item">
                     <span>链接：</span> <Input className="weditor-insert-input"
-                                            value={insert.linkUrl || ''}
-                                            onChange={this.changeUrl}/>
+                        value={insert.linkUrl || ''}
+                        onChange={this.changeUrl}/>
                     <Button onClick={this.apply}>应用</Button>
                 </div>
             </div>
