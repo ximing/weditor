@@ -6,7 +6,7 @@
     "main": "dist/index.js",
     "repository": "https://github.com/ximing/weditor",
     "scripts": {
-        "i": "SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/ npm install --registry=https://registry.npm.taobao.org",
+        "i": "SASS_BINARY_SITE=https://npmmirror.com/mirrors/node-sass/ npm install --registry=https://registry.npmmirror.com",
         "dev": "./node_modules/.bin/webpack-dev-server ",
         "prepublish": "npm run build",
         "buildlib": "webpack --config webpack.build.config.js",
