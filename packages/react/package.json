@@ -1,0 +1,27 @@
+{
+  "name": "@weditor/react",
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./style.css": "./dist/style.css"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup && cp src/style.css dist/style.css",
+    "test": "vitest run"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "dependencies": {
+    "@weditor/collab": "workspace:*",
+    "@weditor/core": "workspace:*",
+    "@weditor/preset-docs": "workspace:*"
+  }
+}
