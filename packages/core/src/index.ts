@@ -1,5 +1,6 @@
 export { schemaFromExtensions } from './schema'
 export { sanitizeHref, sanitizeSrc } from './sanitize'
+export { CommentStore } from './comment-store'
 export type {
   JSONContent,
   User,
