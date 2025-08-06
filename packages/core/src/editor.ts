@@ -1,8 +1,9 @@
 import { keymap } from 'prosemirror-keymap'
 import type { Schema } from 'prosemirror-model'
-import { EditorState, type Plugin } from 'prosemirror-state'
-import type { EditorView } from 'prosemirror-view'
+import { EditorState, type Plugin, type Transaction } from 'prosemirror-state'
+import { EditorView, type DirectEditorProps } from 'prosemirror-view'
 import { CommentStore } from './comment-store'
+import { htmlSerializer } from './html'
 import { schemaFromExtensions } from './schema'
 import type {
   CreateEditorOptions,
@@ -10,6 +11,7 @@ import type {
   EditorEvents,
   Extension,
   JSONContent,
+  Snapshot,
 } from './types'
 
 export class Editor {
@@ -111,6 +113,74 @@ export class Editor {
 
   getJSON(): JSONContent {
     return this.state.doc.toJSON() as JSONContent
+  }
+
+  getHTML(): string {
+    const ser = htmlSerializer(this.schema)
+    const wrap = document.createElement('div')
+    wrap.appendChild(ser.serializeFragment(this.state.doc.content))
+    return wrap.innerHTML
+  }
+
+  dispatch(tr: Transaction): void {
+    const oldState = this.state
+    this.#state = oldState.apply(tr)
+    this.comments.deriveDetached(this.#state.doc)
+    for (const ext of this.#extensions) {
+      ext.onTransaction?.({ editor: this, tr, oldState })
+    }
+    this.emit('transaction', {
+      tr,
+      state: this.#state,
+      remote: !!tr.getMeta('weditor-remote'),
+    })
+    if (tr.selectionSet) this.emit('selection', this.#state.selection)
+    this.emit('comments', this.comments.list())
+    this.#view?.updateState(this.#state)
+  }
+
+  resetFromSnapshot(snap: Snapshot): void {
+    for (const ext of this.#extensions) ext.prepareSnapshotReset?.(snap)
+    this.comments.replaceAll(snap.comments)
+    const plugins: Plugin[] = []
+    for (const ext of this.#extensions) {
+      const ctx = { schema: this.schema, editor: this }
+      plugins.push(...(ext.plugins?.(ctx) ?? []))
+      if (ext.keymap) plugins.push(keymap(ext.keymap(ctx)))
+    }
+    this.#state = EditorState.create({
+      schema: this.schema,
+      doc: this.schema.nodeFromJSON(snap.doc),
+      plugins,
+    })
+    this.comments.deriveDetached(this.#state.doc)
+    this.#view?.updateState(this.#state)
+    this.emit('comments', this.comments.list())
+    this.emit('sync', { status: 'ok' })
+  }
+
+  mount(
+    place: HTMLElement,
+    viewProps?: Omit<DirectEditorProps, 'state' | 'dispatchTransaction'>,
+  ): void {
+    this.unmount()
+    this.#view = new EditorView(place, {
+      ...viewProps,
+      state: this.state,
+      editable: () => this.#editable,
+      dispatchTransaction: (tr) => this.dispatch(tr),
+    })
+  }
+
+  unmount(): void {
+    this.#view?.destroy()
+    this.#view = null
+  }
+
+  destroy(): void {
+    this.unmount()
+    for (const ext of this.#extensions) ext.destroy?.({ editor: this })
+    this.#listeners.clear()
   }
 
   emit<K extends keyof EditorEvents>(event: K, payload: EditorEvents[K]): void {
