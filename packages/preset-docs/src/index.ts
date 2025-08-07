@@ -1,1 +1,1 @@
-export {}
+export { docsPreset, docsSchema } from './preset'
