@@ -1,5 +1,5 @@
-import { setBlockType as pmSetBlockType } from 'prosemirror-commands'
-import type { Command, Extension } from '@weditor/core'
+import type { Extension } from '@weditor/core'
+import { blockCommands } from '../commands/blocks'
 import { blockquote } from '../nodes/blockquote'
 import { code_block } from '../nodes/code-block'
 import { doc } from '../nodes/doc'
@@ -20,40 +20,6 @@ export function nodesExtension(): Extension {
       horizontal_rule,
       hard_break,
     },
-    commands: ({ schema, editor }) => {
-      const run = (cmd: Command) => cmd(editor.state, (tr) => editor.dispatch(tr))
-      return {
-        setBlockType: (args) => {
-          if ((args as { type: string }).type === 'blockquote') return false
-          if (args.type === 'heading') {
-            const level = Math.min(6, Math.max(1, args.level ?? 1)) as 1 | 2 | 3 | 4 | 5 | 6
-            const { $from } = editor.state.selection
-            const prev = $from.parent
-            const attrs =
-              prev.type.name === 'paragraph' || prev.type.name === 'heading'
-                ? {
-                    level,
-                    align: prev.attrs.align,
-                    indent: prev.attrs.indent,
-                    lineHeight: prev.attrs.lineHeight,
-                  }
-                : { level }
-            return run(pmSetBlockType(schema.nodes.heading, attrs))
-          }
-          if (args.type === 'code_block') return run(pmSetBlockType(schema.nodes.code_block))
-          const { $from } = editor.state.selection
-          const prev = $from.parent
-          const attrs =
-            prev.type.name === 'heading'
-              ? {
-                  align: prev.attrs.align,
-                  indent: prev.attrs.indent,
-                  lineHeight: prev.attrs.lineHeight,
-                }
-              : {}
-          return run(pmSetBlockType(schema.nodes.paragraph, attrs))
-        },
-      }
-    },
+    commands: blockCommands,
   }
 }
