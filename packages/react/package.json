@@ -23,5 +23,13 @@
     "@weditor/collab": "workspace:*",
     "@weditor/core": "workspace:*",
     "@weditor/preset-docs": "workspace:*"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/react": "18",
+    "@types/react-dom": "18",
+    "react": "18",
+    "react-dom": "18"
   }
 }
