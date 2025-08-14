@@ -1,1 +1,71 @@
 @import '@weditor/preset-docs/style.css';
+
+.weditor-toolbar {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  gap: 4px;
+  padding: 0 8px;
+  border-bottom: 1px solid #e0e0e0;
+  background: #fff;
+  box-sizing: border-box;
+  white-space: nowrap;
+}
+
+.weditor-toolbar button {
+  min-width: 28px;
+  height: 28px;
+  padding: 0 4px;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.weditor-toolbar button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.weditor-toolbar label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+}
+
+.weditor-toolbar select {
+  height: 28px;
+}
+
+.weditor-color-palette {
+  position: relative;
+}
+
+.weditor-color-palette-grid {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: repeat(10, 16px);
+  gap: 2px;
+  padding: 8px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.weditor-color-palette-grid .weditor-color-default {
+  grid-column: 1 / -1;
+  width: auto;
+  height: 24px;
+}
+
+.weditor-color-palette-grid .weditor-color-swatch {
+  width: 16px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0;
+  border: 1px solid #ccc;
+}
