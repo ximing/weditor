@@ -18,6 +18,9 @@ export function keymapExtension(): Extension {
       'Mod-Alt-4': () => editor.commands.setBlockType({ type: 'heading', level: 4 }),
       'Mod-Alt-5': () => editor.commands.setBlockType({ type: 'heading', level: 5 }),
       'Mod-Alt-6': () => editor.commands.setBlockType({ type: 'heading', level: 6 }),
+      'Mod-Shift-7': () => editor.commands.toggleOrderedList(),
+      'Mod-Shift-8': () => editor.commands.toggleBulletList(),
+      'Mod-Shift-9': () => editor.commands.toggleTaskList(),
       'Mod-k': () => {
         const { from, to } = editor.state.selection
         if (from === to) return false

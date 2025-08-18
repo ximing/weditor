@@ -1,0 +1,51 @@
+import type { Editor } from '@weditor/core'
+import type { Node as PMNode } from 'prosemirror-model'
+import { TextSelection } from 'prosemirror-state'
+import type { NodeView } from 'prosemirror-view'
+
+export function createTaskItemNodeView(editor: Editor) {
+  return (node: PMNode, _view: unknown, getPos: () => number | undefined): NodeView => {
+    const dom = document.createElement('li')
+    const box = document.createElement('span')
+    const contentDOM = document.createElement('div')
+    box.className = 'weditor-task-checkbox'
+    box.contentEditable = 'false'
+    box.setAttribute('role', 'checkbox')
+
+    const sync = (n: PMNode) => {
+      const checked = n.attrs.checked ? 'true' : 'false'
+      dom.setAttribute('data-checked', checked)
+      box.setAttribute('aria-checked', checked)
+    }
+    sync(node)
+
+    box.addEventListener('mousedown', (event) => {
+      event.preventDefault()
+    })
+    box.addEventListener('click', (event) => {
+      event.preventDefault()
+      const pos = getPos()
+      if (typeof pos === 'number') {
+        editor.dispatch(
+          editor.state.tr.setSelection(TextSelection.near(editor.state.doc.resolve(pos + 1))),
+        )
+      }
+      editor.commands.toggleTaskChecked()
+    })
+
+    dom.append(box, contentDOM)
+    return {
+      dom,
+      contentDOM,
+      update(updated) {
+        if (updated.type.name !== 'task_item') return false
+        node = updated
+        sync(node)
+        return true
+      },
+      ignoreMutation(mutation) {
+        return mutation.type === 'attributes'
+      },
+    }
+  }
+}

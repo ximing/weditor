@@ -32,3 +32,32 @@
   padding-left: 16px;
   color: #444;
 }
+.weditor-doc .ProseMirror ul,
+.weditor-doc .ProseMirror ol {
+  margin: 0 0 8px;
+  padding-left: 24px;
+}
+.weditor-doc .ProseMirror ul[data-task-list] {
+  list-style: none;
+  padding-left: 0;
+}
+.weditor-doc .ProseMirror li[data-checked] {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.weditor-doc .ProseMirror .weditor-task-checkbox {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-top: 4px;
+  border: 1px solid #666;
+  border-radius: 2px;
+  flex: none;
+  cursor: pointer;
+  user-select: none;
+}
+.weditor-doc .ProseMirror li[data-checked='true'] .weditor-task-checkbox {
+  background: #1a73e8;
+  border-color: #1a73e8;
+}
