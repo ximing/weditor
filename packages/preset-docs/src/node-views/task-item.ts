@@ -1,6 +1,5 @@
 import type { Editor } from '@weditor/core'
 import type { Node as PMNode } from 'prosemirror-model'
-import { TextSelection } from 'prosemirror-state'
 import type { NodeView } from 'prosemirror-view'
 
 export function createTaskItemNodeView(editor: Editor) {
@@ -25,12 +24,8 @@ export function createTaskItemNodeView(editor: Editor) {
     box.addEventListener('click', (event) => {
       event.preventDefault()
       const pos = getPos()
-      if (typeof pos === 'number') {
-        editor.dispatch(
-          editor.state.tr.setSelection(TextSelection.near(editor.state.doc.resolve(pos + 1))),
-        )
-      }
-      editor.commands.toggleTaskChecked()
+      const toggle = editor.commands.toggleTaskChecked as (pos?: number) => boolean
+      toggle(typeof pos === 'number' ? pos : undefined)
     })
 
     dom.append(box, contentDOM)

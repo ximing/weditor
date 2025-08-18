@@ -62,4 +62,55 @@ describe('lists', () => {
     expect(html).toContain('data-task-list="true"')
     expect(html).toContain('data-checked="false"')
   })
+
+  it('checkbox click is one undoable, editable-gated transaction', () => {
+    const editor = Editor.create({
+      extensions: docsPreset(),
+      content: {
+        type: 'doc',
+        content: [
+          {
+            type: 'task_list',
+            content: [
+              {
+                type: 'task_item',
+                attrs: { checked: false },
+                content: [{ type: 'paragraph', content: [{ type: 'text', text: 'One' }] }],
+              },
+              {
+                type: 'task_item',
+                attrs: { checked: false },
+                content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Two' }] }],
+              },
+            ],
+          },
+        ],
+      },
+    })
+    const itemPos: number[] = []
+    editor.state.doc.descendants((node, pos) => {
+      if (node.type.name === 'task_item') itemPos.push(pos)
+    })
+    expect(itemPos).toHaveLength(2)
+    editor.dispatch(
+      editor.state.tr.setSelection(TextSelection.create(editor.state.doc, itemPos[1]! + 2)),
+    )
+    const from = editor.state.selection.from
+    const place = document.createElement('div')
+    document.body.append(place)
+    editor.mount(place)
+    const box = place.querySelector('.weditor-task-checkbox') as HTMLElement | null
+    expect(box).toBeTruthy()
+    box!.click()
+    expect(editor.state.doc.firstChild!.firstChild!.attrs.checked).toBe(true)
+    expect(editor.commands.undo()).toBe(true)
+    expect(editor.state.doc.firstChild!.firstChild!.attrs.checked).toBe(false)
+    expect(editor.state.selection.from).toBe(from)
+    editor.setEditable(false)
+    box!.click()
+    expect(editor.state.doc.firstChild!.firstChild!.attrs.checked).toBe(false)
+    expect(editor.state.selection.from).toBe(from)
+    editor.destroy()
+    place.remove()
+  })
 })

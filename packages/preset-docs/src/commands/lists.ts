@@ -6,6 +6,7 @@ import {
   splitListItem as pmSplit,
   wrapInList,
 } from 'prosemirror-schema-list'
+import { TextSelection } from 'prosemirror-state'
 
 export function splitTaskItem(itemType: NodeType): Command {
   const split = pmSplit(itemType)
@@ -77,13 +78,21 @@ export function listCommands({
       }
       return false
     },
-    toggleTaskChecked: () => {
-      const { $from } = editor.state.selection
+    toggleTaskChecked: (pos?: number) => {
+      const { state } = editor
+      let tr = state.tr
+      if (typeof pos === 'number') {
+        if (pos < 0 || pos > state.doc.content.size) return false
+        const $pos = state.doc.resolve(pos)
+        if ($pos.nodeAfter?.type !== schema.nodes.task_item) return false
+        tr = tr.setSelection(TextSelection.near(state.doc.resolve(pos + 1)))
+      }
+      const $from = tr.selection.$from
       for (let d = $from.depth; d > 0; d--) {
         if ($from.node(d).type === schema.nodes.task_item) {
           const node = $from.node(d)
           editor.dispatch(
-            editor.state.tr.setNodeMarkup($from.before(d), undefined, {
+            tr.setNodeMarkup($from.before(d), undefined, {
               ...node.attrs,
               checked: !node.attrs.checked,
             }),
