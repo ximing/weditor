@@ -37,6 +37,8 @@ export function keymapExtension(): Extension {
         return true
       },
       'Shift-Enter': () => editor.commands.insertHardBreak(),
+      Tab: () => editor.commands.indent(),
+      'Shift-Tab': () => editor.commands.outdent(),
       Escape: () =>
         typeof editor.commands.clearPainter === 'function' ? editor.commands.clearPainter() : false,
     }),

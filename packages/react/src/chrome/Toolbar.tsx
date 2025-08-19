@@ -4,6 +4,7 @@ import {
   COLORS_STANDARD,
   COLORS_THEME,
   HIGHLIGHTS,
+  LINE_HEIGHTS,
 } from '@weditor/preset-docs'
 import { useEditor } from '../useEditor'
 import { ColorPalette } from './ColorPalette'
@@ -74,6 +75,23 @@ export function Toolbar() {
         onDefault={() => editor.commands.setHighlight(null)}
         onPick={(c) => editor.commands.setHighlight(c)}
       />
+      <button type="button" title="Align left" onMouseDown={(e) => { e.preventDefault(); editor.commands.setAlign({ align: 'left' }) }}>Left</button>
+      <button type="button" title="Align center" onMouseDown={(e) => { e.preventDefault(); editor.commands.setAlign({ align: 'center' }) }}>Center</button>
+      <button type="button" title="Align right" onMouseDown={(e) => { e.preventDefault(); editor.commands.setAlign({ align: 'right' }) }}>Right</button>
+      <button type="button" title="Align justify" onMouseDown={(e) => { e.preventDefault(); editor.commands.setAlign({ align: 'justify' }) }}>Justify</button>
+      <label>
+        Line height
+        <select
+          aria-label="Line height"
+          onChange={(e) => editor.commands.setLineHeight({ lineHeight: Number(e.target.value) })}
+        >
+          {LINE_HEIGHTS.map((h) => (
+            <option key={h} value={h}>{h}</option>
+          ))}
+        </select>
+      </label>
+      <button type="button" title="Indent" onMouseDown={(e) => { e.preventDefault(); editor.commands.indent() }}>Indent</button>
+      <button type="button" title="Outdent" onMouseDown={(e) => { e.preventDefault(); editor.commands.outdent() }}>Outdent</button>
     </div>
   )
 }

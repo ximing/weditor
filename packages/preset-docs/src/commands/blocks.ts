@@ -8,10 +8,14 @@ import {
 import type { Command, DocsCommands, Editor } from '@weditor/core'
 import type { Schema } from 'prosemirror-model'
 
+const ALIGN_VALUES = ['left', 'center', 'right', 'justify'] as const
+const LINE_HEIGHT_VALUES: ReadonlyArray<number | null> = [1, 1.15, 1.5, 2, 2.5, 3, null]
+const TEXTBLOCK_ATTR_NODES = ['paragraph', 'heading'] as const
+
 function setTextblockAttr(
   editor: Editor,
   patch: Record<string, unknown>,
-  allowed: ReadonlyArray<string>,
+  allowed: ReadonlyArray<string> = TEXTBLOCK_ATTR_NODES,
 ): boolean {
   const { $from, $to } = editor.state.selection
   let tr = editor.state.tr
@@ -25,6 +29,24 @@ function setTextblockAttr(
   if (!changed) return false
   editor.dispatch(tr)
   return true
+}
+
+function clampIndent(indent: number): number {
+  return Math.max(0, Math.min(8, Math.round(indent)))
+}
+
+function inListItem(editor: Editor): boolean {
+  const { $from } = editor.state.selection
+  for (let d = $from.depth; d > 0; d--) {
+    const name = $from.node(d).type.name
+    if (name === 'list_item' || name === 'task_item') return true
+  }
+  return false
+}
+
+function currentIndent(editor: Editor): number {
+  const n = editor.state.selection.$from.parent.attrs.indent
+  return typeof n === 'number' && Number.isFinite(n) ? n : 0
 }
 
 export function blockCommands({
@@ -92,14 +114,21 @@ export function blockCommands({
       return true
     },
     setAlign: ({ align }) => {
-      if (align !== null && !['left', 'center', 'right', 'justify'].includes(align)) return false
-      return setTextblockAttr(editor, { align }, ['paragraph', 'heading'])
+      if (align !== null && !ALIGN_VALUES.includes(align)) return false
+      return setTextblockAttr(editor, { align })
     },
     setLineHeight: ({ lineHeight }) => {
-      const allowed = [1, 1.15, 1.5, 2, 2.5, 3, null]
-      if (!allowed.includes(lineHeight as never)) return false
-      return setTextblockAttr(editor, { lineHeight }, ['paragraph', 'heading'])
+      if (!LINE_HEIGHT_VALUES.includes(lineHeight)) return false
+      return setTextblockAttr(editor, { lineHeight })
     },
-    setIndent: ({ indent }) => setTextblockAttr(editor, { indent }, ['paragraph', 'heading']),
+    setIndent: ({ indent }) => setTextblockAttr(editor, { indent: clampIndent(indent) }),
+    indent: () => {
+      if (inListItem(editor) && editor.commands.sinkListItem()) return true
+      return editor.commands.setIndent({ indent: currentIndent(editor) + 1 })
+    },
+    outdent: () => {
+      if (inListItem(editor) && editor.commands.liftListItem()) return true
+      return editor.commands.setIndent({ indent: currentIndent(editor) - 1 })
+    },
   }
 }
