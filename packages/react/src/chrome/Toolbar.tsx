@@ -92,6 +92,29 @@ export function Toolbar() {
       </label>
       <button type="button" title="Indent" onMouseDown={(e) => { e.preventDefault(); editor.commands.indent() }}>Indent</button>
       <button type="button" title="Outdent" onMouseDown={(e) => { e.preventDefault(); editor.commands.outdent() }}>Outdent</button>
+      <button
+        type="button"
+        title="Link"
+        onMouseDown={(e) => e.preventDefault()}
+        onClick={() => {
+          const href = window.prompt('URL')
+          if (href) editor.commands.setLink({ href })
+        }}
+      >
+        Link
+      </button>
+      <button
+        type="button"
+        title="Image"
+        onMouseDown={(e) => e.preventDefault()}
+        onClick={() => {
+          const src = window.prompt('Image URL')
+          if (src) editor.commands.insertImage({ src })
+        }}
+      >
+        Image
+      </button>
+      <input type="file" accept="image/*" hidden />
     </div>
   )
 }

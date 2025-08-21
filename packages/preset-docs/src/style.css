@@ -61,3 +61,51 @@
   background: #1a73e8;
   border-color: #1a73e8;
 }
+.weditor-doc .ProseMirror .weditor-image {
+  position: relative;
+  display: block;
+  max-width: 100%;
+}
+.weditor-doc .ProseMirror .weditor-image img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.weditor-doc .ProseMirror .weditor-image-handle {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: -4px;
+  width: 8px;
+  height: 100%;
+  cursor: ew-resize;
+  background: #4f81bd;
+}
+.weditor-doc .ProseMirror .ProseMirror-selectednode.weditor-image {
+  outline: 2px solid #4f81bd;
+}
+.weditor-doc .ProseMirror .ProseMirror-selectednode.weditor-image .weditor-image-handle {
+  display: block;
+}
+.ProseMirror-gapcursor {
+  display: none;
+  pointer-events: none;
+  position: absolute;
+}
+.ProseMirror-gapcursor:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -2px;
+  width: 20px;
+  border-top: 1px solid black;
+  animation: ProseMirror-cursor-blink 1.1s steps(2, start) infinite;
+}
+@keyframes ProseMirror-cursor-blink {
+  to {
+    visibility: hidden;
+  }
+}
+.ProseMirror-focused .ProseMirror-gapcursor {
+  display: block;
+}

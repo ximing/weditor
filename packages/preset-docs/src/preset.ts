@@ -1,5 +1,7 @@
 import { schemaFromExtensions, type Extension } from '@weditor/core'
 import { baseKeymapExtension } from './extensions/base-keymap'
+import { dropcursorExtension } from './extensions/dropcursor'
+import { gapcursorExtension } from './extensions/gapcursor'
 import { historyExtension } from './extensions/history'
 import { keymapExtension } from './extensions/keymap'
 import { listsExtension } from './extensions/lists'
@@ -13,6 +15,8 @@ export function docsPreset(opts?: { placeholder?: string }): Extension[] {
     nodesExtension(),
     marksExtension(),
     listsExtension(),
+    gapcursorExtension(),
+    dropcursorExtension(),
     placeholderExtension(opts?.placeholder ?? 'Start typing…'),
     keymapExtension(),
     baseKeymapExtension(),
