@@ -1,5 +1,6 @@
 import { sanitizeSrc, type DocsCommands, type Editor } from '@weditor/core'
 import type { Schema } from 'prosemirror-model'
+import { NodeSelection } from 'prosemirror-state'
 
 export function insertCommands({
   schema,
@@ -17,7 +18,15 @@ export function insertCommands({
         alt: alt ?? '',
         width: width ?? null,
       })
-      const { $from } = editor.state.selection
+      const sel = editor.state.selection
+      if (sel instanceof NodeSelection && sel.node.type === schema.nodes.image) {
+        const pos = sel.to
+        let tr = editor.state.tr.insert(pos, image)
+        tr = tr.setSelection(NodeSelection.create(tr.doc, pos))
+        editor.dispatch(tr)
+        return true
+      }
+      const { $from } = sel
       let tr = editor.state.tr
       if ($from.parent.isTextblock && $from.parent.content.size > 0) {
         const range = $from.blockRange()

@@ -1,4 +1,4 @@
-import type { Editor } from '@weditor/core'
+import { sanitizeSrc, type Editor } from '@weditor/core'
 import type { Node as PMNode } from 'prosemirror-model'
 import type { EditorView, NodeView } from 'prosemirror-view'
 
@@ -14,7 +14,7 @@ export function createImageNodeView(editor: Editor) {
     handle.contentEditable = 'false'
 
     const sync = (n: PMNode) => {
-      img.src = n.attrs.src
+      img.src = sanitizeSrc(String(n.attrs.src ?? '')) ?? ''
       img.alt = n.attrs.alt ?? ''
       if (typeof n.attrs.width === 'number' && Number.isFinite(n.attrs.width)) {
         img.setAttribute('width', String(n.attrs.width))
@@ -32,6 +32,12 @@ export function createImageNodeView(editor: Editor) {
     let startX = 0
     let startWidth = 0
 
+    const currentNode = () => {
+      const pos = getPos()
+      if (typeof pos !== 'number') return node
+      return view.state.doc.nodeAt(pos) ?? node
+    }
+
     const containerWidth = () =>
       wrap.parentElement?.clientWidth || view.dom.clientWidth || startWidth
 
@@ -40,31 +46,34 @@ export function createImageNodeView(editor: Editor) {
     const applyWidth = (width: number) => {
       const pos = getPos()
       if (typeof pos !== 'number') return
+      const current = view.state.doc.nodeAt(pos)
+      if (!current || current.type.name !== 'image') return
       editor.dispatch(
         editor.state.tr.setNodeMarkup(pos, undefined, {
-          ...node.attrs,
+          ...current.attrs,
           width,
         }),
       )
     }
 
-    handle.addEventListener('pointerdown', (event) => {
+    const onPointerDown = (event: PointerEvent) => {
       if (!editor.editable) return
       event.preventDefault()
       event.stopPropagation()
       dragging = true
       startX = event.clientX
+      const current = currentNode()
       startWidth =
-        typeof node.attrs.width === 'number' && Number.isFinite(node.attrs.width)
-          ? node.attrs.width
+        typeof current.attrs.width === 'number' && Number.isFinite(current.attrs.width)
+          ? current.attrs.width
           : img.getBoundingClientRect().width
       handle.setPointerCapture(event.pointerId)
-    })
+    }
 
-    handle.addEventListener('pointermove', (event) => {
+    const onPointerMove = (event: PointerEvent) => {
       if (!dragging) return
       img.style.width = `${clampWidth(startWidth + (event.clientX - startX))}px`
-    })
+    }
 
     const endDrag = (event: PointerEvent) => {
       if (!dragging) return
@@ -73,6 +82,8 @@ export function createImageNodeView(editor: Editor) {
       applyWidth(Math.round(clampWidth(startWidth + (event.clientX - startX))))
     }
 
+    handle.addEventListener('pointerdown', onPointerDown)
+    handle.addEventListener('pointermove', onPointerMove)
     handle.addEventListener('pointerup', endDrag)
     handle.addEventListener('pointercancel', endDrag)
 
@@ -95,6 +106,12 @@ export function createImageNodeView(editor: Editor) {
       },
       ignoreMutation() {
         return true
+      },
+      destroy() {
+        handle.removeEventListener('pointerdown', onPointerDown)
+        handle.removeEventListener('pointermove', onPointerMove)
+        handle.removeEventListener('pointerup', endDrag)
+        handle.removeEventListener('pointercancel', endDrag)
       },
     }
   }
