@@ -114,6 +114,16 @@ export function Toolbar() {
       >
         Image
       </button>
+      <button
+        type="button"
+        title="Insert table"
+        onMouseDown={(e) => {
+          e.preventDefault()
+          editor.commands.insertTable()
+        }}
+      >
+        Table
+      </button>
       <input type="file" accept="image/*" hidden />
     </div>
   )

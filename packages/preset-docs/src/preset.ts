@@ -8,12 +8,14 @@ import { listsExtension } from './extensions/lists'
 import { marksExtension } from './extensions/marks'
 import { nodesExtension } from './extensions/nodes'
 import { placeholderExtension } from './extensions/placeholder'
+import { tablesExtension } from './extensions/tables'
 
 export function docsPreset(opts?: { placeholder?: string }): Extension[] {
   return [
     historyExtension(),
     nodesExtension(),
     marksExtension(),
+    tablesExtension(),
     listsExtension(),
     gapcursorExtension(),
     dropcursorExtension(),

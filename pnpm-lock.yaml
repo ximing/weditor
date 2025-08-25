@@ -140,6 +140,9 @@ importers:
       '@weditor/preset-docs':
         specifier: workspace:*
         version: link:../preset-docs
+      prosemirror-tables:
+        specifier: ^1.6.4
+        version: 1.8.5
     devDependencies:
       '@testing-library/jest-dom':
         specifier: ^7.0.1

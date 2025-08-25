@@ -109,3 +109,46 @@
 .ProseMirror-focused .ProseMirror-gapcursor {
   display: block;
 }
+.weditor-doc .ProseMirror .tableWrapper {
+  overflow-x: auto;
+  margin: 0 0 8px;
+}
+.weditor-doc .ProseMirror table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  width: 100%;
+  overflow: hidden;
+}
+.weditor-doc .ProseMirror td,
+.weditor-doc .ProseMirror th {
+  border: 1px solid #ccc;
+  padding: 6px 8px;
+  vertical-align: top;
+  box-sizing: border-box;
+  position: relative;
+  min-width: 48px;
+}
+.weditor-doc .ProseMirror .column-resize-handle {
+  position: absolute;
+  right: -2px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  z-index: 20;
+  background-color: #adf;
+  pointer-events: none;
+}
+.weditor-doc .ProseMirror.resize-cursor {
+  cursor: col-resize;
+}
+.weditor-doc .ProseMirror .selectedCell:after {
+  z-index: 2;
+  position: absolute;
+  content: '';
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(200, 200, 255, 0.4);
+  pointer-events: none;
+}

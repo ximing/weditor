@@ -1,10 +1,11 @@
 /** @vitest-environment happy-dom */
 import { docsPreset } from '@weditor/preset-docs'
-import { fireEvent, render, waitFor } from '@testing-library/react'
+import { cleanup, fireEvent, render, waitFor } from '@testing-library/react'
 import React from 'react'
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it } from 'vitest'
 import { EditorProvider } from '../EditorProvider'
 import { EditorSurface } from '../EditorSurface'
+import { TableBubble } from '../chrome/TableBubble'
 import { Toolbar } from '../chrome/Toolbar'
 import { useEditor } from '../useEditor'
 
@@ -12,6 +13,7 @@ function Harness() {
   return (
     <EditorProvider extensions={docsPreset()}>
       <Toolbar />
+      <TableBubble />
       <EditorSurface />
       <Inspector />
     </EditorProvider>
@@ -23,10 +25,13 @@ function Inspector() {
   return <div data-testid="json">{JSON.stringify(editor.getJSON())}</div>
 }
 
+afterEach(() => cleanup())
+
 describe('Toolbar', () => {
   it('undo / redo / toggleStrong / heading 1 / font / color buttons dispatch commands', async () => {
     const { getByTitle, getByTestId, getByLabelText } = render(<Harness />)
     await waitFor(() => getByTitle('Bold'))
+    expect(getByTitle('Insert table')).toBeTruthy()
     fireEvent.mouseDown(getByTitle('Bold'))
     fireEvent.mouseDown(getByTitle('Italic'))
     fireEvent.mouseDown(getByTitle('Underline'))

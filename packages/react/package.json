@@ -22,7 +22,8 @@
   "dependencies": {
     "@weditor/collab": "workspace:*",
     "@weditor/core": "workspace:*",
-    "@weditor/preset-docs": "workspace:*"
+    "@weditor/preset-docs": "workspace:*",
+    "prosemirror-tables": "^1.6.4"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^7.0.1",

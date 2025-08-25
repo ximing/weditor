@@ -12,6 +12,7 @@ import { horizontal_rule } from '../nodes/horizontal-rule'
 import { image } from '../nodes/image'
 import { listNodes } from '../nodes/lists'
 import { paragraph } from '../nodes/paragraph'
+import { tableNodeSpecs } from '../nodes/table'
 import { taskNodes } from '../nodes/task-list'
 import { createImageNodeView } from '../node-views/image'
 import { createTaskItemNodeView } from '../node-views/task-item'
@@ -30,6 +31,7 @@ export function nodesExtension(): Extension {
       image,
       ...listNodes,
       ...taskNodes,
+      ...tableNodeSpecs,
     },
     commands: (ctx) => ({
       ...blockCommands(ctx),

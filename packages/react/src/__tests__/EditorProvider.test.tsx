@@ -3,6 +3,7 @@ import { docsPreset } from '@weditor/preset-docs'
 import { cleanup, render, waitFor } from '@testing-library/react'
 import React, { StrictMode } from 'react'
 import { afterEach, describe, expect, it } from 'vitest'
+import { TableBubble } from '../chrome/TableBubble'
 import { EditorProvider } from '../EditorProvider'
 import { EditorSurface } from '../EditorSurface'
 import { useEditor } from '../useEditor'
@@ -14,7 +15,12 @@ function Probe({ onReady }: { onReady: (n: number) => void }) {
   React.useEffect(() => {
     if (editor) onReady(editor.state.doc.childCount)
   }, [editor, onReady])
-  return <EditorSurface />
+  return (
+    <>
+      <TableBubble />
+      <EditorSurface />
+    </>
+  )
 }
 
 describe('EditorProvider', () => {
@@ -47,7 +53,12 @@ describe('EditorProvider', () => {
       React.useEffect(() => {
         if (editor) ids.push(String(editor.state.doc.nodeSize))
       }, [editor])
-      return <EditorSurface />
+      return (
+        <>
+          <TableBubble />
+          <EditorSurface />
+        </>
+      )
     }
     render(
       <>
