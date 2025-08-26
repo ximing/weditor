@@ -15,8 +15,8 @@ export function Toolbar() {
     <div className="weditor-toolbar" role="toolbar">
       <button type="button" title="Undo" onMouseDown={(e) => { e.preventDefault(); editor.commands.undo() }}>Undo</button>
       <button type="button" title="Redo" onMouseDown={(e) => { e.preventDefault(); editor.commands.redo() }}>Redo</button>
-      <button type="button" title="Paint format" disabled>Paint format</button>
-      <button type="button" title="Clear formatting" disabled>Clear formatting</button>
+      <button type="button" title="Paint format" onMouseDown={(e) => { e.preventDefault(); editor.commands.copyFormat() }}>Paint format</button>
+      <button type="button" title="Clear formatting" onMouseDown={(e) => { e.preventDefault(); editor.commands.clearFormat() }}>Clear formatting</button>
       <label>
         Block type
         <select

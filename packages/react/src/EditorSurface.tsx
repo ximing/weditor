@@ -1,3 +1,4 @@
+import { formatPainterPluginKey } from '@weditor/preset-docs'
 import { useEffect, useRef } from 'react'
 import { useEditor } from './useEditor'
 
@@ -10,5 +11,15 @@ export function EditorSurface({ className }: { className?: string }) {
     editor.mount(el)
     return () => editor.unmount()
   }, [editor])
-  return <div className={['weditor-surface', 'weditor-doc', className].filter(Boolean).join(' ')} ref={ref} />
+  return (
+    <div
+      className={['weditor-surface', 'weditor-doc', className].filter(Boolean).join(' ')}
+      ref={ref}
+      onMouseUp={() => {
+        if (!formatPainterPluginKey.getState(editor.state)) return
+        if (editor.state.selection.empty) return
+        editor.commands.applyFormat()
+      }}
+    />
+  )
 }

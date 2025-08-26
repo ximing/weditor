@@ -1,6 +1,7 @@
 import { schemaFromExtensions, type Extension } from '@weditor/core'
 import { baseKeymapExtension } from './extensions/base-keymap'
 import { dropcursorExtension } from './extensions/dropcursor'
+import { formatPainterExtension } from './extensions/format-painter'
 import { gapcursorExtension } from './extensions/gapcursor'
 import { historyExtension } from './extensions/history'
 import { keymapExtension } from './extensions/keymap'
@@ -19,6 +20,7 @@ export function docsPreset(opts?: { placeholder?: string }): Extension[] {
     listsExtension(),
     gapcursorExtension(),
     dropcursorExtension(),
+    formatPainterExtension(),
     placeholderExtension(opts?.placeholder ?? 'Start typing…'),
     keymapExtension(),
     baseKeymapExtension(),
