@@ -70,6 +70,21 @@
   border: 1px solid #ccc;
 }
 
+.weditor-find {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-bottom: 1px solid #e0e0e0;
+  background: #fff;
+  font-size: 12px;
+}
+
+.weditor-find input {
+  height: 28px;
+  min-width: 120px;
+}
+
 .weditor-table-bubble {
   display: flex;
   flex-wrap: wrap;

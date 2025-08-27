@@ -141,6 +141,12 @@
 .weditor-doc .ProseMirror.resize-cursor {
   cursor: col-resize;
 }
+.weditor-doc .ProseMirror .weditor-search-match {
+  background: #fff59d;
+}
+.weditor-doc .ProseMirror .weditor-search-match-active {
+  background: #ffd54f;
+}
 .weditor-doc .ProseMirror .selectedCell:after {
   z-index: 2;
   position: absolute;

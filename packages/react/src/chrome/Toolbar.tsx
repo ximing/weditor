@@ -124,6 +124,16 @@ export function Toolbar() {
       >
         Table
       </button>
+      <button
+        type="button"
+        title="Find"
+        onMouseDown={(e) => {
+          e.preventDefault()
+          editor.emit('openFind', undefined)
+        }}
+      >
+        Find
+      </button>
       <input type="file" accept="image/*" hidden />
     </div>
   )

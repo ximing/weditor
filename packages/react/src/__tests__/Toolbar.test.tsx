@@ -5,6 +5,7 @@ import React from 'react'
 import { afterEach, describe, expect, it } from 'vitest'
 import { EditorProvider } from '../EditorProvider'
 import { EditorSurface } from '../EditorSurface'
+import { FindBar } from '../chrome/FindBar'
 import { TableBubble } from '../chrome/TableBubble'
 import { Toolbar } from '../chrome/Toolbar'
 import { useEditor } from '../useEditor'
@@ -13,6 +14,7 @@ function Harness() {
   return (
     <EditorProvider extensions={docsPreset()}>
       <Toolbar />
+      <FindBar />
       <TableBubble />
       <EditorSurface />
       <Inspector />
@@ -32,6 +34,7 @@ describe('Toolbar', () => {
     const { getByTitle, getByTestId, getByLabelText } = render(<Harness />)
     await waitFor(() => getByTitle('Bold'))
     expect(getByTitle('Insert table')).toBeTruthy()
+    expect(getByTitle('Find')).toBeTruthy()
     fireEvent.mouseDown(getByTitle('Bold'))
     fireEvent.mouseDown(getByTitle('Italic'))
     fireEvent.mouseDown(getByTitle('Underline'))
@@ -45,5 +48,14 @@ describe('Toolbar', () => {
     expect(json.length).toBeGreaterThan(0)
     fireEvent.mouseDown(getByTitle('Undo'))
     fireEvent.mouseDown(getByTitle('Redo'))
+  })
+
+  it('Find button emits openFind and FindBar appears', async () => {
+    const { getByTitle, getByRole, getByLabelText } = render(<Harness />)
+    await waitFor(() => getByTitle('Find'))
+    fireEvent.mouseDown(getByTitle('Find'))
+    expect(getByRole('search')).toBeTruthy()
+    expect(getByLabelText('Find')).toBeTruthy()
+    expect(getByLabelText('Replace')).toBeTruthy()
   })
 })

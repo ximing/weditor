@@ -1,6 +1,7 @@
 export { docsPreset, docsSchema } from './preset'
 export { placeholderExtension } from './extensions/placeholder'
 export { formatPainterPluginKey } from './extensions/format-painter'
+export { findAll, searchPluginKey } from './extensions/search'
 export {
   COLORS_STANDARD,
   COLORS_THEME,

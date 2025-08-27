@@ -9,6 +9,7 @@ import { listsExtension } from './extensions/lists'
 import { marksExtension } from './extensions/marks'
 import { nodesExtension } from './extensions/nodes'
 import { placeholderExtension } from './extensions/placeholder'
+import { searchExtension } from './extensions/search'
 import { tablesExtension } from './extensions/tables'
 
 export function docsPreset(opts?: { placeholder?: string }): Extension[] {
@@ -20,6 +21,7 @@ export function docsPreset(opts?: { placeholder?: string }): Extension[] {
     listsExtension(),
     gapcursorExtension(),
     dropcursorExtension(),
+    searchExtension(),
     formatPainterExtension(),
     placeholderExtension(opts?.placeholder ?? 'Start typing…'),
     keymapExtension(),
