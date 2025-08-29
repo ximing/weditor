@@ -35,5 +35,10 @@ export function insertCommands({
       editor.dispatch(tr.replaceSelectionWith(image))
       return true
     },
+    insertMention: ({ id, name }) => {
+      const mention = schema.nodes.mention.create({ id, name })
+      editor.dispatch(editor.state.tr.replaceSelectionWith(mention))
+      return true
+    },
   }
 }

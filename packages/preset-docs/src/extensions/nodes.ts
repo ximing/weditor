@@ -11,10 +11,12 @@ import { heading } from '../nodes/heading'
 import { horizontal_rule } from '../nodes/horizontal-rule'
 import { image } from '../nodes/image'
 import { listNodes } from '../nodes/lists'
+import { mention } from '../nodes/mention'
 import { paragraph } from '../nodes/paragraph'
 import { tableNodeSpecs } from '../nodes/table'
 import { taskNodes } from '../nodes/task-list'
 import { createImageNodeView } from '../node-views/image'
+import { createMentionNodeView } from '../node-views/mention'
 import { createTaskItemNodeView } from '../node-views/task-item'
 
 export function nodesExtension(): Extension {
@@ -29,6 +31,7 @@ export function nodesExtension(): Extension {
       horizontal_rule,
       hard_break,
       image,
+      mention,
       ...listNodes,
       ...taskNodes,
       ...tableNodeSpecs,
@@ -44,6 +47,7 @@ export function nodesExtension(): Extension {
           nodeViews: {
             task_item: createTaskItemNodeView(editor),
             image: createImageNodeView(editor),
+            mention: createMentionNodeView(),
           },
         },
       }),

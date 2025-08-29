@@ -87,6 +87,12 @@
 .weditor-doc .ProseMirror .ProseMirror-selectednode.weditor-image .weditor-image-handle {
   display: block;
 }
+.mention-embed {
+  color: #1a73e8;
+  background: #e8f0fe;
+  border-radius: 2px;
+  padding: 0 2px;
+}
 .ProseMirror-gapcursor {
   display: none;
   pointer-events: none;

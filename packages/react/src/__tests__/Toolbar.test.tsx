@@ -35,6 +35,7 @@ describe('Toolbar', () => {
     await waitFor(() => getByTitle('Bold'))
     expect(getByTitle('Insert table')).toBeTruthy()
     expect(getByTitle('Find')).toBeTruthy()
+    expect(getByTitle('Mention')).toBeTruthy()
     fireEvent.mouseDown(getByTitle('Bold'))
     fireEvent.mouseDown(getByTitle('Italic'))
     fireEvent.mouseDown(getByTitle('Underline'))

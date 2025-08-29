@@ -116,6 +116,16 @@ export function Toolbar() {
       </button>
       <button
         type="button"
+        title="Mention"
+        onMouseDown={(e) => {
+          e.preventDefault()
+          editor.commands.insertMention({ id: 'demo', name: 'Demo' })
+        }}
+      >
+        Mention
+      </button>
+      <button
+        type="button"
         title="Insert table"
         onMouseDown={(e) => {
           e.preventDefault()
