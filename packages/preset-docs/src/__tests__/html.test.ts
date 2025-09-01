@@ -39,4 +39,19 @@ describe('HTML mapping', () => {
     const editor = Editor.create({ extensions: docsPreset() })
     expect(editor.commands.setLink({ href: 'javascript:alert(1)' })).toBe(false)
   })
+
+  it('getHTML omits data-comment-id; paste parser ignores span[data-comment-id]', () => {
+    const editor = Editor.create({ extensions: docsPreset() })
+    editor.dispatch(editor.state.tr.insertText('Hello'))
+    editor.commands.addComment({ body: 'n', author: { id: 'a', name: 'Alice' }, from: 1, to: 6 })
+    expect(editor.getHTML()).not.toContain('data-comment-id')
+    const wrap = document.createElement('div')
+    wrap.innerHTML = `<p><span data-comment-id="c_abc">Hi</span></p>`
+    const doc = DOMParser.fromSchema(docsSchema()).parse(wrap)
+    let saw = false
+    doc.descendants((n) => {
+      if (n.marks.some((m) => m.type.name === 'comment')) saw = true
+    })
+    expect(saw).toBe(false)
+  })
 })

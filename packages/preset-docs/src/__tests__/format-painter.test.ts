@@ -45,19 +45,13 @@ describe('format painter', () => {
     editor.commands.setIndent({ indent: 2 })
     editor.commands.setBlockType({ type: 'heading', level: 2 })
     const commentType = editor.schema.marks.comment
-    if (commentType) {
-      editor.dispatch(
-        editor.state.tr.addMark(1, 6, commentType.create({ id: 'c_keep' })),
-      )
-    }
+    editor.dispatch(editor.state.tr.addMark(1, 6, commentType.create({ id: 'c_keep' })))
     expect(editor.commands.clearFormat()).toBe(true)
     expect(editor.state.doc.rangeHasMark(1, 6, editor.schema.marks.strong)).toBe(false)
     expect(editor.state.doc.firstChild?.type.name).toBe('heading')
     expect(editor.state.doc.firstChild?.attrs.align).toBeNull()
     expect(editor.state.doc.firstChild?.attrs.indent).toBe(0)
-    if (commentType) {
-      expect(editor.state.doc.rangeHasMark(1, 6, commentType)).toBe(true)
-    }
+    expect(editor.state.doc.rangeHasMark(1, 6, commentType)).toBe(true)
   })
 
   it('formatPainter sits before placeholder in docsPreset', () => {
