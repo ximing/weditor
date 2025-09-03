@@ -3,16 +3,24 @@ import type { Decoration, DecorationSet } from 'prosemirror-view'
 import { describe, expect, it } from 'vitest'
 import { commentsUiKey, docsPreset, pickCommentIdAt } from '../index'
 
-function decorationClasses(editor: Editor): string[] {
+function decorationSet(editor: Editor): DecorationSet | null {
   const plugin = commentsUiKey.get(editor.state)
   const decoFn = plugin?.props.decorations
-  if (!plugin || typeof decoFn !== 'function') return []
-  const set = decoFn.call(plugin, editor.state) as DecorationSet | null | undefined
+  if (!plugin || typeof decoFn !== 'function') return null
+  return (decoFn.call(plugin, editor.state) as DecorationSet | null | undefined) ?? null
+}
+
+function decorationRanges(editor: Editor): { from: number; to: number; class: string }[] {
+  const set = decorationSet(editor)
   if (!set) return []
   return set.find().map((d) => {
     const typed = d as Decoration & { type: { attrs?: { class?: string } } }
-    return typed.type.attrs?.class ?? ''
+    return { from: d.from, to: d.to, class: typed.type.attrs?.class ?? '' }
   })
+}
+
+function decorationClasses(editor: Editor): string[] {
+  return decorationRanges(editor).map((d) => d.class)
 }
 
 const alice = { id: 'a', name: 'Alice' }
@@ -128,5 +136,28 @@ describe('commentsUi decorations', () => {
     expect(decorationClasses(editor).some((c) => c.split(' ').includes('weditor-comment-skel'))).toBe(
       true,
     )
+  })
+
+  it('keeps both sequential decorations when ids sort opposite to document order', () => {
+    const editor = Editor.create({ extensions: docsPreset() })
+    const z = editor.schema.marks.comment.create({ id: 'c_zzz' })
+    const a = editor.schema.marks.comment.create({ id: 'c_aaa' })
+    const p1 = editor.schema.node('paragraph', null, editor.schema.text('Hello', [z]))
+    const p2 = editor.schema.node('paragraph', null, editor.schema.text('World', [a]))
+    editor.dispatch(editor.state.tr.replaceWith(0, editor.state.doc.content.size, [p1, p2]))
+    editor.comments.applyOp({
+      type: 'createThread',
+      thread: { id: 'c_zzz', quote: 'Hello', resolved: false, createdAt: 1, comments: [] },
+    })
+    editor.comments.applyOp({
+      type: 'createThread',
+      thread: { id: 'c_aaa', quote: 'World', resolved: false, createdAt: 2, comments: [] },
+    })
+    editor.dispatch(editor.state.tr)
+    const found = decorationRanges(editor)
+    expect(found.map((d) => ({ from: d.from, to: d.to, class: d.class }))).toEqual([
+      { from: 1, to: 6, class: 'weditor-comment-open' },
+      { from: 8, to: 13, class: 'weditor-comment-open' },
+    ])
   })
 })

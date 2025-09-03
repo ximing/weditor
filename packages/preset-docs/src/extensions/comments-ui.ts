@@ -81,6 +81,7 @@ export function commentsUiExtension(): Extension {
               if (!className || r.from >= r.to) continue
               decos.push(Decoration.inline(r.from, r.to, { class: className }))
             }
+            decos.sort((a, b) => a.from - b.from || a.to - b.to)
             return DecorationSet.create(state.doc, decos)
           },
         },
