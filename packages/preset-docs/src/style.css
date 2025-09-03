@@ -153,6 +153,19 @@
 .weditor-doc .ProseMirror .weditor-search-match-active {
   background: #ffd54f;
 }
+.weditor-doc .ProseMirror .weditor-comment-open {
+  background: rgba(255, 196, 87, 0.45);
+}
+.weditor-doc .ProseMirror .weditor-comment-resolved {
+  background: rgba(160, 160, 160, 0.28);
+}
+.weditor-doc .ProseMirror .weditor-comment-skel {
+  background: rgba(255, 196, 87, 0.28);
+  outline: 1px dashed #e6a23c;
+}
+.weditor-doc .ProseMirror .weditor-comment-active {
+  outline: 2px solid #e6a23c;
+}
 .weditor-doc .ProseMirror .selectedCell:after {
   z-index: 2;
   position: absolute;

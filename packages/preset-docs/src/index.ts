@@ -1,4 +1,5 @@
 export { docsPreset, docsSchema } from './preset'
+export { commentsUiKey, pickCommentIdAt } from './extensions/comments-ui'
 export { placeholderExtension } from './extensions/placeholder'
 export { formatPainterPluginKey } from './extensions/format-painter'
 export { findAll, searchPluginKey } from './extensions/search'

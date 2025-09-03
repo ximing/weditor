@@ -1,5 +1,6 @@
 import { schemaFromExtensions, type Extension } from '@weditor/core'
 import { baseKeymapExtension } from './extensions/base-keymap'
+import { commentsUiExtension } from './extensions/comments-ui'
 import { dropcursorExtension } from './extensions/dropcursor'
 import { formatPainterExtension } from './extensions/format-painter'
 import { gapcursorExtension } from './extensions/gapcursor'
@@ -24,6 +25,7 @@ export function docsPreset(opts?: { placeholder?: string }): Extension[] {
     searchExtension(),
     formatPainterExtension(),
     placeholderExtension(opts?.placeholder ?? 'Start typing…'),
+    commentsUiExtension(),
     keymapExtension(),
     baseKeymapExtension(),
   ]
