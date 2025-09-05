@@ -136,6 +136,18 @@ export function Toolbar() {
       </button>
       <button
         type="button"
+        title="Comment"
+        onMouseDown={(e) => {
+          e.preventDefault()
+          const { from, to } = editor.state.selection
+          if (from === to) return
+          editor.emit('openComment', { from, to })
+        }}
+      >
+        Comment
+      </button>
+      <button
+        type="button"
         title="Find"
         onMouseDown={(e) => {
           e.preventDefault()

@@ -23,6 +23,7 @@
     "@weditor/collab": "workspace:*",
     "@weditor/core": "workspace:*",
     "@weditor/preset-docs": "workspace:*",
+    "prosemirror-state": "^1",
     "prosemirror-tables": "^1.6.4"
   },
   "devDependencies": {

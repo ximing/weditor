@@ -1,0 +1,48 @@
+import type { User } from '@weditor/core'
+import { useEffect, useState } from 'react'
+import { useEditor } from '../useEditor'
+
+export function CommentComposer(props: {
+  currentUser: User
+  range: { from: number; to: number } | null
+  onClose: () => void
+}) {
+  const editor = useEditor()
+  const [body, setBody] = useState('')
+  const [, bump] = useState(0)
+  useEffect(() => editor.on('transaction', () => bump((n) => n + 1)), [editor])
+  useEffect(() => {
+    setBody('')
+  }, [props.range?.from, props.range?.to])
+
+  if (!props.range || !editor.editable) return null
+
+  return (
+    <div className="weditor-comment-composer">
+      <textarea
+        placeholder="Start typing…"
+        value={body}
+        onChange={(e) => setBody(e.target.value)}
+      />
+      <button type="button" onClick={() => props.onClose()}>
+        Discard
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          const range = props.range
+          if (!range) return
+          editor.commands.addComment({
+            body,
+            author: props.currentUser,
+            from: range.from,
+            to: range.to,
+          })
+          props.onClose()
+        }}
+      >
+        Comment
+      </button>
+    </div>
+  )
+}
