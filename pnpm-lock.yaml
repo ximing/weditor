@@ -62,6 +62,10 @@ importers:
       prosemirror-view:
         specifier: ^1.38.0
         version: 1.42.2
+    devDependencies:
+      '@weditor/preset-docs':
+        specifier: workspace:*
+        version: link:../preset-docs
 
   packages/core:
     dependencies:

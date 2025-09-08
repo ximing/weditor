@@ -23,5 +23,8 @@
     "prosemirror-state": "^1.4.3",
     "prosemirror-transform": "^1.10.2",
     "prosemirror-view": "^1.38.0"
+  },
+  "devDependencies": {
+    "@weditor/preset-docs": "workspace:*"
   }
 }
