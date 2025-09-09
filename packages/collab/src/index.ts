@@ -1,3 +1,7 @@
 export { applyAuthorityBatch } from './apply-authority-batch'
+export { applyRemoteSteps } from './apply-remote-steps'
+export { collabExtension } from './collab-extension'
+export { clearLock, flushSendable } from './flush-sendable'
+export type { SendLock } from './flush-sendable'
 export { MemoryAuthority } from './memory-authority'
 export { createMemoryProvider } from './memory-provider'
