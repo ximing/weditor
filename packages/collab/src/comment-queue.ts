@@ -5,20 +5,6 @@ export function threadId(op: CommentOp): string {
   return op.type === 'createThread' ? op.thread.id : op.id
 }
 
-async function sendCommentWithRetry(
-  editor: Editor,
-  provider: CollabProvider,
-  op: CommentOp,
-  pendingCommentOps: CommentOp[],
-): Promise<void> {
-  try {
-    await provider.sendComment(op)
-  } catch {
-    editor.emit('sync', { status: 'disconnected' })
-    pendingCommentOps.unshift(op)
-  }
-}
-
 export function queueOrSendComment(
   editor: Editor,
   provider: CollabProvider,
@@ -35,6 +21,20 @@ export function queueOrSendComment(
     pendingCommentOps.some((p) => threadId(p) === id)
   if (blocked) pendingCommentOps.push(op)
   else void sendCommentWithRetry(editor, provider, op, pendingCommentOps)
+}
+
+export async function sendCommentWithRetry(
+  editor: Editor,
+  provider: CollabProvider,
+  op: CommentOp,
+  pendingCommentOps: CommentOp[],
+): Promise<void> {
+  try {
+    await provider.sendComment(op)
+  } catch {
+    editor.emit('sync', { status: 'disconnected' })
+    pendingCommentOps.unshift(op)
+  }
 }
 
 export function handleComment(
@@ -61,7 +61,6 @@ export function flushPendingComments(
   if (sendableSteps(editor.state)) return
   while (pendingCommentOps.length) {
     const op = pendingCommentOps[0]
-    if (!op) break
     if (op.type !== 'createThread' && pendingCreates.has(threadId(op))) break
     pendingCommentOps.shift()
     void sendCommentWithRetry(editor, provider, op, pendingCommentOps)
