@@ -33,7 +33,8 @@ export function collabExtension(
 
   async function catchUpAfterReconnect(editor: Editor): Promise<void> {
     const downMs = droppedAt ? Date.now() - droppedAt : 0
-    if (droppedAt && downMs > 30_000) {
+    droppedAt = 0
+    if (downMs > 30_000) {
       const snap = await provider.loadDocument()
       editor.resetFromSnapshot(snap)
     } else {
