@@ -1,5 +1,15 @@
 {
   "name": "@weditor/collab-server",
   "private": true,
-  "scripts": {}
+  "type": "module",
+  "scripts": { "start": "tsx src/index.ts" },
+  "dependencies": {
+    "@weditor/collab": "workspace:*",
+    "@weditor/preset-docs": "workspace:*",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/ws": "^8.5.12",
+    "tsx": "^4.19.0"
+  }
 }
