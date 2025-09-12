@@ -8,6 +8,7 @@ import {
   handleComment,
   queueOrSendComment,
 } from './comment-queue'
+import { createPresencePlugin, presencePluginKey } from './presence'
 
 export function collabExtension(
   provider: CollabProvider,
@@ -75,6 +76,13 @@ export function collabExtension(
       ),
     )
     unsubs.push(
+      provider.onPresence((map) => {
+        editor.dispatch(
+          editor.state.tr.setMeta(presencePluginKey, map).setMeta('addToHistory', false),
+        )
+      }),
+    )
+    unsubs.push(
       provider.onConnection((status) => {
         if (status === 'disconnected') {
           droppedAt = Date.now()
@@ -92,6 +100,7 @@ export function collabExtension(
       subscribe(editor)
       return [
         collab({ version: collabConfig.version, clientID: provider.clientID }),
+        createPresencePlugin(provider.clientID),
       ]
     },
     prepareSnapshotReset: (snap: Snapshot) => {
@@ -103,6 +112,7 @@ export function collabExtension(
       pendingCreates.clear()
     },
     onTransaction: ({ editor, tr }) => {
+      if (tr.getMeta(presencePluginKey)) return
       if (!tr.getMeta('weditor-remote')) {
         const op = tr.getMeta('weditor-comment-op') as CommentOp | undefined
         if (op) queueOrSendComment(editor, provider, op, pendingCreates, pendingCommentOps)
