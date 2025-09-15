@@ -180,6 +180,9 @@ importers:
       '@types/react-dom':
         specifier: '18'
         version: 18.3.7(@types/react@18.3.31)
+      prosemirror-collab:
+        specifier: ^1
+        version: 1.3.1
       react:
         specifier: '18'
         version: 18.3.1

@@ -1,6 +1,8 @@
 export { EditorProvider } from './EditorProvider'
 export { EditorSurface } from './EditorSurface'
 export { useEditor } from './useEditor'
+export { DocEditor } from './DocEditor'
+export type { DocEditorProps } from './DocEditor'
 export { Toolbar } from './chrome/Toolbar'
 export { TableBubble } from './chrome/TableBubble'
 export { FindBar } from './chrome/FindBar'
