@@ -2,7 +2,7 @@
 import { docsPreset } from '@weditor/preset-docs'
 import { cleanup, render, waitFor } from '@testing-library/react'
 import React, { StrictMode } from 'react'
-import { afterEach, describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { TableBubble } from '../chrome/TableBubble'
 import { EditorProvider } from '../EditorProvider'
 import { EditorSurface } from '../EditorSurface'
@@ -72,5 +72,47 @@ describe('EditorProvider', () => {
     )
     await waitFor(() => expect(ids.length).toBeGreaterThanOrEqual(2))
     expect(document.querySelectorAll('.ProseMirror').length).toBe(2)
+  })
+
+  it('accepts a pre-built Editor without creating another instance', async () => {
+    const { Editor } = await import('@weditor/core')
+    const editor = Editor.create({ extensions: docsPreset() })
+    function Probe() {
+      const e = useEditor()
+      return <span data-testid="same">{String(e === editor)}</span>
+    }
+    const { getByTestId } = render(
+      <EditorProvider editor={editor}>
+        <Probe />
+      </EditorProvider>,
+    )
+    await waitFor(() => expect(getByTestId('same').textContent).toBe('true'))
+  })
+
+  it('onChange skips remote transactions', async () => {
+    const onChange = vi.fn()
+    const { Editor } = await import('@weditor/core')
+    const { docsPreset: preset } = await import('@weditor/preset-docs')
+    const editor = Editor.create({ extensions: preset() })
+    function Wrap() {
+      React.useEffect(() => {
+        const off = editor.on('transaction', ({ remote }) => {
+          if (!remote) onChange(editor.getJSON())
+        })
+        return off
+      }, [])
+      return (
+        <EditorProvider editor={editor}>
+          <span />
+        </EditorProvider>
+      )
+    }
+    render(<Wrap />)
+    const tr = editor.state.tr.insertText('x')
+    tr.setMeta('weditor-remote', true)
+    editor.dispatch(tr)
+    expect(onChange).not.toHaveBeenCalled()
+    editor.dispatch(editor.state.tr.insertText('y'))
+    expect(onChange).toHaveBeenCalled()
   })
 })

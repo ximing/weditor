@@ -1,38 +1,34 @@
-import { Editor, type CreateEditorOptions, type Extension, type JSONContent } from '@weditor/core'
+import { Editor, type Extension, type JSONContent } from '@weditor/core'
 import React, { useEffect, useState } from 'react'
 import { EditorContext } from './useEditor'
 
 export function EditorProvider(props: {
-  extensions: Extension[]
+  editor?: Editor | null
+  extensions?: Extension[]
   defaultContent?: JSONContent
   children: React.ReactNode
   onEditor?: (editor: Editor | null) => void
 }) {
-  const [editor, setEditor] = useState<Editor | null>(null)
-  const extensions = props.extensions
-  const content = props.defaultContent
-
+  const [created, setCreated] = useState<Editor | null>(null)
   useEffect(() => {
+    if (props.editor) return
+    if (!props.extensions) return
     let cancelled = false
-    let instance: Editor | undefined
-    ;(async () => {
-      instance = Editor.create({ extensions, content } satisfies CreateEditorOptions)
-      if (cancelled) {
-        instance.destroy()
-        return
-      }
-      setEditor(instance)
-      props.onEditor?.(instance)
-    })()
+    const instance = Editor.create({ extensions: props.extensions, content: props.defaultContent })
+    if (cancelled) {
+      instance.destroy()
+      return
+    }
+    setCreated(instance)
+    props.onEditor?.(instance)
     return () => {
       cancelled = true
-      instance?.destroy()
-      setEditor(null)
+      instance.destroy()
+      setCreated(null)
       props.onEditor?.(null)
     }
-    // extensions / content must be referentially stable
-  }, [extensions, content])
-
-  if (!editor) return <EditorContext.Provider value={null}>{null}</EditorContext.Provider>
-  return <EditorContext.Provider value={editor}>{props.children}</EditorContext.Provider>
+  }, [props.editor, props.extensions, props.defaultContent])
+  const value = props.editor ?? created
+  if (!value) return <EditorContext.Provider value={null}>{null}</EditorContext.Provider>
+  return <EditorContext.Provider value={value}>{props.children}</EditorContext.Provider>
 }
