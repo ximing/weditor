@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { EditorProvider } from './EditorProvider'
 import { EditorSurface } from './EditorSurface'
 import { Toolbar } from './chrome/Toolbar'
+import { Bubble } from './chrome/Bubble'
 import { FindBar } from './chrome/FindBar'
 import { CommentSidebar } from './chrome/CommentSidebar'
 import { CommentComposer } from './chrome/CommentComposer'
@@ -102,12 +103,15 @@ function DocEditorBoot(
   return (
     <EditorProvider editor={editor}>
       <div className={['weditor-root', props.className].filter(Boolean).join(' ')}>
-        {!props.readOnly ? <Toolbar /> : null}
+        {!props.readOnly ? <Toolbar uploadImage={props.uploadImage} /> : null}
         <FindBar />
-        <TableBubble />
+        {!props.readOnly ? <TableBubble /> : null}
+        {!props.readOnly ? <Bubble /> : null}
         <EditorSurface />
         <CommentSidebar currentUser={user} readOnly={!!props.readOnly} />
-        <CommentComposer currentUser={user} range={range} onClose={() => setRange(null)} />
+        {!props.readOnly ? (
+          <CommentComposer currentUser={user} range={range} onClose={() => setRange(null)} />
+        ) : null}
       </div>
     </EditorProvider>
   )

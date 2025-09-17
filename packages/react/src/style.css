@@ -1,5 +1,9 @@
 @import '@weditor/preset-docs/style.css';
 
+.weditor-root {
+  position: relative;
+}
+
 .weditor-toolbar {
   display: flex;
   align-items: center;
@@ -167,4 +171,84 @@
   border: 1px solid #e0e0e0;
   background: #fff;
   cursor: pointer;
+}
+
+.weditor-more {
+  display: contents;
+}
+
+.weditor-more-toggle {
+  display: none;
+}
+
+.weditor-more-items {
+  display: contents;
+}
+
+.weditor-bubble {
+  position: absolute;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.weditor-bubble button {
+  min-width: 28px;
+  height: 28px;
+  padding: 0 4px;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.weditor-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  z-index: 40;
+  padding: 8px 16px;
+  background: #323232;
+  color: #fff;
+  font-size: 13px;
+  border-radius: 4px;
+}
+
+@media (max-width: 960px) {
+  .weditor-more {
+    display: inline-flex;
+    position: relative;
+  }
+  .weditor-more-toggle {
+    display: inline-block;
+  }
+  .weditor-more-items {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    z-index: 20;
+    flex-direction: column;
+    min-width: 160px;
+    padding: 4px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  }
+  .weditor-more.is-open .weditor-more-items {
+    display: flex;
+  }
+}
+
+@media print {
+  .weditor-toolbar, .weditor-sidebar, .weditor-bubble, .weditor-find {
+    display: none !important;
+  }
+  .weditor-doc { box-shadow: none; max-width: none; }
 }

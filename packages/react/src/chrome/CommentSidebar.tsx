@@ -179,7 +179,7 @@ export function CommentSidebar(props: { currentUser: User; readOnly?: boolean })
   const editable = editor.editable && !props.readOnly
 
   return (
-    <aside className="weditor-comment-sidebar">
+    <aside className="weditor-sidebar weditor-comment-sidebar">
       {rows.map((row) => (
         <article
           key={row.id}

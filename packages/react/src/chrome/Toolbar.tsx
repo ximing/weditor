@@ -4,13 +4,18 @@ import {
   COLORS_STANDARD,
   COLORS_THEME,
   HIGHLIGHTS,
-  LINE_HEIGHTS,
 } from '@weditor/preset-docs'
+import { useRef } from 'react'
 import { useEditor } from '../useEditor'
 import { ColorPalette } from './ColorPalette'
+import { OverflowMore } from './OverflowMore'
+import { toast } from './toast'
 
-export function Toolbar() {
+export function Toolbar(props: {
+  uploadImage?: (file: File) => Promise<{ src: string; alt?: string; width?: number }>
+}) {
   const editor = useEditor()
+  const fileRef = useRef<HTMLInputElement>(null)
   return (
     <div className="weditor-toolbar" role="toolbar">
       <button type="button" title="Undo" onMouseDown={(e) => { e.preventDefault(); editor.commands.undo() }}>Undo</button>
@@ -79,17 +84,7 @@ export function Toolbar() {
       <button type="button" title="Align center" onMouseDown={(e) => { e.preventDefault(); editor.commands.setAlign({ align: 'center' }) }}>Center</button>
       <button type="button" title="Align right" onMouseDown={(e) => { e.preventDefault(); editor.commands.setAlign({ align: 'right' }) }}>Right</button>
       <button type="button" title="Align justify" onMouseDown={(e) => { e.preventDefault(); editor.commands.setAlign({ align: 'justify' }) }}>Justify</button>
-      <label>
-        Line height
-        <select
-          aria-label="Line height"
-          onChange={(e) => editor.commands.setLineHeight({ lineHeight: Number(e.target.value) })}
-        >
-          {LINE_HEIGHTS.map((h) => (
-            <option key={h} value={h}>{h}</option>
-          ))}
-        </select>
-      </label>
+      <OverflowMore />
       <button type="button" title="Indent" onMouseDown={(e) => { e.preventDefault(); editor.commands.indent() }}>Indent</button>
       <button type="button" title="Outdent" onMouseDown={(e) => { e.preventDefault(); editor.commands.outdent() }}>Outdent</button>
       <button
@@ -108,21 +103,15 @@ export function Toolbar() {
         title="Image"
         onMouseDown={(e) => e.preventDefault()}
         onClick={() => {
+          if (props.uploadImage) {
+            fileRef.current?.click()
+            return
+          }
           const src = window.prompt('Image URL')
           if (src) editor.commands.insertImage({ src })
         }}
       >
         Image
-      </button>
-      <button
-        type="button"
-        title="Mention"
-        onMouseDown={(e) => {
-          e.preventDefault()
-          editor.commands.insertMention({ id: 'demo', name: 'Demo' })
-        }}
-      >
-        Mention
       </button>
       <button
         type="button"
@@ -156,7 +145,29 @@ export function Toolbar() {
       >
         Find
       </button>
-      <input type="file" accept="image/*" hidden />
+      <button type="button" title="Print" onClick={() => window.print()}>
+        Print
+      </button>
+      <input
+        ref={fileRef}
+        type="file"
+        accept="image/*"
+        hidden
+        onChange={(e) => {
+          const file = e.target.files?.[0]
+          e.target.value = ''
+          const upload = props.uploadImage
+          if (!file || !upload) return
+          void (async () => {
+            try {
+              const result = await upload(file)
+              editor.commands.insertImage(result)
+            } catch {
+              toast('Upload failed')
+            }
+          })()
+        }}
+      />
     </div>
   )
 }
