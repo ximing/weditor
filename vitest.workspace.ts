@@ -1,1 +1,1 @@
-export default ['packages/*']
+export default ['packages/*', 'apps/demo']
