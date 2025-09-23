@@ -1,5 +1,14 @@
 {
   "name": "@weditor/docs",
   "private": true,
-  "scripts": {}
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vitepress": "^1.3.4",
+    "vitest": "^2.0.5"
+  }
 }
