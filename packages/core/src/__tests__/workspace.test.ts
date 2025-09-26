@@ -49,4 +49,15 @@ describe('workspace', () => {
     const tsconfig = JSON.parse(readFileSync(resolve(root, 'tsconfig.base.json'), 'utf8'))
     expect(tsconfig.compilerOptions.strict).toBe(true)
   })
+
+  it('root README documents install and dev scripts', () => {
+    const readme = readFileSync(resolve(root, 'README.md'), 'utf8')
+    expect(readme).toContain('pnpm add @weditor/react')
+    expect(readme).toContain('pnpm dev:demo')
+    expect(readme).toContain('pnpm dev:collab')
+    expect(readme).toContain('pnpm dev:docs')
+    expect(readme).toContain('@weditor/core')
+    expect(readme).toContain('prosemirror')
+    expect(readme.toLowerCase()).not.toMatch(/quill delta import/)
+  })
 })
