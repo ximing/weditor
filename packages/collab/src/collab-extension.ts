@@ -86,6 +86,7 @@ export function collabExtension(
       provider.onConnection((status) => {
         if (status === 'disconnected') {
           droppedAt = Date.now()
+          clearLock(lock)
           editor.emit('sync', { status: 'disconnected' })
           return
         }

@@ -5,6 +5,11 @@ import type { CommentOp, Presence, User } from '@weditor/core'
 
 const wss = new WebSocketServer({ port: 8787 })
 const sockets = new Map<import('ws').WebSocket, { clientID: string; roomId: string; user: User }>()
+const currentByClient = new Map<string, import('ws').WebSocket>()
+
+function clientKey(roomId: string, clientID: string) {
+  return `${roomId}:${clientID}`
+}
 
 function send(ws: import('ws').WebSocket, frame: Frame) {
   ws.send(JSON.stringify(frame))
@@ -19,6 +24,7 @@ wss.on('connection', (ws) => {
       const auth = await getRoom(roomId)
       auth.join(clientID, user)
       sockets.set(ws, { clientID, roomId, user })
+      currentByClient.set(clientKey(roomId, clientID), ws)
       auth.subscribe(clientID, {
         onSteps: (p) => send(ws, { v: 1, type: 'steps', body: p }),
         onComment: (op) => send(ws, { v: 1, type: 'comment', body: op }),
@@ -64,7 +70,10 @@ wss.on('connection', (ws) => {
   ws.on('close', () => {
     const meta = sockets.get(ws)
     if (!meta) return
-    void getRoom(meta.roomId).then((auth) => auth.leave(meta.clientID))
     sockets.delete(ws)
+    const key = clientKey(meta.roomId, meta.clientID)
+    if (currentByClient.get(key) !== ws) return
+    currentByClient.delete(key)
+    void getRoom(meta.roomId).then((auth) => auth.leave(meta.clientID))
   })
 })

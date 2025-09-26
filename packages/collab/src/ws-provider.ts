@@ -84,6 +84,7 @@ export function createWsProvider(opts: {
   let reconnecting = false
   let lastSnapshot: Snapshot = { version: 0, doc: { type: 'doc', content: [{ type: 'paragraph' }] }, comments: [] }
   const pending = new Map<string, (frame: Frame) => void>()
+  const pendingRejects = new Map<string, (err: Error) => void>()
   const stepsBuf: StepsPayload[] = []
   const commentBuf: CommentOp[] = []
   const presenceBuf: Record<string, Presence>[] = []
@@ -98,17 +99,27 @@ export function createWsProvider(opts: {
     ws.send(JSON.stringify(frame))
   }
 
+  function failWaiters(err: Error) {
+    const rejecters = [...pendingRejects.values()]
+    pending.clear()
+    pendingRejects.clear()
+    for (const reject of rejecters) reject(err)
+  }
+
   function request<T>(type: string, body: unknown): Promise<Frame<T>> {
     const requestId = nanoid(10)
     return new Promise((resolve, reject) => {
       pending.set(requestId, (frame) => {
         pending.delete(requestId)
+        pendingRejects.delete(requestId)
         resolve(frame as Frame<T>)
       })
+      pendingRejects.set(requestId, reject)
       try {
         send(type, body, requestId)
       } catch (err) {
         pending.delete(requestId)
+        pendingRejects.delete(requestId)
         reject(err)
       }
     })
@@ -140,6 +151,7 @@ export function createWsProvider(opts: {
       onError: (message) => {
         for (const [, done] of pending) done({ v: 1, type: 'error', body: { message } })
         pending.clear()
+        pendingRejects.clear()
       },
     })
   }
@@ -155,10 +167,12 @@ export function createWsProvider(opts: {
         socket.onopen = () => resolve()
         socket.onerror = () => reject(new Error('ws error'))
       })
+      socket.onerror = () => failWaiters(new Error('ws error'))
       socket.onmessage = (ev) => onMessage(String(ev.data))
       socket.onclose = () => {
         joined = false
         if (ws === socket) ws = null
+        failWaiters(new Error('disconnected'))
         onConnCb?.('disconnected')
         if (closedByUser || reconnecting) return
         reconnecting = true
@@ -195,19 +209,23 @@ export function createWsProvider(opts: {
               return
             }
             pending.delete(requestId)
+            pendingRejects.delete(requestId)
             resolve({ reset: false, payload: body.payload })
             return
           }
           if (frame.type === 'snapshot' && waitingSnapshot) {
             pending.delete(requestId)
+            pendingRejects.delete(requestId)
             lastSnapshot = frame.body as Snapshot
             resolve({ reset: true, snapshot: lastSnapshot })
           }
         })
+        pendingRejects.set(requestId, reject)
         try {
           send('getStepsSince', { version }, requestId)
         } catch (err) {
           pending.delete(requestId)
+          pendingRejects.delete(requestId)
           reject(err)
         }
       })

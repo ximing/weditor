@@ -136,4 +136,40 @@ describe('reset and subscribe-once', () => {
     expect(getVersion(editor.state)).toBe((await inner.loadDocument()).version)
     expect(editor.state.doc.textContent).toBeDefined()
   })
+
+  it('reconnect flushSendable runs after a drop while sendSteps is still inflight', async () => {
+    const auth = new MemoryAuthority(docsSchema())
+    const inner = createMemoryProvider(auth, { user: alice, clientID: 'aaaaaaaaaaaaaaaaaaaaa' })
+    await inner.connect()
+    const snap0 = await inner.loadDocument()
+    let sendCalls = 0
+    let hang = true
+    const conns: Array<(s: 'connected' | 'disconnected') => void> = []
+    const p: typeof inner = {
+      ...inner,
+      sendSteps: async (payload) => {
+        sendCalls += 1
+        if (hang) await new Promise(() => {})
+        return inner.sendSteps(payload)
+      },
+      onConnection(cb) {
+        conns.push(cb)
+        return inner.onConnection(cb)
+      },
+    }
+    const editor = Editor.create({
+      extensions: [...docsPreset(), collabExtension(p, { version: snap0.version })],
+      content: snap0.doc,
+    })
+    editor.dispatch(editor.state.tr.insertText('A'))
+    await new Promise((r) => setTimeout(r, 20))
+    expect(sendCalls).toBe(1)
+    hang = false
+    for (const cb of conns) cb('disconnected')
+    for (const cb of conns) cb('connected')
+    await new Promise((r) => setTimeout(r, 40))
+    expect(sendCalls).toBeGreaterThan(1)
+    expect(editor.state.doc.textContent).toBe('A')
+    expect(JSON.stringify(auth.snapshot().doc)).toContain('A')
+  })
 })

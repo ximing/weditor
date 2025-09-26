@@ -181,4 +181,43 @@ describe('createWsProvider reconnect', () => {
     await expect(pending).resolves.toEqual({ reset: true, snapshot: snap0 })
     p.disconnect()
   })
+
+  it('rejects inflight sendSteps when the socket drops so a later send on the new socket can complete', async () => {
+    globalThis.WebSocket = FakeSocket as unknown as typeof WebSocket
+    const p = createWsProvider({
+      url: 'ws://example',
+      roomId: 'r',
+      user: { id: 'a', name: 'A' },
+      clientID: 'aaaaaaaaaaaaaaaaaaaaa',
+    })
+    await p.connect()
+    const first = FakeSocket.instances[0]
+    first.onmessage?.({
+      data: JSON.stringify({ v: 1, type: 'joined', body: { clientID: p.clientID } }),
+    })
+    const hung = p.sendSteps({ version: 0, steps: [], clientIDs: [] })
+    first.close()
+    await expect(hung).rejects.toThrow(/disconnect/i)
+
+    await new Promise((r) => queueMicrotask(() => r(undefined)))
+    await Promise.resolve()
+    const second = FakeSocket.instances[FakeSocket.instances.length - 1]
+    expect(second).not.toBe(first)
+    second.onmessage?.({
+      data: JSON.stringify({ v: 1, type: 'joined', body: { clientID: p.clientID } }),
+    })
+    const again = p.sendSteps({ version: 0, steps: [], clientIDs: [] })
+    const req = second.sent.map((s) => JSON.parse(s) as Frame).find((f) => f.type === 'steps')
+    expect(req?.requestId).toBeTruthy()
+    second.onmessage?.({
+      data: JSON.stringify({
+        v: 1,
+        type: 'steps-ok',
+        requestId: req!.requestId,
+        body: { version: 1 },
+      }),
+    })
+    await expect(again).resolves.toEqual({ ok: true, version: 1 })
+    p.disconnect()
+  })
 })
