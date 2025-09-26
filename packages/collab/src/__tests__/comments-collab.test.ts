@@ -6,6 +6,7 @@ import type { CommentOp, CollabProvider } from '@weditor/core'
 import { docsPreset, docsSchema } from '@weditor/preset-docs'
 import { describe, expect, it } from 'vitest'
 import { collabExtension } from '../collab-extension'
+import { handleComment } from '../comment-queue'
 import { MemoryAuthority } from '../memory-authority'
 import { createMemoryProvider } from '../memory-provider'
 
@@ -119,6 +120,29 @@ describe('comment collab sequencing', () => {
     expect(bodies).toContain('root')
     expect(bodies).toContain('from-a')
     expect(bodies).toContain('from-b')
+  })
+
+  it('handleComment dispatches a no-step addToHistory:false transaction', () => {
+    const editor = Editor.create({ extensions: docsPreset() })
+    editor.dispatch(editor.state.tr.insertText('Hello'))
+    editor.commands.addComment({ body: 'n', author: alice, from: 1, to: 6 })
+    const id = editor.comments.list()[0].id
+    const txs: { docChanged: boolean; addToHistory: unknown }[] = []
+    editor.on('transaction', ({ tr }) => {
+      txs.push({ docChanged: tr.docChanged, addToHistory: tr.getMeta('addToHistory') })
+    })
+    const provider = { sendComment: async () => undefined } as unknown as CollabProvider
+    handleComment(
+      editor,
+      { type: 'setResolved', id, resolved: true },
+      new Set(),
+      [],
+      provider,
+    )
+    expect(txs).toHaveLength(1)
+    expect(txs[0].docChanged).toBe(false)
+    expect(txs[0].addToHistory).toBe(false)
+    expect(editor.comments.get(id)?.resolved).toBe(true)
   })
 
   it('preset-docs source does not import @weditor/collab', () => {

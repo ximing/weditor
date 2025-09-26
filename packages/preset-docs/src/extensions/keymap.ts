@@ -24,6 +24,7 @@ export function keymapExtension(): Extension {
       'Mod-k': () => {
         const { from, to } = editor.state.selection
         if (from === to) return false
+        editor.emit('openLink', { from, to })
         return true
       },
       'Mod-f': () => {

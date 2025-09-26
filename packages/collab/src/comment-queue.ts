@@ -46,6 +46,7 @@ export function handleComment(
 ): void {
   editor.comments.applyOp(op)
   editor.emit('comments', editor.comments.list())
+  editor.dispatch(editor.state.tr.setMeta('addToHistory', false))
   if (op.type === 'createThread') {
     pendingCreates.delete(op.thread.id)
     flushPendingComments(editor, provider, pendingCommentOps, pendingCreates)

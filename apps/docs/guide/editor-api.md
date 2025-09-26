@@ -97,6 +97,7 @@ function schemaFromExtensions(extensions: Extension[]): Schema {
 | `sync` | `{ status: 'ok' \| 'syncing' \| 'disconnected' \| 'error'; error?: Error }` | Collab send/ack, disconnect, resync. |
 | `openFind` | `undefined` | `Mod-f` in the preset keymap. |
 | `openComment` | `{ from: number; to: number }` | `Mod-Alt-m` with a non-empty selection. |
+| `openLink` | `{ from: number; to: number }` | `Mod-k` with a non-empty selection. Toolbar prompts `URL` then `setLink`. |
 
 Search is **not** on `Editor`. Query state lives in `searchPluginKey` (`@weditor/preset-docs`). UI calls `editor.commands.setSearchQuery(q)` and `findAll(editor.state)`.
 

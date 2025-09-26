@@ -43,6 +43,6 @@ export default {
 
 Single-user: skip the provider, pass `docsPreset()` only, and `editor.mount` the same way.
 
-NodeViews for image, task checkbox, and mention live in `@weditor/preset-docs`, so they work without React. Toolbar, find bar, and comment sidebar are React-only in this release — rebuild those in Vue against `editor.commands`, `editor.on('openFind' | 'openComment' | 'comments' | 'selection')`, and `editor.setEditable`.
+NodeViews for image, task checkbox, and mention live in `@weditor/preset-docs`, so they work without React. Toolbar, find bar, and comment sidebar are React-only in this release — rebuild those in Vue against `editor.commands`, `editor.on('openFind' | 'openComment' | 'openLink' | 'comments' | 'selection')`, and `editor.setEditable`.
 
 `extensions` must stay referentially stable across the view’s lifetime. Call `editor.destroy()` on teardown so `collabExtension` disconnects the provider.

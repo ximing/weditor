@@ -122,6 +122,7 @@ export interface EditorEvents {
   sync: { status: 'ok' | 'syncing' | 'disconnected' | 'error'; error?: Error }
   openFind: undefined
   openComment: { from: number; to: number }
+  openLink: { from: number; to: number }
 }
 
 export interface Extension {

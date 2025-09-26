@@ -5,7 +5,7 @@ import {
   COLORS_THEME,
   HIGHLIGHTS,
 } from '@weditor/preset-docs'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useEditor } from '../useEditor'
 import { ColorPalette } from './ColorPalette'
 import { OverflowMore } from './OverflowMore'
@@ -16,6 +16,12 @@ export function Toolbar(props: {
 }) {
   const editor = useEditor()
   const fileRef = useRef<HTMLInputElement>(null)
+  useEffect(() => {
+    return editor.on('openLink', () => {
+      const href = window.prompt('URL')
+      if (href) editor.commands.setLink({ href })
+    })
+  }, [editor])
   return (
     <div className="weditor-toolbar" role="toolbar">
       <button type="button" title="Undo" onMouseDown={(e) => { e.preventDefault(); editor.commands.undo() }}>Undo</button>
@@ -84,6 +90,9 @@ export function Toolbar(props: {
       <button type="button" title="Align center" onMouseDown={(e) => { e.preventDefault(); editor.commands.setAlign({ align: 'center' }) }}>Center</button>
       <button type="button" title="Align right" onMouseDown={(e) => { e.preventDefault(); editor.commands.setAlign({ align: 'right' }) }}>Right</button>
       <button type="button" title="Align justify" onMouseDown={(e) => { e.preventDefault(); editor.commands.setAlign({ align: 'justify' }) }}>Justify</button>
+      <button type="button" title="Bullet list" onMouseDown={(e) => { e.preventDefault(); editor.commands.toggleBulletList() }}>Bullet</button>
+      <button type="button" title="Ordered list" onMouseDown={(e) => { e.preventDefault(); editor.commands.toggleOrderedList() }}>Ordered</button>
+      <button type="button" title="Task list" onMouseDown={(e) => { e.preventDefault(); editor.commands.toggleTaskList() }}>Task</button>
       <OverflowMore />
       <button type="button" title="Indent" onMouseDown={(e) => { e.preventDefault(); editor.commands.indent() }}>Indent</button>
       <button type="button" title="Outdent" onMouseDown={(e) => { e.preventDefault(); editor.commands.outdent() }}>Outdent</button>

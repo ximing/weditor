@@ -2,7 +2,7 @@
 import { docsPreset } from '@weditor/preset-docs'
 import { cleanup, fireEvent, render, waitFor } from '@testing-library/react'
 import React from 'react'
-import { afterEach, describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { EditorProvider } from '../EditorProvider'
 import { EditorSurface } from '../EditorSurface'
 import { FindBar } from '../chrome/FindBar'
@@ -36,6 +36,9 @@ describe('Toolbar', () => {
     expect(getByTitle('Insert table')).toBeTruthy()
     expect(getByTitle('Find')).toBeTruthy()
     expect(getByTitle('Mention')).toBeTruthy()
+    expect(getByTitle('Bullet list')).toBeTruthy()
+    expect(getByTitle('Ordered list')).toBeTruthy()
+    expect(getByTitle('Task list')).toBeTruthy()
     fireEvent.mouseDown(getByTitle('Bold'))
     fireEvent.mouseDown(getByTitle('Italic'))
     fireEvent.mouseDown(getByTitle('Underline'))
@@ -49,6 +52,33 @@ describe('Toolbar', () => {
     expect(json.length).toBeGreaterThan(0)
     fireEvent.mouseDown(getByTitle('Undo'))
     fireEvent.mouseDown(getByTitle('Redo'))
+  })
+
+  it('openLink prompts URL like the Link button', async () => {
+    const prompt = vi.spyOn(window, 'prompt').mockReturnValue('https://ok.example')
+    function EmitLink() {
+      const editor = useEditor()
+      return (
+        <button
+          type="button"
+          title="Emit openLink"
+          onClick={() => editor.emit('openLink', { from: editor.state.selection.from, to: editor.state.selection.to })}
+        >
+          Emit openLink
+        </button>
+      )
+    }
+    const { getByTitle } = render(
+      <EditorProvider extensions={docsPreset()}>
+        <Toolbar />
+        <EmitLink />
+        <EditorSurface />
+      </EditorProvider>,
+    )
+    await waitFor(() => getByTitle('Emit openLink'))
+    fireEvent.click(getByTitle('Emit openLink'))
+    expect(prompt).toHaveBeenCalledWith('URL')
+    prompt.mockRestore()
   })
 
   it('Find button emits openFind and FindBar appears', async () => {
