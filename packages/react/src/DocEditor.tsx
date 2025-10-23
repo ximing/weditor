@@ -132,6 +132,7 @@ function useResolvedTheme(theme: 'light' | 'dark' | 'auto'): 'light' | 'dark' {
     if (theme !== 'auto' || typeof matchMedia === 'undefined') return
     const mq = matchMedia('(prefers-color-scheme: dark)')
     const onChange = () => setSys(mq.matches ? 'dark' : 'light')
+    onChange()
     mq.addEventListener('change', onChange)
     return () => mq.removeEventListener('change', onChange)
   }, [theme])
