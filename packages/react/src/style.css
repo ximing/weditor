@@ -216,3 +216,42 @@
   opacity: 0.4;
   cursor: default;
 }
+
+.deditor-image-insert {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+}
+
+.deditor-image-tabs {
+  display: flex;
+  gap: 6px;
+}
+
+.deditor-image-tabs [role='tab'][aria-selected='true'] {
+  border-color: var(--deditor-primary);
+  color: var(--deditor-primary);
+}
+
+.deditor-image-form {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.deditor-image-form input {
+  width: 200px;
+  height: 28px;
+  padding: 0 8px;
+  border: 1px solid var(--deditor-border);
+  border-radius: var(--deditor-radius-s);
+  background: var(--deditor-bg-surface);
+  color: var(--deditor-text-1);
+  font-size: 13px;
+  outline: none;
+}
+
+.deditor-image-form input:focus {
+  border-color: var(--deditor-primary);
+}
