@@ -76,8 +76,8 @@ describe('comment chrome', () => {
   })
 
   it('hides composer and resolve/reply/delete when read-only; highlights remain', async () => {
-    const { queryByPlaceholderText, queryByTitle } = render(<Harness readOnly />)
-    await waitFor(() => queryByTitle('Bold'))
+    const { queryByPlaceholderText, queryByLabelText } = render(<Harness readOnly />)
+    await waitFor(() => queryByLabelText('Bold'))
     expect(queryByPlaceholderText('Start typing…')).toBeNull()
   })
 
@@ -94,22 +94,22 @@ describe('comment chrome', () => {
 
   it('empty selection does not open the composer from the toolbar', async () => {
     let editor: Editor | null = null
-    const { getByTitle, queryByPlaceholderText } = render(
+    const { getAllByLabelText, queryByPlaceholderText } = render(
       <Harness onEditor={(e) => { editor = e }} />,
     )
-    await waitFor(() => getByTitle('Comment'))
+    await waitFor(() => getAllByLabelText('Comment')[0])
     await waitFor(() => expect(editor?.state.doc.textContent).toBe('Hello world'))
     editor!.dispatch(
       editor!.state.tr.setSelection(TextSelection.create(editor!.state.doc, 1, 1)),
     )
-    fireEvent.mouseDown(getByTitle('Comment'))
+    fireEvent.mouseDown(getAllByLabelText('Comment')[0])
     expect(queryByPlaceholderText('Start typing…')).toBeNull()
   })
 
   it('toolbar Comment snapshots the selection via openComment', async () => {
-    const { getByTitle, getByPlaceholderText } = render(<Harness />)
-    await waitFor(() => getByTitle('Comment'))
-    fireEvent.mouseDown(getByTitle('Comment'))
+    const { getAllByLabelText, getByPlaceholderText } = render(<Harness />)
+    await waitFor(() => getAllByLabelText('Comment')[0])
+    fireEvent.mouseDown(getAllByLabelText('Comment')[0])
     expect(getByPlaceholderText('Start typing…')).toBeTruthy()
   })
 

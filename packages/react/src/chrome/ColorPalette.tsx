@@ -1,7 +1,10 @@
+import type { LucideIcon } from 'lucide-react'
 import { useState } from 'react'
 
 export function ColorPalette(props: {
+  icon?: LucideIcon
   title: string
+  current?: string | null
   colors: readonly string[]
   onDefault: () => void
   onPick: (color: string) => void

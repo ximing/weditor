@@ -255,3 +255,30 @@
 .deditor-image-form input:focus {
   border-color: var(--deditor-primary);
 }
+.deditor-toolbar {
+  display: flex;
+  align-items: center;
+  height: var(--deditor-toolbar-h);
+  gap: 2px;
+  padding: 0 8px;
+  border-bottom: 1px solid var(--deditor-border);
+  background: var(--deditor-bg-surface);
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.deditor-toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: none;
+}
+
+.deditor-toolbar-divider {
+  width: 1px;
+  height: 20px;
+  margin: 0 6px;
+  background: var(--deditor-border);
+  flex: none;
+}

@@ -31,7 +31,7 @@ describe('read-only and chrome', () => {
     const { getByTitle, getByLabelText } = render(
       <DocEditor defaultContent={{ type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Hi' }] }] }} />,
     )
-    await waitFor(() => getByTitle('Print'))
+    await waitFor(() => getByLabelText('Print'))
     expect(getByTitle('More')).toBeTruthy()
     expect(getByTitle('Inline code')).toBeTruthy()
     expect(getByTitle('Superscript')).toBeTruthy()
@@ -40,7 +40,7 @@ describe('read-only and chrome', () => {
     expect(getByTitle('Mention')).toBeTruthy()
     expect(getByLabelText('Line height')).toBeTruthy()
     const print = vi.spyOn(window, 'print').mockImplementation(() => {})
-    fireEvent.click(getByTitle('Print'))
+    fireEvent.click(getByLabelText('Print'))
     expect(print).toHaveBeenCalled()
     print.mockRestore()
   })
@@ -79,15 +79,15 @@ describe('read-only and chrome', () => {
       useEffect(() => editor.on('transaction', () => bump((n) => n + 1)), [editor])
       return <div data-testid="json">{JSON.stringify(editor.getJSON())}</div>
     }
-    const { container, getByTestId } = render(
+    const { getByLabelText, getByTestId } = render(
       <EditorProvider extensions={docsPreset()}>
         <Toolbar uploadImage={uploadImage} />
         <EditorSurface />
         <Inspector />
       </EditorProvider>,
     )
-    await waitFor(() => container.querySelector('input[type="file"]'))
-    const input = container.querySelector('input[type="file"]') as HTMLInputElement
+    fireEvent.click(await waitFor(() => getByLabelText('Image')))
+    const input = await waitFor(() => document.querySelector('input[type="file"]')) as HTMLInputElement
     const file = new File([new Uint8Array(8)], 'a.png', { type: 'image/png' })
     fireEvent.change(input, { target: { files: [file] } })
     await waitFor(() => expect(document.querySelector('.deditor-toast')?.textContent).toBe('Upload failed'))
@@ -102,15 +102,15 @@ describe('read-only and chrome', () => {
       useEffect(() => editor.on('transaction', () => bump((n) => n + 1)), [editor])
       return <div data-testid="json">{JSON.stringify(editor.getJSON())}</div>
     }
-    const { container, getByTestId } = render(
+    const { getByLabelText, getByTestId } = render(
       <EditorProvider extensions={docsPreset()}>
         <Toolbar uploadImage={uploadImage} />
         <EditorSurface />
         <Inspector />
       </EditorProvider>,
     )
-    await waitFor(() => container.querySelector('input[type="file"]'))
-    const input = container.querySelector('input[type="file"]') as HTMLInputElement
+    fireEvent.click(await waitFor(() => getByLabelText('Image')))
+    const input = await waitFor(() => document.querySelector('input[type="file"]')) as HTMLInputElement
     const file = new File([new Uint8Array(8)], 'a.png', { type: 'image/png' })
     fireEvent.change(input, { target: { files: [file] } })
     await waitFor(() => expect(getByTestId('json').textContent).toContain('https://cdn.example/a.png'))
@@ -124,17 +124,18 @@ describe('read-only and chrome', () => {
       useEffect(() => editor.on('transaction', () => bump((n) => n + 1)), [editor])
       return <div data-testid="json">{JSON.stringify(editor.getJSON())}</div>
     }
-    const { container, getByTestId } = render(
+    const { getByLabelText, getByRole, getByTestId, queryByRole } = render(
       <EditorProvider extensions={docsPreset()}>
         <Toolbar />
         <EditorSurface />
         <Inspector />
       </EditorProvider>,
     )
-    await waitFor(() => container.querySelector('input[type="file"]'))
-    const input = container.querySelector('input[type="file"]') as HTMLInputElement
-    const file = new File([new Uint8Array(8)], '/tmp/a.png', { type: 'image/png' })
-    fireEvent.change(input, { target: { files: [file] } })
+    fireEvent.click(await waitFor(() => getByLabelText('Image')))
+    expect(getByRole('textbox', { name: 'Image URL' })).toBeTruthy()
+    expect(queryByRole('tab', { name: 'Upload' })).toBeNull()
+    expect(queryByRole('button', { name: 'Upload image' })).toBeNull()
+    expect(document.querySelector('input[type="file"]')).toBeNull()
     expect(getByTestId('json').textContent).not.toContain('"type":"image"')
   })
 
