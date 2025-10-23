@@ -28,18 +28,23 @@ describe('IconButton', () => {
 
   it('shows a tooltip with the label after hover', async () => {
     const { getByLabelText } = render(
-      <div className="deditor-root" data-theme="dark" style={{ overflow: 'hidden' }}>
-        <IconButton icon={IconBold} label="Bold" />
+      <div data-theme="dark">
+        <div className="deditor-root" style={{ overflow: 'hidden' }}>
+          <IconButton icon={IconBold} label="Bold" />
+        </div>
       </div>,
     )
     const root = getByLabelText('Bold').closest('.deditor-root')
+    const darkAncestor = getByLabelText('Bold').closest('[data-theme="dark"]')
     fireEvent.mouseOver(getByLabelText('Bold'))
     await waitFor(() => expect(document.querySelector('.deditor-tooltip')).toBeTruthy(), {
       timeout: 1500,
     })
     const tooltip = document.querySelector('.deditor-tooltip')!
     expect(tooltip.textContent).toBe('Bold')
+    expect(root?.hasAttribute('data-theme')).toBe(false)
     expect(root?.contains(tooltip)).toBe(false)
+    expect(darkAncestor?.contains(tooltip)).toBe(false)
     expect(tooltip.classList.contains('deditor-portal-scope')).toBe(true)
     expect(tooltip.getAttribute('data-theme')).toBe('dark')
     expect(tooltip.closest('[data-floating-ui-portal]')?.parentElement).toBe(document.body)

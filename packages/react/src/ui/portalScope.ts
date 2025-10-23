@@ -1,4 +1,20 @@
 type ContextAnchor = { contextElement?: Element }
+type PortalTheme = 'light' | 'dark'
+
+function elementTheme(element: Element | null | undefined): PortalTheme | undefined {
+  const theme = element?.getAttribute('data-theme')
+  return theme === 'light' || theme === 'dark' ? theme : undefined
+}
+
+function closestTheme(element: Element | null | undefined): PortalTheme | undefined {
+  let current = element
+  while (current) {
+    const theme = elementTheme(current)
+    if (theme) return theme
+    current = current.parentElement
+  }
+  return undefined
+}
 
 export function anchorContextElement(anchor: Element | ContextAnchor): Element | undefined {
   if (
@@ -12,6 +28,9 @@ export function anchorContextElement(anchor: Element | ContextAnchor): Element |
   return anchor.contextElement
 }
 
-export function portalTheme(contextElement: Element | null | undefined): string | undefined {
-  return contextElement?.closest('.deditor-root')?.getAttribute('data-theme') ?? undefined
+export function portalTheme(contextElement: Element | null | undefined): PortalTheme | undefined {
+  if (!contextElement) return undefined
+
+  const editorRoot = contextElement.closest('.deditor-root')
+  return elementTheme(editorRoot) ?? closestTheme(editorRoot?.parentElement ?? contextElement)
 }

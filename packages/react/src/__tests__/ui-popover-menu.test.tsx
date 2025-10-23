@@ -67,6 +67,24 @@ function BareAnchorHarness() {
   )
 }
 
+function InheritedThemeAnchorHarness() {
+  const ref = useRef<HTMLButtonElement>(null)
+  const [open, setOpen] = useState(false)
+
+  return (
+    <div data-theme="dark">
+      <div className="deditor-root">
+        <button type="button" ref={ref} aria-label="inherited anchor" onClick={() => setOpen(true)}>
+          anchor
+        </button>
+        <Popover open={open} onClose={() => setOpen(false)} anchor={ref.current}>
+          <div role="dialog">inherited content</div>
+        </Popover>
+      </div>
+    </div>
+  )
+}
+
 function ThemedAnchorHarness(props: { label: string; theme: 'light' | 'dark' }) {
   const ref = useRef<HTMLButtonElement>(null)
   const [open, setOpen] = useState(false)
@@ -122,6 +140,22 @@ describe('Popover + Menu', () => {
 
     expect(popover?.classList.contains('deditor-portal-scope')).toBe(true)
     expect(popover?.hasAttribute('data-theme')).toBe(false)
+    expect(popover?.closest('[data-floating-ui-portal]')?.parentElement).toBe(document.body)
+  })
+
+  it('copies a local ancestor theme onto a body portal for an unthemed editor', async () => {
+    const { getByLabelText, getByRole } = render(<InheritedThemeAnchorHarness />)
+    const darkAncestor = getByLabelText('inherited anchor').closest('[data-theme="dark"]')
+    const root = getByLabelText('inherited anchor').closest('.deditor-root')
+
+    fireEvent.click(getByLabelText('inherited anchor'))
+    const dialog = await waitFor(() => getByRole('dialog'))
+    const popover = dialog.closest('.deditor-popover')
+
+    expect(root?.hasAttribute('data-theme')).toBe(false)
+    expect(root?.contains(popover)).toBe(false)
+    expect(darkAncestor?.contains(popover)).toBe(false)
+    expect(popover?.getAttribute('data-theme')).toBe('dark')
     expect(popover?.closest('[data-floating-ui-portal]')?.parentElement).toBe(document.body)
   })
 
