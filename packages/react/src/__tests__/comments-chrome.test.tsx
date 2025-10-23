@@ -113,6 +113,48 @@ describe('comment chrome', () => {
     expect(getByPlaceholderText('Start typing…')).toBeTruthy()
   })
 
+  it('renders the composer input and controls with comment styling hooks', async () => {
+    const { getByTestId, getByPlaceholderText } = render(<Harness />)
+    await waitFor(() => getByTestId('open-comment'))
+    fireEvent.click(getByTestId('open-comment'))
+    const composer = getByPlaceholderText('Start typing…').closest('.deditor-comment-composer')
+    expect(composer).toBeTruthy()
+    expect(getByPlaceholderText('Start typing…').classList.contains('deditor-comment-input')).toBe(true)
+    const actions = composer?.querySelector('.deditor-comment-actions')
+    expect(actions).toBeTruthy()
+    expect(within(actions as HTMLElement).getByText('Discard').classList.contains('deditor-chip-btn')).toBe(true)
+    const commentButton = within(actions as HTMLElement).getByText('Comment')
+    expect(commentButton.classList.contains('deditor-chip-btn')).toBe(true)
+    expect(commentButton.classList.contains('is-primary')).toBe(true)
+  })
+
+  it('renders comment messages with author metadata, a valid semantic time, and chip actions', async () => {
+    let editor: Editor | null = null
+    const { getByText } = render(<Harness onEditor={(e) => { editor = e }} />)
+    await waitFor(() => expect(editor?.state.doc.textContent).toBe('Hello world'))
+    editor!.commands.addComment({ body: 'Attributed note', author: user, from: 1, to: 6 })
+    await waitFor(() => getByText('Attributed note'))
+    const row = document.querySelector('.deditor-comment-thread') as HTMLElement
+    const message = row.querySelector('.deditor-comment-message') as HTMLElement
+    const meta = message.querySelector('.deditor-comment-meta') as HTMLElement
+    expect(meta.querySelector('.deditor-comment-avatar')?.textContent).toBe('A')
+    expect(meta.querySelector('.deditor-comment-avatar')?.getAttribute('style')).toContain(
+      '--deditor-primary',
+    )
+    expect(meta.querySelector('.deditor-comment-author')?.textContent).toBe('Alice')
+    const timestamp = meta.querySelector('time') as HTMLTimeElement
+    expect(timestamp).toBeTruthy()
+    expect(timestamp.dateTime).toMatch(/^\d{4}-\d{2}-\d{2}T/)
+    expect(Number.isNaN(new Date(timestamp.dateTime).getTime())).toBe(false)
+    expect(message.querySelector('.deditor-comment-body')?.textContent).toBe('Attributed note')
+    expect(within(row).getByLabelText('Reply').classList.contains('deditor-comment-input')).toBe(true)
+    const replyButton = within(row).getByText('Reply')
+    expect(replyButton.classList.contains('deditor-chip-btn')).toBe(true)
+    expect(replyButton.classList.contains('is-primary')).toBe(true)
+    expect(within(row).getByText('Resolve').classList.contains('deditor-chip-btn')).toBe(true)
+    expect(within(row).getByText('Delete').classList.contains('deditor-chip-btn')).toBe(true)
+  })
+
   it('lists unresolved attached then detached then resolved; reply/resolve/delete dispatch', async () => {
     let editor: Editor | null = null
     const { getByText } = render(
@@ -135,6 +177,8 @@ describe('comment chrome', () => {
     await waitFor(() => expect(getByText('Later')).toBeTruthy())
     fireEvent.click(within(firstRow).getByText('Resolve'))
     await waitFor(() => expect(within(firstRow).getByText('Reopen')).toBeTruthy())
+    const resolvedFlag = firstRow.querySelector('.deditor-comment-flag')
+    expect(resolvedFlag?.querySelector('svg[aria-hidden="true"]')).toBeTruthy()
     const openId = editor!.comments.list().find((t) => t.comments[0].body === 'First')!.id
     expect(editor!.comments.get(openId)?.resolved).toBe(true)
     fireEvent.click(within(firstRow).getByText('Delete'))

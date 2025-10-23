@@ -2,7 +2,14 @@ import type { CommentThread, Editor, User } from '@deditor/core'
 import { commentsUiKey, pickCommentIdAt } from '@deditor/preset-docs'
 import { TextSelection } from 'prosemirror-state'
 import { useEffect, useState } from 'react'
+import { IconCheck } from '../icons'
 import { useEditor } from '../useEditor'
+
+function CommentTime({ createdAt }: { createdAt: number }) {
+  const date = new Date(createdAt)
+  if (Number.isNaN(date.getTime())) return null
+  return <time dateTime={date.toISOString()}>{date.toLocaleString()}</time>
+}
 
 function firstCommentRange(doc: Editor['state']['doc'], id: string): { from: number; to: number } | null {
   const type = doc.type.schema.marks.comment
@@ -95,11 +102,13 @@ function ThreadActions(props: { id: string; resolved: boolean; currentUser: User
     <div className="deditor-comment-actions" onClick={(e) => e.stopPropagation()}>
       <textarea
         aria-label="Reply"
+        className="deditor-comment-input"
         value={body}
         onChange={(e) => setBody(e.target.value)}
       />
       <button
         type="button"
+        className="deditor-chip-btn is-primary"
         onClick={() => {
           if (!body) return
           editor.commands.replyToComment({
@@ -114,6 +123,7 @@ function ThreadActions(props: { id: string; resolved: boolean; currentUser: User
       </button>
       <button
         type="button"
+        className="deditor-chip-btn"
         title={props.resolved ? 'Reopen' : 'Resolve'}
         onClick={() => editor.commands.toggleCommentResolved({ id: props.id })}
       >
@@ -121,6 +131,7 @@ function ThreadActions(props: { id: string; resolved: boolean; currentUser: User
       </button>
       <button
         type="button"
+        className="deditor-chip-btn"
         title="Delete"
         onClick={() => editor.commands.deleteComment({ id: props.id })}
       >
@@ -196,11 +207,24 @@ export function CommentSidebar(props: { currentUser: User; readOnly?: boolean })
             <>
               {row.thread.comments.map((msg) => (
                 <div key={msg.id} className="deditor-comment-message">
-                  {msg.body}
+                  <div className="deditor-comment-meta">
+                    <span
+                      className="deditor-comment-avatar"
+                      style={{ background: msg.author.color ?? 'var(--deditor-primary)' }}
+                      aria-hidden
+                    >
+                      {msg.author.name.slice(0, 1).toUpperCase()}
+                    </span>
+                    <span className="deditor-comment-author">{msg.author.name}</span>
+                    <CommentTime createdAt={msg.createdAt} />
+                  </div>
+                  <div className="deditor-comment-body">{msg.body}</div>
                 </div>
               ))}
               {row.thread.resolved ? (
-                <div className="deditor-comment-flag">Resolved</div>
+                <div className="deditor-comment-flag">
+                  <IconCheck size={14} aria-hidden /> Resolved
+                </div>
               ) : null}
               {editable ? (
                 <ThreadActions

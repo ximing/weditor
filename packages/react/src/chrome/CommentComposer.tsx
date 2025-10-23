@@ -21,28 +21,32 @@ export function CommentComposer(props: {
     <div className="deditor-comment-composer">
       <textarea
         placeholder="Start typing…"
+        className="deditor-comment-input"
         value={body}
         onChange={(e) => setBody(e.target.value)}
       />
-      <button type="button" onClick={() => props.onClose()}>
-        Discard
-      </button>
-      <button
-        type="button"
-        onClick={() => {
-          const range = props.range
-          if (!range) return
-          editor.commands.addComment({
-            body,
-            author: props.currentUser,
-            from: range.from,
-            to: range.to,
-          })
-          props.onClose()
-        }}
-      >
-        Comment
-      </button>
+      <div className="deditor-comment-actions">
+        <button type="button" className="deditor-chip-btn" onClick={() => props.onClose()}>
+          Discard
+        </button>
+        <button
+          type="button"
+          className="deditor-chip-btn is-primary"
+          onClick={() => {
+            const range = props.range
+            if (!range) return
+            editor.commands.addComment({
+              body,
+              author: props.currentUser,
+              from: range.from,
+              to: range.to,
+            })
+            props.onClose()
+          }}
+        >
+          Comment
+        </button>
+      </div>
     </div>
   )
 }
