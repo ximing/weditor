@@ -7,6 +7,7 @@ import { portalTheme } from '../ui/portalScope'
 const tokenCss = readFileSync(resolve(process.cwd(), 'src/tokens.css'), 'utf8')
 
 afterEach(() => {
+  document.documentElement.removeAttribute('data-theme')
   document.head.replaceChildren()
   document.body.replaceChildren()
 })
@@ -70,22 +71,37 @@ describe('editor and portal token scopes', () => {
     )
   })
 
-  it('ignores invalid direct values when resolving the nearest valid theme', () => {
-    const darkAncestor = document.createElement('div')
-    darkAncestor.setAttribute('data-theme', 'dark')
+  it('keeps an invalid explicit editor theme light in dark ancestors and its body portal', () => {
+    const style = document.createElement('style')
+    style.textContent = tokenCss
+    document.head.append(style)
+    document.documentElement.setAttribute('data-theme', 'dark')
+    const localDarkAncestor = document.createElement('div')
+    localDarkAncestor.setAttribute('data-theme', 'dark')
     const editor = document.createElement('div')
     editor.className = 'deditor-root'
     editor.setAttribute('data-theme', 'sepia')
     const anchor = document.createElement('button')
     editor.append(anchor)
-    darkAncestor.append(editor)
-    document.body.append(darkAncestor)
+    localDarkAncestor.append(editor)
+    const bodyPortal = document.createElement('div')
+    bodyPortal.className = 'deditor-portal-scope'
+    document.body.append(localDarkAncestor, bodyPortal)
 
-    expect(portalTheme(anchor)).toBe('dark')
-    editor.setAttribute('data-theme', 'light')
-    expect(portalTheme(anchor)).toBe('light')
-    editor.removeAttribute('data-theme')
-    darkAncestor.setAttribute('data-theme', 'sepia')
-    expect(portalTheme(anchor)).toBeUndefined()
+    const resolvedTheme = portalTheme(anchor)
+    if (resolvedTheme) bodyPortal.setAttribute('data-theme', resolvedTheme)
+    const editorSurface = getComputedStyle(editor)
+      .getPropertyValue('--deditor-bg-surface')
+      .trim()
+    const portalSurface = getComputedStyle(bodyPortal)
+      .getPropertyValue('--deditor-bg-surface')
+      .trim()
+
+    expect(localDarkAncestor.contains(bodyPortal)).toBe(false)
+    expect(editorSurface).toBe('#ffffff')
+    expect(portalSurface).toBe(editorSurface)
+    expect(resolvedTheme).toBe('light')
+    expect(bodyPortal.getAttribute('data-theme')).toBe('light')
+    expect(portalSurface).toBe('#ffffff')
   })
 })

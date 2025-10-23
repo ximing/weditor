@@ -32,5 +32,8 @@ export function portalTheme(contextElement: Element | null | undefined): PortalT
   if (!contextElement) return undefined
 
   const editorRoot = contextElement.closest('.deditor-root')
-  return elementTheme(editorRoot) ?? closestTheme(editorRoot?.parentElement ?? contextElement)
+  const directTheme = elementTheme(editorRoot)
+  if (directTheme) return directTheme
+  if (editorRoot?.hasAttribute('data-theme')) return 'light'
+  return closestTheme(editorRoot?.parentElement ?? contextElement)
 }
