@@ -1,6 +1,6 @@
 {
   "name": "@deditor/preset-docs",
-  "version": "0.1.0",
+  "version": "0.6.0",
   "description": "Pageless Docs schema, commands, keymap, and document CSS for Deditor.",
   "license": "MIT",
   "author": "ximing",

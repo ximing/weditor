@@ -1,6 +1,6 @@
 {
   "name": "@deditor/core",
-  "version": "0.1.0",
+  "version": "0.6.0",
   "description": "Framework-agnostic ProseMirror editor: schema merge, commands, comment store, sanitizers.",
   "license": "MIT",
   "author": "ximing",

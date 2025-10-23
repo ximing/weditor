@@ -17,4 +17,4 @@ export function App() {
 
 `@deditor/react` depends on `@deditor/core`, `@deditor/preset-docs`, and `@deditor/collab`. Collab is optional as a feature: omit the `collab` prop. Integrators who want a headless surface omit `@deditor/react` and depend on `core` + `preset-docs`.
 
-All four packages ship `0.1.0` as dual ESM + CJS with `.d.ts`. Document CSS lives at `@deditor/preset-docs/style.css`; React chrome CSS re-exports it via `@deditor/react/style.css`.
+All four packages ship `0.6.0` as dual ESM + CJS with `.d.ts`. Document CSS lives at `@deditor/preset-docs/style.css`; React chrome CSS re-exports it via `@deditor/react/style.css`.

@@ -1,7 +1,7 @@
 {
   "name": "deditor",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.6.0",
   "description": "Deditor - pageless document editor SDK (ProseMirror, range comments, OT collab)",
   "license": "MIT",
   "author": "ximing",

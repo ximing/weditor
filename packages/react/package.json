@@ -1,6 +1,6 @@
 {
   "name": "@deditor/react",
-  "version": "0.1.0",
+  "version": "0.6.0",
   "description": "React DocEditor surface: toolbar, bubbles, find, and comment sidebar.",
   "license": "MIT",
   "author": "ximing",

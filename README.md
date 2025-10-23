@@ -69,11 +69,11 @@ Anchors are `comment` marks on the document. Bodies live in `CommentStore` and m
 
 ## Publish
 
-GitHub Actions publishes `@deditor/*` to npm on a version tag (`v0.1.0`, …). Repo secret `NPM_TOKEN` must be able to publish the `@deditor` org.
+GitHub Actions publishes `@deditor/*` to npm on a version tag (`v0.6.0`, …). Repo secret `NPM_TOKEN` must be able to publish the `@deditor` org.
 
 ```bash
-git tag v0.1.0
-git push origin v0.1.0
+git tag v0.6.0
+git push origin v0.6.0
 ```
 
 ## License

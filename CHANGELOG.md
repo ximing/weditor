@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0
+## 0.6.0
 
 First release of Deditor (doc editor), a rewrite of the previous Quill-based weditor.
 

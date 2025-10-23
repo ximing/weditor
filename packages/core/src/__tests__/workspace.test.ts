@@ -6,7 +6,7 @@ import { describe, expect, it } from 'vitest'
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../../..')
 
 describe('workspace', () => {
-  it('pins Node 20, pnpm 9, TypeScript 5.5, private root, package versions 0.1.0', () => {
+  it('pins Node 20, pnpm 9, TypeScript 5.5, private root, package versions 0.6.0', () => {
     const rootPkg = JSON.parse(readFileSync(resolve(root, 'package.json'), 'utf8'))
     expect(rootPkg.private).toBe(true)
     expect(rootPkg.packageManager).toMatch(/^pnpm@9\./)
@@ -26,7 +26,7 @@ describe('workspace', () => {
         readFileSync(resolve(root, 'packages', name, 'package.json'), 'utf8'),
       )
       expect(pkg.name).toBe(`@deditor/${name}`)
-      expect(pkg.version).toBe('0.1.0')
+      expect(pkg.version).toBe('0.6.0')
       expect(pkg.type).toBe('module')
       expect(pkg.exports['.'].types).toBe('./dist/index.d.ts')
       expect(pkg.exports['.'].import).toBe('./dist/index.js')
