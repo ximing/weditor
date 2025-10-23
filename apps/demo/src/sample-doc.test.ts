@@ -42,6 +42,32 @@ describe('sample doc', () => {
     )
   })
 
+  it('uses theme-adaptive demo tokens for the colored and highlighted samples', () => {
+    const markedText = new Map<string, Array<{ type: string; attrs?: { color?: string } }>>()
+    const walk = (node: {
+      text?: string
+      content?: unknown[]
+      marks?: Array<{ type: string; attrs?: { color?: string } }>
+    }) => {
+      if (node.text && node.marks) markedText.set(node.text, node.marks)
+      for (const child of node.content ?? []) {
+        walk(child as {
+          text?: string
+          content?: unknown[]
+          marks?: Array<{ type: string; attrs?: { color?: string } }>
+        })
+      }
+    }
+    walk(sampleDoc)
+
+    expect(markedText.get('colored')).toEqual([
+      { type: 'color', attrs: { color: 'var(--demo-mark-color)' } },
+    ])
+    expect(markedText.get('highlighted')).toEqual([
+      { type: 'highlight', attrs: { color: 'var(--demo-highlight)' } },
+    ])
+  })
+
   it('embeds a meaningful local PNG sample image', async () => {
     const server = await createServer({
       configFile: false,

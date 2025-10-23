@@ -12,6 +12,7 @@ import {
   type ReferenceElement,
 } from '@floating-ui/react'
 import { useEffect, type ReactNode } from 'react'
+import { anchorContextElement, portalTheme } from './portalScope'
 
 export type PopoverAnchor =
   | Element
@@ -43,17 +44,18 @@ export function Popover(props: {
 
   if (!props.open || !props.anchor) return null
 
-  const contextElement =
-    props.anchor instanceof Element ? props.anchor : props.anchor.contextElement
-  const portalRoot = contextElement?.closest<HTMLElement>('.deditor-root') ?? undefined
+  const theme = portalTheme(anchorContextElement(props.anchor))
 
   return (
-    <FloatingPortal root={portalRoot}>
+    <FloatingPortal>
       <FloatingFocusManager context={context} modal={false} initialFocus={-1}>
         <div
           ref={refs.setFloating}
           style={floatingStyles}
-          className={['deditor-popover', props.className].filter(Boolean).join(' ')}
+          className={['deditor-portal-scope', 'deditor-popover', props.className]
+            .filter(Boolean)
+            .join(' ')}
+          data-theme={theme}
           {...getFloatingProps()}
         >
           {props.children}

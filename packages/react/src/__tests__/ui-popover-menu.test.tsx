@@ -9,7 +9,7 @@ function AnchorHarness(props: { onSelect: (id: string) => void }) {
   const ref = useRef<HTMLButtonElement>(null)
   const [open, setOpen] = useState(false)
   return (
-    <div className="deditor-root">
+    <div className="deditor-root" data-theme="dark" style={{ overflow: 'hidden' }}>
       <button type="button" ref={ref} aria-label="anchor" onClick={() => setOpen(true)}>
         anchor
       </button>
@@ -38,13 +38,15 @@ function VirtualAnchorHarness() {
     : null
 
   return (
-    <div className="deditor-root">
-      <button type="button" ref={ref} aria-label="virtual anchor" onClick={() => setOpen(true)}>
-        anchor
-      </button>
-      <Popover open={open} onClose={() => setOpen(false)} anchor={anchor}>
-        <div role="dialog">virtual content</div>
-      </Popover>
+    <div data-theme="dark">
+      <div className="deditor-root" data-theme="light">
+        <button type="button" ref={ref} aria-label="virtual anchor" onClick={() => setOpen(true)}>
+          anchor
+        </button>
+        <Popover open={open} onClose={() => setOpen(false)} anchor={anchor}>
+          <div role="dialog">virtual content</div>
+        </Popover>
+      </div>
     </div>
   )
 }
@@ -65,36 +67,86 @@ function BareAnchorHarness() {
   )
 }
 
+function ThemedAnchorHarness(props: { label: string; theme: 'light' | 'dark' }) {
+  const ref = useRef<HTMLButtonElement>(null)
+  const [open, setOpen] = useState(false)
+
+  return (
+    <div className="deditor-root" data-theme={props.theme}>
+      <button type="button" ref={ref} aria-label={props.label} onClick={() => setOpen(true)}>
+        {props.label}
+      </button>
+      <Popover open={open} onClose={() => setOpen(false)} anchor={ref.current}>
+        <div role="dialog">{props.label} content</div>
+      </Popover>
+    </div>
+  )
+}
+
 afterEach(() => cleanup())
 
 describe('Popover + Menu', () => {
-  it('keeps the portal inside the token-owning editor root', async () => {
+  it('body-portals an element anchor outside its clipped root with the owning theme', async () => {
     const { getByLabelText, getByRole } = render(<AnchorHarness onSelect={() => {}} />)
     const root = getByLabelText('anchor').closest('.deditor-root')
 
     fireEvent.click(getByLabelText('anchor'))
     const menu = await waitFor(() => getByRole('menu'))
+    const popover = menu.closest('.deditor-popover')
 
-    expect(root?.contains(menu)).toBe(true)
+    expect(root?.contains(popover)).toBe(false)
+    expect(popover?.classList.contains('deditor-portal-scope')).toBe(true)
+    expect(popover?.getAttribute('data-theme')).toBe('dark')
+    expect(popover?.closest('[data-floating-ui-portal]')?.parentElement).toBe(document.body)
   })
 
-  it('uses a virtual anchor context element to preserve the token scope', async () => {
+  it('body-portals a virtual anchor with explicit light isolated from a dark ancestor', async () => {
     const { getByLabelText, getByRole } = render(<VirtualAnchorHarness />)
     const root = getByLabelText('virtual anchor').closest('.deditor-root')
 
     fireEvent.click(getByLabelText('virtual anchor'))
     const dialog = await waitFor(() => getByRole('dialog'))
+    const popover = dialog.closest('.deditor-popover')
 
-    expect(root?.contains(dialog)).toBe(true)
+    expect(root?.contains(popover)).toBe(false)
+    expect(popover?.classList.contains('deditor-portal-scope')).toBe(true)
+    expect(popover?.getAttribute('data-theme')).toBe('light')
   })
 
-  it('falls back to the document body outside an editor root', async () => {
+  it('body-portals a standalone anchor with the default unthemed scope', async () => {
     const { getByLabelText, getByRole } = render(<BareAnchorHarness />)
 
     fireEvent.click(getByLabelText('bare anchor'))
     const dialog = await waitFor(() => getByRole('dialog'))
+    const popover = dialog.closest('.deditor-popover')
 
-    expect(document.body.contains(dialog)).toBe(true)
+    expect(popover?.classList.contains('deditor-portal-scope')).toBe(true)
+    expect(popover?.hasAttribute('data-theme')).toBe(false)
+    expect(popover?.closest('[data-floating-ui-portal]')?.parentElement).toBe(document.body)
+  })
+
+  it('keeps simultaneous editor portals isolated to their owning themes', async () => {
+    const { getByLabelText, getAllByRole } = render(
+      <>
+        <ThemedAnchorHarness label="light anchor" theme="light" />
+        <ThemedAnchorHarness label="dark anchor" theme="dark" />
+      </>,
+    )
+
+    fireEvent.click(getByLabelText('light anchor'))
+    fireEvent.click(getByLabelText('dark anchor'))
+    const dialogs = await waitFor(() => getAllByRole('dialog'))
+    const themes = new Map(
+      dialogs.map((dialog) => [
+        dialog.textContent,
+        dialog.closest('.deditor-popover')?.getAttribute('data-theme'),
+      ]),
+    )
+
+    expect(themes).toEqual(new Map([
+      ['light anchor content', 'light'],
+      ['dark anchor content', 'dark'],
+    ]))
   })
 
   it('opens from anchor, selects an item, closes on Escape', async () => {

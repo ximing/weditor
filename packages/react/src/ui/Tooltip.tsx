@@ -10,6 +10,7 @@ import {
   useInteractions,
 } from '@floating-ui/react'
 import { cloneElement, useEffect, useRef, useState, type ReactElement } from 'react'
+import { portalTheme } from './portalScope'
 
 export function Tooltip(props: { label: string; children: ReactElement }) {
   const [open, setOpen] = useState(false)
@@ -25,6 +26,7 @@ export function Tooltip(props: { label: string; children: ReactElement }) {
   const dismiss = useDismiss(context)
   const { getReferenceProps, getFloatingProps } = useInteractions([hover, dismiss])
   const referenceProps = getReferenceProps()
+  const theme = portalTheme(refs.domReference.current)
 
   useEffect(() => () => window.clearTimeout(hoverTimeout.current), [])
 
@@ -46,7 +48,8 @@ export function Tooltip(props: { label: string; children: ReactElement }) {
           <div
             ref={refs.setFloating}
             style={floatingStyles}
-            className="deditor-tooltip"
+            className="deditor-portal-scope deditor-tooltip"
+            data-theme={theme}
             role="tooltip"
             {...getFloatingProps()}
           >

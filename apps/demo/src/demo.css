@@ -6,6 +6,8 @@
   --demo-text-2: #646a73;
   --demo-primary: #3370ff;
   --demo-focus: #3370ff;
+  --demo-mark-color: #9f1d1d;
+  --demo-highlight: #fff1a8;
 }
 
 :root[data-theme='dark'] {
@@ -16,6 +18,8 @@
   --demo-text-2: rgba(255, 255, 255, 0.65);
   --demo-primary: #4c88ff;
   --demo-focus: #6a9bff;
+  --demo-mark-color: #ff9b9b;
+  --demo-highlight: #5c4b00;
 }
 
 html,

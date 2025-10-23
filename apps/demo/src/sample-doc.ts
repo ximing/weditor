@@ -109,13 +109,13 @@ export const sampleDoc = {
         {
           type: 'text',
           text: 'colored',
-          marks: [{ type: 'color', attrs: { color: '#c00000' } }],
+          marks: [{ type: 'color', attrs: { color: 'var(--demo-mark-color)' } }],
         },
         { type: 'text', text: ', ' },
         {
           type: 'text',
           text: 'highlighted',
-          marks: [{ type: 'highlight', attrs: { color: 'yellow' } }],
+          marks: [{ type: 'highlight', attrs: { color: 'var(--demo-highlight)' } }],
         },
         { type: 'text', text: ', and a ' },
         {

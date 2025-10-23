@@ -1,5 +1,6 @@
 /* Deditor design tokens. Light is the default; dark overrides via [data-theme='dark']. */
-.deditor-root {
+.deditor-root,
+.deditor-portal-scope {
   --deditor-primary: #3370ff;
   --deditor-on-primary: #fff;
   --deditor-primary-hover: #2953c7;
@@ -24,7 +25,9 @@
 }
 
 .deditor-root[data-theme='dark'],
-[data-theme='dark'] .deditor-root {
+.deditor-portal-scope[data-theme='dark'],
+[data-theme='dark'] .deditor-root:not([data-theme]),
+[data-theme='dark'] .deditor-portal-scope:not([data-theme]) {
   --deditor-primary: #4c88ff;
   --deditor-on-primary: #fff;
   --deditor-primary-hover: #6a9bff;
