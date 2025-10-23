@@ -160,3 +160,59 @@
 .deditor-select-option[aria-selected='true'] {
   color: var(--deditor-primary);
 }
+
+.deditor-link-editor .deditor-link-form {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px;
+}
+
+.deditor-link-form input {
+  width: 220px;
+  height: 28px;
+  padding: 0 8px;
+  border: 1px solid var(--deditor-border);
+  border-radius: var(--deditor-radius-s);
+  background: var(--deditor-bg-surface);
+  color: var(--deditor-text-1);
+  font-size: 13px;
+  outline: none;
+}
+
+.deditor-link-form input:focus {
+  border-color: var(--deditor-primary);
+}
+
+.deditor-chip-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 28px;
+  padding: 0 10px;
+  border: 1px solid var(--deditor-border);
+  border-radius: var(--deditor-radius-s);
+  background: var(--deditor-bg-surface);
+  color: var(--deditor-text-1);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.deditor-chip-btn:hover {
+  background: var(--deditor-bg-hover);
+}
+
+.deditor-chip-btn.is-primary {
+  border-color: var(--deditor-primary);
+  background: var(--deditor-primary);
+  color: var(--deditor-on-primary);
+}
+
+.deditor-chip-btn.is-primary:hover {
+  background: var(--deditor-primary-hover);
+}
+
+.deditor-chip-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}

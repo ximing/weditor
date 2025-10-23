@@ -88,8 +88,8 @@ export function Bubble() {
         title="Link"
         onMouseDown={(e) => e.preventDefault()}
         onClick={() => {
-          const href = window.prompt('URL')
-          if (href) editor.commands.setLink({ href })
+          const { from, to } = editor.state.selection
+          editor.emit('openLink', { from, to })
         }}
       >
         Link

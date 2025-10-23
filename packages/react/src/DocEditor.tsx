@@ -10,6 +10,7 @@ import { FindBar } from './chrome/FindBar'
 import { CommentSidebar } from './chrome/CommentSidebar'
 import { CommentComposer } from './chrome/CommentComposer'
 import { TableBubble } from './chrome/TableBubble'
+import { LinkEditor } from './chrome/LinkEditor'
 
 export interface DocEditorProps {
   defaultContent?: JSONContent
@@ -109,6 +110,7 @@ function DocEditorBoot(
         data-theme={resolvedTheme}
       >
         {!props.readOnly ? <Toolbar uploadImage={props.uploadImage} /> : null}
+        {!props.readOnly ? <LinkEditor /> : null}
         <FindBar />
         {!props.readOnly ? <TableBubble /> : null}
         {!props.readOnly ? <Bubble /> : null}

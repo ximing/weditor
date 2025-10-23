@@ -5,7 +5,7 @@ import {
   COLORS_THEME,
   HIGHLIGHTS,
 } from '@deditor/preset-docs'
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { useEditor } from '../useEditor'
 import { ColorPalette } from './ColorPalette'
 import { OverflowMore } from './OverflowMore'
@@ -16,12 +16,6 @@ export function Toolbar(props: {
 }) {
   const editor = useEditor()
   const fileRef = useRef<HTMLInputElement>(null)
-  useEffect(() => {
-    return editor.on('openLink', () => {
-      const href = window.prompt('URL')
-      if (href) editor.commands.setLink({ href })
-    })
-  }, [editor])
   return (
     <div className="deditor-toolbar" role="toolbar">
       <button type="button" title="Undo" onMouseDown={(e) => { e.preventDefault(); editor.commands.undo() }}>Undo</button>
@@ -101,8 +95,8 @@ export function Toolbar(props: {
         title="Link"
         onMouseDown={(e) => e.preventDefault()}
         onClick={() => {
-          const href = window.prompt('URL')
-          if (href) editor.commands.setLink({ href })
+          const { from, to } = editor.state.selection
+          editor.emit('openLink', { from, to })
         }}
       >
         Link
