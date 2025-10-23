@@ -55,7 +55,7 @@ afterEach(() => cleanup())
 
 describe('Toolbar', () => {
   it('maps mark buttons and block/font/size/color controls to editor state', async () => {
-    const { getByLabelText, getByRole, getByTestId, getByTitle } = render(<Harness />)
+    const { getByLabelText, getByRole, getByTestId } = render(<Harness />)
     const state = getByTestId('state')
     await waitFor(() => getByLabelText('Bold'))
     expect(getByLabelText('Insert table')).toBeTruthy()
@@ -92,9 +92,9 @@ describe('Toolbar', () => {
       const fontSize = readSnapshot(state).storedMarks.find((mark) => mark.type === 'fontSize')
       expect(fontSize?.attrs.size).toBe('14pt')
     })
-    // Text color palette (temporary legacy query until Task 12)
-    fireEvent.click(getByTitle('Text color'))
-    fireEvent.click(await waitFor(() => getByTitle('Color #ff0000')))
+    // Text color palette
+    fireEvent.click(getByLabelText('Text color'))
+    fireEvent.click(await waitFor(() => getByRole('option', { name: 'Color #ff0000' })))
     await waitFor(() => {
       const color = readSnapshot(state).storedMarks.find((mark) => mark.type === 'color')
       expect(color?.attrs.color).toBe('#ff0000')
