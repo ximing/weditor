@@ -63,5 +63,86 @@ export const sampleDoc = {
         },
       ],
     },
+    {
+      type: 'image',
+      attrs: {
+        src: 'https://placehold.co/960x240/e1eaff/3370ff.png?text=Deditor%20image%20block',
+        alt: 'Deditor image block example',
+        width: 720,
+      },
+    },
+    {
+      type: 'heading',
+      attrs: { level: 2 },
+      content: [{ type: 'text', text: 'Text and marks' }],
+    },
+    {
+      type: 'paragraph',
+      content: [
+        { type: 'text', text: 'Bold', marks: [{ type: 'strong' }] },
+        { type: 'text', text: ', ' },
+        { type: 'text', text: 'italic', marks: [{ type: 'em' }] },
+        { type: 'text', text: ', ' },
+        { type: 'text', text: 'underline', marks: [{ type: 'underline' }] },
+        { type: 'text', text: ', ' },
+        { type: 'text', text: 'strike', marks: [{ type: 'strike' }] },
+        { type: 'text', text: ', ' },
+        { type: 'text', text: 'code', marks: [{ type: 'code' }] },
+        { type: 'text', text: ', ' },
+        {
+          type: 'text',
+          text: 'colored',
+          marks: [{ type: 'color', attrs: { color: '#c00000' } }],
+        },
+        { type: 'text', text: ', ' },
+        {
+          type: 'text',
+          text: 'highlighted',
+          marks: [{ type: 'highlight', attrs: { color: 'yellow' } }],
+        },
+        { type: 'text', text: ', and a ' },
+        {
+          type: 'text',
+          text: 'link',
+          marks: [{ type: 'link', attrs: { href: 'https://github.com/ximing/weditor' } }],
+        },
+        { type: 'text', text: '.' },
+      ],
+    },
+    {
+      type: 'blockquote',
+      content: [
+        {
+          type: 'paragraph',
+          content: [
+            { type: 'text', text: 'Pageless by design — comments and collab included.' },
+          ],
+        },
+      ],
+    },
+    {
+      type: 'task_list',
+      content: [
+        {
+          type: 'task_item',
+          attrs: { checked: true },
+          content: [
+            { type: 'paragraph', content: [{ type: 'text', text: 'Production-grade UI' }] },
+          ],
+        },
+        {
+          type: 'task_item',
+          attrs: { checked: false },
+          content: [
+            { type: 'paragraph', content: [{ type: 'text', text: 'Mobile support' }] },
+          ],
+        },
+      ],
+    },
+    {
+      type: 'code_block',
+      content: [{ type: 'text', text: 'pnpm add @deditor/react' }],
+    },
+    { type: 'horizontal_rule' },
   ],
 }

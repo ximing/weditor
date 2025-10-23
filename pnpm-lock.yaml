@@ -63,6 +63,9 @@ importers:
       '@deditor/react':
         specifier: workspace:*
         version: link:../../packages/react
+      lucide-react:
+        specifier: ^0.454.0
+        version: 0.454.0(react@18.3.1)
       react:
         specifier: ^18.3.1
         version: 18.3.1
