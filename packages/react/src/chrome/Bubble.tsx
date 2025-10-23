@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react'
+import { IconBold, IconComment, IconItalic, IconLink, IconUnderline } from '../icons'
 import { useEditor } from '../useEditor'
+import { useEditorState } from '../useEditorState'
+import { IconButton } from '../ui/IconButton'
+import { isMarkActive } from './toolbar-state'
 
 export function Bubble() {
   const editor = useEditor()
@@ -14,6 +18,10 @@ export function Bubble() {
       offTx()
     }
   }, [editor])
+
+  const strong = useEditorState((e) => isMarkActive(e, 'strong'))
+  const em = useEditorState((e) => isMarkActive(e, 'em'))
+  const underline = useEditorState((e) => isMarkActive(e, 'underline'))
 
   const { from, to } = editor.state.selection
   if (from === to) return null
@@ -41,59 +49,52 @@ export function Bubble() {
       className="deditor-bubble"
       style={{ position: 'absolute', left, top, transform: 'translate(-50%, -100%)' }}
     >
-      <button
-        type="button"
-        title="Bold"
+      <IconButton
+        icon={IconBold}
+        label="Bold"
+        active={strong}
         onMouseDown={(e) => {
           e.preventDefault()
           editor.commands.toggleStrong()
         }}
-      >
-        B
-      </button>
-      <button
-        type="button"
-        title="Italic"
+      />
+      <IconButton
+        icon={IconItalic}
+        label="Italic"
+        active={em}
         onMouseDown={(e) => {
           e.preventDefault()
           editor.commands.toggleEm()
         }}
-      >
-        I
-      </button>
-      <button
-        type="button"
-        title="Underline"
+      />
+      <IconButton
+        icon={IconUnderline}
+        label="Underline"
+        active={underline}
         onMouseDown={(e) => {
           e.preventDefault()
           editor.commands.toggleUnderline()
         }}
-      >
-        U
-      </button>
-      <button
-        type="button"
-        title="Comment"
+      />
+      <IconButton
+        icon={IconComment}
+        label="Comment"
         onMouseDown={(e) => {
           e.preventDefault()
           const sel = editor.state.selection
           if (sel.from === sel.to) return
           editor.emit('openComment', { from: sel.from, to: sel.to })
         }}
-      >
-        Comment
-      </button>
-      <button
-        type="button"
-        title="Link"
+      />
+      <IconButton
+        icon={IconLink}
+        label="Link"
         onMouseDown={(e) => e.preventDefault()}
         onClick={() => {
-          const { from, to } = editor.state.selection
-          editor.emit('openLink', { from, to })
+          const sel = editor.state.selection
+          editor.emit('openLink', { from: sel.from, to: sel.to })
         }}
-      >
-        Link
-      </button>
+      />
     </div>
   )
 }

@@ -27,15 +27,15 @@ export function TableBubble() {
   if (!inTable) return null
   return (
     <div className="deditor-table-bubble" role="toolbar">
-      <button type="button" onMouseDown={(e) => { e.preventDefault(); editor.commands.addColumnBefore() }}>Column before</button>
-      <button type="button" onMouseDown={(e) => { e.preventDefault(); editor.commands.addColumnAfter() }}>Column after</button>
-      <button type="button" onMouseDown={(e) => { e.preventDefault(); editor.commands.deleteColumn() }}>Delete column</button>
-      <button type="button" onMouseDown={(e) => { e.preventDefault(); editor.commands.addRowBefore() }}>Row before</button>
-      <button type="button" onMouseDown={(e) => { e.preventDefault(); editor.commands.addRowAfter() }}>Row after</button>
-      <button type="button" onMouseDown={(e) => { e.preventDefault(); editor.commands.deleteRow() }}>Delete row</button>
-      <button type="button" onMouseDown={(e) => { e.preventDefault(); editor.commands.mergeCells() }}>Merge</button>
-      <button type="button" onMouseDown={(e) => { e.preventDefault(); editor.commands.splitCell() }}>Split</button>
-      <button type="button" onMouseDown={(e) => { e.preventDefault(); editor.commands.toggleHeaderRow() }}>Header row</button>
+      <button type="button" className="deditor-chip-btn" onMouseDown={(e) => { e.preventDefault(); editor.commands.addColumnBefore() }}>Column before</button>
+      <button type="button" className="deditor-chip-btn" onMouseDown={(e) => { e.preventDefault(); editor.commands.addColumnAfter() }}>Column after</button>
+      <button type="button" className="deditor-chip-btn" onMouseDown={(e) => { e.preventDefault(); editor.commands.deleteColumn() }}>Delete column</button>
+      <button type="button" className="deditor-chip-btn" onMouseDown={(e) => { e.preventDefault(); editor.commands.addRowBefore() }}>Row before</button>
+      <button type="button" className="deditor-chip-btn" onMouseDown={(e) => { e.preventDefault(); editor.commands.addRowAfter() }}>Row after</button>
+      <button type="button" className="deditor-chip-btn" onMouseDown={(e) => { e.preventDefault(); editor.commands.deleteRow() }}>Delete row</button>
+      <button type="button" className="deditor-chip-btn" onMouseDown={(e) => { e.preventDefault(); editor.commands.mergeCells() }}>Merge</button>
+      <button type="button" className="deditor-chip-btn" onMouseDown={(e) => { e.preventDefault(); editor.commands.splitCell() }}>Split</button>
+      <button type="button" className="deditor-chip-btn" onMouseDown={(e) => { e.preventDefault(); editor.commands.toggleHeaderRow() }}>Header row</button>
     </div>
   )
 }

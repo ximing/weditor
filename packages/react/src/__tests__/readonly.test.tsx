@@ -74,11 +74,11 @@ describe('read-only and chrome', () => {
       </EditorProvider>,
     )
     await waitFor(() => expect(container.querySelector('.deditor-bubble')).toBeTruthy())
-    expect(container.querySelector('.deditor-bubble button[title="Bold"]')).toBeTruthy()
-    expect(container.querySelector('.deditor-bubble button[title="Italic"]')).toBeTruthy()
-    expect(container.querySelector('.deditor-bubble button[title="Underline"]')).toBeTruthy()
-    expect(container.querySelector('.deditor-bubble button[title="Comment"]')).toBeTruthy()
-    expect(container.querySelector('.deditor-bubble button[title="Link"]')).toBeTruthy()
+    expect(container.querySelector('.deditor-bubble button[aria-label="Bold"]')).toBeTruthy()
+    expect(container.querySelector('.deditor-bubble button[aria-label="Italic"]')).toBeTruthy()
+    expect(container.querySelector('.deditor-bubble button[aria-label="Underline"]')).toBeTruthy()
+    expect(container.querySelector('.deditor-bubble button[aria-label="Comment"]')).toBeTruthy()
+    expect(container.querySelector('.deditor-bubble button[aria-label="Link"]')).toBeTruthy()
   })
 
   it('toasts Upload failed when uploadImage rejects and does not insert an image', async () => {
