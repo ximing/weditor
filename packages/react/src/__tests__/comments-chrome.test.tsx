@@ -1,6 +1,6 @@
 /** @vitest-environment happy-dom */
-import type { Editor } from '@weditor/core'
-import { commentsUiKey, docsPreset, pickCommentIdAt } from '@weditor/preset-docs'
+import type { Editor } from '@deditor/core'
+import { commentsUiKey, docsPreset, pickCommentIdAt } from '@deditor/preset-docs'
 import { cleanup, fireEvent, render, waitFor, within } from '@testing-library/react'
 import { TextSelection } from 'prosemirror-state'
 import React from 'react'
@@ -69,7 +69,7 @@ describe('comment chrome', () => {
     await waitFor(() => getByTestId('open-comment'))
     fireEvent.click(getByTestId('open-comment'))
     fireEvent.change(getByPlaceholderText('Start typing…'), { target: { value: 'A note' } })
-    const composer = getByPlaceholderText('Start typing…').closest('.weditor-comment-composer')
+    const composer = getByPlaceholderText('Start typing…').closest('.deditor-comment-composer')
     expect(composer).toBeTruthy()
     fireEvent.click(within(composer as HTMLElement).getByText('Comment'))
     await waitFor(() => expect(getByText('A note')).toBeTruthy())
@@ -126,10 +126,10 @@ describe('comment chrome', () => {
     expect(editor!.comments.get(second.id)?.detached).toBe(true)
     editor!.commands.toggleCommentResolved({ id: second.id })
     await waitFor(() => getByText('First'))
-    const quotes = [...document.querySelectorAll('.weditor-comment-quote')].map((el) => el.textContent)
+    const quotes = [...document.querySelectorAll('.deditor-comment-quote')].map((el) => el.textContent)
     expect(quotes[0]).toBe('Hello')
     expect(quotes[quotes.length - 1]).toBe('world')
-    const firstRow = document.querySelector('.weditor-comment-thread') as HTMLElement
+    const firstRow = document.querySelector('.deditor-comment-thread') as HTMLElement
     fireEvent.change(within(firstRow).getByLabelText('Reply'), { target: { value: 'Later' } })
     fireEvent.click(within(firstRow).getByText('Reply'))
     await waitFor(() => expect(getByText('Later')).toBeTruthy())
@@ -155,7 +155,7 @@ describe('comment chrome', () => {
     expect(queryByLabelText('Reply')).toBeNull()
     expect(queryByText('Resolve')).toBeNull()
     expect(queryByText('Delete')).toBeNull()
-    expect(document.querySelector('.weditor-comment-open')).toBeTruthy()
+    expect(document.querySelector('.deditor-comment-open')).toBeTruthy()
   })
 
   it('clicking a highlight picks the shortest overlapping id and paints active', async () => {
@@ -166,12 +166,12 @@ describe('comment chrome', () => {
     editor!.commands.addComment({ body: 'short', author: user, from: 1, to: 6 })
     const shortId = editor!.comments.list().find((t) => t.comments[0].body === 'short')!.id
     expect(pickCommentIdAt(editor!.state.doc, 3, editor!.comments)).toBe(shortId)
-    await waitFor(() => expect(document.querySelector('.weditor-comment-open')).toBeTruthy())
-    fireEvent.click(document.querySelector('.weditor-comment-open') as Element)
+    await waitFor(() => expect(document.querySelector('.deditor-comment-open')).toBeTruthy())
+    fireEvent.click(document.querySelector('.deditor-comment-open') as Element)
     await waitFor(() => {
       expect(commentsUiKey.getState(editor!.state)?.activeId).toBe(shortId)
     })
-    expect(document.querySelector('.weditor-comment-active')).toBeTruthy()
+    expect(document.querySelector('.deditor-comment-active')).toBeTruthy()
   })
 
   it('skeleton rows show Loading thread…; clicking a thread selects the first mark range', async () => {

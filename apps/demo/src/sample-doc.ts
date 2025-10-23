@@ -4,7 +4,7 @@ export const sampleDoc = {
     {
       type: 'heading',
       attrs: { level: 1 },
-      content: [{ type: 'text', text: 'WEditor' }],
+      content: [{ type: 'text', text: 'Deditor' }],
     },
     {
       type: 'paragraph',

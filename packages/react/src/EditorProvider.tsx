@@ -1,4 +1,4 @@
-import { Editor, type Extension, type JSONContent } from '@weditor/core'
+import { Editor, type Extension, type JSONContent } from '@deditor/core'
 import React, { useEffect, useState } from 'react'
 import { EditorContext } from './useEditor'
 

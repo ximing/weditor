@@ -1,4 +1,4 @@
-import { schemaFromExtensions, type Extension } from '@weditor/core'
+import { schemaFromExtensions, type Extension } from '@deditor/core'
 import { baseKeymapExtension } from './extensions/base-keymap'
 import { commentsUiExtension } from './extensions/comments-ui'
 import { dropcursorExtension } from './extensions/dropcursor'

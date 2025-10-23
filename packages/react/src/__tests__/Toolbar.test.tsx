@@ -1,5 +1,5 @@
 /** @vitest-environment happy-dom */
-import { docsPreset } from '@weditor/preset-docs'
+import { docsPreset } from '@deditor/preset-docs'
 import { cleanup, fireEvent, render, waitFor } from '@testing-library/react'
 import React from 'react'
 import { afterEach, describe, expect, it, vi } from 'vitest'

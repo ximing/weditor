@@ -1,11 +1,11 @@
 {
-  "name": "@weditor/collab-server",
+  "name": "@deditor/collab-server",
   "private": true,
   "type": "module",
   "scripts": { "start": "tsx src/index.ts" },
   "dependencies": {
-    "@weditor/collab": "workspace:*",
-    "@weditor/preset-docs": "workspace:*",
+    "@deditor/collab": "workspace:*",
+    "@deditor/preset-docs": "workspace:*",
     "ws": "^8.18.0"
   },
   "devDependencies": {

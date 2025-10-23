@@ -1,4 +1,4 @@
-import type { Extension } from '@weditor/core'
+import type { Extension } from '@deditor/core'
 import { Plugin, PluginKey } from 'prosemirror-state'
 import { formatPainterCommands } from '../commands/format-painter'
 

@@ -1,6 +1,6 @@
-import { Editor, type CollabProvider, type Extension, type JSONContent, type User } from '@weditor/core'
-import { collabExtension } from '@weditor/collab'
-import { docsPreset } from '@weditor/preset-docs'
+import { Editor, type CollabProvider, type Extension, type JSONContent, type User } from '@deditor/core'
+import { collabExtension } from '@deditor/collab'
+import { docsPreset } from '@deditor/preset-docs'
 import React, { useEffect, useState } from 'react'
 import { EditorProvider } from './EditorProvider'
 import { EditorSurface } from './EditorSurface'
@@ -98,11 +98,11 @@ function DocEditorBoot(
     }
   }, [editor, props.content, props.collab])
 
-  if (error) return <div className="weditor-error">{error.message}</div>
-  if (!editor) return <div className="weditor-loading">Loading</div>
+  if (error) return <div className="deditor-error">{error.message}</div>
+  if (!editor) return <div className="deditor-loading">Loading</div>
   return (
     <EditorProvider editor={editor}>
-      <div className={['weditor-root', props.className].filter(Boolean).join(' ')}>
+      <div className={['deditor-root', props.className].filter(Boolean).join(' ')}>
         {!props.readOnly ? <Toolbar uploadImage={props.uploadImage} /> : null}
         <FindBar />
         {!props.readOnly ? <TableBubble /> : null}

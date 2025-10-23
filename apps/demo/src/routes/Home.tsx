@@ -1,5 +1,5 @@
-import { DocEditor } from '@weditor/react'
-import '@weditor/react/style.css'
+import { DocEditor } from '@deditor/react'
+import '@deditor/react/style.css'
 import { sampleDoc } from '../sample-doc'
 import { readImageFile } from '../upload'
 

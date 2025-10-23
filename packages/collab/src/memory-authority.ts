@@ -7,8 +7,8 @@ import type {
   StepJSON,
   StepsPayload,
   User,
-} from '@weditor/core'
-import { CommentStore } from '@weditor/core'
+} from '@deditor/core'
+import { CommentStore } from '@deditor/core'
 import type { Node, Schema } from 'prosemirror-model'
 import { Step } from 'prosemirror-transform'
 import { applyAuthorityBatch } from './apply-authority-batch'

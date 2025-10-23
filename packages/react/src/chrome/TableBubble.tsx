@@ -26,7 +26,7 @@ export function TableBubble() {
   }
   if (!inTable) return null
   return (
-    <div className="weditor-table-bubble" role="toolbar">
+    <div className="deditor-table-bubble" role="toolbar">
       <button type="button" onMouseDown={(e) => { e.preventDefault(); editor.commands.addColumnBefore() }}>Column before</button>
       <button type="button" onMouseDown={(e) => { e.preventDefault(); editor.commands.addColumnAfter() }}>Column after</button>
       <button type="button" onMouseDown={(e) => { e.preventDefault(); editor.commands.deleteColumn() }}>Delete column</button>

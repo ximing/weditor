@@ -1,4 +1,4 @@
-import { Editor } from '@weditor/core'
+import { Editor } from '@deditor/core'
 import { describe, expect, it } from 'vitest'
 import { docsPreset, docsSchema } from '../preset'
 

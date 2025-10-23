@@ -1,6 +1,33 @@
 {
-  "name": "@weditor/core",
+  "name": "@deditor/core",
   "version": "0.1.0",
+  "description": "Framework-agnostic ProseMirror editor: schema merge, commands, comment store, sanitizers.",
+  "license": "MIT",
+  "author": "ximing",
+  "homepage": "https://ximing.github.io/weditor/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ximing/weditor.git",
+    "directory": "packages/core"
+  },
+  "bugs": {
+    "url": "https://github.com/ximing/weditor/issues"
+  },
+  "keywords": [
+    "prosemirror",
+    "editor",
+    "rich-text",
+    "collaborative-editing",
+    "comments",
+    "docs",
+    "deditor"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "type": "module",
   "exports": {
     ".": {
@@ -9,7 +36,9 @@
       "require": "./dist/index.cjs"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup",
     "test": "vitest run",

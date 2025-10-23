@@ -1,0 +1,9 @@
+# @deditor/core
+
+Framework-agnostic ProseMirror editor for [Deditor](https://github.com/ximing/weditor): schema merge, commands, comment store, sanitizers, and shared collab/comment types.
+
+```bash
+pnpm add @deditor/core
+```
+
+Docs: https://ximing.github.io/weditor/

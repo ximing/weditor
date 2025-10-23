@@ -1,4 +1,4 @@
-import type { Command, DocsCommands, Editor } from '@weditor/core'
+import type { Command, DocsCommands, Editor } from '@deditor/core'
 import type { Node, ResolvedPos, Schema } from 'prosemirror-model'
 import { TextSelection, type Transaction } from 'prosemirror-state'
 import {

@@ -6,7 +6,7 @@ import {
   createWsProvider,
   type Frame,
 } from '../ws-provider'
-import type { Snapshot, StepsPayload } from '@weditor/core'
+import type { Snapshot, StepsPayload } from '@deditor/core'
 
 const snap0: Snapshot = {
   version: 0,

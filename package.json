@@ -1,7 +1,18 @@
 {
-  "name": "weditor",
+  "name": "deditor",
   "private": true,
   "version": "0.1.0",
+  "description": "Deditor - pageless document editor SDK (ProseMirror, range comments, OT collab)",
+  "license": "MIT",
+  "author": "ximing",
+  "homepage": "https://ximing.github.io/weditor/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ximing/weditor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ximing/weditor/issues"
+  },
   "type": "module",
   "packageManager": "pnpm@9.12.3",
   "engines": {
@@ -11,9 +22,9 @@
     "build": "pnpm -r --filter \"./packages/*\" build",
     "test": "pnpm -r --filter \"./packages/*\" test",
     "lint": "eslint .",
-    "dev:demo": "pnpm --filter @weditor/demo dev",
-    "dev:docs": "pnpm --filter @weditor/docs dev",
-    "dev:collab": "pnpm --filter @weditor/collab-server start"
+    "dev:demo": "pnpm --filter @deditor/demo dev",
+    "dev:docs": "pnpm --filter @deditor/docs dev",
+    "dev:collab": "pnpm --filter @deditor/collab-server start"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",

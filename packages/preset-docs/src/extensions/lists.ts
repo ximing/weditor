@@ -1,4 +1,4 @@
-import type { Editor, Extension } from '@weditor/core'
+import type { Editor, Extension } from '@deditor/core'
 import type { Schema } from 'prosemirror-model'
 import { listCommands } from '../commands/lists'
 

@@ -1,4 +1,4 @@
-import { docsSchema } from '@weditor/preset-docs'
+import { docsSchema } from '@deditor/preset-docs'
 import { Schema } from 'prosemirror-model'
 import { Step, ReplaceStep } from 'prosemirror-transform'
 import { Slice, Fragment } from 'prosemirror-model'

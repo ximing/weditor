@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { Editor } from '@weditor/core'
+import { Editor } from '@deditor/core'
 import { TextSelection } from 'prosemirror-state'
 import { describe, expect, it } from 'vitest'
 import { docsPreset } from '../preset'
@@ -21,10 +21,10 @@ describe('comment commands', () => {
     expect(editor.commands.addComment({ body: 'x', author: alice })).toBe(false)
   })
 
-  it('addComment applyOp then AddMark with addToHistory false and weditor-comment-op createThread; id is c_ + 21 chars', () => {
+  it('addComment applyOp then AddMark with addToHistory false and deditor-comment-op createThread; id is c_ + 21 chars', () => {
     const editor = ranged()
     const metas: unknown[] = []
-    editor.on('transaction', ({ tr }) => metas.push(tr.getMeta('weditor-comment-op')))
+    editor.on('transaction', ({ tr }) => metas.push(tr.getMeta('deditor-comment-op')))
     expect(editor.commands.addComment({ body: 'note', author: alice, from: 1, to: 6 })).toBe(true)
     const thread = editor.comments.list()[0]
     expect(thread.quote).toBe('Hello')
@@ -49,14 +49,14 @@ describe('comment commands', () => {
     expect(text.marks).toHaveLength(2)
   })
 
-  it('replyToComment and toggleCommentResolved are no-step txs with weditor-comment-op and do not change the doc', () => {
+  it('replyToComment and toggleCommentResolved are no-step txs with deditor-comment-op and do not change the doc', () => {
     const editor = ranged()
     editor.commands.addComment({ body: 'note', author: alice, from: 1, to: 6 })
     const json = editor.getJSON()
     const id = editor.comments.list()[0].id
     const ops: string[] = []
     editor.on('transaction', ({ tr }) => {
-      const op = tr.getMeta('weditor-comment-op') as { type: string } | undefined
+      const op = tr.getMeta('deditor-comment-op') as { type: string } | undefined
       if (op) ops.push(op.type)
     })
     expect(editor.commands.replyToComment({ id, body: 'later', author: alice })).toBe(true)
@@ -97,10 +97,10 @@ describe('comment commands', () => {
     expect(editor.state.doc.rangeHasMark(1, 6, editor.schema.marks.comment)).toBe(true)
   })
 
-  it('preset-docs source does not import @weditor/collab', () => {
+  it('preset-docs source does not import @deditor/collab', () => {
     const src = resolve(dirname(fileURLToPath(import.meta.url)), '..')
     const file = readFileSync(resolve(src, 'commands/comments.ts'), 'utf8')
-    expect(file).not.toMatch(/@weditor\/collab/)
+    expect(file).not.toMatch(/@deditor\/collab/)
     expect(file).not.toMatch(/pendingCreates/)
     expect(file).not.toMatch(/sendComment/)
   })

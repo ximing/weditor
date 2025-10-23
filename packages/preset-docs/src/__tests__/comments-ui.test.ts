@@ -1,4 +1,4 @@
-import { Editor } from '@weditor/core'
+import { Editor } from '@deditor/core'
 import type { Decoration, DecorationSet } from 'prosemirror-view'
 import { describe, expect, it } from 'vitest'
 import { commentsUiKey, docsPreset, pickCommentIdAt } from '../index'
@@ -110,30 +110,30 @@ describe('commentsUi decorations', () => {
     editor.dispatch(editor.state.tr.insertText('HelloWorld'))
     editor.commands.addComment({ body: 'n', author: alice, from: 1, to: 6 })
     const id = editor.comments.list()[0].id
-    expect(decorationClasses(editor).some((c) => c.split(' ').includes('weditor-comment-open'))).toBe(
+    expect(decorationClasses(editor).some((c) => c.split(' ').includes('deditor-comment-open'))).toBe(
       true,
     )
 
     editor.commands.toggleCommentResolved({ id })
     expect(
-      decorationClasses(editor).some((c) => c.split(' ').includes('weditor-comment-resolved')),
+      decorationClasses(editor).some((c) => c.split(' ').includes('deditor-comment-resolved')),
     ).toBe(true)
 
     editor.dispatch(
       editor.state.tr.setMeta(commentsUiKey, { activeId: id }).setMeta('addToHistory', false),
     )
     const active = decorationClasses(editor)
-    expect(active.some((c) => c.split(' ').includes('weditor-comment-active'))).toBe(true)
-    expect(active.some((c) => c.split(' ').includes('weditor-comment-resolved'))).toBe(true)
+    expect(active.some((c) => c.split(' ').includes('deditor-comment-active'))).toBe(true)
+    expect(active.some((c) => c.split(' ').includes('deditor-comment-resolved'))).toBe(true)
 
     editor.comments.applyOp({ type: 'deleteThread', id })
     editor.dispatch(editor.state.tr)
-    expect(decorationClasses(editor).every((c) => !c.includes('weditor-comment'))).toBe(true)
+    expect(decorationClasses(editor).every((c) => !c.includes('deditor-comment'))).toBe(true)
 
     editor.dispatch(
       editor.state.tr.addMark(1, 6, editor.schema.marks.comment.create({ id: 'c_skeleton' })),
     )
-    expect(decorationClasses(editor).some((c) => c.split(' ').includes('weditor-comment-skel'))).toBe(
+    expect(decorationClasses(editor).some((c) => c.split(' ').includes('deditor-comment-skel'))).toBe(
       true,
     )
   })
@@ -156,8 +156,8 @@ describe('commentsUi decorations', () => {
     editor.dispatch(editor.state.tr)
     const found = decorationRanges(editor)
     expect(found.map((d) => ({ from: d.from, to: d.to, class: d.class }))).toEqual([
-      { from: 1, to: 6, class: 'weditor-comment-open' },
-      { from: 8, to: 13, class: 'weditor-comment-open' },
+      { from: 1, to: 6, class: 'deditor-comment-open' },
+      { from: 8, to: 13, class: 'deditor-comment-open' },
     ])
   })
 })

@@ -1,5 +1,5 @@
 import { nanoid } from 'nanoid'
-import type { CollabProvider, CommentOp, Presence, Snapshot, StepsPayload, User } from '@weditor/core'
+import type { CollabProvider, CommentOp, Presence, Snapshot, StepsPayload, User } from '@deditor/core'
 import type { MemoryAuthority } from './memory-authority'
 
 export function createMemoryProvider(

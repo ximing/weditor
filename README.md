@@ -1,16 +1,23 @@
-# weditor
+# Deditor
 
-TypeScript SDK for a pageless document editor built on ProseMirror. Packages: `@weditor/core`, `@weditor/preset-docs`, `@weditor/collab`, `@weditor/react`.
+**Doc editor.** A TypeScript SDK for a pageless document editor built on [ProseMirror](https://prosemirror.net/). Range comments and operational-transform collaboration are first-class.
+
+[Documentation](https://ximing.github.io/weditor/) · [Live demo](https://ximing.github.io/weditor/demo/) · [npm](https://www.npmjs.com/package/@deditor/react)
+
+[![CI](https://github.com/ximing/weditor/actions/workflows/ci.yml/badge.svg)](https://github.com/ximing/weditor/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/@deditor/core.svg)](https://www.npmjs.com/package/@deditor/core)
 
 ## Install
 
 ```bash
-pnpm add @weditor/react @weditor/preset-docs @weditor/collab
+pnpm add @deditor/react @deditor/preset-docs @deditor/collab
 ```
 
+Peer: `react` >= 18.
+
 ```ts
-import { DocEditor } from '@weditor/react'
-import '@weditor/react/style.css'
+import { DocEditor } from '@deditor/react'
+import '@deditor/react/style.css'
 
 export function App() {
   return <DocEditor />
@@ -18,6 +25,38 @@ export function App() {
 ```
 
 JSON is the document format. Quill Delta is not supported.
+
+## Packages
+
+| Package | Role |
+| --- | --- |
+| [`@deditor/core`](./packages/core) | Framework-agnostic `Editor`, schema merge, `CommentStore`, sanitizers, shared wire types |
+| [`@deditor/preset-docs`](./packages/preset-docs) | Docs schema, commands, keymap, tables, lists, search, comment marks, document CSS |
+| [`@deditor/collab`](./packages/collab) | OT via `prosemirror-collab` (not Yjs), comment FIFO, WebSocket provider |
+| [`@deditor/react`](./packages/react) | `<DocEditor />` — toolbar, bubbles, find, comment sidebar |
+
+`@deditor/react` depends on the other three. Collaboration is optional as a *feature*: omit the `collab` prop. Headless / Vue integrators skip `@deditor/react` and call `editor.mount` themselves.
+
+## Collaboration
+
+```ts
+import { createWsProvider } from '@deditor/collab'
+import { DocEditor } from '@deditor/react'
+
+const provider = createWsProvider({
+  url: 'wss://your-authority.example',
+  roomId: 'doc-1',
+  user: { id: 'u1', name: 'Ada', color: '#4f81bd' },
+})
+
+<DocEditor collab={provider} currentUser={{ id: 'u1', name: 'Ada', color: '#4f81bd' }} />
+```
+
+The sample `apps/collab-server` is an in-memory authority for demos. Do not ship it as production.
+
+## Comments
+
+Anchors are `comment` marks on the document. Bodies live in `CommentStore` and move as incremental `CommentOp`s. There is no suggestion mode.
 
 ## Workspace scripts
 
@@ -28,8 +67,15 @@ JSON is the document format. Quill Delta is not supported.
 - `pnpm dev:collab` — in-memory WebSocket authority (not production)
 - `pnpm dev:docs` — VitePress
 
-## Architecture
+## Publish
 
-`Editor` is framework-agnostic. React mounts an `EditorView`. Collaboration is optional OT (`prosemirror-collab`) via `CollabProvider`. Comments are range marks plus a side store.
+GitHub Actions publishes `@deditor/*` to npm on a version tag (`v0.1.0`, …). Repo secret `NPM_TOKEN` must be able to publish the `@deditor` org.
 
-See the VitePress site (`pnpm dev:docs`) for API, comment ops, the collab protocol, and how a Vue view would call `editor.mount` / `unmount`.
+```bash
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+## License
+
+MIT

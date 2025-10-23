@@ -1,4 +1,4 @@
-import type { Extension } from '@weditor/core'
+import type { Extension } from '@deditor/core'
 import { dropCursor } from 'prosemirror-dropcursor'
 
 export function dropcursorExtension(): Extension {

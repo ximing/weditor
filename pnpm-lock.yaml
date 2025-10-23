@@ -35,10 +35,10 @@ importers:
 
   apps/collab-server:
     dependencies:
-      '@weditor/collab':
+      '@deditor/collab':
         specifier: workspace:*
         version: link:../../packages/collab
-      '@weditor/preset-docs':
+      '@deditor/preset-docs':
         specifier: workspace:*
         version: link:../../packages/preset-docs
       ws:
@@ -54,13 +54,13 @@ importers:
 
   apps/demo:
     dependencies:
-      '@weditor/collab':
+      '@deditor/collab':
         specifier: workspace:*
         version: link:../../packages/collab
-      '@weditor/preset-docs':
+      '@deditor/preset-docs':
         specifier: workspace:*
         version: link:../../packages/preset-docs
-      '@weditor/react':
+      '@deditor/react':
         specifier: workspace:*
         version: link:../../packages/react
       react:
@@ -91,7 +91,7 @@ importers:
 
   packages/collab:
     dependencies:
-      '@weditor/core':
+      '@deditor/core':
         specifier: workspace:*
         version: link:../core
       nanoid:
@@ -113,7 +113,7 @@ importers:
         specifier: ^1.38.0
         version: 1.42.2
     devDependencies:
-      '@weditor/preset-docs':
+      '@deditor/preset-docs':
         specifier: workspace:*
         version: link:../preset-docs
 
@@ -143,7 +143,7 @@ importers:
 
   packages/preset-docs:
     dependencies:
-      '@weditor/core':
+      '@deditor/core':
         specifier: workspace:*
         version: link:../core
       nanoid:
@@ -185,13 +185,13 @@ importers:
 
   packages/react:
     dependencies:
-      '@weditor/collab':
+      '@deditor/collab':
         specifier: workspace:*
         version: link:../collab
-      '@weditor/core':
+      '@deditor/core':
         specifier: workspace:*
         version: link:../core
-      '@weditor/preset-docs':
+      '@deditor/preset-docs':
         specifier: workspace:*
         version: link:../preset-docs
       prosemirror-state:

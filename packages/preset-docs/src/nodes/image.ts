@@ -1,4 +1,4 @@
-import { sanitizeSrc } from '@weditor/core'
+import { sanitizeSrc } from '@deditor/core'
 import type { NodeSpec } from 'prosemirror-model'
 
 export const image: NodeSpec = {

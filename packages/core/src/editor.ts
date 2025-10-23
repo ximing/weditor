@@ -132,7 +132,7 @@ export class Editor {
     this.emit('transaction', {
       tr,
       state: this.#state,
-      remote: !!tr.getMeta('weditor-remote'),
+      remote: !!tr.getMeta('deditor-remote'),
     })
     if (tr.selectionSet) this.emit('selection', this.#state.selection)
     this.emit('comments', this.comments.list())

@@ -7,7 +7,7 @@ import type {
   Snapshot,
   StepsPayload,
   User,
-} from '@weditor/core'
+} from '@deditor/core'
 
 export interface Frame<T = unknown> {
   v: 1

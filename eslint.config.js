@@ -27,7 +27,7 @@ export default tseslint.config(
         'error',
         {
           paths: [
-            { name: '@weditor/collab', message: 'preset-docs must not import @weditor/collab' },
+            { name: '@deditor/collab', message: 'preset-docs must not import @deditor/collab' },
             { name: 'react', message: 'preset-docs must not import react' },
           ],
         },

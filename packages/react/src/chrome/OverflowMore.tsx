@@ -1,4 +1,4 @@
-import { LINE_HEIGHTS } from '@weditor/preset-docs'
+import { LINE_HEIGHTS } from '@deditor/preset-docs'
 import { useState } from 'react'
 import { useEditor } from '../useEditor'
 
@@ -6,17 +6,17 @@ export function OverflowMore() {
   const editor = useEditor()
   const [open, setOpen] = useState(false)
   return (
-    <div className={['weditor-more', open ? 'is-open' : ''].filter(Boolean).join(' ')}>
+    <div className={['deditor-more', open ? 'is-open' : ''].filter(Boolean).join(' ')}>
       <button
         type="button"
         title="More"
-        className="weditor-more-toggle"
+        className="deditor-more-toggle"
         onMouseDown={(e) => e.preventDefault()}
         onClick={() => setOpen((v) => !v)}
       >
         More
       </button>
-      <div className="weditor-more-items">
+      <div className="deditor-more-items">
         <button
           type="button"
           title="Inline code"

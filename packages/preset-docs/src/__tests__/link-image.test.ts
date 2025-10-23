@@ -1,5 +1,5 @@
 /** @vitest-environment happy-dom */
-import { Editor } from '@weditor/core'
+import { Editor } from '@deditor/core'
 import { DOMParser } from 'prosemirror-model'
 import { describe, expect, it, vi } from 'vitest'
 import { createImageNodeView } from '../node-views/image'
@@ -68,7 +68,7 @@ describe('insertImage and sanitizer', () => {
     })
     const nv = createImageNodeView(editor2)(node, editor2.view!, () => 0)
     expect(typeof nv.destroy).toBe('function')
-    const handle = nv.dom.querySelector('.weditor-image-handle') as HTMLElement
+    const handle = nv.dom.querySelector('.deditor-image-handle') as HTMLElement
     const remove = vi.spyOn(handle, 'removeEventListener')
     nv.destroy!()
     expect(remove).toHaveBeenCalledWith('pointerdown', expect.any(Function))

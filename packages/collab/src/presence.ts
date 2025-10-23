@@ -1,4 +1,4 @@
-import type { Presence } from '@weditor/core'
+import type { Presence } from '@deditor/core'
 import { Plugin, PluginKey } from 'prosemirror-state'
 import { Decoration, DecorationSet } from 'prosemirror-view'
 
@@ -70,10 +70,10 @@ function caretEl(name: string, color: string): HTMLElement {
     return { nodeType: 1 } as HTMLElement
   }
   const wrap = document.createElement('span')
-  wrap.className = 'weditor-caret'
+  wrap.className = 'deditor-caret'
   wrap.style.borderLeft = `2px solid ${color}`
   const tag = document.createElement('span')
-  tag.className = 'weditor-caret-name'
+  tag.className = 'deditor-caret-name'
   tag.style.background = color
   tag.textContent = name
   wrap.appendChild(tag)

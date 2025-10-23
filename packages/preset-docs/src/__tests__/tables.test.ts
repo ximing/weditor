@@ -1,5 +1,5 @@
 /** @vitest-environment happy-dom */
-import { Editor, type Command } from '@weditor/core'
+import { Editor, type Command } from '@deditor/core'
 import { describe, expect, it } from 'vitest'
 import { docsPreset, docsSchema } from '../preset'
 

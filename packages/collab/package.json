@@ -1,6 +1,33 @@
 {
-  "name": "@weditor/collab",
+  "name": "@deditor/collab",
   "version": "0.1.0",
+  "description": "OT collaboration (prosemirror-collab), comment FIFO, and WebSocket provider for Deditor.",
+  "license": "MIT",
+  "author": "ximing",
+  "homepage": "https://ximing.github.io/weditor/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ximing/weditor.git",
+    "directory": "packages/collab"
+  },
+  "bugs": {
+    "url": "https://github.com/ximing/weditor/issues"
+  },
+  "keywords": [
+    "prosemirror",
+    "editor",
+    "rich-text",
+    "collaborative-editing",
+    "comments",
+    "docs",
+    "deditor"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "type": "module",
   "exports": {
     ".": {
@@ -9,14 +36,16 @@
       "require": "./dist/index.cjs"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup",
     "test": "vitest run",
     "lint": "eslint src"
   },
   "dependencies": {
-    "@weditor/core": "workspace:*",
+    "@deditor/core": "workspace:*",
     "nanoid": "^5.0.7",
     "prosemirror-collab": "^1.3.1",
     "prosemirror-model": "^1.24.1",
@@ -25,6 +54,6 @@
     "prosemirror-view": "^1.38.0"
   },
   "devDependencies": {
-    "@weditor/preset-docs": "workspace:*"
+    "@deditor/preset-docs": "workspace:*"
   }
 }

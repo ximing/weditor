@@ -1,5 +1,5 @@
 /** @vitest-environment happy-dom */
-import { docsPreset } from '@weditor/preset-docs'
+import { docsPreset } from '@deditor/preset-docs'
 import { cleanup, render, waitFor } from '@testing-library/react'
 import React, { StrictMode } from 'react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
@@ -42,7 +42,7 @@ describe('EditorProvider', () => {
       </StrictMode>,
     )
     await waitFor(() => expect(childCounts.length).toBeGreaterThan(0))
-    const surfaces = document.querySelectorAll('.weditor-surface .ProseMirror')
+    const surfaces = document.querySelectorAll('.deditor-surface .ProseMirror')
     expect(surfaces.length).toBe(1)
   })
 
@@ -75,7 +75,7 @@ describe('EditorProvider', () => {
   })
 
   it('accepts a pre-built Editor without creating another instance', async () => {
-    const { Editor } = await import('@weditor/core')
+    const { Editor } = await import('@deditor/core')
     const editor = Editor.create({ extensions: docsPreset() })
     function Probe() {
       const e = useEditor()
@@ -91,8 +91,8 @@ describe('EditorProvider', () => {
 
   it('onChange skips remote transactions', async () => {
     const onChange = vi.fn()
-    const { Editor } = await import('@weditor/core')
-    const { docsPreset: preset } = await import('@weditor/preset-docs')
+    const { Editor } = await import('@deditor/core')
+    const { docsPreset: preset } = await import('@deditor/preset-docs')
     const editor = Editor.create({ extensions: preset() })
     function Wrap() {
       React.useEffect(() => {
@@ -109,7 +109,7 @@ describe('EditorProvider', () => {
     }
     render(<Wrap />)
     const tr = editor.state.tr.insertText('x')
-    tr.setMeta('weditor-remote', true)
+    tr.setMeta('deditor-remote', true)
     editor.dispatch(tr)
     expect(onChange).not.toHaveBeenCalled()
     editor.dispatch(editor.state.tr.insertText('y'))

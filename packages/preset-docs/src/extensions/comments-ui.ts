@@ -1,4 +1,4 @@
-import type { CommentStore, Extension } from '@weditor/core'
+import type { CommentStore, Extension } from '@deditor/core'
 import type { Node } from 'prosemirror-model'
 import { Plugin, PluginKey } from 'prosemirror-state'
 import { Decoration, DecorationSet } from 'prosemirror-view'
@@ -50,10 +50,10 @@ function classForComment(id: string, store: CommentStore, activeId: string | nul
   if (store.isTombstoned(id)) return null
   const thread = store.get(id)
   const classes: string[] = []
-  if (!thread) classes.push('weditor-comment-skel')
-  else if (thread.resolved) classes.push('weditor-comment-resolved')
-  else classes.push('weditor-comment-open')
-  if (activeId === id) classes.push('weditor-comment-active')
+  if (!thread) classes.push('deditor-comment-skel')
+  else if (thread.resolved) classes.push('deditor-comment-resolved')
+  else classes.push('deditor-comment-open')
+  if (activeId === id) classes.push('deditor-comment-active')
   return classes.join(' ')
 }
 

@@ -1,6 +1,6 @@
-import { createWsProvider } from '@weditor/collab'
-import { DocEditor } from '@weditor/react'
-import '@weditor/react/style.css'
+import { createWsProvider } from '@deditor/collab'
+import { DocEditor } from '@deditor/react'
+import '@deditor/react/style.css'
 import { useEffect, useMemo } from 'react'
 import { readImageFile } from '../upload'
 
@@ -31,8 +31,12 @@ export function Collab() {
     }
   }, [left, right])
   return (
-    <div className="weditor-collab-panes">
-      <p>Open this room in two windows: /collab?room={room}</p>
+    <div className="deditor-collab-panes">
+      <p>
+        Two-panel collab talks to <code>ws://localhost:8787</code> — run{' '}
+        <code>pnpm dev:collab</code> locally. Open this room in two windows:{' '}
+        {`${(import.meta.env.BASE_URL || '/').replace(/\/$/, '')}/collab?room=${room}`}
+      </p>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
         <DocEditor collab={left} currentUser={{ id: 'u1', name: 'Alice', color: '#4f81bd' }} uploadImage={readImageFile} />
         <DocEditor collab={right} currentUser={{ id: 'u2', name: 'Bob', color: '#c0504d' }} uploadImage={readImageFile} />

@@ -1,4 +1,4 @@
-import type { Command, DocsCommands, Editor } from '@weditor/core'
+import type { Command, DocsCommands, Editor } from '@deditor/core'
 import type { NodeType, Schema } from 'prosemirror-model'
 import {
   liftListItem as pmLift,

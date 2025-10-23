@@ -57,15 +57,15 @@ Collect all `comment` mark ids in `doc`. A thread whose id is missing from that 
 
 Deleting marked *text* is a normal document step (on the undo stack). `deriveDetached` then marks the thread detached. Redo restores the text and the mark; the thread was never deleted.
 
-## Command seam: `weditor-comment-op`
+## Command seam: `deditor-comment-op`
 
-Preset-docs commands **never** import `@weditor/collab` and **never** touch `pendingCreates` / `pendingCommentOps` / `provider.sendComment`. They only `applyOp` + dispatch with `tr.setMeta('weditor-comment-op', op)`. Collab is the sole enqueue seam (`onTransaction`). Single-user: the meta is ignored.
+Preset-docs commands **never** import `@deditor/collab` and **never** touch `pendingCreates` / `pendingCommentOps` / `provider.sendComment`. They only `applyOp` + dispatch with `tr.setMeta('deditor-comment-op', op)`. Collab is the sole enqueue seam (`onTransaction`). Single-user: the meta is ignored.
 
 **`addComment`:** apply `createThread` on the store **before** dispatch so the `comments` event already has the thread, then `addMark` with:
 
 ```
 tr.setMeta('addToHistory', false)
-tr.setMeta('weditor-comment-op', { type: 'createThread', thread })
+tr.setMeta('deditor-comment-op', { type: 'createThread', thread })
 ```
 
 **`deleteComment`:** `applyOp({ type: 'deleteThread', id })` before dispatch (tombstone; no skeleton), then RemoveMark everywhere for that id with the same metas.
@@ -75,7 +75,7 @@ tr.setMeta('weditor-comment-op', { type: 'createThread', thread })
 ```ts
 const tr = editor.state.tr
 tr.setMeta('addToHistory', false)
-tr.setMeta('weditor-comment-op', op)  // appendComment | setResolved
+tr.setMeta('deditor-comment-op', op)  // appendComment | setResolved
 editor.dispatch(tr)
 ```
 

@@ -1,4 +1,4 @@
-import type { Editor } from '@weditor/core'
+import type { Editor } from '@deditor/core'
 import type { Node as PMNode } from 'prosemirror-model'
 import type { NodeView } from 'prosemirror-view'
 
@@ -7,7 +7,7 @@ export function createTaskItemNodeView(editor: Editor) {
     const dom = document.createElement('li')
     const box = document.createElement('span')
     const contentDOM = document.createElement('div')
-    box.className = 'weditor-task-checkbox'
+    box.className = 'deditor-task-checkbox'
     box.contentEditable = 'false'
     box.setAttribute('role', 'checkbox')
 

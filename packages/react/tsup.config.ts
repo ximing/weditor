@@ -7,5 +7,5 @@ export default defineConfig({
   clean: true,
   splitting: false,
   treeshake: true,
-  external: [/^@weditor\//, /^prosemirror-/, 'react', 'react-dom', 'nanoid'],
+  external: [/^@deditor\//, /^prosemirror-/, 'react', 'react-dom', 'nanoid'],
 })

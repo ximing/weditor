@@ -3,8 +3,8 @@
 `Editor` is framework-agnostic. It owns `EditorState`, the extension list, the command map, and `CommentStore`. It does not create `EditorView` until `mount`.
 
 ```ts
-import { Editor, schemaFromExtensions } from '@weditor/core'
-import { docsPreset } from '@weditor/preset-docs'
+import { Editor, schemaFromExtensions } from '@deditor/core'
+import { docsPreset } from '@deditor/preset-docs'
 ```
 
 ## `Editor.create` algorithm
@@ -87,11 +87,11 @@ function schemaFromExtensions(extensions: Extension[]): Schema {
 
 ## `Editor.emit` events
 
-`emit` is public so `@weditor/collab` and `@weditor/preset-docs` can fire events without a reverse import. `on` returns an unsubscribe function.
+`emit` is public so `@deditor/collab` and `@deditor/preset-docs` can fire events without a reverse import. `on` returns an unsubscribe function.
 
 | Event | Payload | When |
 | --- | --- | --- |
-| `transaction` | `{ tr, state, remote }` | After every dispatch. `remote` is `!!tr.getMeta('weditor-remote')`. |
+| `transaction` | `{ tr, state, remote }` | After every dispatch. `remote` is `!!tr.getMeta('deditor-remote')`. |
 | `selection` | `Selection` | When `tr.selectionSet`. |
 | `comments` | `CommentThread[]` | After every dispatch (`comments.list()`). |
 | `sync` | `{ status: 'ok' \| 'syncing' \| 'disconnected' \| 'error'; error?: Error }` | Collab send/ack, disconnect, resync. |
@@ -99,7 +99,7 @@ function schemaFromExtensions(extensions: Extension[]): Schema {
 | `openComment` | `{ from: number; to: number }` | `Mod-Alt-m` with a non-empty selection. |
 | `openLink` | `{ from: number; to: number }` | `Mod-k` with a non-empty selection. Toolbar prompts `URL` then `setLink`. |
 
-Search is **not** on `Editor`. Query state lives in `searchPluginKey` (`@weditor/preset-docs`). UI calls `editor.commands.setSearchQuery(q)` and `findAll(editor.state)`.
+Search is **not** on `Editor`. Query state lives in `searchPluginKey` (`@deditor/preset-docs`). UI calls `editor.commands.setSearchQuery(q)` and `findAll(editor.state)`.
 
 ## `resetFromSnapshot`
 

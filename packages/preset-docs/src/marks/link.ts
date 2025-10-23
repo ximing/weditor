@@ -1,4 +1,4 @@
-import { sanitizeHref } from '@weditor/core'
+import { sanitizeHref } from '@deditor/core'
 import type { MarkSpec } from 'prosemirror-model'
 
 export const linkMark: Record<string, MarkSpec> = {

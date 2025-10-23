@@ -1,10 +1,10 @@
-@import '@weditor/preset-docs/style.css';
+@import '@deditor/preset-docs/style.css';
 
-.weditor-root {
+.deditor-root {
   position: relative;
 }
 
-.weditor-toolbar {
+.deditor-toolbar {
   display: flex;
   align-items: center;
   height: 40px;
@@ -16,7 +16,7 @@
   white-space: nowrap;
 }
 
-.weditor-toolbar button {
+.deditor-toolbar button {
   min-width: 28px;
   height: 28px;
   padding: 0 4px;
@@ -26,27 +26,27 @@
   font-size: 12px;
 }
 
-.weditor-toolbar button:disabled {
+.deditor-toolbar button:disabled {
   opacity: 0.4;
   cursor: default;
 }
 
-.weditor-toolbar label {
+.deditor-toolbar label {
   display: flex;
   align-items: center;
   gap: 4px;
   font-size: 12px;
 }
 
-.weditor-toolbar select {
+.deditor-toolbar select {
   height: 28px;
 }
 
-.weditor-color-palette {
+.deditor-color-palette {
   position: relative;
 }
 
-.weditor-color-palette-grid {
+.deditor-color-palette-grid {
   position: absolute;
   top: 100%;
   left: 0;
@@ -60,13 +60,13 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
-.weditor-color-palette-grid .weditor-color-default {
+.deditor-color-palette-grid .deditor-color-default {
   grid-column: 1 / -1;
   width: auto;
   height: 24px;
 }
 
-.weditor-color-palette-grid .weditor-color-swatch {
+.deditor-color-palette-grid .deditor-color-swatch {
   width: 16px;
   min-width: 16px;
   height: 16px;
@@ -74,7 +74,7 @@
   border: 1px solid #ccc;
 }
 
-.weditor-find {
+.deditor-find {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -84,12 +84,12 @@
   font-size: 12px;
 }
 
-.weditor-find input {
+.deditor-find input {
   height: 28px;
   min-width: 120px;
 }
 
-.weditor-table-bubble {
+.deditor-table-bubble {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -99,7 +99,7 @@
   background: #fafafa;
 }
 
-.weditor-table-bubble button {
+.deditor-table-bubble button {
   height: 24px;
   padding: 0 6px;
   font-size: 12px;
@@ -108,7 +108,7 @@
   cursor: pointer;
 }
 
-.weditor-comment-sidebar {
+.deditor-comment-sidebar {
   width: 280px;
   box-sizing: border-box;
   border-left: 1px solid #e0e0e0;
@@ -117,7 +117,7 @@
   overflow: auto;
 }
 
-.weditor-comment-composer {
+.deditor-comment-composer {
   width: 280px;
   box-sizing: border-box;
   padding: 8px;
@@ -125,46 +125,46 @@
   background: #fff;
 }
 
-.weditor-comment-composer textarea,
-.weditor-comment-actions textarea {
+.deditor-comment-composer textarea,
+.deditor-comment-actions textarea {
   width: 100%;
   min-height: 48px;
   box-sizing: border-box;
 }
 
-.weditor-comment-thread {
+.deditor-comment-thread {
   padding: 8px;
   border-bottom: 1px solid #f0f0f0;
   cursor: pointer;
 }
 
-.weditor-comment-thread.is-active {
+.deditor-comment-thread.is-active {
   background: #fff8e1;
 }
 
-.weditor-comment-quote {
+.deditor-comment-quote {
   margin: 0 0 8px;
   color: #666;
   font-style: italic;
 }
 
-.weditor-comment-message {
+.deditor-comment-message {
   margin: 4px 0;
 }
 
-.weditor-comment-flag {
+.deditor-comment-flag {
   color: #888;
   margin: 4px 0;
 }
 
-.weditor-comment-actions {
+.deditor-comment-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
   margin-top: 8px;
 }
 
-.weditor-comment-actions button {
+.deditor-comment-actions button {
   height: 24px;
   padding: 0 6px;
   font-size: 12px;
@@ -173,19 +173,19 @@
   cursor: pointer;
 }
 
-.weditor-more {
+.deditor-more {
   display: contents;
 }
 
-.weditor-more-toggle {
+.deditor-more-toggle {
   display: none;
 }
 
-.weditor-more-items {
+.deditor-more-items {
   display: contents;
 }
 
-.weditor-bubble {
+.deditor-bubble {
   position: absolute;
   z-index: 30;
   display: flex;
@@ -197,7 +197,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
-.weditor-bubble button {
+.deditor-bubble button {
   min-width: 28px;
   height: 28px;
   padding: 0 4px;
@@ -207,7 +207,7 @@
   font-size: 12px;
 }
 
-.weditor-toast {
+.deditor-toast {
   position: fixed;
   left: 50%;
   bottom: 24px;
@@ -221,14 +221,14 @@
 }
 
 @media (max-width: 960px) {
-  .weditor-more {
+  .deditor-more {
     display: inline-flex;
     position: relative;
   }
-  .weditor-more-toggle {
+  .deditor-more-toggle {
     display: inline-block;
   }
-  .weditor-more-items {
+  .deditor-more-items {
     display: none;
     position: absolute;
     top: 100%;
@@ -241,14 +241,14 @@
     border: 1px solid #e0e0e0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
   }
-  .weditor-more.is-open .weditor-more-items {
+  .deditor-more.is-open .deditor-more-items {
     display: flex;
   }
 }
 
 @media print {
-  .weditor-toolbar, .weditor-sidebar, .weditor-bubble, .weditor-find {
+  .deditor-toolbar, .deditor-sidebar, .deditor-bubble, .deditor-find {
     display: none !important;
   }
-  .weditor-doc { box-shadow: none; max-width: none; }
+  .deditor-doc { box-shadow: none; max-width: none; }
 }

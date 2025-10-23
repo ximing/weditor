@@ -1,5 +1,5 @@
 {
-  "name": "@weditor/docs",
+  "name": "@deditor/docs",
   "private": true,
   "type": "module",
   "scripts": {

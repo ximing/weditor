@@ -1,4 +1,4 @@
-import type { Extension } from '@weditor/core'
+import type { Extension } from '@deditor/core'
 
 export function keymapExtension(): Extension {
   return {

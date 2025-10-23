@@ -1,4 +1,4 @@
-import type { User } from '@weditor/core'
+import type { User } from '@deditor/core'
 import { useEffect, useState } from 'react'
 import { useEditor } from '../useEditor'
 
@@ -18,7 +18,7 @@ export function CommentComposer(props: {
   if (!props.range || !editor.editable) return null
 
   return (
-    <div className="weditor-comment-composer">
+    <div className="deditor-comment-composer">
       <textarea
         placeholder="Start typing…"
         value={body}

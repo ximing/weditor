@@ -1,6 +1,6 @@
 import { collab, getVersion, sendableSteps } from 'prosemirror-collab'
-import type { CollabProvider, CommentOp, Extension, Snapshot } from '@weditor/core'
-import type { Editor } from '@weditor/core'
+import type { CollabProvider, CommentOp, Extension, Snapshot } from '@deditor/core'
+import type { Editor } from '@deditor/core'
 import { applyRemoteSteps } from './apply-remote-steps'
 import { clearLock, flushSendable, type SendLock } from './flush-sendable'
 import {
@@ -52,7 +52,7 @@ export function collabExtension(
     flushPendingComments(editor, provider, pendingCommentOps, pendingCreates)
   }
 
-  function handleSteps(editor: Editor, payload: import('@weditor/core').StepsPayload): void {
+  function handleSteps(editor: Editor, payload: import('@deditor/core').StepsPayload): void {
     if (!applyRemoteSteps(editor, payload)) {
       void fatalResync(editor)
       return
@@ -114,8 +114,8 @@ export function collabExtension(
     },
     onTransaction: ({ editor, tr }) => {
       if (tr.getMeta(presencePluginKey)) return
-      if (!tr.getMeta('weditor-remote')) {
-        const op = tr.getMeta('weditor-comment-op') as CommentOp | undefined
+      if (!tr.getMeta('deditor-remote')) {
+        const op = tr.getMeta('deditor-comment-op') as CommentOp | undefined
         if (op) queueOrSendComment(editor, provider, op, pendingCreates, pendingCommentOps)
         if (tr.selectionSet) {
           if (presenceTimer) clearTimeout(presenceTimer)
@@ -123,7 +123,7 @@ export function collabExtension(
             provider.sendPresence({
               clientID: provider.clientID,
               user: { id: '', name: '' },
-              selection: editor.state.selection.toJSON() as import('@weditor/core').SelectionJSON,
+              selection: editor.state.selection.toJSON() as import('@deditor/core').SelectionJSON,
             })
           }, 50)
         }

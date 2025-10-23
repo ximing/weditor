@@ -1,4 +1,4 @@
-import type { Extension } from '@weditor/core'
+import type { Extension } from '@deditor/core'
 import { Plugin } from 'prosemirror-state'
 import { clipboardPlugin } from '../clipboard'
 import { blockCommands } from '../commands/blocks'

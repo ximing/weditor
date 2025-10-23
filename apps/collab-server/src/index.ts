@@ -1,7 +1,7 @@
 import { WebSocketServer } from 'ws'
 import { parseFrame, type Frame } from './protocol'
 import { getRoom } from './room'
-import type { CommentOp, Presence, User } from '@weditor/core'
+import type { CommentOp, Presence, User } from '@deditor/core'
 
 const wss = new WebSocketServer({ port: 8787 })
 const sockets = new Map<import('ws').WebSocket, { clientID: string; roomId: string; user: User }>()

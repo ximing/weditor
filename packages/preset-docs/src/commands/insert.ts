@@ -1,4 +1,4 @@
-import { sanitizeSrc, type DocsCommands, type Editor } from '@weditor/core'
+import { sanitizeSrc, type DocsCommands, type Editor } from '@deditor/core'
 import type { Schema } from 'prosemirror-model'
 import { NodeSelection } from 'prosemirror-state'
 

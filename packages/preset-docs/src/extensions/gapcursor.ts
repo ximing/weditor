@@ -1,4 +1,4 @@
-import type { Extension } from '@weditor/core'
+import type { Extension } from '@deditor/core'
 import { gapCursor } from 'prosemirror-gapcursor'
 
 export function gapcursorExtension(): Extension {

@@ -25,7 +25,7 @@ describe('workspace', () => {
       const pkg = JSON.parse(
         readFileSync(resolve(root, 'packages', name, 'package.json'), 'utf8'),
       )
-      expect(pkg.name).toBe(`@weditor/${name}`)
+      expect(pkg.name).toBe(`@deditor/${name}`)
       expect(pkg.version).toBe('0.1.0')
       expect(pkg.type).toBe('module')
       expect(pkg.exports['.'].types).toBe('./dist/index.d.ts')
@@ -37,9 +37,9 @@ describe('workspace', () => {
     const react = JSON.parse(readFileSync(resolve(root, 'packages/react/package.json'), 'utf8'))
     expect(react.exports['./style.css']).toBe('./dist/style.css')
     expect(react.peerDependencies.react).toMatch(/>=18/)
-    expect(react.dependencies['@weditor/core']).toBe('workspace:*')
-    expect(react.dependencies['@weditor/preset-docs']).toBe('workspace:*')
-    expect(react.dependencies['@weditor/collab']).toBe('workspace:*')
+    expect(react.dependencies['@deditor/core']).toBe('workspace:*')
+    expect(react.dependencies['@deditor/preset-docs']).toBe('workspace:*')
+    expect(react.dependencies['@deditor/collab']).toBe('workspace:*')
 
     const preset = JSON.parse(
       readFileSync(resolve(root, 'packages/preset-docs/package.json'), 'utf8'),
@@ -52,11 +52,11 @@ describe('workspace', () => {
 
   it('root README documents install and dev scripts', () => {
     const readme = readFileSync(resolve(root, 'README.md'), 'utf8')
-    expect(readme).toContain('pnpm add @weditor/react')
+    expect(readme).toContain('pnpm add @deditor/react')
     expect(readme).toContain('pnpm dev:demo')
     expect(readme).toContain('pnpm dev:collab')
     expect(readme).toContain('pnpm dev:docs')
-    expect(readme).toContain('@weditor/core')
+    expect(readme).toContain('@deditor/core')
     expect(readme).toContain('prosemirror')
     expect(readme.toLowerCase()).not.toMatch(/quill delta import/)
   })

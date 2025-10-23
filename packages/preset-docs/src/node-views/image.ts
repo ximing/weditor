@@ -1,16 +1,16 @@
-import { sanitizeSrc, type Editor } from '@weditor/core'
+import { sanitizeSrc, type Editor } from '@deditor/core'
 import type { Node as PMNode } from 'prosemirror-model'
 import type { EditorView, NodeView } from 'prosemirror-view'
 
 export function createImageNodeView(editor: Editor) {
   return (node: PMNode, view: EditorView, getPos: () => number | undefined): NodeView => {
     const wrap = document.createElement('div')
-    wrap.className = 'weditor-image'
+    wrap.className = 'deditor-image'
     wrap.contentEditable = 'false'
 
     const img = document.createElement('img')
     const handle = document.createElement('span')
-    handle.className = 'weditor-image-handle'
+    handle.className = 'deditor-image-handle'
     handle.contentEditable = 'false'
 
     const sync = (n: PMNode) => {

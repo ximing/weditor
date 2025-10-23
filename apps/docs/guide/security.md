@@ -1,6 +1,6 @@
 # Security
 
-weditor sanitizes URLs on the way in (paste, `setLink`, `insertImage`) and on the way out (`getHTML()`). Collaboration identity in the demo is **not an auth boundary**.
+Deditor sanitizes URLs on the way in (paste, `setLink`, `insertImage`) and on the way out (`getHTML()`). Collaboration identity in the demo is **not an auth boundary**.
 
 ## `getHTML()` omits comment marks
 

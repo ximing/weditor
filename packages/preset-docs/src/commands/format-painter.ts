@@ -1,4 +1,4 @@
-import type { DocsCommands, Editor } from '@weditor/core'
+import type { DocsCommands, Editor } from '@deditor/core'
 import type { Mark, Schema } from 'prosemirror-model'
 import { formatPainterPluginKey, type FormatSnapshot } from '../extensions/format-painter'
 

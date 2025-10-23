@@ -1,9 +1,9 @@
 import { readFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { Editor } from '@weditor/core'
-import type { CommentOp, CollabProvider } from '@weditor/core'
-import { docsPreset, docsSchema } from '@weditor/preset-docs'
+import { Editor } from '@deditor/core'
+import type { CommentOp, CollabProvider } from '@deditor/core'
+import { docsPreset, docsSchema } from '@deditor/preset-docs'
 import { describe, expect, it } from 'vitest'
 import { collabExtension } from '../collab-extension'
 import { handleComment } from '../comment-queue'
@@ -145,10 +145,10 @@ describe('comment collab sequencing', () => {
     expect(editor.comments.get(id)?.resolved).toBe(true)
   })
 
-  it('preset-docs source does not import @weditor/collab', () => {
+  it('preset-docs source does not import @deditor/collab', () => {
     const src = resolve(dirname(fileURLToPath(import.meta.url)), '../../../preset-docs/src')
     const file = readFileSync(resolve(src, 'commands/comments.ts'), 'utf8')
-    expect(file).not.toMatch(/@weditor\/collab/)
+    expect(file).not.toMatch(/@deditor\/collab/)
     expect(file).not.toMatch(/pendingCreates/)
     expect(file).not.toMatch(/sendComment/)
   })

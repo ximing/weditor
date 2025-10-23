@@ -1,4 +1,4 @@
-import type { CommentOp, DocsCommands, Editor } from '@weditor/core'
+import type { CommentOp, DocsCommands, Editor } from '@deditor/core'
 import { nanoid } from 'nanoid'
 import { closeHistory } from 'prosemirror-history'
 import type { Schema } from 'prosemirror-model'
@@ -26,7 +26,7 @@ export function commentCommands({
         editor.state.tr
           .addMark(start, end, schema.marks.comment.create({ id }))
           .setMeta('addToHistory', false)
-          .setMeta('weditor-comment-op', { type: 'createThread', thread }),
+          .setMeta('deditor-comment-op', { type: 'createThread', thread }),
       )
       editor.dispatch(tr)
       return true
@@ -38,7 +38,7 @@ export function commentCommands({
       editor.comments.applyOp(op)
       const tr = editor.state.tr
       tr.setMeta('addToHistory', false)
-      tr.setMeta('weditor-comment-op', op)
+      tr.setMeta('deditor-comment-op', op)
       editor.dispatch(tr)
       return true
     },
@@ -51,7 +51,7 @@ export function commentCommands({
       editor.comments.applyOp(op)
       const tr = editor.state.tr
       tr.setMeta('addToHistory', false)
-      tr.setMeta('weditor-comment-op', op)
+      tr.setMeta('deditor-comment-op', op)
       editor.dispatch(tr)
       return true
     },
@@ -68,7 +68,7 @@ export function commentCommands({
         }
       })
       tr.setMeta('addToHistory', false)
-      tr.setMeta('weditor-comment-op', op)
+      tr.setMeta('deditor-comment-op', op)
       editor.dispatch(closeHistory(tr))
       return true
     },

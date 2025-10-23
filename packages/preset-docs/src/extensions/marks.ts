@@ -1,4 +1,4 @@
-import type { Extension } from '@weditor/core'
+import type { Extension } from '@deditor/core'
 import { commentCommands } from '../commands/comments'
 import { markCommands } from '../commands/marks'
 import { basicMarks } from '../marks/basic'

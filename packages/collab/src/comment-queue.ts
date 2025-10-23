@@ -1,4 +1,4 @@
-import type { CollabProvider, CommentOp, Editor } from '@weditor/core'
+import type { CollabProvider, CommentOp, Editor } from '@deditor/core'
 import { sendableSteps } from 'prosemirror-collab'
 
 export function threadId(op: CommentOp): string {

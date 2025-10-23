@@ -1,6 +1,6 @@
 # Collaboration
 
-OT via `prosemirror-collab`, not Yjs. `docsPreset()` does **not** enable collab. Integrators append `collabExtension(provider, { version })` from `@weditor/collab` as the **last** entry in `extensions`. `<DocEditor collab={provider} />` does that internally after `loadDocument()`. `@weditor/core` does not import `prosemirror-collab`.
+OT via `prosemirror-collab`, not Yjs. `docsPreset()` does **not** enable collab. Integrators append `collabExtension(provider, { version })` from `@deditor/collab` as the **last** entry in `extensions`. `<DocEditor collab={provider} />` does that internally after `loadDocument()`. `@deditor/core` does not import `prosemirror-collab`.
 
 ```ts
 function collabExtension(
@@ -11,7 +11,7 @@ function collabExtension(
 
 `Editor.create` is synchronous and **must** receive the authority version as `collab({ version })`. Starting at 0 against a non-zero authority causes permanent `VERSION_MISMATCH`.
 
-Shared wire types (`CollabProvider`, `StepsPayload`, `SendStepsResult`, `Snapshot`, `Presence`) live in `@weditor/core`.
+Shared wire types (`CollabProvider`, `StepsPayload`, `SendStepsResult`, `Snapshot`, `Presence`) live in `@deditor/core`.
 
 ## Bootstrap
 
@@ -63,7 +63,7 @@ function applyAuthorityBatch(
 }
 ```
 
-This function lives in `@weditor/collab`. Naive “apply each to the original document” is forbidden: it accepts batches the real document would reject and diverges from clients.
+This function lives in `@deditor/collab`. Naive “apply each to the original document” is forbidden: it accepts batches the real document would reject and diverges from clients.
 
 `sendSteps` handler (room mutex held):
 
@@ -138,7 +138,7 @@ The sample authority (`apps/collab-server`):
 - In-memory only; process restart clears rooms.
 - No auth. `clientID` and `user` are client-declared and spoofable — **not an auth boundary**.
 - Schema = `docsSchema()` only.
-- Reuses `applyAuthorityBatch` from `@weditor/collab`.
+- Reuses `applyAuthorityBatch` from `@deditor/collab`.
 - Not a production package.
 
 Empty room: version 0, `doc > paragraph`, empty step log.
@@ -146,9 +146,9 @@ Empty room: version 0, `doc > paragraph`, empty step log.
 ## Sample `createWsProvider`
 
 ```ts
-import { createWsProvider } from '@weditor/collab'
-import { DocEditor } from '@weditor/react'
-import '@weditor/react/style.css'
+import { createWsProvider } from '@deditor/collab'
+import { DocEditor } from '@deditor/react'
+import '@deditor/react/style.css'
 
 const provider = createWsProvider({
   url: 'ws://localhost:8787',

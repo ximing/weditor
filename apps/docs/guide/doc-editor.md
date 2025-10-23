@@ -3,8 +3,8 @@
 `<DocEditor />` is the React Docs surface: toolbar, find bar, bubbles, editor, comment sidebar, and composer.
 
 ```ts
-import { DocEditor } from '@weditor/react'
-import type { DocEditorProps } from '@weditor/react'
+import { DocEditor } from '@deditor/react'
+import type { DocEditorProps } from '@deditor/react'
 ```
 
 ## Props
@@ -20,7 +20,7 @@ import type { DocEditorProps } from '@weditor/react'
 | `uploadImage` | `(file: File) => Promise<{ src; alt?; width? }>` | — | Toolbar image control. Demo reads a data URL and rejects files > 200KB. |
 | `currentUser` | `User` | `{ id: 'local', name: 'You' }` | Comment author and presence identity. |
 | `placeholder` | `string` | `'Start typing…'` | Passed into `docsPreset` when `extensions` is omitted. |
-| `className` | `string` | — | Extra class on the root `.weditor-root`. |
+| `className` | `string` | — | Extra class on the root `.deditor-root`. |
 
 `User` is `{ id: string; name: string; color?: string }`. `JSONContent` is ProseMirror node JSON (`type`, optional `attrs` / `content` / `marks` / `text`).
 
@@ -76,4 +76,4 @@ There is no second path through `EditorView` props.
 
 ## Headless chrome
 
-`@weditor/react` also exports `EditorProvider`, `EditorSurface` (mount only), `useEditor()`, `Toolbar`, `FindBar`, `Bubble`, `TableBubble`, `CommentSidebar`, and `CommentComposer` for custom layouts. `useEditor()` reads React context — it is not a singleton. Two-panel collab uses two `DocEditor`s, each with its own provider.
+`@deditor/react` also exports `EditorProvider`, `EditorSurface` (mount only), `useEditor()`, `Toolbar`, `FindBar`, `Bubble`, `TableBubble`, `CommentSidebar`, and `CommentComposer` for custom layouts. `useEditor()` reads React context — it is not a singleton. Two-panel collab uses two `DocEditor`s, each with its own provider.

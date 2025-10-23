@@ -1,5 +1,5 @@
-import { MemoryAuthority } from '@weditor/collab'
-import { docsSchema } from '@weditor/preset-docs'
+import { MemoryAuthority } from '@deditor/collab'
+import { docsSchema } from '@deditor/preset-docs'
 
 const rooms = new Map<string, MemoryAuthority>()
 const locks = new Map<string, Promise<MemoryAuthority>>()

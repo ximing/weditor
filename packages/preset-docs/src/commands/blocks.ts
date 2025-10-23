@@ -5,7 +5,7 @@ import {
   setBlockType as pmSetBlockType,
   wrapIn,
 } from 'prosemirror-commands'
-import type { Command, DocsCommands, Editor } from '@weditor/core'
+import type { Command, DocsCommands, Editor } from '@deditor/core'
 import type { Schema } from 'prosemirror-model'
 
 const ALIGN_VALUES = ['left', 'center', 'right', 'justify'] as const

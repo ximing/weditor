@@ -1,4 +1,4 @@
-import type { Editor, StepsPayload } from '@weditor/core'
+import type { Editor, StepsPayload } from '@deditor/core'
 import { getVersion, receiveTransaction, sendableSteps } from 'prosemirror-collab'
 import { Step } from 'prosemirror-transform'
 
@@ -19,7 +19,7 @@ export function applyRemoteSteps(editor: Editor, payload: StepsPayload): boolean
   // Matching clientIDs confirm unconfirmed local steps. With none, still apply.
   const clientIDs = sendableSteps(editor.state) ? ids : ids.map(() => '')
   const tr = receiveTransaction(editor.state, pmSteps, clientIDs, { mapSelectionBackward: true })
-  tr.setMeta('weditor-remote', true)
+  tr.setMeta('deditor-remote', true)
   editor.dispatch(tr)
   return true
 }

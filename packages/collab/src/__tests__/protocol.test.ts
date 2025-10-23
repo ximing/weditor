@@ -1,4 +1,4 @@
-import { docsSchema } from '@weditor/preset-docs'
+import { docsSchema } from '@deditor/preset-docs'
 import { describe, expect, it } from 'vitest'
 import { MemoryAuthority } from '../memory-authority'
 import { createMemoryProvider } from '../memory-provider'

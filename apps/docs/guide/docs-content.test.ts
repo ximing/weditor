@@ -11,7 +11,7 @@ function md(name: string) {
 describe('VitePress pages', () => {
   it('install lists the three runtime packages plus react', () => {
     const t = md('install.md')
-    expect(t).toContain('pnpm add @weditor/react @weditor/preset-docs @weditor/collab')
+    expect(t).toContain('pnpm add @deditor/react @deditor/preset-docs @deditor/collab')
   })
   it('collab page includes bootstrap, authority algorithm, WS table, docsSchema-only demo', () => {
     const t = md('collab.md')
@@ -34,7 +34,7 @@ describe('VitePress pages', () => {
     const t = md('vue.md')
     expect(t).toContain('editor.mount')
     expect(t).toContain('editor.unmount')
-    expect(t).not.toContain('@weditor/vue')
+    expect(t).not.toContain('@deditor/vue')
   })
   it('migration says JSON is canonical and Quill Delta is not supported', () => {
     const t = md('migration.md')

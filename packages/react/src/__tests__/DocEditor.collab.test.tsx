@@ -1,8 +1,8 @@
 /** @vitest-environment happy-dom */
 import { getVersion } from 'prosemirror-collab'
-import { docsSchema } from '@weditor/preset-docs'
-import { collabExtension } from '@weditor/collab'
-import { MemoryAuthority, createMemoryProvider } from '@weditor/collab'
+import { docsSchema } from '@deditor/preset-docs'
+import { collabExtension } from '@deditor/collab'
+import { MemoryAuthority, createMemoryProvider } from '@deditor/collab'
 import { render, waitFor } from '@testing-library/react'
 import React from 'react'
 import { describe, expect, it, vi } from 'vitest'
@@ -33,8 +33,8 @@ describe('DocEditor collab bootstrap and onChange', () => {
 
   it('onChange skips remote transactions', async () => {
     const onChange = vi.fn()
-    const { Editor } = await import('@weditor/core')
-    const { docsPreset } = await import('@weditor/preset-docs')
+    const { Editor } = await import('@deditor/core')
+    const { docsPreset } = await import('@deditor/preset-docs')
     const editor = Editor.create({ extensions: docsPreset() })
     function Wrap() {
       React.useEffect(() => {
@@ -51,7 +51,7 @@ describe('DocEditor collab bootstrap and onChange', () => {
     }
     render(<Wrap />)
     const tr = editor.state.tr.insertText('x')
-    tr.setMeta('weditor-remote', true)
+    tr.setMeta('deditor-remote', true)
     editor.dispatch(tr)
     expect(onChange).not.toHaveBeenCalled()
     editor.dispatch(editor.state.tr.insertText('y'))

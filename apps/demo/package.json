@@ -1,5 +1,5 @@
 {
-  "name": "@weditor/demo",
+  "name": "@deditor/demo",
   "private": true,
   "type": "module",
   "scripts": {
@@ -8,9 +8,9 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@weditor/react": "workspace:*",
-    "@weditor/collab": "workspace:*",
-    "@weditor/preset-docs": "workspace:*",
+    "@deditor/react": "workspace:*",
+    "@deditor/collab": "workspace:*",
+    "@deditor/preset-docs": "workspace:*",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

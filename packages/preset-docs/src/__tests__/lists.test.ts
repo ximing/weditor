@@ -1,5 +1,5 @@
 /** @vitest-environment happy-dom */
-import { Editor } from '@weditor/core'
+import { Editor } from '@deditor/core'
 import { TextSelection } from 'prosemirror-state'
 import { describe, expect, it } from 'vitest'
 import { docsPreset } from '../preset'
@@ -99,7 +99,7 @@ describe('lists', () => {
     const place = document.createElement('div')
     document.body.append(place)
     editor.mount(place)
-    const box = place.querySelector('.weditor-task-checkbox') as HTMLElement | null
+    const box = place.querySelector('.deditor-task-checkbox') as HTMLElement | null
     expect(box).toBeTruthy()
     box!.click()
     expect(editor.state.doc.firstChild!.firstChild!.attrs.checked).toBe(true)

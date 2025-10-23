@@ -1,5 +1,5 @@
 import { toggleMark } from 'prosemirror-commands'
-import { sanitizeHref, type Command, type DocsCommands, type Editor } from '@weditor/core'
+import { sanitizeHref, type Command, type DocsCommands, type Editor } from '@deditor/core'
 import type { MarkType, Schema } from 'prosemirror-model'
 
 function clearMark(editor: Editor, type: MarkType): boolean {

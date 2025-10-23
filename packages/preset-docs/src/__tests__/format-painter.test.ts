@@ -1,4 +1,4 @@
-import { Editor } from '@weditor/core'
+import { Editor } from '@deditor/core'
 import { PluginKey, TextSelection } from 'prosemirror-state'
 import { describe, expect, it } from 'vitest'
 import { docsPreset, formatPainterPluginKey } from '../index'

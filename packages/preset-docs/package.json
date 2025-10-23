@@ -1,6 +1,36 @@
 {
-  "name": "@weditor/preset-docs",
+  "name": "@deditor/preset-docs",
   "version": "0.1.0",
+  "description": "Pageless Docs schema, commands, keymap, and document CSS for Deditor.",
+  "license": "MIT",
+  "author": "ximing",
+  "homepage": "https://ximing.github.io/weditor/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ximing/weditor.git",
+    "directory": "packages/preset-docs"
+  },
+  "bugs": {
+    "url": "https://github.com/ximing/weditor/issues"
+  },
+  "keywords": [
+    "prosemirror",
+    "editor",
+    "rich-text",
+    "collaborative-editing",
+    "comments",
+    "docs",
+    "deditor"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": [
+    "**/*.css"
+  ],
   "type": "module",
   "exports": {
     ".": {
@@ -10,14 +40,16 @@
     },
     "./style.css": "./dist/style.css"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup && cp src/style.css dist/style.css",
     "test": "vitest run",
     "lint": "eslint src"
   },
   "dependencies": {
-    "@weditor/core": "workspace:*",
+    "@deditor/core": "workspace:*",
     "nanoid": "^5.0.7",
     "prosemirror-commands": "^1.6.2",
     "prosemirror-dropcursor": "^1.8.1",

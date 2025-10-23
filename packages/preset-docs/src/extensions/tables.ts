@@ -1,4 +1,4 @@
-import type { Extension } from '@weditor/core'
+import type { Extension } from '@deditor/core'
 import { columnResizing, goToNextCell, tableEditing } from 'prosemirror-tables'
 import { tableCommands } from '../commands/tables'
 

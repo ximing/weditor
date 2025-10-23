@@ -1,4 +1,4 @@
-import { findAll } from '@weditor/preset-docs'
+import { findAll } from '@deditor/preset-docs'
 import { useEffect, useState } from 'react'
 import { useEditor } from '../useEditor'
 
@@ -18,7 +18,7 @@ export function FindBar() {
   }, [editor])
   if (!open) return null
   return (
-    <div className="weditor-find" role="search">
+    <div className="deditor-find" role="search">
       <input
         aria-label="Find"
         value={q}

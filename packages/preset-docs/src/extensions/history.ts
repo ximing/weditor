@@ -1,5 +1,5 @@
 import { history, undo, redo } from 'prosemirror-history'
-import type { Editor, Extension } from '@weditor/core'
+import type { Editor, Extension } from '@deditor/core'
 
 export function historyExtension(): Extension {
   return {

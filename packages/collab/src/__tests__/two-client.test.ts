@@ -1,5 +1,5 @@
-import { Editor } from '@weditor/core'
-import { docsPreset } from '@weditor/preset-docs'
+import { Editor } from '@deditor/core'
+import { docsPreset } from '@deditor/preset-docs'
 import { getVersion } from 'prosemirror-collab'
 import { describe, expect, it } from 'vitest'
 import { collabExtension } from '../collab-extension'
@@ -11,7 +11,7 @@ const bob = { id: 'b', name: 'Bob' }
 
 async function pair() {
   const auth = new MemoryAuthority(
-    (await import('@weditor/preset-docs')).docsSchema(),
+    (await import('@deditor/preset-docs')).docsSchema(),
   )
   const pa = createMemoryProvider(auth, { user: alice, clientID: 'aaaaaaaaaaaaaaaaaaaaa' })
   const pb = createMemoryProvider(auth, { user: bob, clientID: 'bbbbbbbbbbbbbbbbbbbbb' })

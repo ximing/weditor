@@ -1,6 +1,36 @@
 {
-  "name": "@weditor/react",
+  "name": "@deditor/react",
   "version": "0.1.0",
+  "description": "React DocEditor surface: toolbar, bubbles, find, and comment sidebar.",
+  "license": "MIT",
+  "author": "ximing",
+  "homepage": "https://ximing.github.io/weditor/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ximing/weditor.git",
+    "directory": "packages/react"
+  },
+  "bugs": {
+    "url": "https://github.com/ximing/weditor/issues"
+  },
+  "keywords": [
+    "prosemirror",
+    "editor",
+    "rich-text",
+    "collaborative-editing",
+    "comments",
+    "docs",
+    "deditor"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": [
+    "**/*.css"
+  ],
   "type": "module",
   "exports": {
     ".": {
@@ -22,9 +52,9 @@
     "react-dom": ">=18"
   },
   "dependencies": {
-    "@weditor/collab": "workspace:*",
-    "@weditor/core": "workspace:*",
-    "@weditor/preset-docs": "workspace:*",
+    "@deditor/collab": "workspace:*",
+    "@deditor/core": "workspace:*",
+    "@deditor/preset-docs": "workspace:*",
     "prosemirror-state": "^1",
     "prosemirror-tables": "^1.6.4"
   },

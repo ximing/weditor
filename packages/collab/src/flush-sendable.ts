@@ -1,4 +1,4 @@
-import type { CollabProvider, Editor, StepJSON } from '@weditor/core'
+import type { CollabProvider, Editor, StepJSON } from '@deditor/core'
 import { getVersion, sendableSteps } from 'prosemirror-collab'
 import { applyRemoteSteps } from './apply-remote-steps'
 

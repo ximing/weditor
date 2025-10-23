@@ -1,4 +1,4 @@
-.weditor-doc {
+.deditor-doc {
   max-width: 816px;
   margin: 0 auto;
   background: #fff;
@@ -10,43 +10,43 @@
   font-family: Arial, sans-serif;
   color: #000;
 }
-.weditor-doc .ProseMirror {
+.deditor-doc .ProseMirror {
   outline: none;
   min-height: 400px;
 }
-.weditor-doc .ProseMirror p { margin: 0 0 8px; }
-.weditor-doc .ProseMirror h1 { font-size: 26pt; }
-.weditor-doc .ProseMirror h2 { font-size: 20pt; }
-.weditor-doc .ProseMirror h3 { font-size: 16pt; }
-.weditor-doc .ProseMirror h4 { font-size: 14pt; }
-.weditor-doc .ProseMirror h5 { font-size: 12pt; }
-.weditor-doc .ProseMirror h6 { font-size: 11pt; }
-.weditor-doc .ProseMirror pre {
+.deditor-doc .ProseMirror p { margin: 0 0 8px; }
+.deditor-doc .ProseMirror h1 { font-size: 26pt; }
+.deditor-doc .ProseMirror h2 { font-size: 20pt; }
+.deditor-doc .ProseMirror h3 { font-size: 16pt; }
+.deditor-doc .ProseMirror h4 { font-size: 14pt; }
+.deditor-doc .ProseMirror h5 { font-size: 12pt; }
+.deditor-doc .ProseMirror h6 { font-size: 11pt; }
+.deditor-doc .ProseMirror pre {
   background: #f5f5f5;
   padding: 12px;
   font-family: 'Courier New', monospace;
 }
-.weditor-doc .ProseMirror blockquote {
+.deditor-doc .ProseMirror blockquote {
   border-left: 3px solid #ccc;
   margin-left: 0;
   padding-left: 16px;
   color: #444;
 }
-.weditor-doc .ProseMirror ul,
-.weditor-doc .ProseMirror ol {
+.deditor-doc .ProseMirror ul,
+.deditor-doc .ProseMirror ol {
   margin: 0 0 8px;
   padding-left: 24px;
 }
-.weditor-doc .ProseMirror ul[data-task-list] {
+.deditor-doc .ProseMirror ul[data-task-list] {
   list-style: none;
   padding-left: 0;
 }
-.weditor-doc .ProseMirror li[data-checked] {
+.deditor-doc .ProseMirror li[data-checked] {
   display: flex;
   align-items: flex-start;
   gap: 8px;
 }
-.weditor-doc .ProseMirror .weditor-task-checkbox {
+.deditor-doc .ProseMirror .deditor-task-checkbox {
   display: inline-block;
   width: 14px;
   height: 14px;
@@ -57,21 +57,21 @@
   cursor: pointer;
   user-select: none;
 }
-.weditor-doc .ProseMirror li[data-checked='true'] .weditor-task-checkbox {
+.deditor-doc .ProseMirror li[data-checked='true'] .deditor-task-checkbox {
   background: #1a73e8;
   border-color: #1a73e8;
 }
-.weditor-doc .ProseMirror .weditor-image {
+.deditor-doc .ProseMirror .deditor-image {
   position: relative;
   display: block;
   max-width: 100%;
 }
-.weditor-doc .ProseMirror .weditor-image img {
+.deditor-doc .ProseMirror .deditor-image img {
   display: block;
   max-width: 100%;
   height: auto;
 }
-.weditor-doc .ProseMirror .weditor-image-handle {
+.deditor-doc .ProseMirror .deditor-image-handle {
   display: none;
   position: absolute;
   top: 0;
@@ -81,10 +81,10 @@
   cursor: ew-resize;
   background: #4f81bd;
 }
-.weditor-doc .ProseMirror .ProseMirror-selectednode.weditor-image {
+.deditor-doc .ProseMirror .ProseMirror-selectednode.deditor-image {
   outline: 2px solid #4f81bd;
 }
-.weditor-doc .ProseMirror .ProseMirror-selectednode.weditor-image .weditor-image-handle {
+.deditor-doc .ProseMirror .ProseMirror-selectednode.deditor-image .deditor-image-handle {
   display: block;
 }
 .mention-embed {
@@ -115,18 +115,18 @@
 .ProseMirror-focused .ProseMirror-gapcursor {
   display: block;
 }
-.weditor-doc .ProseMirror .tableWrapper {
+.deditor-doc .ProseMirror .tableWrapper {
   overflow-x: auto;
   margin: 0 0 8px;
 }
-.weditor-doc .ProseMirror table {
+.deditor-doc .ProseMirror table {
   border-collapse: collapse;
   table-layout: fixed;
   width: 100%;
   overflow: hidden;
 }
-.weditor-doc .ProseMirror td,
-.weditor-doc .ProseMirror th {
+.deditor-doc .ProseMirror td,
+.deditor-doc .ProseMirror th {
   border: 1px solid #ccc;
   padding: 6px 8px;
   vertical-align: top;
@@ -134,7 +134,7 @@
   position: relative;
   min-width: 48px;
 }
-.weditor-doc .ProseMirror .column-resize-handle {
+.deditor-doc .ProseMirror .column-resize-handle {
   position: absolute;
   right: -2px;
   top: 0;
@@ -144,29 +144,29 @@
   background-color: #adf;
   pointer-events: none;
 }
-.weditor-doc .ProseMirror.resize-cursor {
+.deditor-doc .ProseMirror.resize-cursor {
   cursor: col-resize;
 }
-.weditor-doc .ProseMirror .weditor-search-match {
+.deditor-doc .ProseMirror .deditor-search-match {
   background: #fff59d;
 }
-.weditor-doc .ProseMirror .weditor-search-match-active {
+.deditor-doc .ProseMirror .deditor-search-match-active {
   background: #ffd54f;
 }
-.weditor-doc .ProseMirror .weditor-comment-open {
+.deditor-doc .ProseMirror .deditor-comment-open {
   background: rgba(255, 196, 87, 0.45);
 }
-.weditor-doc .ProseMirror .weditor-comment-resolved {
+.deditor-doc .ProseMirror .deditor-comment-resolved {
   background: rgba(160, 160, 160, 0.28);
 }
-.weditor-doc .ProseMirror .weditor-comment-skel {
+.deditor-doc .ProseMirror .deditor-comment-skel {
   background: rgba(255, 196, 87, 0.28);
   outline: 1px dashed #e6a23c;
 }
-.weditor-doc .ProseMirror .weditor-comment-active {
+.deditor-doc .ProseMirror .deditor-comment-active {
   outline: 2px solid #e6a23c;
 }
-.weditor-doc .ProseMirror .selectedCell:after {
+.deditor-doc .ProseMirror .selectedCell:after {
   z-index: 2;
   position: absolute;
   content: '';

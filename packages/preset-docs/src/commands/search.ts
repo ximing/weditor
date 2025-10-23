@@ -1,4 +1,4 @@
-import type { DocsCommands, Editor } from '@weditor/core'
+import type { DocsCommands, Editor } from '@deditor/core'
 import { closeHistory } from 'prosemirror-history'
 import { TextSelection } from 'prosemirror-state'
 import { searchPluginKey } from '../extensions/search'

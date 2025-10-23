@@ -1,6 +1,6 @@
 import { Plugin } from 'prosemirror-state'
 import { Decoration, DecorationSet } from 'prosemirror-view'
-import type { Extension } from '@weditor/core'
+import type { Extension } from '@deditor/core'
 
 export function placeholderExtension(text: string): Extension {
   return {
@@ -13,7 +13,7 @@ export function placeholderExtension(text: string): Extension {
             const p = state.doc.firstChild
             if (!p || p.type.name !== 'paragraph' || p.content.size > 0) return null
             const deco = Decoration.node(0, p.nodeSize, {
-              class: 'weditor-placeholder',
+              class: 'deditor-placeholder',
               'data-placeholder': text,
             })
             return DecorationSet.create(state.doc, [deco])

@@ -6,7 +6,7 @@ import { defineConfig, searchForWorkspaceRoot } from 'vite'
 const dir = dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
-  base: '/',
+  base: process.env.DEMO_BASE || '/',
   plugins: [react()],
   resolve: {
     dedupe: ['react', 'react-dom'],

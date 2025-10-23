@@ -8,7 +8,7 @@ export function ColorPalette(props: {
 }) {
   const [open, setOpen] = useState(false)
   return (
-    <div className="weditor-color-palette">
+    <div className="deditor-color-palette">
       <button
         type="button"
         title={props.title}
@@ -19,11 +19,11 @@ export function ColorPalette(props: {
         {props.title}
       </button>
       {open ? (
-        <div className="weditor-color-palette-grid" role="listbox">
+        <div className="deditor-color-palette-grid" role="listbox">
           <button
             type="button"
             title="Default"
-            className="weditor-color-default"
+            className="deditor-color-default"
             onMouseDown={(e) => e.preventDefault()}
             onClick={() => {
               props.onDefault()
@@ -37,7 +37,7 @@ export function ColorPalette(props: {
               key={hex}
               type="button"
               title={`Color ${hex}`}
-              className="weditor-color-swatch"
+              className="deditor-color-swatch"
               style={{ background: hex }}
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => {

@@ -1,5 +1,5 @@
 /** @vitest-environment happy-dom */
-import { docsPreset } from '@weditor/preset-docs'
+import { docsPreset } from '@deditor/preset-docs'
 import { cleanup, fireEvent, render, waitFor } from '@testing-library/react'
 import { TextSelection } from 'prosemirror-state'
 import React, { useEffect, useState } from 'react'
@@ -14,7 +14,7 @@ import { useEditor } from '../useEditor'
 
 afterEach(() => {
   cleanup()
-  document.querySelectorAll('.weditor-toast').forEach((el) => el.remove())
+  document.querySelectorAll('.deditor-toast').forEach((el) => el.remove())
 })
 
 describe('read-only and chrome', () => {
@@ -63,12 +63,12 @@ describe('read-only and chrome', () => {
         <EditorSurface />
       </EditorProvider>,
     )
-    await waitFor(() => expect(container.querySelector('.weditor-bubble')).toBeTruthy())
-    expect(container.querySelector('.weditor-bubble button[title="Bold"]')).toBeTruthy()
-    expect(container.querySelector('.weditor-bubble button[title="Italic"]')).toBeTruthy()
-    expect(container.querySelector('.weditor-bubble button[title="Underline"]')).toBeTruthy()
-    expect(container.querySelector('.weditor-bubble button[title="Comment"]')).toBeTruthy()
-    expect(container.querySelector('.weditor-bubble button[title="Link"]')).toBeTruthy()
+    await waitFor(() => expect(container.querySelector('.deditor-bubble')).toBeTruthy())
+    expect(container.querySelector('.deditor-bubble button[title="Bold"]')).toBeTruthy()
+    expect(container.querySelector('.deditor-bubble button[title="Italic"]')).toBeTruthy()
+    expect(container.querySelector('.deditor-bubble button[title="Underline"]')).toBeTruthy()
+    expect(container.querySelector('.deditor-bubble button[title="Comment"]')).toBeTruthy()
+    expect(container.querySelector('.deditor-bubble button[title="Link"]')).toBeTruthy()
   })
 
   it('toasts Upload failed when uploadImage rejects and does not insert an image', async () => {
@@ -90,7 +90,7 @@ describe('read-only and chrome', () => {
     const input = container.querySelector('input[type="file"]') as HTMLInputElement
     const file = new File([new Uint8Array(8)], 'a.png', { type: 'image/png' })
     fireEvent.change(input, { target: { files: [file] } })
-    await waitFor(() => expect(document.querySelector('.weditor-toast')?.textContent).toBe('Upload failed'))
+    await waitFor(() => expect(document.querySelector('.deditor-toast')?.textContent).toBe('Upload failed'))
     expect(getByTestId('json').textContent).not.toContain('"type":"image"')
   })
 
@@ -114,7 +114,7 @@ describe('read-only and chrome', () => {
     const file = new File([new Uint8Array(8)], 'a.png', { type: 'image/png' })
     fireEvent.change(input, { target: { files: [file] } })
     await waitFor(() => expect(getByTestId('json').textContent).toContain('https://cdn.example/a.png'))
-    expect(document.querySelector('.weditor-toast')).toBeNull()
+    expect(document.querySelector('.deditor-toast')).toBeNull()
   })
 
   it('does not insert from a file path when uploadImage is omitted', async () => {
@@ -138,12 +138,12 @@ describe('read-only and chrome', () => {
     expect(getByTestId('json').textContent).not.toContain('"type":"image"')
   })
 
-  it('toast inserts a .weditor-toast for 2s', () => {
+  it('toast inserts a .deditor-toast for 2s', () => {
     vi.useFakeTimers()
     toast('Upload failed')
-    expect(document.querySelector('.weditor-toast')?.textContent).toBe('Upload failed')
+    expect(document.querySelector('.deditor-toast')?.textContent).toBe('Upload failed')
     vi.advanceTimersByTime(2000)
-    expect(document.querySelector('.weditor-toast')).toBeNull()
+    expect(document.querySelector('.deditor-toast')).toBeNull()
     vi.useRealTimers()
   })
 })

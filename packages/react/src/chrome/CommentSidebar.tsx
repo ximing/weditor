@@ -1,5 +1,5 @@
-import type { CommentThread, Editor, User } from '@weditor/core'
-import { commentsUiKey, pickCommentIdAt } from '@weditor/preset-docs'
+import type { CommentThread, Editor, User } from '@deditor/core'
+import { commentsUiKey, pickCommentIdAt } from '@deditor/preset-docs'
 import { TextSelection } from 'prosemirror-state'
 import { useEffect, useState } from 'react'
 import { useEditor } from '../useEditor'
@@ -92,7 +92,7 @@ function ThreadActions(props: { id: string; resolved: boolean; currentUser: User
   const editor = useEditor()
   const [body, setBody] = useState('')
   return (
-    <div className="weditor-comment-actions" onClick={(e) => e.stopPropagation()}>
+    <div className="deditor-comment-actions" onClick={(e) => e.stopPropagation()}>
       <textarea
         aria-label="Reply"
         value={body}
@@ -179,28 +179,28 @@ export function CommentSidebar(props: { currentUser: User; readOnly?: boolean })
   const editable = editor.editable && !props.readOnly
 
   return (
-    <aside className="weditor-sidebar weditor-comment-sidebar">
+    <aside className="deditor-sidebar deditor-comment-sidebar">
       {rows.map((row) => (
         <article
           key={row.id}
           data-comment-id={row.id}
-          className={['weditor-comment-thread', activeId === row.id ? 'is-active' : '']
+          className={['deditor-comment-thread', activeId === row.id ? 'is-active' : '']
             .filter(Boolean)
             .join(' ')}
           onClick={() => dispatchActive(editor, row.id, !(row.thread?.detached ?? false))}
         >
-          <blockquote className="weditor-comment-quote">{row.quote}</blockquote>
+          <blockquote className="deditor-comment-quote">{row.quote}</blockquote>
           {row.skeleton || !row.thread ? (
-            <div className="weditor-comment-skel-msg">Loading thread…</div>
+            <div className="deditor-comment-skel-msg">Loading thread…</div>
           ) : (
             <>
               {row.thread.comments.map((msg) => (
-                <div key={msg.id} className="weditor-comment-message">
+                <div key={msg.id} className="deditor-comment-message">
                   {msg.body}
                 </div>
               ))}
               {row.thread.resolved ? (
-                <div className="weditor-comment-flag">Resolved</div>
+                <div className="deditor-comment-flag">Resolved</div>
               ) : null}
               {editable ? (
                 <ThreadActions

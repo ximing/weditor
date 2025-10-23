@@ -1,10 +1,10 @@
 /** @vitest-environment happy-dom */
-import { docsPreset } from '@weditor/preset-docs'
+import { docsPreset } from '@deditor/preset-docs'
 import { render, waitFor } from '@testing-library/react'
 import React from 'react'
 import { describe, expect, it } from 'vitest'
 import { DocEditor } from '../DocEditor'
-import type { CollabProvider } from '@weditor/core'
+import type { CollabProvider } from '@deditor/core'
 
 describe('DocEditor', () => {
   it('throws when content and collab are both set', () => {
@@ -28,7 +28,7 @@ describe('DocEditor', () => {
 
   it('renders toolbar and surface in single-user mode', async () => {
     const { container } = render(<DocEditor />)
-    await waitFor(() => expect(container.querySelector('.weditor-toolbar')).toBeTruthy())
-    expect(container.querySelector('.weditor-surface')).toBeTruthy()
+    await waitFor(() => expect(container.querySelector('.deditor-toolbar')).toBeTruthy())
+    expect(container.querySelector('.deditor-surface')).toBeTruthy()
   })
 })

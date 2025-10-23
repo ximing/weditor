@@ -1,4 +1,4 @@
-import type { Extension } from '@weditor/core'
+import type { Extension } from '@deditor/core'
 import type { Node } from 'prosemirror-model'
 import { Plugin, PluginKey, type EditorState } from 'prosemirror-state'
 import { Decoration, DecorationSet } from 'prosemirror-view'
@@ -87,8 +87,8 @@ export function searchExtension(): Extension {
                 if (m.from >= m.to) return []
                 const className =
                   i === st.active
-                    ? 'weditor-search-match weditor-search-match-active'
-                    : 'weditor-search-match'
+                    ? 'deditor-search-match deditor-search-match-active'
+                    : 'deditor-search-match'
                 return [Decoration.inline(m.from, m.to, { class: className })]
               }),
             )

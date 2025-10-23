@@ -25,7 +25,7 @@ export function Bubble() {
     try {
       const start = view.coordsAtPos(from)
       const end = view.coordsAtPos(Math.max(from, to - 1))
-      const parent = view.dom.closest('.weditor-root') ?? view.dom.parentElement
+      const parent = view.dom.closest('.deditor-root') ?? view.dom.parentElement
       const box = parent?.getBoundingClientRect()
       const ox = box?.left ?? 0
       const oy = box?.top ?? 0
@@ -38,7 +38,7 @@ export function Bubble() {
 
   return (
     <div
-      className="weditor-bubble"
+      className="deditor-bubble"
       style={{ position: 'absolute', left, top, transform: 'translate(-50%, -100%)' }}
     >
       <button

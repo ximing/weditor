@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react'
-import type { Editor } from '@weditor/core'
+import type { Editor } from '@deditor/core'
 
 export const EditorContext = createContext<Editor | null>(null)
 

@@ -4,7 +4,7 @@ import {
   COLORS_STANDARD,
   COLORS_THEME,
   HIGHLIGHTS,
-} from '@weditor/preset-docs'
+} from '@deditor/preset-docs'
 import { useEffect, useRef } from 'react'
 import { useEditor } from '../useEditor'
 import { ColorPalette } from './ColorPalette'
@@ -23,7 +23,7 @@ export function Toolbar(props: {
     })
   }, [editor])
   return (
-    <div className="weditor-toolbar" role="toolbar">
+    <div className="deditor-toolbar" role="toolbar">
       <button type="button" title="Undo" onMouseDown={(e) => { e.preventDefault(); editor.commands.undo() }}>Undo</button>
       <button type="button" title="Redo" onMouseDown={(e) => { e.preventDefault(); editor.commands.redo() }}>Redo</button>
       <button type="button" title="Paint format" onMouseDown={(e) => { e.preventDefault(); editor.commands.copyFormat() }}>Paint format</button>

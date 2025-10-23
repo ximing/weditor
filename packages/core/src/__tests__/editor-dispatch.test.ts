@@ -33,14 +33,14 @@ describe('Editor.dispatch', () => {
     expect(seen).toEqual(['onTransaction', 'emit', 'comments'])
   })
 
-  it('marks remote true when weditor-remote meta is set', () => {
+  it('marks remote true when deditor-remote meta is set', () => {
     const editor = Editor.create({ extensions: [nodes] })
     let remote: boolean | undefined
     editor.on('transaction', (p) => {
       remote = p.remote
     })
     const tr = editor.state.tr.insertText('x')
-    tr.setMeta('weditor-remote', true)
+    tr.setMeta('deditor-remote', true)
     editor.dispatch(tr)
     expect(remote).toBe(true)
   })

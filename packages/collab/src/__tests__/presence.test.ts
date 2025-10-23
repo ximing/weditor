@@ -1,7 +1,7 @@
 /** @vitest-environment happy-dom */
-import { Editor } from '@weditor/core'
-import type { Presence } from '@weditor/core'
-import { docsPreset, docsSchema } from '@weditor/preset-docs'
+import { Editor } from '@deditor/core'
+import type { Presence } from '@deditor/core'
+import { docsPreset, docsSchema } from '@deditor/preset-docs'
 import { describe, expect, it } from 'vitest'
 import { collabExtension } from '../collab-extension'
 import { MemoryAuthority } from '../memory-authority'
