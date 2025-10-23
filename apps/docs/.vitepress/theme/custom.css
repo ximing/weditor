@@ -1,0 +1,14 @@
+:root {
+  --vp-c-brand-1: #3370ff;
+  --vp-c-brand-2: #2953c7;
+  --vp-c-brand-3: #4c88ff;
+  --vp-c-brand-soft: rgba(51, 112, 255, 0.14);
+  --vp-font-family-base: -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --vp-font-family-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+}
+
+:root.dark {
+  --vp-c-brand-1: #4c88ff;
+  --vp-c-brand-2: #6a9bff;
+  --vp-c-brand-soft: rgba(76, 136, 255, 0.18);
+}
