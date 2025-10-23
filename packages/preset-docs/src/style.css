@@ -1,179 +1,345 @@
 .deditor-doc {
+  --deditor-doc-bg: #ffffff;
+  --deditor-doc-text: #1f2329;
+  --deditor-doc-text-2: #646a73;
+  --deditor-doc-primary: #3370ff;
+  --deditor-doc-on-primary: #ffffff;
+  --deditor-doc-border: #dee0e3;
+  --deditor-doc-code-bg: #f5f6f7;
+  --deditor-doc-inline-code-bg: var(--deditor-doc-code-bg);
+  --deditor-doc-code-block-bg: #1f2329;
+  --deditor-doc-code-block-text: #f5f6f7;
+  --deditor-doc-table-header-bg: #f7f8fa;
+  --deditor-doc-table-row-hover: rgba(31, 35, 41, 0.04);
+  --deditor-doc-table-cell-selected: rgba(51, 112, 255, 0.16);
+  --deditor-doc-search: #fff59d;
+  --deditor-doc-search-active: #ffd54f;
+  --deditor-doc-comment-open: rgba(255, 196, 87, 0.45);
+  --deditor-doc-comment-resolved: rgba(160, 160, 160, 0.28);
+  --deditor-doc-comment-skel: rgba(255, 196, 87, 0.28);
+  --deditor-doc-comment-active: #e6a23c;
+  --deditor-doc-shadow: 0 1px 4px rgba(31, 35, 41, 0.08);
+
+  box-sizing: border-box;
+  width: 100%;
   max-width: 816px;
-  margin: 0 auto;
-  background: #fff;
-  min-height: 11in;
-  padding: 96px 96px 96px 96px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  min-height: 60vh;
+  margin: 24px auto;
+  padding: 64px 96px;
+  border-radius: 8px;
+  background: var(--deditor-doc-bg);
+  box-shadow: var(--deditor-doc-shadow);
+  color: var(--deditor-doc-text);
+  font-family: -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
   font-size: 11pt;
-  line-height: 1.5;
-  font-family: Arial, sans-serif;
-  color: #000;
+  line-height: 1.7;
 }
+
+[data-theme='dark'] .deditor-doc,
+.deditor-doc[data-theme='dark'] {
+  --deditor-doc-bg: #23262b;
+  --deditor-doc-text: rgba(255, 255, 255, 0.92);
+  --deditor-doc-text-2: rgba(255, 255, 255, 0.65);
+  --deditor-doc-primary: #4c88ff;
+  --deditor-doc-on-primary: #ffffff;
+  --deditor-doc-border: #3a3d42;
+  --deditor-doc-code-bg: #34383f;
+  --deditor-doc-inline-code-bg: var(--deditor-doc-code-bg);
+  --deditor-doc-code-block-bg: #15171a;
+  --deditor-doc-code-block-text: #edf0f4;
+  --deditor-doc-table-header-bg: #2b2e33;
+  --deditor-doc-table-row-hover: rgba(255, 255, 255, 0.04);
+  --deditor-doc-table-cell-selected: rgba(76, 136, 255, 0.24);
+  --deditor-doc-search: rgba(255, 213, 79, 0.35);
+  --deditor-doc-search-active: rgba(255, 213, 79, 0.6);
+  --deditor-doc-comment-open: rgba(255, 196, 87, 0.34);
+  --deditor-doc-comment-resolved: rgba(255, 255, 255, 0.14);
+  --deditor-doc-comment-skel: rgba(255, 196, 87, 0.2);
+  --deditor-doc-comment-active: #f0b44d;
+  --deditor-doc-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
 .deditor-doc .ProseMirror {
-  outline: none;
   min-height: 400px;
+  outline: none;
 }
-.deditor-doc .ProseMirror p { margin: 0 0 8px; }
+
+.deditor-doc .ProseMirror p {
+  margin: 0 0 8px;
+}
+
+.deditor-doc .ProseMirror h1,
+.deditor-doc .ProseMirror h2,
+.deditor-doc .ProseMirror h3,
+.deditor-doc .ProseMirror h4,
+.deditor-doc .ProseMirror h5,
+.deditor-doc .ProseMirror h6 {
+  margin: 1.2em 0 0.5em;
+  color: var(--deditor-doc-text);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
 .deditor-doc .ProseMirror h1 { font-size: 26pt; }
 .deditor-doc .ProseMirror h2 { font-size: 20pt; }
 .deditor-doc .ProseMirror h3 { font-size: 16pt; }
 .deditor-doc .ProseMirror h4 { font-size: 14pt; }
 .deditor-doc .ProseMirror h5 { font-size: 12pt; }
 .deditor-doc .ProseMirror h6 { font-size: 11pt; }
+
 .deditor-doc .ProseMirror pre {
-  background: #f5f5f5;
-  padding: 12px;
-  font-family: 'Courier New', monospace;
+  margin: 0 0 8px;
+  padding: 12px 16px;
+  border-radius: 6px;
+  background: var(--deditor-doc-code-block-bg);
+  color: var(--deditor-doc-code-block-text);
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 9.5pt;
+  line-height: 1.6;
+  white-space: pre-wrap;
 }
+
+.deditor-doc .ProseMirror code {
+  padding: 1px 4px;
+  border-radius: 4px;
+  background: var(--deditor-doc-inline-code-bg);
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.9em;
+}
+
+.deditor-doc .ProseMirror pre code {
+  padding: 0;
+  background: none;
+  color: inherit;
+  font-size: inherit;
+}
+
 .deditor-doc .ProseMirror blockquote {
-  border-left: 3px solid #ccc;
-  margin-left: 0;
-  padding-left: 16px;
-  color: #444;
+  margin: 0 0 8px;
+  padding: 4px 0 4px 16px;
+  border-left: 3px solid var(--deditor-doc-primary);
+  color: var(--deditor-doc-text-2);
 }
+
+.deditor-doc .ProseMirror hr {
+  margin: 16px 0;
+  border: none;
+  border-top: 1px solid var(--deditor-doc-border);
+}
+
+.deditor-doc .ProseMirror a {
+  color: var(--deditor-doc-primary);
+  text-decoration: none;
+}
+
+.deditor-doc .ProseMirror a:hover {
+  text-decoration: underline;
+}
+
 .deditor-doc .ProseMirror ul,
 .deditor-doc .ProseMirror ol {
   margin: 0 0 8px;
   padding-left: 24px;
 }
+
 .deditor-doc .ProseMirror ul[data-task-list] {
-  list-style: none;
   padding-left: 0;
+  list-style: none;
 }
+
 .deditor-doc .ProseMirror li[data-checked] {
   display: flex;
   align-items: flex-start;
   gap: 8px;
 }
+
 .deditor-doc .ProseMirror .deditor-task-checkbox {
   display: inline-block;
+  box-sizing: border-box;
   width: 14px;
   height: 14px;
-  margin-top: 4px;
-  border: 1px solid #666;
-  border-radius: 2px;
+  margin-top: 5px;
+  border: 1px solid var(--deditor-doc-text-2);
+  border-radius: 4px;
   flex: none;
   cursor: pointer;
   user-select: none;
 }
+
 .deditor-doc .ProseMirror li[data-checked='true'] .deditor-task-checkbox {
-  background: #1a73e8;
-  border-color: #1a73e8;
+  border-color: var(--deditor-doc-primary);
+  background: var(--deditor-doc-primary);
 }
+
+.deditor-doc .ProseMirror li[data-checked='true'] .deditor-task-checkbox::after {
+  display: block;
+  width: 8px;
+  height: 4px;
+  margin: 3px 0 0 2px;
+  border-bottom: 2px solid var(--deditor-doc-on-primary);
+  border-left: 2px solid var(--deditor-doc-on-primary);
+  content: '';
+  transform: rotate(-45deg);
+}
+
+.deditor-doc .ProseMirror li[data-checked='true'] {
+  color: var(--deditor-doc-text-2);
+}
+
 .deditor-doc .ProseMirror .deditor-image {
   position: relative;
   display: block;
   max-width: 100%;
 }
+
 .deditor-doc .ProseMirror .deditor-image img {
   display: block;
   max-width: 100%;
   height: auto;
+  border-radius: 4px;
 }
+
 .deditor-doc .ProseMirror .deditor-image-handle {
-  display: none;
   position: absolute;
   top: 0;
   right: -4px;
+  display: none;
   width: 8px;
   height: 100%;
+  border-radius: 4px;
+  background: var(--deditor-doc-primary);
   cursor: ew-resize;
-  background: #4f81bd;
 }
+
 .deditor-doc .ProseMirror .ProseMirror-selectednode.deditor-image {
-  outline: 2px solid #4f81bd;
+  outline: 2px solid var(--deditor-doc-primary);
 }
+
 .deditor-doc .ProseMirror .ProseMirror-selectednode.deditor-image .deditor-image-handle {
   display: block;
 }
-.mention-embed {
-  color: #1a73e8;
-  background: #e8f0fe;
-  border-radius: 2px;
-  padding: 0 2px;
+
+.deditor-doc .mention-embed {
+  padding: 0 4px;
+  border-radius: 4px;
+  background: var(--deditor-doc-inline-code-bg);
+  color: var(--deditor-doc-primary);
 }
-.ProseMirror-gapcursor {
+
+.deditor-doc .ProseMirror-gapcursor {
+  position: absolute;
   display: none;
   pointer-events: none;
-  position: absolute;
 }
-.ProseMirror-gapcursor:after {
-  content: "";
-  display: block;
+
+.deditor-doc .ProseMirror-gapcursor::after {
   position: absolute;
   top: -2px;
+  display: block;
   width: 20px;
-  border-top: 1px solid black;
+  border-top: 1px solid var(--deditor-doc-text);
+  content: '';
   animation: ProseMirror-cursor-blink 1.1s steps(2, start) infinite;
 }
+
 @keyframes ProseMirror-cursor-blink {
   to {
     visibility: hidden;
   }
 }
-.ProseMirror-focused .ProseMirror-gapcursor {
+
+.deditor-doc .ProseMirror-focused .ProseMirror-gapcursor {
   display: block;
 }
+
 .deditor-doc .ProseMirror .tableWrapper {
-  overflow-x: auto;
   margin: 0 0 8px;
+  overflow-x: auto;
 }
+
 .deditor-doc .ProseMirror table {
-  border-collapse: collapse;
-  table-layout: fixed;
   width: 100%;
   overflow: hidden;
+  border-collapse: collapse;
+  table-layout: fixed;
 }
+
 .deditor-doc .ProseMirror td,
 .deditor-doc .ProseMirror th {
-  border: 1px solid #ccc;
-  padding: 6px 8px;
-  vertical-align: top;
-  box-sizing: border-box;
   position: relative;
+  box-sizing: border-box;
   min-width: 48px;
+  padding: 6px 10px;
+  border: 1px solid var(--deditor-doc-border);
+  vertical-align: top;
 }
+
+.deditor-doc .ProseMirror th {
+  background: var(--deditor-doc-table-header-bg);
+  font-weight: 600;
+  text-align: left;
+}
+
+.deditor-doc .ProseMirror tr:hover td {
+  background: var(--deditor-doc-table-row-hover);
+}
+
 .deditor-doc .ProseMirror .column-resize-handle {
   position: absolute;
-  right: -2px;
+  z-index: 20;
   top: 0;
+  right: -2px;
   bottom: 0;
   width: 4px;
-  z-index: 20;
-  background-color: #adf;
+  background-color: var(--deditor-doc-primary);
   pointer-events: none;
 }
+
 .deditor-doc .ProseMirror.resize-cursor {
   cursor: col-resize;
 }
+
 .deditor-doc .ProseMirror .deditor-search-match {
-  background: #fff59d;
+  background: var(--deditor-doc-search);
 }
+
 .deditor-doc .ProseMirror .deditor-search-match-active {
-  background: #ffd54f;
+  background: var(--deditor-doc-search-active);
 }
+
 .deditor-doc .ProseMirror .deditor-comment-open {
-  background: rgba(255, 196, 87, 0.45);
+  background: var(--deditor-doc-comment-open);
 }
+
 .deditor-doc .ProseMirror .deditor-comment-resolved {
-  background: rgba(160, 160, 160, 0.28);
+  background: var(--deditor-doc-comment-resolved);
 }
+
 .deditor-doc .ProseMirror .deditor-comment-skel {
-  background: rgba(255, 196, 87, 0.28);
-  outline: 1px dashed #e6a23c;
+  background: var(--deditor-doc-comment-skel);
+  outline: 1px dashed var(--deditor-doc-comment-active);
 }
+
 .deditor-doc .ProseMirror .deditor-comment-active {
-  outline: 2px solid #e6a23c;
+  outline: 2px solid var(--deditor-doc-comment-active);
 }
-.deditor-doc .ProseMirror .selectedCell:after {
-  z-index: 2;
+
+.deditor-doc .ProseMirror .selectedCell::after {
   position: absolute;
-  content: '';
-  left: 0;
-  right: 0;
+  z-index: 2;
   top: 0;
+  right: 0;
   bottom: 0;
-  background: rgba(200, 200, 255, 0.4);
+  left: 0;
+  background: var(--deditor-doc-table-cell-selected);
+  content: '';
   pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .deditor-doc {
+    margin: 0 auto;
+    padding: 40px 24px;
+    border-radius: 0;
+  }
 }
