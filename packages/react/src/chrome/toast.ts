@@ -1,8 +1,11 @@
-export function toast(message: string): void {
-  document.querySelectorAll('.deditor-toast').forEach((el) => el.remove())
+export function toast(message: string, owner?: HTMLElement | null): void {
+  const container = owner ?? document.body
+  Array.from(container.children)
+    .filter((element) => element.classList.contains('deditor-toast'))
+    .forEach((element) => element.remove())
   const el = document.createElement('div')
   el.className = 'deditor-toast'
   el.textContent = message
-  document.body.appendChild(el)
+  container.appendChild(el)
   window.setTimeout(() => el.remove(), 2000)
 }

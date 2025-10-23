@@ -55,6 +55,7 @@ export function ImageInsert(props: { uploadImage?: ImageUpload }) {
     if (!upload) return
     const operation = operationRef.current + 1
     operationRef.current = operation
+    const toastOwner = anchorRef.current?.closest<HTMLElement>('.deditor-root')
     void (async () => {
       try {
         const result = await upload(file)
@@ -63,7 +64,7 @@ export function ImageInsert(props: { uploadImage?: ImageUpload }) {
         close()
       } catch {
         if (!mountedRef.current || operation !== operationRef.current) return
-        toast('Upload failed')
+        toast('Upload failed', toastOwner)
       }
     })()
   }

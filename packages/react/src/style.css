@@ -1,6 +1,10 @@
 @import '@deditor/preset-docs/style.css';
 @import './tokens.css';
 
+.deditor-root {
+  position: relative;
+}
+
 .deditor-icon-btn {
   display: inline-flex;
   align-items: center;
@@ -450,7 +454,11 @@
   .deditor-comment-sidebar,
   .deditor-comment-composer,
   .deditor-bubble,
-  .deditor-find {
+  .deditor-table-bubble,
+  .deditor-find,
+  .deditor-tooltip,
+  .deditor-popover,
+  .deditor-toast {
     display: none !important;
   }
   .deditor-doc {

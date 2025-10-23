@@ -1,9 +1,10 @@
 /** @vitest-environment happy-dom */
 import { docsPreset } from '@deditor/preset-docs'
-import { cleanup, fireEvent, render, waitFor } from '@testing-library/react'
+import { cleanup, fireEvent, render, waitFor, within } from '@testing-library/react'
 import React, { useEffect, useState } from 'react'
 import { afterEach, describe, expect, it } from 'vitest'
 import { ImageInsert } from '../chrome/ImageInsert'
+import { DocEditor } from '../DocEditor'
 import { EditorProvider } from '../EditorProvider'
 import { EditorSurface } from '../EditorSurface'
 import { useEditor } from '../useEditor'
@@ -177,6 +178,42 @@ describe('ImageInsert', () => {
       target: { files: [new File(['x'], 'failed.png', { type: 'image/png' })] },
     })
     await waitFor(() => expect(document.querySelector('.deditor-toast')?.textContent).toBe('Upload failed'))
+  })
+
+  it('keeps upload failure toasts inside their owning editor roots', async () => {
+    const fail = async () => { throw new Error('network') }
+    const { container } = render(
+      <>
+        <DocEditor className="editor-one" theme="dark" uploadImage={fail} />
+        <DocEditor className="editor-two" theme="light" uploadImage={fail} />
+      </>,
+    )
+    await waitFor(() => expect(container.querySelector('.editor-one')).toBeTruthy())
+    await waitFor(() => expect(container.querySelector('.editor-two')).toBeTruthy())
+    const one = container.querySelector<HTMLElement>('.editor-one')!
+    const two = container.querySelector<HTMLElement>('.editor-two')!
+
+    fireEvent.click(within(one).getByLabelText('Image'))
+    fireEvent.change(await imageFileInput(), {
+      target: { files: [new File(['x'], 'one.png', { type: 'image/png' })] },
+    })
+    await waitFor(() => expect(one.querySelector('.deditor-toast')).toBeTruthy())
+    const firstToast = one.querySelector<HTMLElement>('.deditor-toast')!
+    expect(firstToast.textContent).toBe('Upload failed')
+    expect(firstToast.parentElement).toBe(one)
+    expect(two.querySelector('.deditor-toast')).toBeNull()
+
+    fireEvent.click(within(one).getByLabelText('Image'))
+    await waitFor(() => expect(document.querySelector('input[type="file"]')).toBeNull())
+    fireEvent.click(within(two).getByLabelText('Image'))
+    fireEvent.change(await imageFileInput(), {
+      target: { files: [new File(['x'], 'two.png', { type: 'image/png' })] },
+    })
+    await waitFor(() => expect(two.querySelector('.deditor-toast')).toBeTruthy())
+    const secondToast = two.querySelector<HTMLElement>('.deditor-toast')!
+    expect(secondToast.textContent).toBe('Upload failed')
+    expect(secondToast.parentElement).toBe(two)
+    expect(one.querySelector('.deditor-toast')).toBe(firstToast)
   })
 
   it('ignores an upload that resolves after the popover closes', async () => {

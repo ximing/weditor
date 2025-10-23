@@ -101,14 +101,24 @@ function DocEditorBoot(
     }
   }, [editor, props.content, props.collab])
 
-  if (error) return <div className="deditor-error">{error.message}</div>
-  if (!editor) return <div className="deditor-loading">Loading</div>
+  const rootClassName = ['deditor-root', props.className].filter(Boolean).join(' ')
+  if (error) {
+    return (
+      <div className={rootClassName} data-theme={resolvedTheme}>
+        <div className="deditor-error">{error.message}</div>
+      </div>
+    )
+  }
+  if (!editor) {
+    return (
+      <div className={rootClassName} data-theme={resolvedTheme}>
+        <div className="deditor-loading">Loading</div>
+      </div>
+    )
+  }
   return (
     <EditorProvider editor={editor}>
-      <div
-        className={['deditor-root', props.className].filter(Boolean).join(' ')}
-        data-theme={resolvedTheme}
-      >
+      <div className={rootClassName} data-theme={resolvedTheme}>
         {!props.readOnly ? <Toolbar uploadImage={props.uploadImage} /> : null}
         {!props.readOnly ? <LinkEditor /> : null}
         <FindBar />
