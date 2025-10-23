@@ -5,7 +5,7 @@ import {
   FONT_SIZES,
   HIGHLIGHTS,
 } from '@deditor/preset-docs'
-import type { MouseEvent } from 'react'
+import { Fragment, type MouseEvent } from 'react'
 import {
   IconAlignCenter,
   IconAlignJustify,
@@ -46,6 +46,7 @@ import {
   activeMarkAttr,
   isMarkActive,
 } from './toolbar-state'
+import { useGroupOverflow } from './useGroupOverflow'
 
 const BLOCK_OPTIONS = [
   { value: 'paragraph', label: 'Paragraph' },
@@ -61,11 +62,13 @@ const BLOCK_OPTIONS = [
 
 const FONT_OPTIONS = FONT_FAMILIES.map((f) => ({ value: f as string, label: f as string }))
 const SIZE_OPTIONS = FONT_SIZES.map((n) => ({ value: `${n}pt`, label: String(n) }))
+const GROUP_COUNT = 9
 
 export function Toolbar(props: {
   uploadImage?: (file: File) => Promise<{ src: string; alt?: string; width?: number }>
 }) {
   const editor = useEditor()
+  const { containerRef, visible } = useGroupOverflow(GROUP_COUNT)
   const run = (fn: () => void) => (e: MouseEvent) => {
     e.preventDefault()
     fn()
@@ -95,101 +98,162 @@ export function Toolbar(props: {
     }
   }
 
+  const groups = [
+    {
+      key: 'history',
+      node: (
+        <div className="deditor-toolbar-group" data-tb-group="history">
+          <IconButton icon={IconUndo} label="Undo" onMouseDown={run(() => editor.commands.undo())} />
+          <IconButton icon={IconRedo} label="Redo" onMouseDown={run(() => editor.commands.redo())} />
+        </div>
+      ),
+    },
+    {
+      key: 'format',
+      node: (
+        <div className="deditor-toolbar-group" data-tb-group="format">
+          <IconButton icon={IconPaint} label="Paint format" onMouseDown={run(() => editor.commands.copyFormat())} />
+          <IconButton icon={IconClearFormat} label="Clear formatting" onMouseDown={run(() => editor.commands.clearFormat())} />
+        </div>
+      ),
+    },
+    {
+      key: 'block',
+      node: (
+        <div className="deditor-toolbar-group" data-tb-group="block">
+          <Select label="Block type" value={block} options={BLOCK_OPTIONS} onChange={setBlock} width={120} />
+        </div>
+      ),
+    },
+    {
+      key: 'font',
+      node: (
+        <div className="deditor-toolbar-group" data-tb-group="font">
+          <Select label="Font family" value={fontFamily} options={FONT_OPTIONS} onChange={(v) => editor.commands.setFontFamily(v)} width={130} />
+          <Select label="Font size" value={fontSize} options={SIZE_OPTIONS} onChange={(v) => editor.commands.setFontSize(v)} width={64} />
+        </div>
+      ),
+    },
+    {
+      key: 'marks',
+      node: (
+        <div className="deditor-toolbar-group" data-tb-group="marks">
+          <IconButton icon={IconBold} label="Bold" active={strong} onMouseDown={run(() => editor.commands.toggleStrong())} />
+          <IconButton icon={IconItalic} label="Italic" active={em} onMouseDown={run(() => editor.commands.toggleEm())} />
+          <IconButton icon={IconUnderline} label="Underline" active={underline} onMouseDown={run(() => editor.commands.toggleUnderline())} />
+          <IconButton icon={IconStrike} label="Strikethrough" active={strike} onMouseDown={run(() => editor.commands.toggleStrike())} />
+          <ColorPalette
+            icon={IconTextColor}
+            title="Text color"
+            current={color}
+            colors={[...COLORS_STANDARD, ...COLORS_THEME]}
+            onDefault={() => editor.commands.setColor(null)}
+            onPick={(c) => editor.commands.setColor(c)}
+          />
+          <ColorPalette
+            icon={IconHighlight}
+            title="Highlight"
+            current={highlight}
+            colors={[...HIGHLIGHTS]}
+            onDefault={() => editor.commands.setHighlight(null)}
+            onPick={(c) => editor.commands.setHighlight(c)}
+          />
+        </div>
+      ),
+    },
+    {
+      key: 'align',
+      node: (
+        <div className="deditor-toolbar-group" data-tb-group="align">
+          <IconButton icon={IconAlignLeft} label="Align left" active={align === 'left'} onMouseDown={run(() => editor.commands.setAlign({ align: 'left' }))} />
+          <IconButton icon={IconAlignCenter} label="Align center" active={align === 'center'} onMouseDown={run(() => editor.commands.setAlign({ align: 'center' }))} />
+          <IconButton icon={IconAlignRight} label="Align right" active={align === 'right'} onMouseDown={run(() => editor.commands.setAlign({ align: 'right' }))} />
+          <IconButton icon={IconAlignJustify} label="Align justify" active={align === 'justify'} onMouseDown={run(() => editor.commands.setAlign({ align: 'justify' }))} />
+        </div>
+      ),
+    },
+    {
+      key: 'lists',
+      node: (
+        <div className="deditor-toolbar-group" data-tb-group="lists">
+          <IconButton icon={IconBulletList} label="Bullet list" active={list === 'bullet_list'} onMouseDown={run(() => editor.commands.toggleBulletList())} />
+          <IconButton icon={IconOrderedList} label="Ordered list" active={list === 'ordered_list'} onMouseDown={run(() => editor.commands.toggleOrderedList())} />
+          <IconButton icon={IconTaskList} label="Task list" active={list === 'task_list'} onMouseDown={run(() => editor.commands.toggleTaskList())} />
+          <IconButton icon={IconIndent} label="Indent" onMouseDown={run(() => editor.commands.indent())} />
+          <IconButton icon={IconOutdent} label="Outdent" onMouseDown={run(() => editor.commands.outdent())} />
+        </div>
+      ),
+    },
+    {
+      key: 'insert',
+      node: (
+        <div className="deditor-toolbar-group" data-tb-group="insert">
+          <IconButton
+            icon={IconLink}
+            label="Link"
+            onMouseDown={(e) => e.preventDefault()}
+            onClick={() => {
+              const { from, to } = editor.state.selection
+              editor.emit('openLink', { from, to })
+            }}
+          />
+          <ImageInsert uploadImage={props.uploadImage} />
+          <IconButton icon={IconTable} label="Insert table" onMouseDown={run(() => editor.commands.insertTable())} />
+        </div>
+      ),
+    },
+    {
+      key: 'tools',
+      node: (
+        <div className="deditor-toolbar-group" data-tb-group="tools">
+          <IconButton
+            icon={IconComment}
+            label="Comment"
+            onMouseDown={(e) => {
+              e.preventDefault()
+              const { from, to } = editor.state.selection
+              if (from === to) return
+              editor.emit('openComment', { from, to })
+            }}
+          />
+          <IconButton
+            icon={IconFind}
+            label="Find"
+            onMouseDown={(e) => {
+              e.preventDefault()
+              editor.emit('openFind', undefined)
+            }}
+          />
+          <IconButton icon={IconPrint} label="Print" onClick={() => window.print()} />
+        </div>
+      ),
+    },
+  ]
+  const inline = groups.slice(0, visible)
+  const overflowed = groups.slice(visible)
+
   return (
-    <div className="deditor-toolbar" role="toolbar">
-      <div className="deditor-toolbar-group" data-tb-group="history">
-        <IconButton icon={IconUndo} label="Undo" onMouseDown={run(() => editor.commands.undo())} />
-        <IconButton icon={IconRedo} label="Redo" onMouseDown={run(() => editor.commands.redo())} />
-      </div>
+    <div className="deditor-toolbar" role="toolbar" ref={containerRef}>
+      {inline.map((group, index) => (
+        <Fragment key={group.key}>
+          {index > 0 ? <div className="deditor-toolbar-divider" /> : null}
+          {group.node}
+        </Fragment>
+      ))}
       <div className="deditor-toolbar-divider" />
-      <div className="deditor-toolbar-group" data-tb-group="format">
-        <IconButton icon={IconPaint} label="Paint format" onMouseDown={run(() => editor.commands.copyFormat())} />
-        <IconButton icon={IconClearFormat} label="Clear formatting" onMouseDown={run(() => editor.commands.clearFormat())} />
-      </div>
-      <div className="deditor-toolbar-divider" />
-      <div className="deditor-toolbar-group" data-tb-group="block">
-        <Select label="Block type" value={block} options={BLOCK_OPTIONS} onChange={setBlock} width={120} />
-      </div>
-      <div className="deditor-toolbar-group" data-tb-group="font">
-        <Select label="Font family" value={fontFamily} options={FONT_OPTIONS} onChange={(v) => editor.commands.setFontFamily(v)} width={130} />
-        <Select label="Font size" value={fontSize} options={SIZE_OPTIONS} onChange={(v) => editor.commands.setFontSize(v)} width={64} />
-      </div>
-      <div className="deditor-toolbar-divider" />
-      <div className="deditor-toolbar-group" data-tb-group="marks">
-        <IconButton icon={IconBold} label="Bold" active={strong} onMouseDown={run(() => editor.commands.toggleStrong())} />
-        <IconButton icon={IconItalic} label="Italic" active={em} onMouseDown={run(() => editor.commands.toggleEm())} />
-        <IconButton icon={IconUnderline} label="Underline" active={underline} onMouseDown={run(() => editor.commands.toggleUnderline())} />
-        <IconButton icon={IconStrike} label="Strikethrough" active={strike} onMouseDown={run(() => editor.commands.toggleStrike())} />
-        <ColorPalette
-          icon={IconTextColor}
-          title="Text color"
-          current={color}
-          colors={[...COLORS_STANDARD, ...COLORS_THEME]}
-          onDefault={() => editor.commands.setColor(null)}
-          onPick={(c) => editor.commands.setColor(c)}
-        />
-        <ColorPalette
-          icon={IconHighlight}
-          title="Highlight"
-          current={highlight}
-          colors={[...HIGHLIGHTS]}
-          onDefault={() => editor.commands.setHighlight(null)}
-          onPick={(c) => editor.commands.setHighlight(c)}
-        />
-      </div>
-      <div className="deditor-toolbar-divider" />
-      <div className="deditor-toolbar-group" data-tb-group="align">
-        <IconButton icon={IconAlignLeft} label="Align left" active={align === 'left'} onMouseDown={run(() => editor.commands.setAlign({ align: 'left' }))} />
-        <IconButton icon={IconAlignCenter} label="Align center" active={align === 'center'} onMouseDown={run(() => editor.commands.setAlign({ align: 'center' }))} />
-        <IconButton icon={IconAlignRight} label="Align right" active={align === 'right'} onMouseDown={run(() => editor.commands.setAlign({ align: 'right' }))} />
-        <IconButton icon={IconAlignJustify} label="Align justify" active={align === 'justify'} onMouseDown={run(() => editor.commands.setAlign({ align: 'justify' }))} />
-      </div>
-      <div className="deditor-toolbar-divider" />
-      <div className="deditor-toolbar-group" data-tb-group="lists">
-        <IconButton icon={IconBulletList} label="Bullet list" active={list === 'bullet_list'} onMouseDown={run(() => editor.commands.toggleBulletList())} />
-        <IconButton icon={IconOrderedList} label="Ordered list" active={list === 'ordered_list'} onMouseDown={run(() => editor.commands.toggleOrderedList())} />
-        <IconButton icon={IconTaskList} label="Task list" active={list === 'task_list'} onMouseDown={run(() => editor.commands.toggleTaskList())} />
-        <IconButton icon={IconIndent} label="Indent" onMouseDown={run(() => editor.commands.indent())} />
-        <IconButton icon={IconOutdent} label="Outdent" onMouseDown={run(() => editor.commands.outdent())} />
-      </div>
-      <div className="deditor-toolbar-divider" />
-      <div className="deditor-toolbar-group" data-tb-group="insert">
-        <IconButton
-          icon={IconLink}
-          label="Link"
-          onMouseDown={(e) => e.preventDefault()}
-          onClick={() => {
-            const { from, to } = editor.state.selection
-            editor.emit('openLink', { from, to })
-          }}
-        />
-        <ImageInsert uploadImage={props.uploadImage} />
-        <IconButton icon={IconTable} label="Insert table" onMouseDown={run(() => editor.commands.insertTable())} />
-      </div>
-      <div className="deditor-toolbar-divider" />
-      <div className="deditor-toolbar-group" data-tb-group="tools">
-        <IconButton
-          icon={IconComment}
-          label="Comment"
-          onMouseDown={(e) => {
-            e.preventDefault()
-            const { from, to } = editor.state.selection
-            if (from === to) return
-            editor.emit('openComment', { from, to })
-          }}
-        />
-        <IconButton
-          icon={IconFind}
-          label="Find"
-          onMouseDown={(e) => {
-            e.preventDefault()
-            editor.emit('openFind', undefined)
-          }}
-        />
-        <IconButton icon={IconPrint} label="Print" onClick={() => window.print()} />
-      </div>
-      <div className="deditor-toolbar-divider" />
-      <OverflowMore />
+      <OverflowMore
+        overflow={
+          overflowed.length ? (
+            <div className="deditor-more-overflow-groups">
+              {overflowed.map((group) => (
+                <div key={group.key} className="deditor-toolbar-group">
+                  {group.node}
+                </div>
+              ))}
+            </div>
+          ) : undefined
+        }
+      />
     </div>
   )
 }

@@ -1,6 +1,6 @@
 /** @vitest-environment happy-dom */
 import { docsPreset } from '@deditor/preset-docs'
-import { cleanup, fireEvent, render, waitFor } from '@testing-library/react'
+import { cleanup, fireEvent, render, waitFor, within } from '@testing-library/react'
 import { TextSelection } from 'prosemirror-state'
 import React, { useEffect, useState } from 'react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
@@ -27,22 +27,32 @@ describe('read-only and chrome', () => {
     expect(queryByPlaceholderText('Start typing…')).toBeNull()
   })
 
-  it('shows Print, More, and overflow commands when editable', async () => {
-    const { getByTitle, getByLabelText } = render(
-      <DocEditor defaultContent={{ type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Hi' }] }] }} />,
+  it('keeps extras inside the More menu', async () => {
+    const { getByLabelText, getByRole } = render(
+      <EditorProvider extensions={docsPreset()}>
+        <Toolbar />
+        <EditorSurface />
+      </EditorProvider>,
     )
     await waitFor(() => getByLabelText('Print'))
-    expect(getByTitle('More')).toBeTruthy()
-    expect(getByTitle('Inline code')).toBeTruthy()
-    expect(getByTitle('Superscript')).toBeTruthy()
-    expect(getByTitle('Subscript')).toBeTruthy()
-    expect(getByTitle('Horizontal rule')).toBeTruthy()
-    expect(getByTitle('Mention')).toBeTruthy()
+    fireEvent.click(getByLabelText('More'))
+    const menu = await waitFor(() => getByRole('menu', { name: 'More' }))
+    for (const name of ['Inline code', 'Superscript', 'Subscript', 'Horizontal rule', 'Mention']) {
+      expect(within(menu).getByRole('menuitem', { name })).toBeTruthy()
+    }
     expect(getByLabelText('Line height')).toBeTruthy()
-    const print = vi.spyOn(window, 'print').mockImplementation(() => {})
-    fireEvent.click(getByLabelText('Print'))
-    expect(print).toHaveBeenCalled()
-    print.mockRestore()
+    if (typeof window.print === 'function') {
+      const print = vi.spyOn(window, 'print').mockImplementation(() => {})
+      fireEvent.click(getByLabelText('Print'))
+      expect(print).toHaveBeenCalled()
+      print.mockRestore()
+    } else {
+      const print = vi.fn()
+      vi.stubGlobal('print', print)
+      fireEvent.click(getByLabelText('Print'))
+      expect(print).toHaveBeenCalled()
+      vi.unstubAllGlobals()
+    }
   })
 
   it('shows bubble on a non-empty selection', async () => {

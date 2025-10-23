@@ -282,3 +282,30 @@
   background: var(--deditor-border);
   flex: none;
 }
+
+.deditor-more {
+  display: inline-flex;
+  flex: none;
+}
+
+.deditor-more-overflow-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px;
+  border-bottom: 1px solid var(--deditor-border-light);
+  margin-bottom: 4px;
+}
+
+.deditor-more-lineheight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+}
+
+.deditor-more-lineheight::before {
+  content: 'Line height';
+  font-size: 13px;
+  color: var(--deditor-text-2);
+}
