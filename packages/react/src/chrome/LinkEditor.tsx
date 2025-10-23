@@ -1,13 +1,15 @@
 import type { Editor } from '@deditor/core'
 import { useEffect, useRef, useState } from 'react'
+import { TextSelection } from 'prosemirror-state'
 import { useEditor } from '../useEditor'
 import { Popover, type PopoverAnchor } from '../ui/Popover'
-import { activeMarkAttr } from './toolbar-state'
 
-function selectionAnchor(editor: Editor): PopoverAnchor {
+type LinkRange = { from: number; to: number }
+
+function selectionAnchor(editor: Editor, range: LinkRange): PopoverAnchor {
   const view = editor.view
   if (!view) return null
-  const { from, to } = editor.state.selection
+  const { from, to } = range
   try {
     const start = view.coordsAtPos(from)
     const end = view.coordsAtPos(Math.max(from, to - 1))
@@ -25,24 +27,97 @@ function selectionAnchor(editor: Editor): PopoverAnchor {
   }
 }
 
+function linkAtRange(editor: Editor, range: LinkRange): string | null {
+  const type = editor.state.schema.marks.link
+  if (!type) return null
+  let href: string | null = null
+  editor.state.doc.nodesBetween(range.from, range.to, (node) => {
+    if (href !== null) return false
+    const mark = type.isInSet(node.marks)
+    if (mark?.attrs.href != null) href = String(mark.attrs.href)
+    return true
+  })
+  return href
+}
+
+function expandedLinkRange(editor: Editor, pos: number): (LinkRange & { href: string }) | null {
+  const type = editor.state.schema.marks.link
+  if (!type) return null
+  const $pos = editor.state.doc.resolve(pos)
+  const mark = type.isInSet($pos.marks())
+  if (!mark?.attrs.href) return null
+
+  const { parent, parentOffset } = $pos
+  let childIndex = -1
+  parent.forEach((node, offset, index) => {
+    if (
+      childIndex === -1
+      && offset <= parentOffset
+      && parentOffset <= offset + node.nodeSize
+      && type.isInSet(node.marks)?.eq(mark)
+    ) {
+      childIndex = index
+    }
+  })
+  if (childIndex === -1) return null
+
+  let startIndex = childIndex
+  let endIndex = childIndex
+  while (startIndex > 0 && type.isInSet(parent.child(startIndex - 1).marks)?.eq(mark)) startIndex--
+  while (endIndex + 1 < parent.childCount && type.isInSet(parent.child(endIndex + 1).marks)?.eq(mark)) endIndex++
+
+  let from = $pos.start()
+  for (let index = 0; index < startIndex; index++) from += parent.child(index).nodeSize
+  let to = from
+  for (let index = startIndex; index <= endIndex; index++) to += parent.child(index).nodeSize
+  return { from, to, href: String(mark.attrs.href) }
+}
+
 export function LinkEditor() {
   const editor = useEditor()
   const [anchor, setAnchor] = useState<PopoverAnchor>(null)
   const [href, setHref] = useState('')
   const hadLink = useRef(false)
+  const rangeRef = useRef<LinkRange | null>(null)
 
   useEffect(() => {
-    return editor.on('openLink', () => {
-      const current = activeMarkAttr(editor, 'link', 'href')
-      if (editor.state.selection.empty && !current) return
+    const offOpen = editor.on('openLink', ({ from, to }) => {
+      const eventRange = { from, to }
+      const expanded = from === to ? expandedLinkRange(editor, from) : null
+      const range = expanded ?? eventRange
+      const current = expanded?.href ?? linkAtRange(editor, range)
+      if (from === to && !current) return
+      rangeRef.current = range
       hadLink.current = !!current
       setHref(current ?? '')
-      setAnchor(selectionAnchor(editor))
+      setAnchor(selectionAnchor(editor, range))
     })
+    const offTransaction = editor.on('transaction', ({ tr }) => {
+      const range = rangeRef.current
+      if (!range) return
+      const from = tr.mapping.map(range.from, 1)
+      const to = tr.mapping.map(range.to, -1)
+      rangeRef.current = { from: Math.min(from, to), to: Math.max(from, to) }
+    })
+    return () => {
+      offOpen()
+      offTransaction()
+    }
   }, [editor])
 
-  const close = () => setAnchor(null)
+  const close = () => {
+    rangeRef.current = null
+    setAnchor(null)
+  }
+  const selectRange = () => {
+    const range = rangeRef.current
+    if (!range) return false
+    const { doc } = editor.state
+    editor.dispatch(editor.state.tr.setSelection(TextSelection.create(doc, range.from, range.to)))
+    return true
+  }
   const apply = () => {
+    if (!selectRange()) return
     const value = href.trim()
     if (value) editor.commands.setLink({ href: value })
     else editor.commands.unsetLink()
@@ -73,7 +148,7 @@ export function LinkEditor() {
             type="button"
             className="deditor-chip-btn"
             onClick={() => {
-              editor.commands.unsetLink()
+              if (selectRange()) editor.commands.unsetLink()
               close()
             }}
           >

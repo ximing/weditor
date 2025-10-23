@@ -28,6 +28,56 @@ function EmitLink() {
   )
 }
 
+function EmitCurrentLink() {
+  const editor = useEditor()
+  return (
+    <button
+      type="button"
+      aria-label="Emit current openLink"
+      onClick={() => editor.emit('openLink', {
+        from: editor.state.selection.from,
+        to: editor.state.selection.to,
+      })}
+    >
+      emit current
+    </button>
+  )
+}
+
+function OpenExistingLink() {
+  const editor = useEditor()
+  return (
+    <button
+      type="button"
+      aria-label="Open existing link"
+      onClick={() => {
+        const link = editor.state.schema.marks.link.create({ href: 'https://old.example' })
+        const tr = editor.state.tr.addMark(1, 6, link)
+        tr.setSelection(TextSelection.create(tr.doc, 3))
+        editor.dispatch(tr)
+        editor.emit('openLink', { from: 3, to: 3 })
+      }}
+    >
+      open existing
+    </button>
+  )
+}
+
+function MoveSelection() {
+  const editor = useEditor()
+  return (
+    <button
+      type="button"
+      aria-label="Move selection"
+      onClick={() => editor.dispatch(
+        editor.state.tr.setSelection(TextSelection.create(editor.state.doc, 7, 12)),
+      )}
+    >
+      move
+    </button>
+  )
+}
+
 function Inspector() {
   const editor = useEditor()
   const [, setTick] = useState(0)
@@ -48,6 +98,9 @@ function Harness() {
     >
       <LinkEditor />
       <EmitLink />
+      <EmitCurrentLink />
+      <OpenExistingLink />
+      <MoveSelection />
       <EditorSurface />
       <Inspector />
     </EditorProvider>
@@ -77,5 +130,54 @@ describe('LinkEditor', () => {
     fireEvent.keyDown(input, { key: 'Escape' })
     await waitFor(() => expect(document.querySelector('.deditor-link-editor')).toBeNull())
     expect(getByTestId('json').textContent).not.toContain('nope.example')
+  })
+
+  it('preloads and changes the full link at a cursor inside it', async () => {
+    const { getByLabelText, getByRole, getByTestId } = render(<Harness />)
+    await waitFor(() => getByLabelText('Open existing link'))
+    fireEvent.click(getByLabelText('Open existing link'))
+    const input = await waitFor(() => getByLabelText('Link URL'))
+    expect((input as HTMLInputElement).value).toBe('https://old.example')
+    fireEvent.change(input, { target: { value: 'https://new.example' } })
+    fireEvent.click(getByRole('button', { name: 'Apply' }))
+    await waitFor(() => expect(getByTestId('json').textContent).toContain('new.example'))
+    expect(getByTestId('json').textContent).not.toContain('old.example')
+    expect(getByTestId('json').textContent).not.toContain('https://new.examplehello')
+  })
+
+  it('removes the full link at a cursor inside it', async () => {
+    const { getByLabelText, getByRole, getByTestId } = render(<Harness />)
+    await waitFor(() => getByLabelText('Open existing link'))
+    fireEvent.click(getByLabelText('Open existing link'))
+    await waitFor(() => getByLabelText('Link URL'))
+    fireEvent.click(getByRole('button', { name: 'Remove' }))
+    await waitFor(() => expect(getByTestId('json').textContent).not.toContain('old.example'))
+    expect(getByTestId('json').textContent).toContain('hello world')
+  })
+
+  it('does not open for an empty selection without a link', async () => {
+    const { getByLabelText } = render(<Harness />)
+    await waitFor(() => getByLabelText('Emit current openLink'))
+    fireEvent.click(getByLabelText('Emit current openLink'))
+    expect(document.querySelector('.deditor-link-editor')).toBeNull()
+  })
+
+  it('applies to the emitted range after the selection moves', async () => {
+    const { getByLabelText, getByRole, getByTestId } = render(<Harness />)
+    await waitFor(() => getByLabelText('Emit openLink'))
+    fireEvent.click(getByLabelText('Emit openLink'))
+    const input = await waitFor(() => getByLabelText('Link URL'))
+    fireEvent.change(input, { target: { value: 'https://hello.example' } })
+    fireEvent.click(getByLabelText('Move selection'))
+    fireEvent.click(getByRole('button', { name: 'Apply' }))
+    await waitFor(() => expect(getByTestId('json').textContent).toContain('hello.example'))
+    expect(JSON.parse(getByTestId('json').textContent ?? '')).toMatchObject({
+      content: [{
+        content: [
+          { text: 'hello', marks: [{ type: 'link', attrs: { href: 'https://hello.example' } }] },
+          { text: ' world' },
+        ],
+      }],
+    })
   })
 })
