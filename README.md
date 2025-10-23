@@ -7,6 +7,14 @@
 [![CI](https://github.com/ximing/weditor/actions/workflows/ci.yml/badge.svg)](https://github.com/ximing/weditor/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/@deditor/core.svg)](https://www.npmjs.com/package/@deditor/core)
 
+## Preview
+
+Pageless Docs chrome with a classic toolbar, document styles, and light / dark themes. Try the [live demo](https://ximing.github.io/weditor/demo/).
+
+![Deditor editor in light theme](docs/images/editor-light.png)
+
+![Deditor editor in dark theme](docs/images/editor-dark.png)
+
 ## Install
 
 ```bash
