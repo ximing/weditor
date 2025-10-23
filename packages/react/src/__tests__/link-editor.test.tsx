@@ -1,8 +1,9 @@
 /** @vitest-environment happy-dom */
 import { docsPreset } from '@deditor/preset-docs'
-import { cleanup, fireEvent, render, waitFor } from '@testing-library/react'
+import type { Editor } from '@deditor/core'
+import { act, cleanup, fireEvent, render, waitFor } from '@testing-library/react'
 import React, { useEffect, useState } from 'react'
-import { afterEach, describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { TextSelection } from 'prosemirror-state'
 import { LinkEditor } from '../chrome/LinkEditor'
 import { EditorProvider } from '../EditorProvider'
@@ -98,7 +99,13 @@ function Inspector() {
   return <div data-testid="json">{JSON.stringify(editor.getJSON())}</div>
 }
 
-function Harness() {
+function EditorProbe(props: { onEditor?: (editor: Editor) => void }) {
+  const editor = useEditor()
+  useEffect(() => props.onEditor?.(editor), [editor, props.onEditor])
+  return null
+}
+
+function Harness(props: { onEditor?: (editor: Editor) => void } = {}) {
   return (
     <EditorProvider
       extensions={docsPreset()}
@@ -117,11 +124,13 @@ function Harness() {
       <DeleteTarget />
       <EditorSurface />
       <Inspector />
+      <EditorProbe onEditor={props.onEditor} />
     </EditorProvider>
   )
 }
 
 afterEach(() => cleanup())
+afterEach(() => vi.restoreAllMocks())
 
 describe('LinkEditor', () => {
   it('opens on openLink and applies the URL', async () => {
@@ -204,5 +213,50 @@ describe('LinkEditor', () => {
     fireEvent.click(getByLabelText('Delete target'))
     await waitFor(() => expect(document.querySelector('.deditor-link-editor')).toBeNull())
     expect(getByTestId('json').textContent).not.toContain('stale.example')
+  })
+
+  it('remeasures current selection coordinates after scrolling', async () => {
+    let editor: Editor | undefined
+    const { getByLabelText } = render(<Harness onEditor={(current) => { editor = current }} />)
+    await waitFor(() => expect(editor?.view).toBeTruthy())
+    let scrollOffset = 0
+    const measuredOffsets: number[] = []
+    const coordsAtPos = vi.spyOn(editor!.view!, 'coordsAtPos').mockImplementation((pos) => {
+      measuredOffsets.push(scrollOffset)
+      const left = pos * 10 + scrollOffset
+      return { left, right: left + 1, top: 20, bottom: 30 }
+    })
+
+    fireEvent.click(getByLabelText('Emit openLink'))
+    await waitFor(() => expect(getByLabelText('Link URL')).toBeTruthy())
+    const callsBeforeScroll = coordsAtPos.mock.calls.length
+    scrollOffset = 100
+    fireEvent.scroll(window)
+
+    await waitFor(() => expect(coordsAtPos.mock.calls.length).toBeGreaterThan(callsBeforeScroll))
+    expect(measuredOffsets.slice(callsBeforeScroll)).toContain(100)
+  })
+
+  it('remeasures mapped positions after content is inserted before the target', async () => {
+    let editor: Editor | undefined
+    const { getByLabelText } = render(<Harness onEditor={(current) => { editor = current }} />)
+    await waitFor(() => expect(editor?.view).toBeTruthy())
+    const coordsAtPos = vi.spyOn(editor!.view!, 'coordsAtPos').mockImplementation((pos) => ({
+      left: pos * 10,
+      right: pos * 10 + 1,
+      top: 20,
+      bottom: 30,
+    }))
+
+    fireEvent.click(getByLabelText('Emit openLink'))
+    await waitFor(() => expect(getByLabelText('Link URL')).toBeTruthy())
+    coordsAtPos.mockClear()
+    act(() => editor!.dispatch(editor!.state.tr.insertText('XX', 1)))
+
+    await waitFor(() => {
+      const measuredPositions = coordsAtPos.mock.calls.map(([pos]) => pos)
+      expect(measuredPositions).toContain(3)
+      expect(measuredPositions).toContain(7)
+    })
   })
 })

@@ -6,7 +6,7 @@ import { Popover, type PopoverAnchor } from '../ui/Popover'
 
 type LinkRange = { from: number; to: number }
 
-function selectionAnchor(editor: Editor, range: LinkRange): PopoverAnchor {
+function selectionRect(editor: Editor, range: LinkRange): DOMRect | null {
   const view = editor.view
   if (!view) return null
   const { from, to } = range
@@ -15,15 +15,30 @@ function selectionAnchor(editor: Editor, range: LinkRange): PopoverAnchor {
     const end = view.coordsAtPos(Math.max(from, to - 1))
     const left = Math.min(start.left, end.left)
     const top = Math.min(start.top, end.top)
-    const rect = new DOMRect(
+    return new DOMRect(
       left,
       top,
       Math.max(Math.max(start.right, end.right) - left, 1),
       Math.max(Math.max(start.bottom, end.bottom) - top, 1),
     )
-    return { getBoundingClientRect: () => rect, contextElement: view.dom }
   } catch {
     return null
+  }
+}
+
+function selectionAnchor(
+  editor: Editor,
+  getRange: () => LinkRange | null,
+): PopoverAnchor {
+  const view = editor.view
+  const range = getRange()
+  if (!view || !range || !selectionRect(editor, range)) return null
+  return {
+    getBoundingClientRect: () => {
+      const current = getRange()
+      return current ? selectionRect(editor, current) ?? new DOMRect() : new DOMRect()
+    },
+    contextElement: view.dom,
   }
 }
 
@@ -81,6 +96,7 @@ export function LinkEditor() {
   const rangeRef = useRef<LinkRange | null>(null)
 
   useEffect(() => {
+    let active = true
     const offOpen = editor.on('openLink', ({ from, to }) => {
       const eventRange = { from, to }
       const expanded = from === to ? expandedLinkRange(editor, from) : null
@@ -90,7 +106,7 @@ export function LinkEditor() {
       rangeRef.current = range
       hadLink.current = !!current
       setHref(current ?? '')
-      setAnchor(selectionAnchor(editor, range))
+      setAnchor(selectionAnchor(editor, () => rangeRef.current))
     })
     const offTransaction = editor.on('transaction', ({ tr }) => {
       const range = rangeRef.current
@@ -102,9 +118,18 @@ export function LinkEditor() {
         setAnchor(null)
         return
       }
-      rangeRef.current = { from: Math.min(from.pos, to.pos), to: Math.max(from.pos, to.pos) }
+      const mappedRange = {
+        from: Math.min(from.pos, to.pos),
+        to: Math.max(from.pos, to.pos),
+      }
+      rangeRef.current = mappedRange
+      queueMicrotask(() => {
+        if (!active || rangeRef.current !== mappedRange) return
+        setAnchor(selectionAnchor(editor, () => rangeRef.current))
+      })
     })
     return () => {
+      active = false
       offOpen()
       offTransaction()
     }

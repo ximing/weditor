@@ -1,7 +1,7 @@
 import { Editor, type CollabProvider, type Extension, type JSONContent, type User } from '@deditor/core'
 import { collabExtension } from '@deditor/collab'
 import { docsPreset } from '@deditor/preset-docs'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { EditorProvider } from './EditorProvider'
 import { EditorSurface } from './EditorSurface'
 import { Toolbar } from './chrome/Toolbar'
@@ -27,10 +27,14 @@ export interface DocEditorProps {
 }
 
 export function DocEditor(props: DocEditorProps) {
+  const defaultExtensions = useMemo(
+    () => docsPreset({ placeholder: props.placeholder ?? 'Start typing…' }),
+    [props.placeholder],
+  )
   if (props.content && props.collab) {
     throw new Error('DocEditor: content + collab is not supported')
   }
-  const base = props.extensions ?? docsPreset({ placeholder: props.placeholder ?? 'Start typing…' })
+  const base = props.extensions ?? defaultExtensions
   if (props.collab && base.some((e) => e.name === 'collab')) {
     throw new Error('collab extension already present')
   }
@@ -43,6 +47,8 @@ function DocEditorBoot(
   const [editor, setEditor] = useState<Editor | null>(null)
   const [error, setError] = useState<Error | null>(null)
   const [range, setRange] = useState<{ from: number; to: number } | null>(null)
+  const onChangeRef = useRef(props.onChange)
+  onChangeRef.current = props.onChange
   const user = props.currentUser ?? { id: 'local', name: 'You' }
   const resolvedTheme = useResolvedTheme(props.theme ?? 'auto')
 
@@ -72,7 +78,7 @@ function DocEditorBoot(
           return
         }
         const off = instance.on('transaction', ({ remote }) => {
-          if (!remote) props.onChange?.(instance!.getJSON())
+          if (!remote) onChangeRef.current?.(instance!.getJSON())
         })
         instance.on('openComment', (r) => setRange(r))
         instance.on('openFind', () => undefined)

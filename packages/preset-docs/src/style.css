@@ -1,24 +1,24 @@
 .deditor-doc {
-  --deditor-doc-bg: #ffffff;
-  --deditor-doc-text: #1f2329;
-  --deditor-doc-text-2: #646a73;
-  --deditor-doc-primary: #3370ff;
-  --deditor-doc-on-primary: #ffffff;
-  --deditor-doc-border: #dee0e3;
-  --deditor-doc-code-bg: #f5f6f7;
+  --deditor-doc-bg: var(--deditor-doc-theme-bg, #ffffff);
+  --deditor-doc-text: var(--deditor-doc-theme-text, #1f2329);
+  --deditor-doc-text-2: var(--deditor-doc-theme-text-2, #646a73);
+  --deditor-doc-primary: var(--deditor-doc-theme-primary, #3370ff);
+  --deditor-doc-on-primary: var(--deditor-doc-theme-on-primary, #ffffff);
+  --deditor-doc-border: var(--deditor-doc-theme-border, #dee0e3);
+  --deditor-doc-code-bg: var(--deditor-doc-theme-code-bg, #f5f6f7);
   --deditor-doc-inline-code-bg: var(--deditor-doc-code-bg);
-  --deditor-doc-code-block-bg: #1f2329;
-  --deditor-doc-code-block-text: #f5f6f7;
-  --deditor-doc-table-header-bg: #f7f8fa;
-  --deditor-doc-table-row-hover: rgba(31, 35, 41, 0.04);
-  --deditor-doc-table-cell-selected: rgba(51, 112, 255, 0.16);
-  --deditor-doc-search: #fff59d;
-  --deditor-doc-search-active: #ffd54f;
-  --deditor-doc-comment-open: rgba(255, 196, 87, 0.45);
-  --deditor-doc-comment-resolved: rgba(160, 160, 160, 0.28);
-  --deditor-doc-comment-skel: rgba(255, 196, 87, 0.28);
-  --deditor-doc-comment-active: #e6a23c;
-  --deditor-doc-shadow: 0 1px 4px rgba(31, 35, 41, 0.08);
+  --deditor-doc-code-block-bg: var(--deditor-doc-theme-code-block-bg, #1f2329);
+  --deditor-doc-code-block-text: var(--deditor-doc-theme-code-block-text, #f5f6f7);
+  --deditor-doc-table-header-bg: var(--deditor-doc-theme-table-header-bg, #f7f8fa);
+  --deditor-doc-table-row-hover: var(--deditor-doc-theme-table-row-hover, rgba(31, 35, 41, 0.04));
+  --deditor-doc-table-cell-selected: var(--deditor-doc-theme-table-cell-selected, rgba(51, 112, 255, 0.16));
+  --deditor-doc-search: var(--deditor-doc-theme-search, #fff59d);
+  --deditor-doc-search-active: var(--deditor-doc-theme-search-active, #ffd54f);
+  --deditor-doc-comment-open: var(--deditor-doc-theme-comment-open, rgba(255, 196, 87, 0.45));
+  --deditor-doc-comment-resolved: var(--deditor-doc-theme-comment-resolved, rgba(160, 160, 160, 0.28));
+  --deditor-doc-comment-skel: var(--deditor-doc-theme-comment-skel, rgba(255, 196, 87, 0.28));
+  --deditor-doc-comment-active: var(--deditor-doc-theme-comment-active, #e6a23c);
+  --deditor-doc-shadow: var(--deditor-doc-theme-shadow, 0 1px 4px rgba(31, 35, 41, 0.08));
 
   box-sizing: border-box;
   width: 100%;
@@ -35,28 +35,48 @@
   line-height: 1.7;
 }
 
-[data-theme='dark'] .deditor-doc,
-.deditor-doc[data-theme='dark'] {
-  --deditor-doc-bg: #23262b;
-  --deditor-doc-text: rgba(255, 255, 255, 0.92);
-  --deditor-doc-text-2: rgba(255, 255, 255, 0.65);
-  --deditor-doc-primary: #4c88ff;
-  --deditor-doc-on-primary: #ffffff;
-  --deditor-doc-border: #3a3d42;
-  --deditor-doc-code-bg: #34383f;
-  --deditor-doc-inline-code-bg: var(--deditor-doc-code-bg);
-  --deditor-doc-code-block-bg: #15171a;
-  --deditor-doc-code-block-text: #edf0f4;
-  --deditor-doc-table-header-bg: #2b2e33;
-  --deditor-doc-table-row-hover: rgba(255, 255, 255, 0.04);
-  --deditor-doc-table-cell-selected: rgba(76, 136, 255, 0.24);
-  --deditor-doc-search: rgba(255, 213, 79, 0.35);
-  --deditor-doc-search-active: rgba(255, 213, 79, 0.6);
-  --deditor-doc-comment-open: rgba(255, 196, 87, 0.34);
-  --deditor-doc-comment-resolved: rgba(255, 255, 255, 0.14);
-  --deditor-doc-comment-skel: rgba(255, 196, 87, 0.2);
-  --deditor-doc-comment-active: #f0b44d;
-  --deditor-doc-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+[data-theme='light'] {
+  --deditor-doc-theme-bg: #ffffff;
+  --deditor-doc-theme-text: #1f2329;
+  --deditor-doc-theme-text-2: #646a73;
+  --deditor-doc-theme-primary: #3370ff;
+  --deditor-doc-theme-on-primary: #ffffff;
+  --deditor-doc-theme-border: #dee0e3;
+  --deditor-doc-theme-code-bg: #f5f6f7;
+  --deditor-doc-theme-code-block-bg: #1f2329;
+  --deditor-doc-theme-code-block-text: #f5f6f7;
+  --deditor-doc-theme-table-header-bg: #f7f8fa;
+  --deditor-doc-theme-table-row-hover: rgba(31, 35, 41, 0.04);
+  --deditor-doc-theme-table-cell-selected: rgba(51, 112, 255, 0.16);
+  --deditor-doc-theme-search: #fff59d;
+  --deditor-doc-theme-search-active: #ffd54f;
+  --deditor-doc-theme-comment-open: rgba(255, 196, 87, 0.45);
+  --deditor-doc-theme-comment-resolved: rgba(160, 160, 160, 0.28);
+  --deditor-doc-theme-comment-skel: rgba(255, 196, 87, 0.28);
+  --deditor-doc-theme-comment-active: #e6a23c;
+  --deditor-doc-theme-shadow: 0 1px 4px rgba(31, 35, 41, 0.08);
+}
+
+[data-theme='dark'] {
+  --deditor-doc-theme-bg: #23262b;
+  --deditor-doc-theme-text: rgba(255, 255, 255, 0.92);
+  --deditor-doc-theme-text-2: rgba(255, 255, 255, 0.65);
+  --deditor-doc-theme-primary: #4c88ff;
+  --deditor-doc-theme-on-primary: #ffffff;
+  --deditor-doc-theme-border: #3a3d42;
+  --deditor-doc-theme-code-bg: #34383f;
+  --deditor-doc-theme-code-block-bg: #15171a;
+  --deditor-doc-theme-code-block-text: #edf0f4;
+  --deditor-doc-theme-table-header-bg: #2b2e33;
+  --deditor-doc-theme-table-row-hover: rgba(255, 255, 255, 0.04);
+  --deditor-doc-theme-table-cell-selected: rgba(76, 136, 255, 0.24);
+  --deditor-doc-theme-search: rgba(255, 213, 79, 0.35);
+  --deditor-doc-theme-search-active: rgba(255, 213, 79, 0.6);
+  --deditor-doc-theme-comment-open: rgba(255, 196, 87, 0.34);
+  --deditor-doc-theme-comment-resolved: rgba(255, 255, 255, 0.14);
+  --deditor-doc-theme-comment-skel: rgba(255, 196, 87, 0.2);
+  --deditor-doc-theme-comment-active: #f0b44d;
+  --deditor-doc-theme-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
 }
 
 .deditor-doc .ProseMirror {
