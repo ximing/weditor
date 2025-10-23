@@ -78,6 +78,19 @@ function MoveSelection() {
   )
 }
 
+function DeleteTarget() {
+  const editor = useEditor()
+  return (
+    <button
+      type="button"
+      aria-label="Delete target"
+      onClick={() => editor.dispatch(editor.state.tr.delete(1, 6))}
+    >
+      delete target
+    </button>
+  )
+}
+
 function Inspector() {
   const editor = useEditor()
   const [, setTick] = useState(0)
@@ -101,6 +114,7 @@ function Harness() {
       <EmitCurrentLink />
       <OpenExistingLink />
       <MoveSelection />
+      <DeleteTarget />
       <EditorSurface />
       <Inspector />
     </EditorProvider>
@@ -179,5 +193,16 @@ describe('LinkEditor', () => {
         ],
       }],
     })
+  })
+
+  it('closes when a document transaction deletes the entire emitted range', async () => {
+    const { getByLabelText, getByTestId } = render(<Harness />)
+    await waitFor(() => getByLabelText('Emit openLink'))
+    fireEvent.click(getByLabelText('Emit openLink'))
+    const input = await waitFor(() => getByLabelText('Link URL'))
+    fireEvent.change(input, { target: { value: 'https://stale.example' } })
+    fireEvent.click(getByLabelText('Delete target'))
+    await waitFor(() => expect(document.querySelector('.deditor-link-editor')).toBeNull())
+    expect(getByTestId('json').textContent).not.toContain('stale.example')
   })
 })

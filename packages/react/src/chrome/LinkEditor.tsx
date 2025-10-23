@@ -95,9 +95,14 @@ export function LinkEditor() {
     const offTransaction = editor.on('transaction', ({ tr }) => {
       const range = rangeRef.current
       if (!range) return
-      const from = tr.mapping.map(range.from, 1)
-      const to = tr.mapping.map(range.to, -1)
-      rangeRef.current = { from: Math.min(from, to), to: Math.max(from, to) }
+      const from = tr.mapping.mapResult(range.from, 1)
+      const to = tr.mapping.mapResult(range.to, -1)
+      if (range.from < range.to && from.deleted && to.deleted && from.pos === to.pos) {
+        rangeRef.current = null
+        setAnchor(null)
+        return
+      }
+      rangeRef.current = { from: Math.min(from.pos, to.pos), to: Math.max(from.pos, to.pos) }
     })
     return () => {
       offOpen()
