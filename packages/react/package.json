@@ -44,7 +44,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup && cp src/style.css dist/style.css",
+    "build": "tsup && cp src/style.css src/tokens.css dist/",
     "test": "vitest run"
   },
   "peerDependencies": {
@@ -55,6 +55,8 @@
     "@deditor/collab": "workspace:*",
     "@deditor/core": "workspace:*",
     "@deditor/preset-docs": "workspace:*",
+    "@floating-ui/react": "^0.27.0",
+    "lucide-react": "^0.454.0",
     "prosemirror-state": "^1",
     "prosemirror-tables": "^1.6.4"
   },

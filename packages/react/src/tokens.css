@@ -1,0 +1,44 @@
+/* Deditor design tokens. Light is the default; dark overrides via [data-theme='dark']. */
+.deditor-root {
+  --deditor-primary: #3370ff;
+  --deditor-on-primary: #fff;
+  --deditor-primary-hover: #2953c7;
+  --deditor-primary-soft: #e1eaff;
+  --deditor-danger: #f54a45;
+  --deditor-bg-canvas: #f5f6f7;
+  --deditor-bg-surface: #ffffff;
+  --deditor-bg-hover: #f2f3f5;
+  --deditor-bg-active: #e1eaff;
+  --deditor-text-1: #1f2329;
+  --deditor-text-2: #646a73;
+  --deditor-text-3: #8f959e;
+  --deditor-border: #dee0e3;
+  --deditor-border-light: #eff0f1;
+  --deditor-radius-s: 4px;
+  --deditor-radius-m: 6px;
+  --deditor-shadow-pop: 0 6px 24px rgba(31, 35, 41, 0.12), 0 0 1px rgba(31, 35, 41, 0.08);
+  --deditor-shadow-toast: 0 4px 12px rgba(31, 35, 41, 0.16);
+  --deditor-toolbar-h: 40px;
+  color: var(--deditor-text-1);
+  font-family: -apple-system, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+.deditor-root[data-theme='dark'],
+[data-theme='dark'] .deditor-root {
+  --deditor-primary: #4c88ff;
+  --deditor-on-primary: #fff;
+  --deditor-primary-hover: #6a9bff;
+  --deditor-primary-soft: rgba(76, 136, 255, 0.18);
+  --deditor-danger: #f76964;
+  --deditor-bg-canvas: #17191c;
+  --deditor-bg-surface: #23262b;
+  --deditor-bg-hover: rgba(255, 255, 255, 0.06);
+  --deditor-bg-active: rgba(76, 136, 255, 0.18);
+  --deditor-text-1: rgba(255, 255, 255, 0.92);
+  --deditor-text-2: rgba(255, 255, 255, 0.65);
+  --deditor-text-3: rgba(255, 255, 255, 0.45);
+  --deditor-border: #3a3d42;
+  --deditor-border-light: #2e3136;
+  --deditor-shadow-pop: 0 6px 24px rgba(0, 0, 0, 0.5), 0 0 1px rgba(0, 0, 0, 0.6);
+  --deditor-shadow-toast: 0 4px 12px rgba(0, 0, 0, 0.5);
+}

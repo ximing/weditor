@@ -22,6 +22,7 @@ export interface DocEditorProps {
   currentUser?: User
   placeholder?: string
   className?: string
+  theme?: 'light' | 'dark' | 'auto'
 }
 
 export function DocEditor(props: DocEditorProps) {
@@ -42,6 +43,7 @@ function DocEditorBoot(
   const [error, setError] = useState<Error | null>(null)
   const [range, setRange] = useState<{ from: number; to: number } | null>(null)
   const user = props.currentUser ?? { id: 'local', name: 'You' }
+  const resolvedTheme = useResolvedTheme(props.theme ?? 'auto')
 
   useEffect(() => {
     let cancelled = false
@@ -102,7 +104,10 @@ function DocEditorBoot(
   if (!editor) return <div className="deditor-loading">Loading</div>
   return (
     <EditorProvider editor={editor}>
-      <div className={['deditor-root', props.className].filter(Boolean).join(' ')}>
+      <div
+        className={['deditor-root', props.className].filter(Boolean).join(' ')}
+        data-theme={resolvedTheme}
+      >
         {!props.readOnly ? <Toolbar uploadImage={props.uploadImage} /> : null}
         <FindBar />
         {!props.readOnly ? <TableBubble /> : null}
@@ -115,4 +120,20 @@ function DocEditorBoot(
       </div>
     </EditorProvider>
   )
+}
+
+function useResolvedTheme(theme: 'light' | 'dark' | 'auto'): 'light' | 'dark' {
+  const [sys, setSys] = useState<'light' | 'dark'>(() =>
+    typeof matchMedia !== 'undefined' && matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light',
+  )
+  useEffect(() => {
+    if (theme !== 'auto' || typeof matchMedia === 'undefined') return
+    const mq = matchMedia('(prefers-color-scheme: dark)')
+    const onChange = () => setSys(mq.matches ? 'dark' : 'light')
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [theme])
+  return theme === 'auto' ? sys : theme
 }
