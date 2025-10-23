@@ -1,4 +1,4 @@
-import { useId, useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState, type KeyboardEvent } from 'react'
 import { IconImage, IconUpload } from '../icons'
 import { useEditor } from '../useEditor'
 import { IconButton } from '../ui/IconButton'
@@ -15,13 +15,29 @@ export function ImageInsert(props: { uploadImage?: ImageUpload }) {
   const [tab, setTab] = useState<ImageInsertTab>(props.uploadImage ? 'upload' : 'url')
   const anchorRef = useRef<HTMLSpanElement>(null)
   const fileRef = useRef<HTMLInputElement>(null)
+  const tabRefs = useRef<Record<ImageInsertTab, HTMLButtonElement | null>>({ upload: null, url: null })
+  const mountedRef = useRef(true)
+  const operationRef = useRef(0)
   const tabId = useId()
   const uploadTabId = `${tabId}-upload-tab`
   const urlTabId = `${tabId}-url-tab`
   const uploadPanelId = `${tabId}-upload-panel`
   const urlPanelId = `${tabId}-url-panel`
 
+  useEffect(() => {
+    mountedRef.current = true
+    return () => {
+      mountedRef.current = false
+      operationRef.current += 1
+    }
+  }, [])
+
+  const invalidateUploads = () => {
+    operationRef.current += 1
+  }
+
   const close = () => {
+    invalidateUploads()
     setOpen(false)
     setUrl('')
     setTab(props.uploadImage ? 'upload' : 'url')
@@ -37,14 +53,31 @@ export function ImageInsert(props: { uploadImage?: ImageUpload }) {
   const uploadFile = (file: File) => {
     const upload = props.uploadImage
     if (!upload) return
+    const operation = operationRef.current + 1
+    operationRef.current = operation
     void (async () => {
       try {
-        editor.commands.insertImage(await upload(file))
+        const result = await upload(file)
+        if (!mountedRef.current || operation !== operationRef.current) return
+        editor.commands.insertImage(result)
         close()
       } catch {
+        if (!mountedRef.current || operation !== operationRef.current) return
         toast('Upload failed')
       }
     })()
+  }
+
+  const handleTabKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
+    let next: ImageInsertTab | null = null
+    if (event.key === 'ArrowRight') next = tab === 'upload' ? 'url' : 'upload'
+    if (event.key === 'ArrowLeft') next = tab === 'upload' ? 'url' : 'upload'
+    if (event.key === 'Home') next = 'upload'
+    if (event.key === 'End') next = 'url'
+    if (!next) return
+    event.preventDefault()
+    setTab(next)
+    tabRefs.current[next]?.focus()
   }
 
   return (
@@ -53,7 +86,10 @@ export function ImageInsert(props: { uploadImage?: ImageUpload }) {
         icon={IconImage}
         label="Image"
         onMouseDown={(event) => event.preventDefault()}
-        onClick={() => setOpen((value) => !value)}
+        onClick={() => {
+          if (open) close()
+          else setOpen(true)
+        }}
       />
       <Popover open={open} onClose={close} anchor={anchorRef.current} className="deditor-image-insert">
         {props.uploadImage ? (
@@ -63,10 +99,13 @@ export function ImageInsert(props: { uploadImage?: ImageUpload }) {
                 id={uploadTabId}
                 type="button"
                 role="tab"
+                ref={(element) => { tabRefs.current.upload = element }}
                 aria-selected={tab === 'upload'}
                 aria-controls={uploadPanelId}
+                tabIndex={tab === 'upload' ? 0 : -1}
                 className="deditor-chip-btn"
                 onClick={() => setTab('upload')}
+                onKeyDown={handleTabKeyDown}
               >
                 Upload
               </button>
@@ -74,30 +113,29 @@ export function ImageInsert(props: { uploadImage?: ImageUpload }) {
                 id={urlTabId}
                 type="button"
                 role="tab"
+                ref={(element) => { tabRefs.current.url = element }}
                 aria-selected={tab === 'url'}
                 aria-controls={urlPanelId}
+                tabIndex={tab === 'url' ? 0 : -1}
                 className="deditor-chip-btn"
                 onClick={() => setTab('url')}
+                onKeyDown={handleTabKeyDown}
               >
                 URL
               </button>
             </div>
-            {tab === 'upload' ? (
-              <div id={uploadPanelId} role="tabpanel" aria-labelledby={uploadTabId}>
-                <button
-                  type="button"
-                  className="deditor-chip-btn"
-                  onClick={() => fileRef.current?.click()}
-                >
-                  <IconUpload size={14} aria-hidden /> Upload image
-                </button>
-              </div>
-            ) : null}
-            {tab === 'url' ? (
-              <div id={urlPanelId} role="tabpanel" aria-labelledby={urlTabId}>
-                <ImageUrlForm url={url} onChange={setUrl} onSubmit={insertUrl} />
-              </div>
-            ) : null}
+            <div id={uploadPanelId} role="tabpanel" aria-labelledby={uploadTabId} hidden={tab !== 'upload'}>
+              <button
+                type="button"
+                className="deditor-chip-btn"
+                onClick={() => fileRef.current?.click()}
+              >
+                <IconUpload size={14} aria-hidden /> Upload image
+              </button>
+            </div>
+            <div id={urlPanelId} role="tabpanel" aria-labelledby={urlTabId} hidden={tab !== 'url'}>
+              <ImageUrlForm url={url} onChange={setUrl} onSubmit={insertUrl} />
+            </div>
             <input
               ref={fileRef}
               type="file"
