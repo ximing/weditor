@@ -1,2 +1,44 @@
 @import '@deditor/preset-docs/style.css';
 @import './tokens.css';
+
+.deditor-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 6px;
+  border: none;
+  border-radius: var(--deditor-radius-s);
+  background: transparent;
+  color: var(--deditor-text-2);
+  cursor: pointer;
+}
+
+.deditor-icon-btn:hover {
+  background: var(--deditor-bg-hover);
+  color: var(--deditor-text-1);
+}
+
+.deditor-icon-btn.is-active {
+  background: var(--deditor-bg-active);
+  color: var(--deditor-primary);
+}
+
+.deditor-icon-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+  background: transparent;
+}
+
+.deditor-tooltip {
+  z-index: 60;
+  padding: 4px 8px;
+  border-radius: var(--deditor-radius-s);
+  background: var(--deditor-text-1);
+  color: var(--deditor-bg-surface);
+  font-size: 12px;
+  line-height: 18px;
+  pointer-events: none;
+  white-space: nowrap;
+}
