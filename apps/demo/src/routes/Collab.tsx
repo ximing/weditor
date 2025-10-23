@@ -49,8 +49,8 @@ export function Collab(props: { theme: 'light' | 'dark' }) {
         </span>
       </div>
       <p className="demo-collab-note">
-        Two panels share <code>ws://localhost:8787</code> — run <code>pnpm dev:collab</code>{' '}
-        locally. Open this room in two windows:{' '}
+        Two-panel collab talks to <code>ws://localhost:8787</code> — run{' '}
+        <code>pnpm dev:collab</code> locally. Open this room in two windows:{' '}
         {`${(import.meta.env.BASE_URL || '/').replace(/\/$/, '')}/collab?room=${room}`}
       </p>
       <div className="demo-collab-grid">

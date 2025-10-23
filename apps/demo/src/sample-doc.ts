@@ -1,3 +1,5 @@
+import sampleImage from './assets/deditor-sample.png?inline'
+
 export const sampleDoc = {
   type: 'doc',
   content: [
@@ -64,11 +66,26 @@ export const sampleDoc = {
       ],
     },
     {
+      type: 'blockquote',
+      content: [
+        {
+          type: 'paragraph',
+          content: [
+            { type: 'text', text: 'Pageless by design — comments and collab included.' },
+          ],
+        },
+      ],
+    },
+    {
+      type: 'code_block',
+      content: [{ type: 'text', text: 'pnpm add @deditor/react' }],
+    },
+    {
       type: 'image',
       attrs: {
-        src: 'https://placehold.co/960x240/e1eaff/3370ff.png?text=Deditor%20image%20block',
-        alt: 'Deditor image block example',
-        width: 720,
+        src: sampleImage,
+        alt: 'Collaborative document editing interface with comments and tables',
+        width: 480,
       },
     },
     {
@@ -110,17 +127,6 @@ export const sampleDoc = {
       ],
     },
     {
-      type: 'blockquote',
-      content: [
-        {
-          type: 'paragraph',
-          content: [
-            { type: 'text', text: 'Pageless by design — comments and collab included.' },
-          ],
-        },
-      ],
-    },
-    {
       type: 'task_list',
       content: [
         {
@@ -138,10 +144,6 @@ export const sampleDoc = {
           ],
         },
       ],
-    },
-    {
-      type: 'code_block',
-      content: [{ type: 'text', text: 'pnpm add @deditor/react' }],
     },
     { type: 'horizontal_rule' },
   ],
