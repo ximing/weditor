@@ -22,14 +22,14 @@ export function activeMarkAttr(editor: Editor, mark: string, attr: string): stri
   const { selection, storedMarks } = editor.state
   if (selection.empty) {
     const m = type.isInSet(storedMarks ?? selection.$from.marks())
-    return m && m.attrs[attr] ? String(m.attrs[attr]) : null
+    return m && m.attrs[attr] != null ? String(m.attrs[attr]) : null
   }
   let value: string | null = null
   editor.state.doc.nodesBetween(selection.from, selection.to, (node) => {
     if (value !== null) return false
     if (!node.isText) return true
     const m = type.isInSet(node.marks)
-    if (m && m.attrs[attr]) value = String(m.attrs[attr])
+    if (m && m.attrs[attr] != null) value = String(m.attrs[attr])
     return true
   })
   return value

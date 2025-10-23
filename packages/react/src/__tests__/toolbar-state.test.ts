@@ -47,6 +47,28 @@ describe('toolbar-state', () => {
     editor.destroy()
   })
 
+  it('preserves an empty-string link attribute for range and cursor selections', () => {
+    const editor = makeEditor({
+      type: 'doc',
+      content: [
+        {
+          type: 'paragraph',
+          content: [
+            { type: 'text', text: 'link', marks: [{ type: 'link', attrs: { href: '' } }] },
+          ],
+        },
+      ],
+    })
+    let tr = editor.state.tr.setSelection(TextSelection.create(editor.state.doc, 1, 5))
+    editor.dispatch(tr)
+    expect(activeMarkAttr(editor, 'link', 'href')).toBe('')
+
+    tr = editor.state.tr.setSelection(TextSelection.create(editor.state.doc, 2))
+    editor.dispatch(tr)
+    expect(activeMarkAttr(editor, 'link', 'href')).toBe('')
+    editor.destroy()
+  })
+
   it('reads align and block from the parent block', () => {
     const editor = makeEditor(docWithMarks)
     expect(activeAlign(editor)).toBe('center')
