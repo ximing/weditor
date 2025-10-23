@@ -21,7 +21,7 @@ function selectionAnchor(editor: Editor, range: LinkRange): PopoverAnchor {
       Math.max(Math.max(start.right, end.right) - left, 1),
       Math.max(Math.max(start.bottom, end.bottom) - top, 1),
     )
-    return { getBoundingClientRect: () => rect }
+    return { getBoundingClientRect: () => rect, contextElement: view.dom }
   } catch {
     return null
   }

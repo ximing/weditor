@@ -13,7 +13,10 @@ import {
 } from '@floating-ui/react'
 import { useEffect, type ReactNode } from 'react'
 
-export type PopoverAnchor = Element | { getBoundingClientRect: () => DOMRect } | null
+export type PopoverAnchor =
+  | Element
+  | { getBoundingClientRect: () => DOMRect; contextElement?: Element }
+  | null
 
 export function Popover(props: {
   open: boolean
@@ -40,8 +43,12 @@ export function Popover(props: {
 
   if (!props.open || !props.anchor) return null
 
+  const contextElement =
+    props.anchor instanceof Element ? props.anchor : props.anchor.contextElement
+  const portalRoot = contextElement?.closest<HTMLElement>('.deditor-root') ?? undefined
+
   return (
-    <FloatingPortal>
+    <FloatingPortal root={portalRoot}>
       <FloatingFocusManager context={context} modal={false} initialFocus={-1}>
         <div
           ref={refs.setFloating}
