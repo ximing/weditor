@@ -4,9 +4,10 @@ import { commentsUiKey, docsPreset, pickCommentIdAt } from '@deditor/preset-docs
 import { cleanup, fireEvent, render, waitFor, within } from '@testing-library/react'
 import { TextSelection } from 'prosemirror-state'
 import React from 'react'
-import { afterEach, describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { CommentSidebar } from '../chrome/CommentSidebar'
 import { CommentComposer } from '../chrome/CommentComposer'
+import { marginLeft, resolveOverlap } from '../chrome/comment-margin-pos'
 import { Toolbar } from '../chrome/Toolbar'
 import { EditorProvider } from '../EditorProvider'
 import { EditorSurface } from '../EditorSurface'
@@ -25,12 +26,14 @@ function Harness({
   const [range, setRange] = React.useState<{ from: number; to: number } | null>(null)
   return (
     <EditorProvider extensions={extensions} onEditor={onEditor}>
-      <Boot readOnly={readOnly} />
-      <Toolbar />
-      <CommentComposer currentUser={user} range={range} onClose={() => setRange(null)} />
-      <CommentSidebar currentUser={user} readOnly={readOnly} />
-      <EditorSurface />
-      <RangeSetter onRange={setRange} />
+      <div className="deditor-root">
+        <Boot readOnly={readOnly} />
+        <Toolbar />
+        <CommentComposer currentUser={user} range={range} onClose={() => setRange(null)} />
+        <CommentSidebar currentUser={user} readOnly={readOnly} />
+        <EditorSurface />
+        <RangeSetter onRange={setRange} />
+      </div>
     </EditorProvider>
   )
 }
@@ -61,7 +64,50 @@ function RangeSetter({ onRange }: { onRange: (r: { from: number; to: number }) =
   )
 }
 
-afterEach(() => cleanup())
+afterEach(() => {
+  cleanup()
+  vi.restoreAllMocks()
+})
+
+function fakeRect(r: Partial<DOMRect>): DOMRect {
+  return {
+    x: r.left ?? 0,
+    y: r.top ?? 0,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: 0,
+    height: 0,
+    ...r,
+    toJSON: () => ({}),
+  } as DOMRect
+}
+
+/** Mock page layout: 1200px-wide root, 816px doc card starting at x=100. */
+function mockLayout(rootWidth = 1200) {
+  vi.spyOn(Element.prototype, 'getBoundingClientRect').mockImplementation(function (
+    this: Element,
+  ) {
+    const el = this as HTMLElement
+    if (el.classList?.contains('deditor-root')) {
+      return fakeRect({ left: 0, top: 0, right: rootWidth, bottom: 800, width: rootWidth, height: 800 })
+    }
+    if (el.classList?.contains('deditor-doc')) {
+      return fakeRect({ left: 100, top: 0, right: 916, bottom: 800, width: 816, height: 800 })
+    }
+    return fakeRect({})
+  })
+}
+
+function mockCoords(editor: Editor, tops: Record<number, number>) {
+  const view = editor.view!
+  const impl = (pos: number) => {
+    const top = tops[pos] ?? 0
+    return { left: 0, right: 0, top, bottom: top + 16 }
+  }
+  view.coordsAtPos = impl as typeof view.coordsAtPos
+}
 
 describe('comment chrome', () => {
   it('composer snapshot uses from/to; discard does not dispatch; submit calls addComment', async () => {
@@ -218,6 +264,106 @@ describe('comment chrome', () => {
     expect(document.querySelector('.deditor-comment-active')).toBeTruthy()
   })
 
+  it('renders detached threads in a static Detached section at the margin bottom', async () => {
+    let editor: Editor | null = null
+    const { getByText } = render(<Harness onEditor={(e) => { editor = e }} />)
+    await waitFor(() => expect(editor?.state.doc.textContent).toBe('Hello world'))
+    editor!.commands.addComment({ body: 'Gone', author: user, from: 1, to: 6 })
+    await waitFor(() => getByText('Gone'))
+    editor!.dispatch(editor!.state.tr.delete(1, 6))
+    await waitFor(() => {
+      const section = document.querySelector('.deditor-comment-detached') as HTMLElement
+      expect(section).toBeTruthy()
+      expect(section.querySelector('.deditor-comment-detached-title')?.textContent).toBe(
+        'Detached',
+      )
+      expect(section.querySelector('[data-comment-id]')).toBeTruthy()
+    })
+    expect(getByText('Gone').closest('.deditor-comment-detached')).toBeTruthy()
+  })
+
+  it('anchors margin cards to their highlight top and places them right of the doc', async () => {
+    let editor: Editor | null = null
+    const { getByText } = render(<Harness onEditor={(e) => { editor = e }} />)
+    await waitFor(() => expect(editor?.state.doc.textContent).toBe('Hello world'))
+    mockLayout(1200)
+    mockCoords(editor!, { 1: 40, 7: 200 })
+    editor!.commands.addComment({ body: 'First', author: user, from: 1, to: 6 })
+    editor!.commands.addComment({ body: 'Second', author: user, from: 7, to: 12 })
+    await waitFor(() => getByText('Second'))
+    const first = editor!.comments.list().find((t) => t.comments[0].body === 'First')!
+    const second = editor!.comments.list().find((t) => t.comments[0].body === 'Second')!
+    const firstCard = document.querySelector(`[data-comment-id="${first.id}"]`) as HTMLElement
+    const secondCard = document.querySelector(`[data-comment-id="${second.id}"]`) as HTMLElement
+    // doc right edge 916 - root left 0 + 16 = 932; width min(320, 1200 - 932 - 8) = 260
+    expect(firstCard.style.top).toBe('40px')
+    expect(secondCard.style.top).toBe('200px')
+    expect(firstCard.style.left).toBe('932px')
+    expect(firstCard.style.width).toBe('260px')
+    const aside = document.querySelector('.deditor-comment-margin') as HTMLElement
+    expect(aside.classList.contains('is-overlay')).toBe(false)
+  })
+
+  it('falls back to overlay placement when the margin is narrower than 240px', async () => {
+    let editor: Editor | null = null
+    const { getByText } = render(<Harness onEditor={(e) => { editor = e }} />)
+    await waitFor(() => expect(editor?.state.doc.textContent).toBe('Hello world'))
+    mockLayout(1000)
+    mockCoords(editor!, { 1: 40 })
+    editor!.commands.addComment({ body: 'First', author: user, from: 1, to: 6 })
+    await waitFor(() => getByText('First'))
+    const first = editor!.comments.list()[0]
+    const card = document.querySelector(`[data-comment-id="${first.id}"]`) as HTMLElement
+    // overlay: width 300, left = 1000 - 16 - 300 = 684, still anchored in Y
+    expect(card.style.width).toBe('300px')
+    expect(card.style.left).toBe('684px')
+    expect(card.style.top).toBe('40px')
+    const aside = document.querySelector('.deditor-comment-margin') as HTMLElement
+    expect(aside.classList.contains('is-overlay')).toBe(true)
+  })
+
+  it('clicking a card selects the anchor range and requests scrollIntoView on the transaction', async () => {
+    let editor: Editor | null = null
+    const { getByText } = render(<Harness onEditor={(e) => { editor = e }} />)
+    await waitFor(() => expect(editor?.state.doc.textContent).toBe('Hello world'))
+    mockLayout(1200)
+    mockCoords(editor!, { 7: 200 })
+    editor!.commands.addComment({ body: 'Live', author: user, from: 7, to: 12 })
+    const live = editor!.comments.list()[0]
+    await waitFor(() => getByText('Live'))
+    const dispatchSpy = vi.spyOn(editor!, 'dispatch')
+    fireEvent.click(getByText('Live'))
+    const tr = dispatchSpy.mock.calls.at(-1)?.[0]
+    expect(tr).toBeTruthy()
+    expect(tr!.scrolledIntoView).toBe(true)
+    expect(tr!.getMeta(commentsUiKey)).toEqual({ activeId: live.id })
+    expect(editor!.state.selection.from).toBe(7)
+    expect(editor!.state.selection.to).toBe(12)
+  })
+
+  it('scrolls the active card into view when activeId changes', async () => {
+    let editor: Editor | null = null
+    const { getByText } = render(<Harness onEditor={(e) => { editor = e }} />)
+    await waitFor(() => expect(editor?.state.doc.textContent).toBe('Hello world'))
+    mockLayout(1200)
+    mockCoords(editor!, { 1: 40 })
+    editor!.commands.addComment({ body: 'Note', author: user, from: 1, to: 6 })
+    const thread = editor!.comments.list()[0]
+    await waitFor(() => getByText('Note'))
+    const scrollSpy = vi
+      .spyOn(Element.prototype, 'scrollIntoView')
+      .mockImplementation(() => undefined)
+    editor!.dispatch(
+      editor!.state.tr.setMeta(commentsUiKey, { activeId: thread.id }).setMeta('addToHistory', false),
+    )
+    await waitFor(() => {
+      expect(scrollSpy).toHaveBeenCalled()
+      const card = document.querySelector(`[data-comment-id="${thread.id}"]`) as HTMLElement
+      expect(scrollSpy.mock.instances).toContain(card)
+      expect(scrollSpy.mock.calls.at(-1)?.[0]).toEqual({ block: 'nearest' })
+    })
+  })
+
   it('skeleton rows show Loading thread…; clicking a thread selects the first mark range', async () => {
     let editor: Editor | null = null
     const { getByText } = render(<Harness onEditor={(e) => { editor = e }} />)
@@ -232,5 +378,73 @@ describe('comment chrome', () => {
     expect(editor!.state.selection.from).toBe(7)
     expect(editor!.state.selection.to).toBe(12)
     expect(commentsUiKey.getState(editor!.state)?.activeId).toBe(live.id)
+  })
+})
+
+describe('resolveOverlap', () => {
+  it('keeps non-overlapping cards at their anchor tops', () => {
+    const out = resolveOverlap([
+      { id: 'a', top: 0, height: 50 },
+      { id: 'b', top: 100, height: 50 },
+    ])
+    expect(out).toEqual([
+      { id: 'a', top: 0 },
+      { id: 'b', top: 100 },
+    ])
+  })
+
+  it('pushes an overlapping card down by the 8px gap', () => {
+    const out = resolveOverlap([
+      { id: 'a', top: 0, height: 100 },
+      { id: 'b', top: 50, height: 50 },
+    ])
+    expect(out).toEqual([
+      { id: 'a', top: 0 },
+      { id: 'b', top: 108 },
+    ])
+  })
+
+  it('cascades the push-down across multiple overlapping cards', () => {
+    const out = resolveOverlap([
+      { id: 'a', top: 0, height: 100 },
+      { id: 'b', top: 10, height: 100 },
+      { id: 'c', top: 20, height: 50 },
+    ])
+    expect(out).toEqual([
+      { id: 'a', top: 0 },
+      { id: 'b', top: 108 },
+      { id: 'c', top: 216 },
+    ])
+  })
+
+  it('sorts by anchor top before resolving', () => {
+    const out = resolveOverlap([
+      { id: 'b', top: 100, height: 50 },
+      { id: 'a', top: 0, height: 120 },
+    ])
+    expect(out).toEqual([
+      { id: 'a', top: 0 },
+      { id: 'b', top: 128 },
+    ])
+  })
+})
+
+describe('marginLeft', () => {
+  const rootRect = { left: 0, right: 1200 }
+  const docRect = { left: 100, right: 916 }
+
+  it('places cards 16px right of the doc card in margin mode', () => {
+    const box = marginLeft(docRect, rootRect, 1200)
+    expect(box).toEqual({ left: 932, width: 260, overlay: false })
+  })
+
+  it('caps card width at 320px on very wide roots', () => {
+    const box = marginLeft(docRect, rootRect, 1600)
+    expect(box).toEqual({ left: 932, width: 320, overlay: false })
+  })
+
+  it('falls back to a 300px overlay pinned 16px from the right below 240px available', () => {
+    const box = marginLeft(docRect, { left: 0, right: 1000 }, 1000)
+    expect(box).toEqual({ left: 684, width: 300, overlay: true })
   })
 })

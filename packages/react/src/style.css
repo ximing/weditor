@@ -449,20 +449,52 @@
   font-size: 13px;
 }
 
-.deditor-comment-sidebar {
+.deditor-comment-margin {
   position: absolute;
-  top: calc(var(--deditor-toolbar-h) + 8px);
-  right: 8px;
-  bottom: 8px;
-  width: 300px;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
   box-sizing: border-box;
-  overflow-y: auto;
+  font-size: 13px;
+  pointer-events: none;
+}
+
+.deditor-comment-margin > .deditor-comment-thread {
+  position: absolute;
+  box-sizing: border-box;
   border: 1px solid var(--deditor-border-light);
   border-radius: var(--deditor-radius-m);
   background: var(--deditor-bg-surface);
+  pointer-events: auto;
+}
+
+.deditor-comment-margin.is-overlay > .deditor-comment-thread {
   box-shadow: var(--deditor-shadow-pop);
-  font-size: 13px;
-  z-index: 20;
+}
+
+.deditor-comment-detached {
+  box-sizing: border-box;
+  padding: 0 0 8px;
+  pointer-events: auto;
+}
+
+.deditor-comment-detached-title {
+  padding: 4px 2px;
+  color: var(--deditor-text-3);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.deditor-comment-detached .deditor-comment-thread {
+  border: 1px solid var(--deditor-border-light);
+  border-radius: var(--deditor-radius-m);
+  background: var(--deditor-bg-surface);
+}
+
+.deditor-comment-detached .deditor-comment-thread + .deditor-comment-thread {
+  margin-top: 8px;
 }
 
 .deditor-comment-composer {
@@ -481,7 +513,6 @@
 
 .deditor-comment-thread {
   padding: 12px;
-  border-bottom: 1px solid var(--deditor-border-light);
   cursor: pointer;
 }
 
@@ -582,7 +613,7 @@
 
 @media print {
   .deditor-toolbar,
-  .deditor-comment-sidebar,
+  .deditor-comment-margin,
   .deditor-comment-composer,
   .deditor-bubble,
   .deditor-table-bubble,
