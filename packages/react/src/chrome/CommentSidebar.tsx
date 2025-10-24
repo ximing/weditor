@@ -194,7 +194,7 @@ function ThreadCard(props: {
 
 export function CommentSidebar(props: { currentUser: User; readOnly?: boolean }) {
   const editor = useEditor()
-  const [version, bump] = useState(0)
+  const [, bump] = useState(0)
   const [heights, setHeights] = useState<Record<string, number>>({})
   const asideRef = useRef<HTMLElement | null>(null)
   const cardRefs = useRef(new Map<string, HTMLElement>())
@@ -210,22 +210,31 @@ export function CommentSidebar(props: { currentUser: User; readOnly?: boolean })
     }
   }, [editor])
 
-  // Recompute triggers 3-4: window resize and document surface resize.
+  // Recompute triggers 3-4: window resize and document surface resize. The
+  // observer is created at most once per editor: re-creating it per render
+  // would loop forever, since observe() always fires an initial notification.
   useEffect(() => {
     const onBump = () => bump((n) => n + 1)
     window.addEventListener('resize', onBump)
     let observer: ResizeObserver | null = null
-    const view = editor.view
-    const target = view ? ((view.dom.closest('.deditor-doc') ?? view.dom) as Element) : null
-    if (target && typeof ResizeObserver !== 'undefined') {
+    const attach = () => {
+      if (observer || typeof ResizeObserver === 'undefined') return
+      const view = editor.view
+      const target = view ? ((view.dom.closest('.deditor-doc') ?? view.dom) as Element) : null
+      if (!target) return
       observer = new ResizeObserver(onBump)
       observer.observe(target)
     }
+    // The view may not be mounted on first run; attach on the first
+    // transaction after mount instead of re-running this effect.
+    attach()
+    const offTr = editor.on('transaction', attach)
     return () => {
       window.removeEventListener('resize', onBump)
+      offTr()
       observer?.disconnect()
     }
-  }, [editor, version])
+  }, [editor])
 
   useEffect(() => {
     const onClick = (event: MouseEvent) => {
