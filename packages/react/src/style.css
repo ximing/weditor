@@ -499,9 +499,6 @@
 
 .deditor-comment-composer {
   position: absolute;
-  top: calc(var(--deditor-toolbar-h) + 8px);
-  right: 8px;
-  width: 300px;
   box-sizing: border-box;
   padding: 12px;
   border: 1px solid var(--deditor-border-light);

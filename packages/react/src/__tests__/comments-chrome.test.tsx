@@ -174,6 +174,51 @@ describe('comment chrome', () => {
     expect(commentButton.classList.contains('is-primary')).toBe(true)
   })
 
+  it('renders nothing when no range is open', async () => {
+    const { queryByPlaceholderText } = render(<Harness />)
+    await waitFor(() => queryByPlaceholderText('Start typing…') === null)
+    expect(document.querySelector('.deditor-comment-composer')).toBeNull()
+  })
+
+  it('anchors the composer to the selection top and places it right of the doc', async () => {
+    let editor: Editor | null = null
+    const { getByTestId, getByPlaceholderText } = render(
+      <Harness onEditor={(e) => { editor = e }} />,
+    )
+    await waitFor(() => expect(editor?.state.doc.textContent).toBe('Hello world'))
+    mockLayout(1200)
+    mockCoords(editor!, { 1: 40 })
+    fireEvent.click(getByTestId('open-comment'))
+    const composer = getByPlaceholderText('Start typing…').closest(
+      '.deditor-comment-composer',
+    ) as HTMLElement
+    // selection from=1 -> coordsAtPos top 40, root top 0 -> top 40
+    expect(composer.style.top).toBe('40px')
+    // doc right edge 916 - root left 0 + 16 = 932; width min(320, 1200 - 932 - 8) = 260
+    expect(composer.style.left).toBe('932px')
+    expect(composer.style.width).toBe('260px')
+    expect(composer.classList.contains('is-overlay')).toBe(false)
+  })
+
+  it('falls back to overlay placement for the composer on narrow layouts', async () => {
+    let editor: Editor | null = null
+    const { getByTestId, getByPlaceholderText } = render(
+      <Harness onEditor={(e) => { editor = e }} />,
+    )
+    await waitFor(() => expect(editor?.state.doc.textContent).toBe('Hello world'))
+    mockLayout(1000)
+    mockCoords(editor!, { 1: 40 })
+    fireEvent.click(getByTestId('open-comment'))
+    const composer = getByPlaceholderText('Start typing…').closest(
+      '.deditor-comment-composer',
+    ) as HTMLElement
+    // overlay: width 300, left = 1000 - 16 - 300 = 684, still anchored in Y
+    expect(composer.style.top).toBe('40px')
+    expect(composer.style.left).toBe('684px')
+    expect(composer.style.width).toBe('300px')
+    expect(composer.classList.contains('is-overlay')).toBe(true)
+  })
+
   it('renders comment messages with author metadata, a valid semantic time, and chip actions', async () => {
     let editor: Editor | null = null
     const { getByText } = render(<Harness onEditor={(e) => { editor = e }} />)
