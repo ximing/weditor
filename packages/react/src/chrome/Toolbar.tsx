@@ -233,27 +233,29 @@ export function Toolbar(props: {
   const overflowed = groups.slice(visible)
 
   return (
-    <div className="deditor-toolbar" role="toolbar" ref={containerRef}>
-      {inline.map((group, index) => (
-        <Fragment key={group.key}>
-          {index > 0 ? <div className="deditor-toolbar-divider" /> : null}
-          {group.node}
-        </Fragment>
-      ))}
-      <div className="deditor-toolbar-divider" />
-      <OverflowMore
-        overflow={
-          overflowed.length ? (
-            <div className="deditor-more-overflow-groups">
-              {overflowed.map((group) => (
-                <div key={group.key} className="deditor-toolbar-group">
-                  {group.node}
-                </div>
-              ))}
-            </div>
-          ) : undefined
-        }
-      />
+    <div className="deditor-toolbar" role="toolbar">
+      <div className="deditor-toolbar-inner" ref={containerRef}>
+        {inline.map((group, index) => (
+          <Fragment key={group.key}>
+            {index > 0 ? <div className="deditor-toolbar-divider" /> : null}
+            {group.node}
+          </Fragment>
+        ))}
+        <div className="deditor-toolbar-divider" />
+        <OverflowMore
+          overflow={
+            overflowed.length ? (
+              <div className="deditor-more-overflow-groups">
+                {overflowed.map((group) => (
+                  <div key={group.key} className="deditor-toolbar-group">
+                    {group.node}
+                  </div>
+                ))}
+              </div>
+            ) : undefined
+          }
+        />
+      </div>
     </div>
   )
 }

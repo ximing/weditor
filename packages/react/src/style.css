@@ -260,13 +260,19 @@
   border-color: var(--deditor-primary);
 }
 .deditor-toolbar {
-  display: flex;
-  align-items: center;
   height: var(--deditor-toolbar-h);
-  gap: 2px;
-  padding: 0 8px;
   border-bottom: 1px solid var(--deditor-border);
   background: var(--deditor-bg-surface);
+}
+
+.deditor-toolbar-inner {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 8px;
   box-sizing: border-box;
   white-space: nowrap;
   overflow: hidden;
