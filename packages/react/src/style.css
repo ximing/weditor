@@ -608,6 +608,24 @@
   margin-top: 8px;
 }
 
+.deditor-thread-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-top: 8px;
+}
+
+.deditor-thread-reply {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.deditor-thread-reply .deditor-chip-btn {
+  align-self: flex-end;
+}
+
 @media print {
   .deditor-toolbar,
   .deditor-comment-margin,

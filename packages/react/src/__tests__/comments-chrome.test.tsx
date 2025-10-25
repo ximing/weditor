@@ -219,7 +219,7 @@ describe('comment chrome', () => {
     expect(composer.classList.contains('is-overlay')).toBe(true)
   })
 
-  it('renders comment messages with author metadata, a valid semantic time, and chip actions', async () => {
+  it('renders comment messages with author metadata, a valid semantic time, and icon actions', async () => {
     let editor: Editor | null = null
     const { getByText } = render(<Harness onEditor={(e) => { editor = e }} />)
     await waitFor(() => expect(editor?.state.doc.textContent).toBe('Hello world'))
@@ -238,12 +238,106 @@ describe('comment chrome', () => {
     expect(timestamp.dateTime).toMatch(/^\d{4}-\d{2}-\d{2}T/)
     expect(Number.isNaN(new Date(timestamp.dateTime).getTime())).toBe(false)
     expect(message.querySelector('.deditor-comment-body')?.textContent).toBe('Attributed note')
-    expect(within(row).getByLabelText('Reply').classList.contains('deditor-comment-input')).toBe(true)
-    const replyButton = within(row).getByText('Reply')
-    expect(replyButton.classList.contains('deditor-chip-btn')).toBe(true)
-    expect(replyButton.classList.contains('is-primary')).toBe(true)
-    expect(within(row).getByText('Resolve').classList.contains('deditor-chip-btn')).toBe(true)
-    expect(within(row).getByText('Delete').classList.contains('deditor-chip-btn')).toBe(true)
+    // Compact by default: no textarea, no chip buttons — just the icon row.
+    expect(within(row).queryByRole('textbox')).toBeNull()
+    expect(row.querySelector('.deditor-thread-reply')).toBeNull()
+    const actions = row.querySelector('.deditor-thread-actions') as HTMLElement
+    expect(actions).toBeTruthy()
+    for (const name of ['Reply', 'Mark resolved', 'Delete']) {
+      const btn = within(actions).getByRole('button', { name })
+      expect(btn.classList.contains('deditor-icon-btn')).toBe(true)
+      expect(btn.querySelector('svg[aria-hidden="true"]')).toBeTruthy()
+    }
+  })
+
+  it('shows a tooltip with the action label after hovering a thread icon button', async () => {
+    let editor: Editor | null = null
+    const { getByText } = render(<Harness onEditor={(e) => { editor = e }} />)
+    await waitFor(() => expect(editor?.state.doc.textContent).toBe('Hello world'))
+    editor!.commands.addComment({ body: 'Note', author: user, from: 1, to: 6 })
+    await waitFor(() => getByText('Note'))
+    const row = document.querySelector('.deditor-comment-thread') as HTMLElement
+    fireEvent.mouseOver(within(row).getByRole('button', { name: 'Mark resolved' }))
+    await waitFor(() => expect(document.querySelector('.deditor-tooltip')).toBeTruthy(), {
+      timeout: 1500,
+    })
+    expect(document.querySelector('.deditor-tooltip')!.textContent).toBe('Mark resolved')
+  })
+
+  it('reply icon expands an inline reply box; Esc collapses it without dispatching', async () => {
+    let editor: Editor | null = null
+    const { getByText, queryByText } = render(<Harness onEditor={(e) => { editor = e }} />)
+    await waitFor(() => expect(editor?.state.doc.textContent).toBe('Hello world'))
+    editor!.commands.addComment({ body: 'Note', author: user, from: 1, to: 6 })
+    await waitFor(() => getByText('Note'))
+    const row = document.querySelector('.deditor-comment-thread') as HTMLElement
+    expect(within(row).queryByRole('textbox')).toBeNull()
+    fireEvent.click(within(row).getByRole('button', { name: 'Reply' }))
+    const input = within(row).getByRole('textbox', { name: 'Reply' }) as HTMLTextAreaElement
+    expect(input.classList.contains('deditor-comment-input')).toBe(true)
+    expect(document.activeElement).toBe(input)
+    fireEvent.change(input, { target: { value: 'Draft' } })
+    fireEvent.keyDown(input, { key: 'Escape' })
+    expect(within(row).queryByRole('textbox')).toBeNull()
+    expect(row.querySelector('.deditor-thread-reply')).toBeNull()
+    expect(queryByText('Draft')).toBeNull()
+  })
+
+  it('submitting the reply box calls replyToComment and collapses the box', async () => {
+    let editor: Editor | null = null
+    const { getByText } = render(<Harness onEditor={(e) => { editor = e }} />)
+    await waitFor(() => expect(editor?.state.doc.textContent).toBe('Hello world'))
+    editor!.commands.addComment({ body: 'Note', author: user, from: 1, to: 6 })
+    await waitFor(() => getByText('Note'))
+    const row = document.querySelector('.deditor-comment-thread') as HTMLElement
+    fireEvent.click(within(row).getByRole('button', { name: 'Reply' }))
+    fireEvent.change(within(row).getByRole('textbox', { name: 'Reply' }), {
+      target: { value: 'Later' },
+    })
+    const replyBox = row.querySelector('.deditor-thread-reply') as HTMLElement
+    const submit = within(replyBox).getByText('Send')
+    expect(submit.classList.contains('deditor-chip-btn')).toBe(true)
+    expect(submit.classList.contains('is-primary')).toBe(true)
+    fireEvent.click(submit)
+    await waitFor(() => expect(getByText('Later')).toBeTruthy())
+    expect(within(row).queryByRole('textbox')).toBeNull()
+    expect(row.querySelector('.deditor-thread-reply')).toBeNull()
+  })
+
+  it('clicking the reply icon again while the box is open keeps the draft', async () => {
+    let editor: Editor | null = null
+    const { getByText } = render(<Harness onEditor={(e) => { editor = e }} />)
+    await waitFor(() => expect(editor?.state.doc.textContent).toBe('Hello world'))
+    editor!.commands.addComment({ body: 'Note', author: user, from: 1, to: 6 })
+    await waitFor(() => getByText('Note'))
+    const row = document.querySelector('.deditor-comment-thread') as HTMLElement
+    fireEvent.click(within(row).getByRole('button', { name: 'Reply' }))
+    fireEvent.change(within(row).getByRole('textbox', { name: 'Reply' }), {
+      target: { value: 'Draft' },
+    })
+    fireEvent.click(within(row).getByRole('button', { name: 'Reply' }))
+    const input = within(row).getByRole('textbox', { name: 'Reply' }) as HTMLTextAreaElement
+    expect(input.value).toBe('Draft')
+  })
+
+  it('submitting a whitespace-only draft does not dispatch and keeps the box open', async () => {
+    let editor: Editor | null = null
+    const { getByText } = render(<Harness onEditor={(e) => { editor = e }} />)
+    await waitFor(() => expect(editor?.state.doc.textContent).toBe('Hello world'))
+    editor!.commands.addComment({ body: 'Note', author: user, from: 1, to: 6 })
+    const thread = editor!.comments.list()[0]
+    await waitFor(() => getByText('Note'))
+    const row = document.querySelector('.deditor-comment-thread') as HTMLElement
+    fireEvent.click(within(row).getByRole('button', { name: 'Reply' }))
+    fireEvent.change(within(row).getByRole('textbox', { name: 'Reply' }), {
+      target: { value: '   ' },
+    })
+    fireEvent.click(
+      within(row.querySelector('.deditor-thread-reply') as HTMLElement).getByText('Send'),
+    )
+    expect(editor!.comments.get(thread.id)!.comments).toHaveLength(1)
+    expect(within(row).getByRole('textbox', { name: 'Reply' })).toBeTruthy()
+    expect(row.querySelector('.deditor-thread-reply')).toBeTruthy()
   })
 
   it('lists unresolved attached then detached then resolved; reply/resolve/delete dispatch', async () => {
@@ -263,22 +357,29 @@ describe('comment chrome', () => {
     expect(quotes[0]).toBe('Hello')
     expect(quotes[quotes.length - 1]).toBe('world')
     const firstRow = document.querySelector('.deditor-comment-thread') as HTMLElement
-    fireEvent.change(within(firstRow).getByLabelText('Reply'), { target: { value: 'Later' } })
-    fireEvent.click(within(firstRow).getByText('Reply'))
+    fireEvent.click(within(firstRow).getByRole('button', { name: 'Reply' }))
+    fireEvent.change(within(firstRow).getByRole('textbox', { name: 'Reply' }), {
+      target: { value: 'Later' },
+    })
+    fireEvent.click(
+      within(firstRow.querySelector('.deditor-thread-reply') as HTMLElement).getByText('Send'),
+    )
     await waitFor(() => expect(getByText('Later')).toBeTruthy())
-    fireEvent.click(within(firstRow).getByText('Resolve'))
-    await waitFor(() => expect(within(firstRow).getByText('Reopen')).toBeTruthy())
+    fireEvent.click(within(firstRow).getByRole('button', { name: 'Mark resolved' }))
+    await waitFor(() =>
+      expect(within(firstRow).getByRole('button', { name: 'Reopen' })).toBeTruthy(),
+    )
     const resolvedFlag = firstRow.querySelector('.deditor-comment-flag')
     expect(resolvedFlag?.querySelector('svg[aria-hidden="true"]')).toBeTruthy()
     const openId = editor!.comments.list().find((t) => t.comments[0].body === 'First')!.id
     expect(editor!.comments.get(openId)?.resolved).toBe(true)
-    fireEvent.click(within(firstRow).getByText('Delete'))
+    fireEvent.click(within(firstRow).getByRole('button', { name: 'Delete' }))
     await waitFor(() => expect(editor!.comments.get(openId)).toBeUndefined())
   })
 
   it('hides reply/resolve/delete when read-only after a thread exists', async () => {
     let editor: Editor | null = null
-    const { getByText, queryByText, queryByLabelText, queryByPlaceholderText } = render(
+    const { getByText, queryByRole, queryByPlaceholderText } = render(
       <Harness readOnly onEditor={(e) => { editor = e }} />,
     )
     await waitFor(() => expect(editor?.state.doc.textContent).toBe('Hello world'))
@@ -287,9 +388,10 @@ describe('comment chrome', () => {
     editor!.setEditable(false)
     await waitFor(() => getByText('A note'))
     expect(queryByPlaceholderText('Start typing…')).toBeNull()
-    expect(queryByLabelText('Reply')).toBeNull()
-    expect(queryByText('Resolve')).toBeNull()
-    expect(queryByText('Delete')).toBeNull()
+    expect(queryByRole('textbox')).toBeNull()
+    expect(queryByRole('button', { name: 'Reply' })).toBeNull()
+    expect(queryByRole('button', { name: 'Mark resolved' })).toBeNull()
+    expect(queryByRole('button', { name: 'Delete' })).toBeNull()
     expect(document.querySelector('.deditor-comment-open')).toBeTruthy()
   })
 

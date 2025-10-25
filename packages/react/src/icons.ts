@@ -27,6 +27,8 @@ export {
   Image as IconImage,
   Table as IconTable,
   MessageSquarePlus as IconComment,
+  Reply as IconReply,
+  Trash2 as IconTrash,
   Search as IconFind,
   Printer as IconPrint,
   Ellipsis as IconMore,

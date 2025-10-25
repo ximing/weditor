@@ -3,7 +3,8 @@ import { commentsUiKey, pickCommentIdAt } from '@deditor/preset-docs'
 import { TextSelection } from 'prosemirror-state'
 import type { CSSProperties } from 'react'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { IconCheck } from '../icons'
+import { IconCheck, IconReply, IconTrash, IconUndo } from '../icons'
+import { IconButton } from '../ui/IconButton'
 import { useEditor } from '../useEditor'
 import {
   type MarginBox,
@@ -82,46 +83,52 @@ function pickIdFromEvent(editor: Editor, event: MouseEvent): string | undefined 
 
 function ThreadActions(props: { id: string; resolved: boolean; currentUser: User }) {
   const editor = useEditor()
-  const [body, setBody] = useState('')
+  const [draft, setDraft] = useState<string | null>(null)
+  const submit = () => {
+    if (!draft || !draft.trim()) return
+    editor.commands.replyToComment({
+      id: props.id,
+      body: draft,
+      author: props.currentUser,
+    })
+    setDraft(null)
+  }
   return (
-    <div className="deditor-comment-actions" onClick={(e) => e.stopPropagation()}>
-      <textarea
-        aria-label="Reply"
-        className="deditor-comment-input"
-        value={body}
-        onChange={(e) => setBody(e.target.value)}
-      />
-      <button
-        type="button"
-        className="deditor-chip-btn is-primary"
-        onClick={() => {
-          if (!body) return
-          editor.commands.replyToComment({
-            id: props.id,
-            body,
-            author: props.currentUser,
-          })
-          setBody('')
-        }}
-      >
-        Reply
-      </button>
-      <button
-        type="button"
-        className="deditor-chip-btn"
-        title={props.resolved ? 'Reopen' : 'Resolve'}
-        onClick={() => editor.commands.toggleCommentResolved({ id: props.id })}
-      >
-        {props.resolved ? 'Reopen' : 'Resolve'}
-      </button>
-      <button
-        type="button"
-        className="deditor-chip-btn"
-        title="Delete"
-        onClick={() => editor.commands.deleteComment({ id: props.id })}
-      >
-        Delete
-      </button>
+    <div onClick={(e) => e.stopPropagation()}>
+      <div className="deditor-thread-actions">
+        <IconButton
+          icon={IconReply}
+          label="Reply"
+          onClick={() => setDraft((d) => (d === null ? '' : d))}
+        />
+        <IconButton
+          icon={props.resolved ? IconUndo : IconCheck}
+          label={props.resolved ? 'Reopen' : 'Mark resolved'}
+          onClick={() => editor.commands.toggleCommentResolved({ id: props.id })}
+        />
+        <IconButton
+          icon={IconTrash}
+          label="Delete"
+          onClick={() => editor.commands.deleteComment({ id: props.id })}
+        />
+      </div>
+      {draft !== null ? (
+        <div className="deditor-thread-reply">
+          <textarea
+            autoFocus
+            aria-label="Reply"
+            className="deditor-comment-input"
+            value={draft}
+            onChange={(e) => setDraft(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Escape') setDraft(null)
+            }}
+          />
+          <button type="button" className="deditor-chip-btn is-primary" onClick={submit}>
+            Send
+          </button>
+        </div>
+      ) : null}
     </div>
   )
 }
