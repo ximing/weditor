@@ -5,13 +5,13 @@
   "description": "Deditor - pageless document editor SDK (ProseMirror, range comments, OT collab)",
   "license": "MIT",
   "author": "ximing",
-  "homepage": "https://ximing.github.io/weditor/",
+  "homepage": "https://ximing.github.io/deditor/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ximing/weditor.git"
+    "url": "git+https://github.com/ximing/deditor.git"
   },
   "bugs": {
-    "url": "https://github.com/ximing/weditor/issues"
+    "url": "https://github.com/ximing/deditor/issues"
   },
   "type": "module",
   "packageManager": "pnpm@9.12.3",

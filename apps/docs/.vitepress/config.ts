@@ -10,8 +10,8 @@ export default defineConfig({
     logo: undefined,
     nav: [
       { text: 'Guide', link: '/guide/install' },
-      { text: 'Demo', link: 'https://ximing.github.io/weditor/demo/' },
-      { text: 'GitHub', link: 'https://github.com/ximing/weditor' },
+      { text: 'Demo', link: 'https://ximing.github.io/deditor/demo/' },
+      { text: 'GitHub', link: 'https://github.com/ximing/deditor' },
     ],
     sidebar: [
       { text: 'Introduction', link: '/' },
@@ -25,14 +25,14 @@ export default defineConfig({
       { text: 'Vue later', link: '/guide/vue' },
       { text: 'Migration', link: '/guide/migration' },
     ],
-    socialLinks: [{ icon: 'github', link: 'https://github.com/ximing/weditor' }],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/ximing/deditor' }],
     footer: {
       message: 'Released under the MIT License.',
       copyright: 'Copyright © 2017-2026 ximing',
     },
     search: { provider: 'local' },
     editLink: {
-      pattern: 'https://github.com/ximing/weditor/edit/master/apps/docs/:path',
+      pattern: 'https://github.com/ximing/deditor/edit/master/apps/docs/:path',
       text: 'Edit this page',
     },
   },

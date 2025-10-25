@@ -1,6 +1,6 @@
 # @deditor/react
 
-React `<DocEditor />` for [Deditor](https://github.com/ximing/weditor): toolbar, bubbles, find, comment sidebar. Peer `react` >= 18.
+React `<DocEditor />` for [Deditor](https://github.com/ximing/deditor): toolbar, bubbles, find, comment sidebar. Peer `react` >= 18.
 
 ```bash
 pnpm add @deditor/react @deditor/preset-docs @deditor/collab
@@ -15,4 +15,4 @@ export function App() {
 }
 ```
 
-Docs: https://ximing.github.io/weditor/guide/doc-editor
+Docs: https://ximing.github.io/deditor/guide/doc-editor

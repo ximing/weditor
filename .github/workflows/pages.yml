@@ -31,11 +31,11 @@ jobs:
       - name: Build docs
         run: pnpm --filter @deditor/docs build
         env:
-          DOCS_BASE: /weditor/
+          DOCS_BASE: /deditor/
       - name: Build demo
         run: pnpm --filter @deditor/demo build
         env:
-          DEMO_BASE: /weditor/demo/
+          DEMO_BASE: /deditor/demo/
       - name: Assemble site
         run: |
           mkdir -p site/demo

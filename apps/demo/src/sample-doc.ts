@@ -121,7 +121,7 @@ export const sampleDoc = {
         {
           type: 'text',
           text: 'link',
-          marks: [{ type: 'link', attrs: { href: 'https://github.com/ximing/weditor' } }],
+          marks: [{ type: 'link', attrs: { href: 'https://github.com/ximing/deditor' } }],
         },
         { type: 'text', text: '.' },
       ],

@@ -13,4 +13,4 @@ JSON is the canonical document format. HTML is paste input, print, and `getHTML(
 
 Start at [Install](/guide/install), then [DocEditor](/guide/doc-editor) for the React surface or [Editor API](/guide/editor-api) for a headless mount.
 
-A playground (single-user) is on [GitHub Pages](https://ximing.github.io/weditor/demo/). Two-panel collab needs `pnpm dev:collab` locally.
+A playground (single-user) is on [GitHub Pages](https://ximing.github.io/deditor/demo/). Two-panel collab needs `pnpm dev:collab` locally.

@@ -1,6 +1,6 @@
 # @deditor/preset-docs
 
-Pageless Docs schema, commands, keymap, and document CSS for [Deditor](https://github.com/ximing/weditor).
+Pageless Docs schema, commands, keymap, and document CSS for [Deditor](https://github.com/ximing/deditor).
 
 ```bash
 pnpm add @deditor/preset-docs
@@ -11,4 +11,4 @@ import { docsPreset } from '@deditor/preset-docs'
 import '@deditor/preset-docs/style.css'
 ```
 
-Docs: https://ximing.github.io/weditor/
+Docs: https://ximing.github.io/deditor/

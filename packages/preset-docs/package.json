@@ -4,14 +4,14 @@
   "description": "Pageless Docs schema, commands, keymap, and document CSS for Deditor.",
   "license": "MIT",
   "author": "ximing",
-  "homepage": "https://ximing.github.io/weditor/",
+  "homepage": "https://ximing.github.io/deditor/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ximing/weditor.git",
+    "url": "git+https://github.com/ximing/deditor.git",
     "directory": "packages/preset-docs"
   },
   "bugs": {
-    "url": "https://github.com/ximing/weditor/issues"
+    "url": "https://github.com/ximing/deditor/issues"
   },
   "keywords": [
     "prosemirror",

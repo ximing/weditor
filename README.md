@@ -2,14 +2,14 @@
 
 **Doc editor.** A TypeScript SDK for a pageless document editor built on [ProseMirror](https://prosemirror.net/). Range comments and operational-transform collaboration are first-class.
 
-[Documentation](https://ximing.github.io/weditor/) · [Live demo](https://ximing.github.io/weditor/demo/) · [npm](https://www.npmjs.com/package/@deditor/react)
+[Documentation](https://ximing.github.io/deditor/) · [Live demo](https://ximing.github.io/deditor/demo/) · [npm](https://www.npmjs.com/package/@deditor/react)
 
-[![CI](https://github.com/ximing/weditor/actions/workflows/ci.yml/badge.svg)](https://github.com/ximing/weditor/actions/workflows/ci.yml)
+[![CI](https://github.com/ximing/deditor/actions/workflows/ci.yml/badge.svg)](https://github.com/ximing/deditor/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/@deditor/core.svg)](https://www.npmjs.com/package/@deditor/core)
 
 ## Preview
 
-Pageless Docs chrome with a classic toolbar, document styles, and light / dark themes. Try the [live demo](https://ximing.github.io/weditor/demo/).
+Pageless Docs chrome with a classic toolbar, document styles, and light / dark themes. Try the [live demo](https://ximing.github.io/deditor/demo/).
 
 ![Deditor editor in light theme](docs/images/editor-light.png)
 

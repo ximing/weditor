@@ -52,7 +52,7 @@ export function App() {
           <a
             className="demo-icon-btn"
             aria-label="GitHub repository"
-            href="https://github.com/ximing/weditor"
+            href="https://github.com/ximing/deditor"
             target="_blank"
             rel="noreferrer"
           >
